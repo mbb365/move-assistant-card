@@ -1,0 +1,540 @@
+<main id="app"><div class="shell">
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<!-- HOME -->
+<section class="view active" id="homeView">
+  <div class="topbar">
+    <div><div class="title" id="homeClock">--:--</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="moveSection">
+      <div class="sectionLabel">Today’s movement</div>
+      <section class="workoutGallery" id="workoutGallery" aria-label="Move choices">
+      <article class="workoutPanel addPanel" id="addWorkoutPanel" tabindex="0" role="button" aria-label="Add move">
+        <span class="edgeLight" aria-hidden="true"></span>
+        <div class="addPanelPlus">＋</div>
+        <div class="addPanelLabel">Add move</div>
+      </article>
+    </section>
+    </div>
+    <section class="card activityCard">
+      <div class="activityHeader">
+        <div class="activityIcon">⌁</div>
+        <div class="activityTitle">Activity</div>
+      </div>
+      <div class="activityRows">
+        <div class="activityRow" id="stepsRow">
+          <div class="activityRowIcon">↟</div>
+          <div><div class="activityRowName">Steps</div><div class="activityRowMeta" id="stepsMeta">Choose a sensor in Settings</div></div>
+        </div>
+        <div class="activityRow" id="sleepRow">
+          <div class="activityRowIcon">☾</div>
+          <div><div class="activityRowName">Sleep</div><div class="activityRowMeta" id="sleepMeta">Choose a sensor in Settings</div></div>
+        </div>
+        <div class="activityRow" id="weightRow">
+          <div class="activityRowIcon">◇</div>
+          <div><div class="activityRowName">Weight</div><div class="activityRowMeta" id="weightMeta">Choose a sensor in Settings</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card weekly">
+      <div class="weekHero">
+        <div>
+          <div class="weekMetric">0</div>
+          <div class="weekCopy">minutes of intentional movement this week</div>
+        </div>
+      </div>
+      <div class="weekChips">
+        <div class="weekChip done"><div class="weekChipTop"><strong>Mon</strong><span class="weekTick">✓</span></div><div class="weekChipTime">20 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip done"><div class="weekChipTop"><strong>Tue</strong><span class="weekTick">✓</span></div><div class="weekChipTime">18 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip"><div class="weekChipTop"><strong>Wed</strong><span></span></div><div class="weekChipTime">0 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip done"><div class="weekChipTop"><strong>Thu</strong><span class="weekTick">✓</span></div><div class="weekChipTime">16 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip done"><div class="weekChipTop"><strong>Fri</strong><span class="weekTick">✓</span></div><div class="weekChipTime">20 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip"><div class="weekChipTop"><strong>Sat</strong><span></span></div><div class="weekChipTime">0 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip"><div class="weekChipTop"><strong>Sun</strong><span></span></div><div class="weekChipTime">0 min</div><div class="weekChipMeta">moved</div></div>
+        <div class="weekChip total"><div class="weekChipTop"><strong>To date</strong><span class="weekTick">✓</span></div><div class="weekChipTime">74 min</div><div class="weekChipMeta">this week</div></div>
+      </div>
+    </section>
+
+    <div class="energySection">
+      <div class="sectionLabel">Personal Check-In</div>
+      <section class="wellness energyFloat">
+      <div class="energyQuestion">How do you feel?</div>
+      <div class="energyScale" id="energyScale">
+        <button class="energyBtn" data-energy="Drained"><span>Drained</span></button>
+        <button class="energyBtn" data-energy="Low"><span>Low</span></button>
+        <button class="energyBtn" data-energy="Okay"><span>Okay</span></button>
+        <button class="energyBtn" data-energy="Good"><span>Good</span></button>
+        <button class="energyBtn" data-energy="Energised"><span>Energised</span></button>
+        <button class="energyBtn" data-energy="Great"><span>Great</span></button>
+      </div>
+<div class="energyHistory" id="energyHistory"></div>
+    </section>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORKOUT -->
+<section class="view workoutSurface" id="workoutView"><canvas id="pixelTrailCanvas" class="pixelTrailCanvas" aria-hidden="true"></canvas><div class="workoutContent">
+  <div class="countdown" id="countdown"><canvas class="pixelCanvas" id="countdownPixelCanvas" aria-hidden="true"></canvas><div class="countNum" id="countNum">5</div></div>
+  <div class="sessionHead">
+    <div><div class="eyebrow" id="stepLabel">Step</div><div class="exerciseTitle" id="exerciseTitle">Standing reach</div><div class="meta" id="exerciseMeta">Warm-up · controlled movement</div></div>
+    <div class="sessionActions">
+      <button class="pill" id="restartSegment" type="button">Back</button>
+      <button class="pill holdEnd" id="endWorkout" type="button" aria-label="Hold to end move"><span class="holdEndFill" id="holdEndFill"></span><span class="holdEndLabel">End move</span></button>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+  <div class="workGrid"><section class="timerCard"><div class="fill" id="fill"></div><div class="digits" id="digits">30</div></section><section class="movementCard"><canvas id="movementRippleCanvas" class="movementRippleCanvas" aria-hidden="true"></canvas></section></div>
+
+  <div class="sessionControlRow">
+    <button class="skipBtn" id="skipExercise" type="button">Skip</button>
+    <button class="primary pause" id="pause" type="button">Pause</button>
+  </div>
+
+  <div class="nextWrap">
+    <div class="nextLabel">Up next</div>
+    <section class="nextCard">
+      <div class="nextMain">
+        <div class="nextIcon" id="nextIcon" aria-hidden="true">↗</div>
+        <div>
+          <div class="nextName" id="nextName">Arm circles</div>
+          <div class="sub" id="nextMeta">Warm-up</div>
+        </div>
+      </div>
+      <button class="skipSessionBtn" id="skipNextSession" type="button">Skip this session</button>
+    </section>
+    <div class="upcomingList" id="upcomingList" aria-label="Upcoming exercises"></div>
+  </div>
+</div></section>
+
+<!-- SETTINGS -->
+<section class="view" id="settingsView">
+  <div class="settingsHeader"><button class="back" id="settingsBack">‹</button><div class="settingsTitle">Move Assistant</div></div>
+  <div class="tabs rubberTabs">
+    <div class="rubberIndicator" id="rubberIndicator" aria-hidden="true"></div>
+    <button class="tab active" data-pane="integrationsPane">Integrations</button>
+    <button class="tab" data-pane="dataPane">Data</button>
+    <button class="tab" data-pane="appearancePane">Appearance</button>
+  </div>
+
+  <div class="settingsPane active" id="integrationsPane">
+    <section class="card">
+      <h2 style="font-size:34px;margin:0 0 12px">Connected sources</h2>
+      <p class="note">Move Assistant can work on its own. Pick sensors from Home Assistant to fill the Activity card.</p>
+      <div class="integrationList">
+        <div class="integration"><div><strong>Steps</strong><div class="status" id="stepsStatus" data-empty="Your phone's step sensor from the Companion app">Your phone's step sensor from the Companion app</div></div><select class="settingsSelect entitySelect" id="stepsEntity" data-kind="steps" aria-label="Steps sensor"></select></div>
+        <div class="integration"><div><strong>Sleep</strong><div class="status" id="sleepStatus" data-empty="Any sensor that reports sleep duration">Any sensor that reports sleep duration</div></div><select class="settingsSelect entitySelect" id="sleepEntity" data-kind="sleep" aria-label="Sleep sensor"></select></div>
+        <div class="integration"><div><strong>Weight</strong><div class="status" id="weightStatus" data-empty="A smart scale or an input number you update">A smart scale or an input number you update</div></div><select class="settingsSelect entitySelect" id="weightEntity" data-kind="weight" aria-label="Weight sensor"></select></div>
+        <div class="integration"><div><strong>Home Assistant</strong><div class="status">Moves send a <code>move_assistant</code> event on start, each step, rest, pause and finish — use it in automations for lights, sound and displays</div></div><button class="pill" type="button" disabled>Connected</button></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="settingsPane" id="dataPane">
+    <section class="card">
+      <h2 style="font-size:34px;margin:0 0 12px">Wellness data</h2>
+      <p class="note">Choose what appears in Move Assistant. Turning these off does not affect move playback.</p>
+      <div class="toggleList">
+        <div class="toggleRow"><div><strong>Energy check-in</strong><div class="status">Show subjective feeling tracking</div></div><button class="switch on" data-toggle="energy"></button></div>
+        <div class="toggleRow"><div><strong>Steps</strong><div class="status">Daily step count</div></div><button class="switch on" data-toggle="steps"></button></div>
+        <div class="toggleRow"><div><strong>Sleep</strong><div class="status">Latest sleep duration</div></div><button class="switch on" data-toggle="sleep"></button></div>
+        <div class="toggleRow"><div><strong>Weight</strong><div class="status">Latest scale reading</div></div><button class="switch on" data-toggle="weight"></button></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="settingsPane" id="appearancePane">
+    <section class="card">
+      <h2 style="font-size:34px;margin:0 0 12px">Appearance</h2>
+      <p class="note">Choose how Move Assistant looks and which visual effects are enabled.</p>
+
+      <div class="toggleList">
+        <div class="toggleRow">
+          <div>
+            <strong>Theme</strong>
+            <div class="status">Choose the app surface treatment.</div>
+          </div>
+          <div class="themeChoice">
+            <button class="themeBtn active" data-theme="dark">Dark</button>
+            <button class="themeBtn" data-theme="light">Light</button>
+          </div>
+        </div>
+
+        <div class="toggleRow">
+          <div>
+            <strong>Pixel trail</strong>
+            <div class="status">Pointer-reactive pixels across the movement background.</div>
+          </div>
+          <button class="switch on" id="pixelTrailToggle" aria-label="Toggle pixel trail"></button>
+        </div>
+
+        <div class="toggleRow motionControlRow">
+          <div>
+            <strong>Trail strength</strong>
+            <div class="status">Controls how much of the movement surface reacts.</div>
+          </div>
+          <div class="motionRangeWrap">
+            <input id="trailStrength" type="range" min="20" max="100" step="10" value="70" aria-label="Pixel trail strength">
+            <span id="trailStrengthValue">70%</span>
+          </div>
+        </div>
+
+        <div class="toggleRow motionControlRow">
+          <div>
+            <strong>Trail life</strong>
+            <div class="status">How long the pixel trail remains visible.</div>
+          </div>
+          <div class="motionRangeWrap">
+            <input id="trailLife" type="range" min="200" max="1000" step="100" value="600" aria-label="Pixel trail life">
+            <span id="trailLifeValue">600 ms</span>
+          </div>
+        </div>
+
+
+        <div class="toggleRow">
+          <div>
+            <strong>Activities ahead</strong>
+            <div class="status">Choose how many upcoming activities are visible during a move.</div>
+          </div>
+          <select class="settingsSelect" id="upcomingCountSetting" aria-label="Number of upcoming activities to show"></select>
+        </div>
+
+        <div class="toggleRow">
+          <div>
+            <strong>Movement ripple</strong>
+            <div class="status">Animate the movement card in time with each activity.</div>
+          </div>
+          <button class="switch on" id="rippleToggle" aria-label="Toggle movement ripple"></button>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+
+<div class="confirmBackdrop" id="deleteMoveConfirm" aria-hidden="true">
+  <section class="confirmCard">
+    <div>
+      <div class="confirmTitle">Are you sure you want to delete the move?</div>
+      <div class="sub">This removes it from your movement list.</div>
+    </div>
+    <div class="confirmActions">
+      <button class="pill" id="deleteMoveCancel">Cancel</button>
+      <button class="holdDelete" id="deleteMoveYes" type="button" aria-label="Hold to confirm delete">
+        <span class="holdDeleteFill" id="deleteMoveFill"></span>
+        <span class="holdDeleteLabel">Yes</span>
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- NAV -->
+<nav class="bottomNav">
+  <button class="navBtn active" id="homeNav" title="Home">⌂</button>
+  <button class="navBtn" id="settingsNav" title="Settings">⚙</button>
+  <button class="navBtn" id="tvNav" title="TV mode (full screen)">⛶</button>
+</nav>
+
+<!-- CONTROL CENTER MODAL -->
+<div class="modalBackdrop" id="workoutModal" aria-hidden="true">
+  <section class="modal">
+    <div class="modalStatic">
+      <div class="modalHead">
+        <div>
+          <h2 id="moveEditorTitle">Edit move</h2>
+          <div class="sub" id="moveEditorSubtitle">Adjust timing and choose which movements are included today.</div>
+        </div>
+        <div class="modalHeaderActions">
+          <button class="pill dangerText" id="deleteMoveOpen">Delete</button>
+          <button class="pill" id="cancelWorkoutEdit">Cancel</button>
+          <button class="primary" id="saveWorkoutEdit">Save</button>
+        </div>
+      </div>
+
+      <div class="editNameRow">
+        <label class="editNameLabel" for="workoutNameInput">Move name</label>
+        <input id="workoutNameInput" class="editNameInput" type="text" value="Kettlebell full body">
+      </div>
+
+      <section class="createMoveOptions" id="createMoveOptions" hidden>
+        <div class="createOptionLabel">Preset</div>
+        <div class="createPresetChoice" role="group" aria-label="Move preset">
+          <button class="createPresetBtn active" data-move-preset="movement" type="button">
+            <strong>Movement</strong>
+            <span>Seconds-based activity timing</span>
+          </button>
+          <button class="createPresetBtn" data-move-preset="work" type="button">
+            <strong>Work timer</strong>
+            <span>Longer focus blocks in minutes or hours</span>
+          </button>
+        </div>
+
+        <div class="createExtras">
+          <label class="createExtraToggle">
+            <input type="checkbox" id="includeWarmupPreset">
+            <span><strong>Premade warm-up</strong><small>Add a simple warm-up sequence</small></span>
+          </label>
+          <label class="createExtraToggle">
+            <input type="checkbox" id="includeCooldownPreset">
+            <span><strong>Premade cooldown</strong><small>Add a simple cooldown sequence</small></span>
+          </label>
+        </div>
+      </section>
+
+      <div class="timeTiles">
+      <section class="tile timeTile">
+        <div class="timeHeader">
+          <div class="timeIcon" aria-hidden="true">◷</div>
+          <div class="timeCopy">
+            <div class="timeLabel">Total time</div>
+            <div class="timeValue" id="totalOut">20 min</div>
+          </div>
+        </div>
+        <div class="rangeTrack">
+          <div class="rangeFill" id="totalFill"></div>
+          <input class="rangeInput" id="totalTime" type="range" min="10" max="40" step="5" value="20" aria-label="Total move time">
+        </div>
+      </section>
+
+      <section class="tile timeTile">
+        <div class="timeHeader">
+          <div class="timeIcon" aria-hidden="true">▶</div>
+          <div class="timeCopy">
+            <div class="timeLabel">Work</div>
+            <div class="timeValue" id="workOut">45 sec</div>
+          </div>
+        </div>
+        <div class="rangeTrack">
+          <div class="rangeFill" id="workFill"></div>
+          <input class="rangeInput" id="workTime" type="range" min="20" max="60" step="5" value="45" aria-label="Work interval">
+        </div>
+      </section>
+
+      <section class="tile timeTile">
+        <div class="timeHeader">
+          <div class="timeIcon" aria-hidden="true">Ⅱ</div>
+          <div class="timeCopy">
+            <div class="timeLabel">Rest</div>
+            <div class="timeValue" id="restOut">15 sec</div>
+          </div>
+        </div>
+        <div class="rangeTrack">
+          <div class="rangeFill" id="restFill"></div>
+          <input class="rangeInput" id="restTime" type="range" min="5" max="30" step="5" value="15" aria-label="Rest interval">
+        </div>
+      </section>
+    </div>
+
+    <div class="routineSummary" id="routineSummaryModal">20 min · 45 / 15 · warm-up + cooldown</div>
+    <div class="tempoRevealRow">
+      <button class="pill tempoRevealBtn" id="tempoRevealBtn" type="button" aria-expanded="false">Don’t try this!</button>
+    </div>
+
+    <section class="tempoExperiment editTempoExperiment testingZone" id="tempoExperiment" hidden>
+      <div class="testingZoneInner">
+        <div class="testingZoneTitleBlock">
+          <div class="testingZoneTitleRow">
+            <strong>Quad tempo controller</strong>
+            <span id="tempoEstimate" hidden></span>
+          </div>
+          <p class="testingZoneExplanation">This interaction replaces the need for the three sliders, by allowing the user to choose a tempo by feel. It is not intended to make selection easier, but to make it more natural.</p>
+        </div>
+
+        <div class="testingZoneLayout">
+          <form class="testingFeedbackForm" id="testingFeedbackForm">
+            <div class="testingFeedbackHeading">Feedback</div>
+
+            <label class="testingFeedbackField">
+              <span>Do you like eggs?</span>
+              <div class="testingRating" role="group" aria-label="Do you like eggs?">
+                <button type="button" data-feedback-rating="1">1</button>
+                <button type="button" data-feedback-rating="2">2</button>
+                <button type="button" data-feedback-rating="3">3</button>
+                <button type="button" data-feedback-rating="4">4</button>
+                <button type="button" data-feedback-rating="5">5</button>
+              </div>
+            </label>
+
+            <label class="testingFeedbackField">
+              <span>Would you trust a duck with your timing?</span>
+              <select id="testingDuckAnswer">
+                <option value="">Choose one</option>
+                <option>Absolutely</option>
+                <option>Maybe</option>
+                <option>Never</option>
+              </select>
+            </label>
+
+            <label class="testingFeedbackField">
+              <span>Anything suspiciously egg-related?</span>
+              <textarea id="testingFeedbackText" rows="3" placeholder="Optional"></textarea>
+            </label>
+
+            <button class="testingFeedbackSubmit" id="testingFeedbackSubmit" type="submit">Submit feedback</button>
+          </form>
+
+          <div class="testingFeedbackThanks" id="testingFeedbackThanks" hidden>
+            <strong>Thank you!</strong>
+            <p>You can give more feedback <a href="#" id="testingFeedbackAgain">here</a>.</p>
+          </div>
+
+          <div class="testingZoneControllerWrap">
+            <div class="tempoQuadFrame">
+              <div class="tempoQuad" id="tempoQuad" role="slider" tabindex="0" aria-label="Quad tempo controller">
+                <div class="tempoCross" aria-hidden="true"></div>
+                <div class="tempoDot" id="tempoDot" aria-hidden="true"></div>
+                <span class="tempoPole tempoFast">Fast</span>
+                <span class="tempoPole tempoSlow">Slow</span>
+                <span class="tempoPole tempoHard">Hard</span>
+                <span class="tempoPole tempoLow">Low</span>
+              </div>
+            </div>
+            <div class="tempoReadout" id="tempoReadout">Balanced tempo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div class="exerciseScroller">
+    <div class="createFlow" id="createFlow" hidden>
+      <section class="createStep active" id="createStepMovements" data-create-step="movements">
+        <button class="createStepHeader" type="button" data-open-step="movements">
+          <span class="createStepIdentity"><span class="createStepNumber">1</span><strong>Movements</strong></span>
+          <span class="createStepSummary" id="movementStepSummary">No movements yet</span>
+        </button>
+        <div class="createStepBody">
+          <div class="createStepSlot" id="createMovementsSlot"></div>
+          <div class="createStepFooter">
+            <button class="primary" id="continueToTiming" type="button" disabled>Continue to timing</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="createStep" id="createStepTiming" data-create-step="timing">
+        <button class="createStepHeader" type="button" data-open-step="timing" disabled>
+          <span class="createStepIdentity"><span class="createStepNumber">2</span><strong>Timing</strong></span>
+          <span class="createStepSummary" id="timingStepSummary">Add a movement first</span>
+        </button>
+        <div class="createStepBody">
+          <div class="createStepSlot" id="createTimingSlot"></div>
+          <div class="createStepFooter">
+            <button class="primary" id="continueToFinish" type="button">Continue to finish</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="createStep" id="createStepFinish" data-create-step="finish">
+        <button class="createStepHeader" type="button" data-open-step="finish" disabled>
+          <span class="createStepIdentity"><span class="createStepNumber">3</span><strong>Finish</strong></span>
+          <span class="createStepSummary" id="finishStepSummary">Name and optional extras</span>
+        </button>
+        <div class="createStepBody">
+          <div class="createStepSlot" id="createFinishSlot"></div>
+          <div class="createStepFooter">
+            <button class="primary" id="finishMoveButton" type="button">Save move</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section>
+      <div class="sectionTitle">Stretch to start</div>
+      <div class="moveList" id="warmupList"></div>
+    </section>
+
+
+    <div class="movementCreatorLaunch" id="movementCreatorLaunch">
+      <button class="addBtn movementCreatorOpen" id="addMovementBtn" type="button">Add movement</button>
+      <button class="restAddBtn" id="addRestBtn" type="button">Add rest</button>
+    </div>
+
+    <section class="movementCreator" id="movementCreator" hidden aria-label="Create movement">
+      <div class="movementCreatorHead">
+        <h3 id="movementCreatorHeading">Add movement</h3>
+        <button class="pill movementCreatorClose" id="closeMovementCreator" type="button">Cancel</button>
+      </div>
+
+      <div class="movementCreatorFields" id="movementFields">
+        <label>
+          <span>Name</span>
+          <input class="addInput" id="addMovementInput" type="text" placeholder="e.g. stair climb, deep work">
+        </label>
+
+        <label>
+          <span>Type / group</span>
+          <input class="addInput" id="addMovementGroup" type="text" placeholder="e.g. Mobility, cardio, work">
+        </label>
+
+        <div class="movementTimingRow">
+          <label class="durationStack">
+            <span>Duration</span>
+            <div class="creatorDurationRow">
+              <input class="addInput creatorNumber" id="addMovementDuration" type="number" min="1" max="3600" step="1" value="45">
+              <select class="creatorUnitSelect" id="addMovementUnit" aria-label="Movement duration unit">
+                <option value="sec">seconds</option>
+                <option value="min">minutes</option>
+                <option value="hour">hours</option>
+              </select>
+            </div>
+          </label>
+
+          <label class="globalTimingToggle">
+            <input type="checkbox" id="useGlobalTiming" checked>
+            <span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span>
+            <span class="toggleLabel" id="globalTimingValue">Use global timing · 45 seconds</span>
+          </label>
+
+          <button class="primary creatorAddButton" id="confirmAddMovement" type="button">Add</button>
+        </div>
+      </div>
+
+      <div class="movementCreatorFields restFields" id="restFields" hidden>
+        <label>
+          <span>Name</span>
+          <input class="addInput" id="addRestTitle" type="text" value="Rest" placeholder="e.g. rest">
+        </label>
+
+        <label>
+          <span>Type / group</span>
+          <input class="addInput" id="addRestGroup" type="text" value="Rest" placeholder="e.g. stand up!">
+        </label>
+
+        <div class="movementTimingRow">
+          <label class="durationStack">
+            <span>Duration</span>
+            <div class="creatorDurationRow">
+              <input class="addInput creatorNumber" id="addRestDuration" type="number" min="5" max="3600" step="5" value="30">
+              <select class="creatorUnitSelect" id="addRestUnit" aria-label="Rest duration unit">
+                <option value="sec">seconds</option>
+                <option value="min">minutes</option>
+                <option value="hour">hours</option>
+              </select>
+            </div>
+          </label>
+
+          <label class="globalTimingToggle">
+            <input type="checkbox" id="useGlobalRestTiming">
+            <span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span>
+            <span class="toggleLabel" id="globalRestTimingValue">Use global timing · 15 seconds</span>
+          </label>
+
+          <button class="primary creatorAddButton" id="confirmAddRest" type="button">Add</button>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="sectionTitle">Kettlebell work</div>
+      <div class="moveList" id="strengthList"></div>
+    </section>
+
+    <section>
+      <div class="sectionTitle">Cooldown</div>
+      <div class="moveList" id="cooldownList"></div>
+    </section>
+
+  </section>
+</div>

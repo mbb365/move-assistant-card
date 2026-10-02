@@ -1,0 +1,165 @@
+import css from "./styles.css?inline";
+import template from "./template.html?raw";
+import { mountMoveAssistant } from "./app.js";
+
+const VERSION = "0.1.0";
+const STORAGE_KEY = "move_assistant";
+const EVENT_TYPE = "move_assistant";
+
+class MoveAssistantCard extends HTMLElement {
+  setConfig(config) {
+    this._config = config || {};
+  }
+
+  static getStubConfig() {
+    return {};
+  }
+
+  getCardSize() {
+    return 12;
+  }
+
+  getGridOptions() {
+    return { columns: "full", min_columns: 12 };
+  }
+
+  set hass(hass) {
+    const first = !this._hass;
+    this._hass = hass;
+    if (first) {
+      this._init();
+      return;
+    }
+    if (this._app && hass.states !== this._lastStates) {
+      this._lastStates = hass.states;
+      this._app.updateStates(hass.states);
+    }
+  }
+
+  connectedCallback() {
+    this._app?.resume();
+  }
+
+  disconnectedCallback() {
+    this._app?.suspend();
+  }
+
+  async _init() {
+    const root = this.shadowRoot || this.attachShadow({ mode: "open" });
+    root.innerHTML = `<style>${css}</style>${template}`;
+    const app = root.getElementById("app");
+    app.style.opacity = "0";
+
+    let data = null;
+    try {
+      const result = await this._hass.callWS({
+        type: "frontend/get_user_data",
+        key: STORAGE_KEY,
+      });
+      data = result?.value ?? null;
+    } catch (_err) {
+      // First run, or an older Home Assistant: start from the built-in moves.
+    }
+    this._lastSaved = JSON.stringify(data);
+
+    this._app = mountMoveAssistant(root, {
+      data,
+      save: (value) => this._save(value),
+      fire: (action, payload) => this._fire(action, payload),
+      setLight: (isLight) => this.classList.toggle("lightBody", isLight),
+      fullscreenSupported: Boolean(
+        this.requestFullscreen || this.webkitRequestFullscreen
+      ),
+      toggleFullscreen: () => this._toggleFullscreen(),
+    });
+    this._lastStates = this._hass.states;
+    this._app.updateStates(this._hass.states);
+    if (!this.isConnected) this._app.suspend();
+    app.style.transition = "opacity .2s ease";
+    app.style.opacity = "";
+
+    this._subscribe();
+  }
+
+  _subscribe() {
+    const conn = this._hass?.connection;
+    if (!conn?.subscribeMessage) return;
+    conn
+      .subscribeMessage(
+        (msg) => {
+          const json = JSON.stringify(msg?.value ?? null);
+          if (json === this._lastSaved || json === this._pendingJson) return;
+          this._lastSaved = json;
+          this._app?.applyRemoteData(msg.value);
+        },
+        { type: "frontend/subscribe_user_data", key: STORAGE_KEY }
+      )
+      .catch(() => {
+        // Live sync needs a recent Home Assistant; everything else still works.
+      });
+  }
+
+  _save(value) {
+    this._pendingJson = JSON.stringify(value);
+    clearTimeout(this._saveTimer);
+    this._saveTimer = setTimeout(async () => {
+      const json = this._pendingJson;
+      try {
+        await this._hass.callWS({
+          type: "frontend/set_user_data",
+          key: STORAGE_KEY,
+          value: JSON.parse(json),
+        });
+        this._lastSaved = json;
+      } catch (_err) {
+        this._toast("Couldn't save to Home Assistant");
+      }
+    }, 400);
+  }
+
+  _fire(action, payload = {}) {
+    if (this._config?.events === false) return;
+    this._hass
+      ?.callWS({
+        type: "fire_event",
+        event_type: EVENT_TYPE,
+        event_data: { action, ...payload },
+      })
+      .catch(() => {
+        // Firing events needs an admin user; ignore otherwise.
+      });
+  }
+
+  _toggleFullscreen() {
+    const doc = document;
+    if (doc.fullscreenElement || doc.webkitFullscreenElement) {
+      (doc.exitFullscreen || doc.webkitExitFullscreen).call(doc);
+      return;
+    }
+    const request = this.requestFullscreen || this.webkitRequestFullscreen;
+    Promise.resolve(request.call(this)).catch(() =>
+      this._toast("Full screen isn't available here")
+    );
+  }
+
+  _toast(message) {
+    const toast = this.shadowRoot?.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2600);
+  }
+}
+
+if (!customElements.get("move-assistant-card")) {
+  customElements.define("move-assistant-card", MoveAssistantCard);
+  window.customCards = window.customCards || [];
+  window.customCards.push({
+    type: "move-assistant-card",
+    name: "Move Assistant",
+    description: "Guided movement timer with your Home Assistant activity data.",
+    preview: false,
+  });
+  // eslint-disable-next-line no-console
+  console.info(`%c MOVE ASSISTANT %c ${VERSION} `, "background:#D0FF00;color:#090909;font-weight:700", "");
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Move Assistant dev</title>
+<style>body{margin:0;background:#111}</style>
+</head>
+<body>
+<move-assistant-card></move-assistant-card>
+<script type="module">
+// Fake Home Assistant so the card can be previewed without a real instance.
+// Saved data lives in this browser's localStorage under "ma-dev".
+import "../src/move-assistant-card.js";
+
+const listeners = [];
+const read = () => { try { return JSON.parse(localStorage.getItem("ma-dev")); } catch { return null; } };
+const states = {
+  "sensor.pixel_daily_steps": { entity_id: "sensor.pixel_daily_steps", state: "6840", attributes: { friendly_name: "Pixel Daily steps", unit_of_measurement: "steps" } },
+  "sensor.pixel_sleep_duration": { entity_id: "sensor.pixel_sleep_duration", state: "7.47", attributes: { friendly_name: "Pixel Sleep duration", unit_of_measurement: "h" } },
+  "sensor.scale_weight": { entity_id: "sensor.scale_weight", state: "74.2", attributes: { friendly_name: "Scale Weight", unit_of_measurement: "kg", device_class: "weight" } },
+  "sensor.living_room_temperature": { entity_id: "sensor.living_room_temperature", state: "21.4", attributes: { friendly_name: "Living room temperature", unit_of_measurement: "°C" } },
+};
+const hass = {
+  states,
+  callWS: async (msg) => {
+    if (msg.type === "frontend/get_user_data") return { value: read() };
+    if (msg.type === "frontend/set_user_data") {
+      localStorage.setItem("ma-dev", JSON.stringify(msg.value));
+      listeners.forEach((cb) => cb({ value: msg.value }));
+      return null;
+    }
+    if (msg.type === "fire_event") { console.log("event", msg.event_data); return null; }
+    throw new Error("unknown " + msg.type);
+  },
+  connection: {
+    subscribeMessage: async (cb) => { listeners.push(cb); return () => {}; },
+  },
+};
+const card = document.querySelector("move-assistant-card");
+card.setConfig({});
+card.hass = hass;
+window.__fakeHass = hass;
+</script>
+</body>
+</html>
