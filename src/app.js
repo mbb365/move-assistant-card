@@ -2188,18 +2188,8 @@ renderFeelingRows();
 renderFeelWeek();
 renderInsights();
 
-/* Apple Health help */
-const healthHelp=$('healthHelp');
-function toggleHealthHelp(open){
-  healthHelp.classList.toggle('open',open);
-  healthHelp.setAttribute('aria-hidden',open?'false':'true');
-  if(open)requestAnimationFrame(()=>$('healthHelpClose').focus());
-  else $('healthHelpOpen').focus({preventScroll:true});
-}
-$('healthHelpOpen').addEventListener('click',()=>toggleHealthHelp(true));
-$('healthHelpClose').addEventListener('click',()=>toggleHealthHelp(false));
-healthHelp.addEventListener('click',e=>{if(e.target===healthHelp)toggleHealthHelp(false)});
-healthHelp.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();toggleHealthHelp(false)}});
+/* Apple Health help: the Integrations button jumps to the Help tab */
+$('healthHelpOpen').addEventListener('click',()=>root.querySelector('.tab[data-pane=helpPane]').click());
 
 /* reset stats: clears what you've done, keeps your moves and settings */
 bindFuseHold($('resetStats'),$('resetStatsFill'),1500,()=>{

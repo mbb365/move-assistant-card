@@ -1837,9 +1837,9 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 
 /* ---- Apple Health help ---- */
 .helpBackdrop{z-index:170}
-.helpCard{width:min(760px,100%);max-height:calc(125dvh - 70px);overflow:auto}
+.helpCard .helpSteps,.helpCard .helpNote{max-width:860px}
 .helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.helpCard .sub{margin:12px 0 0;max-width:620px}
+.helpCard .note{margin:0}
 .helpSteps{margin:24px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:12px}
 .helpSteps li{counter-increment:help;display:grid;gap:6px;position:relative;padding:18px 20px 18px 66px;border-radius:26px;background:#252525;font-size:14px;line-height:1.45;color:var(--muted)}
 .helpSteps li::before{content:counter(help);position:absolute;left:18px;top:16px;width:32px;height:32px;border-radius:12px;display:grid;place-items:center;background:#313131;color:var(--text);font-weight:760}

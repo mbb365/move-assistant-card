@@ -93,6 +93,7 @@
     <button class="tab" data-pane="dataPane">Data</button>
     <button class="tab" data-pane="checkinPane">Check-in</button>
     <button class="tab" data-pane="appearancePane">Appearance</button>
+    <button class="tab" data-pane="helpPane">Help</button>
   </div>
 
   <div class="settingsPane active" id="integrationsPane">
@@ -130,6 +131,46 @@
         <div class="toggleRow"><div><strong>Evening check-in</strong><div class="status">When the evening check-in becomes due</div></div><input class="settingsSelect timeInput" id="eveningTime" type="time" value="19:00" aria-label="Evening check-in time"></div>
         <div class="toggleRow"><div><strong>Open automatically</strong><div class="status">Show the check-in window when it's due, instead of just the dot</div></div><button class="switch on" id="checkinAutoOpen" aria-label="Open check-in automatically"></button></div>
       </div>
+    </section>
+  </div>
+
+  <div class="settingsPane" id="helpPane">
+    <section class="card helpCard">
+      <h2 style="font-size:34px;margin:0 0 12px">Connect Apple Health</h2>
+    <p class="note">Apple Health can't talk to Home Assistant directly. Your iPhone sends the numbers using the Shortcuts app and the Home Assistant Companion app. Set it up once and it runs by itself.</p>
+
+    <ol class="helpSteps">
+      <li>
+        <strong>Make a place for the number in Home Assistant</strong>
+        <span>Settings → Devices &amp; services → Helpers → Create helper → <b>Number</b>.</span>
+        <span>Name it <b>Health steps</b>. Minimum 0, maximum 100000, step 1, unit <b>steps</b>, display mode <b>Input field</b>.</span>
+      </li>
+      <li>
+        <strong>Build the shortcut on your iPhone</strong>
+        <span>Open <b>Shortcuts</b> → Automation → <b>+</b> → <b>App</b> → choose Home Assistant → <b>Is opened</b> → <b>Run immediately</b>.</span>
+        <span>Add these actions in order:</span>
+        <span class="helpAction">Find Health Samples — Type <b>Steps</b>, Start date <b>is today</b>, Group by <b>Day</b>, Limit 1</span>
+        <span class="helpAction">Get Details of Health Samples — <b>Value</b></span>
+        <span class="helpAction">Home Assistant → <b>Call service</b> (or <b>Perform action</b>) — <code>input_number.set_value</code>, entity <code>input_number.health_steps</code>, value = the step count from above</span>
+      </li>
+      <li>
+        <strong>Keep it fresh during the day</strong>
+        <span>Add a few more automations with the same actions using <b>Time of day</b> (for example 10:00, 14:00, 18:00, 22:00), also set to <b>Run immediately</b>.</span>
+      </li>
+      <li>
+        <strong>Pick it in Move Assistant</strong>
+        <span>Settings → Integrations → Steps → <b>Health steps</b>.</span>
+      </li>
+    </ol>
+
+    <div class="helpNote">
+      <strong>Other Health data</strong>
+      <span>Use the same recipe for anything in Health, for example exercise minutes, active energy or stand hours. Make one Number helper per value, then change the <b>Type</b> in Find Health Samples.</span>
+    </div>
+    <div class="helpNote">
+      <strong>Check the number</strong>
+      <span>Run the shortcut once by hand and compare it with the Health app. <b>Group by Day</b> stops your iPhone and Apple Watch steps being counted twice.</span>
+    </div>
     </section>
   </div>
 
@@ -251,49 +292,6 @@
   <span class="checkinTabLabel">Check-in</span>
   <span class="checkinBadge" id="checkinBadge" hidden></span>
 </button>
-
-<div class="confirmBackdrop helpBackdrop" id="healthHelp" aria-hidden="true">
-  <section class="confirmCard helpCard" role="dialog" aria-modal="true" aria-labelledby="healthHelpTitle">
-    <div class="helpHead">
-      <div class="confirmTitle" id="healthHelpTitle">Connect Apple Health</div>
-      <button class="pill" id="healthHelpClose" type="button">Close</button>
-    </div>
-    <p class="sub">Apple Health can't talk to Home Assistant directly. Your iPhone sends the numbers using the Shortcuts app and the Home Assistant Companion app. Set it up once and it runs by itself.</p>
-
-    <ol class="helpSteps">
-      <li>
-        <strong>Make a place for the number in Home Assistant</strong>
-        <span>Settings → Devices &amp; services → Helpers → Create helper → <b>Number</b>.</span>
-        <span>Name it <b>Health steps</b>. Minimum 0, maximum 100000, step 1, unit <b>steps</b>, display mode <b>Input field</b>.</span>
-      </li>
-      <li>
-        <strong>Build the shortcut on your iPhone</strong>
-        <span>Open <b>Shortcuts</b> → Automation → <b>+</b> → <b>App</b> → choose Home Assistant → <b>Is opened</b> → <b>Run immediately</b>.</span>
-        <span>Add these actions in order:</span>
-        <span class="helpAction">Find Health Samples — Type <b>Steps</b>, Start date <b>is today</b>, Group by <b>Day</b>, Limit 1</span>
-        <span class="helpAction">Get Details of Health Samples — <b>Value</b></span>
-        <span class="helpAction">Home Assistant → <b>Call service</b> (or <b>Perform action</b>) — <code>input_number.set_value</code>, entity <code>input_number.health_steps</code>, value = the step count from above</span>
-      </li>
-      <li>
-        <strong>Keep it fresh during the day</strong>
-        <span>Add a few more automations with the same actions using <b>Time of day</b> (for example 10:00, 14:00, 18:00, 22:00), also set to <b>Run immediately</b>.</span>
-      </li>
-      <li>
-        <strong>Pick it in Move Assistant</strong>
-        <span>Settings → Integrations → Steps → <b>Health steps</b>.</span>
-      </li>
-    </ol>
-
-    <div class="helpNote">
-      <strong>Other Health data</strong>
-      <span>Use the same recipe for anything in Health, for example exercise minutes, active energy or stand hours. Make one Number helper per value, then change the <b>Type</b> in Find Health Samples.</span>
-    </div>
-    <div class="helpNote">
-      <strong>Check the number</strong>
-      <span>Run the shortcut once by hand and compare it with the Health app. <b>Group by Day</b> stops your iPhone and Apple Watch steps being counted twice.</span>
-    </div>
-  </section>
-</div>
 
 <div class="confirmBackdrop" id="deleteMoveConfirm" aria-hidden="true">
   <section class="confirmCard">
