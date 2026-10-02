@@ -39,7 +39,8 @@
       </div>
     </section>
 
-    <section class="card weekly">
+    <section class="card weekly" id="weeklyCard" tabindex="0" role="button" aria-label="Open movement and you">
+      <span class="weeklyExpand" aria-hidden="true">⤢</span>
       <div class="weekHero">
         <div>
           <div class="weekMetric">0</div>
@@ -63,10 +64,6 @@
       <section class="card feelCard" id="feelCard"></section>
     </div>
 
-    <div class="insightSection">
-      <div class="sectionLabel">Movement &amp; you</div>
-      <section class="card insightCard" id="insightCard"></section>
-    </div>
 
   </div>
 </section>
@@ -133,10 +130,10 @@
       <p class="note">Choose what appears in Move Assistant. Turning these off does not affect move playback.</p>
       <div class="toggleList">
         <div class="toggleRow"><div><strong>How you've felt</strong><div class="status">Your mood and energy over the week</div></div><button class="switch on" data-toggle="feel"></button></div>
-        <div class="toggleRow"><div><strong>Movement &amp; you</strong><div class="status">Streak, recent days and how movement relates to how you feel</div></div><button class="switch on" data-toggle="insights"></button></div>
         <div class="toggleRow"><div><strong>Steps</strong><div class="status">Daily step count</div></div><button class="switch on" data-toggle="steps"></button></div>
         <div class="toggleRow"><div><strong>Mood</strong><div class="status">Latest mood in the Activity card</div></div><button class="switch on" data-toggle="mood"></button></div>
         <div class="toggleRow"><div><strong>Energy</strong><div class="status">Latest energy in the Activity card</div></div><button class="switch on" data-toggle="energyLevel"></button></div>
+        <div class="toggleRow"><div><strong>Reset stats</strong><div class="status">Clears moves done and check-ins. Your moves and settings stay.</div></div><button class="holdDelete" id="resetStats" type="button" aria-label="Hold to reset stats"><span class="holdDeleteFill" id="resetStatsFill"></span><span class="holdDeleteLabel">Hold to reset</span></button></div>
       </div>
     </section>
   </div>
@@ -271,6 +268,16 @@
   <span class="checkinTabLabel">Check-in</span>
   <span class="checkinBadge" id="checkinBadge" hidden></span>
 </button>
+
+<div class="confirmBackdrop insightBackdrop" id="insightModal" aria-hidden="true">
+  <section class="confirmCard insightModalCard" role="dialog" aria-modal="true" aria-label="Movement and you">
+    <div class="insightModalHead">
+      <div class="sectionLabel">Movement &amp; you</div>
+      <button class="pill" id="insightClose" type="button">Close</button>
+    </div>
+    <div class="insightCard" id="insightCard"></div>
+  </section>
+</div>
 
 <div class="confirmBackdrop" id="deleteMoveConfirm" aria-hidden="true">
   <section class="confirmCard">

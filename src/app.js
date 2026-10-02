@@ -857,6 +857,7 @@ function saveCheckin(){
   closeCheckin();
   renderFeelingRows();
   renderFeelWeek();
+  renderWeek();
   renderInsights();
 }
 let dismissedKey='';
@@ -1860,11 +1861,10 @@ const trailLifeInput=$('trailLife');
 function saveSetting(key,value){settings()[key]=value;persist()}
 
 /* what you see */
-const dataToggles={feel:true,insights:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
+const dataToggles={feel:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
 function applyDataToggles(){
   root.querySelectorAll('[data-toggle]').forEach(sw=>sw.classList.toggle('on',dataToggles[sw.dataset.toggle]!==false));
   root.querySelector('.feelSection').hidden=dataToggles.feel===false;
-  root.querySelector('.insightSection').hidden=dataToggles.insights===false;
   [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
   const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
   root.querySelector('.activityCard').hidden=!anyActivity;
@@ -1992,6 +1992,21 @@ async function loadStepHistory(){
 }
 
 /* weekly movement from the session log */
+// A small face for how a day felt: colour + smile from the average of mood and energy (0–100).
+function faceSvg(v){
+  if(v==null)return '<svg class="face empty" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/></svg>';
+  const k=(v-50)/50;
+  return '<svg class="face" viewBox="0 0 24 24" role="img" aria-label="'+esc(levelLabel('',v))+'">'+
+    '<circle cx="12" cy="12" r="11" fill="'+levelColor(v)+'"/>'+
+    '<circle cx="8.5" cy="10" r="1.4" fill="#111"/><circle cx="15.5" cy="10" r="1.4" fill="#111"/>'+
+    '<path d="M7.5 '+(15.5-k).toFixed(2)+' Q12 '+(15.5+4*k).toFixed(2)+' 16.5 '+(15.5-k).toFixed(2)+'" stroke="#111" stroke-width="1.7" fill="none" stroke-linecap="round"/>'+
+  '</svg>';
+}
+function dayFeeling(key){
+  const v=[];
+  store.checkins.filter(c=>c.date===key).forEach(c=>{if(c.mood!=null)v.push(c.mood);if(c.energy!=null)v.push(c.energy)});
+  return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
+}
 function renderWeek(){
   const now=new Date();
   const monday=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7));
@@ -2004,12 +2019,16 @@ function renderWeek(){
   const mins=days.map(sec=>Math.round(sec/60));
   const total=mins.reduce((a,b)=>a+b,0);
   root.querySelector('.weekMetric').textContent=total;
-  const names=[...Array(7)].map((_,i)=>new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(monday.getFullYear(),monday.getMonth(),monday.getDate()+i)));
-  const chips=root.querySelector('.weekChips');
-  chips.innerHTML=mins.map((m,i)=>
-    '<div class="weekChip'+(m?' done':'')+'"><div class="weekChipTop"><strong>'+esc(names[i])+'</strong>'+(m?'<span class="weekTick">✓</span>':'<span></span>')+'</div><div class="weekChipTime">'+m+' min</div><div class="weekChipMeta">moved</div></div>'
-  ).join('')+
-  '<div class="weekChip total"><div class="weekChipTop"><strong>To date</strong>'+(total?'<span class="weekTick">✓</span>':'<span></span>')+'</div><div class="weekChipTime">'+total+' min</div><div class="weekChipMeta">this week</div></div>';
+  const dates=[...Array(7)].map((_,i)=>new Date(monday.getFullYear(),monday.getMonth(),monday.getDate()+i));
+  const feelings=dates.map(d=>dayFeeling(dayKey(d)));
+  const known=feelings.filter(v=>v!=null);
+  const weekFeeling=known.length?known.reduce((a,b)=>a+b,0)/known.length:null;
+  const chip=(cls,name,tick,time,meta,face)=>
+    '<div class="weekChip'+cls+'"><div class="weekChipTop"><strong>'+esc(name)+'</strong>'+(tick?'<span class="weekTick">✓</span>':'<span></span>')+'</div>'+
+    '<div class="weekChipBottom"><div><div class="weekChipTime">'+time+'</div><div class="weekChipMeta">'+meta+'</div></div>'+face+'</div></div>';
+  root.querySelector('.weekChips').innerHTML=
+    mins.map((m,i)=>chip(m?' done':'',new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(dates[i]),m,m+' min','moved',dates[i]>now?'':faceSvg(feelings[i]))).join('')+
+    chip(' total','To date',total,total+' min','this week',faceSvg(weekFeeling));
 }
 renderWeek();
 setInterval(()=>{renderWeek();renderFeelWeek();updateCheckinTab()},10*60*1000);
@@ -2096,17 +2115,13 @@ function renderInsights(){
     const c=compare(series.filter(d=>d.steps!=null),active,'energy');
     if(c)insights.push(compareText(c,'energy','walk '+formatNumber(Math.round(median/100)*100)+'+ steps','walk less'));
   }
-  const checkedDays=series.filter(d=>d.mood!=null||d.energy!=null).length;
-  const insightHtml=insights.length
-    ? insights.map(t=>'<div class="insightLine">'+t+'</div>').join('')
-    : '<div class="insightLine muted">Keep checking in. After a few days with moves and a few without, you\'ll see how moving changes your mood and energy here.'+(checkedDays?' ('+checkedDays+' day'+(checkedDays===1?'':'s')+' so far)':'')+'</div>';
+  const insightHtml=insights.map(t=>'<div class="insightLine">'+t+'</div>').join('');
 
   // last 14 days
   const recent=series.slice(-14);
   const maxMin=Math.max(10,...recent.map(d=>d.minutes));
   const maxSteps=Math.max(1,...recent.map(d=>d.steps||0));
   const hasSteps=recent.some(d=>d.steps!=null);
-  const dot=(scale,v)=>'<span class="dayDot'+(v==null?' empty':'')+'" style="'+(v==null?'':'background:'+levelColor(v))+'" title="'+(v==null?'No '+scale+' check-in':levelLabel(scale,v)+' '+scale)+'"></span>';
   const days=recent.map((d,i)=>{
     const isToday=i===recent.length-1;
     const label=new Intl.DateTimeFormat(undefined,{weekday:'narrow'}).format(d.date);
@@ -2116,7 +2131,7 @@ function renderInsights(){
         (hasSteps?'<span class="stepBar" style="height:'+(d.steps?Math.max(3,d.steps/maxSteps*100):0)+'%"></span>':'')+
         '<span class="moveBar" style="height:'+(d.minutes?Math.max(4,d.minutes/maxMin*100):0)+'%"></span>'+
       '</div>'+
-      '<div class="dayDots">'+dot('mood',d.mood)+dot('energy',d.energy)+'</div>'+
+      '<div class="dayFace">'+faceSvg(dayFeeling(d.key))+'</div>'+
       '<div class="dayLabel">'+esc(label)+'</div>'+
     '</div>';
   }).join('');
@@ -2130,11 +2145,11 @@ function renderInsights(){
         (hasSteps?'<div class="weekChip"><div class="weekChipTop"><strong>Today</strong></div><div class="weekChipTime">'+(today.steps!=null?formatNumber(today.steps):'—')+'</div><div class="weekChipMeta">steps</div></div>':'')+
       '</div>'+
     '</div>'+
-    '<div class="insightBody">'+
-      '<div class="insightLines">'+insightHtml+'</div>'+
+    '<div class="insightBody'+(insightHtml?'':' chartOnly')+'">'+
+      (insightHtml?'<div class="insightLines">'+insightHtml+'</div>':'')+
       '<div class="insightChart">'+
         '<div class="dayStrip">'+days+'</div>'+
-        '<div class="chartLegend"><span><i class="lgMove"></i>Move minutes</span>'+(hasSteps?'<span><i class="lgSteps"></i>Steps</span>':'')+'<span><i class="lgDot"></i>Mood · energy</span></div>'+
+        '<div class="chartLegend"><span><i class="lgMove"></i>Move minutes</span>'+(hasSteps?'<span><i class="lgSteps"></i>Steps</span>':'')+'<span>'+faceSvg(80)+'Feeling</span></div>'+
       '</div>'+
     '</div>';
 }
@@ -2178,6 +2193,36 @@ renderFeelingRows();
 renderFeelWeek();
 renderInsights();
 
+/* weekly card opens Movement & you */
+const insightModal=$('insightModal'),weeklyCard=$('weeklyCard');
+function openInsights(){
+  renderInsights();
+  insightModal.classList.add('open');
+  insightModal.setAttribute('aria-hidden','false');
+  requestAnimationFrame(()=>$('insightClose').focus());
+}
+function closeInsights(){
+  insightModal.classList.remove('open');
+  insightModal.setAttribute('aria-hidden','true');
+  weeklyCard.focus({preventScroll:true});
+}
+weeklyCard.addEventListener('click',openInsights);
+weeklyCard.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInsights()}});
+$('insightClose').addEventListener('click',closeInsights);
+insightModal.addEventListener('click',e=>{if(e.target===insightModal)closeInsights()});
+insightModal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeInsights()}});
+
+/* reset stats: clears what you've done, keeps your moves and settings */
+bindFuseHold($('resetStats'),$('resetStatsFill'),1500,()=>{
+  store.history=[];
+  store.checkins=[];
+  dismissedKey='';
+  try{localStorage.removeItem('move-assistant-dismissed')}catch(_e){}
+  persist();
+  renderWeek();renderFeelWeek();renderFeelingRows();renderInsights();updateCheckinTab();
+  showToast('Stats reset');
+});
+
 /* check-in settings */
 const morningTimeInput=$('morningTime'),eveningTimeInput=$('eveningTime'),checkinAutoOpen=$('checkinAutoOpen');
 morningTimeInput.value=checkinTimes().morning;
@@ -2214,7 +2259,7 @@ return {
     if(!data)return;
     if(Array.isArray(data.history)){store.history=data.history;renderWeek()}
     if(Array.isArray(data.history)){renderInsights()}
-    if(Array.isArray(data.checkins)){store.checkins=data.checkins.map(toPercentScale);updateCheckinTab();renderFeelingRows();renderFeelWeek();renderInsights()}
+    if(Array.isArray(data.checkins)){store.checkins=data.checkins.map(toPercentScale);updateCheckinTab();renderFeelingRows();renderFeelWeek();renderWeek();renderInsights()}
     if(data.profiles&&!modal.classList.contains('open')&&!session){
       const next=normaliseStore(data);
       Object.keys(workoutProfiles).forEach(k=>delete workoutProfiles[k]);

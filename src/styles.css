@@ -1789,3 +1789,40 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .checkinTile .timeHeader{align-items:center}
 .checkinTab:not(.due){opacity:.6}
 .checkinTab:not(.due):hover{opacity:1}
+
+/* ---- weekly card: wider, with faces, opens Movement & you ---- */
+.activityCard{grid-column:span 3}
+.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}
+.weekly:hover{border-color:#5a5a5a}
+#app.light .weekly:hover{border-color:#fff;background:rgba(255,255,255,.92)}
+.weeklyExpand{position:absolute;top:24px;right:28px;font-size:20px;color:var(--muted);transition:transform .18s ease}
+.weekly:hover .weeklyExpand{transform:scale(1.15)}
+.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}
+.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:6px}
+.face{width:26px;height:26px;flex:0 0 auto;display:block}
+.face.empty circle{fill:none;stroke:#4a4a4a;stroke-width:1.2;stroke-dasharray:2.5 2.5}
+#app.light .face.empty circle{stroke:#c4c4c4}
+.weekChip.total .face{width:30px;height:30px}
+
+/* Movement & you popup */
+.insightBackdrop{z-index:155}
+.insightModalCard{width:min(1240px,100%);max-height:calc(125dvh - 70px);overflow:auto}
+.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.insightModalHead .sectionLabel{margin:0}
+.insightModalCard .dayBars{height:200px}
+.insightBody.chartOnly{grid-template-columns:1fr}
+.dayFace .face{width:22px;height:22px}
+.chartLegend span{display:inline-flex;align-items:center}
+.chartLegend .face{width:12px;height:12px;margin-right:6px}
+
+@media(max-width:1200px){
+  .activityCard{grid-column:span 4}.weekly{grid-column:span 8}
+  .weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .activityCard,.weekly{grid-column:auto}
+  .insightModalCard .dayBars{height:110px}
+  .dayFace .face{width:16px;height:16px}
+}
+.weekChipTime{white-space:nowrap}
+.weekChip.total .weekChipTime{font-size:16px}
