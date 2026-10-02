@@ -916,7 +916,7 @@ function renderFeelingRows(){
   const latest=scale=>store.checkins.find(c=>c.date===today&&c[scale]!=null);
   [['mood','moodMeta'],['energy','energyLevelMeta']].forEach(([scale,id])=>{
     const c=latest(scale);
-    $(id).textContent=c?levelLabel(scale,c[scale])+' · this '+c.slot:'Not checked in yet today';
+    $(id).textContent=c?levelLabel(scale,c[scale]):'—';
   });
 }
 
@@ -1997,7 +1997,7 @@ function todaysSteps(){
 function renderActivity(states){
   const id=sensorEntities.steps;
   const n=id?Number(states[id]?.state):NaN;
-  $('stepsMeta').textContent=!id?'Choose a sensor in Settings':Number.isFinite(n)?formatNumber(n)+' · today':'No reading yet';
+  $('stepsMeta').textContent=!id?'Set up in Settings':Number.isFinite(n)?formatNumber(n):'—';
 }
 // Daily step totals for the last 30 days, from Home Assistant's long-term statistics.
 let stepHistoryLoadedAt=0;

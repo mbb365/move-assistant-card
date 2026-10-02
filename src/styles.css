@@ -1869,3 +1869,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .peekCountdown{font-size:30px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
 .peekAt{font-size:13px;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}
+
+/* activity readings: small bold title, bigger value */
+.activityRowName{font-size:15px;font-weight:720;letter-spacing:-.005em;line-height:1.15}
+.activityRowMeta{font-size:28px;font-weight:400;letter-spacing:-.025em;line-height:1.1;color:var(--text);margin-top:2px;font-variant-numeric:tabular-nums}
