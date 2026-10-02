@@ -20,6 +20,10 @@ const ua = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
     </div>
     <div class="sectionLabel rowLabel" id="movementLabel">Movement &amp; you</div>
     <section class="card activityCard">
+      <div class="activityHeader">
+        <div class="activityIcon">⌁</div>
+        <div class="activityTitle">Activity</div>
+      </div>
       <div class="activityRows">
         <div class="activityRow" id="stepsRow">
           <div class="activityRowIcon">↟</div>
