@@ -1673,3 +1673,59 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   .workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}
 }
 .grid>*{min-width:0}
+
+/* ---- check-in: mood + energy ---- */
+.energyBtn[data-level="1"]{--feeling-color:#6E63A8}
+.energyBtn[data-level="2"]{--feeling-color:#5878A8}
+.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}
+.energyBtn[data-level="4"]{--feeling-color:#5F9B72}
+.energyBtn[data-level="5"]{--feeling-color:#D5A53E}
+.energyBtn[data-level="6"]{--feeling-color:#D56B54}
+.checkinQuestion+.checkinQuestion{margin-top:36px}
+.checkinStatus{margin-top:22px;font-size:15px;color:var(--muted)}
+.checkinStatus.done{color:var(--text)}
+.checkinStatus.done::before{content:"✓  ";font-weight:800}
+
+/* ---- movement & you ---- */
+.insightSection{grid-column:span 12;margin-top:20px}
+.insightCard{display:grid;gap:28px}
+.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end}
+.insightBig{font-size:clamp(56px,6vw,88px);font-weight:820;letter-spacing:-.07em;line-height:.85}
+.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(130px,1fr);gap:10px}
+.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px;align-items:end}
+.insightLines{display:grid;gap:12px}
+.insightLine{font-size:20px;line-height:1.3;letter-spacing:-.015em}
+.insightLine strong{font-weight:780}
+.insightLine.muted{font-size:15px;color:var(--muted);line-height:1.45}
+.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:6px;align-items:end}
+.day{display:grid;gap:8px;justify-items:center}
+.dayBars{position:relative;width:100%;height:120px;border-radius:12px;background:rgba(255,255,255,.04);overflow:hidden}
+.stepBar,.moveBar{position:absolute;bottom:0;border-radius:10px}
+.stepBar{left:0;right:0;background:rgba(255,255,255,.12)}
+.moveBar{left:22%;right:22%;background:#D0FF00}
+.day.today .dayBars{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.dayDots{display:flex;gap:3px}
+.dayDot{width:8px;height:8px;border-radius:50%}
+.dayDot.empty{box-shadow:inset 0 0 0 1px #555}
+.dayLabel{font-size:11px;color:var(--muted)}
+.day.today .dayLabel{color:var(--text);font-weight:760}
+.chartLegend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--muted)}
+.chartLegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.lgMove{background:#D0FF00}
+.lgSteps{background:rgba(255,255,255,.22)}
+.lgDot{background:linear-gradient(90deg,#5F9B72 50%,#D5A53E 50%);border-radius:50%!important}
+#app.light .dayBars{background:rgba(0,0,0,.04)}
+#app.light .stepBar{background:rgba(0,0,0,.1)}
+#app.light .moveBar,#app.light .lgMove{background:#9AA8FF}
+#app.light .lgSteps{background:rgba(0,0,0,.14)}
+#app.light .day.today .dayBars{box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+#app.light .dayDot.empty{box-shadow:inset 0 0 0 1px #bbb}
+@media(max-width:900px){
+  .insightSection{grid-column:auto}
+  .insightTop,.insightBody{grid-template-columns:1fr}
+  .insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  .dayBars{height:90px}
+}
+#app.light .energyLog{background:rgba(255,255,255,.8)}
+#app.light .energyLog span:last-child{color:#666!important}
+@media(max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}

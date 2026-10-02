@@ -220,9 +220,24 @@ function normaliseStore(data){
     order,
     selected:d.selected||order[0],
     history:Array.isArray(d.history)?d.history:[],
-    energy:Array.isArray(d.energy)?d.energy:[],
+    checkins:Array.isArray(d.checkins)?d.checkins:migrateEnergy(d.energy),
     settings:{...(d.settings||{})}
   };
+}
+function migrateEnergy(list){
+  // v0.1 logged a single "How do you feel?" value; keep it as that slot's energy.
+  if(!Array.isArray(list))return [];
+  const labels=['Drained','Low','Okay','Good','Energised','Great'];
+  const out=[];
+  list.forEach(e=>{
+    const d=new Date(e.at);if(isNaN(d))return;
+    const date=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const slot=d.getHours()<14?'morning':'evening';
+    if(out.some(c=>c.date===date&&c.slot===slot))return;
+    const level=labels.indexOf(e.value)+1;
+    if(level>0)out.push({date,slot,mood:null,energy:level,at:e.at});
+  });
+  return out;
 }
 function persist(){
   if(creatingNewMove)return;
@@ -751,38 +766,89 @@ function showToast(message){
  clearTimeout(toastTimer);
  toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
 }
-function logEnergy(value,btn){
- root.querySelectorAll('.energyBtn').forEach(b=>{
-   b.classList.remove('selected');
-   if(b!==btn){
-     b.style.setProperty('--feel-x','50%');
-     b.style.setProperty('--feel-y','50%');
-     b.style.setProperty('--feel-shift-x','0px');
-     b.style.setProperty('--feel-shift-y','0px');
-   }
- });
- if(btn)btn.classList.add('selected');
- const now=new Date();
- const time=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit'}).format(now);
- store.energy.unshift({value,at:now.toISOString()});
- store.energy=store.energy.slice(0,1000);
- persist();
- bridge.fire('energy',{value});
- showToast(value+' logged · '+time);
- renderEnergyHistory();
+/* twice-daily check-in: mood + energy */
+const SCALES={
+  mood:['Rough','Low','Flat','Okay','Good','Great'],
+  energy:['Drained','Low','Okay','Good','Energised','Great']
+};
+const LEVEL_COLORS=['#6E63A8','#5878A8','#6F8B8A','#5F9B72','#D5A53E','#D56B54'];
+const EVENING_FROM=14;
+function dayKey(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function slotFor(d){return d.getHours()<EVENING_FROM?'morning':'evening'}
+function levelLabel(scale,level){return SCALES[scale][Math.max(1,Math.min(6,Math.round(level)))-1]}
+function currentCheckin(create){
+  const now=new Date(),date=dayKey(now),slot=slotFor(now);
+  let entry=store.checkins.find(c=>c.date===date&&c.slot===slot);
+  if(!entry&&create){
+    entry={date,slot,mood:null,energy:null,at:now.toISOString()};
+    store.checkins.unshift(entry);
+    store.checkins=store.checkins.slice(0,2000);
+  }
+  return entry;
+}
+function resetFeelingPointer(b){
+  b.style.setProperty('--feel-x','50%');
+  b.style.setProperty('--feel-y','50%');
+  b.style.setProperty('--feel-shift-x','0px');
+  b.style.setProperty('--feel-shift-y','0px');
+}
+function logCheckin(scale,level){
+  const entry=currentCheckin(true);
+  entry[scale]=level;
+  entry.at=new Date().toISOString();
+  persist();
+  bridge.fire('checkin',{slot:entry.slot,mood:entry.mood,energy:entry.energy,mood_label:entry.mood?levelLabel('mood',entry.mood):null,energy_label:entry.energy?levelLabel('energy',entry.energy):null});
+  showToast((scale==='mood'?'Mood':'Energy')+' · '+levelLabel(scale,level));
+  renderCheckin();
+  renderFeelingRows();
+  renderInsights();
+}
+function renderCheckin(){
+  const entry=currentCheckin(false);
+  const slot=slotFor(new Date());
+  $('checkinLabel').textContent=slot==='morning'?'Morning check-in':'Evening check-in';
+  root.querySelectorAll('.energyBtn[data-scale]').forEach(b=>{
+    const on=entry&&entry[b.dataset.scale]===Number(b.dataset.level);
+    b.classList.toggle('selected',Boolean(on));
+    if(!on)resetFeelingPointer(b);
+  });
+  const status=$('checkinStatus');
+  const hasMood=entry?.mood,hasEnergy=entry?.energy;
+  status.classList.toggle('done',Boolean(hasMood&&hasEnergy));
+  status.textContent=hasMood&&hasEnergy
+    ? (slot==='morning'?'Morning check-in done. Evening check-in opens at 2pm.':'Evening check-in done. See you tomorrow morning.')
+    : hasMood?'Now your energy.'
+    : hasEnergy?'Now your mood.'
+    : 'Two taps. How are you right now?';
+  renderEnergyHistory();
 }
 function renderEnergyHistory(){
- const box=$('energyHistory');box.innerHTML='';
- const today=new Date().toDateString();
- store.energy.slice(0,3).forEach(log=>{
-   const d=new Date(log.at);
-   const time=new Intl.DateTimeFormat(undefined,d.toDateString()===today?{hour:'2-digit',minute:'2-digit'}:{weekday:'short',hour:'2-digit',minute:'2-digit'}).format(d);
-   const row=document.createElement('div');row.className='energyLog';
-   row.innerHTML='<span>'+esc(log.value)+'</span><span>'+esc(time)+'</span>';
-   box.appendChild(row);
- });
+  const box=$('energyHistory');box.innerHTML='';
+  const today=dayKey(new Date());
+  const current=currentCheckin(false);
+  store.checkins.filter(c=>c!==current&&(c.mood||c.energy)).slice(0,2).forEach(c=>{
+    const when=(c.date===today?'Today':new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(c.date+'T12:00')))+' · '+c.slot;
+    const parts=[c.mood?levelLabel('mood',c.mood)+' mood':'',c.energy?levelLabel('energy',c.energy)+' energy':''].filter(Boolean).join(' · ');
+    const row=document.createElement('div');row.className='energyLog';
+    row.innerHTML='<span>'+esc(parts)+'</span><span>'+esc(when)+'</span>';
+    box.appendChild(row);
+  });
 }
-renderEnergyHistory();
+function renderFeelingRows(){
+  const today=dayKey(new Date());
+  const latest=scale=>store.checkins.find(c=>c.date===today&&c[scale]);
+  [['mood','moodMeta'],['energy','energyLevelMeta']].forEach(([scale,id])=>{
+    const c=latest(scale);
+    $(id).textContent=c?levelLabel(scale,c[scale])+' · this '+c.slot:'Not checked in yet today';
+  });
+}
+let lastSlot=slotFor(new Date());
+setInterval(()=>{
+  const slot=slotFor(new Date());
+  if(slot!==lastSlot){lastSlot=slot;renderCheckin();renderFeelingRows()}
+},60000);
 
 
 root.querySelectorAll('.energyBtn').forEach(btn=>{
@@ -806,7 +872,7 @@ root.querySelectorAll('.energyBtn').forEach(btn=>{
       btn.style.setProperty('--feel-shift-y','0px');
     }
   });
-  btn.addEventListener('click',()=>logEnergy(btn.dataset.energy,btn));
+  btn.addEventListener('click',()=>logCheckin(btn.dataset.scale,Number(btn.dataset.level)));
 });
 
 const upcomingCountSetting=$('upcomingCountSetting');
@@ -1459,6 +1525,7 @@ function finishSession(completed){
   store.history=store.history.slice(0,1000);
   persist();
   renderWeek();
+  renderInsights();
 }
 
 function showWorkout(){showView('workout');startCountdown()}
@@ -1561,6 +1628,7 @@ function advance(){
    clearInterval(timer);
    title.textContent='Complete';meta.textContent='Move finished';digits.textContent='✓';
    finishSession(true);
+   {const wk=dailySeries(7).reduce((a,d)=>a+d.minutes,0);meta.textContent='Move finished · '+wk+' min in the last 7 days';}
    fill.style.width='100%';updateNextCard();
  }
 }
@@ -1736,13 +1804,14 @@ const trailLifeInput=$('trailLife');
 
 function saveSetting(key,value){settings()[key]=value;persist()}
 
-/* wellness data toggles */
-const dataToggles={energy:true,steps:true,sleep:true,weight:true,...(settings().toggles||{})};
+/* what you see */
+const dataToggles={checkin:true,insights:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
 function applyDataToggles(){
   root.querySelectorAll('[data-toggle]').forEach(sw=>sw.classList.toggle('on',dataToggles[sw.dataset.toggle]!==false));
-  root.querySelector('.energySection').hidden=dataToggles.energy===false;
-  ['steps','sleep','weight'].forEach(k=>{const row=$(k+'Row');if(row)row.hidden=dataToggles[k]===false});
-  const anyActivity=['steps','sleep','weight'].some(k=>dataToggles[k]!==false);
+  root.querySelector('.energySection').hidden=dataToggles.checkin===false;
+  root.querySelector('.insightSection').hidden=dataToggles.insights===false;
+  [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
+  const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
   root.querySelector('.activityCard').hidden=!anyActivity;
   root.querySelector('.weekly').style.gridColumn=anyActivity?'':'span 12';
 }
@@ -1804,67 +1873,67 @@ root.querySelectorAll('.themeBtn').forEach(btn=>btn.addEventListener('click',()=
   saveSetting('theme',btn.dataset.theme);
 }));
 
-/* Home Assistant sensors */
-const SENSOR_HINTS={
-  steps:{match:/step/i,units:['steps','step']},
-  sleep:{match:/sleep/i,units:['h','min','hours','minutes']},
-  weight:{match:/weight|mass/i,units:['kg','lb','lbs','st'],deviceClass:'weight'}
-};
-const sensorEntities={steps:null,sleep:null,weight:null,...(settings().entities||{})};
+/* Home Assistant step sensor */
+const sensorEntities={steps:null,...(settings().entities||{})};
 let lastStates=null;
-function sensorChoices(kind,states){
-  const hint=SENSOR_HINTS[kind];
+let stepsByDay={};
+function sensorChoices(states){
   const all=Object.values(states).filter(st=>st.entity_id.startsWith('sensor.')||st.entity_id.startsWith('input_number.'));
   const label=st=>(st.attributes.friendly_name||st.entity_id);
-  const suggested=all.filter(st=>hint.match.test(st.entity_id)||hint.match.test(label(st))||(hint.deviceClass&&st.attributes.device_class===hint.deviceClass)||(hint.units.includes(String(st.attributes.unit_of_measurement||'').toLowerCase())&&kind!=='sleep'));
+  const suggested=all.filter(st=>/step/i.test(st.entity_id)||/step/i.test(label(st))||['steps','step'].includes(String(st.attributes.unit_of_measurement||'').toLowerCase()));
   const rest=all.filter(st=>!suggested.includes(st));
   const byName=(a,b)=>label(a).localeCompare(label(b));
   return {suggested:suggested.sort(byName),rest:rest.sort(byName),label};
 }
 function renderSensorPickers(states){
-  ['steps','sleep','weight'].forEach(kind=>{
-    const select=$(kind+'Entity');
-    if(!select||select.matches(':focus'))return;
-    const {suggested,rest,label}=sensorChoices(kind,states);
-    const opt=st=>'<option value="'+esc(st.entity_id)+'">'+esc(label(st))+'</option>';
-    select.innerHTML='<option value="">Not connected</option>'+
-      (suggested.length?'<optgroup label="Suggested">'+suggested.map(opt).join('')+'</optgroup>':'')+
-      (rest.length?'<optgroup label="All sensors">'+rest.map(opt).join('')+'</optgroup>':'');
-    select.value=sensorEntities[kind]||'';
-    const status=$(kind+'Status');
-    if(status){
-      const st=sensorEntities[kind]&&states[sensorEntities[kind]];
-      status.textContent=st?'Connected · '+label(st):status.dataset.empty;
-    }
-  });
+  const select=$('stepsEntity');
+  if(!select||select.matches(':focus'))return;
+  const {suggested,rest,label}=sensorChoices(states);
+  const opt=st=>'<option value="'+esc(st.entity_id)+'">'+esc(label(st))+'</option>';
+  select.innerHTML='<option value="">Not connected</option>'+
+    (suggested.length?'<optgroup label="Suggested">'+suggested.map(opt).join('')+'</optgroup>':'')+
+    (rest.length?'<optgroup label="All sensors">'+rest.map(opt).join('')+'</optgroup>':'');
+  select.value=sensorEntities.steps||'';
+  const status=$('stepsStatus');
+  const st=sensorEntities.steps&&states[sensorEntities.steps];
+  status.textContent=st?'Connected · '+label(st):status.dataset.empty;
 }
-root.querySelectorAll('.entitySelect').forEach(select=>select.addEventListener('change',()=>{
-  sensorEntities[select.dataset.kind]=select.value||null;
+$('stepsEntity').addEventListener('change',()=>{
+  sensorEntities.steps=$('stepsEntity').value||null;
   saveSetting('entities',{...sensorEntities});
+  stepsByDay={};
+  loadStepHistory();
   if(lastStates){renderSensorPickers(lastStates);renderActivity(lastStates)}
-}));
+});
 function formatNumber(v,digits=0){
   return new Intl.NumberFormat(undefined,{maximumFractionDigits:digits}).format(v);
 }
-function sensorText(kind,st){
-  if(!st||st.state==='unavailable'||st.state==='unknown')return null;
-  const n=Number(st.state);
-  const unit=st.attributes.unit_of_measurement||'';
-  if(kind==='steps')return Number.isFinite(n)?formatNumber(n)+' · today':st.state;
-  if(kind==='sleep'){
-    if(!Number.isFinite(n))return st.state;
-    const mins=/^min/i.test(unit)?n:/^s$/i.test(unit)?n/60:n*60;
-    return Math.floor(mins/60)+'h '+String(Math.round(mins%60)).padStart(2,'0')+' · last night';
-  }
-  return (Number.isFinite(n)?formatNumber(n,1):st.state)+(unit?' '+unit:'')+' · latest reading';
+function todaysSteps(){
+  const st=sensorEntities.steps&&lastStates?.[sensorEntities.steps];
+  const n=Number(st?.state);
+  return Number.isFinite(n)?n:null;
 }
 function renderActivity(states){
-  ['steps','sleep','weight'].forEach(kind=>{
-    const metaEl=$(kind+'Meta');if(!metaEl)return;
-    const id=sensorEntities[kind];
-    const text=id?sensorText(kind,states[id]):null;
-    metaEl.textContent=text||(id?'No reading yet':'Choose a sensor in Settings');
-  });
+  const id=sensorEntities.steps;
+  const n=id?Number(states[id]?.state):NaN;
+  $('stepsMeta').textContent=!id?'Choose a sensor in Settings':Number.isFinite(n)?formatNumber(n)+' · today':'No reading yet';
+}
+// Daily step totals for the last 30 days, from Home Assistant's long-term statistics.
+let stepHistoryLoadedAt=0;
+async function loadStepHistory(){
+  const id=sensorEntities.steps;
+  if(!id||!bridge.ws)return;
+  stepHistoryLoadedAt=Date.now();
+  const end=new Date();
+  const start=new Date(end.getFullYear(),end.getMonth(),end.getDate()-30);
+  try{
+    const result=await bridge.ws({type:'recorder/statistics_during_period',start_time:start.toISOString(),end_time:end.toISOString(),statistic_ids:[id],period:'day',types:['max']});
+    const rows=result?.[id]||[];
+    const next={};
+    rows.forEach(r=>{if(Number.isFinite(r.max))next[dayKey(new Date(r.start))]=r.max});
+    stepsByDay=next;
+    renderInsights();
+  }catch(_e){/* no statistics for this sensor; insights fall back to moves only */}
 }
 
 /* weekly movement from the session log */
@@ -1889,6 +1958,130 @@ function renderWeek(){
 }
 renderWeek();
 setInterval(renderWeek,10*60*1000);
+
+/* movement & you: motivation + how moving relates to mood and energy */
+function dailySeries(days){
+  const minutes={},moves={};
+  store.history.forEach(h=>{
+    const k=dayKey(new Date(h.start));
+    minutes[k]=(minutes[k]||0)+(h.seconds||0)/60;
+    moves[k]=(moves[k]||0)+1;
+  });
+  const now=new Date(),today=dayKey(now);
+  const out=[];
+  for(let i=days-1;i>=0;i--){
+    const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i);
+    const k=dayKey(d);
+    const checks=store.checkins.filter(c=>c.date===k);
+    const avg=scale=>{const v=checks.map(c=>c[scale]).filter(Boolean);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null};
+    out.push({
+      key:k,date:d,
+      minutes:Math.round(minutes[k]||0),
+      moves:moves[k]||0,
+      steps:k===today&&todaysSteps()!=null?todaysSteps():(stepsByDay[k]??null),
+      mood:avg('mood'),
+      energy:avg('energy')
+    });
+  }
+  return out;
+}
+function currentStreak(series){
+  let i=series.length-1;
+  if(series[i]&&!series[i].minutes)i--; // today isn't over yet
+  let n=0;
+  while(i>=0&&series[i].minutes>0){n++;i--}
+  return n;
+}
+function average(list){return list.length?list.reduce((a,b)=>a+b,0)/list.length:null}
+function compare(days,isActive,scale){
+  const withScale=days.filter(d=>d[scale]!=null);
+  const on=withScale.filter(isActive).map(d=>d[scale]);
+  const off=withScale.filter(d=>!isActive(d)).map(d=>d[scale]);
+  if(on.length<3||off.length<3)return null;
+  return {on:average(on),off:average(off),onDays:on.length,offDays:off.length};
+}
+function headline(series,streak){
+  const today=series[series.length-1];
+  const week=series.slice(-7).reduce((a,d)=>a+d.minutes,0);
+  const month=series.reduce((a,d)=>a+d.minutes,0);
+  if(today.minutes)return {big:today.minutes+' min',line:"already moved today. Why stop now?"};
+  if(streak>1)return {big:streak+' days',line:'in a row. Keep the streak alive today.'};
+  if(week)return {big:week+' min',line:'moved in the last 7 days. One more move?'};
+  if(month)return {big:month+' min',line:'moved this month. Pick it back up today.'};
+  return {big:'Day one',line:'Every move counts. Start with one today.'};
+}
+function compareText(c,scale,activeWord,restWord){
+  const diff=c.on-c.off;
+  const on=levelLabel(scale,c.on),off=levelLabel(scale,c.off);
+  if(Math.abs(diff)<.25)return 'Whether you '+esc(activeWord)+' or not, your '+scale+' is about the same ('+esc(on)+').';
+  return 'On days you '+activeWord+', your '+scale+' averages <strong>'+esc(on)+'</strong>'+(on===off?' (a little higher)':'')+', vs '+esc(off)+' on days you '+restWord+'.';
+}
+function renderInsights(){
+  const card=$('insightCard');if(!card)return;
+  const series=dailySeries(30);
+  const streak=currentStreak(series);
+  const h=headline(series,streak);
+  const month=series.reduce((a,d)=>a+d.minutes,0);
+  const monthMoves=series.reduce((a,d)=>a+d.moves,0);
+  const today=series[series.length-1];
+
+  // correlations
+  const moved=d=>d.minutes>0;
+  const insights=[];
+  ['energy','mood'].forEach(scale=>{
+    const c=compare(series,moved,scale);
+    if(c)insights.push(compareText(c,scale,'do a move',"don't"));
+  });
+  const stepDays=series.filter(d=>d.steps!=null&&(d.mood!=null||d.energy!=null));
+  if(stepDays.length>=6){
+    const sorted=stepDays.map(d=>d.steps).sort((a,b)=>a-b);
+    const median=sorted[Math.floor(sorted.length/2)];
+    const active=d=>d.steps!=null&&d.steps>=median;
+    const c=compare(series.filter(d=>d.steps!=null),active,'energy');
+    if(c)insights.push(compareText(c,'energy','walk '+formatNumber(Math.round(median/100)*100)+'+ steps','walk less'));
+  }
+  const checkedDays=series.filter(d=>d.mood!=null||d.energy!=null).length;
+  const insightHtml=insights.length
+    ? insights.map(t=>'<div class="insightLine">'+t+'</div>').join('')
+    : '<div class="insightLine muted">Keep checking in. After a few days with moves and a few without, you\'ll see how moving changes your mood and energy here.'+(checkedDays?' ('+checkedDays+' day'+(checkedDays===1?'':'s')+' so far)':'')+'</div>';
+
+  // last 14 days
+  const recent=series.slice(-14);
+  const maxMin=Math.max(10,...recent.map(d=>d.minutes));
+  const maxSteps=Math.max(1,...recent.map(d=>d.steps||0));
+  const hasSteps=recent.some(d=>d.steps!=null);
+  const dot=(scale,v)=>'<span class="dayDot'+(v==null?' empty':'')+'" style="'+(v==null?'':'background:'+LEVEL_COLORS[Math.round(v)-1])+'" title="'+(v==null?'No '+scale+' check-in':levelLabel(scale,v)+' '+scale)+'"></span>';
+  const days=recent.map((d,i)=>{
+    const isToday=i===recent.length-1;
+    const label=new Intl.DateTimeFormat(undefined,{weekday:'narrow'}).format(d.date);
+    const tip=new Intl.DateTimeFormat(undefined,{weekday:'short',day:'numeric',month:'short'}).format(d.date)+' · '+d.minutes+' min'+(d.steps!=null?' · '+formatNumber(d.steps)+' steps':'');
+    return '<div class="day'+(isToday?' today':'')+'" title="'+esc(tip)+'">'+
+      '<div class="dayBars">'+
+        (hasSteps?'<span class="stepBar" style="height:'+(d.steps?Math.max(3,d.steps/maxSteps*100):0)+'%"></span>':'')+
+        '<span class="moveBar" style="height:'+(d.minutes?Math.max(4,d.minutes/maxMin*100):0)+'%"></span>'+
+      '</div>'+
+      '<div class="dayDots">'+dot('mood',d.mood)+dot('energy',d.energy)+'</div>'+
+      '<div class="dayLabel">'+esc(label)+'</div>'+
+    '</div>';
+  }).join('');
+
+  card.innerHTML=
+    '<div class="insightTop">'+
+      '<div class="insightHero"><div class="insightBig">'+esc(h.big)+'</div><div class="weekCopy">'+esc(h.line)+'</div></div>'+
+      '<div class="insightStats">'+
+        '<div class="weekChip"><div class="weekChipTop"><strong>Streak</strong></div><div class="weekChipTime">'+streak+' day'+(streak===1?'':'s')+'</div><div class="weekChipMeta">in a row</div></div>'+
+        '<div class="weekChip"><div class="weekChipTop"><strong>30 days</strong></div><div class="weekChipTime">'+month+' min</div><div class="weekChipMeta">'+monthMoves+' move'+(monthMoves===1?'':'s')+'</div></div>'+
+        (hasSteps?'<div class="weekChip"><div class="weekChipTop"><strong>Today</strong></div><div class="weekChipTime">'+(today.steps!=null?formatNumber(today.steps):'—')+'</div><div class="weekChipMeta">steps</div></div>':'')+
+      '</div>'+
+    '</div>'+
+    '<div class="insightBody">'+
+      '<div class="insightLines">'+insightHtml+'</div>'+
+      '<div class="insightChart">'+
+        '<div class="dayStrip">'+days+'</div>'+
+        '<div class="chartLegend"><span><i class="lgMove"></i>Move minutes</span>'+(hasSteps?'<span><i class="lgSteps"></i>Steps</span>':'')+'<span><i class="lgDot"></i>Mood · energy</span></div>'+
+      '</div>'+
+    '</div>';
+}
 
 /* TV mode */
 const tvNav=$('tvNav');
@@ -1925,18 +2118,30 @@ pauseBtn.addEventListener('click',()=>{
 });
 
 buildRoutine();
+renderCheckin();
+renderFeelingRows();
+renderInsights();
+let insightTimer=null;
+function renderInsightsSoon(){
+  // step counts tick often; redraw the card at most every 30s
+  if(insightTimer)return;
+  insightTimer=setTimeout(()=>{insightTimer=null;renderInsights()},30000);
+}
 
 return {
   updateStates(states){
     lastStates=states;
     renderSensorPickers(states);
     renderActivity(states);
+    if(Date.now()-stepHistoryLoadedAt>60*60*1000)loadStepHistory();
+    renderInsightsSoon();
   },
   applyRemoteData(data){
     // Another device saved; only take history/energy so an open editor isn't clobbered.
     if(!data)return;
     if(Array.isArray(data.history)){store.history=data.history;renderWeek()}
-    if(Array.isArray(data.energy)){store.energy=data.energy;renderEnergyHistory()}
+    if(Array.isArray(data.history)){renderInsights()}
+    if(Array.isArray(data.checkins)){store.checkins=data.checkins;renderCheckin();renderFeelingRows();renderInsights()}
     if(data.profiles&&!modal.classList.contains('open')&&!session){
       const next=normaliseStore(data);
       Object.keys(workoutProfiles).forEach(k=>delete workoutProfiles[k]);

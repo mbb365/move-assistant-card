@@ -28,13 +28,13 @@
           <div class="activityRowIcon">↟</div>
           <div><div class="activityRowName">Steps</div><div class="activityRowMeta" id="stepsMeta">Choose a sensor in Settings</div></div>
         </div>
-        <div class="activityRow" id="sleepRow">
-          <div class="activityRowIcon">☾</div>
-          <div><div class="activityRowName">Sleep</div><div class="activityRowMeta" id="sleepMeta">Choose a sensor in Settings</div></div>
+        <div class="activityRow" id="moodRow">
+          <div class="activityRowIcon">☺</div>
+          <div><div class="activityRowName">Mood</div><div class="activityRowMeta" id="moodMeta">Not checked in yet today</div></div>
         </div>
-        <div class="activityRow" id="weightRow">
-          <div class="activityRowIcon">◇</div>
-          <div><div class="activityRowName">Weight</div><div class="activityRowMeta" id="weightMeta">Choose a sensor in Settings</div></div>
+        <div class="activityRow" id="energyLevelRow">
+          <div class="activityRowIcon">ϟ</div>
+          <div><div class="activityRowName">Energy</div><div class="activityRowMeta" id="energyLevelMeta">Not checked in yet today</div></div>
         </div>
       </div>
     </section>
@@ -59,19 +59,38 @@
     </section>
 
     <div class="energySection">
-      <div class="sectionLabel">Personal Check-In</div>
+      <div class="sectionLabel" id="checkinLabel">Morning check-in</div>
       <section class="wellness energyFloat">
-      <div class="energyQuestion">How do you feel?</div>
-      <div class="energyScale" id="energyScale">
-        <button class="energyBtn" data-energy="Drained"><span>Drained</span></button>
-        <button class="energyBtn" data-energy="Low"><span>Low</span></button>
-        <button class="energyBtn" data-energy="Okay"><span>Okay</span></button>
-        <button class="energyBtn" data-energy="Good"><span>Good</span></button>
-        <button class="energyBtn" data-energy="Energised"><span>Energised</span></button>
-        <button class="energyBtn" data-energy="Great"><span>Great</span></button>
+      <div class="checkinQuestion">
+        <div class="energyQuestion">How's your mood?</div>
+        <div class="energyScale" data-scale="mood">
+        <button class="energyBtn" data-scale="mood" data-level="1" data-energy="Rough"><span>Rough</span></button>
+        <button class="energyBtn" data-scale="mood" data-level="2" data-energy="Low"><span>Low</span></button>
+        <button class="energyBtn" data-scale="mood" data-level="3" data-energy="Flat"><span>Flat</span></button>
+        <button class="energyBtn" data-scale="mood" data-level="4" data-energy="Okay"><span>Okay</span></button>
+        <button class="energyBtn" data-scale="mood" data-level="5" data-energy="Good"><span>Good</span></button>
+        <button class="energyBtn" data-scale="mood" data-level="6" data-energy="Great"><span>Great</span></button>
+        </div>
       </div>
-<div class="energyHistory" id="energyHistory"></div>
-    </section>
+      <div class="checkinQuestion">
+        <div class="energyQuestion">How's your energy?</div>
+        <div class="energyScale" data-scale="energy">
+        <button class="energyBtn" data-scale="energy" data-level="1" data-energy="Drained"><span>Drained</span></button>
+        <button class="energyBtn" data-scale="energy" data-level="2" data-energy="Low"><span>Low</span></button>
+        <button class="energyBtn" data-scale="energy" data-level="3" data-energy="Okay"><span>Okay</span></button>
+        <button class="energyBtn" data-scale="energy" data-level="4" data-energy="Good"><span>Good</span></button>
+        <button class="energyBtn" data-scale="energy" data-level="5" data-energy="Energised"><span>Energised</span></button>
+        <button class="energyBtn" data-scale="energy" data-level="6" data-energy="Great"><span>Great</span></button>
+        </div>
+      </div>
+      <div class="checkinStatus" id="checkinStatus"></div>
+      <div class="energyHistory" id="energyHistory"></div>
+      </section>
+    </div>
+
+    <div class="insightSection">
+      <div class="sectionLabel">Movement &amp; you</div>
+      <section class="card insightCard" id="insightCard"></section>
     </div>
 
   </div>
@@ -124,11 +143,9 @@
   <div class="settingsPane active" id="integrationsPane">
     <section class="card">
       <h2 style="font-size:34px;margin:0 0 12px">Connected sources</h2>
-      <p class="note">Move Assistant can work on its own. Pick sensors from Home Assistant to fill the Activity card.</p>
+      <p class="note">Move Assistant can work on its own. Pick your step sensor so general movement counts alongside your moves.</p>
       <div class="integrationList">
         <div class="integration"><div><strong>Steps</strong><div class="status" id="stepsStatus" data-empty="Your phone's step sensor from the Companion app">Your phone's step sensor from the Companion app</div></div><select class="settingsSelect entitySelect" id="stepsEntity" data-kind="steps" aria-label="Steps sensor"></select></div>
-        <div class="integration"><div><strong>Sleep</strong><div class="status" id="sleepStatus" data-empty="Any sensor that reports sleep duration">Any sensor that reports sleep duration</div></div><select class="settingsSelect entitySelect" id="sleepEntity" data-kind="sleep" aria-label="Sleep sensor"></select></div>
-        <div class="integration"><div><strong>Weight</strong><div class="status" id="weightStatus" data-empty="A smart scale or an input number you update">A smart scale or an input number you update</div></div><select class="settingsSelect entitySelect" id="weightEntity" data-kind="weight" aria-label="Weight sensor"></select></div>
         <div class="integration"><div><strong>Home Assistant</strong><div class="status">Moves send a <code>move_assistant</code> event on start, each step, rest, pause and finish — use it in automations for lights, sound and displays</div></div><button class="pill" type="button" disabled>Connected</button></div>
       </div>
     </section>
@@ -136,13 +153,14 @@
 
   <div class="settingsPane" id="dataPane">
     <section class="card">
-      <h2 style="font-size:34px;margin:0 0 12px">Wellness data</h2>
+      <h2 style="font-size:34px;margin:0 0 12px">What you see</h2>
       <p class="note">Choose what appears in Move Assistant. Turning these off does not affect move playback.</p>
       <div class="toggleList">
-        <div class="toggleRow"><div><strong>Energy check-in</strong><div class="status">Show subjective feeling tracking</div></div><button class="switch on" data-toggle="energy"></button></div>
+        <div class="toggleRow"><div><strong>Check-in</strong><div class="status">Morning and evening mood and energy check-in</div></div><button class="switch on" data-toggle="checkin"></button></div>
+        <div class="toggleRow"><div><strong>Movement &amp; you</strong><div class="status">Streak, recent days and how movement relates to how you feel</div></div><button class="switch on" data-toggle="insights"></button></div>
         <div class="toggleRow"><div><strong>Steps</strong><div class="status">Daily step count</div></div><button class="switch on" data-toggle="steps"></button></div>
-        <div class="toggleRow"><div><strong>Sleep</strong><div class="status">Latest sleep duration</div></div><button class="switch on" data-toggle="sleep"></button></div>
-        <div class="toggleRow"><div><strong>Weight</strong><div class="status">Latest scale reading</div></div><button class="switch on" data-toggle="weight"></button></div>
+        <div class="toggleRow"><div><strong>Mood</strong><div class="status">Latest mood in the Activity card</div></div><button class="switch on" data-toggle="mood"></button></div>
+        <div class="toggleRow"><div><strong>Energy</strong><div class="status">Latest energy in the Activity card</div></div><button class="switch on" data-toggle="energyLevel"></button></div>
       </div>
     </section>
   </div>

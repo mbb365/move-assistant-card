@@ -4,9 +4,10 @@ A guided movement timer for Home Assistant, built on the HomeCore design languag
 Runs as a full-page dashboard card.
 
 - **Moves** you create, edit or delete are saved to your Home Assistant user, and stay in sync live across your phone, Mac and TV.
-- **Activity** shows steps, sleep and weight from any sensor you choose (Settings → Integrations).
+- **Check-in** twice a day (morning until 2pm, then evening): two taps for mood and energy.
+- **Movement & you** shows what you've already done (today, streak, last 30 days), a 14-day strip of moves, steps, mood and energy, and how your mood and energy differ on days you move.
+- **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
 - **This week** counts minutes from the moves you actually do (30 seconds or more).
-- **Check-ins** ("How do you feel?") are saved too.
 - **TV mode** (⛶ button) goes full screen with no HA header or sidebar. Works with a keyboard, TV remote or game controller.
 
 ## Install (HACS)
@@ -27,7 +28,7 @@ views:
 ## Automations
 
 Every move sends a `move_assistant` event. `action` is one of
-`started`, `step`, `rest`, `paused`, `resumed`, `completed`, `ended`, `energy`.
+`started`, `step`, `rest`, `paused`, `resumed`, `completed`, `ended`, `checkin`.
 
 ```yaml
 triggers:
