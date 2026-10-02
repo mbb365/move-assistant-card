@@ -1787,3 +1787,5 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 }
 @media(max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .checkinTile .timeHeader{align-items:center}
+.checkinTab:not(.due){opacity:.6}
+.checkinTab:not(.due):hover{opacity:1}

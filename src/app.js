@@ -808,8 +808,17 @@ function paintSlider(scale){
 Object.keys(sliders).forEach(scale=>sliders[scale].input.addEventListener('input',()=>paintSlider(scale)));
 
 let checkinSlotOpen=null;
+function nextCheckinText(){
+  const t=checkinTimes(),now=new Date(),mins=now.getHours()*60+now.getMinutes();
+  if(mins<minutesOf(t.morning))return 'Next check-in at '+t.morning;
+  if(mins<minutesOf(t.evening))return 'Next check-in at '+t.evening;
+  return 'Next check-in tomorrow at '+t.morning;
+}
 function openCheckin(){
-  const now=new Date(),slot=slotFor(now);
+  // Only two check-ins a day: the popup opens only while one is due.
+  const slot=dueSlot();
+  if(!slot){showToast(nextCheckinText());return}
+  const now=new Date();
   checkinSlotOpen={date:dayKey(now),slot};
   const existing=findCheckin(checkinSlotOpen.date,slot);
   const last=store.checkins.find(c=>isComplete(c));
@@ -820,7 +829,6 @@ function openCheckin(){
   const t=checkinTimes()[slot];
   $('checkinEyebrow').textContent=(slot==='morning'?'Morning':'Evening')+' · '+t;
   $('checkinTitle').textContent=slot==='morning'?'Morning check-in':'Evening check-in';
-  $('checkinSave').textContent=isComplete(existing)?'Update':'Done';
   checkinModal.classList.add('open');
   checkinModal.setAttribute('aria-hidden','false');
   requestAnimationFrame(()=>sliders.mood.input.focus());
@@ -835,6 +843,7 @@ function closeCheckin(){
 }
 function saveCheckin(){
   if(!checkinSlotOpen)return;
+  if(isComplete(findCheckin(checkinSlotOpen.date,checkinSlotOpen.slot))){closeCheckin();return}
   const {date,slot}=checkinSlotOpen;
   let entry=findCheckin(date,slot);
   if(!entry){entry={date,slot};store.checkins.unshift(entry);store.checkins=store.checkins.slice(0,2000)}
@@ -856,7 +865,8 @@ function updateCheckinTab(){
   const due=dueSlot();
   checkinBadge.hidden=!due;
   checkinTab.classList.toggle('due',Boolean(due));
-  checkinTab.setAttribute('aria-label',due?(due==='morning'?'Morning':'Evening')+' check-in is due':'Open check-in');
+  checkinTab.setAttribute('aria-label',due?(due==='morning'?'Morning':'Evening')+' check-in is due':nextCheckinText());
+  checkinTab.title=due?'Check in now':nextCheckinText();
 }
 function checkCheckinDue(){
   updateCheckinTab();
