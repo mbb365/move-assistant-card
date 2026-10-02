@@ -2,9 +2,10 @@ import css from "./styles.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 
-const VERSION = "0.5.0";
+const VERSION = "0.6.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
+const REMINDER_ID = "move_assistant_checkin_reminder";
 
 class MoveAssistantCard extends HTMLElement {
   setConfig(config) {
@@ -67,6 +68,8 @@ class MoveAssistantCard extends HTMLElement {
       save: (value) => this._save(value),
       fire: (action, payload) => this._fire(action, payload),
       ws: (msg) => this._hass.callWS(msg),
+      notifyServices: () => Object.keys(this._hass?.services?.notify || {}).sort(),
+      setReminderAutomation: (config) => this._setReminderAutomation(config),
       setLight: (isLight) => this.classList.toggle("lightBody", isLight),
       fullscreenSupported: Boolean(
         this.requestFullscreen || this.webkitRequestFullscreen
@@ -129,6 +132,45 @@ class MoveAssistantCard extends HTMLElement {
       .catch(() => {
         // Firing events needs an admin user; ignore otherwise.
       });
+  }
+
+  // Keeps one Home Assistant automation in sync with the check-in times.
+  // Passing null removes it.
+  async _setReminderAutomation(config) {
+    const path = `config/automation/config/${REMINDER_ID}`;
+    if (!config) {
+      try {
+        await this._hass.callApi("DELETE", path);
+      } catch (err) {
+        if (err?.status_code !== 404 && err?.status !== 404) throw err;
+      }
+      return;
+    }
+    const at = (hhmm) => `${hhmm}:00`;
+    const openPath = window.location.pathname;
+    await this._hass.callApi("POST", path, {
+      id: REMINDER_ID,
+      alias: "Move Assistant check-in reminder",
+      description:
+        "Created by Move Assistant. Change it in Move Assistant → Settings → Check-in.",
+      mode: "single",
+      triggers: [
+        { trigger: "time", at: at(config.times.morning), id: "morning" },
+        { trigger: "time", at: at(config.times.evening), id: "evening" },
+      ],
+      conditions: [],
+      actions: [
+        {
+          action: `notify.${config.target}`,
+          data: {
+            title: "Move Assistant",
+            message:
+              "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
+            data: { url: openPath, clickAction: openPath },
+          },
+        },
+      ],
+    });
   }
 
   _toggleFullscreen() {

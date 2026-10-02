@@ -131,6 +131,8 @@
         <div class="toggleRow"><div><strong>Morning check-in</strong><div class="status">When the morning check-in becomes due</div></div><input class="settingsSelect timeInput" id="morningTime" type="time" value="08:00" aria-label="Morning check-in time"></div>
         <div class="toggleRow"><div><strong>Evening check-in</strong><div class="status">When the evening check-in becomes due</div></div><input class="settingsSelect timeInput" id="eveningTime" type="time" value="19:00" aria-label="Evening check-in time"></div>
         <div class="toggleRow"><div><strong>Open automatically</strong><div class="status">Show the check-in window when it's due, instead of just the dot</div></div><button class="switch on" id="checkinAutoOpen" aria-label="Open check-in automatically"></button></div>
+        <div class="toggleRow"><div><strong>Phone notification</strong><div class="status" id="checkinNotifyStatus">Get a Home Assistant notification when it's time to check in</div></div><button class="switch" id="checkinNotify" aria-label="Send a notification when it's time to check in"></button></div>
+        <div class="toggleRow" id="checkinNotifyTargetRow" hidden><div><strong>Send to</strong><div class="status">Your phone from the Companion app</div></div><select class="settingsSelect entitySelect" id="checkinNotifyTarget" aria-label="Notification device"></select></div>
       </div>
     </section>
   </div>
@@ -289,8 +291,14 @@
 </div>
 
 <button class="checkinTab" id="checkinTab" type="button" aria-label="Open check-in">
-  <span class="checkinTabIcon" aria-hidden="true">☺</span>
-  <span class="checkinTabLabel">Check-in</span>
+  <span class="checkinPeek" id="checkinPeek" aria-live="polite">
+    <span class="peekCountdown" id="peekCountdown">0:00:00</span>
+    <span class="peekAt" id="peekAt">Available at 19:00</span>
+  </span>
+  <span class="checkinTabMain">
+    <span class="checkinTabIcon" aria-hidden="true">☺</span>
+    <span class="checkinTabLabel">Check-in</span>
+  </span>
   <span class="checkinBadge" id="checkinBadge" hidden></span>
 </button>
 

@@ -814,10 +814,36 @@ function nextCheckinText(){
   if(mins<minutesOf(t.evening))return 'Next check-in at '+t.evening;
   return 'Next check-in tomorrow at '+t.morning;
 }
+function nextCheckinAt(){
+  const t=checkinTimes(),now=new Date(),mins=now.getHours()*60+now.getMinutes();
+  const at=(hhmm,addDay)=>{const [h,m]=hhmm.split(':').map(Number);return new Date(now.getFullYear(),now.getMonth(),now.getDate()+(addDay?1:0),h,m)};
+  if(mins<minutesOf(t.morning))return {date:at(t.morning),time:t.morning};
+  if(mins<minutesOf(t.evening))return {date:at(t.evening),time:t.evening};
+  return {date:at(t.morning,true),time:t.morning};
+}
+let peekTimer=null,peekTick=null;
+function paintPeek(){
+  if(dueSlot()){hidePeek();updateCheckinTab();return}
+  const next=nextCheckinAt();
+  const left=Math.max(0,Math.round((next.date-Date.now())/1000));
+  const h=Math.floor(left/3600),m=Math.floor(left%3600/60),sec=left%60;
+  $('peekCountdown').textContent=h+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+  $('peekAt').textContent='Available at '+next.time;
+}
+function showPeek(){
+  paintPeek();
+  checkinTab.classList.add('peek');
+  clearInterval(peekTick);peekTick=setInterval(paintPeek,1000);
+  clearTimeout(peekTimer);peekTimer=setTimeout(hidePeek,6000);
+}
+function hidePeek(){
+  checkinTab.classList.remove('peek');
+  clearInterval(peekTick);clearTimeout(peekTimer);
+}
 function openCheckin(){
   // Only two check-ins a day: the popup opens only while one is due.
   const slot=dueSlot();
-  if(!slot){showToast(nextCheckinText());return}
+  if(!slot){checkinTab.classList.contains('peek')?hidePeek():showPeek();return}
   const now=new Date();
   checkinSlotOpen={date:dayKey(now),slot};
   const existing=findCheckin(checkinSlotOpen.date,slot);
@@ -2212,6 +2238,62 @@ checkinAutoOpen.addEventListener('click',()=>{
   saveSetting('checkinAutoOpen',on);
 });
 setTimeout(checkCheckinDue,800);
+
+/* phone notification: a Home Assistant automation that Move Assistant creates and keeps in sync */
+const checkinNotify=$('checkinNotify'),notifyTarget=$('checkinNotifyTarget'),notifyStatus=$('checkinNotifyStatus');
+const NOTIFY_DEFAULT_STATUS=notifyStatus.textContent;
+function renderNotifyTargets(){
+  const services=bridge.notifyServices();
+  const phones=services.filter(n=>n.startsWith('mobile_app_'));
+  const list=phones.length?phones:services;
+  const name=n=>n.replace(/^mobile_app_/,'').replace(/_/g,' ');
+  notifyTarget.innerHTML=list.map(n=>'<option value="'+esc(n)+'">'+esc(name(n))+'</option>').join('');
+  if(!settings().notifyTarget&&list[0])settings().notifyTarget=list[0];
+  notifyTarget.value=settings().notifyTarget||'';
+}
+function renderNotify(){
+  const on=Boolean(settings().notifyOn);
+  checkinNotify.classList.toggle('on',on);
+  $('checkinNotifyTargetRow').hidden=!on;
+  const t=checkinTimes();
+  notifyStatus.textContent=on?'Sends at '+t.morning+' and '+t.evening:NOTIFY_DEFAULT_STATUS;
+}
+async function syncNotifyAutomation(){
+  const on=Boolean(settings().notifyOn);
+  try{
+    await bridge.setReminderAutomation(on?{target:settings().notifyTarget,times:checkinTimes()}:null);
+    return true;
+  }catch(_e){
+    showToast("Couldn't update the reminder in Home Assistant");
+    return false;
+  }
+}
+checkinNotify.addEventListener('click',async()=>{
+  const on=!settings().notifyOn;
+  if(on){
+    renderNotifyTargets();
+    if(!settings().notifyTarget){showToast('Install the Companion app on your phone first');return}
+  }
+  settings().notifyOn=on;
+  renderNotify();
+  if(await syncNotifyAutomation()){
+    persist();
+    showToast(on?'Check-in notifications on':'Check-in notifications off');
+  }else{
+    settings().notifyOn=!on;
+    renderNotify();
+  }
+});
+notifyTarget.addEventListener('change',()=>{
+  saveSetting('notifyTarget',notifyTarget.value);
+  if(settings().notifyOn)syncNotifyAutomation();
+});
+[morningTimeInput,eveningTimeInput].forEach(input=>input.addEventListener('change',()=>{
+  renderNotify();
+  if(settings().notifyOn)syncNotifyAutomation();
+}));
+renderNotifyTargets();
+renderNotify();
 let insightTimer=null;
 function renderInsightsSoon(){
   // step counts tick often; redraw the card at most every 30s

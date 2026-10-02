@@ -37,6 +37,8 @@ const hass = {
     if (msg.type === "fire_event") { console.log("event", msg.event_data); return null; }
     throw new Error("unknown " + msg.type);
   },
+  services: { notify: { mobile_app_matts_iphone: {}, persistent_notification: {} } },
+  callApi: async (method, path, data) => { console.log("api", method, path, data); window.__api = { method, path, data }; return {}; },
   connection: {
     subscribeMessage: async (cb) => { listeners.push(cb); return () => {}; },
   },

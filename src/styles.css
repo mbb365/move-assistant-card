@@ -1855,3 +1855,17 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 #app.light .helpCard code{background:rgba(0,0,0,.06)}
 #app.light .helpNote{border-color:#fff}
 .rowLabel{grid-column:1/-1;margin-top:20px;margin-bottom:-10px}
+
+/* ---- check-in tab: peek with countdown ---- */
+.checkinTab{flex-direction:row;align-items:center;gap:0}
+.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:12px}
+.checkinPeek{
+  display:grid;gap:4px;justify-items:start;white-space:nowrap;overflow:hidden;
+  max-width:0;opacity:0;margin-right:0;
+  transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease;
+}
+.checkinTab.peek{padding-left:22px;opacity:1}
+.checkinTab.peek .checkinPeek{max-width:220px;opacity:1;margin-right:18px}
+.peekCountdown{font-size:30px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.peekAt{font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}
