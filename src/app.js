@@ -2130,7 +2130,6 @@ function renderInsights(){
   }).join('');
 
   card.innerHTML=
-    '<div class="eyebrow insightEyebrow">Movement &amp; you</div>'+
     '<div class="insightTop">'+
       '<div class="insightHero"><div class="insightBig">'+esc(h.big)+'</div><div class="weekCopy">'+esc(h.line)+'</div></div>'+
       '<div class="insightStats">'+

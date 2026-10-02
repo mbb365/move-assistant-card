@@ -1854,3 +1854,4 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 #app.light .helpAction{background:#EEEDED}
 #app.light .helpCard code{background:rgba(0,0,0,.06)}
 #app.light .helpNote{border-color:#fff}
+.rowLabel{grid-column:1/-1;margin-top:20px;margin-bottom:-10px}
