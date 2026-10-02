@@ -799,12 +799,11 @@ function dueSlot(){
 }
 
 const checkinModal=$('checkinModal'),checkinTab=$('checkinTab'),checkinBadge=$('checkinBadge');
-const sliders={mood:{input:$('moodInput'),fill:$('moodFill'),out:$('moodOut')},energy:{input:$('energyLevelInput'),fill:$('energyLevelFill'),out:$('energyLevelOut')}};
+const sliders={mood:{input:$('moodInput'),fill:$('moodFill')},energy:{input:$('energyLevelInput'),fill:$('energyLevelFill')}};
 function paintSlider(scale){
-  const {input,fill,out}=sliders[scale];
+  const {input,fill}=sliders[scale];
   fill.style.width=input.value+'%';
-  out.textContent=levelLabel(scale,input.value);
-  input.setAttribute('aria-valuetext',out.textContent);
+  input.setAttribute('aria-valuetext',levelLabel(scale,input.value));
 }
 Object.keys(sliders).forEach(scale=>sliders[scale].input.addEventListener('input',()=>paintSlider(scale)));
 
