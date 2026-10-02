@@ -2075,11 +2075,10 @@ function headline(series,streak){
   return {big:'Day one',line:'Every move counts. Start with one today.'};
 }
 function compareText(c,scale,activeWord,restWord){
-  const diff=c.on-c.off;
+  const name=scale==='energy'?'Energy':'Mood';
   const on=levelLabel(scale,c.on),off=levelLabel(scale,c.off);
-  if(Math.abs(diff)<5)return 'Whether you '+esc(activeWord)+' or not, your '+scale+' is about the same ('+esc(on)+').';
-  if(on===off)return 'Your '+scale+' is <strong>a little '+(diff>0?'higher':'lower')+'</strong> on days you '+esc(activeWord)+' (both around '+esc(on)+').';
-  return 'On days you '+esc(activeWord)+', your '+scale+' averages <strong>'+esc(on)+'</strong>, vs '+esc(off)+' on days you '+esc(restWord)+'.';
+  if(Math.abs(c.on-c.off)<5)return name+' '+esc(activeWord)+' · <strong>no change</strong>';
+  return name+' '+esc(activeWord)+' · <strong>'+esc(on)+'</strong> vs '+esc(off);
 }
 function renderInsights(){
   const card=$('insightCard');if(!card)return;
@@ -2090,15 +2089,13 @@ function renderInsights(){
   const now=new Date();
   const weekStart=dayKey(new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)));
   const thisWeek=series.filter(d=>d.key>=weekStart).reduce((a,d)=>a+d.minutes,0);
-  const monthMoves=series.reduce((a,d)=>a+d.moves,0);
-  const today=series[series.length-1];
 
   // correlations
   const moved=d=>d.minutes>0;
   const insights=[];
   ['energy','mood'].forEach(scale=>{
     const c=compare(series,moved,scale);
-    if(c)insights.push(compareText(c,scale,'do a move',"don't"));
+    if(c)insights.push(compareText(c,scale,'on move days',''));
   });
   const stepDays=series.filter(d=>d.steps!=null&&(d.mood!=null||d.energy!=null));
   if(stepDays.length>=6){
@@ -2106,7 +2103,7 @@ function renderInsights(){
     const median=sorted[Math.floor(sorted.length/2)];
     const active=d=>d.steps!=null&&d.steps>=median;
     const c=compare(series.filter(d=>d.steps!=null),active,'energy');
-    if(c)insights.push(compareText(c,'energy','walk '+formatNumber(Math.round(median/100)*100)+'+ steps','walk less'));
+    if(c)insights.push(compareText(c,'energy','on '+formatNumber(Math.round(median/100)*100)+'+ step days',''));
   }
   const insightHtml=insights.map(t=>'<div class="insightLine">'+t+'</div>').join('');
 
@@ -2133,17 +2130,15 @@ function renderInsights(){
     '<div class="insightTop">'+
       '<div class="insightHero"><div class="insightBig">'+esc(h.big)+'</div><div class="weekCopy">'+esc(h.line)+'</div></div>'+
       '<div class="insightStats">'+
-        '<div class="weekChip"><div class="weekChipTop"><strong>This week</strong></div><div class="weekChipTime">'+thisWeek+' min</div><div class="weekChipMeta">moved</div></div>'+
-        '<div class="weekChip"><div class="weekChipTop"><strong>Streak</strong></div><div class="weekChipTime">'+streak+' day'+(streak===1?'':'s')+'</div><div class="weekChipMeta">in a row</div></div>'+
-        '<div class="weekChip"><div class="weekChipTop"><strong>30 days</strong></div><div class="weekChipTime">'+month+' min</div><div class="weekChipMeta">'+monthMoves+' move'+(monthMoves===1?'':'s')+'</div></div>'+
-        (hasSteps?'<div class="weekChip"><div class="weekChipTop"><strong>Today</strong></div><div class="weekChipTime">'+(today.steps!=null?formatNumber(today.steps):'—')+'</div><div class="weekChipMeta">steps</div></div>':'')+
+        '<div class="weekChip"><div class="weekChipTop"><strong>This week</strong></div><div class="weekChipTime">'+thisWeek+' min</div></div>'+
+        '<div class="weekChip"><div class="weekChipTop"><strong>Streak</strong></div><div class="weekChipTime">'+streak+' day'+(streak===1?'':'s')+'</div></div>'+
+        '<div class="weekChip"><div class="weekChipTop"><strong>30 days</strong></div><div class="weekChipTime">'+month+' min</div></div>'+
       '</div>'+
     '</div>'+
     '<div class="insightBody'+(insightHtml?'':' chartOnly')+'">'+
       (insightHtml?'<div class="insightLines">'+insightHtml+'</div>':'')+
       '<div class="insightChart">'+
         '<div class="dayStrip">'+days+'</div>'+
-        '<div class="chartLegend"><span><i class="lgMove"></i>Move minutes</span>'+(hasSteps?'<span><i class="lgSteps"></i>Steps</span>':'')+'<span>'+faceSvg(80)+'Feeling</span></div>'+
       '</div>'+
     '</div>';
 }
