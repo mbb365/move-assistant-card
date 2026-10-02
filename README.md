@@ -4,7 +4,8 @@ A guided movement timer for Home Assistant, built on the HomeCore design languag
 Runs as a full-page dashboard card.
 
 - **Moves** you create, edit or delete are saved to your Home Assistant user, and stay in sync live across your phone, Mac and TV.
-- **Check-in** twice a day (morning until 2pm, then evening): two taps for mood and energy.
+- **Check-in** twice a day at times you choose (Settings → Check-in). It pops up when due; afterwards it lives in a tab on the right edge that shows a dot when the next one is due. Mood and energy are sliders from Terrible to Great.
+- **How you've felt this week** shows your average mood and energy, plus each day's.
 - **Movement & you** shows what you've already done (today, streak, last 30 days), a 14-day strip of moves, steps, mood and energy, and how your mood and energy differ on days you move.
 - **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
 - **This week** counts minutes from the moves you actually do (30 seconds or more).

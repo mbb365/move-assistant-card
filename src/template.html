@@ -58,34 +58,9 @@
       </div>
     </section>
 
-    <div class="energySection">
-      <div class="sectionLabel" id="checkinLabel">Morning check-in</div>
-      <section class="wellness energyFloat">
-      <div class="checkinQuestion">
-        <div class="energyQuestion">How's your mood?</div>
-        <div class="energyScale" data-scale="mood">
-        <button class="energyBtn" data-scale="mood" data-level="1" data-energy="Rough"><span>Rough</span></button>
-        <button class="energyBtn" data-scale="mood" data-level="2" data-energy="Low"><span>Low</span></button>
-        <button class="energyBtn" data-scale="mood" data-level="3" data-energy="Flat"><span>Flat</span></button>
-        <button class="energyBtn" data-scale="mood" data-level="4" data-energy="Okay"><span>Okay</span></button>
-        <button class="energyBtn" data-scale="mood" data-level="5" data-energy="Good"><span>Good</span></button>
-        <button class="energyBtn" data-scale="mood" data-level="6" data-energy="Great"><span>Great</span></button>
-        </div>
-      </div>
-      <div class="checkinQuestion">
-        <div class="energyQuestion">How's your energy?</div>
-        <div class="energyScale" data-scale="energy">
-        <button class="energyBtn" data-scale="energy" data-level="1" data-energy="Drained"><span>Drained</span></button>
-        <button class="energyBtn" data-scale="energy" data-level="2" data-energy="Low"><span>Low</span></button>
-        <button class="energyBtn" data-scale="energy" data-level="3" data-energy="Okay"><span>Okay</span></button>
-        <button class="energyBtn" data-scale="energy" data-level="4" data-energy="Good"><span>Good</span></button>
-        <button class="energyBtn" data-scale="energy" data-level="5" data-energy="Energised"><span>Energised</span></button>
-        <button class="energyBtn" data-scale="energy" data-level="6" data-energy="Great"><span>Great</span></button>
-        </div>
-      </div>
-      <div class="checkinStatus" id="checkinStatus"></div>
-      <div class="energyHistory" id="energyHistory"></div>
-      </section>
+    <div class="feelSection">
+      <div class="sectionLabel">How you've felt this week</div>
+      <section class="card feelCard" id="feelCard"></section>
     </div>
 
     <div class="insightSection">
@@ -137,6 +112,7 @@
     <div class="rubberIndicator" id="rubberIndicator" aria-hidden="true"></div>
     <button class="tab active" data-pane="integrationsPane">Integrations</button>
     <button class="tab" data-pane="dataPane">Data</button>
+    <button class="tab" data-pane="checkinPane">Check-in</button>
     <button class="tab" data-pane="appearancePane">Appearance</button>
   </div>
 
@@ -156,11 +132,23 @@
       <h2 style="font-size:34px;margin:0 0 12px">What you see</h2>
       <p class="note">Choose what appears in Move Assistant. Turning these off does not affect move playback.</p>
       <div class="toggleList">
-        <div class="toggleRow"><div><strong>Check-in</strong><div class="status">Morning and evening mood and energy check-in</div></div><button class="switch on" data-toggle="checkin"></button></div>
+        <div class="toggleRow"><div><strong>How you've felt</strong><div class="status">Your mood and energy over the week</div></div><button class="switch on" data-toggle="feel"></button></div>
         <div class="toggleRow"><div><strong>Movement &amp; you</strong><div class="status">Streak, recent days and how movement relates to how you feel</div></div><button class="switch on" data-toggle="insights"></button></div>
         <div class="toggleRow"><div><strong>Steps</strong><div class="status">Daily step count</div></div><button class="switch on" data-toggle="steps"></button></div>
         <div class="toggleRow"><div><strong>Mood</strong><div class="status">Latest mood in the Activity card</div></div><button class="switch on" data-toggle="mood"></button></div>
         <div class="toggleRow"><div><strong>Energy</strong><div class="status">Latest energy in the Activity card</div></div><button class="switch on" data-toggle="energyLevel"></button></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="settingsPane" id="checkinPane">
+    <section class="card">
+      <h2 style="font-size:34px;margin:0 0 12px">Check-in</h2>
+      <p class="note">Twice a day, Move Assistant asks how your mood and energy are. When it's time, the check-in tab on the right shows a dot.</p>
+      <div class="toggleList">
+        <div class="toggleRow"><div><strong>Morning check-in</strong><div class="status">When the morning check-in becomes due</div></div><input class="settingsSelect timeInput" id="morningTime" type="time" value="08:00" aria-label="Morning check-in time"></div>
+        <div class="toggleRow"><div><strong>Evening check-in</strong><div class="status">When the evening check-in becomes due</div></div><input class="settingsSelect timeInput" id="eveningTime" type="time" value="19:00" aria-label="Evening check-in time"></div>
+        <div class="toggleRow"><div><strong>Open automatically</strong><div class="status">Show the check-in window when it's due, instead of just the dot</div></div><button class="switch on" id="checkinAutoOpen" aria-label="Open check-in automatically"></button></div>
       </div>
     </section>
   </div>
@@ -233,6 +221,58 @@
   </div>
 </section>
 
+
+<div class="confirmBackdrop checkinBackdrop" id="checkinModal" aria-hidden="true">
+  <section class="confirmCard checkinCard" role="dialog" aria-modal="true" aria-labelledby="checkinTitle">
+    <div class="eyebrow" id="checkinEyebrow">Morning</div>
+    <div class="confirmTitle" id="checkinTitle">Morning check-in</div>
+    <div class="sub">How are you right now?</div>
+    <div class="checkinSliders">
+        <section class="tile timeTile checkinTile">
+          <div class="timeHeader">
+            <div class="timeIcon" aria-hidden="true">☺</div>
+            <div class="timeCopy">
+              <div class="timeLabel">Mood</div>
+              <div class="timeValue" id="moodOut">Okay</div>
+            </div>
+          </div>
+          <div>
+            <div class="rangeTrack">
+              <div class="rangeFill" id="moodFill"></div>
+              <input class="rangeInput" id="moodInput" type="range" min="0" max="100" step="1" value="50" aria-label="Mood, from terrible to great">
+            </div>
+            <div class="scaleEnds" aria-hidden="true"><span>Terrible</span><span>Great</span></div>
+          </div>
+        </section>
+        <section class="tile timeTile checkinTile">
+          <div class="timeHeader">
+            <div class="timeIcon" aria-hidden="true">ϟ</div>
+            <div class="timeCopy">
+              <div class="timeLabel">Energy</div>
+              <div class="timeValue" id="energyLevelOut">Okay</div>
+            </div>
+          </div>
+          <div>
+            <div class="rangeTrack">
+              <div class="rangeFill" id="energyLevelFill"></div>
+              <input class="rangeInput" id="energyLevelInput" type="range" min="0" max="100" step="1" value="50" aria-label="Energy, from terrible to great">
+            </div>
+            <div class="scaleEnds" aria-hidden="true"><span>Terrible</span><span>Great</span></div>
+          </div>
+        </section>
+    </div>
+    <div class="confirmActions">
+      <button class="pill" id="checkinLater" type="button">Later</button>
+      <button class="primary" id="checkinSave" type="button">Done</button>
+    </div>
+  </section>
+</div>
+
+<button class="checkinTab" id="checkinTab" type="button" aria-label="Open check-in">
+  <span class="checkinTabIcon" aria-hidden="true">☺</span>
+  <span class="checkinTabLabel">Check-in</span>
+  <span class="checkinBadge" id="checkinBadge" hidden></span>
+</button>
 
 <div class="confirmBackdrop" id="deleteMoveConfirm" aria-hidden="true">
   <section class="confirmCard">

@@ -1729,3 +1729,60 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 #app.light .energyLog{background:rgba(255,255,255,.8)}
 #app.light .energyLog span:last-child{color:#666!important}
 @media(max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---- check-in popup ---- */
+.checkinBackdrop{z-index:160}
+.checkinCard{width:min(720px,100%)}
+.checkinCard .sub{margin-top:10px}
+.checkinSliders{display:grid;gap:14px;margin-top:24px}
+.checkinTile{min-height:0;gap:18px}
+.scaleEnds{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--muted)}
+.rangeTrack:focus-within{outline:3px solid #D0FF00;outline-offset:3px}
+#app.light .rangeTrack:focus-within{outline-color:#3458d4}
+
+/* ---- side tab ---- */
+.checkinTab{
+  position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:18px 12px;border:.4px solid var(--line);border-right:0;
+  border-radius:16px 0 0 16px!important;background:#171717;color:var(--text);cursor:pointer;
+  transition:padding .18s ease,background .18s ease;
+}
+.checkinTab:hover{padding-right:16px}
+.checkinTabIcon{font-size:20px;line-height:1}
+.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg);font-size:13px;font-weight:680;letter-spacing:.02em}
+.checkinBadge{position:absolute;top:10px;left:10px;width:10px;height:10px;border-radius:50%;background:#D0FF00;box-shadow:0 0 0 3px #171717,0 0 12px rgba(208,255,0,.7);animation:checkinPulse 1.8s ease-in-out infinite}
+.checkinTab.due{background:#232323}
+@keyframes checkinPulse{50%{box-shadow:0 0 0 3px #171717,0 0 2px rgba(208,255,0,.2)}}
+@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}
+.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}
+#app.light .checkinTab{background:rgba(255,255,255,.88);border-color:#fff}
+#app.light .checkinBadge{background:#3458d4;box-shadow:0 0 0 3px #fff,0 0 12px rgba(52,88,212,.5)}
+
+/* ---- how you've felt this week ---- */
+.feelSection{grid-column:span 12;margin-top:20px}
+.feelCard{display:grid;gap:24px}
+.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,420px);gap:28px;align-items:end}
+.feelHeadline{font-size:clamp(56px,6vw,88px);font-weight:820;letter-spacing:-.07em;line-height:.85}
+.feelTotals{display:grid;gap:12px}
+.feelCount{font-size:13px;color:var(--muted)}
+.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.feelDay{min-height:0;gap:12px}
+.feelDay.future{opacity:.4}
+.feelDay.today{box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+#app.light .feelDay.today{box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.feelDots{font-size:8px;letter-spacing:2px;color:var(--muted)}
+.feelMeter{display:grid;gap:6px}
+.feelMeterTop{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted)}
+.feelMeterTop span:last-child{color:var(--text);font-weight:680}
+.feelTrack{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.feelTrack span{display:block;height:100%;border-radius:999px}
+#app.light .feelTrack{background:rgba(0,0,0,.08)}
+.feelTotals .feelMeterTop{font-size:13px}
+.feelTotals .feelTrack{height:12px}
+@media(max-width:900px){
+  .feelSection{grid-column:auto}
+  .feelTop{grid-template-columns:1fr}
+  .feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}

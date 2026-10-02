@@ -127,7 +127,7 @@ finishMoveButton.addEventListener('click',()=>$('saveWorkoutEdit').click());
 
 const views={home:$('homeView'),workout:$('workoutView'),settings:$('settingsView')};
 const homeNav=$('homeNav'),settingsNav=$('settingsNav');
-function showView(name){Object.entries(views).forEach(([k,v])=>v.classList.toggle('active',k===name));homeNav.classList.toggle('active',name==='home');settingsNav.classList.toggle('active',name==='settings');if(name==='settings')requestAnimationFrame(()=>positionRubberIndicator(root.querySelector('.tab.active'),false))}
+function showView(name){Object.entries(views).forEach(([k,v])=>v.classList.toggle('active',k===name));homeNav.classList.toggle('active',name==='home');settingsNav.classList.toggle('active',name==='settings');if(name==='home')setTimeout(checkCheckinDue,400);if(name==='settings')requestAnimationFrame(()=>positionRubberIndicator(root.querySelector('.tab.active'),false))}
 
 const totalInput=$('totalTime'),workInput=$('workTime'),restInput=$('restTime');
 const totalOut=$('totalOut'),workOut=$('workOut'),restOut=$('restOut');
@@ -220,7 +220,7 @@ function normaliseStore(data){
     order,
     selected:d.selected||order[0],
     history:Array.isArray(d.history)?d.history:[],
-    checkins:Array.isArray(d.checkins)?d.checkins:migrateEnergy(d.energy),
+    checkins:(Array.isArray(d.checkins)?d.checkins:migrateEnergy(d.energy)).map(toPercentScale),
     settings:{...(d.settings||{})}
   };
 }
@@ -238,6 +238,11 @@ function migrateEnergy(list){
     if(level>0)out.push({date,slot,mood:null,energy:level,at:e.at});
   });
   return out;
+}
+function toPercentScale(c){
+  if(c.scale===100)return c;
+  const conv=v=>v==null?null:Math.round((Number(v)-1)/5*100);
+  return {...c,mood:conv(c.mood),energy:conv(c.energy),scale:100};
 }
 function persist(){
   if(creatingNewMove)return;
@@ -766,114 +771,155 @@ function showToast(message){
  clearTimeout(toastTimer);
  toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
 }
-/* twice-daily check-in: mood + energy */
-const SCALES={
-  mood:['Rough','Low','Flat','Okay','Good','Great'],
-  energy:['Drained','Low','Okay','Good','Energised','Great']
-};
+/* twice-daily check-in: mood + energy on a terrible → great slider (0–100) */
+const LEVELS=['Terrible','Poor','Meh','Okay','Good','Great'];
 const LEVEL_COLORS=['#6E63A8','#5878A8','#6F8B8A','#5F9B72','#D5A53E','#D56B54'];
-const EVENING_FROM=14;
+function band(v){return Math.max(0,Math.min(5,Math.floor(Number(v)/100*6)))}
+function levelLabel(_scale,v){return LEVELS[band(v)]}
+function levelColor(v){return LEVEL_COLORS[band(v)]}
 function dayKey(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
-function slotFor(d){return d.getHours()<EVENING_FROM?'morning':'evening'}
-function levelLabel(scale,level){return SCALES[scale][Math.max(1,Math.min(6,Math.round(level)))-1]}
-function currentCheckin(create){
+function checkinTimes(){
+  return {morning:settings().morningTime||'08:00',evening:settings().eveningTime||'19:00'};
+}
+function minutesOf(hhmm){const [h,m]=String(hhmm).split(':').map(Number);return (h||0)*60+(m||0)}
+function slotFor(d){
+  const t=checkinTimes(),now=d.getHours()*60+d.getMinutes();
+  return now>=minutesOf(t.evening)?'evening':'morning';
+}
+function findCheckin(date,slot){return store.checkins.find(c=>c.date===date&&c.slot===slot)}
+function isComplete(c){return Boolean(c&&c.mood!=null&&c.energy!=null)}
+// The check-in that's due right now, or null.
+function dueSlot(){
   const now=new Date(),date=dayKey(now),slot=slotFor(now);
-  let entry=store.checkins.find(c=>c.date===date&&c.slot===slot);
-  if(!entry&&create){
-    entry={date,slot,mood:null,energy:null,at:now.toISOString()};
-    store.checkins.unshift(entry);
-    store.checkins=store.checkins.slice(0,2000);
-  }
-  return entry;
+  const t=checkinTimes(),mins=now.getHours()*60+now.getMinutes();
+  if(slot==='morning'&&mins<minutesOf(t.morning))return null;
+  return isComplete(findCheckin(date,slot))?null:slot;
 }
-function resetFeelingPointer(b){
-  b.style.setProperty('--feel-x','50%');
-  b.style.setProperty('--feel-y','50%');
-  b.style.setProperty('--feel-shift-x','0px');
-  b.style.setProperty('--feel-shift-y','0px');
+
+const checkinModal=$('checkinModal'),checkinTab=$('checkinTab'),checkinBadge=$('checkinBadge');
+const sliders={mood:{input:$('moodInput'),fill:$('moodFill'),out:$('moodOut')},energy:{input:$('energyLevelInput'),fill:$('energyLevelFill'),out:$('energyLevelOut')}};
+function paintSlider(scale){
+  const {input,fill,out}=sliders[scale];
+  fill.style.width=input.value+'%';
+  out.textContent=levelLabel(scale,input.value);
+  input.setAttribute('aria-valuetext',out.textContent);
 }
-function logCheckin(scale,level){
-  const entry=currentCheckin(true);
-  entry[scale]=level;
+Object.keys(sliders).forEach(scale=>sliders[scale].input.addEventListener('input',()=>paintSlider(scale)));
+
+let checkinSlotOpen=null;
+function openCheckin(){
+  const now=new Date(),slot=slotFor(now);
+  checkinSlotOpen={date:dayKey(now),slot};
+  const existing=findCheckin(checkinSlotOpen.date,slot);
+  const last=store.checkins.find(c=>isComplete(c));
+  Object.keys(sliders).forEach(scale=>{
+    sliders[scale].input.value=existing?.[scale]??last?.[scale]??50;
+    paintSlider(scale);
+  });
+  const t=checkinTimes()[slot];
+  $('checkinEyebrow').textContent=(slot==='morning'?'Morning':'Evening')+' · '+t;
+  $('checkinTitle').textContent=slot==='morning'?'Morning check-in':'Evening check-in';
+  $('checkinSave').textContent=isComplete(existing)?'Update':'Done';
+  checkinModal.classList.add('open');
+  checkinModal.setAttribute('aria-hidden','false');
+  requestAnimationFrame(()=>sliders.mood.input.focus());
+}
+function closeCheckin(){
+  checkinModal.classList.remove('open');
+  checkinModal.setAttribute('aria-hidden','true');
+  if(checkinSlotOpen)dismissedKey=checkinSlotOpen.date+'-'+checkinSlotOpen.slot;
+  try{localStorage.setItem('move-assistant-dismissed',dismissedKey)}catch(_e){}
+  checkinSlotOpen=null;
+  updateCheckinTab();
+}
+function saveCheckin(){
+  if(!checkinSlotOpen)return;
+  const {date,slot}=checkinSlotOpen;
+  let entry=findCheckin(date,slot);
+  if(!entry){entry={date,slot};store.checkins.unshift(entry);store.checkins=store.checkins.slice(0,2000)}
+  entry.mood=Number(sliders.mood.input.value);
+  entry.energy=Number(sliders.energy.input.value);
+  entry.scale=100;
   entry.at=new Date().toISOString();
   persist();
-  bridge.fire('checkin',{slot:entry.slot,mood:entry.mood,energy:entry.energy,mood_label:entry.mood?levelLabel('mood',entry.mood):null,energy_label:entry.energy?levelLabel('energy',entry.energy):null});
-  showToast((scale==='mood'?'Mood':'Energy')+' · '+levelLabel(scale,level));
-  renderCheckin();
+  bridge.fire('checkin',{slot,mood:entry.mood,energy:entry.energy,mood_label:levelLabel('mood',entry.mood),energy_label:levelLabel('energy',entry.energy)});
+  showToast((slot==='morning'?'Morning':'Evening')+' check-in saved');
+  closeCheckin();
   renderFeelingRows();
+  renderFeelWeek();
   renderInsights();
 }
-function renderCheckin(){
-  const entry=currentCheckin(false);
-  const slot=slotFor(new Date());
-  $('checkinLabel').textContent=slot==='morning'?'Morning check-in':'Evening check-in';
-  root.querySelectorAll('.energyBtn[data-scale]').forEach(b=>{
-    const on=entry&&entry[b.dataset.scale]===Number(b.dataset.level);
-    b.classList.toggle('selected',Boolean(on));
-    if(!on)resetFeelingPointer(b);
-  });
-  const status=$('checkinStatus');
-  const hasMood=entry?.mood,hasEnergy=entry?.energy;
-  status.classList.toggle('done',Boolean(hasMood&&hasEnergy));
-  status.textContent=hasMood&&hasEnergy
-    ? (slot==='morning'?'Morning check-in done. Evening check-in opens at 2pm.':'Evening check-in done. See you tomorrow morning.')
-    : hasMood?'Now your energy.'
-    : hasEnergy?'Now your mood.'
-    : 'Two taps. How are you right now?';
-  renderEnergyHistory();
+let dismissedKey='';
+try{dismissedKey=localStorage.getItem('move-assistant-dismissed')||''}catch(_e){}
+function updateCheckinTab(){
+  const due=dueSlot();
+  checkinBadge.hidden=!due;
+  checkinTab.classList.toggle('due',Boolean(due));
+  checkinTab.setAttribute('aria-label',due?(due==='morning'?'Morning':'Evening')+' check-in is due':'Open check-in');
 }
-function renderEnergyHistory(){
-  const box=$('energyHistory');box.innerHTML='';
-  const today=dayKey(new Date());
-  const current=currentCheckin(false);
-  store.checkins.filter(c=>c!==current&&(c.mood||c.energy)).slice(0,2).forEach(c=>{
-    const when=(c.date===today?'Today':new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(c.date+'T12:00')))+' · '+c.slot;
-    const parts=[c.mood?levelLabel('mood',c.mood)+' mood':'',c.energy?levelLabel('energy',c.energy)+' energy':''].filter(Boolean).join(' · ');
-    const row=document.createElement('div');row.className='energyLog';
-    row.innerHTML='<span>'+esc(parts)+'</span><span>'+esc(when)+'</span>';
-    box.appendChild(row);
-  });
+function checkCheckinDue(){
+  updateCheckinTab();
+  const due=dueSlot();
+  if(!due||checkinModal.classList.contains('open'))return;
+  if(settings().checkinAutoOpen===false)return;
+  if(!views.home.classList.contains('active')||modal.classList.contains('open'))return;
+  if(dismissedKey===dayKey(new Date())+'-'+due)return;
+  openCheckin();
 }
+checkinTab.addEventListener('click',openCheckin);
+$('checkinLater').addEventListener('click',closeCheckin);
+$('checkinSave').addEventListener('click',saveCheckin);
+checkinModal.addEventListener('click',e=>{if(e.target===checkinModal)closeCheckin()});
+checkinModal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeCheckin()}});
+setInterval(checkCheckinDue,30000);
+
 function renderFeelingRows(){
   const today=dayKey(new Date());
-  const latest=scale=>store.checkins.find(c=>c.date===today&&c[scale]);
+  const latest=scale=>store.checkins.find(c=>c.date===today&&c[scale]!=null);
   [['mood','moodMeta'],['energy','energyLevelMeta']].forEach(([scale,id])=>{
     const c=latest(scale);
     $(id).textContent=c?levelLabel(scale,c[scale])+' · this '+c.slot:'Not checked in yet today';
   });
 }
-let lastSlot=slotFor(new Date());
-setInterval(()=>{
-  const slot=slotFor(new Date());
-  if(slot!==lastSlot){lastSlot=slot;renderCheckin();renderFeelingRows()}
-},60000);
 
-
-root.querySelectorAll('.energyBtn').forEach(btn=>{
-  const updateFeelingPointer=e=>{
-    const r=btn.getBoundingClientRect();
-    const x=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));
-    const y=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height));
-    btn.style.setProperty('--feel-x',(x*100).toFixed(2)+'%');
-    btn.style.setProperty('--feel-y',(y*100).toFixed(2)+'%');
-    btn.style.setProperty('--feel-shift-x',((x-.5)*8).toFixed(2)+'px');
-    btn.style.setProperty('--feel-shift-y',((y-.5)*5).toFixed(2)+'px');
-  };
-  btn.addEventListener('pointermove',updateFeelingPointer);
-  btn.addEventListener('pointerenter',updateFeelingPointer);
-  btn.addEventListener('pointerdown',updateFeelingPointer);
-  btn.addEventListener('pointerleave',()=>{
-    if(!btn.classList.contains('selected')){
-      btn.style.setProperty('--feel-x','50%');
-      btn.style.setProperty('--feel-y','50%');
-      btn.style.setProperty('--feel-shift-x','0px');
-      btn.style.setProperty('--feel-shift-y','0px');
-    }
+/* how you've felt this week */
+function renderFeelWeek(){
+  const card=$('feelCard');if(!card)return;
+  const now=new Date();
+  const monday=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7));
+  const days=[...Array(7)].map((_,i)=>{
+    const d=new Date(monday.getFullYear(),monday.getMonth(),monday.getDate()+i);
+    const key=dayKey(d);
+    const checks=store.checkins.filter(c=>c.date===key);
+    const avg=scale=>{const v=checks.map(c=>c[scale]).filter(v=>v!=null);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null};
+    return {d,key,mood:avg('mood'),energy:avg('energy'),count:checks.filter(isComplete).length,future:d>now&&key!==dayKey(now)};
   });
-  btn.addEventListener('click',()=>logCheckin(btn.dataset.scale,Number(btn.dataset.level)));
-});
+  const all=scale=>{const v=days.map(x=>x[scale]).filter(v=>v!=null);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null};
+  const wkMood=all('mood'),wkEnergy=all('energy');
+  const done=days.reduce((a,x)=>a+x.count,0);
+  const elapsed=days.filter(x=>!x.future).length*2;
+  const meter=(label,v)=>'<div class="feelMeter"><div class="feelMeterTop"><span>'+label+'</span><span>'+(v==null?'—':esc(levelLabel('',v)))+'</span></div><div class="feelTrack"><span style="width:'+(v==null?0:Math.max(4,v))+'%;background:'+(v==null?'transparent':levelColor(v))+'"></span></div></div>';
+  const best=days.filter(x=>x.mood!=null&&x.energy!=null).sort((a,b)=>(b.mood+b.energy)-(a.mood+a.energy))[0];
+  card.innerHTML=
+    '<div class="feelTop">'+
+      '<div class="feelSummary">'+
+        '<div class="feelHeadline">'+(wkMood==null?'No check-ins yet':esc(levelLabel('',(wkMood+wkEnergy)/2)))+'</div>'+
+        '<div class="weekCopy">'+(wkMood==null?'Your first check-in will appear here.':'on average this week'+(best?' · best day '+esc(new Intl.DateTimeFormat(undefined,{weekday:'long'}).format(best.d)):''))+'</div>'+
+      '</div>'+
+      '<div class="feelTotals">'+
+        meter('Mood',wkMood)+meter('Energy',wkEnergy)+
+        '<div class="feelCount">'+done+' of '+elapsed+' check-ins</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="feelDays">'+days.map(x=>
+      '<div class="weekChip feelDay'+(x.future?' future':'')+(x.key===dayKey(now)?' today':'')+'">'+
+        '<div class="weekChipTop"><strong>'+esc(new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(x.d))+'</strong>'+(x.count>=2?'<span class="weekTick">✓</span>':'<span class="feelDots">'+'●'.repeat(x.count)+'</span>')+'</div>'+
+        meter('Mood',x.mood)+meter('Energy',x.energy)+
+      '</div>'
+    ).join('')+'</div>';
+}
 
 const upcomingCountSetting=$('upcomingCountSetting');
 upcomingCountSetting.addEventListener('change',()=>{
@@ -1805,10 +1851,10 @@ const trailLifeInput=$('trailLife');
 function saveSetting(key,value){settings()[key]=value;persist()}
 
 /* what you see */
-const dataToggles={checkin:true,insights:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
+const dataToggles={feel:true,insights:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
 function applyDataToggles(){
   root.querySelectorAll('[data-toggle]').forEach(sw=>sw.classList.toggle('on',dataToggles[sw.dataset.toggle]!==false));
-  root.querySelector('.energySection').hidden=dataToggles.checkin===false;
+  root.querySelector('.feelSection').hidden=dataToggles.feel===false;
   root.querySelector('.insightSection').hidden=dataToggles.insights===false;
   [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
   const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
@@ -1957,7 +2003,7 @@ function renderWeek(){
   '<div class="weekChip total"><div class="weekChipTop"><strong>To date</strong>'+(total?'<span class="weekTick">✓</span>':'<span></span>')+'</div><div class="weekChipTime">'+total+' min</div><div class="weekChipMeta">this week</div></div>';
 }
 renderWeek();
-setInterval(renderWeek,10*60*1000);
+setInterval(()=>{renderWeek();renderFeelWeek();updateCheckinTab()},10*60*1000);
 
 /* movement & you: motivation + how moving relates to mood and energy */
 function dailySeries(days){
@@ -2013,8 +2059,9 @@ function headline(series,streak){
 function compareText(c,scale,activeWord,restWord){
   const diff=c.on-c.off;
   const on=levelLabel(scale,c.on),off=levelLabel(scale,c.off);
-  if(Math.abs(diff)<.25)return 'Whether you '+esc(activeWord)+' or not, your '+scale+' is about the same ('+esc(on)+').';
-  return 'On days you '+activeWord+', your '+scale+' averages <strong>'+esc(on)+'</strong>'+(on===off?' (a little higher)':'')+', vs '+esc(off)+' on days you '+restWord+'.';
+  if(Math.abs(diff)<5)return 'Whether you '+esc(activeWord)+' or not, your '+scale+' is about the same ('+esc(on)+').';
+  if(on===off)return 'Your '+scale+' is <strong>a little '+(diff>0?'higher':'lower')+'</strong> on days you '+esc(activeWord)+' (both around '+esc(on)+').';
+  return 'On days you '+esc(activeWord)+', your '+scale+' averages <strong>'+esc(on)+'</strong>, vs '+esc(off)+' on days you '+esc(restWord)+'.';
 }
 function renderInsights(){
   const card=$('insightCard');if(!card)return;
@@ -2050,7 +2097,7 @@ function renderInsights(){
   const maxMin=Math.max(10,...recent.map(d=>d.minutes));
   const maxSteps=Math.max(1,...recent.map(d=>d.steps||0));
   const hasSteps=recent.some(d=>d.steps!=null);
-  const dot=(scale,v)=>'<span class="dayDot'+(v==null?' empty':'')+'" style="'+(v==null?'':'background:'+LEVEL_COLORS[Math.round(v)-1])+'" title="'+(v==null?'No '+scale+' check-in':levelLabel(scale,v)+' '+scale)+'"></span>';
+  const dot=(scale,v)=>'<span class="dayDot'+(v==null?' empty':'')+'" style="'+(v==null?'':'background:'+levelColor(v))+'" title="'+(v==null?'No '+scale+' check-in':levelLabel(scale,v)+' '+scale)+'"></span>';
   const days=recent.map((d,i)=>{
     const isToday=i===recent.length-1;
     const label=new Intl.DateTimeFormat(undefined,{weekday:'narrow'}).format(d.date);
@@ -2118,9 +2165,26 @@ pauseBtn.addEventListener('click',()=>{
 });
 
 buildRoutine();
-renderCheckin();
 renderFeelingRows();
+renderFeelWeek();
 renderInsights();
+
+/* check-in settings */
+const morningTimeInput=$('morningTime'),eveningTimeInput=$('eveningTime'),checkinAutoOpen=$('checkinAutoOpen');
+morningTimeInput.value=checkinTimes().morning;
+eveningTimeInput.value=checkinTimes().evening;
+checkinAutoOpen.classList.toggle('on',settings().checkinAutoOpen!==false);
+[['morningTime',morningTimeInput],['eveningTime',eveningTimeInput]].forEach(([key,input])=>input.addEventListener('change',()=>{
+  if(!input.value)return;
+  saveSetting(key,input.value);
+  updateCheckinTab();
+}));
+checkinAutoOpen.addEventListener('click',()=>{
+  const on=settings().checkinAutoOpen===false;
+  checkinAutoOpen.classList.toggle('on',on);
+  saveSetting('checkinAutoOpen',on);
+});
+setTimeout(checkCheckinDue,800);
 let insightTimer=null;
 function renderInsightsSoon(){
   // step counts tick often; redraw the card at most every 30s
@@ -2141,7 +2205,7 @@ return {
     if(!data)return;
     if(Array.isArray(data.history)){store.history=data.history;renderWeek()}
     if(Array.isArray(data.history)){renderInsights()}
-    if(Array.isArray(data.checkins)){store.checkins=data.checkins;renderCheckin();renderFeelingRows();renderInsights()}
+    if(Array.isArray(data.checkins)){store.checkins=data.checkins.map(toPercentScale);updateCheckinTab();renderFeelingRows();renderFeelWeek();renderInsights()}
     if(data.profiles&&!modal.classList.contains('open')&&!session){
       const next=normaliseStore(data);
       Object.keys(workoutProfiles).forEach(k=>delete workoutProfiles[k]);
