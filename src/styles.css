@@ -1873,3 +1873,4 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 /* activity readings: small bold title, bigger value */
 .activityRowName{font-size:15px;font-weight:720;letter-spacing:-.005em;line-height:1.15}
 .activityRowMeta{font-size:28px;font-weight:400;letter-spacing:-.025em;line-height:1.1;color:var(--text);margin-top:2px;font-variant-numeric:tabular-nums}
+.feelTop{grid-template-columns:1fr}

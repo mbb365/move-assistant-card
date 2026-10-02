@@ -934,8 +934,6 @@ function renderFeelWeek(){
   });
   const all=scale=>{const v=days.map(x=>x[scale]).filter(v=>v!=null);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null};
   const wkMood=all('mood'),wkEnergy=all('energy');
-  const done=days.reduce((a,x)=>a+x.count,0);
-  const elapsed=days.filter(x=>!x.future).length*2;
   const meter=(label,v)=>'<div class="feelMeter"><div class="feelMeterTop"><span>'+label+'</span><span>'+(v==null?'—':esc(levelLabel('',v)))+'</span></div><div class="feelTrack"><span style="width:'+(v==null?0:Math.max(4,v))+'%;background:'+(v==null?'transparent':levelColor(v))+'"></span></div></div>';
   const best=days.filter(x=>x.mood!=null&&x.energy!=null).sort((a,b)=>(b.mood+b.energy)-(a.mood+a.energy))[0];
   card.innerHTML=
@@ -943,10 +941,6 @@ function renderFeelWeek(){
       '<div class="feelSummary">'+
         '<div class="feelHeadline">'+(wkMood==null?'No check-ins yet':esc(levelLabel('',(wkMood+wkEnergy)/2)))+'</div>'+
         '<div class="weekCopy">'+(wkMood==null?'Your first check-in will appear here.':'on average this week'+(best?' · best day '+esc(new Intl.DateTimeFormat(undefined,{weekday:'long'}).format(best.d)):''))+'</div>'+
-      '</div>'+
-      '<div class="feelTotals">'+
-        meter('Mood',wkMood)+meter('Energy',wkEnergy)+
-        '<div class="feelCount">'+done+' of '+elapsed+' check-ins</div>'+
       '</div>'+
     '</div>'+
     '<div class="feelDays">'+days.map(x=>
