@@ -1868,7 +1868,7 @@ function applyDataToggles(){
   [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
   const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
   root.querySelector('.activityCard').hidden=!anyActivity;
-  root.querySelector('.weekly').style.gridColumn=anyActivity?'':'span 12';
+  $('insightCard').style.gridColumn=anyActivity?'':'span 12';
 }
 root.querySelectorAll('[data-toggle]').forEach(sw=>sw.addEventListener('click',()=>{
   dataToggles[sw.dataset.toggle]=!(dataToggles[sw.dataset.toggle]!==false);
@@ -1986,9 +1986,21 @@ async function loadStepHistory(){
     const rows=result?.[id]||[];
     const next={};
     rows.forEach(r=>{if(Number.isFinite(r.max))next[dayKey(new Date(r.start))]=r.max});
+    if(!Object.keys(next).length){
+      // Helpers (e.g. an input_number fed by Apple Health) have no long-term statistics:
+      // use the recorder's recent history instead and take each day's highest reading.
+      const hist=await bridge.ws({type:'history/history_during_period',start_time:start.toISOString(),end_time:end.toISOString(),entity_ids:[id],minimal_response:true,no_attributes:true,significant_changes_only:false});
+      (hist?.[id]||[]).forEach(h=>{
+        const v=Number(h.s??h.state);
+        const t=h.lu?h.lu*1000:Date.parse(h.last_updated||h.last_changed);
+        if(!Number.isFinite(v)||!t)return;
+        const k=dayKey(new Date(t));
+        next[k]=Math.max(next[k]||0,v);
+      });
+    }
     stepsByDay=next;
     renderInsights();
-  }catch(_e){/* no statistics for this sensor; insights fall back to moves only */}
+  }catch(_e){/* no history for this sensor; insights fall back to moves only */}
 }
 
 /* weekly movement from the session log */
@@ -2007,29 +2019,7 @@ function dayFeeling(key){
   store.checkins.filter(c=>c.date===key).forEach(c=>{if(c.mood!=null)v.push(c.mood);if(c.energy!=null)v.push(c.energy)});
   return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
 }
-function renderWeek(){
-  const now=new Date();
-  const monday=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7));
-  const days=[0,0,0,0,0,0,0];
-  store.history.forEach(h=>{
-    const d=new Date(h.start);
-    const diff=Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate())-monday)/86400000);
-    if(diff>=0&&diff<7)days[diff]+=h.seconds||0;
-  });
-  const mins=days.map(sec=>Math.round(sec/60));
-  const total=mins.reduce((a,b)=>a+b,0);
-  root.querySelector('.weekMetric').textContent=total;
-  const dates=[...Array(7)].map((_,i)=>new Date(monday.getFullYear(),monday.getMonth(),monday.getDate()+i));
-  const feelings=dates.map(d=>dayFeeling(dayKey(d)));
-  const known=feelings.filter(v=>v!=null);
-  const weekFeeling=known.length?known.reduce((a,b)=>a+b,0)/known.length:null;
-  const chip=(cls,name,tick,time,meta,face)=>
-    '<div class="weekChip'+cls+'"><div class="weekChipTop"><strong>'+esc(name)+'</strong>'+(tick?'<span class="weekTick">✓</span>':'<span></span>')+'</div>'+
-    '<div class="weekChipBottom"><div><div class="weekChipTime">'+time+'</div><div class="weekChipMeta">'+meta+'</div></div>'+face+'</div></div>';
-  root.querySelector('.weekChips').innerHTML=
-    mins.map((m,i)=>chip(m?' done':'',new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(dates[i]),m,m+' min','moved',dates[i]>now?'':faceSvg(feelings[i]))).join('')+
-    chip(' total','To date',total,total+' min','this week',faceSvg(weekFeeling));
-}
+function renderWeek(){renderInsights()}
 renderWeek();
 setInterval(()=>{renderWeek();renderFeelWeek();updateCheckinTab()},10*60*1000);
 
@@ -2097,6 +2087,9 @@ function renderInsights(){
   const streak=currentStreak(series);
   const h=headline(series,streak);
   const month=series.reduce((a,d)=>a+d.minutes,0);
+  const now=new Date();
+  const weekStart=dayKey(new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)));
+  const thisWeek=series.filter(d=>d.key>=weekStart).reduce((a,d)=>a+d.minutes,0);
   const monthMoves=series.reduce((a,d)=>a+d.moves,0);
   const today=series[series.length-1];
 
@@ -2137,9 +2130,11 @@ function renderInsights(){
   }).join('');
 
   card.innerHTML=
+    '<div class="eyebrow insightEyebrow">Movement &amp; you</div>'+
     '<div class="insightTop">'+
       '<div class="insightHero"><div class="insightBig">'+esc(h.big)+'</div><div class="weekCopy">'+esc(h.line)+'</div></div>'+
       '<div class="insightStats">'+
+        '<div class="weekChip"><div class="weekChipTop"><strong>This week</strong></div><div class="weekChipTime">'+thisWeek+' min</div><div class="weekChipMeta">moved</div></div>'+
         '<div class="weekChip"><div class="weekChipTop"><strong>Streak</strong></div><div class="weekChipTime">'+streak+' day'+(streak===1?'':'s')+'</div><div class="weekChipMeta">in a row</div></div>'+
         '<div class="weekChip"><div class="weekChipTop"><strong>30 days</strong></div><div class="weekChipTime">'+month+' min</div><div class="weekChipMeta">'+monthMoves+' move'+(monthMoves===1?'':'s')+'</div></div>'+
         (hasSteps?'<div class="weekChip"><div class="weekChipTop"><strong>Today</strong></div><div class="weekChipTime">'+(today.steps!=null?formatNumber(today.steps):'—')+'</div><div class="weekChipMeta">steps</div></div>':'')+
@@ -2193,24 +2188,18 @@ renderFeelingRows();
 renderFeelWeek();
 renderInsights();
 
-/* weekly card opens Movement & you */
-const insightModal=$('insightModal'),weeklyCard=$('weeklyCard');
-function openInsights(){
-  renderInsights();
-  insightModal.classList.add('open');
-  insightModal.setAttribute('aria-hidden','false');
-  requestAnimationFrame(()=>$('insightClose').focus());
+/* Apple Health help */
+const healthHelp=$('healthHelp');
+function toggleHealthHelp(open){
+  healthHelp.classList.toggle('open',open);
+  healthHelp.setAttribute('aria-hidden',open?'false':'true');
+  if(open)requestAnimationFrame(()=>$('healthHelpClose').focus());
+  else $('healthHelpOpen').focus({preventScroll:true});
 }
-function closeInsights(){
-  insightModal.classList.remove('open');
-  insightModal.setAttribute('aria-hidden','true');
-  weeklyCard.focus({preventScroll:true});
-}
-weeklyCard.addEventListener('click',openInsights);
-weeklyCard.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInsights()}});
-$('insightClose').addEventListener('click',closeInsights);
-insightModal.addEventListener('click',e=>{if(e.target===insightModal)closeInsights()});
-insightModal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeInsights()}});
+$('healthHelpOpen').addEventListener('click',()=>toggleHealthHelp(true));
+$('healthHelpClose').addEventListener('click',()=>toggleHealthHelp(false));
+healthHelp.addEventListener('click',e=>{if(e.target===healthHelp)toggleHealthHelp(false)});
+healthHelp.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();toggleHealthHelp(false)}});
 
 /* reset stats: clears what you've done, keeps your moves and settings */
 bindFuseHold($('resetStats'),$('resetStatsFill'),1500,()=>{

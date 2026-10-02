@@ -1826,3 +1826,31 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 }
 .weekChipTime{white-space:nowrap}
 .weekChip.total .weekChipTime{font-size:16px}
+
+/* ---- Movement & you as the main card ---- */
+.insightCard{grid-column:span 9;align-content:start}
+.insightEyebrow{margin-bottom:-14px}
+.insightStats{grid-auto-columns:minmax(110px,1fr)}
+.insightCard .dayBars{height:150px}
+@media(max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}
+@media(max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:100px}}
+
+/* ---- Apple Health help ---- */
+.helpBackdrop{z-index:170}
+.helpCard{width:min(760px,100%);max-height:calc(125dvh - 70px);overflow:auto}
+.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.helpCard .sub{margin:12px 0 0;max-width:620px}
+.helpSteps{margin:24px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:12px}
+.helpSteps li{counter-increment:help;display:grid;gap:6px;position:relative;padding:18px 20px 18px 66px;border-radius:26px;background:#252525;font-size:14px;line-height:1.45;color:var(--muted)}
+.helpSteps li::before{content:counter(help);position:absolute;left:18px;top:16px;width:32px;height:32px;border-radius:12px;display:grid;place-items:center;background:#313131;color:var(--text);font-weight:760}
+.helpSteps strong{font-size:17px;color:var(--text);font-weight:720;letter-spacing:-.01em}
+.helpSteps b,.helpNote b{color:var(--text);font-weight:680}
+.helpAction{display:block;padding:10px 12px;border-radius:14px;background:#1b1b1b;color:var(--text)}
+.helpCard code{font-size:12px;padding:1px 6px;border-radius:6px;background:rgba(255,255,255,.08)}
+.helpNote{display:grid;gap:4px;margin-top:12px;padding:16px 20px;border-radius:22px;border:.4px solid var(--line);font-size:14px;line-height:1.45;color:var(--muted)}
+.helpNote strong{color:var(--text);font-size:15px}
+#app.light .helpSteps li{background:rgba(255,255,255,.8)}
+#app.light .helpSteps li::before{background:#ece7ff}
+#app.light .helpAction{background:#EEEDED}
+#app.light .helpCard code{background:rgba(0,0,0,.06)}
+#app.light .helpNote{border-color:#fff}

@@ -39,25 +39,7 @@
       </div>
     </section>
 
-    <section class="card weekly" id="weeklyCard" tabindex="0" role="button" aria-label="Open movement and you">
-      <span class="weeklyExpand" aria-hidden="true">⤢</span>
-      <div class="weekHero">
-        <div>
-          <div class="weekMetric">0</div>
-          <div class="weekCopy">minutes of intentional movement this week</div>
-        </div>
-      </div>
-      <div class="weekChips">
-        <div class="weekChip done"><div class="weekChipTop"><strong>Mon</strong><span class="weekTick">✓</span></div><div class="weekChipTime">20 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip done"><div class="weekChipTop"><strong>Tue</strong><span class="weekTick">✓</span></div><div class="weekChipTime">18 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip"><div class="weekChipTop"><strong>Wed</strong><span></span></div><div class="weekChipTime">0 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip done"><div class="weekChipTop"><strong>Thu</strong><span class="weekTick">✓</span></div><div class="weekChipTime">16 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip done"><div class="weekChipTop"><strong>Fri</strong><span class="weekTick">✓</span></div><div class="weekChipTime">20 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip"><div class="weekChipTop"><strong>Sat</strong><span></span></div><div class="weekChipTime">0 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip"><div class="weekChipTop"><strong>Sun</strong><span></span></div><div class="weekChipTime">0 min</div><div class="weekChipMeta">moved</div></div>
-        <div class="weekChip total"><div class="weekChipTop"><strong>To date</strong><span class="weekTick">✓</span></div><div class="weekChipTime">74 min</div><div class="weekChipMeta">this week</div></div>
-      </div>
-    </section>
+    <section class="card insightCard" id="insightCard" aria-label="Movement and you"></section>
 
     <div class="feelSection">
       <div class="sectionLabel">How you've felt this week</div>
@@ -119,6 +101,7 @@
       <p class="note">Move Assistant can work on its own. Pick your step sensor so general movement counts alongside your moves.</p>
       <div class="integrationList">
         <div class="integration"><div><strong>Steps</strong><div class="status" id="stepsStatus" data-empty="Your phone's step sensor from the Companion app">Your phone's step sensor from the Companion app</div></div><select class="settingsSelect entitySelect" id="stepsEntity" data-kind="steps" aria-label="Steps sensor"></select></div>
+        <div class="integration"><div><strong>Apple Health</strong><div class="status">Send steps and other Health data from your iPhone</div></div><button class="pill" id="healthHelpOpen" type="button">Help</button></div>
         <div class="integration"><div><strong>Home Assistant</strong><div class="status">Moves send a <code>move_assistant</code> event on start, each step, rest, pause and finish — use it in automations for lights, sound and displays</div></div><button class="pill" type="button" disabled>Connected</button></div>
       </div>
     </section>
@@ -269,13 +252,46 @@
   <span class="checkinBadge" id="checkinBadge" hidden></span>
 </button>
 
-<div class="confirmBackdrop insightBackdrop" id="insightModal" aria-hidden="true">
-  <section class="confirmCard insightModalCard" role="dialog" aria-modal="true" aria-label="Movement and you">
-    <div class="insightModalHead">
-      <div class="sectionLabel">Movement &amp; you</div>
-      <button class="pill" id="insightClose" type="button">Close</button>
+<div class="confirmBackdrop helpBackdrop" id="healthHelp" aria-hidden="true">
+  <section class="confirmCard helpCard" role="dialog" aria-modal="true" aria-labelledby="healthHelpTitle">
+    <div class="helpHead">
+      <div class="confirmTitle" id="healthHelpTitle">Connect Apple Health</div>
+      <button class="pill" id="healthHelpClose" type="button">Close</button>
     </div>
-    <div class="insightCard" id="insightCard"></div>
+    <p class="sub">Apple Health can't talk to Home Assistant directly. Your iPhone sends the numbers using the Shortcuts app and the Home Assistant Companion app. Set it up once and it runs by itself.</p>
+
+    <ol class="helpSteps">
+      <li>
+        <strong>Make a place for the number in Home Assistant</strong>
+        <span>Settings → Devices &amp; services → Helpers → Create helper → <b>Number</b>.</span>
+        <span>Name it <b>Health steps</b>. Minimum 0, maximum 100000, step 1, unit <b>steps</b>, display mode <b>Input field</b>.</span>
+      </li>
+      <li>
+        <strong>Build the shortcut on your iPhone</strong>
+        <span>Open <b>Shortcuts</b> → Automation → <b>+</b> → <b>App</b> → choose Home Assistant → <b>Is opened</b> → <b>Run immediately</b>.</span>
+        <span>Add these actions in order:</span>
+        <span class="helpAction">Find Health Samples — Type <b>Steps</b>, Start date <b>is today</b>, Group by <b>Day</b>, Limit 1</span>
+        <span class="helpAction">Get Details of Health Samples — <b>Value</b></span>
+        <span class="helpAction">Home Assistant → <b>Call service</b> (or <b>Perform action</b>) — <code>input_number.set_value</code>, entity <code>input_number.health_steps</code>, value = the step count from above</span>
+      </li>
+      <li>
+        <strong>Keep it fresh during the day</strong>
+        <span>Add a few more automations with the same actions using <b>Time of day</b> (for example 10:00, 14:00, 18:00, 22:00), also set to <b>Run immediately</b>.</span>
+      </li>
+      <li>
+        <strong>Pick it in Move Assistant</strong>
+        <span>Settings → Integrations → Steps → <b>Health steps</b>.</span>
+      </li>
+    </ol>
+
+    <div class="helpNote">
+      <strong>Other Health data</strong>
+      <span>Use the same recipe for anything in Health, for example exercise minutes, active energy or stand hours. Make one Number helper per value, then change the <b>Type</b> in Find Health Samples.</span>
+    </div>
+    <div class="helpNote">
+      <strong>Check the number</strong>
+      <span>Run the shortcut once by hand and compare it with the Health app. <b>Group by Day</b> stops your iPhone and Apple Watch steps being counted twice.</span>
+    </div>
   </section>
 </div>
 
