@@ -103,7 +103,7 @@ const Ma = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
       <p class="note">Move Assistant can work on its own. Pick your step sensor so general movement counts alongside your moves.</p>
       <div class="integrationList">
         <div class="integration"><div><strong>Steps</strong><div class="status" id="stepsStatus" data-empty="Your phone's step sensor from the Companion app">Your phone's step sensor from the Companion app</div></div><select class="settingsSelect entitySelect" id="stepsEntity" data-kind="steps" aria-label="Steps sensor"></select></div>
-        <div class="integration"><div><strong>Apple Health</strong><div class="status">Send steps and other Health data from your iPhone</div></div><button class="pill" id="healthHelpOpen" type="button">Help</button></div>
+        <div class="integration"><div><strong>Apple Health</strong><div class="status">Use the Home Assistant iPhone app to send your steps</div></div><button class="pill" id="healthHelpOpen" type="button">Help</button></div>
         <div class="integration"><div><strong>Home Assistant</strong><div class="status">Moves send a <code>move_assistant</code> event on start, each step, rest, pause and finish — use it in automations for lights, sound and displays</div></div><button class="pill" type="button" disabled>Connected</button></div>
       </div>
     </section>
@@ -140,39 +140,34 @@ const Ma = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
   <div class="settingsPane" id="helpPane">
     <section class="card helpCard">
       <h2 style="font-size:34px;margin:0 0 12px">Connect Apple Health</h2>
-    <p class="note">Apple Health can't talk to Home Assistant directly. Your iPhone sends the numbers using the Shortcuts app and the Home Assistant Companion app. Set it up once and it runs by itself.</p>
+    <p class="note">The Home Assistant app on your iPhone can read Apple Health and send it to Home Assistant. Steps include your Apple Watch.</p>
 
     <ol class="helpSteps">
       <li>
-        <strong>Make a place for the number in Home Assistant</strong>
-        <span>Settings → Devices &amp; services → Helpers → Create helper → <b>Number</b>.</span>
-        <span>Name it <b>Health steps</b>. Minimum 0, maximum 100000, step 1, unit <b>steps</b>, display mode <b>Input field</b>.</span>
+        <strong>Update the Home Assistant app</strong>
+        <span>On your iPhone, update <b>Home Assistant</b> from the App Store. Apple Health needs version <b>2026.9</b> or newer.</span>
       </li>
       <li>
-        <strong>Build the shortcut on your iPhone</strong>
-        <span>Open <b>Shortcuts</b> → Automation → <b>+</b> → <b>App</b> → choose Home Assistant → <b>Is opened</b> → <b>Run immediately</b>.</span>
-        <span>Add these actions in order:</span>
-        <span class="helpAction">Find Health Samples — Type <b>Steps</b>, Start date <b>is today</b>, Group by <b>Day</b>, Limit 1</span>
-        <span class="helpAction">Get Details of Health Samples — <b>Value</b></span>
-        <span class="helpAction">Home Assistant → <b>Call service</b> (or <b>Perform action</b>) — <code>input_number.set_value</code>, entity <code>input_number.health_steps</code>, value = the step count from above</span>
+        <strong>Turn on Apple Health</strong>
+        <span>In the app: <b>Settings → Companion app → Sensors → Apple Health</b>. Switch it on.</span>
       </li>
       <li>
-        <strong>Keep it fresh during the day</strong>
-        <span>Add a few more automations with the same actions using <b>Time of day</b> (for example 10:00, 14:00, 18:00, 22:00), also set to <b>Run immediately</b>.</span>
+        <strong>Allow access</strong>
+        <span>When iPhone asks, allow Home Assistant to read <b>Steps</b>. Turn on the <b>Steps</b> sensor in the Apple Health list.</span>
       </li>
       <li>
         <strong>Pick it in Move Assistant</strong>
-        <span>Settings → Integrations → Steps → <b>Health steps</b>.</span>
+        <span>Settings → Integrations → Steps → choose <b>… Health steps</b>.</span>
       </li>
     </ol>
 
     <div class="helpNote">
-      <strong>Other Health data</strong>
-      <span>Use the same recipe for anything in Health, for example exercise minutes, active energy or stand hours. Make one Number helper per value, then change the <b>Type</b> in Find Health Samples.</span>
+      <strong>When it updates</strong>
+      <span>Your phone sends new numbers when the app syncs, for example when you unlock your phone or open Home Assistant. It isn't live to the second.</span>
     </div>
     <div class="helpNote">
-      <strong>Check the number</strong>
-      <span>Run the shortcut once by hand and compare it with the Health app. <b>Group by Day</b> stops your iPhone and Apple Watch steps being counted twice.</span>
+      <strong>Not seeing it?</strong>
+      <span>Check iPhone <b>Settings → Health → Data Access &amp; Devices → Home Assistant</b> and make sure Steps is allowed.</span>
     </div>
     </section>
   </div>
@@ -625,7 +620,7 @@ const Ma = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
   </section>
 </div>
 `;
-function Ea(v, u) {
+function Ea(v, g) {
   const i = (e) => v.getElementById(e), R = i("workoutView"), y = i("workoutNameInput");
   let A = !0;
   const hn = i("homeClock");
@@ -633,7 +628,7 @@ function Ea(v, u) {
     hn && (hn.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
   vn(), setInterval(vn, 15e3);
-  const bn = i("createFlow"), bi = i("createMovementsSlot"), xi = i("createTimingSlot"), xn = i("createFinishSlot"), yi = i("movementStepSummary"), wi = i("timingStepSummary"), ki = i("finishStepSummary"), At = i("continueToTiming"), Si = i("continueToFinish"), Ci = i("finishMoveButton");
+  const xn = i("createFlow"), xi = i("createMovementsSlot"), bi = i("createTimingSlot"), bn = i("createFinishSlot"), yi = i("movementStepSummary"), wi = i("timingStepSummary"), ki = i("finishStepSummary"), At = i("continueToTiming"), Si = i("continueToFinish"), Ci = i("finishMoveButton");
   let Bt = !1, ct = [];
   function Ti(e) {
     !e || ct.some((t) => t.node === e) || ct.push({ node: e, parent: e.parentNode, next: e.nextSibling });
@@ -652,26 +647,26 @@ function Ea(v, u) {
     }), e === "timing" && (Bt = !0), le();
   }
   function le() {
-    var f, c;
+    var u, c;
     if (!B) return;
     w[S];
-    const e = P.filter((g) => !g.hidden), t = e.filter((g) => g.kind !== "rest").length, n = e.filter((g) => g.kind === "rest").length;
+    const e = P.filter((m) => !m.hidden), t = e.filter((m) => m.kind !== "rest").length, n = e.filter((m) => m.kind === "rest").length;
     yi.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
-    const a = t > 0, o = v.querySelector('[data-open-step="timing"]'), s = v.querySelector('[data-open-step="finish"]');
-    o.disabled = !a, At.disabled = !a, wi.textContent = a ? Re(L.value) + " · " + Z(k.value) + " movement · " + Z(T.value) + " rest" : "Add a movement first", s.disabled = !(a && Bt);
-    const r = ((y == null ? void 0 : y.value) || "").trim(), l = [];
-    (f = i("includeWarmupPreset")) != null && f.checked && l.push("warm-up"), (c = i("includeCooldownPreset")) != null && c.checked && l.push("cooldown"), ki.textContent = r ? r + (l.length ? " · " + l.join(" + ") : "") : l.length ? l.join(" + ") : "Name and optional extras";
+    const a = t > 0, o = v.querySelector('[data-open-step="timing"]'), r = v.querySelector('[data-open-step="finish"]');
+    o.disabled = !a, At.disabled = !a, wi.textContent = a ? Re(L.value) + " · " + Z(k.value) + " movement · " + Z(T.value) + " rest" : "Add a movement first", r.disabled = !(a && Bt);
+    const s = ((y == null ? void 0 : y.value) || "").trim(), l = [];
+    (u = i("includeWarmupPreset")) != null && u.checked && l.push("warm-up"), (c = i("includeCooldownPreset")) != null && c.checked && l.push("cooldown"), ki.textContent = s ? s + (l.length ? " · " + l.join(" + ") : "") : l.length ? l.join(" + ") : "Name and optional extras";
   }
   function Li() {
-    var m, E, N;
-    bn.hidden = !1, Bt = !1;
-    const e = v.querySelector(".editNameRow"), t = i("createMoveOptions"), n = v.querySelector(".timeTiles"), a = i("routineSummaryModal"), o = v.querySelector(".tempoRevealRow"), s = i("tempoExperiment"), r = (m = i("warmupList")) == null ? void 0 : m.closest("section"), l = i("movementCreatorLaunch"), f = i("movementCreator"), c = (E = i("strengthList")) == null ? void 0 : E.closest("section"), g = (N = i("cooldownList")) == null ? void 0 : N.closest("section");
-    [r, l, f, c, g].forEach((H) => pt(H, bi)), [t, n, a, o, s].forEach((H) => pt(H, xi)), pt(e, xn);
+    var f, E, N;
+    xn.hidden = !1, Bt = !1;
+    const e = v.querySelector(".editNameRow"), t = i("createMoveOptions"), n = v.querySelector(".timeTiles"), a = i("routineSummaryModal"), o = v.querySelector(".tempoRevealRow"), r = i("tempoExperiment"), s = (f = i("warmupList")) == null ? void 0 : f.closest("section"), l = i("movementCreatorLaunch"), u = i("movementCreator"), c = (E = i("strengthList")) == null ? void 0 : E.closest("section"), m = (N = i("cooldownList")) == null ? void 0 : N.closest("section");
+    [s, l, u, c, m].forEach((H) => pt(H, xi)), [t, n, a, o, r].forEach((H) => pt(H, bi)), pt(e, bn);
     const d = t == null ? void 0 : t.querySelector(".createExtras");
-    d && pt(d, xn), Me("movements"), le();
+    d && pt(d, bn), Me("movements"), le();
   }
   function Ei() {
-    Mi(), bn.hidden = !0, v.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
+    Mi(), xn.hidden = !0, v.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
   }
   v.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
     e.disabled || Me(e.dataset.openStep);
@@ -756,8 +751,8 @@ function Ea(v, u) {
         ["glute-bridge", "Glute bridge with kettlebell", "Glutes + core"]
       ]
     }
-  }, b = Tn(u.data), w = b.profiles;
-  let S = w[b.selected] ? b.selected : b.order.find((e) => w[e]) || "kettlebell";
+  }, x = Tn(g.data), w = x.profiles;
+  let S = w[x.selected] ? x.selected : x.order.find((e) => w[e]) || "kettlebell";
   function Tn(e) {
     const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(zi)), a = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
     return Object.keys(n).forEach((o) => {
@@ -778,10 +773,10 @@ function Ea(v, u) {
     return e.forEach((a) => {
       const o = new Date(a.at);
       if (isNaN(o)) return;
-      const s = o.getFullYear() + "-" + String(o.getMonth() + 1).padStart(2, "0") + "-" + String(o.getDate()).padStart(2, "0"), r = o.getHours() < 14 ? "morning" : "evening";
-      if (n.some((f) => f.date === s && f.slot === r)) return;
+      const r = o.getFullYear() + "-" + String(o.getMonth() + 1).padStart(2, "0") + "-" + String(o.getDate()).padStart(2, "0"), s = o.getHours() < 14 ? "morning" : "evening";
+      if (n.some((u) => u.date === r && u.slot === s)) return;
       const l = t.indexOf(a.value) + 1;
-      l > 0 && n.push({ date: s, slot: r, mood: null, energy: l, at: a.at });
+      l > 0 && n.push({ date: r, slot: s, mood: null, energy: l, at: a.at });
     }), n;
   }
   function Mn(e) {
@@ -790,29 +785,29 @@ function Ea(v, u) {
     return { ...e, mood: t(e.mood), energy: t(e.energy), scale: 100 };
   }
   function he() {
-    B || (b.selected = S, b.order = b.order.filter((e) => w[e] && e !== ve), u.save(b));
+    B || (x.selected = S, x.order = x.order.filter((e) => w[e] && e !== ve), g.save(x));
   }
   function M() {
-    return b.settings;
+    return x.settings;
   }
   function ee(e) {
     const t = w[e];
     if (!t) return;
     S = e;
     const n = i("workoutNameInput");
-    n && (n.value = t.name), L.value = t.total, k.value = t.work, T.value = t.rest, t.customSequence ? (me = [], fe = [], P = (t.sequence || []).map((a) => ({ ...a })), Ot(t.preset || "movement", !1)) : (L.min = 10, L.max = 40, L.step = 5, k.min = 20, k.max = 60, k.step = 5, T.min = 5, T.max = 30, T.step = 5, me = (t.warmup || Nt).map((a) => ({ ...a })), fe = (t.cooldown || Pt).map((a) => ({ ...a })), P = t.strength.map(([a, o, s, r = !1]) => ({ id: a, name: o, group: s, kind: "work", hidden: !!r }))), v.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === e)), W();
+    n && (n.value = t.name), L.value = t.total, k.value = t.work, T.value = t.rest, t.customSequence ? (me = [], fe = [], P = (t.sequence || []).map((a) => ({ ...a })), Ot(t.preset || "movement", !1)) : (L.min = 10, L.max = 40, L.step = 5, k.min = 20, k.max = 60, k.step = 5, T.min = 5, T.max = 30, T.step = 5, me = (t.warmup || Nt).map((a) => ({ ...a })), fe = (t.cooldown || Pt).map((a) => ({ ...a })), P = t.strength.map(([a, o, r, s = !1]) => ({ id: a, name: o, group: r, kind: "work", hidden: !!s }))), v.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === e)), W();
   }
   function Pi(e, t, n) {
-    const a = e.getBoundingClientRect(), o = a.width / 2, s = a.height / 2, r = t - o, l = n - s;
-    let f = 1 / 0, c = 1 / 0;
-    r !== 0 && (f = o / Math.abs(r)), l !== 0 && (c = s / Math.abs(l));
-    const g = Math.min(Math.max(1 / Math.min(f, c), 0), 1);
-    let d = Math.atan2(l, r) * (180 / Math.PI) + 90;
-    return d < 0 && (d += 360), { edge: g, angle: d };
+    const a = e.getBoundingClientRect(), o = a.width / 2, r = a.height / 2, s = t - o, l = n - r;
+    let u = 1 / 0, c = 1 / 0;
+    s !== 0 && (u = o / Math.abs(s)), l !== 0 && (c = r / Math.abs(l));
+    const m = Math.min(Math.max(1 / Math.min(u, c), 0), 1);
+    let d = Math.atan2(l, s) * (180 / Math.PI) + 90;
+    return d < 0 && (d += 360), { edge: m, angle: d };
   }
   function It(e, t, n = !1) {
-    const a = e.getBoundingClientRect(), o = t.clientX - a.left, s = t.clientY - a.top, { edge: r, angle: l } = Pi(e, o, s), f = n ? 100 : r * 100;
-    e.style.setProperty("--edge-proximity", f.toFixed(3)), e.style.setProperty("--cursor-angle", l.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || f >= 30);
+    const a = e.getBoundingClientRect(), o = t.clientX - a.left, r = t.clientY - a.top, { edge: s, angle: l } = Pi(e, o, r), u = n ? 100 : s * 100;
+    e.style.setProperty("--edge-proximity", u.toFixed(3)), e.style.setProperty("--cursor-angle", l.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || u >= 30);
   }
   function Ln(e) {
     e.addEventListener("pointermove", (n) => It(e, n, !1)), e.addEventListener("pointerenter", (n) => It(e, n, !1)), e.addEventListener("pointerdown", (n) => It(e, n, !0));
@@ -830,13 +825,13 @@ function Ea(v, u) {
     return e.summary ? e.summary : e.customSequence ? Re(e.total) + " · custom move" : Re(e.total) + " · " + Z(e.work) + " / " + Z(e.rest) + " · warm-up + cooldown";
   }
   function Dt(e, t) {
-    var r;
+    var s;
     const n = document.createElement("article");
     n.className = "workoutPanel", n.dataset.workout = e, n.tabIndex = 0;
-    const a = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((r = t.sequence) == null ? void 0 : r.length) || 0);
+    const a = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((s = t.sequence) == null ? void 0 : s.length) || 0);
     n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (a ? '<div class="eyebrow">' + F(a) + "</div>" : "") + '<div class="workoutName">' + F(t.name) + '</div><div class="sub">' + F(Ii(t)) + '</div><span class="sourceTag">' + F(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + F(t.name) + "</div></div>";
-    const s = i("addWorkoutPanel");
-    return i("workoutGallery").insertBefore(n, s), Ln(n), n.addEventListener("click", (l) => {
+    const r = i("addWorkoutPanel");
+    return i("workoutGallery").insertBefore(n, r), Ln(n), n.addEventListener("click", (l) => {
       l.target.closest("button") || ee(e);
     }), n.addEventListener("keydown", (l) => {
       (l.key === "Enter" || l.key === " ") && !l.target.closest("button") && (l.preventDefault(), ee(e));
@@ -847,7 +842,7 @@ function Ea(v, u) {
     }), n;
   }
   function En() {
-    v.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), b.order.forEach((e) => {
+    v.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), x.order.forEach((e) => {
       w[e] && Dt(e, w[e]);
     }), v.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === S));
   }
@@ -868,7 +863,7 @@ function Ea(v, u) {
       strength: []
     }, ee(ve), On(!0);
   });
-  let h = [], x = 0, Y = 0, ut = 1, _ = !1, I = null, gt = null, D = !1, Ee = b.settings.upcomingCount ?? "all";
+  let h = [], b = 0, Y = 0, ut = 1, _ = !1, I = null, gt = null, D = !1, Ee = x.settings.upcomingCount ?? "all";
   function Ht(e, t, n) {
     return (Number(e) - t) / (n - t) * 100;
   }
@@ -910,9 +905,9 @@ function Ea(v, u) {
     if (!e) return;
     const t = Math.max(1, h.length - 1), n = Ee;
     e.innerHTML = "";
-    for (let s = 1; s <= t; s++) {
-      const r = document.createElement("option");
-      r.value = String(s), r.textContent = String(s), e.appendChild(r);
+    for (let r = 1; r <= t; r++) {
+      const s = document.createElement("option");
+      s.value = String(r), s.textContent = String(r), e.appendChild(s);
     }
     const a = document.createElement("option");
     a.value = "all", a.textContent = "All", e.appendChild(a);
@@ -920,83 +915,83 @@ function Ea(v, u) {
     e.value = o, Ee = o === "all" ? "all" : Number(o);
   }
   function W() {
-    const e = Number(L.value) * 60, t = Number(k.value), n = Number(T.value), a = _t(me), o = _t(P), s = _t(fe), r = w[S];
-    if (r && (r.total = Number(L.value), r.work = t, r.rest = n, r.customSequence ? r.sequence = P.map((d) => ({ ...d })) : (r.strength = P.map((d) => [d.id, d.name, d.group, !!d.hidden]), r.warmup = me.map((d) => ({ ...d })), r.cooldown = fe.map((d) => ({ ...d })))), r != null && r.customSequence) {
-      const d = o.map((m) => {
-        if (m.kind === "rest") {
-          const N = m.useGlobalTiming === !0 ? n : Number(m.duration) || n;
-          return { ...m, duration: N, rest: 0 };
+    const e = Number(L.value) * 60, t = Number(k.value), n = Number(T.value), a = _t(me), o = _t(P), r = _t(fe), s = w[S];
+    if (s && (s.total = Number(L.value), s.work = t, s.rest = n, s.customSequence ? s.sequence = P.map((d) => ({ ...d })) : (s.strength = P.map((d) => [d.id, d.name, d.group, !!d.hidden]), s.warmup = me.map((d) => ({ ...d })), s.cooldown = fe.map((d) => ({ ...d })))), s != null && s.customSequence) {
+      const d = o.map((f) => {
+        if (f.kind === "rest") {
+          const N = f.useGlobalTiming === !0 ? n : Number(f.duration) || n;
+          return { ...f, duration: N, rest: 0 };
         }
-        const E = m.useGlobalTiming === !1 && Number(m.duration) || t;
-        return { ...m, duration: E, rest: 0 };
+        const E = f.useGlobalTiming === !1 && Number(f.duration) || t;
+        return { ...f, duration: E, rest: 0 };
       });
-      r.autoRest && Number(r.autoRestDuration) > 0 ? (h = [], d.forEach((m, E) => {
-        h.push(m);
+      s.autoRest && Number(s.autoRestDuration) > 0 ? (h = [], d.forEach((f, E) => {
+        h.push(f);
         const N = d[E + 1];
-        m.kind !== "rest" && N && N.kind !== "rest" && h.push({
+        f.kind !== "rest" && N && N.kind !== "rest" && h.push({
           id: "auto-rest-" + E,
           name: "Rest",
           group: "Rest",
           kind: "rest",
           hidden: !1,
-          duration: Number(r.autoRestDuration),
+          duration: Number(s.autoRestDuration),
           rest: 0,
           autoGenerated: !0
         });
       })) : h = d;
     } else {
-      const d = a.length + s.length;
-      let m = o.length ? 1 : 0, E = 1 / 0;
+      const d = a.length + r.length;
+      let f = o.length ? 1 : 0, E = 1 / 0;
       const N = 80;
       for (let C = o.length ? 1 : 0; C <= N; C++) {
         const p = d + C;
         if (p <= 0) continue;
         const z = p * t + Math.max(0, p - 1) * n, q = e - z, V = t + q;
-        V < 15 || V > 120 || Math.abs(q) < Math.abs(E) && (E = q, m = C);
+        V < 15 || V > 120 || Math.abs(q) < Math.abs(E) && (E = q, f = C);
       }
       if (E === 1 / 0) {
         const C = Math.max(d + (o.length ? 1 : 0), Math.round((e + n) / (t + n)));
-        m = Math.max(o.length ? 1 : 0, C - d);
+        f = Math.max(o.length ? 1 : 0, C - d);
       }
       const H = [];
-      for (let C = 0; C < m; C++) {
+      for (let C = 0; C < f; C++) {
         const p = o[C % Math.max(1, o.length)];
         p && H.push({ ...p, duration: t, rest: n });
       }
       if (h = [
         ...a.map((C) => ({ ...C, duration: t, rest: n })),
         ...H,
-        ...s.map((C) => ({ ...C, duration: t, rest: n }))
+        ...r.map((C) => ({ ...C, duration: t, rest: n }))
       ], h.length) {
         const C = h.reduce((z, q) => z + q.duration, 0) + Math.max(0, h.length - 1) * n, p = e - C;
         h[h.length - 1].duration = Math.max(15, h[h.length - 1].duration + p), h.forEach((z, q) => z.rest = q < h.length - 1 ? n : 0);
       }
     }
     mt();
-    const l = h.reduce((d, m) => d + m.duration + m.rest, 0), f = Math.round(l / 60), c = r != null && r.customSequence ? Re(f) + " · " + h.length + " items" : Re(f) + " · " + Z(t) + " / " + Z(n) + " · warm-up + cooldown";
-    r && (r.summary = c, r.activityCount = h.length);
-    const g = v.querySelector(".workoutPanel.active .sub");
-    g && (g.textContent = c), Bi.textContent = c, v.querySelectorAll(".workoutPanel.active .activityCount").forEach((d) => d.textContent = h.length + " activities"), mt(), Hi(), Wt(), Fe(), Di(), B && le(), Le.workout.classList.contains("active") && !I && $n();
+    const l = h.reduce((d, f) => d + f.duration + f.rest, 0), u = Math.round(l / 60), c = s != null && s.customSequence ? Re(u) + " · " + h.length + " items" : Re(u) + " · " + Z(t) + " / " + Z(n) + " · warm-up + cooldown";
+    s && (s.summary = c, s.activityCount = h.length);
+    const m = v.querySelector(".workoutPanel.active .sub");
+    m && (m.textContent = c), Bi.textContent = c, v.querySelectorAll(".workoutPanel.active .activityCount").forEach((d) => d.textContent = h.length + " activities"), mt(), Hi(), Wt(), Fe(), Di(), B && le(), Le.workout.classList.contains("active") && !I && $n();
   }
   function qt(e, t) {
     const n = i(t);
     n.innerHTML = "", e.forEach((a) => {
       const o = document.createElement("div");
       o.className = "moveRow" + (a.hidden ? " hidden" : "") + (a.kind === "rest" ? " restItem" : "");
-      const r = " · " + (a.kind === "rest" ? a.useGlobalTiming === !0 ? "Global timing" : Z(a.duration) : a.useGlobalTiming === !1 ? Z(a.duration) : "Global timing"), l = a.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : "";
-      o.innerHTML = '<div><div class="moveItemName">' + a.name + l + '</div><div class="moveMeta">' + a.group + r + '</div></div><div style="display:flex;gap:8px"><button class="hideBtn">' + (a.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + F(a.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', o.querySelector(".hideBtn").addEventListener("click", () => {
+      const s = " · " + (a.kind === "rest" ? a.useGlobalTiming === !0 ? "Global timing" : Z(a.duration) : a.useGlobalTiming === !1 ? Z(a.duration) : "Global timing"), l = a.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : "";
+      o.innerHTML = '<div><div class="moveItemName">' + a.name + l + '</div><div class="moveMeta">' + a.group + s + '</div></div><div style="display:flex;gap:8px"><button class="hideBtn">' + (a.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + F(a.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', o.querySelector(".hideBtn").addEventListener("click", () => {
         a.hidden = !a.hidden, W();
       });
-      const f = o.querySelector(".removeBtn");
-      Lt(f, f.querySelector(".removeFill"), 1500, () => {
+      const u = o.querySelector(".removeBtn");
+      Lt(u, u.querySelector(".removeFill"), 1500, () => {
         const c = e.indexOf(a);
         c > -1 && e.splice(c, 1), W(), O("Removed " + a.name);
       }), n.appendChild(o);
     });
   }
   function Hi() {
-    var o, s, r, l;
-    const e = w[S], t = (o = i("warmupList")) == null ? void 0 : o.closest("section"), n = (s = i("cooldownList")) == null ? void 0 : s.closest("section"), a = (l = (r = i("strengthList")) == null ? void 0 : r.closest("section")) == null ? void 0 : l.querySelector(".sectionTitle");
+    var o, r, s, l;
+    const e = w[S], t = (o = i("warmupList")) == null ? void 0 : o.closest("section"), n = (r = i("cooldownList")) == null ? void 0 : r.closest("section"), a = (l = (s = i("strengthList")) == null ? void 0 : s.closest("section")) == null ? void 0 : l.querySelector(".sectionTitle");
     e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), a && (a.textContent = "Move sequence")) : (t && (t.hidden = !1), n && (n.hidden = !1), a && (a.textContent = "Kettlebell work")), qt(me, "warmupList"), qt(P, "strengthList"), qt(fe, "cooldownList");
   }
   function Wt() {
@@ -1007,8 +1002,8 @@ function Ea(v, u) {
   function Fe() {
     const e = i("useGlobalTiming").checked, t = i("addMovementDuration"), n = i("addMovementUnit");
     t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", i("globalTimingValue").textContent = "Use global timing · " + Z(k.value);
-    const a = i("useGlobalRestTiming").checked, o = i("addRestDuration"), s = i("addRestUnit");
-    o.disabled = a, s.disabled = a, o.parentElement.style.opacity = a ? ".38" : "1", i("globalRestTimingValue").textContent = "Use global timing · " + Z(T.value);
+    const a = i("useGlobalRestTiming").checked, o = i("addRestDuration"), r = i("addRestUnit");
+    o.disabled = a, r.disabled = a, o.parentElement.style.opacity = a ? ".38" : "1", i("globalRestTimingValue").textContent = "Use global timing · " + Z(T.value);
   }
   let An = "movement";
   function Gt(e) {
@@ -1026,11 +1021,11 @@ function Ea(v, u) {
       i("addRestUnit").value
     );
     if (An === "rest") {
-      const o = i("addRestTitle").value.trim() || "Rest", s = i("addRestGroup").value.trim() || "Rest";
+      const o = i("addRestTitle").value.trim() || "Rest", r = i("addRestGroup").value.trim() || "Rest";
       P.push({
         id: "rest-" + Date.now(),
         name: o,
-        group: s,
+        group: r,
         kind: "rest",
         hidden: !1,
         useGlobalTiming: n,
@@ -1039,11 +1034,11 @@ function Ea(v, u) {
     } else {
       const o = i("addMovementInput").value.trim();
       if (!o) return;
-      const s = i("addMovementGroup").value.trim() || "Movement";
+      const r = i("addMovementGroup").value.trim() || "Movement";
       P.push({
         id: "movement-" + Date.now(),
         name: o,
-        group: s,
+        group: r,
         kind: "work",
         hidden: !1,
         useGlobalTiming: e,
@@ -1082,7 +1077,7 @@ function Ea(v, u) {
     return e.getHours() * 60 + e.getMinutes() >= Ae(t.evening) ? "evening" : "morning";
   }
   function ft(e, t) {
-    return b.checkins.find((n) => n.date === e && n.slot === t);
+    return x.checkins.find((n) => n.date === e && n.slot === t);
   }
   function ht(e) {
     return !!(e && e.mood != null && e.energy != null);
@@ -1091,7 +1086,7 @@ function Ea(v, u) {
     const e = /* @__PURE__ */ new Date(), t = G(e), n = qi(e), a = ne(), o = e.getHours() * 60 + e.getMinutes();
     return n === "morning" && o < Ae(a.morning) || ht(ft(t, n)) ? null : n;
   }
-  const de = i("checkinModal"), be = i("checkinTab"), Wi = i("checkinBadge"), ce = { mood: { input: i("moodInput"), fill: i("moodFill") }, energy: { input: i("energyLevelInput"), fill: i("energyLevelFill") } };
+  const de = i("checkinModal"), xe = i("checkinTab"), Wi = i("checkinBadge"), ce = { mood: { input: i("moodInput"), fill: i("moodFill") }, energy: { input: i("energyLevelInput"), fill: i("energyLevelFill") } };
   function Pn(e) {
     const { input: t, fill: n } = ce[e];
     n.style.width = t.value + "%", t.setAttribute("aria-valuetext", te(e, t.value));
@@ -1103,37 +1098,37 @@ function Ea(v, u) {
     return n < Ae(e.morning) ? "Next check-in at " + e.morning : n < Ae(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
   function Gi() {
-    const e = ne(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), a = (o, s) => {
-      const [r, l] = o.split(":").map(Number);
-      return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (s ? 1 : 0), r, l);
+    const e = ne(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), a = (o, r) => {
+      const [s, l] = o.split(":").map(Number);
+      return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), s, l);
     };
     return n < Ae(e.morning) ? { date: a(e.morning), time: e.morning } : n < Ae(e.evening) ? { date: a(e.evening), time: e.evening } : { date: a(e.morning, !0), time: e.morning };
   }
   let Zt = null, Vt = null;
   function Dn() {
     if (vt()) {
-      Ut(), xe();
+      Ut(), be();
       return;
     }
     const e = Gi(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), a = Math.floor(t % 3600 / 60), o = t % 60;
     i("peekCountdown").textContent = n + ":" + String(a).padStart(2, "0") + ":" + String(o).padStart(2, "0"), i("peekAt").textContent = "Available at " + e.time;
   }
   function ji() {
-    Dn(), be.classList.add("peek"), clearInterval(Vt), Vt = setInterval(Dn, 1e3), clearTimeout(Zt), Zt = setTimeout(Ut, 6e3);
+    Dn(), xe.classList.add("peek"), clearInterval(Vt), Vt = setInterval(Dn, 1e3), clearTimeout(Zt), Zt = setTimeout(Ut, 6e3);
   }
   function Ut() {
-    be.classList.remove("peek"), clearInterval(Vt), clearTimeout(Zt);
+    xe.classList.remove("peek"), clearInterval(Vt), clearTimeout(Zt);
   }
   function Hn() {
     const e = vt();
     if (!e) {
-      be.classList.contains("peek") ? Ut() : ji();
+      xe.classList.contains("peek") ? Ut() : ji();
       return;
     }
     Q = { date: G(/* @__PURE__ */ new Date()), slot: e };
-    const n = ft(Q.date, e), a = b.checkins.find((s) => ht(s));
-    Object.keys(ce).forEach((s) => {
-      ce[s].input.value = (n == null ? void 0 : n[s]) ?? (a == null ? void 0 : a[s]) ?? 50, Pn(s);
+    const n = ft(Q.date, e), a = x.checkins.find((r) => ht(r));
+    Object.keys(ce).forEach((r) => {
+      ce[r].input.value = (n == null ? void 0 : n[r]) ?? (a == null ? void 0 : a[r]) ?? 50, Pn(r);
     });
     const o = ne()[e];
     i("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, i("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", de.classList.add("open"), de.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => ce.mood.input.focus());
@@ -1144,7 +1139,7 @@ function Ea(v, u) {
       localStorage.setItem("move-assistant-dismissed", Je);
     } catch {
     }
-    Q = null, xe();
+    Q = null, be();
   }
   function Zi() {
     if (!Q) return;
@@ -1154,29 +1149,29 @@ function Ea(v, u) {
     }
     const { date: e, slot: t } = Q;
     let n = ft(e, t);
-    n || (n = { date: e, slot: t }, b.checkins.unshift(n), b.checkins = b.checkins.slice(0, 2e3)), n.mood = Number(ce.mood.input.value), n.energy = Number(ce.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), he(), u.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: te("mood", n.mood), energy_label: te("energy", n.energy) }), O((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Ke(), bt(), Qe(), Te(), se();
+    n || (n = { date: e, slot: t }, x.checkins.unshift(n), x.checkins = x.checkins.slice(0, 2e3)), n.mood = Number(ce.mood.input.value), n.energy = Number(ce.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), he(), g.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: te("mood", n.mood), energy_label: te("energy", n.energy) }), O((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Ke(), xt(), Qe(), Te(), se();
   }
   let Je = "";
   try {
     Je = localStorage.getItem("move-assistant-dismissed") || "";
   } catch {
   }
-  function xe() {
+  function be() {
     const e = vt();
-    Wi.hidden = !e, be.classList.toggle("due", !!e), be.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : In()), be.title = e ? "Check in now" : In();
+    Wi.hidden = !e, xe.classList.toggle("due", !!e), xe.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : In()), xe.title = e ? "Check in now" : In();
   }
   function Yt() {
-    xe();
+    be();
     const e = vt();
     !e || de.classList.contains("open") || M().checkinAutoOpen !== !1 && (!Le.home.classList.contains("active") || K.classList.contains("open") || Je !== G(/* @__PURE__ */ new Date()) + "-" + e && Hn());
   }
-  be.addEventListener("click", Hn), i("checkinLater").addEventListener("click", Ke), i("checkinSave").addEventListener("click", Zi), de.addEventListener("click", (e) => {
+  xe.addEventListener("click", Hn), i("checkinLater").addEventListener("click", Ke), i("checkinSave").addEventListener("click", Zi), de.addEventListener("click", (e) => {
     e.target === de && Ke();
   }), de.addEventListener("keydown", (e) => {
     e.key === "Escape" && (e.preventDefault(), Ke());
   }), setInterval(Yt, 3e4);
-  function bt() {
-    const e = G(/* @__PURE__ */ new Date()), t = (n) => b.checkins.find((a) => a.date === e && a[n] != null);
+  function xt() {
+    const e = G(/* @__PURE__ */ new Date()), t = (n) => x.checkins.find((a) => a.date === e && a[n] != null);
     [["mood", "moodMeta"], ["energy", "energyLevelMeta"]].forEach(([n, a]) => {
       const o = t(n);
       i(a).textContent = o ? te(n, o[n]) : "—";
@@ -1185,23 +1180,23 @@ function Ea(v, u) {
   function Qe() {
     const e = i("feelCard");
     if (!e) return;
-    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), a = [...Array(7)].map((c, g) => {
-      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + g), m = G(d), E = b.checkins.filter((H) => H.date === m), N = (H) => {
+    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), a = [...Array(7)].map((c, m) => {
+      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + m), f = G(d), E = x.checkins.filter((H) => H.date === f), N = (H) => {
         const C = E.map((p) => p[H]).filter((p) => p != null);
         return C.length ? C.reduce((p, z) => p + z, 0) / C.length : null;
       };
-      return { d, key: m, mood: N("mood"), energy: N("energy"), count: E.filter(ht).length, future: d > t && m !== G(t) };
+      return { d, key: f, mood: N("mood"), energy: N("energy"), count: E.filter(ht).length, future: d > t && f !== G(t) };
     }), o = (c) => {
-      const g = a.map((d) => d[c]).filter((d) => d != null);
-      return g.length ? g.reduce((d, m) => d + m, 0) / g.length : null;
-    }, s = o("mood"), r = o("energy"), l = (c, g) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + c + "</span><span>" + (g == null ? "—" : F(te("", g))) + '</span></div><div class="feelTrack"><span style="width:' + (g == null ? 0 : Math.max(4, g)) + "%;background:" + (g == null ? "transparent" : Nn(g)) + '"></span></div></div>', f = a.filter((c) => c.mood != null && c.energy != null).sort((c, g) => g.mood + g.energy - (c.mood + c.energy))[0];
-    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (s == null ? "No check-ins yet" : F(te("", (s + r) / 2))) + '</div><div class="weekCopy">' + (s == null ? "Your first check-in will appear here." : "on average this week" + (f ? " · best day " + F(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(f.d)) : "")) + '</div></div></div><div class="feelDays">' + a.map(
+      const m = a.map((d) => d[c]).filter((d) => d != null);
+      return m.length ? m.reduce((d, f) => d + f, 0) / m.length : null;
+    }, r = o("mood"), s = o("energy"), l = (c, m) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + c + "</span><span>" + (m == null ? "—" : F(te("", m))) + '</span></div><div class="feelTrack"><span style="width:' + (m == null ? 0 : Math.max(4, m)) + "%;background:" + (m == null ? "transparent" : Nn(m)) + '"></span></div></div>', u = a.filter((c) => c.mood != null && c.energy != null).sort((c, m) => m.mood + m.energy - (c.mood + c.energy))[0];
+    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : F(te("", (r + s) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + F(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + a.map(
       (c) => '<div class="weekChip feelDay' + (c.future ? " future" : "") + (c.key === G(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + F(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(c.d)) + "</strong>" + (c.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(c.count) + "</span>") + "</div>" + l("Mood", c.mood) + l("Energy", c.energy) + "</div>"
     ).join("") + "</div>";
   }
-  const xt = i("upcomingCountSetting");
-  xt.addEventListener("change", () => {
-    Ee = xt.value === "all" ? "all" : Number(xt.value), Jn();
+  const bt = i("upcomingCountSetting");
+  bt.addEventListener("change", () => {
+    Ee = bt.value === "all" ? "all" : Number(bt.value), Jn();
   });
   const $e = i("tempoRevealBtn"), Kt = i("tempoExperiment"), $ = i("tempoQuad"), Be = i("tempoDot"), Vi = i("tempoEstimate"), Ui = i("tempoReadout");
   let ze = { x: 0.5, y: 0.5 }, Xe = !1, yt = { total: 20, work: 45, rest: 15 };
@@ -1215,18 +1210,18 @@ function Ea(v, u) {
       Number(L.min),
       Number(L.max),
       Number(L.step)
-    ), s = Jt(
+    ), r = Jt(
       yt.work + n * 10 + a * 8,
       Number(k.min),
       Number(k.max),
       Number(k.step)
-    ), r = Jt(
+    ), s = Jt(
       yt.rest + n * 6 + a * 6,
       Number(T.min),
       Number(T.max),
       Number(T.step)
     );
-    return L.value = o, k.value = s, T.value = r, kn.textContent = o + " min", Sn.textContent = s + " sec", Cn.textContent = r + " sec", mt(), { total: o, work: s, rest: r };
+    return L.value = o, k.value = r, T.value = s, kn.textContent = o + " min", Sn.textContent = r + " sec", Cn.textContent = s + " sec", mt(), { total: o, work: r, rest: s };
   }
   function Qt(e, t) {
     const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", a = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = Yi(e, t);
@@ -1310,8 +1305,8 @@ function Ea(v, u) {
         a && (a.textContent = t.name);
         const o = n.querySelector(".panelCollapsedText");
         o && (o.textContent = t.name);
-        const s = n.querySelector(".sourceTag");
-        s && (s.textContent = t.source);
+        const r = n.querySelector(".sourceTag");
+        r && (r.textContent = t.source);
       }
       y.value = t.name;
     }
@@ -1320,14 +1315,14 @@ function Ea(v, u) {
   i("cancelWorkoutEdit").addEventListener("click", () => {
     if (B) {
       const e = S;
-      delete w[e], B = !1, ve = null, ee(b.order.find((t) => w[t]) || Object.keys(w)[0]);
+      delete w[e], B = !1, ve = null, ee(x.order.find((t) => w[t]) || Object.keys(w)[0]);
     } else
       qn();
     kt();
   }), i("saveWorkoutEdit").addEventListener("click", () => {
     const e = w[S], t = y.value.trim() || "New move";
     if (e && (e.name = t), W(), B && e)
-      Dt(S, e), v.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === S)), B = !1, ve = null, b.order.includes(S) || b.order.push(S), O("Move created");
+      Dt(S, e), v.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === S)), B = !1, ve = null, x.order.includes(S) || x.order.push(S), O("Move created");
     else {
       const n = v.querySelector(".workoutPanel.active");
       if (n) {
@@ -1343,7 +1338,7 @@ function Ea(v, u) {
     if (e.target === K) {
       if (B) {
         const t = S;
-        delete w[t], B = !1, ve = null, ee(b.order.find((n) => w[n]) || Object.keys(w)[0]);
+        delete w[t], B = !1, ve = null, ee(x.order.find((n) => w[n]) || Object.keys(w)[0]);
       } else
         qn();
       kt();
@@ -1364,8 +1359,8 @@ function Ea(v, u) {
   const tt = i("countdown"), Xt = i("countNum"), ie = i("countdownPixelCanvas");
   let nt = null, en = "appear";
   class Qi {
-    constructor(t, n, a, o, s, r, l) {
-      this.width = t.width, this.height = t.height, this.ctx = n, this.x = a, this.y = o, this.color = s, this.speed = (Math.random() * 0.8 + 0.1) * r, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = l, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
+    constructor(t, n, a, o, r, s, l) {
+      this.width = t.width, this.height = t.height, this.ctx = n, this.x = a, this.y = o, this.color = r, this.speed = (Math.random() * 0.8 + 0.1) * s, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = l, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
     }
     draw() {
       const t = this.maxSizeInteger * 0.5 - this.size * 0.5;
@@ -1403,11 +1398,11 @@ function Ea(v, u) {
     ie.width = Math.floor(t * a), ie.height = Math.floor(n * a), ie.style.width = t + "px", ie.style.height = n + "px";
     const o = ie.getContext("2d");
     o.setTransform(a, 0, 0, a, 0, 0);
-    const s = ["#f4f5ff", "#dfe3ff", "#c9d0ff", "#aeb9ff"], r = 12, l = (c = window.matchMedia) == null ? void 0 : c.call(window, "(prefers-reduced-motion: reduce)").matches, f = l ? 0 : 0.055;
+    const r = ["#f4f5ff", "#dfe3ff", "#c9d0ff", "#aeb9ff"], s = 12, l = (c = window.matchMedia) == null ? void 0 : c.call(window, "(prefers-reduced-motion: reduce)").matches, u = l ? 0 : 0.055;
     tn = [];
-    for (let g = 0; g < t; g += r)
-      for (let d = 0; d < n; d += r) {
-        const m = g - t / 2, E = d - n / 2, N = Math.sqrt(m * m + E * E), H = l ? 0 : Math.random() * 75 + N * 0.05, C = new Qi({ width: t, height: n }, o, g, d, s[Math.floor(Math.random() * s.length)], f, H);
+    for (let m = 0; m < t; m += s)
+      for (let d = 0; d < n; d += s) {
+        const f = m - t / 2, E = d - n / 2, N = Math.sqrt(f * f + E * E), H = l ? 0 : Math.random() * 75 + N * 0.05, C = new Qi({ width: t, height: n }, o, m, d, r[Math.floor(Math.random() * r.length)], u, H);
         C.maxSizeInteger = 4, C.maxSize = Math.random() * 3.2 + 0.8, C.sizeStep = 0.35 + Math.random() * 0.45, tn.push(C);
       }
   }
@@ -1442,10 +1437,10 @@ function Ea(v, u) {
     pe.ready || (pe = { x: e, y: t, ready: !0 });
     const a = 7;
     for (let o = 1; o <= a; o++) {
-      const s = o / a;
+      const r = o / a;
       at.push({
-        x: pe.x + (e - pe.x) * s,
-        y: pe.y + (t - pe.y) * s,
+        x: pe.x + (e - pe.x) * r,
+        y: pe.y + (t - pe.y) * r,
         born: n - (a - o) * 10
       });
     }
@@ -1459,10 +1454,10 @@ function Ea(v, u) {
     }
     const t = R.getBoundingClientRect(), n = ye();
     Pe.clearRect(0, 0, t.width / n, t.height / n), ae && (at = at.filter((o) => e - o.born < De), Pe.fillStyle = i("app").classList.contains("light") ? "#7c89d8" : "#f4f4f4", at.forEach((o) => {
-      const s = (e - o.born) / De, r = (1 - s) * Ie, l = Math.round(o.x / 14) * 14, f = Math.round(o.y / 14) * 14;
-      Pe.globalAlpha = Math.max(0, r);
-      const c = 2 + 5 * (1 - s) * Ie;
-      Pe.fillRect(l - c / 2, f - c / 2, c, c);
+      const r = (e - o.born) / De, s = (1 - r) * Ie, l = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
+      Pe.globalAlpha = Math.max(0, s);
+      const c = 2 + 5 * (1 - r) * Ie;
+      Pe.fillRect(l - c / 2, u - c / 2, c, c);
     }), Pe.globalAlpha = 1), He = requestAnimationFrame(Ct);
   }
   R.addEventListener("pointermove", (e) => {
@@ -1476,7 +1471,7 @@ function Ea(v, u) {
     ue.width = Math.max(1, Math.floor(n * o)), ue.height = Math.max(1, Math.floor(a * o)), ue.style.width = n + "px", ue.style.height = a + "px", _e.setTransform(o, 0, 0, o, 0, 0);
   }
   function ta() {
-    const e = h[x];
+    const e = h[b];
     return D ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
   function Tt(e) {
@@ -1487,10 +1482,10 @@ function Ea(v, u) {
     }
     const t = ue.parentElement.getBoundingClientRect(), n = ye(), a = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
     if (_e.clearRect(0, 0, a, o), we) {
-      const s = ta(), r = (e - ea) % s / s, l = 15, f = Math.max(8, Math.round(l * o / Math.max(1, a))), c = a / (l + 1), g = o / (f + 1), d = a * 0.5, m = o * 0.52, E = Math.hypot(d, m), H = i("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let C = 1; C <= f; C++)
+      const r = ta(), s = (e - ea) % r / r, l = 15, u = Math.max(8, Math.round(l * o / Math.max(1, a))), c = a / (l + 1), m = o / (u + 1), d = a * 0.5, f = o * 0.52, E = Math.hypot(d, f), H = i("app").classList.contains("light") ? "34,34,34" : "244,244,244";
+      for (let C = 1; C <= u; C++)
         for (let p = 1; p <= l; p++) {
-          const z = p * c, q = C * g, V = Math.hypot(z - d, q - m) / E, U = D ? Math.exp(-Math.pow((V - (r * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, mn = Math.exp(-Math.pow((V - r * 1.25) * 7, 2)), Ft = D ? U : mn, hi = D ? 0.5 + 0.5 * Math.sin(r * Math.PI * 2 - V * 3) ** 2 : 0.35 + 0.65 * Math.sin(r * Math.PI * 2 - V * 5) ** 2, Ta = D ? 1.4 + Ft * 4.2 * hi : 1.2 + Ft * 5 * hi;
+          const z = p * c, q = C * m, V = Math.hypot(z - d, q - f) / E, U = D ? Math.exp(-Math.pow((V - (s * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, mn = Math.exp(-Math.pow((V - s * 1.25) * 7, 2)), Ft = D ? U : mn, hi = D ? 0.5 + 0.5 * Math.sin(s * Math.PI * 2 - V * 3) ** 2 : 0.35 + 0.65 * Math.sin(s * Math.PI * 2 - V * 5) ** 2, Ta = D ? 1.4 + Ft * 4.2 * hi : 1.2 + Ft * 5 * hi;
           _e.beginPath(), _e.arc(z, q, Ta, 0, Math.PI * 2), _e.fillStyle = `rgba(${H},${D ? 0.08 + Ft * 0.48 : 0.05 + Ft * 0.55})`, _e.fill();
         }
     }
@@ -1505,19 +1500,19 @@ function Ea(v, u) {
     return -1;
   }
   function oa() {
-    const e = h[x];
+    const e = h[b];
     if (!e) return { name: "Complete", meta: "Move finished", icon: "✓" };
     if (D) {
-      const a = oe(x + 1), o = a >= 0 ? h[a] : null;
+      const a = oe(b + 1), o = a >= 0 ? h[a] : null;
       return o ? { name: o.name, meta: o.group + " · " + o.duration + " sec", icon: o.kind === "cooldown" ? "↘" : o.kind === "warmup" ? "↗" : "●" } : { name: "Complete", meta: "Move finished", icon: "✓" };
     }
     if (e.rest > 0) return { name: "Rest", meta: e.rest + " sec · recovery", icon: "Ⅱ" };
-    const t = oe(x + 1), n = t >= 0 ? h[t] : null;
+    const t = oe(b + 1), n = t >= 0 ? h[t] : null;
     return n ? { name: n.name, meta: n.group + " · " + n.duration + " sec", icon: n.kind === "cooldown" ? "↘" : n.kind === "warmup" ? "↗" : "●" } : { name: "Complete", meta: "Move finished", icon: "✓" };
   }
   function ra() {
-    if (!h[x]) return h.length;
-    const t = oe(x + 1);
+    if (!h[b]) return h.length;
+    const t = oe(b + 1);
     return t < 0 ? h.length : t + 1;
   }
   function sa(e) {
@@ -1525,12 +1520,12 @@ function Ea(v, u) {
   }
   function la() {
     [...rt.children].forEach((e, t) => {
-      e.classList.toggle("done", t < x), e.classList.toggle("active", t === x), e.classList.toggle("rewindable", t <= x), e.disabled = t > x, t === x && e.style.setProperty("--segment-progress", "0%");
-    }), h[x] && (Un.textContent = "Step " + (x + 1) + " of " + h.length, je());
+      e.classList.toggle("done", t < b), e.classList.toggle("active", t === b), e.classList.toggle("rewindable", t <= b), e.disabled = t > b, t === b && e.style.setProperty("--segment-progress", "0%");
+    }), h[b] && (Un.textContent = "Step " + (b + 1) + " of " + h.length, je());
   }
   function da(e) {
     const t = h.indexOf(e);
-    t < 0 || t <= x || (e.sessionHidden = !e.sessionHidden, We(), O((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
+    t < 0 || t <= b || (e.sessionHidden = !e.sessionHidden, We(), O((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
   }
   function Jn() {
     const e = i("upcomingList");
@@ -1538,21 +1533,21 @@ function Ea(v, u) {
     e.innerHTML = "";
     const t = ra(), n = h.slice(t);
     (Ee === "all" ? n : n.slice(0, Math.max(1, Number(Ee) || 1))).forEach((o) => {
-      const s = document.createElement("section");
-      s.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), s.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + sa(o) + '</div><div><div class="upcomingName">' + F(o.name) + '</div><div class="upcomingMeta">' + F(o.group) + " · " + o.duration + ' sec</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", s.querySelector(".skipSessionBtn").addEventListener("click", () => da(o)), e.appendChild(s);
+      const r = document.createElement("section");
+      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + sa(o) + '</div><div><div class="upcomingName">' + F(o.name) + '</div><div class="upcomingMeta">' + F(o.group) + " · " + o.duration + ' sec</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => da(o)), e.appendChild(r);
     });
   }
   function We() {
     const e = oa();
     if (na.textContent = e.name, ia.textContent = e.meta, aa.textContent = e.icon, j = null, D) {
-      const t = oe(x + 1);
+      const t = oe(b + 1);
       t >= 0 && (j = h[t]);
     } else {
-      const t = h[x];
+      const t = h[b];
       if (t && t.rest > 0)
         j = null;
       else {
-        const n = oe(x + 1);
+        const n = oe(b + 1);
         n >= 0 && (j = h[n]);
       }
     }
@@ -1564,7 +1559,7 @@ function Ea(v, u) {
   let X = null, nn = null;
   function st(e, t = {}) {
     const n = w[S];
-    u.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: S, ...t });
+    g.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: S, ...t });
   }
   function ca() {
     const e = w[S];
@@ -1575,7 +1570,7 @@ function Ea(v, u) {
   function Qn(e) {
     if (clearInterval(nn), !X) return;
     const t = X;
-    X = null, st(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (b.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), b.history = b.history.slice(0, 1e3), he(), Te(), se());
+    X = null, st(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (x.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), x.history = x.history.slice(0, 1e3), he(), Te(), se());
   }
   function pa() {
     zt("workout"), ua();
@@ -1596,15 +1591,15 @@ function Ea(v, u) {
     rt.innerHTML = "", h.forEach((e, t) => {
       const n = document.createElement("button");
       n.type = "button", n.className = "progressSegment", n.setAttribute("aria-label", "Go to " + e.name), n.addEventListener("click", () => {
-        t <= x && ga(t);
+        t <= b && ga(t);
       }), rt.appendChild(n);
     });
   }
   function ga(e) {
-    e < 0 || e >= h.length || e > x || (clearInterval(I), D = !1, i("app").classList.remove("resting"), x = e, _ = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", Ge(), I = setInterval(ke, 1e3));
+    e < 0 || e >= h.length || e > b || (clearInterval(I), D = !1, i("app").classList.remove("resting"), b = e, _ = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", Ge(), I = setInterval(ke, 1e3));
   }
   function ma() {
-    if (x = oe(0), _ = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", $n(), x < 0) {
+    if (b = oe(0), _ = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", $n(), b < 0) {
       ot.textContent = "No activities", qe.textContent = "Open Edit and enable or add a movement";
       return;
     }
@@ -1612,14 +1607,14 @@ function Ea(v, u) {
   }
   function Ge() {
     D = !1, i("app").classList.remove("resting");
-    const e = h[x];
-    Y = e.duration, ut = e.duration, ot.textContent = e.name, qe.textContent = e.group, Un.textContent = "Step " + (x + 1) + " of " + h.length, X && st("step", { name: e.name, group: e.group, kind: e.kind, step: x + 1, of: h.length, duration: e.duration }), We(), la();
+    const e = h[b];
+    Y = e.duration, ut = e.duration, ot.textContent = e.name, qe.textContent = e.group, Un.textContent = "Step " + (b + 1) + " of " + h.length, X && st("step", { name: e.name, group: e.group, kind: e.kind, step: b + 1, of: h.length, duration: e.duration }), We(), la();
   }
   function je() {
     Yn.textContent = Y;
     const e = Y / ut * 100;
     Kn.style.width = e + "%";
-    const t = [...rt.children][x];
+    const t = [...rt.children][b];
     if (t && !D) {
       const n = 100 - e;
       t.style.setProperty("--segment-progress", n + "%");
@@ -1627,22 +1622,22 @@ function Ea(v, u) {
   }
   function ke() {
     if (!_ && (Y--, je(), Y <= 0)) {
-      const e = h[x];
+      const e = h[b];
       e.rest > 0 ? Xn(e.rest) : lt();
     }
   }
   function Xn(e) {
     D = !0, i("app").classList.add("resting");
-    const t = [...rt.children][x];
+    const t = [...rt.children][b];
     t && t.style.setProperty("--segment-progress", "100%"), clearInterval(I), Y = e, ut = e, X && st("rest", { duration: e }), ot.textContent = "Rest", qe.textContent = "Recovery", We(), je(), I = setInterval(() => {
       _ || (Y--, je(), Y <= 0 && (clearInterval(I), lt(), I = setInterval(ke, 1e3)));
     }, 1e3);
   }
   function lt() {
     D = !1;
-    const e = oe(x + 1);
+    const e = oe(b + 1);
     if (e >= 0)
-      x = e, Ge();
+      b = e, Ge();
     else {
       _ = !1, ge.textContent = "Pause", i("app").classList.remove("resting", "paused"), clearInterval(I), ot.textContent = "Complete", qe.textContent = "Move finished", Yn.textContent = "✓", Qn(!0);
       {
@@ -1654,22 +1649,22 @@ function Ea(v, u) {
   }
   i("skipExercise").addEventListener("click", () => {
     clearInterval(I);
-    const e = h[x];
+    const e = h[b];
     if (D) {
       D = !1, i("app").classList.remove("resting");
-      const n = oe(x + 1);
-      n >= 0 ? (x = n, Ge(), I = setInterval(ke, 1e3)) : lt();
+      const n = oe(b + 1);
+      n >= 0 ? (b = n, Ge(), I = setInterval(ke, 1e3)) : lt();
       return;
     }
     if (e && e.rest > 0) {
       Xn(e.rest);
       return;
     }
-    const t = oe(x + 1);
-    t >= 0 ? (x = t, Ge(), I = setInterval(ke, 1e3)) : lt();
+    const t = oe(b + 1);
+    t >= 0 ? (b = t, Ge(), I = setInterval(ke, 1e3)) : lt();
   }), i("restartSegment").addEventListener("click", () => {
     if (clearInterval(I), _ = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", D) {
-      const e = h[x];
+      const e = h[b];
       Y = e.rest, ut = e.rest, ot.textContent = "Rest", qe.textContent = "Recovery", i("app").classList.add("resting"), We(), je();
     } else
       Ge();
@@ -1678,38 +1673,38 @@ function Ea(v, u) {
     } : ke, 1e3);
   });
   function Lt(e, t, n, a) {
-    let o = 0, s = null, r = !1;
+    let o = 0, r = null, s = !1;
     function l() {
-      s && cancelAnimationFrame(s), s = null, o = 0, r = !1, t.style.width = "0%", e.classList.remove("holding");
+      r && cancelAnimationFrame(r), r = null, o = 0, s = !1, t.style.width = "0%", e.classList.remove("holding");
     }
-    function f(d) {
-      if (!r) return;
+    function u(d) {
+      if (!s) return;
       o || (o = d);
-      const m = Math.min(1, (d - o) / n);
-      if (t.style.width = m * 100 + "%", m >= 1) {
-        r = !1, s && cancelAnimationFrame(s), s = null, t.style.width = "100%", setTimeout(() => t.style.width = "0%", 90), a();
+      const f = Math.min(1, (d - o) / n);
+      if (t.style.width = f * 100 + "%", f >= 1) {
+        s = !1, r && cancelAnimationFrame(r), r = null, t.style.width = "100%", setTimeout(() => t.style.width = "0%", 90), a();
         return;
       }
-      s = requestAnimationFrame(f);
+      r = requestAnimationFrame(u);
     }
     function c(d) {
-      var m;
+      var f;
       if (!(d && d.button !== void 0 && d.button !== 0)) {
-        d == null || d.preventDefault(), l(), r = !0, e.classList.add("holding");
+        d == null || d.preventDefault(), l(), s = !0, e.classList.add("holding");
         try {
-          (m = e.setPointerCapture) == null || m.call(e, d.pointerId);
+          (f = e.setPointerCapture) == null || f.call(e, d.pointerId);
         } catch {
         }
-        s = requestAnimationFrame(f);
+        r = requestAnimationFrame(u);
       }
     }
-    function g() {
-      r && l();
+    function m() {
+      s && l();
     }
-    e.addEventListener("pointerdown", c), e.addEventListener("pointerup", g), e.addEventListener("pointercancel", g), e.addEventListener("lostpointercapture", g), e.addEventListener("keydown", (d) => {
+    e.addEventListener("pointerdown", c), e.addEventListener("pointerup", m), e.addEventListener("pointercancel", m), e.addEventListener("lostpointercapture", m), e.addEventListener("keydown", (d) => {
       (d.key === " " || d.key === "Enter") && !d.repeat && c(d);
     }), e.addEventListener("keyup", (d) => {
-      (d.key === " " || d.key === "Enter") && g();
+      (d.key === " " || d.key === "Enter") && m();
     });
   }
   const fa = i("endWorkout");
@@ -1722,11 +1717,11 @@ function Ea(v, u) {
   });
   function ha() {
     const e = S, t = v.querySelector('.workoutPanel[data-workout="' + e + '"]');
-    t && t.remove(), delete w[e], b.order = b.order.filter((a) => a !== e);
+    t && t.remove(), delete w[e], x.order = x.order.filter((a) => a !== e);
     let n = v.querySelector(".workoutPanel[data-workout]");
     if (!n) {
       const a = "custom-" + Date.now();
-      w[a] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, b.order.push(a), n = Dt(a, w[a]);
+      w[a] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, x.order.push(a), n = Dt(a, w[a]);
     }
     Ze.classList.remove("open"), Ze.setAttribute("aria-hidden", "true"), et = null, kt(), ee(n.dataset.workout), he(), O("Move deleted");
   }
@@ -1768,28 +1763,28 @@ function Ea(v, u) {
     Ie = Number(Ue.value) / 100, i("trailStrengthValue").textContent = Ue.value + "%";
   }), Ue.addEventListener("change", () => J("trailStrength", Ie)), Ye.addEventListener("input", () => {
     De = Number(Ye.value), i("trailLifeValue").textContent = Ye.value + " ms";
-  }), Ye.addEventListener("change", () => J("trailMaxAge", De)), xt.addEventListener("change", () => J("upcomingCount", Ee));
+  }), Ye.addEventListener("change", () => J("trailMaxAge", De)), bt.addEventListener("change", () => J("upcomingCount", Ee));
   function ni(e) {
     v.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
     const t = e === "light";
-    i("app").classList.toggle("light", t), u.setLight(t);
+    i("app").classList.toggle("light", t), g.setLight(t);
   }
   ni(M().theme || "dark"), v.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
     ni(e.dataset.theme), J("theme", e.dataset.theme);
   }));
   const re = { steps: null, ...M().entities || {} };
   let Ce = null, sn = {};
-  function ba(e) {
-    const t = Object.values(e).filter((r) => r.entity_id.startsWith("sensor.") || r.entity_id.startsWith("input_number.")), n = (r) => r.attributes.friendly_name || r.entity_id, a = t.filter((r) => /step/i.test(r.entity_id) || /step/i.test(n(r)) || ["steps", "step"].includes(String(r.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((r) => !a.includes(r)), s = (r, l) => n(r).localeCompare(n(l));
-    return { suggested: a.sort(s), rest: o.sort(s), label: n };
+  function xa(e) {
+    const t = Object.values(e).filter((l) => l.entity_id.startsWith("sensor.") || l.entity_id.startsWith("input_number.")), n = (l) => l.attributes.friendly_name || l.entity_id, a = t.filter((l) => /step/i.test(l.entity_id) || /step/i.test(n(l)) || ["steps", "step"].includes(String(l.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((l) => !a.includes(l)), r = (l, u) => n(l).localeCompare(n(u)), s = (l, u) => /health_steps/.test(u.entity_id) - /health_steps/.test(l.entity_id) || r(l, u);
+    return { suggested: a.sort(s), rest: o.sort(r), label: n };
   }
   function ii(e) {
     const t = i("stepsEntity");
     if (!t || t.matches(":focus")) return;
-    const { suggested: n, rest: a, label: o } = ba(e), s = (f) => '<option value="' + F(f.entity_id) + '">' + F(o(f)) + "</option>";
-    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(s).join("") + "</optgroup>" : "") + (a.length ? '<optgroup label="All sensors">' + a.map(s).join("") + "</optgroup>" : ""), t.value = re.steps || "";
-    const r = i("stepsStatus"), l = re.steps && e[re.steps];
-    r.textContent = l ? "Connected · " + o(l) : r.dataset.empty;
+    const { suggested: n, rest: a, label: o } = xa(e), r = (u) => '<option value="' + F(u.entity_id) + '">' + F(o(u)) + "</option>";
+    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (a.length ? '<optgroup label="All sensors">' + a.map(r).join("") + "</optgroup>" : ""), t.value = re.steps || "";
+    const s = i("stepsStatus"), l = re.steps && e[re.steps];
+    s.textContent = l ? "Connected · " + o(l) : s.dataset.empty;
   }
   i("stepsEntity").addEventListener("change", () => {
     re.steps = i("stepsEntity").value || null, J("entities", { ...re }), sn = {}, si(), Ce && (ii(Ce), oi(Ce));
@@ -1809,34 +1804,34 @@ function Ea(v, u) {
   let ri = 0;
   async function si() {
     const e = re.steps;
-    if (!e || !u.ws) return;
+    if (!e || !g.ws) return;
     ri = Date.now();
     const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - 30);
     try {
-      const a = await u.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (a == null ? void 0 : a[e]) || [], s = {};
-      if (o.forEach((r) => {
-        Number.isFinite(r.max) && (s[G(new Date(r.start))] = r.max);
-      }), !Object.keys(s).length) {
-        const r = await u.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
-        ((r == null ? void 0 : r[e]) || []).forEach((l) => {
-          const f = Number(l.s ?? l.state), c = l.lu ? l.lu * 1e3 : Date.parse(l.last_updated || l.last_changed);
-          if (!Number.isFinite(f) || !c) return;
-          const g = G(new Date(c));
-          s[g] = Math.max(s[g] || 0, f);
+      const a = await g.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (a == null ? void 0 : a[e]) || [], r = {};
+      if (o.forEach((s) => {
+        Number.isFinite(s.max) && (r[G(new Date(s.start))] = s.max);
+      }), !Object.keys(r).length) {
+        const s = await g.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
+        ((s == null ? void 0 : s[e]) || []).forEach((l) => {
+          const u = Number(l.s ?? l.state), c = l.lu ? l.lu * 1e3 : Date.parse(l.last_updated || l.last_changed);
+          if (!Number.isFinite(u) || !c) return;
+          const m = G(new Date(c));
+          r[m] = Math.max(r[m] || 0, u);
         });
       }
-      sn = s, se();
+      sn = r, se();
     } catch {
     }
   }
-  function xa(e) {
+  function ba(e) {
     if (e == null) return '<svg class="face empty" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/></svg>';
     const t = (e - 50) / 50;
     return '<svg class="face" viewBox="0 0 24 24" role="img" aria-label="' + F(te("", e)) + '"><circle cx="12" cy="12" r="11" fill="' + Nn(e) + '"/><circle cx="8.5" cy="10" r="1.4" fill="#111"/><circle cx="15.5" cy="10" r="1.4" fill="#111"/><path d="M7.5 ' + (15.5 - t).toFixed(2) + " Q12 " + (15.5 + 4 * t).toFixed(2) + " 16.5 " + (15.5 - t).toFixed(2) + '" stroke="#111" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>';
   }
   function ya(e) {
     const t = [];
-    return b.checkins.filter((n) => n.date === e).forEach((n) => {
+    return x.checkins.filter((n) => n.date === e).forEach((n) => {
       n.mood != null && t.push(n.mood), n.energy != null && t.push(n.energy);
     }), t.length ? t.reduce((n, a) => n + a, 0) / t.length : null;
   }
@@ -1844,31 +1839,31 @@ function Ea(v, u) {
     se();
   }
   Te(), setInterval(() => {
-    Te(), Qe(), xe();
+    Te(), Qe(), be();
   }, 10 * 60 * 1e3);
   function li(e) {
     const t = {}, n = {};
-    b.history.forEach((r) => {
-      const l = G(new Date(r.start));
-      t[l] = (t[l] || 0) + (r.seconds || 0) / 60, n[l] = (n[l] || 0) + 1;
+    x.history.forEach((s) => {
+      const l = G(new Date(s.start));
+      t[l] = (t[l] || 0) + (s.seconds || 0) / 60, n[l] = (n[l] || 0) + 1;
     });
-    const a = /* @__PURE__ */ new Date(), o = G(a), s = [];
-    for (let r = e - 1; r >= 0; r--) {
-      const l = new Date(a.getFullYear(), a.getMonth(), a.getDate() - r), f = G(l), c = b.checkins.filter((d) => d.date === f), g = (d) => {
-        const m = c.map((E) => E[d]).filter(Boolean);
-        return m.length ? m.reduce((E, N) => E + N, 0) / m.length : null;
+    const a = /* @__PURE__ */ new Date(), o = G(a), r = [];
+    for (let s = e - 1; s >= 0; s--) {
+      const l = new Date(a.getFullYear(), a.getMonth(), a.getDate() - s), u = G(l), c = x.checkins.filter((d) => d.date === u), m = (d) => {
+        const f = c.map((E) => E[d]).filter(Boolean);
+        return f.length ? f.reduce((E, N) => E + N, 0) / f.length : null;
       };
-      s.push({
-        key: f,
+      r.push({
+        key: u,
         date: l,
-        minutes: Math.round(t[f] || 0),
-        moves: n[f] || 0,
-        steps: f === o && ai() != null ? ai() : sn[f] ?? null,
-        mood: g("mood"),
-        energy: g("energy")
+        minutes: Math.round(t[u] || 0),
+        moves: n[u] || 0,
+        steps: u === o && ai() != null ? ai() : sn[u] ?? null,
+        mood: m("mood"),
+        energy: m("energy")
       });
     }
-    return s;
+    return r;
   }
   function wa(e) {
     let t = e.length - 1;
@@ -1882,62 +1877,62 @@ function Ea(v, u) {
     return e.length ? e.reduce((t, n) => t + n, 0) / e.length : null;
   }
   function ci(e, t, n) {
-    const a = e.filter((r) => r[n] != null), o = a.filter(t).map((r) => r[n]), s = a.filter((r) => !t(r)).map((r) => r[n]);
-    return o.length < 3 || s.length < 3 ? null : { on: di(o), off: di(s), onDays: o.length, offDays: s.length };
+    const a = e.filter((s) => s[n] != null), o = a.filter(t).map((s) => s[n]), r = a.filter((s) => !t(s)).map((s) => s[n]);
+    return o.length < 3 || r.length < 3 ? null : { on: di(o), off: di(r), onDays: o.length, offDays: r.length };
   }
   function ka(e, t) {
-    const n = e[e.length - 1], a = e.slice(-7).reduce((s, r) => s + r.minutes, 0), o = e.reduce((s, r) => s + r.minutes, 0);
+    const n = e[e.length - 1], a = e.slice(-7).reduce((r, s) => r + s.minutes, 0), o = e.reduce((r, s) => r + s.minutes, 0);
     return n.minutes ? { big: n.minutes + " min", line: "already moved today. Why stop now?" } : t > 1 ? { big: t + " days", line: "in a row. Keep the streak alive today." } : a ? { big: a + " min", line: "moved in the last 7 days. One more move?" } : o ? { big: o + " min", line: "moved this month. Pick it back up today." } : { big: "Day one", line: "Every move counts. Start with one today." };
   }
   function pi(e, t, n, a) {
-    const o = t === "energy" ? "Energy" : "Mood", s = te(t, e.on), r = te(t, e.off);
-    return Math.abs(e.on - e.off) < 5 ? o + " " + F(n) + " · <strong>no change</strong>" : o + " " + F(n) + " · <strong>" + F(s) + "</strong> vs " + F(r);
+    const o = t === "energy" ? "Energy" : "Mood", r = te(t, e.on), s = te(t, e.off);
+    return Math.abs(e.on - e.off) < 5 ? o + " " + F(n) + " · <strong>no change</strong>" : o + " " + F(n) + " · <strong>" + F(r) + "</strong> vs " + F(s);
   }
   function se() {
     const e = i("insightCard");
     if (!e) return;
-    const t = li(30), n = wa(t), a = ka(t, n), o = t.reduce((p, z) => p + z.minutes, 0), s = /* @__PURE__ */ new Date(), r = G(new Date(s.getFullYear(), s.getMonth(), s.getDate() - (s.getDay() + 6) % 7)), l = t.filter((p) => p.key >= r).reduce((p, z) => p + z.minutes, 0), f = (p) => p.minutes > 0, c = [];
+    const t = li(30), n = wa(t), a = ka(t, n), o = t.reduce((p, z) => p + z.minutes, 0), r = /* @__PURE__ */ new Date(), s = G(new Date(r.getFullYear(), r.getMonth(), r.getDate() - (r.getDay() + 6) % 7)), l = t.filter((p) => p.key >= s).reduce((p, z) => p + z.minutes, 0), u = (p) => p.minutes > 0, c = [];
     ["energy", "mood"].forEach((p) => {
-      const z = ci(t, f, p);
+      const z = ci(t, u, p);
       z && c.push(pi(z, p, "on move days"));
     });
-    const g = t.filter((p) => p.steps != null && (p.mood != null || p.energy != null));
-    if (g.length >= 6) {
-      const p = g.map((U) => U.steps).sort((U, mn) => U - mn), z = p[Math.floor(p.length / 2)], q = (U) => U.steps != null && U.steps >= z, V = ci(t.filter((U) => U.steps != null), q, "energy");
+    const m = t.filter((p) => p.steps != null && (p.mood != null || p.energy != null));
+    if (m.length >= 6) {
+      const p = m.map((U) => U.steps).sort((U, mn) => U - mn), z = p[Math.floor(p.length / 2)], q = (U) => U.steps != null && U.steps >= z, V = ci(t.filter((U) => U.steps != null), q, "energy");
       V && c.push(pi(V, "energy", "on " + ln(Math.round(z / 100) * 100) + "+ step days"));
     }
-    const d = c.map((p) => '<div class="insightLine">' + p + "</div>").join(""), m = t.slice(-14), E = Math.max(10, ...m.map((p) => p.minutes)), N = Math.max(1, ...m.map((p) => p.steps || 0)), H = m.some((p) => p.steps != null), C = m.map((p, z) => {
-      const q = z === m.length - 1, V = new Intl.DateTimeFormat(void 0, { weekday: "narrow" }).format(p.date), U = new Intl.DateTimeFormat(void 0, { weekday: "short", day: "numeric", month: "short" }).format(p.date) + " · " + p.minutes + " min" + (p.steps != null ? " · " + ln(p.steps) + " steps" : "");
-      return '<div class="day' + (q ? " today" : "") + '" title="' + F(U) + '"><div class="dayBars">' + (H ? '<span class="stepBar" style="height:' + (p.steps ? Math.max(3, p.steps / N * 100) : 0) + '%"></span>' : "") + '<span class="moveBar" style="height:' + (p.minutes ? Math.max(4, p.minutes / E * 100) : 0) + '%"></span></div><div class="dayFace">' + xa(ya(p.key)) + '</div><div class="dayLabel">' + F(V) + "</div></div>";
+    const d = c.map((p) => '<div class="insightLine">' + p + "</div>").join(""), f = t.slice(-14), E = Math.max(10, ...f.map((p) => p.minutes)), N = Math.max(1, ...f.map((p) => p.steps || 0)), H = f.some((p) => p.steps != null), C = f.map((p, z) => {
+      const q = z === f.length - 1, V = new Intl.DateTimeFormat(void 0, { weekday: "narrow" }).format(p.date), U = new Intl.DateTimeFormat(void 0, { weekday: "short", day: "numeric", month: "short" }).format(p.date) + " · " + p.minutes + " min" + (p.steps != null ? " · " + ln(p.steps) + " steps" : "");
+      return '<div class="day' + (q ? " today" : "") + '" title="' + F(U) + '"><div class="dayBars">' + (H ? '<span class="stepBar" style="height:' + (p.steps ? Math.max(3, p.steps / N * 100) : 0) + '%"></span>' : "") + '<span class="moveBar" style="height:' + (p.minutes ? Math.max(4, p.minutes / E * 100) : 0) + '%"></span></div><div class="dayFace">' + ba(ya(p.key)) + '</div><div class="dayLabel">' + F(V) + "</div></div>";
     }).join("");
     e.innerHTML = '<div class="insightTop"><div class="insightHero"><div class="insightBig">' + F(a.big) + '</div><div class="weekCopy">' + F(a.line) + '</div></div><div class="insightStats"><div class="weekChip"><div class="weekChipTop"><strong>This week</strong></div><div class="weekChipTime">' + l + ' min</div></div><div class="weekChip"><div class="weekChipTop"><strong>Streak</strong></div><div class="weekChipTime">' + n + " day" + (n === 1 ? "" : "s") + '</div></div><div class="weekChip"><div class="weekChipTop"><strong>30 days</strong></div><div class="weekChipTime">' + o + ' min</div></div></div></div><div class="insightBody' + (d ? "" : " chartOnly") + '">' + (d ? '<div class="insightLines">' + d + "</div>" : "") + '<div class="insightChart"><div class="dayStrip">' + C + "</div></div></div>";
   }
   const ui = i("tvNav");
-  u.fullscreenSupported || (ui.hidden = !0), ui.addEventListener("click", () => u.toggleFullscreen()), v.addEventListener("keydown", (e) => {
+  g.fullscreenSupported || (ui.hidden = !0), ui.addEventListener("click", () => g.toggleFullscreen()), v.addEventListener("keydown", (e) => {
     !Le.workout.classList.contains("active") || tt.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), ge.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), i("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), i("restartSegment").click()));
   }), [L, k, T].forEach((e) => e.addEventListener("input", () => {
     const t = w[S];
     t && (t.total = Number(L.value), t.work = Number(k.value), t.rest = Number(T.value)), W();
   })), yn.addEventListener("click", an), wn.addEventListener("click", () => zt("settings")), i("settingsBack").addEventListener("click", an), ge.addEventListener("click", () => {
     _ = !_, X && st(_ ? "paused" : "resumed"), ge.textContent = _ ? "Resume" : "Pause", i("app").classList.toggle("paused", _);
-  }), W(), bt(), Qe(), se(), i("healthHelpOpen").addEventListener("click", () => v.querySelector(".tab[data-pane=helpPane]").click()), Lt(i("resetStats"), i("resetStatsFill"), 1500, () => {
-    b.history = [], b.checkins = [], Je = "";
+  }), W(), xt(), Qe(), se(), i("healthHelpOpen").addEventListener("click", () => v.querySelector(".tab[data-pane=helpPane]").click()), Lt(i("resetStats"), i("resetStatsFill"), 1500, () => {
+    x.history = [], x.checkins = [], Je = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
     } catch {
     }
-    he(), Te(), Qe(), bt(), se(), xe(), O("Stats reset");
+    he(), Te(), Qe(), xt(), se(), be(), O("Stats reset");
   });
   const dn = i("morningTime"), cn = i("eveningTime"), pn = i("checkinAutoOpen");
   dn.value = ne().morning, cn.value = ne().evening, pn.classList.toggle("on", M().checkinAutoOpen !== !1), [["morningTime", dn], ["eveningTime", cn]].forEach(([e, t]) => t.addEventListener("change", () => {
-    t.value && (J(e, t.value), xe());
+    t.value && (J(e, t.value), be());
   })), pn.addEventListener("click", () => {
     const e = M().checkinAutoOpen === !1;
     pn.classList.toggle("on", e), J("checkinAutoOpen", e);
   }), setTimeout(Yt, 800);
   const gi = i("checkinNotify"), Et = i("checkinNotifyTarget"), mi = i("checkinNotifyStatus"), Sa = mi.textContent;
   function fi() {
-    const e = u.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, a = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
+    const e = g.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, a = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
     Et.innerHTML = n.map((o) => '<option value="' + F(o) + '">' + F(a(o)) + "</option>").join(""), !M().notifyTarget && n[0] && (M().notifyTarget = n[0]), Et.value = M().notifyTarget || "";
   }
   function Rt() {
@@ -1949,7 +1944,7 @@ function Ea(v, u) {
   async function un() {
     const e = !!M().notifyOn;
     try {
-      return await u.setReminderAutomation(e ? { target: M().notifyTarget, times: ne() } : null), !0;
+      return await g.setReminderAutomation(e ? { target: M().notifyTarget, times: ne() } : null), !0;
     } catch {
       return O("Couldn't update the reminder in Home Assistant"), !1;
     }
@@ -1977,9 +1972,9 @@ function Ea(v, u) {
       Ce = e, ii(e), oi(e), Date.now() - ri > 60 * 60 * 1e3 && si(), Ca();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (b.history = e.history, Te()), Array.isArray(e.history) && se(), Array.isArray(e.checkins) && (b.checkins = e.checkins.map(Mn), xe(), bt(), Qe(), Te(), se()), e.profiles && !K.classList.contains("open") && !X)) {
+      if (e && (Array.isArray(e.history) && (x.history = e.history, Te()), Array.isArray(e.history) && se(), Array.isArray(e.checkins) && (x.checkins = e.checkins.map(Mn), be(), xt(), Qe(), Te(), se()), e.profiles && !K.classList.contains("open") && !X)) {
         const t = Tn(e);
-        Object.keys(w).forEach((n) => delete w[n]), Object.assign(w, t.profiles), b.order = t.order, w[S] || (S = b.order[0]), En(), ee(S);
+        Object.keys(w).forEach((n) => delete w[n]), Object.assign(w, t.profiles), x.order = t.order, w[S] || (S = x.order[0]), En(), ee(S);
       }
     },
     suspend() {
@@ -1992,8 +1987,8 @@ function Ea(v, u) {
 }
 const Ra = "0.6.0", fn = "move_assistant", Fa = "move_assistant", vi = "move_assistant_checkin_reminder";
 class Aa extends HTMLElement {
-  setConfig(u) {
-    this._config = u || {};
+  setConfig(g) {
+    this._config = g || {};
   }
   static getStubConfig() {
     return {};
@@ -2004,26 +1999,26 @@ class Aa extends HTMLElement {
   getGridOptions() {
     return { columns: "full", min_columns: 12 };
   }
-  set hass(u) {
+  set hass(g) {
     const i = !this._hass;
-    if (this._hass = u, i) {
+    if (this._hass = g, i) {
       this._init();
       return;
     }
-    this._app && u.states !== this._lastStates && (this._lastStates = u.states, this._app.updateStates(u.states));
+    this._app && g.states !== this._lastStates && (this._lastStates = g.states, this._app.updateStates(g.states));
   }
   connectedCallback() {
-    var u;
-    (u = this._app) == null || u.resume();
+    var g;
+    (g = this._app) == null || g.resume();
   }
   disconnectedCallback() {
-    var u;
-    (u = this._app) == null || u.suspend();
+    var g;
+    (g = this._app) == null || g.suspend();
   }
   async _init() {
-    const u = this.shadowRoot || this.attachShadow({ mode: "open" });
-    u.innerHTML = `<style>${Ma}</style>${La}`;
-    const i = u.getElementById("app");
+    const g = this.shadowRoot || this.attachShadow({ mode: "open" });
+    g.innerHTML = `<style>${Ma}</style>${La}`;
+    const i = g.getElementById("app");
     i.style.opacity = "0";
     let R = null;
     try {
@@ -2034,7 +2029,7 @@ class Aa extends HTMLElement {
       R = (y == null ? void 0 : y.value) ?? null;
     } catch {
     }
-    this._lastSaved = JSON.stringify(R), this._app = Ea(u, {
+    this._lastSaved = JSON.stringify(R), this._app = Ea(g, {
       data: R,
       save: (y) => this._save(y),
       fire: (y, A) => this._fire(y, A),
@@ -2051,8 +2046,8 @@ class Aa extends HTMLElement {
   }
   _subscribe() {
     var i;
-    const u = (i = this._hass) == null ? void 0 : i.connection;
-    u != null && u.subscribeMessage && u.subscribeMessage(
+    const g = (i = this._hass) == null ? void 0 : i.connection;
+    g != null && g.subscribeMessage && g.subscribeMessage(
       (R) => {
         var A;
         const y = JSON.stringify((R == null ? void 0 : R.value) ?? null);
@@ -2062,8 +2057,8 @@ class Aa extends HTMLElement {
     ).catch(() => {
     });
   }
-  _save(u) {
-    this._pendingJson = JSON.stringify(u), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
+  _save(g) {
+    this._pendingJson = JSON.stringify(g), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
       const i = this._pendingJson;
       try {
         await this._hass.callWS({
@@ -2076,20 +2071,20 @@ class Aa extends HTMLElement {
       }
     }, 400);
   }
-  _fire(u, i = {}) {
+  _fire(g, i = {}) {
     var R, y;
     ((R = this._config) == null ? void 0 : R.events) !== !1 && ((y = this._hass) == null || y.callWS({
       type: "fire_event",
       event_type: Fa,
-      event_data: { action: u, ...i }
+      event_data: { action: g, ...i }
     }).catch(() => {
     }));
   }
   // Keeps one Home Assistant automation in sync with the check-in times.
   // Passing null removes it.
-  async _setReminderAutomation(u) {
+  async _setReminderAutomation(g) {
     const i = `config/automation/config/${vi}`;
-    if (!u) {
+    if (!g) {
       try {
         await this._hass.callApi("DELETE", i);
       } catch (A) {
@@ -2104,13 +2099,13 @@ class Aa extends HTMLElement {
       description: "Created by Move Assistant. Change it in Move Assistant → Settings → Check-in.",
       mode: "single",
       triggers: [
-        { trigger: "time", at: R(u.times.morning), id: "morning" },
-        { trigger: "time", at: R(u.times.evening), id: "evening" }
+        { trigger: "time", at: R(g.times.morning), id: "morning" },
+        { trigger: "time", at: R(g.times.evening), id: "evening" }
       ],
       conditions: [],
       actions: [
         {
-          action: `notify.${u.target}`,
+          action: `notify.${g.target}`,
           data: {
             title: "Move Assistant",
             message: "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
@@ -2121,9 +2116,9 @@ class Aa extends HTMLElement {
     });
   }
   _toggleFullscreen() {
-    const u = document;
-    if (u.fullscreenElement || u.webkitFullscreenElement) {
-      (u.exitFullscreen || u.webkitExitFullscreen).call(u);
+    const g = document;
+    if (g.fullscreenElement || g.webkitFullscreenElement) {
+      (g.exitFullscreen || g.webkitExitFullscreen).call(g);
       return;
     }
     const i = this.requestFullscreen || this.webkitRequestFullscreen;
@@ -2131,10 +2126,10 @@ class Aa extends HTMLElement {
       () => this._toast("Full screen isn't available here")
     );
   }
-  _toast(u) {
+  _toast(g) {
     var R;
     const i = (R = this.shadowRoot) == null ? void 0 : R.getElementById("toast");
-    i && (i.textContent = u, i.classList.add("show"), setTimeout(() => i.classList.remove("show"), 2600));
+    i && (i.textContent = g, i.classList.add("show"), setTimeout(() => i.classList.remove("show"), 2600));
   }
 }
 customElements.get("move-assistant-card") || (customElements.define("move-assistant-card", Aa), window.customCards = window.customCards || [], window.customCards.push({

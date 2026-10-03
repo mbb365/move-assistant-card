@@ -16,6 +16,7 @@ const listeners = [];
 const read = () => { try { return JSON.parse(localStorage.getItem("ma-dev")); } catch { return null; } };
 const states = {
   "sensor.pixel_daily_steps": { entity_id: "sensor.pixel_daily_steps", state: "6840", attributes: { friendly_name: "Pixel Daily steps", unit_of_measurement: "steps" } },
+  "sensor.matts_iphone_health_steps": { entity_id: "sensor.matts_iphone_health_steps", state: "8212", attributes: { friendly_name: "Matt's iPhone Health steps", unit_of_measurement: "steps" } },
   "sensor.living_room_temperature": { entity_id: "sensor.living_room_temperature", state: "21.4", attributes: { friendly_name: "Living room temperature", unit_of_measurement: "°C" } },
 };
 const hass = {

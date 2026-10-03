@@ -1958,7 +1958,8 @@ function sensorChoices(states){
   const suggested=all.filter(st=>/step/i.test(st.entity_id)||/step/i.test(label(st))||['steps','step'].includes(String(st.attributes.unit_of_measurement||'').toLowerCase()));
   const rest=all.filter(st=>!suggested.includes(st));
   const byName=(a,b)=>label(a).localeCompare(label(b));
-  return {suggested:suggested.sort(byName),rest:rest.sort(byName),label};
+  const healthFirst=(a,b)=>(/health_steps/.test(b.entity_id)-/health_steps/.test(a.entity_id))||byName(a,b);
+  return {suggested:suggested.sort(healthFirst),rest:rest.sort(byName),label};
 }
 function renderSensorPickers(states){
   const select=$('stepsEntity');

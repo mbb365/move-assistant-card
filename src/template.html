@@ -103,7 +103,7 @@
       <p class="note">Move Assistant can work on its own. Pick your step sensor so general movement counts alongside your moves.</p>
       <div class="integrationList">
         <div class="integration"><div><strong>Steps</strong><div class="status" id="stepsStatus" data-empty="Your phone's step sensor from the Companion app">Your phone's step sensor from the Companion app</div></div><select class="settingsSelect entitySelect" id="stepsEntity" data-kind="steps" aria-label="Steps sensor"></select></div>
-        <div class="integration"><div><strong>Apple Health</strong><div class="status">Send steps and other Health data from your iPhone</div></div><button class="pill" id="healthHelpOpen" type="button">Help</button></div>
+        <div class="integration"><div><strong>Apple Health</strong><div class="status">Use the Home Assistant iPhone app to send your steps</div></div><button class="pill" id="healthHelpOpen" type="button">Help</button></div>
         <div class="integration"><div><strong>Home Assistant</strong><div class="status">Moves send a <code>move_assistant</code> event on start, each step, rest, pause and finish — use it in automations for lights, sound and displays</div></div><button class="pill" type="button" disabled>Connected</button></div>
       </div>
     </section>
@@ -140,39 +140,34 @@
   <div class="settingsPane" id="helpPane">
     <section class="card helpCard">
       <h2 style="font-size:34px;margin:0 0 12px">Connect Apple Health</h2>
-    <p class="note">Apple Health can't talk to Home Assistant directly. Your iPhone sends the numbers using the Shortcuts app and the Home Assistant Companion app. Set it up once and it runs by itself.</p>
+    <p class="note">The Home Assistant app on your iPhone can read Apple Health and send it to Home Assistant. Steps include your Apple Watch.</p>
 
     <ol class="helpSteps">
       <li>
-        <strong>Make a place for the number in Home Assistant</strong>
-        <span>Settings → Devices &amp; services → Helpers → Create helper → <b>Number</b>.</span>
-        <span>Name it <b>Health steps</b>. Minimum 0, maximum 100000, step 1, unit <b>steps</b>, display mode <b>Input field</b>.</span>
+        <strong>Update the Home Assistant app</strong>
+        <span>On your iPhone, update <b>Home Assistant</b> from the App Store. Apple Health needs version <b>2026.9</b> or newer.</span>
       </li>
       <li>
-        <strong>Build the shortcut on your iPhone</strong>
-        <span>Open <b>Shortcuts</b> → Automation → <b>+</b> → <b>App</b> → choose Home Assistant → <b>Is opened</b> → <b>Run immediately</b>.</span>
-        <span>Add these actions in order:</span>
-        <span class="helpAction">Find Health Samples — Type <b>Steps</b>, Start date <b>is today</b>, Group by <b>Day</b>, Limit 1</span>
-        <span class="helpAction">Get Details of Health Samples — <b>Value</b></span>
-        <span class="helpAction">Home Assistant → <b>Call service</b> (or <b>Perform action</b>) — <code>input_number.set_value</code>, entity <code>input_number.health_steps</code>, value = the step count from above</span>
+        <strong>Turn on Apple Health</strong>
+        <span>In the app: <b>Settings → Companion app → Sensors → Apple Health</b>. Switch it on.</span>
       </li>
       <li>
-        <strong>Keep it fresh during the day</strong>
-        <span>Add a few more automations with the same actions using <b>Time of day</b> (for example 10:00, 14:00, 18:00, 22:00), also set to <b>Run immediately</b>.</span>
+        <strong>Allow access</strong>
+        <span>When iPhone asks, allow Home Assistant to read <b>Steps</b>. Turn on the <b>Steps</b> sensor in the Apple Health list.</span>
       </li>
       <li>
         <strong>Pick it in Move Assistant</strong>
-        <span>Settings → Integrations → Steps → <b>Health steps</b>.</span>
+        <span>Settings → Integrations → Steps → choose <b>… Health steps</b>.</span>
       </li>
     </ol>
 
     <div class="helpNote">
-      <strong>Other Health data</strong>
-      <span>Use the same recipe for anything in Health, for example exercise minutes, active energy or stand hours. Make one Number helper per value, then change the <b>Type</b> in Find Health Samples.</span>
+      <strong>When it updates</strong>
+      <span>Your phone sends new numbers when the app syncs, for example when you unlock your phone or open Home Assistant. It isn't live to the second.</span>
     </div>
     <div class="helpNote">
-      <strong>Check the number</strong>
-      <span>Run the shortcut once by hand and compare it with the Health app. <b>Group by Day</b> stops your iPhone and Apple Watch steps being counted twice.</span>
+      <strong>Not seeing it?</strong>
+      <span>Check iPhone <b>Settings → Health → Data Access &amp; Devices → Home Assistant</b> and make sure Steps is allowed.</span>
     </div>
     </section>
   </div>

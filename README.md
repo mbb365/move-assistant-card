@@ -8,7 +8,7 @@ Runs as a full-page dashboard card.
 - **How you've felt this week** shows your average mood and energy, plus each day's.
 - **Movement & you** shows what you've already done (today, streak, last 30 days), a 14-day strip of moves, steps, mood and energy, and how your mood and energy differ on days you move.
 - **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
-- **Apple Health**: Settings → Integrations → Apple Health → Help walks through sending Health data via Shortcuts and the Companion app into a Number helper.
+- **Apple Health**: Settings → Help explains turning on Apple Health sensors in the Home Assistant iPhone app (2026.9+), then picking the Health steps sensor.
 - **This week** counts minutes from the moves you actually do (30 seconds or more).
 - **TV mode** (⛶ button) goes full screen with no HA header or sidebar. Works with a keyboard, TV remote or game controller.
 
