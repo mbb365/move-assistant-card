@@ -1819,3 +1819,17 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 }
 
 #app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
+
+/* ---- Movement card (M1): Activity-style readings + this week's bars ---- */
+.insightCard{display:flex;flex-direction:column;gap:0}
+.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}
+.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}
+.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}
+.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:#292929;overflow:hidden}
+.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}
+.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}
+.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}
+.weekBar.future{opacity:.35}
+#app.light .weekBarTrack{background:rgba(255,255,255,.8)}
+#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
+@media(max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}

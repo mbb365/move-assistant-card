@@ -1888,7 +1888,7 @@ function saveSetting(key,value){settings()[key]=value;persist()}
 const dataToggles={feel:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
 function applyDataToggles(){
   root.querySelectorAll('[data-toggle]').forEach(sw=>sw.classList.toggle('on',dataToggles[sw.dataset.toggle]!==false));
-  root.querySelector('.feelSection').hidden=dataToggles.feel===false;
+  root.querySelector('.feelSection').hidden=true; // parked for now
   [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
   const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
   root.querySelector('.activityCard').hidden=!anyActivity;
@@ -2106,66 +2106,37 @@ function compareText(c,scale,activeWord,restWord){
   return name+' '+esc(activeWord)+' · <strong>'+esc(on)+'</strong> vs '+esc(off);
 }
 function renderInsights(){
+  // Movement: three readings in the Activity tile style + one bar per day this week.
   const card=$('insightCard');if(!card)return;
   const series=dailySeries(30);
   const streak=currentStreak(series);
-  const h=headline(series,streak);
   const month=series.reduce((a,d)=>a+d.minutes,0);
-  const now=new Date();
-  const weekStart=dayKey(new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)));
-  const thisWeek=series.filter(d=>d.key>=weekStart).reduce((a,d)=>a+d.minutes,0);
-
-  // correlations
-  const moved=d=>d.minutes>0;
-  const insights=[];
-  ['energy','mood'].forEach(scale=>{
-    const c=compare(series,moved,scale);
-    if(c)insights.push(compareText(c,scale,'on move days',''));
+  const now=new Date(),today=dayKey(now);
+  const monday=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7));
+  const weekDays=[...Array(7)].map((_,i)=>{
+    const d=new Date(monday.getFullYear(),monday.getMonth(),monday.getDate()+i);
+    const k=dayKey(d);
+    const hit=series.find(x=>x.key===k);
+    return {d,k,minutes:hit?hit.minutes:0,today:k===today,future:k>today};
   });
-  const stepDays=series.filter(d=>d.steps!=null&&(d.mood!=null||d.energy!=null));
-  if(stepDays.length>=6){
-    const sorted=stepDays.map(d=>d.steps).sort((a,b)=>a-b);
-    const median=sorted[Math.floor(sorted.length/2)];
-    const active=d=>d.steps!=null&&d.steps>=median;
-    const c=compare(series.filter(d=>d.steps!=null),active,'energy');
-    if(c)insights.push(compareText(c,'energy','on '+formatNumber(Math.round(median/100)*100)+'+ step days',''));
-  }
-  const insightHtml=insights.map(t=>'<div class="insightLine">'+t+'</div>').join('');
-
-  // last 14 days
-  const recent=series.slice(-14);
-  const maxMin=Math.max(10,...recent.map(d=>d.minutes));
-  const maxSteps=Math.max(1,...recent.map(d=>d.steps||0));
-  const hasSteps=recent.some(d=>d.steps!=null);
-  const days=recent.map((d,i)=>{
-    const isToday=i===recent.length-1;
-    const label=new Intl.DateTimeFormat(undefined,{weekday:'narrow'}).format(d.date);
-    const tip=new Intl.DateTimeFormat(undefined,{weekday:'short',day:'numeric',month:'short'}).format(d.date)+' · '+d.minutes+' min'+(d.steps!=null?' · '+formatNumber(d.steps)+' steps':'');
-    return '<div class="day'+(isToday?' today':'')+'" title="'+esc(tip)+'">'+
-      '<div class="dayBars">'+
-        (hasSteps?'<span class="stepBar" style="height:'+(d.steps?Math.max(3,d.steps/maxSteps*100):0)+'%"></span>':'')+
-        '<span class="moveBar" style="height:'+(d.minutes?Math.max(4,d.minutes/maxMin*100):0)+'%"></span>'+
-      '</div>'+
-      '<div class="dayFace">'+faceSvg(dayFeeling(d.key))+'</div>'+
-      '<div class="dayLabel">'+esc(label)+'</div>'+
-    '</div>';
-  }).join('');
-
+  const thisWeek=weekDays.reduce((a,x)=>a+x.minutes,0);
+  const max=Math.max(10,...weekDays.map(x=>x.minutes));
+  const reading=(icon,name,value)=>
+    '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">'+icon+'</div>'+
+    '<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+esc(value)+'</div></div></div>';
   card.innerHTML=
-    '<div class="insightTop">'+
-      '<div class="insightHero"><div class="insightBig">'+esc(h.big)+'</div><div class="weekCopy">'+esc(h.line)+'</div></div>'+
-      '<div class="insightStats">'+
-        '<div class="weekChip"><div class="weekChipTop"><strong>This week</strong></div><div class="weekChipTime">'+thisWeek+' min</div></div>'+
-        '<div class="weekChip"><div class="weekChipTop"><strong>Streak</strong></div><div class="weekChipTime">'+streak+' day'+(streak===1?'':'s')+'</div></div>'+
-        '<div class="weekChip"><div class="weekChipTop"><strong>30 days</strong></div><div class="weekChipTime">'+month+' min</div></div>'+
-      '</div>'+
+    '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div>'+
+    '<div class="activityRows movementReadings">'+
+      reading('◷','This week',thisWeek+' min')+
+      reading('↯','Streak',streak+' day'+(streak===1?'':'s'))+
+      reading('▦','30 days',month+' min')+
     '</div>'+
-    '<div class="insightBody'+(insightHtml?'':' chartOnly')+'">'+
-      (insightHtml?'<div class="insightLines">'+insightHtml+'</div>':'')+
-      '<div class="insightChart">'+
-        '<div class="dayStrip">'+days+'</div>'+
-      '</div>'+
-    '</div>';
+    '<div class="weekBars">'+weekDays.map(x=>
+      '<div class="weekBar'+(x.today?' today':'')+(x.future?' future':'')+'" title="'+esc(x.minutes+' min')+'">'+
+        '<div class="weekBarTrack"><span style="height:'+(x.minutes?Math.max(6,x.minutes/max*100):0)+'%"></span></div>'+
+        '<div class="dayLabel">'+esc(new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(x.d))+'</div>'+
+      '</div>'
+    ).join('')+'</div>';
 }
 
 /* TV mode */
