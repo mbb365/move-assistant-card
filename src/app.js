@@ -891,6 +891,9 @@ try{dismissedKey=localStorage.getItem('move-assistant-dismissed')||''}catch(_e){
 function updateCheckinTab(){
   const due=dueSlot();
   checkinBadge.hidden=!due;
+  // Only show the tab while a check-in is due; it comes back at the next check-in time.
+  checkinTab.hidden=!due;
+  if(!due)hidePeek();
   checkinTab.classList.toggle('due',Boolean(due));
   checkinTab.setAttribute('aria-label',due?(due==='morning'?'Morning':'Evening')+' check-in is due':nextCheckinText());
   checkinTab.title=due?'Check in now':nextCheckinText();
@@ -1304,7 +1307,7 @@ function initCountdownPixels(){
  countdownCanvas.style.height=height+'px';
  const ctx=countdownCanvas.getContext('2d');
  ctx.setTransform(dpr,0,0,dpr,0,0);
- const colors=['#f4f5ff','#dfe3ff','#c9d0ff','#aeb9ff'];
+ const colors=['#f2fbff','#d4effc','#a9e0fa','#6cc8f6'];
  const gap=12;
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  const speed=reduced?0:.055;
@@ -1380,7 +1383,7 @@ function drawTrail(now){
   if(trailEnabled){
     const grid=14;
     trailPoints=trailPoints.filter(p=>now-p.born<trailMaxAge);
-    trailCtx.fillStyle=$('app').classList.contains('light')?'#7c89d8':'#f4f4f4';
+    trailCtx.fillStyle=$('app').classList.contains('light')?'#03A9F4':'#f4f4f4';
     trailPoints.forEach(p=>{
       const age=(now-p.born)/trailMaxAge;
       const a=(1-age)*trailStrength;

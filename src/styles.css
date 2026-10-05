@@ -14,8 +14,8 @@ button,input{font:inherit}
 #app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}
 .shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}
 #app.resting .shell{background:#1f7a4d}
-#app.paused .shell{background:#3458d4}
-#app.light.paused .shell{background:#7f96e8}
+#app.paused .shell{background:var(--primary)}
+#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}
 #app.light{
   --bg:#EEEDED;
   --page:#EEEDED;
@@ -31,7 +31,7 @@ button,input{font:inherit}
 #app.light .holdEnd{background:rgba(255,255,255,.88);border:0.32px solid #fff;text-decoration:none}
 #app.light .energyBtn,#app.light .activityRow,#app.light .integration,#app.light .toggleRow,#app.light .weekChip,#app.light .sourceTag,#app.light .timeTile,#app.light .moveRow,#app.light .routineSummary,#app.light .workoutPanel{background:rgba(255,255,255,.8);color:#222222 !important}
 #app.light .timerCard,#app.light .movementCard,#app.light .nextCard{background:rgba(255,255,255,.8)}
-#app.light .activityRow:nth-child(1) .activityRowIcon{background:#dfe4ff;color:#596de4 !important}
+#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink) !important}
 #app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f !important}
 #app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63 !important}
 #app.light .activityIcon{background:#e8e1ff;color:#7859c9 !important}
@@ -52,12 +52,12 @@ button,input{font:inherit}
 #app.light .exerciseScroller{background:transparent;border-color:rgba(255,255,255,.9)}
 #app.light .addInput,#app.light .editNameInput{background:rgba(255,255,255,.92);color:#222222!important;border-color:#fff}
 #app.light .rangeTrack{background:#D8D6D6;border-color:#fff}
-#app.light .rangeFill{background:#AEB9FF}
+#app.light .rangeFill{background:color-mix(in srgb,var(--primary) 45%,white)}
 #app.light .timerCard,#app.light .movementCard,#app.light .upcomingTile{background:rgba(255,255,255,.8);border-color:#fff}
-#app.light .fill{background:#C9D0FF}
+#app.light .fill{background:color-mix(in srgb,var(--primary) 30%,white)}
 #app.light .progress{background:transparent}
 #app.light .progressSegment{background:#C8C6C6}
-#app.light .progressSegment.active::after{background:#9AA8FF}
+#app.light .progressSegment.active::after{background:var(--primary)}
 #app.light .progressSegment.done{background:transparent;opacity:0}
 #app.light .sourceTag,#app.light .activityRow,#app.light .weekChip,#app.light .integration,#app.light .toggleRow,#app.light .moveRow,#app.light .timeTile,#app.light .routineSummary{border-color:#fff}
 #app.light .countdown{background:#EEEDED}
@@ -137,13 +137,13 @@ button,input{font:inherit}
   --color-sensitivity:56;
   --cone-spread:25;
   --fill-opacity:.18;
-  --glow-color:hsl(205deg 90% 82% / 100%);
-  --glow-color-60:hsl(205deg 90% 82% / 60%);
-  --glow-color-50:hsl(205deg 90% 82% / 50%);
-  --glow-color-40:hsl(205deg 90% 82% / 40%);
-  --glow-color-30:hsl(205deg 90% 82% / 30%);
-  --glow-color-20:hsl(205deg 90% 82% / 20%);
-  --glow-color-10:hsl(205deg 90% 82% / 10%);
+  --glow-color:hsl(199deg 97% 68% / 100%);
+  --glow-color-60:hsl(199deg 97% 68% / 60%);
+  --glow-color-50:hsl(199deg 97% 68% / 50%);
+  --glow-color-40:hsl(199deg 97% 68% / 40%);
+  --glow-color-30:hsl(199deg 97% 68% / 30%);
+  --glow-color-20:hsl(199deg 97% 68% / 20%);
+  --glow-color-10:hsl(199deg 97% 68% / 10%);
   --gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);
   --gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);
   --gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);
@@ -245,12 +245,12 @@ button,input{font:inherit}
   transition:opacity .35s ease-out}
 
 #app.light .workoutPanel{
-  --glow-color:hsl(224deg 80% 55% / 100%);
-  --glow-color-50:hsl(224deg 80% 55% / 50%);
-  --glow-color-40:hsl(224deg 80% 55% / 40%);
-  --glow-color-30:hsl(224deg 80% 55% / 30%);
-  --glow-color-20:hsl(224deg 80% 55% / 20%);
-  --glow-color-10:hsl(224deg 80% 55% / 10%)}
+  --glow-color:hsl(199deg 97% 48% / 100%);
+  --glow-color-50:hsl(199deg 97% 48% / 50%);
+  --glow-color-40:hsl(199deg 97% 48% / 40%);
+  --glow-color-30:hsl(199deg 97% 48% / 30%);
+  --glow-color-20:hsl(199deg 97% 48% / 20%);
+  --glow-color-10:hsl(199deg 97% 48% / 10%)}
 
 .workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}
 .workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}
@@ -269,11 +269,11 @@ button,input{font:inherit}
 .workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}
 
 .startWorkoutBtn{
-  background:#D0FF00!important;
+  background:var(--primary)!important;
   color:#090909!important}
 .startWorkoutBtn:hover{filter:brightness(1.04)}
 #app.light .startWorkoutBtn{
-  background:#D0FF00!important;
+  background:var(--primary)!important;
   color:#090909!important}
 .addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}
 .addPanelLabel{
@@ -706,7 +706,7 @@ button,input{font:inherit}
   touch-action:none}
 .holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:#efefef;pointer-events:none}
 .holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}
-.holdEnd.holding{border-color:#666}.exerciseTitle{margin-top:4.8px;color:#D0FF00}
+.holdEnd.holding{border-color:#666}.exerciseTitle{margin-top:4.8px;color:var(--secondary)}
 .meta{color:#969696;margin-top:4.8px}
 .progress{
   height:46.4px;
@@ -752,7 +752,7 @@ button,input{font:inherit}
 
 .progressSegment.rewindable{cursor:pointer}
 .progressSegment.rewindable:hover{filter:brightness(1.08)}
-.progressSegment:focus-visible{outline:1.6px solid var(--periwinkle);outline-offset:-2.4px}
+.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}
 
 .workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}
 .timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:0.32px solid var(--line);border-left:0.32px solid var(--line);border-right:0.32px solid var(--line);border-bottom:0.16px solid var(--lineb)}
@@ -864,7 +864,7 @@ button,input{font:inherit}
   background:transparent;
   color:var(--text)}
 #app.light .upcomingCard{background:rgba(255,255,255,.8);border-color:#fff}
-#app.light .upcomingIcon{background:#ece7ff;color:#715bd0!important}
+#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
 #app.light .skipSessionBtn{border-color:#fff;color:#222!important}
 
 @media(max-width:900px){.weekCopy{white-space:normal}
@@ -879,7 +879,7 @@ button,input{font:inherit}
 .countdown.active{display:flex}
 
 .pixelCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
-.countdown:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(174,185,255,.14),transparent 58%);pointer-events:none}
+.countdown:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}
 .countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}
 .countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}
 
@@ -1501,9 +1501,9 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .integration .pill[disabled]{cursor:default;opacity:.7}
 /* remote / controller focus */
 #app :focus{outline:none}
-#app :focus-visible{outline:2.4px solid #D0FF00;outline-offset:2.4px}
+#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}
 #app .workoutPanel:focus-visible{outline-offset:-2.4px}
-#app.light :focus-visible{outline-color:#3458d4}
+
 @media(max-width:620px){.bottomNav{margin-left:14.4px}}
 .shell:has(.countdown.active) .bottomNav{visibility:hidden}
 /* phone: every swipe card is full width, so show its details even when not selected */
@@ -1538,7 +1538,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:rgba(255,255,255,.04);overflow:hidden}
 .stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}
 .stepBar{left:0;right:0;background:rgba(255,255,255,.12)}
-.moveBar{left:22%;right:22%;background:#D0FF00}
+.moveBar{left:22%;right:22%;background:var(--primary)}
 .day.today .dayBars{box-shadow:inset 0 0 0 0.8px rgba(255,255,255,.35)}
 .dayDots{display:flex;gap:2.4px}
 .dayDot{width:6.4px;height:6.4px;border-radius:50%}
@@ -1547,12 +1547,12 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .day.today .dayLabel{color:var(--text)}
 .chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}
 .chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-0.8px}
-.lgMove{background:#D0FF00}
+.lgMove{background:var(--primary)}
 .lgSteps{background:rgba(255,255,255,.22)}
 .lgDot{background:linear-gradient(90deg,#5F9B72 50%,#D5A53E 50%);border-radius:50%!important}
 #app.light .dayBars{background:rgba(0,0,0,.04)}
 #app.light .stepBar{background:rgba(0,0,0,.1)}
-#app.light .moveBar,#app.light .lgMove{background:#9AA8FF}
+
 #app.light .lgSteps{background:rgba(0,0,0,.14)}
 #app.light .day.today .dayBars{box-shadow:inset 0 0 0 0.8px rgba(0,0,0,.25)}
 #app.light .dayDot.empty{box-shadow:inset 0 0 0 0.8px #bbb}
@@ -1573,8 +1573,8 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}
 .checkinTile{min-height:0;gap:14.4px}
 .scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}
-.rangeTrack:focus-within{outline:2.4px solid #D0FF00;outline-offset:2.4px}
-#app.light .rangeTrack:focus-within{outline-color:#3458d4}
+.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}
+
 
 /* ---- side tab ---- */
 .checkinTab{
@@ -1586,13 +1586,13 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .checkinTab:hover{padding-right:12.8px}
 .checkinTabIcon{font-size:16px;line-height:1}
 .checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}
-.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:#D0FF00;box-shadow:0 0 0 2.4px #171717,0 0 9.6px rgba(208,255,0,.7);animation:checkinPulse 1.8s ease-in-out infinite}
+.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px #171717,0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}
 .checkinTab.due{background:#232323}
-@keyframes checkinPulse{50%{box-shadow:0 0 0 3px #171717,0 0 2px rgba(208,255,0,.2)}}
+@keyframes checkinPulse{50%{box-shadow:0 0 0 3px #171717,0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}
 @media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}
 .shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}
 #app.light .checkinTab{background:rgba(255,255,255,.88);border-color:#fff}
-#app.light .checkinBadge{background:#3458d4;box-shadow:0 0 0 2.4px #fff,0 0 9.6px rgba(52,88,212,.5)}
+#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}
 
 /* ---- how you've felt this week ---- */
 .feelSection{grid-column:span 12;margin-top:16px}
@@ -1682,7 +1682,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:0.32px solid var(--line);color:var(--muted)}
 .helpNote strong{color:var(--text)}
 #app.light .helpSteps li{background:rgba(255,255,255,.8)}
-#app.light .helpSteps li::before{background:#ece7ff}
+#app.light .helpSteps li::before{background:var(--primary-tint)}
 #app.light .helpAction{background:#EEEDED}
 #app.light .helpCard code{background:rgba(0,0,0,.06)}
 #app.light .helpNote{border-color:#fff}
@@ -1709,6 +1709,10 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
    pick the closest style.
    ========================================================= */
 :host{
+  --primary:#03A9F4;
+  --secondary:#D0FF00;
+  --primary-tint:color-mix(in srgb,var(--primary) 16%,white);
+  --primary-ink:color-mix(in srgb,var(--primary) 75%,black);
   --font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --w-regular:400;--w-bold:700;--w-heavy:800;
   --t-display:80px;   /* move names, big numbers, page title */
