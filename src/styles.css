@@ -1715,18 +1715,18 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   --primary-ink:color-mix(in srgb,var(--primary) 75%,black);
   --font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --w-regular:400;--w-bold:700;--w-heavy:800;
-  --t-display:80px;   /* move names, big numbers, page title */
-  --t-title:32px;     /* card + popup titles */
-  --t-value:28px;     /* readings */
-  --t-section:20px;   /* labels above cards */
-  --t-strong:18px;    /* row/item names, buttons */
-  --t-body:17px;      /* sentences */
-  --t-caption:14px;   /* small extras */
+  --t-display:78px;   /* move names, big numbers, page title */
+  --t-title:30px;     /* card + popup titles */
+  --t-value:26px;     /* readings */
+  --t-section:18px;   /* labels above cards */
+  --t-strong:16px;    /* row/item names, buttons */
+  --t-body:15px;      /* sentences */
+  --t-caption:12px;   /* small extras */
 }
-@media(max-width:900px){:host{--t-display:64px;--t-title:28px}}
+@media(max-width:900px){:host{--t-display:62px;--t-title:26px}}
 @media(max-width:620px){:host{
-  --t-display:52px;--t-title:26px;--t-value:24px;--t-section:18px;
-  --t-strong:17px;--t-body:16px;--t-caption:13px;
+  --t-display:50px;--t-title:24px;--t-value:22px;--t-section:16px;
+  --t-strong:15px;--t-body:14px;--t-caption:11px;
 }}
 
 #app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}
