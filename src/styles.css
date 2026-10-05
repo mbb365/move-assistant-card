@@ -1817,3 +1817,5 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   .tabs.rubberTabs::-webkit-scrollbar{display:none}
   .tabs.rubberTabs .tab{flex:0 0 auto}
 }
+
+#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
