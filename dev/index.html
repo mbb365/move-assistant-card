@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Move Assistant dev</title>
-<style>body{margin:0;background:#111}</style>
+<style>body{margin:0;background:#111}html{scrollbar-width:none}html::-webkit-scrollbar{display:none}</style>
 </head>
 <body>
 <move-assistant-card></move-assistant-card>
@@ -48,6 +48,24 @@ const card = document.querySelector("move-assistant-card");
 card.setConfig({});
 card.hass = hass;
 window.__fakeHass = hass;
+
+// Preview helpers for dev/compare.html: ?edge=1 tries the full-width phone layout, ?nopop=1 skips the check-in popup.
+const params = new URLSearchParams(location.search);
+const waitForApp = () => new Promise((resolve) => {
+  const tick = () => card.shadowRoot?.getElementById("app")?.style.opacity === "" ? resolve() : setTimeout(tick, 50);
+  tick();
+});
+waitForApp().then(async () => {
+  if (params.get("edge") === "1") {
+    const css = await (await fetch("/dev/edge-to-edge.txt")).text();
+    const style = document.createElement("style");
+    style.textContent = css;
+    card.shadowRoot.appendChild(style);
+  }
+  if (params.get("nopop") === "1") {
+    setTimeout(() => card.shadowRoot.getElementById("checkinModal").classList.remove("open"), 900);
+  }
+});
 </script>
 </body>
 </html>

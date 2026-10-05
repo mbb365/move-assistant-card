@@ -1857,7 +1857,7 @@ function positionRubberIndicator(tab,animate=true){
  const rect=tab.getBoundingClientRect();
  rubberIndicator.style.transition=animate?'left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease':'none';
  const zoom=appZoomFactor();
- rubberIndicator.style.left=((rect.left-host.left)/zoom)+'px';
+ rubberIndicator.style.left=((rect.left-host.left)/zoom+rubberTabs.scrollLeft)+'px';
  rubberIndicator.style.width=(rect.width/zoom)+'px';
  if(animate){
    rubberIndicator.style.transform='scaleX(1.08)';
@@ -1865,6 +1865,7 @@ function positionRubberIndicator(tab,animate=true){
  }
 }
 root.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{
+ tab.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});
  root.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
  root.querySelectorAll('.settingsPane').forEach(p=>p.classList.remove('active'));
  tab.classList.add('active');

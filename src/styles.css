@@ -1778,3 +1778,38 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   .workoutGallery{height:auto}
   .workoutPanel,.workoutPanel.active{height:auto;min-height:320px}
 }
+
+/* ---- phones: cards run edge to edge (rounded corners kept), tighter spacing ---- */
+@media(max-width:620px){
+  .view{padding-left:0;padding-right:0}
+  .topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}
+  .tabs.rubberTabs{margin-left:16px}
+  .sectionLabel,.rowLabel{margin-left:16px}
+
+  /* tighter stacking */
+  .grid{gap:8px}
+  .rowLabel,.feelSection{margin-top:16px}
+  .rowLabel{margin-bottom:-4px}
+  .sectionLabel{margin-bottom:8px}
+
+  /* each move card fills the screen; swipe between them */
+  .workoutGallery{gap:8px}
+  .workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}
+  .workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}
+
+  /* less padding inside cards */
+  .card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}
+  .activityRows,.insightCard,.feelCard{gap:8px}
+  .activityRow{padding:10px 12px}
+  .weekChip{padding:10px 12px}
+  .insightStats,.feelDays{gap:8px}
+  .workGrid{gap:8px;margin-top:8px}
+  .nextWrap,.sessionControlRow{margin-top:8px}
+  .upcomingList{gap:8px}
+}
+.tabs.rubberTabs .tab{white-space:nowrap}
+@media(max-width:620px){
+  .tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}
+  .tabs.rubberTabs::-webkit-scrollbar{display:none}
+  .tabs.rubberTabs .tab{flex:0 0 auto}
+}
