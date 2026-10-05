@@ -2,10 +2,21 @@ import css from "./styles.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 
-const VERSION = "0.6.0";
+const VERSION = "0.7.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
+
+// Fonts declared inside a shadow root are ignored, so Inter is added to the page once.
+function loadInter() {
+  if (document.getElementById("move-assistant-inter")) return;
+  const link = document.createElement("link");
+  link.id = "move-assistant-inter";
+  link.rel = "stylesheet";
+  link.href =
+    "https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap";
+  document.head.appendChild(link);
+}
 
 class MoveAssistantCard extends HTMLElement {
   setConfig(config) {
@@ -46,6 +57,7 @@ class MoveAssistantCard extends HTMLElement {
   }
 
   async _init() {
+    loadInter();
     const root = this.shadowRoot || this.attachShadow({ mode: "open" });
     root.innerHTML = `<style>${css}</style>${template}`;
     const app = root.getElementById("app");

@@ -625,7 +625,7 @@ function renderList(arr,targetId){
    row.innerHTML=
      '<div><div class="moveItemName">'+item.name+kindBadge+'</div>'+
      '<div class="moveMeta">'+item.group+durationMeta+'</div></div>'+
-     '<div style="display:flex;gap:8px"><button class="hideBtn">'+(item.hidden?'Show':'Hide')+'</button>'+
+     '<div style="display:flex;gap:6.4px"><button class="hideBtn">'+(item.hidden?'Show':'Hide')+'</button>'+
      '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
    row.querySelector('.hideBtn').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
    const removeBtn=row.querySelector('.removeBtn');
