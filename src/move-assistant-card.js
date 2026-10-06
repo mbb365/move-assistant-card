@@ -2,7 +2,7 @@ import css from "./styles.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 
-const VERSION = "0.9.0";
+const VERSION = "0.10.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
@@ -14,7 +14,7 @@ function loadInter() {
   link.id = "move-assistant-inter";
   link.rel = "stylesheet";
   link.href =
-    "https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap";
+    "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap";
   document.head.appendChild(link);
 }
 
