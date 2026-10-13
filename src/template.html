@@ -370,13 +370,13 @@
         <div class="timeHeader">
           <div class="timeIcon" aria-hidden="true">◷</div>
           <div class="timeCopy">
-            <div class="timeLabel">Total time</div>
+            <div class="timeLabel" id="totalLabel">Total time</div>
             <div class="timeValue" id="totalOut">20 min</div>
           </div>
         </div>
         <div class="rangeTrack">
           <div class="rangeFill" id="totalFill"></div>
-          <input class="rangeInput" id="totalTime" type="range" min="10" max="40" step="5" value="20" aria-label="Total move time">
+          <input class="rangeInput" id="totalTime" type="range" min="3" max="40" step="1" value="20" aria-label="Time per round in minutes">
         </div>
       </section>
 
@@ -405,6 +405,20 @@
         <div class="rangeTrack">
           <div class="rangeFill" id="restFill"></div>
           <input class="rangeInput" id="restTime" type="range" min="5" max="30" step="5" value="15" aria-label="Rest interval">
+        </div>
+      </section>
+
+      <section class="tile timeTile" id="roundsTile">
+        <div class="timeHeader">
+          <div class="timeIcon" aria-hidden="true">↻</div>
+          <div class="timeCopy">
+            <div class="timeLabel">Rounds</div>
+            <div class="timeValue" id="roundsOut">1 round</div>
+          </div>
+        </div>
+        <div class="rangeTrack">
+          <div class="rangeFill" id="roundsFill"></div>
+          <input class="rangeInput" id="roundsInput" type="range" min="1" max="10" step="1" value="1" aria-label="How many times to repeat the move">
         </div>
       </section>
     </div>

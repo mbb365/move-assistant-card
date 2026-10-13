@@ -132,6 +132,7 @@ function showView(name){Object.entries(views).forEach(([k,v])=>v.classList.toggl
 const totalInput=$('totalTime'),workInput=$('workTime'),restInput=$('restTime');
 const totalOut=$('totalOut'),workOut=$('workOut'),restOut=$('restOut');
 const totalFill=$('totalFill'),workFill=$('workFill'),restFill=$('restFill');
+const roundsInput=$('roundsInput'),roundsFill=$('roundsFill'),roundsOut=$('roundsOut'),totalLabel=$('totalLabel');
 const routineSummaryModal=$('routineSummaryModal');
 
 const defaultWarmup=[
@@ -258,6 +259,7 @@ function setWorkoutProfile(key){
  selectedWorkoutKey=key;
  const nameInput=$('workoutNameInput');if(nameInput)nameInput.value=profile.name;
  totalInput.value=profile.total;workInput.value=profile.work;restInput.value=profile.rest;
+ roundsInput.value=profile.rounds||1;
 
  if(profile.customSequence){
    warmup=[];
@@ -265,7 +267,7 @@ function setWorkoutProfile(key){
    strengthPool=(profile.sequence||[]).map(item=>({...item}));
    applyCreatePreset(profile.preset||'movement',false);
  }else{
-   totalInput.min=10; totalInput.max=40; totalInput.step=5;
+   totalInput.min=3; totalInput.max=40; totalInput.step=1;
    workInput.min=20; workInput.max=60; workInput.step=5;
    restInput.min=5; restInput.max=30; restInput.step=5;
    warmup=(profile.warmup||defaultWarmup).map(x=>({...x}));
@@ -340,7 +342,7 @@ function createMovePanel(key,profile){
       '<div class="sub">'+esc(panelSummary(profile))+'</div>'+
       '<span class="sourceTag">'+esc(profile.source||'Custom move')+'</span>'+
     '</div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div>'+
-    '<div class="workoutFooter"><div><strong class="activityCount">'+(count?count+' activities':'—')+'</strong></div>'+
+    '<div class="workoutFooter"><div><strong class="activityCount">'+(count?count+' activities'+((profile.rounds||1)>1?' × '+profile.rounds:''):'—')+'</strong></div>'+
     '<div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div>'+
     '<div class="panelCollapsed"><div class="panelCollapsedText">'+esc(profile.name)+'</div></div>';
 
@@ -411,6 +413,9 @@ function updateRangeFills(){
   totalOut.textContent=formatTotalMinutes(totalInput.value);
   workOut.textContent=formatDuration(workInput.value);
   restOut.textContent=formatDuration(restInput.value);
+  const rounds=Number(roundsInput.value)||1;
+  roundsFill.style.width=pct(rounds,1,10)+'%';
+  totalLabel.textContent=rounds>1?'Time per round':'Total time';
 }
 function visible(arr){return arr.filter(x=>!x.hidden)}
 function secondsFromCreator(value,unit){
@@ -439,7 +444,7 @@ function applyCreatePreset(preset,resetValues=true){
     $('addRestUnit').value='min';
     $('addRestDuration').value=5;
   }else{
-    totalInput.min=10; totalInput.max=40; totalInput.step=5;
+    totalInput.min=3; totalInput.max=40; totalInput.step=1;
     workInput.min=20; workInput.max=60; workInput.step=5;
     restInput.min=5; restInput.max=30; restInput.step=5;
     if(resetValues){
@@ -504,6 +509,7 @@ function buildRoutine(){
    profile.total=Number(totalInput.value);
    profile.work=work;
    profile.rest=rest;
+   profile.rounds=Number(roundsInput.value)||1;
    if(profile.customSequence){
      profile.sequence=strengthPool.map(x=>({...x}));
    }else{
@@ -588,18 +594,43 @@ function buildRoutine(){
      routine.forEach((x,i)=>x.rest=i<routine.length-1?rest:0);
    }
  }
+ // Repeat the whole sequence for each round, with a normal rest between rounds.
+ const rounds=Math.max(1,Math.min(10,Number(roundsInput.value)||1));
+ const oneRound=routine;
+ const perRound=oneRound.length;
+ const roundSeconds=oneRound.reduce((sum,x)=>sum+x.duration+x.rest,0);
+ routine=[];
+ for(let r=1;r<=rounds;r++){
+   oneRound.forEach((item,i)=>routine.push({...item,id:item.id+(rounds>1?'-r'+r:''),round:r,roundIndex:i}));
+   if(r<rounds&&perRound){
+     if(profile?.customSequence){
+       routine.push({id:'round-break-'+r,name:'Rest',group:'Round '+(r+1)+' next',kind:'rest',hidden:false,duration:rest,rest:0,round:r,roundIndex:perRound,roundBreak:true});
+     }else{
+       const last=routine[routine.length-1];
+       last.rest=rest;last.roundBreakAfter=true;
+     }
+   }
+ }
  updateRangeFills();
 
  const actualSeconds=routine.reduce((sum,x)=>sum+x.duration+x.rest,0);
- const actualMinutes=Math.round(actualSeconds/60);
+ const roundMinutes=Math.round(roundSeconds/60);
+ const totalMinutes=Math.round(actualSeconds/60);
+ const length=rounds>1
+   ? formatTotalMinutes(roundMinutes)+' × '+rounds+' rounds ('+formatTotalMinutes(totalMinutes)+')'
+   : formatTotalMinutes(totalMinutes);
  const text=profile?.customSequence
-   ? formatTotalMinutes(actualMinutes)+' · '+routine.length+' items'
-   : formatTotalMinutes(actualMinutes)+' · '+formatDuration(work)+' / '+formatDuration(rest)+' · warm-up + cooldown';
- if(profile){profile.summary=text;profile.activityCount=routine.length}
+   ? length+' · '+perRound+' items'
+   : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+' · warm-up + cooldown';
+ const countText=perRound+' activities'+(rounds>1?' × '+rounds:'');
+ // Custom moves get their length from their own steps, so the time slider doesn't apply.
+ totalInput.closest('.timeTile').hidden=Boolean(profile?.customSequence);
+ roundsOut.textContent=rounds>1?rounds+' rounds · '+formatTotalMinutes(totalMinutes)+' total':'1 round';
+ if(profile){profile.summary=text;profile.activityCount=perRound}
  const activeSummary=root.querySelector('.workoutPanel.active .sub');
  if(activeSummary)activeSummary.textContent=text;
  routineSummaryModal.textContent=text;
- root.querySelectorAll('.workoutPanel.active .activityCount').forEach(el=>el.textContent=routine.length+' activities');
+ root.querySelectorAll('.workoutPanel.active .activityCount').forEach(el=>el.textContent=countText);
  updateRangeFills();
  renderLists();
  updateMovementCreatorAvailability();
@@ -1127,7 +1158,8 @@ function captureWorkoutEditSnapshot(){
     cooldown:cloneMovementList(cooldown),
     total:Number(totalInput.value),
     work:Number(workInput.value),
-    rest:Number(restInput.value)
+    rest:Number(restInput.value),
+    rounds:Number(roundsInput.value)||1
   };
 }
 function openWorkoutEditor(isCreate=false){
@@ -1156,6 +1188,8 @@ function openWorkoutEditor(isCreate=false){
   tempoRevealBtn.setAttribute('aria-expanded','false');
   tempoRevealBtn.textContent='Don’t try this!';
   modal.classList.toggle('createMode',creatingNewMove);
+  // The create-flow styles are written against the inner .modal, so mark it too.
+  modal.querySelector('.modal').classList.toggle('createMode',creatingNewMove);
   modal.classList.add('open');
   modal.setAttribute('aria-hidden','false');
   if(creatingNewMove)enterCreateFlow();
@@ -1163,6 +1197,7 @@ function openWorkoutEditor(isCreate=false){
 function closeWorkoutEditor(){
   if(modal.classList.contains('createMode'))leaveCreateFlow();
   modal.classList.remove('createMode');
+  modal.querySelector('.modal').classList.remove('createMode');
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden','true');
 }
@@ -1174,7 +1209,7 @@ function restoreWorkoutEditSnapshot(){
   warmup=cloneMovementList(s.warmup);
   strengthPool=cloneMovementList(s.strength);
   cooldown=cloneMovementList(s.cooldown);
-  totalInput.value=s.total;workInput.value=s.work;restInput.value=s.rest;
+  totalInput.value=s.total;workInput.value=s.work;restInput.value=s.rest;roundsInput.value=s.rounds||1;
   const profile=workoutProfiles[selectedWorkoutKey];
   if(profile){
     root.querySelectorAll('.workoutPanel[data-workout]').forEach(panel=>panel.classList.toggle('active',panel.dataset.workout===selectedWorkoutKey));
@@ -1491,7 +1526,7 @@ function getNextPart(){
     const n=ni>=0?routine[ni]:null;
     return n?{name:n.name,meta:n.group+' · '+n.duration+' sec',icon:n.kind==='cooldown'?'↘':n.kind==='warmup'?'↗':'●'}:{name:'Complete',meta:'Move finished',icon:'✓'};
   }
-  if(current.rest>0)return{name:'Rest',meta:current.rest+' sec · recovery',icon:'Ⅱ'};
+  if(current.rest>0)return{name:'Rest',meta:current.rest+' sec · '+(current.roundBreakAfter?'round '+(current.round+1)+' next':'recovery'),icon:'Ⅱ'};
   const ni=nextVisibleRoutineIndex(index+1);
   const n=ni>=0?routine[ni]:null;
   return n?{name:n.name,meta:n.group+' · '+n.duration+' sec',icon:n.kind==='cooldown'?'↘':n.kind==='warmup'?'↗':'●'}:{name:'Complete',meta:'Move finished',icon:'✓'};
@@ -1506,8 +1541,22 @@ function getFutureExerciseStartIndex(){
 function futureIcon(item){
   return item.kind==='cooldown'?'↘':item.kind==='warmup'?'↗':'●';
 }
+function totalRounds(){return routine.length?routine[routine.length-1].round||1:1}
+function stepText(i){
+  const s=routine[i];
+  if(!s)return '';
+  const rounds=totalRounds();
+  if(rounds<=1)return 'Step '+(i+1)+' of '+routine.length;
+  if(s.roundBreak)return 'Round '+s.round+' of '+rounds+' · Rest';
+  const inRound=routine.filter(x=>x.round===s.round&&!x.roundBreak).length;
+  return 'Round '+s.round+' of '+rounds+' · Step '+(s.roundIndex+1)+' of '+inRound;
+}
+function activeSegment(){return progress.querySelector('[data-step="'+index+'"]')}
 function refreshProgressState(){
-  [...progress.children].forEach((el,i)=>{
+  // The bar shows the current round; rebuild it when a new round starts.
+  if(routine[index]&&Number(progress.dataset.round)!==(routine[index].round||1))makeProgress();
+  [...progress.children].forEach(el=>{
+    const i=Number(el.dataset.step);
     el.classList.toggle('done',i<index);
     el.classList.toggle('active',i===index);
     el.classList.toggle('rewindable',i<=index);
@@ -1515,7 +1564,7 @@ function refreshProgressState(){
     if(i===index)el.style.setProperty('--segment-progress','0%');
   });
   if(routine[index]){
-    stepLabel.textContent='Step '+(index+1)+' of '+routine.length;
+    stepLabel.textContent=stepText(index);
     updateTimer();
   }
 }
@@ -1540,7 +1589,7 @@ function renderUpcomingExercises(){
       '<div class="upcomingInfo">'+
         '<div class="upcomingIcon" aria-hidden="true">'+futureIcon(item)+'</div>'+
         '<div><div class="upcomingName">'+esc(item.name)+'</div>'+
-        '<div class="upcomingMeta">'+esc(item.group)+' · '+item.duration+' sec</div></div>'+
+        '<div class="upcomingMeta">'+esc(item.group)+' · '+item.duration+' sec'+(totalRounds()>1?' · round '+item.round:'')+'</div></div>'+
       '</div>'+
       '<button class="skipSessionBtn" type="button">'+(item.sessionHidden?'Include this session':'Skip this session')+'</button>';
     card.querySelector('.skipSessionBtn').addEventListener('click',()=>skipFutureExercise(item));
@@ -1634,8 +1683,12 @@ function startCountdown(){
 }
 function makeProgress(){
  progress.innerHTML='';
+ const round=(routine[Math.max(0,index)]||routine[0])?.round||1;
+ progress.dataset.round=round;
  routine.forEach((step,stepIndex)=>{
+   if((step.round||1)!==round)return;
    const seg=document.createElement('button');
+   seg.dataset.step=stepIndex;
    seg.type='button';
    seg.className='progressSegment';
    seg.setAttribute('aria-label','Go to '+step.name);
@@ -1673,8 +1726,8 @@ function loadStep(){
  totalPhase=s.duration;
  title.textContent=s.name;
  meta.textContent=s.group;
- stepLabel.textContent='Step '+(index+1)+' of '+routine.length;
- if(session)moveEvent('step',{name:s.name,group:s.group,kind:s.kind,step:index+1,of:routine.length,duration:s.duration});
+ stepLabel.textContent=stepText(index);
+ if(session)moveEvent('step',{name:s.name,group:s.group,kind:s.kind,step:index+1,of:routine.length,round:s.round||1,rounds:totalRounds(),duration:s.duration});
  updateNextCard();
  refreshProgressState();
 }
@@ -1682,7 +1735,7 @@ function updateTimer(){
  digits.textContent=seconds;
  const remainingPct=(seconds/totalPhase)*100;
  fill.style.width=remainingPct+'%';
- const activeSeg=[...progress.children][index];
+ const activeSeg=activeSegment();
  if(activeSeg&&!isResting){
    const completedPct=100-remainingPct;
    activeSeg.style.setProperty('--segment-progress',completedPct+'%');
@@ -1691,8 +1744,8 @@ function updateTimer(){
 function tick(){if(paused)return;seconds--;updateTimer();if(seconds<=0){const s=routine[index];if(s.rest>0)startRest(s.rest);else advance()}}
 function startRest(restSec){
  isResting=true;$('app').classList.add('resting');
- const activeSeg=[...progress.children][index];if(activeSeg)activeSeg.style.setProperty('--segment-progress','100%');
- clearInterval(timer);seconds=restSec;totalPhase=restSec;if(session)moveEvent('rest',{duration:restSec});title.textContent='Rest';meta.textContent='Recovery';updateNextCard();updateTimer();
+ const activeSeg=activeSegment();if(activeSeg)activeSeg.style.setProperty('--segment-progress','100%');
+ clearInterval(timer);seconds=restSec;totalPhase=restSec;if(session)moveEvent('rest',{duration:restSec});title.textContent='Rest';meta.textContent=routine[index]?.roundBreakAfter?'Round '+(routine[index].round+1)+' next':'Recovery';updateNextCard();updateTimer();
  timer=setInterval(()=>{if(paused)return;seconds--;updateTimer();if(seconds<=0){clearInterval(timer);advance();timer=setInterval(tick,1000)}},1000)
 }
 function advance(){
@@ -2154,7 +2207,7 @@ root.addEventListener('keydown',e=>{
 });
 
 /* nav and controls */
-[totalInput,workInput,restInput].forEach(i=>i.addEventListener('input',()=>{
+[totalInput,workInput,restInput,roundsInput].forEach(i=>i.addEventListener('input',()=>{
  const profile=workoutProfiles[selectedWorkoutKey];
  if(profile){
    profile.total=Number(totalInput.value);
@@ -2173,7 +2226,9 @@ pauseBtn.addEventListener('click',()=>{
  $('app').classList.toggle('paused',paused);
 });
 
-buildRoutine();
+// Load the selected move's saved timing into the editor before building, so the
+// default slider values never overwrite what was saved.
+setWorkoutProfile(selectedWorkoutKey);
 renderFeelingRows();
 renderFeelWeek();
 renderInsights();

@@ -904,7 +904,7 @@ button,input{font:inherit}
 .editNameLabel{color:var(--muted)}
 .editNameInput{min-height:46.4px;border-radius:17.6px;border:0.32px solid var(--line);background:#151515;color:var(--text);padding:0 14.4px}
 #app.light .editNameInput{background:rgba(255,255,255,.88);color:#222222!important;border-color:#fff}
-.timeTiles{display:grid;grid-template-columns:repeat(3,1fr);gap:11.2px;margin-bottom:11.2px}
+.timeTiles{display:grid;grid-template-columns:repeat(4,1fr);gap:11.2px;margin-bottom:11.2px}
 .timeTile{
   background:#252525;
   min-height:148.8px;
@@ -1835,3 +1835,6 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 #app.light .weekBarTrack{background:rgba(255,255,255,.8)}
 #app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
 @media(max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}
+
+/* four timing tiles (time, work, rest, rounds): two per row on smaller screens */
+@media(max-width:1200px) and (min-width:901px){.timeTiles{grid-template-columns:repeat(2,1fr)}}

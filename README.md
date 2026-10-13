@@ -9,6 +9,7 @@ Runs as a full-page dashboard card.
 - **Movement & you** shows what you've already done (today, streak, last 30 days), a 14-day strip of moves, steps, mood and energy, and how your mood and energy differ on days you move.
 - **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
 - **Apple Health**: Settings → Help explains turning on Apple Health sensors in the Home Assistant iPhone app (2026.9+), then picking the Health steps sensor.
+- **Rounds**: in Edit move, set how many times to repeat a move (1–10). Time per round × rounds, with a normal rest between rounds.
 - **This week** counts minutes from the moves you actually do (30 seconds or more).
 - **TV mode** (⛶ button) goes full screen with no HA header or sidebar. Works with a keyboard, TV remote or game controller.
 
@@ -46,7 +47,7 @@ actions:
       brightness_pct: 30
 ```
 
-Step events also include `name`, `group`, `step`, `of` and `duration`. Set `events: false` on the card to turn events off.
+Step events also include `name`, `group`, `step`, `of`, `round`, `rounds` and `duration`. Set `events: false` on the card to turn events off.
 
 ## Development
 
