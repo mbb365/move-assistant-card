@@ -1455,9 +1455,11 @@ function sizeRippleCanvas(){
   rippleCanvas.style.height=height+'px';
   rippleCtx.setTransform(dpr,0,0,dpr,0,0);
 }
+// A rest phase after an exercise, or a rest step in a custom move.
+function restingNow(){return isResting||routine[index]?.kind==='rest'}
 function movementPulsePeriod(){
   const s=routine[index];
-  if(isResting)return 2200;
+  if(restingNow())return 2200;
   if(!s)return 1600;
   if(s.kind==='warmup'||s.kind==='cooldown')return 2400;
   return 1350;
@@ -1483,18 +1485,19 @@ function drawRipple(now){
       for(let x=1;x<=cols;x++){
         const px=x*gapX,py=y*gapY;
         const d=Math.hypot(px-cx,py-cy)/maxD;
-        const restWave=isResting
+        const resting=restingNow();
+        const restWave=resting
           ? Math.exp(-Math.pow((d-((phase*.82+.08)%1)*1.18)*5.5,2))
           : 0;
         const workWave=Math.exp(-Math.pow((d-phase*1.25)*7,2));
-        const wave=isResting?restWave:workWave;
-        const beat=isResting
+        const wave=resting?restWave:workWave;
+        const beat=resting
           ? (.5+.5*Math.sin((phase*Math.PI*2)-d*3)**2)
           : (.35+.65*Math.sin((phase*Math.PI*2)-d*5)**2);
-        const radius=isResting ? 1.4+wave*4.2*beat : 1.2+wave*5*beat;
+        const radius=resting ? 1.4+wave*4.2*beat : 1.2+wave*5*beat;
         rippleCtx.beginPath();
         rippleCtx.arc(px,py,radius,0,Math.PI*2);
-        rippleCtx.fillStyle=`rgba(${base},${isResting?0.08+wave*.48:0.05+wave*.55})`;
+        rippleCtx.fillStyle=`rgba(${base},${resting?0.08+wave*.48:0.05+wave*.55})`;
         rippleCtx.fill();
       }
     }
@@ -1714,18 +1717,19 @@ function rewindToStep(stepIndex){
 function startRoutine(){
  index=nextVisibleRoutineIndex(0);
  paused=false;$('app').classList.remove('paused');pauseBtn.textContent='Pause';makeProgress();
- if(index<0){title.textContent='No activities';meta.textContent='Open Edit and enable or add a movement';return}
+ if(index<0){title.textContent='No activities';meta.textContent='Open Edit and enable or add a movement';meta.hidden=false;return}
  beginSession();
  loadStep();clearInterval(timer);timer=setInterval(tick,1000)
 }
 function loadStep(){
  isResting=false;
- $('app').classList.remove('resting');
  const s=routine[index];
+ $('app').classList.toggle('resting',s.kind==='rest');
  seconds=s.duration;
  totalPhase=s.duration;
  title.textContent=s.name;
  meta.textContent=s.group;
+ meta.hidden=true;
  stepLabel.textContent=stepText(index);
  if(session)moveEvent('step',{name:s.name,group:s.group,kind:s.kind,step:index+1,of:routine.length,round:s.round||1,rounds:totalRounds(),duration:s.duration});
  updateNextCard();
@@ -1758,7 +1762,8 @@ function advance(){
    paused=false;pauseBtn.textContent='Pause';
    $('app').classList.remove('resting','paused');
    clearInterval(timer);
-   title.textContent='Complete';meta.textContent='Move finished';digits.textContent='✓';
+   title.textContent='Complete';meta.textContent='Move finished';meta.hidden=false;digits.textContent='✓';
+   {const rounds=totalRounds();stepLabel.textContent=rounds>1?rounds+' rounds done':routine.filter(x=>!x.roundBreak).length+' steps done';}
    finishSession(true);
    {const wk=dailySeries(7).reduce((a,d)=>a+d.minutes,0);meta.textContent='Move finished · '+wk+' min in the last 7 days';}
    fill.style.width='100%';updateNextCard();
