@@ -1,4 +1,4 @@
-const Oa = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;--tile:#252525;--tile-2:#292929;--row:#2a2a2a;--row-rest:#22252a;--raised:#282828;--chip:#292929;--bar-track:#292929;--control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#313131;--text:#f4f4f4;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);--line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;--bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;--segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;--hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);--today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;--danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;--tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;--control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);--text:#222222;--soft:#3F3F3F;--muted:#6B6B6B;--accent-text:#5B7A00;--line:#FFFFFF;--lineb:#FFFFFF;--field-line:#DAD8D8;--divider:#E6E4E4;--border-hover:#C9C7C7;--bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);--segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;--hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);--today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;--danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:28.8px;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:28.8px;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;cursor:pointer}.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:var(--knob-off);transition:left .18s ease}.switch.on{background:var(--bright)}.switch.on:after{left:22.4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:64px;--t-title:22px;--t-value:22px;--t-section:18px;--t-strong:16px;--t-body:14px;--t-caption:12px;--lh-display:1.05;--lh-title:1}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.helpSteps strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.moveEditForm label>span,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,.autoRestSummary,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:var(--bar-track);overflow:hidden}.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}.weekBar.future{opacity:.35}#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:var(--tile)}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 14px 34px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}', za = `<main id="app"><div class="shell">
+const fo = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;--tile:#252525;--tile-2:#292929;--row:#2a2a2a;--row-rest:#22252a;--raised:#282828;--chip:#292929;--bar-track:#292929;--control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#313131;--text:#f4f4f4;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);--line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;--bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;--segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;--hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);--today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;--danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;--tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;--control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);--text:#222222;--soft:#3F3F3F;--muted:#6B6B6B;--accent-text:#5B7A00;--line:#FFFFFF;--lineb:#FFFFFF;--field-line:#DAD8D8;--divider:#E6E4E4;--border-hover:#C9C7C7;--bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);--segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;--hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);--today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;--danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:28.8px;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:28.8px;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;cursor:pointer}.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:var(--knob-off);transition:left .18s ease}.switch.on{background:var(--bright)}.switch.on:after{left:22.4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:64px;--t-title:22px;--t-value:22px;--t-section:18px;--t-strong:16px;--t-body:14px;--t-caption:12px;--lh-display:1.05;--lh-title:1}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.moveEditForm label>span,.addGhostText small,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,.autoRestSummary,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:var(--bar-track);overflow:hidden}.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}.weekBar.future{opacity:.35}#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:var(--tile)}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 14px 34px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.56,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.56,.64,1),height .4s cubic-bezier(.34,1.56,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.56,.64,1),margin-top .42s cubic-bezier(.34,1.56,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}', xo = `<main id="app"><div class="shell">
 <div class="toast" id="toast" aria-live="polite"></div>
 
 <!-- HOME -->
@@ -636,69 +636,69 @@ const Oa = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
   </section>
 </div>
 `;
-function qa(h, v) {
-  const i = (e) => h.getElementById(e), N = i("workoutView"), S = i("workoutNameInput");
-  let D = !0;
-  const Sn = i("homeClock");
-  function Cn() {
-    Sn && (Sn.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
+function bo(f, h) {
+  const i = (e) => f.getElementById(e), H = i("workoutView"), E = i("workoutNameInput");
+  let O = !0;
+  const Wn = i("homeClock");
+  function jn() {
+    Wn && (Wn.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
-  Cn(), setInterval(Cn, 15e3);
-  const Tn = i("createFlow"), yi = i("createMovementsSlot"), wi = i("createTimingSlot"), Ln = i("createFinishSlot"), ki = i("movementStepSummary"), Si = i("timingStepSummary"), Ci = i("finishStepSummary"), Dt = i("continueToTiming"), Ti = i("continueToFinish"), Li = i("finishMoveButton");
-  let Ht = !1, pt = [];
-  function Ei(e) {
-    !e || pt.some((t) => t.node === e) || pt.push({ node: e, parent: e.parentNode, next: e.nextSibling });
+  jn(), setInterval(jn, 15e3);
+  const Yn = i("createFlow"), Ui = i("createMovementsSlot"), Zi = i("createTimingSlot"), Vn = i("createFinishSlot"), Ki = i("movementStepSummary"), Ji = i("timingStepSummary"), Qi = i("finishStepSummary"), en = i("continueToTiming"), Xi = i("continueToFinish"), $i = i("finishMoveButton");
+  let tn = !1, Et = [];
+  function ea(e) {
+    !e || Et.some((t) => t.node === e) || Et.push({ node: e, parent: e.parentNode, next: e.nextSibling });
   }
-  function ut(e, t) {
-    e && (Ei(e), t.appendChild(e));
+  function Mt(e, t) {
+    e && (ea(e), t.appendChild(e));
   }
-  function Mi() {
-    [...pt].reverse().forEach(({ node: e, parent: t, next: n }) => {
+  function ta() {
+    [...Et].reverse().forEach(({ node: e, parent: t, next: n }) => {
       t && (n && n.parentNode === t ? t.insertBefore(e, n) : t.appendChild(e));
-    }), pt = [];
+    }), Et = [];
   }
-  function Ee(e) {
-    h.querySelectorAll(".createStep").forEach((t) => {
+  function _e(e) {
+    f.querySelectorAll(".createStep").forEach((t) => {
       t.classList.toggle("active", t.dataset.createStep === e);
-    }), e === "timing" && (Ht = !0), le();
+    }), e === "timing" && (tn = !0), be();
   }
-  function le() {
-    var u, m;
-    if (!P) return;
-    b[k];
-    const e = H.filter((c) => !c.hidden), t = e.filter((c) => c.kind !== "rest").length, n = e.filter((c) => c.kind === "rest").length;
-    ki.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
-    const a = t > 0, o = h.querySelector('[data-open-step="timing"]'), r = h.querySelector('[data-open-step="finish"]');
-    o.disabled = !a, Dt.disabled = !a, Si.textContent = a ? ye(R.value) + " · " + G(C.value) + " movement · " + G(L.value) + " rest" : "Add a movement first", r.disabled = !(a && Ht);
-    const l = ((S == null ? void 0 : S.value) || "").trim(), s = [];
-    (u = i("includeWarmupPreset")) != null && u.checked && s.push("warm-up"), (m = i("includeCooldownPreset")) != null && m.checked && s.push("cooldown"), Ci.textContent = l ? l + (s.length ? " · " + s.join(" + ") : "") : s.length ? s.join(" + ") : "Name and optional extras";
+  function be() {
+    var p, u;
+    if (!z) return;
+    C[L];
+    const e = W.filter((g) => !g.hidden), t = e.filter((g) => g.kind !== "rest").length, n = e.filter((g) => g.kind === "rest").length;
+    Ki.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
+    const a = t > 0, o = f.querySelector('[data-open-step="timing"]'), r = f.querySelector('[data-open-step="finish"]');
+    o.disabled = !a, en.disabled = !a, Ji.textContent = a ? Ne(I.value) + " · " + K(M.value) + " movement · " + K(R.value) + " rest" : "Add a movement first", r.disabled = !(a && tn);
+    const s = ((E == null ? void 0 : E.value) || "").trim(), l = [];
+    (p = i("includeWarmupPreset")) != null && p.checked && l.push("warm-up"), (u = i("includeCooldownPreset")) != null && u.checked && l.push("cooldown"), Qi.textContent = s ? s + (l.length ? " · " + l.join(" + ") : "") : l.length ? l.join(" + ") : "Name and optional extras";
   }
-  function Fi() {
-    var f, M, A;
-    Tn.hidden = !1, Ht = !1;
-    const e = h.querySelector(".editNameRow"), t = i("createMoveOptions"), n = h.querySelector(".timeTiles"), a = i("routineSummaryModal"), o = h.querySelector(".tempoRevealRow"), r = i("tempoExperiment"), l = (f = i("warmupList")) == null ? void 0 : f.closest("section"), s = i("movementCreatorLaunch"), u = i("movementCreator"), m = (M = i("strengthList")) == null ? void 0 : M.closest("section"), c = (A = i("cooldownList")) == null ? void 0 : A.closest("section");
-    [l, s, u, m, c].forEach((T) => ut(T, yi)), [t, n, a, o, r].forEach((T) => ut(T, wi)), ut(e, Ln);
-    const d = t == null ? void 0 : t.querySelector(".createExtras");
-    d && ut(d, Ln), Ee("movements"), le();
+  function na() {
+    var d, y, b;
+    Yn.hidden = !1, tn = !1;
+    const e = f.querySelector(".editNameRow"), t = i("createMoveOptions"), n = f.querySelector(".timeTiles"), a = i("routineSummaryModal"), o = f.querySelector(".tempoRevealRow"), r = i("tempoExperiment"), s = (d = i("warmupList")) == null ? void 0 : d.closest("section"), l = i("movementCreatorLaunch"), p = i("movementCreator"), u = (y = i("strengthList")) == null ? void 0 : y.closest("section"), g = (b = i("cooldownList")) == null ? void 0 : b.closest("section");
+    [s, l, p, u, g].forEach((S) => Mt(S, Ui)), [t, n, a, o, r].forEach((S) => Mt(S, Zi)), Mt(e, Vn);
+    const c = t == null ? void 0 : t.querySelector(".createExtras");
+    c && Mt(c, Vn), _e("movements"), be();
   }
-  function Ri() {
-    Mi(), Tn.hidden = !0, h.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
+  function ia() {
+    ta(), Yn.hidden = !0, f.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
   }
-  h.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
-    e.disabled || Ee(e.dataset.openStep);
-  })), Dt.addEventListener("click", () => {
-    Dt.disabled || Ee("timing");
-  }), Ti.addEventListener("click", () => Ee("finish")), Li.addEventListener("click", () => i("saveWorkoutEdit").click());
-  const Me = { home: i("homeView"), workout: i("workoutView"), settings: i("settingsView") }, En = i("homeNav"), Mn = i("settingsNav");
-  function _t(e) {
-    Object.entries(Me).forEach(([t, n]) => n.classList.toggle("active", t === e)), En.classList.toggle("active", e === "home"), Mn.classList.toggle("active", e === "settings"), e === "home" && setTimeout(en, 400), e === "settings" && requestAnimationFrame(() => ct(h.querySelector(".tab.active"), !1));
+  f.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
+    e.disabled || _e(e.dataset.openStep);
+  })), en.addEventListener("click", () => {
+    en.disabled || _e("timing");
+  }), Xi.addEventListener("click", () => _e("finish")), $i.addEventListener("click", () => i("saveWorkoutEdit").click());
+  const qe = { home: i("homeView"), workout: i("workoutView"), settings: i("settingsView") }, Un = i("homeNav"), Zn = i("settingsNav");
+  function nn(e) {
+    Object.entries(qe).forEach(([t, n]) => n.classList.toggle("active", t === e)), Un.classList.toggle("active", e === "home"), Zn.classList.toggle("active", e === "settings"), e === "home" && setTimeout(bn, 400), e === "settings" && requestAnimationFrame(() => Lt(f.querySelector(".tab.active"), !1));
   }
-  const R = i("totalTime"), C = i("workTime"), L = i("restTime"), Bi = i("totalOut"), Fn = i("workOut"), Rn = i("restOut"), Ai = i("totalFill"), Ni = i("workFill"), Pi = i("restFill"), ve = i("roundsInput"), Ii = i("roundsFill"), Di = i("roundsOut"), Hi = i("totalLabel"), _i = i("routineSummaryModal"), Ot = [
+  const I = i("totalTime"), M = i("workTime"), R = i("restTime"), aa = i("totalOut"), Kn = i("workOut"), Jn = i("restOut"), oa = i("totalFill"), ra = i("workFill"), sa = i("restFill"), Re = i("roundsInput"), la = i("roundsFill"), da = i("roundsOut"), ca = i("totalLabel"), pa = i("routineSummaryModal"), an = [
     { id: "standing-reach", name: "Standing reach", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
   ];
-  let he = Ot.map((e) => ({ ...e })), H = [
+  let ye = an.map((e) => ({ ...e })), W = [
     { id: "goblet-squat", name: "Kettlebell goblet squat", group: "Glutes + legs", kind: "work", hidden: !1 },
     { id: "floor-press", name: "Kettlebell floor press", group: "Chest + triceps", kind: "work", hidden: !1 },
     { id: "one-arm-row", name: "One-arm kettlebell row", group: "Back + arms", kind: "work", hidden: !1 },
@@ -710,14 +710,14 @@ function qa(h, v) {
     { id: "glute-bridge", name: "Glute bridge with kettlebell", group: "Glutes", kind: "work", hidden: !1 },
     { id: "pullover", name: "Kettlebell pullover", group: "Chest + core", kind: "work", hidden: !1 }
   ];
-  const zt = [
+  const on = [
     { id: "hip-flexor", name: "Hip flexor stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "chest-opener", name: "Chest opener", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "hamstring", name: "Hamstring stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "slow-breathing", name: "Slow breathing", group: "Cooldown", kind: "cooldown", hidden: !1 }
   ];
-  let fe = zt.map((e) => ({ ...e }));
-  const Oi = {
+  let we = on.map((e) => ({ ...e }));
+  const ua = {
     kettlebell: {
       name: "Kettlebell full body",
       eyebrow: "",
@@ -767,10 +767,10 @@ function qa(h, v) {
         ["glute-bridge", "Glute bridge with kettlebell", "Glutes + core"]
       ]
     }
-  }, w = Bn(v.data), b = w.profiles;
-  let k = b[w.selected] ? w.selected : w.order.find((e) => b[e]) || "kettlebell";
-  function Bn(e) {
-    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Oi)), a = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
+  }, T = Qn(h.data), C = T.profiles;
+  let L = C[T.selected] ? T.selected : T.order.find((e) => C[e]) || "kettlebell";
+  function Qn(e) {
+    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(ua)), a = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
     return Object.keys(n).forEach((o) => {
       a.includes(o) || a.push(o);
     }), {
@@ -779,93 +779,93 @@ function qa(h, v) {
       order: a,
       selected: t.selected || a[0],
       history: Array.isArray(t.history) ? t.history : [],
-      checkins: (Array.isArray(t.checkins) ? t.checkins : zi(t.energy)).map(An),
+      checkins: (Array.isArray(t.checkins) ? t.checkins : ma(t.energy)).map(Xn),
       settings: { ...t.settings || {} }
     };
   }
-  function zi(e) {
+  function ma(e) {
     if (!Array.isArray(e)) return [];
     const t = ["Drained", "Low", "Okay", "Good", "Energised", "Great"], n = [];
     return e.forEach((a) => {
       const o = new Date(a.at);
       if (isNaN(o)) return;
-      const r = o.getFullYear() + "-" + String(o.getMonth() + 1).padStart(2, "0") + "-" + String(o.getDate()).padStart(2, "0"), l = o.getHours() < 14 ? "morning" : "evening";
-      if (n.some((u) => u.date === r && u.slot === l)) return;
-      const s = t.indexOf(a.value) + 1;
-      s > 0 && n.push({ date: r, slot: l, mood: null, energy: s, at: a.at });
+      const r = o.getFullYear() + "-" + String(o.getMonth() + 1).padStart(2, "0") + "-" + String(o.getDate()).padStart(2, "0"), s = o.getHours() < 14 ? "morning" : "evening";
+      if (n.some((p) => p.date === r && p.slot === s)) return;
+      const l = t.indexOf(a.value) + 1;
+      l > 0 && n.push({ date: r, slot: s, mood: null, energy: l, at: a.at });
     }), n;
   }
-  function An(e) {
+  function Xn(e) {
     if (e.scale === 100) return e;
     const t = (n) => n == null ? null : Math.round((Number(n) - 1) / 5 * 100);
     return { ...e, mood: t(e.mood), energy: t(e.energy), scale: 100 };
   }
-  function xe() {
-    P || (w.selected = k, w.order = w.order.filter((e) => b[e] && e !== be), v.save(w));
+  function Be() {
+    z || (T.selected = L, T.order = T.order.filter((e) => C[e] && e !== Ae), h.save(T));
   }
-  function E() {
-    return w.settings;
+  function N() {
+    return T.settings;
   }
-  function J(e) {
-    const t = b[e];
+  function oe(e) {
+    const t = C[e];
     if (!t) return;
-    k = e;
+    L = e;
     const n = i("workoutNameInput");
-    n && (n.value = t.name), R.value = t.total, C.value = t.work, L.value = t.rest, ve.value = t.rounds || 1, t.customSequence ? (he = [], fe = [], H = (t.sequence || []).map((a) => ({ ...a })), Vt(t.preset || "movement", !1)) : (R.min = 3, R.max = 40, R.step = 1, C.min = 20, C.max = 60, C.step = 5, L.min = 5, L.max = 30, L.step = 5, he = (t.warmup || Ot).map((a) => ({ ...a })), fe = (t.cooldown || zt).map((a) => ({ ...a })), H = t.strength.map((a) => Array.isArray(a) ? (([o, r, l, s = !1]) => ({ id: o, name: r, group: l, kind: "work", hidden: !!s }))(a) : { ...a })), h.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === e)), O();
+    n && (n.value = t.name), I.value = t.total, M.value = t.work, R.value = t.rest, Re.value = t.rounds || 1, t.customSequence ? (ye = [], we = [], W = (t.sequence || []).map((a) => ({ ...a })), cn(t.preset || "movement", !1)) : (I.min = 3, I.max = 40, I.step = 1, M.min = 20, M.max = 60, M.step = 5, R.min = 5, R.max = 30, R.step = 5, ye = (t.warmup || an).map((a) => ({ ...a })), we = (t.cooldown || on).map((a) => ({ ...a })), W = t.strength.map((a) => Array.isArray(a) ? (([o, r, s, l = !1]) => ({ id: o, name: r, group: s, kind: "work", hidden: !!l }))(a) : { ...a })), f.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === e)), q();
   }
-  function qi(e, t, n) {
-    const a = e.getBoundingClientRect(), o = a.width / 2, r = a.height / 2, l = t - o, s = n - r;
-    let u = 1 / 0, m = 1 / 0;
-    l !== 0 && (u = o / Math.abs(l)), s !== 0 && (m = r / Math.abs(s));
-    const c = Math.min(Math.max(1 / Math.min(u, m), 0), 1);
-    let d = Math.atan2(s, l) * (180 / Math.PI) + 90;
-    return d < 0 && (d += 360), { edge: c, angle: d };
+  function ga(e, t, n) {
+    const a = e.getBoundingClientRect(), o = a.width / 2, r = a.height / 2, s = t - o, l = n - r;
+    let p = 1 / 0, u = 1 / 0;
+    s !== 0 && (p = o / Math.abs(s)), l !== 0 && (u = r / Math.abs(l));
+    const g = Math.min(Math.max(1 / Math.min(p, u), 0), 1);
+    let c = Math.atan2(l, s) * (180 / Math.PI) + 90;
+    return c < 0 && (c += 360), { edge: g, angle: c };
   }
-  function qt(e, t, n = !1) {
-    const a = e.getBoundingClientRect(), o = t.clientX - a.left, r = t.clientY - a.top, { edge: l, angle: s } = qi(e, o, r), u = n ? 100 : l * 100;
-    e.style.setProperty("--edge-proximity", u.toFixed(3)), e.style.setProperty("--cursor-angle", s.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || u >= 30);
+  function rn(e, t, n = !1) {
+    const a = e.getBoundingClientRect(), o = t.clientX - a.left, r = t.clientY - a.top, { edge: s, angle: l } = ga(e, o, r), p = n ? 100 : s * 100;
+    e.style.setProperty("--edge-proximity", p.toFixed(3)), e.style.setProperty("--cursor-angle", l.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || p >= 30);
   }
-  function Nn(e) {
-    e.addEventListener("pointermove", (n) => qt(e, n, !1)), e.addEventListener("pointerenter", (n) => qt(e, n, !1)), e.addEventListener("pointerdown", (n) => qt(e, n, !0));
+  function $n(e) {
+    e.addEventListener("pointermove", (n) => rn(e, n, !1)), e.addEventListener("pointerenter", (n) => rn(e, n, !1)), e.addEventListener("pointerdown", (n) => rn(e, n, !0));
     const t = () => {
       e.classList.remove("borderGlowActive"), e.style.setProperty("--edge-proximity", "0");
     };
     e.addEventListener("pointerleave", t), e.addEventListener("pointerup", t), e.addEventListener("pointercancel", t);
   }
-  Nn(i("addWorkoutPanel"));
-  let P = !1, be = null;
-  function F(e) {
+  $n(i("addWorkoutPanel"));
+  let z = !1, Ae = null;
+  function P(e) {
     return String(e ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]);
   }
-  function Gi(e) {
-    return e.summary ? e.summary : e.customSequence ? ye(e.total) + " · custom move" : ye(e.total) + " · " + G(e.work) + " / " + G(e.rest) + " · warm-up + cooldown";
+  function va(e) {
+    return e.summary ? e.summary : e.customSequence ? Ne(e.total) + " · custom move" : Ne(e.total) + " · " + K(e.work) + " / " + K(e.rest) + " · warm-up + cooldown";
   }
-  function Gt(e, t) {
-    var l;
+  function sn(e, t) {
+    var s;
     const n = document.createElement("article");
     n.className = "workoutPanel", n.dataset.workout = e, n.tabIndex = 0;
-    const a = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((l = t.sequence) == null ? void 0 : l.length) || 0);
-    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (a ? '<div class="eyebrow">' + F(a) + "</div>" : "") + '<div class="workoutName">' + F(t.name) + '</div><div class="sub">' + F(Gi(t)) + '</div><span class="sourceTag">' + F(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + F(t.name) + "</div></div>";
+    const a = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((s = t.sequence) == null ? void 0 : s.length) || 0);
+    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (a ? '<div class="eyebrow">' + P(a) + "</div>" : "") + '<div class="workoutName">' + P(t.name) + '</div><div class="sub">' + P(va(t)) + '</div><span class="sourceTag">' + P(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + P(t.name) + "</div></div>";
     const r = i("addWorkoutPanel");
-    return i("workoutGallery").insertBefore(n, r), Nn(n), n.addEventListener("click", (s) => {
-      s.target.closest("button") || J(e);
-    }), n.addEventListener("keydown", (s) => {
-      (s.key === "Enter" || s.key === " ") && !s.target.closest("button") && (s.preventDefault(), J(e));
-    }), n.querySelector(".seeWorkoutBtn").addEventListener("click", (s) => {
-      s.stopPropagation(), J(e), jn(!1);
-    }), n.querySelector(".startWorkoutBtn").addEventListener("click", (s) => {
-      s.stopPropagation(), J(e), Ca();
+    return i("workoutGallery").insertBefore(n, r), $n(n), n.addEventListener("click", (l) => {
+      l.target.closest("button") || oe(e);
+    }), n.addEventListener("keydown", (l) => {
+      (l.key === "Enter" || l.key === " ") && !l.target.closest("button") && (l.preventDefault(), oe(e));
+    }), n.querySelector(".seeWorkoutBtn").addEventListener("click", (l) => {
+      l.stopPropagation(), oe(e), mi(!1);
+    }), n.querySelector(".startWorkoutBtn").addEventListener("click", (l) => {
+      l.stopPropagation(), oe(e), to();
     }), n;
   }
-  function Pn() {
-    h.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), w.order.forEach((e) => {
-      b[e] && Gt(e, b[e]);
-    }), h.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === k));
+  function ei() {
+    f.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), T.order.forEach((e) => {
+      C[e] && sn(e, C[e]);
+    }), f.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === L));
   }
-  Pn(), i("addWorkoutPanel").addEventListener("keydown", (e) => {
+  ei(), i("addWorkoutPanel").addEventListener("keydown", (e) => {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), i("addWorkoutPanel").click());
   }), i("addWorkoutPanel").addEventListener("click", () => {
-    P = !0, be = "custom-" + Date.now(), b[be] = {
+    z = !0, Ae = "custom-" + Date.now(), C[Ae] = {
       name: "New move",
       source: "Custom move",
       total: 20,
@@ -877,78 +877,78 @@ function qa(h, v) {
       includeCooldown: !1,
       sequence: [],
       strength: []
-    }, J(be), jn(!0);
+    }, oe(Ae), mi(!0);
   });
-  let g = [], x = 0, Z = 0, mt = 1, q = !1, _ = null, gt = null, V = !1, Fe = w.settings.upcomingCount ?? "all";
-  function vt(e, t, n) {
+  let v = [], k = 0, ne = 0, Ft = 1, Z = !1, Y = null, Rt = null, Q = !1, Ge = T.settings.upcomingCount ?? "all";
+  function Bt(e, t, n) {
     return (Number(e) - t) / (n - t) * 100;
   }
-  function G(e) {
+  function K(e) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 3600 && t % 3600 === 0 ? t / 3600 + " hr" : t >= 60 && t % 60 === 0 ? t / 60 + " min" : t >= 60 ? Math.round(t / 60) + " min" : Math.round(t) + " sec";
   }
-  function ye(e) {
+  function Ne(e) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 60 && t % 60 === 0 ? t / 60 + " hr" : t >= 60 ? Math.floor(t / 60) + " hr " + t % 60 + " min" : t + " min";
   }
-  function ht() {
-    Ai.style.width = vt(R.value, Number(R.min), Number(R.max)) + "%", Ni.style.width = vt(C.value, Number(C.min), Number(C.max)) + "%", Pi.style.width = vt(L.value, Number(L.min), Number(L.max)) + "%", Fn.textContent = G(C.value), Rn.textContent = G(L.value);
-    const e = Number(ve.value) || 1;
-    Ii.style.width = vt(e, 1, 10) + "%", Hi.textContent = e > 1 ? "Time per round" : "Total time";
+  function At() {
+    oa.style.width = Bt(I.value, Number(I.min), Number(I.max)) + "%", ra.style.width = Bt(M.value, Number(M.min), Number(M.max)) + "%", sa.style.width = Bt(R.value, Number(R.min), Number(R.max)) + "%", Kn.textContent = K(M.value), Jn.textContent = K(R.value);
+    const e = Number(Re.value) || 1;
+    la.style.width = Bt(e, 1, 10) + "%", ca.textContent = e > 1 ? "Time per round" : "Total time";
   }
-  function Wt(e) {
+  function ln(e) {
     return e.filter((t) => !t.hidden);
   }
-  function jt(e, t) {
+  function dn(e, t) {
     const n = Math.max(0, Number(e) || 0);
     return Math.round(t === "hour" ? n * 3600 : t === "min" ? n * 60 : n);
   }
-  function Vt(e, t = !0) {
-    h.querySelectorAll(".createPresetBtn").forEach((a) => a.classList.toggle("active", a.dataset.movePreset === e));
-    const n = b[k];
-    n && (n.preset = e), e === "work" ? (R.min = 30, R.max = 480, R.step = 30, C.min = 300, C.max = 7200, C.step = 300, L.min = 60, L.max = 1800, L.step = 60, t && (R.value = 60, C.value = 1500, L.value = 300), i("addMovementUnit").value = "min", i("addMovementDuration").value = 25, i("addRestUnit").value = "min", i("addRestDuration").value = 5) : (R.min = 3, R.max = 40, R.step = 1, C.min = 20, C.max = 60, C.step = 5, L.min = 5, L.max = 30, L.step = 5, t && (R.value = 20, C.value = 45, L.value = 15), i("addMovementUnit").value = "sec", i("addMovementDuration").value = 45, i("addRestUnit").value = "sec", i("addRestDuration").value = 30), ht();
+  function cn(e, t = !0) {
+    f.querySelectorAll(".createPresetBtn").forEach((a) => a.classList.toggle("active", a.dataset.movePreset === e));
+    const n = C[L];
+    n && (n.preset = e), e === "work" ? (I.min = 30, I.max = 480, I.step = 30, M.min = 300, M.max = 7200, M.step = 300, R.min = 60, R.max = 1800, R.step = 60, t && (I.value = 60, M.value = 1500, R.value = 300), i("addMovementUnit").value = "min", i("addMovementDuration").value = 25, i("addRestUnit").value = "min", i("addRestDuration").value = 5) : (I.min = 3, I.max = 40, I.step = 1, M.min = 20, M.max = 60, M.step = 5, R.min = 5, R.max = 30, R.step = 5, t && (I.value = 20, M.value = 45, R.value = 15), i("addMovementUnit").value = "sec", i("addMovementDuration").value = 45, i("addRestUnit").value = "sec", i("addRestDuration").value = 30), At();
   }
-  function Ut() {
-    const e = b[k];
+  function pn() {
+    const e = C[L];
     if (e != null && e.customSequence) {
-      if (H = H.filter((t) => !t.presetRole), i("includeWarmupPreset").checked ? (H = [...Ot.map((n, a) => ({ ...n, id: "preset-warm-" + a + "-" + Date.now(), kind: "work", duration: Number(C.value), presetRole: "warmup" })), ...H], e.includeWarmup = !0) : e.includeWarmup = !1, i("includeCooldownPreset").checked) {
-        const t = zt.map((n, a) => ({ ...n, id: "preset-cool-" + a + "-" + Date.now(), kind: "work", duration: Number(C.value), presetRole: "cooldown" }));
-        H = [...H, ...t], e.includeCooldown = !0;
+      if (W = W.filter((t) => !t.presetRole), i("includeWarmupPreset").checked ? (W = [...an.map((n, a) => ({ ...n, id: "preset-warm-" + a + "-" + Date.now(), kind: "work", duration: Number(M.value), presetRole: "warmup" })), ...W], e.includeWarmup = !0) : e.includeWarmup = !1, i("includeCooldownPreset").checked) {
+        const t = on.map((n, a) => ({ ...n, id: "preset-cool-" + a + "-" + Date.now(), kind: "work", duration: Number(M.value), presetRole: "cooldown" }));
+        W = [...W, ...t], e.includeCooldown = !0;
       } else e.includeCooldown = !1;
-      O();
+      q();
     }
   }
-  function Wi() {
+  function ha() {
     const e = i("upcomingCountSetting");
     if (!e) return;
-    const t = Math.max(1, g.length - 1), n = Fe;
+    const t = Math.max(1, v.length - 1), n = Ge;
     e.innerHTML = "";
     for (let r = 1; r <= t; r++) {
-      const l = document.createElement("option");
-      l.value = String(r), l.textContent = String(r), e.appendChild(l);
+      const s = document.createElement("option");
+      s.value = String(r), s.textContent = String(r), e.appendChild(s);
     }
     const a = document.createElement("option");
     a.value = "all", a.textContent = "All", e.appendChild(a);
     const o = n === "all" ? "all" : String(Math.min(Number(n) || 1, t));
-    e.value = o, Fe = o === "all" ? "all" : Number(o);
+    e.value = o, Ge = o === "all" ? "all" : Number(o);
   }
-  function O() {
-    Number(R.value) * 60;
-    const e = Number(C.value), t = Number(L.value), n = b[k], a = n != null && n.warmupOff ? [] : Wt(he), o = Wt(H), r = Wt(fe);
-    if (n && (n.total = Number(R.value), n.work = e, n.rest = t, n.rounds = Number(ve.value) || 1, n.customSequence ? n.sequence = H.map((p) => ({ ...p })) : (n.strength = H.map((p) => ({ ...p })), n.warmup = he.map((p) => ({ ...p })), n.cooldown = fe.map((p) => ({ ...p })))), n != null && n.customSequence) {
-      const p = o.map((y) => {
-        if (y.kind === "rest") {
-          const ee = y.useGlobalTiming === !0 ? t : Number(y.duration) || t;
-          return { ...y, duration: ee, rest: 0 };
+  function q() {
+    Number(I.value) * 60;
+    const e = Number(M.value), t = Number(R.value), n = C[L], a = n != null && n.warmupOff ? [] : ln(ye), o = ln(W), r = ln(we);
+    if (n && (n.total = Number(I.value), n.work = e, n.rest = t, n.rounds = Number(Re.value) || 1, n.customSequence ? n.sequence = W.map((m) => ({ ...m })) : (n.strength = W.map((m) => ({ ...m })), n.warmup = ye.map((m) => ({ ...m })), n.cooldown = we.map((m) => ({ ...m })))), n != null && n.customSequence) {
+      const m = o.map((w) => {
+        if (w.kind === "rest") {
+          const D = w.useGlobalTiming === !0 ? t : Number(w.duration) || t;
+          return { ...w, duration: D, rest: 0 };
         }
-        const j = y.useGlobalTiming === !1 && Number(y.duration) || e;
-        return { ...y, duration: j, rest: 0 };
+        const G = w.useGlobalTiming === !1 && Number(w.duration) || e;
+        return { ...w, duration: G, rest: 0 };
       });
-      n.autoRest && Number(n.autoRestDuration) > 0 ? (g = [], p.forEach((y, j) => {
-        g.push(y);
-        const ee = p[j + 1];
-        y.kind !== "rest" && ee && ee.kind !== "rest" && g.push({
-          id: "auto-rest-" + j,
+      n.autoRest && Number(n.autoRestDuration) > 0 ? (v = [], m.forEach((w, G) => {
+        v.push(w);
+        const D = m[G + 1];
+        w.kind !== "rest" && D && D.kind !== "rest" && v.push({
+          id: "auto-rest-" + G,
           name: "Rest",
           group: "Rest",
           kind: "rest",
@@ -957,102 +957,102 @@ function qa(h, v) {
           rest: 0,
           autoGenerated: !0
         });
-      })) : g = p;
+      })) : v = m;
     } else
-      g = [...a, ...o, ...r].map((p) => p.kind === "rest" ? { ...p, duration: p.useGlobalTiming === !0 ? t : Number(p.duration) || t, rest: 0 } : { ...p, duration: p.useGlobalTiming === !1 && Number(p.duration) || e, rest: t }), g.forEach((p, y) => {
-        var j;
-        ((j = g[y + 1]) == null ? void 0 : j.kind) === "rest" && (p.rest = 0);
-      }), g.length && (g[g.length - 1].rest = 0);
-    const l = Math.max(1, Math.min(10, Number(ve.value) || 1)), s = g, u = s.length, m = s.reduce((p, y) => p + y.duration + y.rest, 0);
-    g = [];
-    for (let p = 1; p <= l; p++)
-      if (s.forEach((y, j) => g.push({ ...y, id: y.id + (l > 1 ? "-r" + p : ""), round: p, roundIndex: j })), p < l && u)
+      v = [...a, ...o, ...r].map((m) => m.kind === "rest" ? { ...m, duration: m.useGlobalTiming === !0 ? t : Number(m.duration) || t, rest: 0 } : { ...m, duration: m.useGlobalTiming === !1 && Number(m.duration) || e, rest: t }), v.forEach((m, w) => {
+        var G;
+        ((G = v[w + 1]) == null ? void 0 : G.kind) === "rest" && (m.rest = 0);
+      }), v.length && (v[v.length - 1].rest = 0);
+    const s = Math.max(1, Math.min(10, Number(Re.value) || 1)), l = v, p = l.length, u = l.reduce((m, w) => m + w.duration + w.rest, 0);
+    v = [];
+    for (let m = 1; m <= s; m++)
+      if (l.forEach((w, G) => v.push({ ...w, id: w.id + (s > 1 ? "-r" + m : ""), round: m, roundIndex: G })), m < s && p)
         if (n != null && n.customSequence)
-          g.push({ id: "round-break-" + p, name: "Rest", group: "Round " + (p + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: p, roundIndex: u, roundBreak: !0 });
+          v.push({ id: "round-break-" + m, name: "Rest", group: "Round " + (m + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: m, roundIndex: p, roundBreak: !0 });
         else {
-          const y = g[g.length - 1];
-          y.rest = t, y.roundBreakAfter = !0;
+          const w = v[v.length - 1];
+          w.rest = t, w.roundBreakAfter = !0;
         }
-    ht();
-    const c = g.reduce((p, y) => p + y.duration + y.rest, 0), d = Math.round(m / 60), f = Math.round(c / 60), M = l > 1 ? ye(d) + " × " + l + " rounds (" + ye(f) + ")" : ye(f), A = [a.length ? "warm-up" : "", r.length ? "cooldown" : ""].filter(Boolean), T = n != null && n.customSequence ? M + " · " + u + " items" : M + " · " + G(e) + " / " + G(t) + (A.length ? " · " + A.join(" + ") : "");
-    Bi.textContent = G(m);
-    const B = u + " activities" + (l > 1 ? " × " + l : "");
-    Di.textContent = l > 1 ? l + " rounds · " + ye(f) + " total" : "1 round", n && (n.summary = T, n.activityCount = u);
-    const I = h.querySelector(".workoutPanel.active .sub");
-    I && (I.textContent = T), _i.textContent = T, h.querySelectorAll(".workoutPanel.active .activityCount").forEach((p) => p.textContent = B), ht(), Ki(), Zt(), Re(), Wi(), P && le(), Me.workout.classList.contains("active") && !_ && un();
+    At();
+    const g = v.reduce((m, w) => m + w.duration + w.rest, 0), c = Math.round(u / 60), d = Math.round(g / 60), y = s > 1 ? Ne(c) + " × " + s + " rounds (" + Ne(d) + ")" : Ne(d), b = [a.length ? "warm-up" : "", r.length ? "cooldown" : ""].filter(Boolean), S = n != null && n.customSequence ? y + " · " + p + " items" : y + " · " + K(e) + " / " + K(t) + (b.length ? " · " + b.join(" + ") : "");
+    aa.textContent = K(u);
+    const F = p + " activities" + (s > 1 ? " × " + s : "");
+    da.textContent = s > 1 ? s + " rounds · " + Ne(d) + " total" : "1 round", n && (n.summary = S, n.activityCount = p);
+    const B = f.querySelector(".workoutPanel.active .sub");
+    B && (B.textContent = S), pa.textContent = S, f.querySelectorAll(".workoutPanel.active .activityCount").forEach((m) => m.textContent = F), At(), ya(), gn(), ut(), ha(), z && be(), qe.workout.classList.contains("active") && !Y && Rn();
   }
-  const ji = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
-  let ft = null;
-  function Vi(e) {
+  const Nt = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
+  let te = null, ie = null;
+  function fa(e) {
     return e = Math.max(1, Number(e) || 0), e >= 3600 && e % 3600 === 0 ? { value: e / 3600, unit: "hour" } : e >= 60 && e % 60 === 0 ? { value: e / 60, unit: "min" } : { value: e, unit: "sec" };
   }
-  function Ui() {
-    requestAnimationFrame(() => {
-      var e;
-      return (e = h.querySelector(".moveEditForm input[data-f=name]")) == null ? void 0 : e.focus();
-    });
+  function ti(e = !1) {
+    const t = f.querySelector(".moveEditForm input[data-f=name]");
+    t && (t.focus({ preventScroll: !0 }), e && t.select());
   }
-  function Yi(e, t) {
-    const n = e.kind === "rest", a = n ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, o = Number(n ? L.value : C.value), r = Vi(a ? o : e.duration || o), l = document.createElement("div");
-    l.className = "moveRow editing", l.dataset.index = t, l.innerHTML = '<div class="moveEditForm"><div class="moveEditFields"><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + F(e.name) + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + F(e.group) + '"></label></div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (a ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">Use global timing · ' + F(G(o)) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + r.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((d) => '<option value="' + d + '"' + (d === r.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[d] + "</option>").join("") + '</select></div></div><div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div></div>';
-    const s = (d) => l.querySelector("[data-f=" + d + "]"), u = () => {
-      const d = s("global").checked;
-      s("dur").disabled = d, s("unit").disabled = d, l.querySelector(".creatorDurationRow").classList.toggle("isDisabled", d);
+  function xa(e, t) {
+    const n = e.kind === "rest", a = n ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, o = Number(n ? R.value : M.value), r = fa(a ? o : e.duration || o), s = document.createElement("div");
+    s.className = "moveRow editing", s.dataset.index = t, s.dataset.id = e.id;
+    const l = (ie == null ? void 0 : ie.item) === e;
+    s.innerHTML = '<div class="moveEditForm"><div class="moveEditFields"><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + P(e.name) + '" placeholder="' + (n ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + P(e.group) + '" placeholder="' + (n ? "Rest" : "e.g. Glutes + legs") + '"></label></div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (a ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">Use global timing · ' + P(K(o)) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + r.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((d) => '<option value="' + d + '"' + (d === r.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[d] + "</option>").join("") + '</select></div></div><div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div></div>';
+    const p = (d) => s.querySelector("[data-f=" + d + "]"), u = () => {
+      const d = p("global").checked;
+      p("dur").disabled = d, p("unit").disabled = d, s.querySelector(".creatorDurationRow").classList.toggle("isDisabled", d);
     };
-    s("global").addEventListener("change", u), u();
-    const m = () => {
-      ft = null, O();
+    p("global").addEventListener("change", u), u();
+    const g = () => {
+      l && Pt(), te = null, q();
     }, c = () => {
-      const d = s("name").value.trim();
+      const d = p("name").value.trim();
       if (!d) {
-        s("name").focus();
+        p("name").focus();
         return;
       }
-      e.name = d, e.group = s("group").value.trim() || (n ? "Rest" : "Movement");
-      const f = s("global").checked;
-      e.useGlobalTiming = f, f || (e.duration = Math.max(n ? 5 : 1, jt(s("dur").value, s("unit").value))), m(), z("Movement updated");
+      e.name = d, e.group = p("group").value.trim() || (n ? "Rest" : "Movement");
+      const y = p("global").checked;
+      e.useGlobalTiming = y, y || (e.duration = Math.max(n ? 5 : 1, dn(p("dur").value, p("unit").value))), l && (ie = null), te = null, q(), U(l ? n ? "Rest added" : "Movement added" : "Movement updated");
     };
-    return l.querySelector("[data-a=cancel]").addEventListener("click", m), l.querySelector("[data-a=save]").addEventListener("click", c), l.addEventListener("keydown", (d) => {
-      d.key === "Escape" && (d.preventDefault(), d.stopPropagation(), m()), d.key === "Enter" && d.target.matches("input") && (d.preventDefault(), c());
-    }), l;
+    return s.querySelector("[data-a=cancel]").addEventListener("click", g), s.querySelector("[data-a=save]").addEventListener("click", c), s.addEventListener("keydown", (d) => {
+      d.key === "Escape" && (d.preventDefault(), d.stopPropagation(), g()), d.key === "Enter" && d.target.matches("input") && (d.preventDefault(), c());
+    }), s;
   }
-  function Yt(e, t) {
+  function un(e, t) {
     const n = i(t);
     n.innerHTML = "", e.forEach((a, o) => {
-      if (a === ft) {
-        n.appendChild(Yi(a, o));
+      if (a === te) {
+        n.appendChild(xa(a, o));
         return;
       }
       const r = document.createElement("div");
-      r.className = "moveRow" + (a.hidden ? " hidden" : "") + (a.kind === "rest" ? " restItem" : ""), r.dataset.index = o;
-      const l = a.kind === "rest" ? a.useGlobalTiming === !0 ? "Global timing" : G(a.duration) : a.useGlobalTiming === !1 ? G(a.duration) : "Global timing", s = a.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : "";
-      r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + F(a.name) + '. Drag, or use the up and down arrow keys">' + ji + '</button><div class="moveText"><div class="moveItemName">' + F(a.name) + s + '</div><div class="moveMeta">' + F(a.group) + " · " + F(l) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + F(a.name) + '">Edit</button><button class="hideBtn" type="button">' + (a.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + F(a.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
-        ft = a, O(), Ui();
+      r.className = "moveRow" + (a.hidden ? " hidden" : "") + (a.kind === "rest" ? " restItem" : ""), r.dataset.index = o, r.dataset.id = a.id;
+      const s = a.kind === "rest" ? a.useGlobalTiming === !0 ? "Global timing" : K(a.duration) : a.useGlobalTiming === !1 ? K(a.duration) : "Global timing", l = a.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : "";
+      r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + P(a.name) + '. Drag, or use the up and down arrow keys">' + Nt + '</button><div class="moveText"><div class="moveItemName">' + P(a.name) + l + '</div><div class="moveMeta">' + P(a.group) + " · " + P(s) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + P(a.name) + '">Edit</button><button class="hideBtn" type="button">' + (a.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + P(a.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
+        Pt(), te = a, q(), ti();
       }), r.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
-        a.hidden = !a.hidden, O();
+        a.hidden = !a.hidden, q();
       });
-      const u = r.querySelector(".removeBtn");
-      At(u, u.querySelector(".removeFill"), 1200, () => {
-        const c = e.indexOf(a);
-        c < 0 || (e.splice(c, 1), O(), z("Removed " + a.name, { label: "Undo", run: () => {
-          e.splice(Math.min(c, e.length), 0, a), O();
+      const p = r.querySelector(".removeBtn");
+      Kt(p, p.querySelector(".removeFill"), 1200, () => {
+        const g = e.indexOf(a);
+        g < 0 || (e.splice(g, 1), q(), U("Removed " + a.name, { label: "Undo", run: () => {
+          e.splice(Math.min(g, e.length), 0, a), q();
         } }));
       });
-      const m = r.querySelector(".dragHandle");
-      m.addEventListener("pointerdown", (c) => Zi(c, r, n, e)), m.addEventListener("keydown", (c) => {
-        var M, A;
-        if (c.key !== "ArrowUp" && c.key !== "ArrowDown") return;
-        c.preventDefault();
-        const d = e.indexOf(a), f = d + (c.key === "ArrowUp" ? -1 : 1);
-        f < 0 || f >= e.length || (e.splice(d, 1), e.splice(f, 0, a), O(), (A = (M = i(t).children[f]) == null ? void 0 : M.querySelector(".dragHandle")) == null || A.focus());
+      const u = r.querySelector(".dragHandle");
+      u.addEventListener("pointerdown", (g) => ba(g, r, n, e)), u.addEventListener("keydown", (g) => {
+        var y, b;
+        if (g.key !== "ArrowUp" && g.key !== "ArrowDown") return;
+        g.preventDefault();
+        const c = e.indexOf(a), d = c + (g.key === "ArrowUp" ? -1 : 1);
+        d < 0 || d >= e.length || (e.splice(c, 1), e.splice(d, 0, a), q(), (b = (y = i(t).children[d]) == null ? void 0 : y.querySelector(".dragHandle")) == null || b.focus());
       }), n.appendChild(r);
     });
   }
-  const In = () => {
+  const We = () => {
     var e;
     return (e = window.matchMedia) == null ? void 0 : e.call(window, "(prefers-reduced-motion: reduce)").matches;
-  }, Dn = "transform .24s cubic-bezier(.2,.8,.2,1)";
-  function Zi(e, t, n, a) {
+  }, ni = "transform .24s cubic-bezier(.2,.8,.2,1)";
+  function ba(e, t, n, a) {
     if (e.button !== void 0 && e.button !== 0) return;
     e.preventDefault();
     const o = e.currentTarget;
@@ -1060,386 +1060,567 @@ function qa(h, v) {
       o.setPointerCapture(e.pointerId);
     } catch {
     }
-    const r = t.closest(".exerciseScroller"), l = e.clientY - t.getBoundingClientRect().top;
-    let s = e.clientY, u = null;
+    const r = t.closest(".exerciseScroller"), s = e.clientY - t.getBoundingClientRect().top;
+    let l = e.clientY, p = null;
     t.classList.add("dragging"), t.style.transition = "none";
-    const m = () => {
+    const u = () => {
       t.style.transform = "";
-      const T = t.getBoundingClientRect().top;
-      t.style.transform = "translateY(" + (s - l - T) + "px) scale(1.015)";
-    }, c = (T) => {
-      const B = [...n.children].filter((p) => p !== t), I = new Map(B.map((p) => [p, p.getBoundingClientRect().top]));
-      T(), !In() && B.forEach((p) => {
-        p.style.transition = "none", p.style.transform = "";
-        const y = I.get(p) - p.getBoundingClientRect().top;
-        y && (p.style.transform = "translateY(" + y + "px)", p.getBoundingClientRect(), p.style.transition = Dn, p.style.transform = "");
+      const S = t.getBoundingClientRect().top;
+      t.style.transform = "translateY(" + (l - s - S) + "px) scale(1.015)";
+    }, g = (S) => {
+      const F = [...n.children].filter((m) => m !== t), B = new Map(F.map((m) => [m, m.getBoundingClientRect().top]));
+      S(), !We() && F.forEach((m) => {
+        m.style.transition = "none", m.style.transform = "";
+        const w = B.get(m) - m.getBoundingClientRect().top;
+        w && (m.style.transform = "translateY(" + w + "px)", m.getBoundingClientRect(), m.style.transition = ni, m.style.transform = "");
       });
+    }, c = () => {
+      const S = [...n.children].filter((m) => m !== t), F = l - s + t.offsetHeight / 2, B = S.find((m) => {
+        const w = m.getBoundingClientRect();
+        return F < w.top + w.height / 2;
+      });
+      B ? t.nextElementSibling !== B && g(() => n.insertBefore(t, B)) : n.lastElementChild !== t && g(() => n.appendChild(t)), u();
     }, d = () => {
-      const T = [...n.children].filter((p) => p !== t), B = s - l + t.offsetHeight / 2, I = T.find((p) => {
-        const y = p.getBoundingClientRect();
-        return B < y.top + y.height / 2;
-      });
-      I ? t.nextElementSibling !== I && c(() => n.insertBefore(t, I)) : n.lastElementChild !== t && c(() => n.appendChild(t)), m();
-    }, f = () => {
       if (!r) return;
-      const T = r.getBoundingClientRect(), B = 56, I = s < T.top + B ? -10 : s > T.bottom - B ? 10 : 0;
-      I && (r.scrollTop += I, d());
-    }, M = (T) => {
-      s = T.clientY, d();
-    }, A = () => {
-      clearInterval(u), o.removeEventListener("pointermove", M), o.removeEventListener("pointerup", A), o.removeEventListener("pointercancel", A);
-      const T = [...n.children].map((p) => Number(p.dataset.index)), B = T.some((p, y) => p !== y), I = () => {
-        if (t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", B) {
-          const p = T.map((y) => a[y]);
-          a.splice(0, a.length, ...p);
+      const S = r.getBoundingClientRect(), F = 56, B = l < S.top + F ? -10 : l > S.bottom - F ? 10 : 0;
+      B && (r.scrollTop += B, c());
+    }, y = (S) => {
+      l = S.clientY, c();
+    }, b = () => {
+      clearInterval(p), o.removeEventListener("pointermove", y), o.removeEventListener("pointerup", b), o.removeEventListener("pointercancel", b);
+      const S = [...n.children].map((m) => Number(m.dataset.index)), F = S.some((m, w) => m !== w), B = () => {
+        if (t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", F) {
+          const m = S.map((w) => a[w]);
+          a.splice(0, a.length, ...m);
         }
-        O(), B && z("Order saved");
+        q(), F && U("Order saved");
       };
-      if (In()) {
-        I();
+      if (We()) {
+        B();
         return;
       }
-      t.style.transition = Dn, t.style.transform = "", setTimeout(I, 250);
+      t.style.transition = ni, t.style.transform = "", setTimeout(B, 250);
     };
-    o.addEventListener("pointermove", M), o.addEventListener("pointerup", A), o.addEventListener("pointercancel", A), u = setInterval(f, 30), m();
+    o.addEventListener("pointermove", y), o.addEventListener("pointerup", b), o.addEventListener("pointercancel", b), p = setInterval(d, 30), u();
   }
-  function Ki() {
-    var o, r, l, s;
-    const e = b[k], t = (o = i("warmupList")) == null ? void 0 : o.closest("section"), n = (r = i("cooldownList")) == null ? void 0 : r.closest("section"), a = (s = (l = i("strengthList")) == null ? void 0 : l.closest("section")) == null ? void 0 : s.querySelector(".sectionTitle");
-    e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), a && (a.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), a && (a.textContent = "Kettlebell work")), Yt(he, "warmupList"), Yt(H, "strengthList"), Yt(fe, "cooldownList");
+  function ya() {
+    var o, r, s, l;
+    const e = C[L], t = (o = i("warmupList")) == null ? void 0 : o.closest("section"), n = (r = i("cooldownList")) == null ? void 0 : r.closest("section"), a = (l = (s = i("strengthList")) == null ? void 0 : s.closest("section")) == null ? void 0 : l.querySelector(".sectionTitle");
+    e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), a && (a.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), a && (a.textContent = "Kettlebell work")), un(ye, "warmupList"), un(W, "strengthList"), un(we, "cooldownList");
   }
-  function Zt() {
-    H.length > 0;
+  function Pt() {
+    if (!ie) return;
+    const { item: e, arr: t } = ie;
+    ie = null;
+    const n = t.indexOf(e);
+    n >= 0 && t.splice(n, 1), te === e && (te = null);
+  }
+  function mn(e) {
+    return e.id === "warmupList" ? { arr: ye, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: we, kind: "cooldown", group: "Cooldown" } : { arr: W, kind: "work", group: "" };
+  }
+  function wa(e, t) {
+    const n = mn(t), a = Date.now().toString(36);
+    return e === "rest" ? { id: "rest-" + a, name: "Rest", group: "Rest", kind: "rest", hidden: !1, useGlobalTiming: !0, duration: Number(R.value) } : { id: "movement-" + a, name: "", group: n.group, kind: n.kind, hidden: !1, useGlobalTiming: !0, duration: Number(M.value) };
+  }
+  const ii = "cubic-bezier(.34,1.56,.64,1)";
+  function ka(e, t) {
+    if (We() || !e) {
+      t();
+      return;
+    }
+    const n = (r) => {
+      var s;
+      return ((s = r.dataset) == null ? void 0 : s.id) || r;
+    }, a = () => [...e.querySelectorAll(".moveRow,.sectionTitle,.movementCreatorLaunch")], o = new Map(a().map((r) => [n(r), r.getBoundingClientRect().top]));
+    t(), a().forEach((r) => {
+      const s = o.get(n(r));
+      if (s === void 0) return;
+      const l = s - r.getBoundingClientRect().top;
+      Math.abs(l) < 0.5 || r.animate([{ transform: "translateY(" + l + "px)" }, { transform: "none" }], { duration: 440, easing: ii });
+    });
+  }
+  function Sa(e, t) {
+    if (!e || We()) return;
+    const n = e.offsetHeight, a = Math.max(0, n - (t || 0));
+    e.animate([{ clipPath: "inset(0 0 " + a + "px 0 round 20.8px)" }, { clipPath: "inset(0 0 0 0 round 20.8px)" }], { duration: 460, easing: ii });
+  }
+  function ai(e, t, n, a) {
+    const { arr: o } = mn(t), r = wa(e, t);
+    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), ie = { item: r, arr: o }, te = r, ka(t.closest(".exerciseScroller,.createStepSlot") || t, () => q());
+    const s = t.querySelector(".moveRow.editing");
+    return Sa(s, a), ti(e === "rest"), s;
+  }
+  function Ca(e) {
+    for (let t = e; t && t.nodeType === 1; t = t.parentElement) {
+      const n = getComputedStyle(t).overflowY;
+      if (/(auto|scroll)/.test(n) && t.scrollHeight > t.clientHeight) return t;
+    }
+    return null;
+  }
+  function Ta(e, t, n, a) {
+    var ji;
+    (te || ie) && (Pt(), te = null, q());
+    const o = !We(), r = e.getBoundingClientRect(), s = ((ji = f.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : ji.offsetHeight) || 80, l = Ca(e), p = e.closest(".exerciseScroller,.createFlow") || l, u = document.createElement("div");
+    u.className = "addGhost" + (t === "rest" ? " rest" : ""), u.setAttribute("aria-hidden", "true"), u.innerHTML = '<span class="addGhostGrip">' + Nt + '</span><span class="addGhostText"><strong>' + (t === "rest" ? "Rest" : "New movement") + "</strong><small>" + (t === "rest" ? "Rest · Global timing" : "Drop to add, then name it") + "</small></span>", u.style.width = r.width + "px", u.style.height = r.height + "px", u.style.transform = "translate(" + r.left + "px," + r.top + "px)", i("workoutModal").appendChild(u), e.classList.add("lifting");
+    const g = n - r.left, c = a - r.top, d = 44;
+    let y = n, b = a, S = r.left, F = r.top, B = 0, m = 0, w = !o, G = null, D = null, ct = -1, xe = 0, j = null;
+    const Xt = () => ["warmupList", "strengthList", "cooldownList"].map((x) => i(x)).filter((x) => x && x.getClientRects().length && !x.closest("[hidden]")), $t = (x) => {
+      if (x === G) return;
+      G = x, u.classList.toggle("overList", !!x);
+      const A = x ? x.getBoundingClientRect().width : r.width;
+      u.style.width = A + "px", u.style.height = (x ? s : r.height) + "px";
+    }, go = (x) => {
+      x.classList.add("leaving"), x.style.height = "0px", x.style.marginTop = "-8px", setTimeout(() => x.remove(), o ? 320 : 0);
+    }, _n = (x, A, _) => {
+      if (D && D.parentNode === x && ct === _ || (D && (go(D), D = null, ct = -1), !x)) return;
+      const V = document.createElement("div");
+      V.className = "dropSlot", x.insertBefore(V, A), D = V, ct = _, V.getBoundingClientRect(), V.style.height = s + "px", V.style.marginTop = "0px";
+    }, qi = () => {
+      let x = null, A = 1 / 0;
+      for (const Me of Xt()) {
+        const ee = Me.getBoundingClientRect();
+        if (y < ee.left - 48 || y > ee.right + 48) continue;
+        const ce = ee.top - 28, Fe = ee.bottom + 28, Yi = b < ce ? ce - b : b > Fe ? b - Fe : 0;
+        Yi < A && (A = Yi, x = Me);
+      }
+      const _ = p == null ? void 0 : p.getBoundingClientRect(), de = _ && y >= _.left && y <= _.right && b >= _.top && b <= _.bottom || A === 0 ? x : null;
+      if (de) {
+        const Me = [...de.children].filter((ce) => ce.classList.contains("moveRow"));
+        let ee = Me.findIndex((ce) => {
+          const Fe = ce.getBoundingClientRect();
+          return b < Fe.top + Fe.height / 2;
+        });
+        ee < 0 && (ee = Me.length), _n(de, Me[ee] || null, ee);
+      } else _n(null);
+      $t(de);
+    }, vo = () => {
+      if (j) return j.aim();
+      if (G) {
+        const x = G.getBoundingClientRect();
+        let A = b - s / 2;
+        return D && (A = A * 0.6 + D.getBoundingClientRect().top * 0.4), { x: x.left, y: A };
+      }
+      return { x: y - g, y: b - c };
+    }, qn = (x, A, _, V) => {
+      u.style.transform = "translate(" + S + "px," + F + "px) rotate(" + x + "deg) rotate(" + A + "rad) scale(" + _ + "," + V + ") rotate(" + -A + "rad)";
+    }, Gi = () => {
+      if (xe = requestAnimationFrame(Gi), !w) {
+        const ee = y - n, ce = b - a, Fe = Math.min(Math.hypot(ee, ce) / d, 1);
+        S = r.left + ee * 0.35, F = r.top + ce * 0.35, qn(0, Math.atan2(ce, ee), 1 + 0.22 * Fe, 1 - 0.14 * Fe);
+        return;
+      }
+      const x = vo();
+      if (!o) {
+        S = x.x, F = x.y, qn(0, 0, 1, 1), j && (cancelAnimationFrame(xe), j.done());
+        return;
+      }
+      const A = j ? j.k : 0.17, _ = j ? j.d : 0.74;
+      B = (B + (x.x - S) * A) * _, m = (m + (x.y - F) * A) * _, S += B, F += m;
+      const V = Math.hypot(B, m), de = Math.min(V / 48, 1), Me = G || j ? 0 : Math.max(-7, Math.min(7, B * 0.45));
+      qn(Me, Math.atan2(m, B), 1 + 0.14 * de, 1 - 0.09 * de), j && V < 0.15 && Math.hypot(x.x - S, x.y - F) < 0.6 && (cancelAnimationFrame(xe), j.done());
+    }, ho = setInterval(() => {
+      if (!l || j) return;
+      const x = l.getBoundingClientRect(), A = 64, _ = b < x.top + A ? -(x.top + A - b) / 4 : b > x.bottom - A ? (b - (x.bottom - A)) / 4 : 0;
+      _ && (l.scrollTop += Math.max(-18, Math.min(18, _)), qi());
+    }, 30);
+    xe = requestAnimationFrame(Gi);
+    let Wi = !1;
+    const pt = (x, A) => {
+      if (Wi) return;
+      Wi = !0, cancelAnimationFrame(xe);
+      const _ = D ? D.offsetHeight : s;
+      !x && D && (D.remove(), D = null), u.classList.add("leaving"), setTimeout(() => u.remove(), 180), e.classList.remove("lifting"), x && ai(t, x, A, _);
+    };
+    return {
+      move(x, A) {
+        y = x, b = A, !w && Math.hypot(y - n, b - a) > d && (w = !0, B = (y - n) * 0.12, m = (b - a) * 0.12), w && qi();
+      },
+      drop(x) {
+        clearInterval(ho);
+        const A = G, _ = ct;
+        if (!x && A && D) {
+          const V = D;
+          j = { k: 0.24, d: 0.66, aim: () => {
+            const de = V.getBoundingClientRect();
+            return { x: de.left, y: de.top };
+          }, done: () => pt(A, _) }, setTimeout(() => pt(A, _), 650), o || (cancelAnimationFrame(xe), pt(A, _));
+          return;
+        }
+        _n(null), $t(null), j = { k: 0.2, d: 0.7, aim: () => {
+          const V = e.getBoundingClientRect();
+          return { x: V.left, y: V.top };
+        }, done: () => pt(null) }, setTimeout(() => pt(null), 650), o || (cancelAnimationFrame(xe), pt(null));
+      }
+    };
+  }
+  function oi(e, t) {
+    let n = !1;
+    e.addEventListener("click", (a) => {
+      if (n) {
+        n = !1, a.preventDefault();
+        return;
+      }
+      const o = i("strengthList"), r = ai(t, o, mn(o).arr.length, 0);
+      r == null || r.scrollIntoView({ block: "nearest", behavior: We() ? "auto" : "smooth" });
+    }), e.addEventListener("pointerdown", (a) => {
+      if (a.button !== void 0 && a.button !== 0) return;
+      const o = a.clientX, r = a.clientY;
+      let s = null;
+      try {
+        e.setPointerCapture(a.pointerId);
+      } catch {
+      }
+      const l = (d) => {
+        d.key === "Escape" && s && (d.preventDefault(), d.stopPropagation(), u(null, !0));
+      }, p = (d) => {
+        if (!s) {
+          if (Math.hypot(d.clientX - o, d.clientY - r) < 6) return;
+          s = Ta(e, t, o, r), window.addEventListener("keydown", l, !0);
+        }
+        s.move(d.clientX, d.clientY);
+      }, u = (d, y) => {
+        if (e.removeEventListener("pointermove", p), e.removeEventListener("pointerup", g), e.removeEventListener("pointercancel", c), window.removeEventListener("keydown", l, !0), s) {
+          const b = s;
+          s = null, n = !0, setTimeout(() => {
+            n = !1;
+          }, 0), b.drop(y);
+        }
+      }, g = (d) => u(d, !1), c = (d) => u(d, !0);
+      e.addEventListener("pointermove", p), e.addEventListener("pointerup", g), e.addEventListener("pointercancel", c);
+    });
+  }
+  function gn() {
+    W.length > 0;
     const e = i("addMovementBtn"), t = i("addRestBtn");
-    e && (e.textContent = "Add movement"), t && (t.textContent = "Add rest");
+    e && (e.innerHTML = Nt + "<span>Add movement</span>"), t && (t.innerHTML = Nt + "<span>Add rest</span>");
   }
-  function Re() {
+  function ut() {
     const e = i("useGlobalTiming").checked, t = i("addMovementDuration"), n = i("addMovementUnit");
-    t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", i("globalTimingValue").textContent = "Use global timing · " + G(C.value);
+    t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", i("globalTimingValue").textContent = "Use global timing · " + K(M.value);
     const a = i("useGlobalRestTiming").checked, o = i("addRestDuration"), r = i("addRestUnit");
-    o.disabled = a, r.disabled = a, o.parentElement.style.opacity = a ? ".38" : "1", i("globalRestTimingValue").textContent = "Use global timing · " + G(L.value);
+    o.disabled = a, r.disabled = a, o.parentElement.style.opacity = a ? ".38" : "1", i("globalRestTimingValue").textContent = "Use global timing · " + K(R.value);
   }
-  let Hn = "movement";
-  function Kt(e) {
-    Hn = e;
+  let ri = "movement";
+  function La(e) {
+    ri = e;
     const t = i("movementFields"), n = i("restFields");
-    t.hidden = e !== "movement", n.hidden = e !== "rest", i("movementCreatorHeading").textContent = e === "rest" ? "Add rest" : "Add movement", i("movementCreator").setAttribute("aria-label", e === "rest" ? "Create rest" : "Create movement"), Re();
+    t.hidden = e !== "movement", n.hidden = e !== "rest", i("movementCreatorHeading").textContent = "Add movement", i("movementCreator").setAttribute("aria-label", "Create movement"), ut();
   }
-  function Jt() {
-    b[k];
-    const e = P ? !0 : i("useGlobalTiming").checked, t = e ? Number(C.value) : jt(
+  function vn() {
+    C[L];
+    const e = z ? !0 : i("useGlobalTiming").checked, t = e ? Number(M.value) : dn(
       i("addMovementDuration").value,
       i("addMovementUnit").value
-    ), n = P ? !0 : i("useGlobalRestTiming").checked, a = n ? Number(L.value) : jt(
+    ), n = z ? !0 : i("useGlobalRestTiming").checked, a = n ? Number(R.value) : dn(
       i("addRestDuration").value,
       i("addRestUnit").value
     );
-    if (Hn === "rest") {
+    if (ri === "rest") {
       const o = i("addRestTitle").value.trim() || "Rest", r = i("addRestGroup").value.trim() || "Rest";
-      H.push({
+      W.push({
         id: "rest-" + Date.now(),
         name: o,
         group: r,
         kind: "rest",
         hidden: !1,
         useGlobalTiming: n,
-        duration: Math.max(5, a || Number(L.value))
-      }), O(), i("movementCreator").hidden = !0, i("addRestTitle").value = "Rest", i("addRestGroup").value = "Rest", z("Rest added"), P && (Ee("movements"), le());
+        duration: Math.max(5, a || Number(R.value))
+      }), q(), i("movementCreator").hidden = !0, i("addRestTitle").value = "Rest", i("addRestGroup").value = "Rest", U("Rest added"), z && (_e("movements"), be());
     } else {
       const o = i("addMovementInput").value.trim();
       if (!o) return;
       const r = i("addMovementGroup").value.trim() || "Movement";
-      H.push({
+      W.push({
         id: "movement-" + Date.now(),
         name: o,
         group: r,
         kind: "work",
         hidden: !1,
         useGlobalTiming: e,
-        duration: Math.max(5, t || Number(C.value))
-      }), i("addMovementInput").value = "", i("addMovementGroup").value = "", O(), i("movementCreator").hidden = !0, z("Movement added"), P && (Ee("movements"), le());
+        duration: Math.max(5, t || Number(M.value))
+      }), i("addMovementInput").value = "", i("addMovementGroup").value = "", q(), i("movementCreator").hidden = !0, U("Movement added"), z && (_e("movements"), be());
     }
-    Zt();
+    gn();
   }
-  let Qt = null;
-  function z(e, t) {
+  let hn = null;
+  function U(e, t) {
     const n = i("toast");
     n.innerHTML = "";
     const a = document.createElement("span");
     if (a.textContent = e, n.appendChild(a), t) {
       const o = document.createElement("button");
       o.type = "button", o.className = "toastAction", o.textContent = t.label, o.addEventListener("click", () => {
-        t.run(), n.classList.remove("show", "withAction"), clearTimeout(Qt);
+        t.run(), n.classList.remove("show", "withAction"), clearTimeout(hn);
       }), n.appendChild(o);
     }
-    n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(Qt), Qt = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
+    n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(hn), hn = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
   }
-  const Ji = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], Qi = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
-  function _n(e) {
+  const Ea = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], Ma = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
+  function si(e) {
     return Math.max(0, Math.min(5, Math.floor(Number(e) / 100 * 6)));
   }
-  function Be(e, t) {
-    return Ji[_n(t)];
+  function je(e, t) {
+    return Ea[si(t)];
   }
-  function $i(e) {
-    return Qi[_n(e)];
+  function Fa(e) {
+    return Ma[si(e)];
   }
-  function W(e) {
+  function J(e) {
     return e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0");
   }
-  function te() {
-    return { morning: E().morningTime || "08:00", evening: E().eveningTime || "19:00" };
+  function pe() {
+    return { morning: N().morningTime || "08:00", evening: N().eveningTime || "19:00" };
   }
-  function Ae(e) {
+  function Ye(e) {
     const [t, n] = String(e).split(":").map(Number);
     return (t || 0) * 60 + (n || 0);
   }
-  function Xi(e) {
-    const t = te();
-    return e.getHours() * 60 + e.getMinutes() >= Ae(t.evening) ? "evening" : "morning";
+  function Ra(e) {
+    const t = pe();
+    return e.getHours() * 60 + e.getMinutes() >= Ye(t.evening) ? "evening" : "morning";
   }
-  function xt(e, t) {
-    return w.checkins.find((n) => n.date === e && n.slot === t);
+  function It(e, t) {
+    return T.checkins.find((n) => n.date === e && n.slot === t);
   }
-  function bt(e) {
+  function Dt(e) {
     return !!(e && e.mood != null && e.energy != null);
   }
-  function yt() {
-    const e = /* @__PURE__ */ new Date(), t = W(e), n = Xi(e), a = te(), o = e.getHours() * 60 + e.getMinutes();
-    return n === "morning" && o < Ae(a.morning) || bt(xt(t, n)) ? null : n;
+  function Ht() {
+    const e = /* @__PURE__ */ new Date(), t = J(e), n = Ra(e), a = pe(), o = e.getHours() * 60 + e.getMinutes();
+    return n === "morning" && o < Ye(a.morning) || Dt(It(t, n)) ? null : n;
   }
-  const de = i("checkinModal"), ce = i("checkinTab"), ea = i("checkinBadge"), pe = { mood: { input: i("moodInput"), fill: i("moodFill") }, energy: { input: i("energyLevelInput"), fill: i("energyLevelFill") } };
-  function On(e) {
-    const { input: t, fill: n } = pe[e];
-    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", Be(e, t.value));
+  const ke = i("checkinModal"), Se = i("checkinTab"), Ba = i("checkinBadge"), Ce = { mood: { input: i("moodInput"), fill: i("moodFill") }, energy: { input: i("energyLevelInput"), fill: i("energyLevelFill") } };
+  function li(e) {
+    const { input: t, fill: n } = Ce[e];
+    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", je(e, t.value));
   }
-  Object.keys(pe).forEach((e) => pe[e].input.addEventListener("input", () => On(e)));
-  let Q = null;
-  function zn() {
-    const e = te(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
-    return n < Ae(e.morning) ? "Next check-in at " + e.morning : n < Ae(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
+  Object.keys(Ce).forEach((e) => Ce[e].input.addEventListener("input", () => li(e)));
+  let re = null;
+  function di() {
+    const e = pe(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
+    return n < Ye(e.morning) ? "Next check-in at " + e.morning : n < Ye(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
-  function ta() {
-    const e = te(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), a = (o, r) => {
-      const [l, s] = o.split(":").map(Number);
-      return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), l, s);
+  function Aa() {
+    const e = pe(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), a = (o, r) => {
+      const [s, l] = o.split(":").map(Number);
+      return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), s, l);
     };
-    return n < Ae(e.morning) ? { date: a(e.morning), time: e.morning } : n < Ae(e.evening) ? { date: a(e.evening), time: e.evening } : { date: a(e.morning, !0), time: e.morning };
+    return n < Ye(e.morning) ? { date: a(e.morning), time: e.morning } : n < Ye(e.evening) ? { date: a(e.evening), time: e.evening } : { date: a(e.morning, !0), time: e.morning };
   }
-  let $t = null, Xt = null;
-  function qn() {
-    if (yt()) {
-      wt(), we();
+  let fn = null, xn = null;
+  function ci() {
+    if (Ht()) {
+      zt(), Pe();
       return;
     }
-    const e = ta(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), a = Math.floor(t % 3600 / 60), o = t % 60;
+    const e = Aa(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), a = Math.floor(t % 3600 / 60), o = t % 60;
     i("peekCountdown").textContent = n + ":" + String(a).padStart(2, "0") + ":" + String(o).padStart(2, "0"), i("peekAt").textContent = "Available at " + e.time;
   }
-  function na() {
-    qn(), ce.classList.add("peek"), clearInterval(Xt), Xt = setInterval(qn, 1e3), clearTimeout($t), $t = setTimeout(wt, 6e3);
+  function Na() {
+    ci(), Se.classList.add("peek"), clearInterval(xn), xn = setInterval(ci, 1e3), clearTimeout(fn), fn = setTimeout(zt, 6e3);
   }
-  function wt() {
-    ce.classList.remove("peek"), clearInterval(Xt), clearTimeout($t);
+  function zt() {
+    Se.classList.remove("peek"), clearInterval(xn), clearTimeout(fn);
   }
-  function Gn() {
-    const e = yt();
+  function pi() {
+    const e = Ht();
     if (!e) {
-      ce.classList.contains("peek") ? wt() : na();
+      Se.classList.contains("peek") ? zt() : Na();
       return;
     }
-    Q = { date: W(/* @__PURE__ */ new Date()), slot: e };
-    const n = xt(Q.date, e), a = w.checkins.find((r) => bt(r));
-    Object.keys(pe).forEach((r) => {
-      pe[r].input.value = (n == null ? void 0 : n[r]) ?? (a == null ? void 0 : a[r]) ?? 50, On(r);
+    re = { date: J(/* @__PURE__ */ new Date()), slot: e };
+    const n = It(re.date, e), a = T.checkins.find((r) => Dt(r));
+    Object.keys(Ce).forEach((r) => {
+      Ce[r].input.value = (n == null ? void 0 : n[r]) ?? (a == null ? void 0 : a[r]) ?? 50, li(r);
     });
-    const o = te()[e];
-    i("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, i("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", de.classList.add("open"), de.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => pe.mood.input.focus());
+    const o = pe()[e];
+    i("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, i("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", ke.classList.add("open"), ke.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => Ce.mood.input.focus());
   }
-  function Qe() {
-    de.classList.remove("open"), de.setAttribute("aria-hidden", "true"), Q && ($e = Q.date + "-" + Q.slot);
+  function mt() {
+    ke.classList.remove("open"), ke.setAttribute("aria-hidden", "true"), re && (gt = re.date + "-" + re.slot);
     try {
-      localStorage.setItem("move-assistant-dismissed", $e);
+      localStorage.setItem("move-assistant-dismissed", gt);
     } catch {
     }
-    Q = null, we();
+    re = null, Pe();
   }
-  function ia() {
-    if (!Q) return;
-    if (bt(xt(Q.date, Q.slot))) {
-      Qe();
+  function Pa() {
+    if (!re) return;
+    if (Dt(It(re.date, re.slot))) {
+      mt();
       return;
     }
-    const { date: e, slot: t } = Q;
-    let n = xt(e, t);
-    n || (n = { date: e, slot: t }, w.checkins.unshift(n), w.checkins = w.checkins.slice(0, 2e3)), n.mood = Number(pe.mood.input.value), n.energy = Number(pe.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), xe(), v.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: Be("mood", n.mood), energy_label: Be("energy", n.energy) }), z((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Qe(), kt(), Xe(), Le(), se();
+    const { date: e, slot: t } = re;
+    let n = It(e, t);
+    n || (n = { date: e, slot: t }, T.checkins.unshift(n), T.checkins = T.checkins.slice(0, 2e3)), n.mood = Number(Ce.mood.input.value), n.energy = Number(Ce.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), Be(), h.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: je("mood", n.mood), energy_label: je("energy", n.energy) }), U((t === "morning" ? "Morning" : "Evening") + " check-in saved"), mt(), Ot(), vt(), Oe(), fe();
   }
-  let $e = "";
+  let gt = "";
   try {
-    $e = localStorage.getItem("move-assistant-dismissed") || "";
+    gt = localStorage.getItem("move-assistant-dismissed") || "";
   } catch {
   }
-  function we() {
-    const e = yt();
-    ea.hidden = !e, ce.hidden = !e, e || wt(), ce.classList.toggle("due", !!e), ce.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : zn()), ce.title = e ? "Check in now" : zn();
+  function Pe() {
+    const e = Ht();
+    Ba.hidden = !e, Se.hidden = !e, e || zt(), Se.classList.toggle("due", !!e), Se.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : di()), Se.title = e ? "Check in now" : di();
   }
-  function en() {
-    we();
-    const e = yt();
-    !e || de.classList.contains("open") || E().checkinAutoOpen !== !1 && (!Me.home.classList.contains("active") || U.classList.contains("open") || $e !== W(/* @__PURE__ */ new Date()) + "-" + e && Gn());
+  function bn() {
+    Pe();
+    const e = Ht();
+    !e || ke.classList.contains("open") || N().checkinAutoOpen !== !1 && (!qe.home.classList.contains("active") || X.classList.contains("open") || gt !== J(/* @__PURE__ */ new Date()) + "-" + e && pi());
   }
-  ce.addEventListener("click", Gn), i("checkinLater").addEventListener("click", Qe), i("checkinSave").addEventListener("click", ia), de.addEventListener("click", (e) => {
-    e.target === de && Qe();
-  }), de.addEventListener("keydown", (e) => {
-    e.key === "Escape" && (e.preventDefault(), Qe());
-  }), setInterval(en, 3e4);
-  function kt() {
-    const e = W(/* @__PURE__ */ new Date()), t = (n) => w.checkins.find((a) => a.date === e && a[n] != null);
+  Se.addEventListener("click", pi), i("checkinLater").addEventListener("click", mt), i("checkinSave").addEventListener("click", Pa), ke.addEventListener("click", (e) => {
+    e.target === ke && mt();
+  }), ke.addEventListener("keydown", (e) => {
+    e.key === "Escape" && (e.preventDefault(), mt());
+  }), setInterval(bn, 3e4);
+  function Ot() {
+    const e = J(/* @__PURE__ */ new Date()), t = (n) => T.checkins.find((a) => a.date === e && a[n] != null);
     [["mood", "moodMeta"], ["energy", "energyLevelMeta"]].forEach(([n, a]) => {
       const o = t(n);
-      i(a).textContent = o ? Be(n, o[n]) : "—";
+      i(a).textContent = o ? je(n, o[n]) : "—";
     });
   }
-  function Xe() {
+  function vt() {
     const e = i("feelCard");
     if (!e) return;
-    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), a = [...Array(7)].map((m, c) => {
-      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + c), f = W(d), M = w.checkins.filter((T) => T.date === f), A = (T) => {
-        const B = M.map((I) => I[T]).filter((I) => I != null);
-        return B.length ? B.reduce((I, p) => I + p, 0) / B.length : null;
+    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), a = [...Array(7)].map((u, g) => {
+      const c = new Date(n.getFullYear(), n.getMonth(), n.getDate() + g), d = J(c), y = T.checkins.filter((S) => S.date === d), b = (S) => {
+        const F = y.map((B) => B[S]).filter((B) => B != null);
+        return F.length ? F.reduce((B, m) => B + m, 0) / F.length : null;
       };
-      return { d, key: f, mood: A("mood"), energy: A("energy"), count: M.filter(bt).length, future: d > t && f !== W(t) };
-    }), o = (m) => {
-      const c = a.map((d) => d[m]).filter((d) => d != null);
-      return c.length ? c.reduce((d, f) => d + f, 0) / c.length : null;
-    }, r = o("mood"), l = o("energy"), s = (m, c) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + m + "</span><span>" + (c == null ? "—" : F(Be("", c))) + '</span></div><div class="feelTrack"><span style="width:' + (c == null ? 0 : Math.max(4, c)) + "%;background:" + (c == null ? "transparent" : $i(c)) + '"></span></div></div>', u = a.filter((m) => m.mood != null && m.energy != null).sort((m, c) => c.mood + c.energy - (m.mood + m.energy))[0];
-    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : F(Be("", (r + l) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + F(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + a.map(
-      (m) => '<div class="weekChip feelDay' + (m.future ? " future" : "") + (m.key === W(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + F(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(m.d)) + "</strong>" + (m.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(m.count) + "</span>") + "</div>" + s("Mood", m.mood) + s("Energy", m.energy) + "</div>"
+      return { d: c, key: d, mood: b("mood"), energy: b("energy"), count: y.filter(Dt).length, future: c > t && d !== J(t) };
+    }), o = (u) => {
+      const g = a.map((c) => c[u]).filter((c) => c != null);
+      return g.length ? g.reduce((c, d) => c + d, 0) / g.length : null;
+    }, r = o("mood"), s = o("energy"), l = (u, g) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + u + "</span><span>" + (g == null ? "—" : P(je("", g))) + '</span></div><div class="feelTrack"><span style="width:' + (g == null ? 0 : Math.max(4, g)) + "%;background:" + (g == null ? "transparent" : Fa(g)) + '"></span></div></div>', p = a.filter((u) => u.mood != null && u.energy != null).sort((u, g) => g.mood + g.energy - (u.mood + u.energy))[0];
+    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : P(je("", (r + s) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (p ? " · best day " + P(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(p.d)) : "")) + '</div></div></div><div class="feelDays">' + a.map(
+      (u) => '<div class="weekChip feelDay' + (u.future ? " future" : "") + (u.key === J(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + P(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(u.d)) + "</strong>" + (u.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(u.count) + "</span>") + "</div>" + l("Mood", u.mood) + l("Energy", u.energy) + "</div>"
     ).join("") + "</div>";
   }
-  const St = i("upcomingCountSetting");
-  St.addEventListener("change", () => {
-    Fe = St.value === "all" ? "all" : Number(St.value), ii();
+  const _t = i("upcomingCountSetting");
+  _t.addEventListener("change", () => {
+    Ge = _t.value === "all" ? "all" : Number(_t.value), Li();
   });
-  const et = i("tempoRevealBtn"), tn = i("tempoExperiment"), $ = i("tempoQuad"), Ne = i("tempoDot"), aa = i("tempoEstimate"), oa = i("tempoReadout");
-  let Pe = { x: 0.5, y: 0.5 }, tt = !1, Ct = { total: 20, work: 45, rest: 15 };
-  function nn(e, t, n, a) {
+  const ht = i("tempoRevealBtn"), yn = i("tempoExperiment"), se = i("tempoQuad"), Ve = i("tempoDot"), Ia = i("tempoEstimate"), Da = i("tempoReadout");
+  let Ue = { x: 0.5, y: 0.5 }, ft = !1, qt = { total: 20, work: 45, rest: 15 };
+  function wn(e, t, n, a) {
     const o = Math.max(t, Math.min(n, e));
     return Math.round((o - t) / a) * a + t;
   }
-  function ra(e, t) {
-    const n = (e - 0.5) * 2, a = (t - 0.5) * 2, o = nn(
-      Ct.total + n * 5 + a * 8,
+  function Ha(e, t) {
+    const n = (e - 0.5) * 2, a = (t - 0.5) * 2, o = wn(
+      qt.total + n * 5 + a * 8,
+      Number(I.min),
+      Number(I.max),
+      Number(I.step)
+    ), r = wn(
+      qt.work + n * 10 + a * 8,
+      Number(M.min),
+      Number(M.max),
+      Number(M.step)
+    ), s = wn(
+      qt.rest + n * 6 + a * 6,
       Number(R.min),
       Number(R.max),
       Number(R.step)
-    ), r = nn(
-      Ct.work + n * 10 + a * 8,
-      Number(C.min),
-      Number(C.max),
-      Number(C.step)
-    ), l = nn(
-      Ct.rest + n * 6 + a * 6,
-      Number(L.min),
-      Number(L.max),
-      Number(L.step)
     );
-    return R.value = o, C.value = r, L.value = l, Fn.textContent = r + " sec", Rn.textContent = l + " sec", ht(), { total: o, work: r, rest: l };
+    return I.value = o, M.value = r, R.value = s, Kn.textContent = r + " sec", Jn.textContent = s + " sec", At(), { total: o, work: r, rest: s };
   }
-  function an(e, t) {
-    const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", a = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = ra(e, t);
-    oa.textContent = n + " + " + a, aa.textContent = o.total + " min", $.setAttribute("aria-valuetext", n + " and " + a + ", estimated " + o.total + " minutes");
+  function kn(e, t) {
+    const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", a = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = Ha(e, t);
+    Da.textContent = n + " + " + a, Ia.textContent = o.total + " min", se.setAttribute("aria-valuetext", n + " and " + a + ", estimated " + o.total + " minutes");
   }
-  function on(e) {
-    const t = $.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), a = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
-    Pe = { x: n, y: a }, Ne.style.left = n * 100 + "%", Ne.style.top = a * 100 + "%", an(n, a);
+  function Sn(e) {
+    const t = se.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), a = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
+    Ue = { x: n, y: a }, Ve.style.left = n * 100 + "%", Ve.style.top = a * 100 + "%", kn(n, a);
   }
-  et.addEventListener("click", () => {
-    const e = tn.hidden;
-    tn.hidden = !e, et.setAttribute("aria-expanded", e ? "true" : "false"), et.textContent = e ? "Now close this" : "Don’t try this!", e && (Ct = {
-      total: Number(R.value),
-      work: Number(C.value),
-      rest: Number(L.value)
-    }, Pe = { x: 0.5, y: 0.5 }, Ne.style.left = "50%", Ne.style.top = "50%", an(Pe.x, Pe.y));
-  }), h.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
-    Number(e.dataset.feedbackRating), h.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
+  ht.addEventListener("click", () => {
+    const e = yn.hidden;
+    yn.hidden = !e, ht.setAttribute("aria-expanded", e ? "true" : "false"), ht.textContent = e ? "Now close this" : "Don’t try this!", e && (qt = {
+      total: Number(I.value),
+      work: Number(M.value),
+      rest: Number(R.value)
+    }, Ue = { x: 0.5, y: 0.5 }, Ve.style.left = "50%", Ve.style.top = "50%", kn(Ue.x, Ue.y));
+  }), f.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
+    Number(e.dataset.feedbackRating), f.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
   }));
-  const Tt = i("testingFeedbackForm"), Wn = i("testingFeedbackThanks"), sa = i("testingFeedbackAgain");
-  Tt.addEventListener("submit", (e) => {
-    e.preventDefault(), Tt.hidden = !0, Wn.hidden = !1, z("Feedback captured for prototype");
-  }), sa.addEventListener("click", (e) => {
-    e.preventDefault(), Tt.reset(), h.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Wn.hidden = !0, Tt.hidden = !1;
-  }), $.addEventListener("pointerdown", (e) => {
+  const Gt = i("testingFeedbackForm"), ui = i("testingFeedbackThanks"), za = i("testingFeedbackAgain");
+  Gt.addEventListener("submit", (e) => {
+    e.preventDefault(), Gt.hidden = !0, ui.hidden = !1, U("Feedback captured for prototype");
+  }), za.addEventListener("click", (e) => {
+    e.preventDefault(), Gt.reset(), f.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), ui.hidden = !0, Gt.hidden = !1;
+  }), se.addEventListener("pointerdown", (e) => {
     var t;
-    tt = !0, on(e);
+    ft = !0, Sn(e);
     try {
-      (t = $.setPointerCapture) == null || t.call($, e.pointerId);
+      (t = se.setPointerCapture) == null || t.call(se, e.pointerId);
     } catch {
     }
-  }), $.addEventListener("pointermove", (e) => {
-    tt && on(e);
-  }), $.addEventListener("pointerup", (e) => {
-    tt && (tt = !1, on(e), O());
-  }), $.addEventListener("pointercancel", () => tt = !1), $.addEventListener("keydown", (e) => {
-    let { x: t, y: n } = Pe, a = !0;
-    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : a = !1, a && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), Pe = { x: t, y: n }, Ne.style.left = t * 100 + "%", Ne.style.top = n * 100 + "%", an(t, n), O());
+  }), se.addEventListener("pointermove", (e) => {
+    ft && Sn(e);
+  }), se.addEventListener("pointerup", (e) => {
+    ft && (ft = !1, Sn(e), q());
+  }), se.addEventListener("pointercancel", () => ft = !1), se.addEventListener("keydown", (e) => {
+    let { x: t, y: n } = Ue, a = !0;
+    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : a = !1, a && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), Ue = { x: t, y: n }, Ve.style.left = t * 100 + "%", Ve.style.top = n * 100 + "%", kn(t, n), q());
   });
-  const U = i("workoutModal");
-  let nt = null;
-  function Ie(e) {
+  const X = i("workoutModal");
+  let xt = null;
+  function Ze(e) {
     return e.map((t) => ({ ...t }));
   }
-  function la() {
-    const e = b[k];
+  function Oa() {
+    const e = C[L];
     return {
-      key: k,
+      key: L,
       profile: e ? JSON.parse(JSON.stringify(e)) : null,
-      warmup: Ie(he),
-      strength: Ie(H),
-      cooldown: Ie(fe),
-      total: Number(R.value),
-      work: Number(C.value),
-      rest: Number(L.value),
-      rounds: Number(ve.value) || 1
+      warmup: Ze(ye),
+      strength: Ze(W),
+      cooldown: Ze(we),
+      total: Number(I.value),
+      work: Number(M.value),
+      rest: Number(R.value),
+      rounds: Number(Re.value) || 1
     };
   }
-  function jn(e = !1) {
-    P = !!e, ft = null, nt = la(), i("moveEditorTitle").textContent = P ? "Create new move" : "Edit move", i("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", i("moveEditorSubtitle").hidden = !P, i("warmupRow").hidden = P, i("deleteMoveOpen").hidden = P;
+  function mi(e = !1) {
+    z = !!e, te = null, ie = null, xt = Oa(), i("moveEditorTitle").textContent = z ? "Create new move" : "Edit move", i("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", i("moveEditorSubtitle").hidden = !z, i("warmupRow").hidden = z, i("deleteMoveOpen").hidden = z;
     const t = i("createMoveOptions");
-    t.hidden = !P;
+    t.hidden = !z;
     {
-      const n = b[k];
+      const n = C[L];
       i("includeWarmupPreset").checked = !!(n != null && n.includeWarmup), i("includeCooldownPreset").checked = !!(n != null && n.includeCooldown);
     }
-    if (Vn(), P) {
+    if (gi(), z) {
       i("useGlobalTiming").checked = !0, i("useGlobalRestTiming").checked = !0;
-      const n = b[k];
-      Vt((n == null ? void 0 : n.preset) || "movement", !1);
+      const n = C[L];
+      cn((n == null ? void 0 : n.preset) || "movement", !1);
     }
-    i("movementCreator").hidden = !0, Kt("movement"), Zt(), Re(), tn.hidden = !0, et.setAttribute("aria-expanded", "false"), et.textContent = "Don’t try this!", U.classList.toggle("createMode", P), U.querySelector(".modal").classList.toggle("createMode", P), U.classList.add("open"), U.setAttribute("aria-hidden", "false"), P && Fi();
+    i("movementCreator").hidden = !0, La("movement"), gn(), ut(), yn.hidden = !0, ht.setAttribute("aria-expanded", "false"), ht.textContent = "Don’t try this!", X.classList.toggle("createMode", z), X.querySelector(".modal").classList.toggle("createMode", z), X.classList.add("open"), X.setAttribute("aria-hidden", "false"), z && na();
   }
-  function da() {
-    const e = b[k];
+  function _a() {
+    const e = C[L];
     return e != null && e.customSequence ? !!e.includeWarmup : !(e != null && e.warmupOff);
   }
-  function Vn() {
-    const e = da(), t = i("warmupSwitch");
+  function gi() {
+    const e = _a(), t = i("warmupSwitch");
     t.classList.toggle("on", e), t.setAttribute("aria-checked", String(e));
   }
   i("warmupSwitch").addEventListener("click", () => {
-    const e = b[k];
-    e && (e.customSequence ? (i("includeWarmupPreset").checked = !e.includeWarmup, Ut()) : (e.warmupOff = !e.warmupOff, O()), Vn());
+    const e = C[L];
+    e && (e.customSequence ? (i("includeWarmupPreset").checked = !e.includeWarmup, pn()) : (e.warmupOff = !e.warmupOff, q()), gi());
   });
-  function Lt() {
-    U.classList.contains("createMode") && Ri(), U.classList.remove("createMode"), U.querySelector(".modal").classList.remove("createMode"), U.classList.remove("open"), U.setAttribute("aria-hidden", "true");
+  function Wt() {
+    ie = null, te = null, X.classList.contains("createMode") && ia(), X.classList.remove("createMode"), X.querySelector(".modal").classList.remove("createMode"), X.classList.remove("open"), X.setAttribute("aria-hidden", "true");
   }
-  function Un() {
-    if (!nt) return;
-    const e = nt;
-    e.profile && (b[e.key] = JSON.parse(JSON.stringify(e.profile))), k = e.key, he = Ie(e.warmup), H = Ie(e.strength), fe = Ie(e.cooldown), R.value = e.total, C.value = e.work, L.value = e.rest, ve.value = e.rounds || 1;
-    const t = b[k];
+  function vi() {
+    if (!xt) return;
+    const e = xt;
+    e.profile && (C[e.key] = JSON.parse(JSON.stringify(e.profile))), L = e.key, ye = Ze(e.warmup), W = Ze(e.strength), we = Ze(e.cooldown), I.value = e.total, M.value = e.work, R.value = e.rest, Re.value = e.rounds || 1;
+    const t = C[L];
     if (t) {
-      h.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === k));
-      const n = h.querySelector(".workoutPanel.active");
+      f.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === L));
+      const n = f.querySelector(".workoutPanel.active");
       if (n) {
         const a = n.querySelector(".workoutName");
         a && (a.textContent = t.name);
@@ -1448,59 +1629,53 @@ function qa(h, v) {
         const r = n.querySelector(".sourceTag");
         r && (r.textContent = t.source);
       }
-      S.value = t.name;
+      E.value = t.name;
     }
-    O();
+    q();
   }
   i("cancelWorkoutEdit").addEventListener("click", () => {
-    if (P) {
-      const e = k;
-      delete b[e], P = !1, be = null, J(w.order.find((t) => b[t]) || Object.keys(b)[0]);
+    if (z) {
+      const e = L;
+      delete C[e], z = !1, Ae = null, oe(T.order.find((t) => C[t]) || Object.keys(C)[0]);
     } else
-      Un();
-    Lt();
+      vi();
+    Wt();
   }), i("saveWorkoutEdit").addEventListener("click", () => {
-    const e = b[k], t = S.value.trim() || "New move";
-    if (e && (e.name = t), O(), P && e)
-      Gt(k, e), h.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === k)), P = !1, be = null, w.order.includes(k) || w.order.push(k), z("Move created");
+    const e = C[L], t = E.value.trim() || "New move";
+    if (e && (e.name = t), Pt(), te = null, q(), z && e)
+      sn(L, e), f.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === L)), z = !1, Ae = null, T.order.includes(L) || T.order.push(L), U("Move created");
     else {
-      const n = h.querySelector(".workoutPanel.active");
+      const n = f.querySelector(".workoutPanel.active");
       if (n) {
         const a = n.querySelector(".workoutName");
         a && (a.textContent = t);
         const o = n.querySelector(".panelCollapsedText");
         o && (o.textContent = t);
       }
-      z("Move saved");
+      U("Move saved");
     }
-    nt = null, Lt(), xe();
-  }), U.addEventListener("click", (e) => {
-    if (e.target === U) {
-      if (P) {
-        const t = k;
-        delete b[t], P = !1, be = null, J(w.order.find((n) => b[n]) || Object.keys(b)[0]);
+    xt = null, Wt(), Be();
+  }), X.addEventListener("click", (e) => {
+    if (e.target === X) {
+      if (z) {
+        const t = L;
+        delete C[t], z = !1, Ae = null, oe(T.order.find((n) => C[n]) || Object.keys(C)[0]);
       } else
-        Un();
-      Lt();
+        vi();
+      Wt();
     }
-  }), i("addMovementBtn").addEventListener("click", () => {
-    const e = i("movementCreator");
-    e.hidden = !1, Kt("movement"), Re(), i("addMovementInput").focus();
-  }), i("addRestBtn").addEventListener("click", () => {
-    const e = i("movementCreator");
-    e.hidden = !1, Kt("rest"), i("addRestTitle").focus();
-  }), i("closeMovementCreator").addEventListener("click", () => {
+  }), oi(i("addMovementBtn"), "movement"), oi(i("addRestBtn"), "rest"), i("closeMovementCreator").addEventListener("click", () => {
     i("movementCreator").hidden = !0;
-  }), i("useGlobalTiming").addEventListener("change", Re), i("useGlobalRestTiming").addEventListener("change", Re), h.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
-    Vt(e.dataset.movePreset, !0), O();
-  })), i("includeWarmupPreset").addEventListener("change", Ut), i("includeCooldownPreset").addEventListener("change", Ut), i("includeWarmupPreset").addEventListener("change", le), i("includeCooldownPreset").addEventListener("change", le), S.addEventListener("input", le), i("confirmAddMovement").addEventListener("click", Jt), i("confirmAddRest").addEventListener("click", Jt), i("addMovementInput").addEventListener("keydown", (e) => {
-    e.key === "Enter" && Jt();
+  }), i("useGlobalTiming").addEventListener("change", ut), i("useGlobalRestTiming").addEventListener("change", ut), f.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
+    cn(e.dataset.movePreset, !0), q();
+  })), i("includeWarmupPreset").addEventListener("change", pn), i("includeCooldownPreset").addEventListener("change", pn), i("includeWarmupPreset").addEventListener("change", be), i("includeCooldownPreset").addEventListener("change", be), E.addEventListener("input", be), i("confirmAddMovement").addEventListener("click", vn), i("confirmAddRest").addEventListener("click", vn), i("addMovementInput").addEventListener("keydown", (e) => {
+    e.key === "Enter" && vn();
   });
-  const it = i("countdown"), rn = i("countNum"), ne = i("countdownPixelCanvas");
-  let at = null, sn = "appear";
-  class ca {
-    constructor(t, n, a, o, r, l, s) {
-      this.width = t.width, this.height = t.height, this.ctx = n, this.x = a, this.y = o, this.color = r, this.speed = (Math.random() * 0.8 + 0.1) * l, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = s, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
+  const bt = i("countdown"), Cn = i("countNum"), ue = i("countdownPixelCanvas");
+  let yt = null, Tn = "appear";
+  class qa {
+    constructor(t, n, a, o, r, s, l) {
+      this.width = t.width, this.height = t.height, this.ctx = n, this.x = a, this.y = o, this.color = r, this.speed = (Math.random() * 0.8 + 0.1) * s, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = l, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
     }
     draw() {
       const t = this.maxSizeInteger * 0.5 - this.size * 0.5;
@@ -1524,507 +1699,507 @@ function qa(h, v) {
       this.size >= this.maxSize ? this.isReverse = !0 : this.size <= this.minSize && (this.isReverse = !1), this.size += this.isReverse ? -this.speed : this.speed;
     }
   }
-  let ln = [], Yn = 1, Zn = 1;
-  function ke() {
+  let Ln = [], hi = 1, fi = 1;
+  function Ie() {
     const e = parseFloat(getComputedStyle(i("app")).zoom);
     return Number.isFinite(e) && e > 0 ? e : 1;
   }
-  function pa() {
-    var m;
-    if (!ne) return;
-    const e = ke(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
-    Yn = t, Zn = n;
+  function Ga() {
+    var u;
+    if (!ue) return;
+    const e = Ie(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
+    hi = t, fi = n;
     const a = Math.min(window.devicePixelRatio || 1, 2);
-    ne.width = Math.floor(t * a), ne.height = Math.floor(n * a), ne.style.width = t + "px", ne.style.height = n + "px";
-    const o = ne.getContext("2d");
+    ue.width = Math.floor(t * a), ue.height = Math.floor(n * a), ue.style.width = t + "px", ue.style.height = n + "px";
+    const o = ue.getContext("2d");
     o.setTransform(a, 0, 0, a, 0, 0);
-    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], l = 12, s = (m = window.matchMedia) == null ? void 0 : m.call(window, "(prefers-reduced-motion: reduce)").matches, u = s ? 0 : 0.055;
-    ln = [];
-    for (let c = 0; c < t; c += l)
-      for (let d = 0; d < n; d += l) {
-        const f = c - t / 2, M = d - n / 2, A = Math.sqrt(f * f + M * M), T = s ? 0 : Math.random() * 75 + A * 0.05, B = new ca({ width: t, height: n }, o, c, d, r[Math.floor(Math.random() * r.length)], u, T);
-        B.maxSizeInteger = 4, B.maxSize = Math.random() * 3.2 + 0.8, B.sizeStep = 0.35 + Math.random() * 0.45, ln.push(B);
+    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], s = 12, l = (u = window.matchMedia) == null ? void 0 : u.call(window, "(prefers-reduced-motion: reduce)").matches, p = l ? 0 : 0.055;
+    Ln = [];
+    for (let g = 0; g < t; g += s)
+      for (let c = 0; c < n; c += s) {
+        const d = g - t / 2, y = c - n / 2, b = Math.sqrt(d * d + y * y), S = l ? 0 : Math.random() * 75 + b * 0.05, F = new qa({ width: t, height: n }, o, g, c, r[Math.floor(Math.random() * r.length)], p, S);
+        F.maxSizeInteger = 4, F.maxSize = Math.random() * 3.2 + 0.8, F.sizeStep = 0.35 + Math.random() * 0.45, Ln.push(F);
       }
   }
-  function Kn(e) {
-    cancelAnimationFrame(at), sn = e;
-    const t = ne == null ? void 0 : ne.getContext("2d");
+  function xi(e) {
+    cancelAnimationFrame(yt), Tn = e;
+    const t = ue == null ? void 0 : ue.getContext("2d");
     if (!t) return;
     function n() {
-      t.clearRect(0, 0, Yn, Zn);
+      t.clearRect(0, 0, hi, fi);
       let a = !0;
-      ln.forEach((o) => {
-        o[sn](), o.isIdle || (a = !1);
-      }), sn === "disappear" && a || (at = requestAnimationFrame(n));
+      Ln.forEach((o) => {
+        o[Tn](), o.isIdle || (a = !1);
+      }), Tn === "disappear" && a || (yt = requestAnimationFrame(n));
     }
-    at = requestAnimationFrame(n);
+    yt = requestAnimationFrame(n);
   }
-  function Et() {
-    cancelAnimationFrame(at), pa(), Kn("appear"), setTimeout(() => Kn("disappear"), 560);
+  function jt() {
+    cancelAnimationFrame(yt), Ga(), xi("appear"), setTimeout(() => xi("disappear"), 560);
   }
   window.addEventListener("resize", () => {
-    it.classList.contains("active") && Et();
+    bt.classList.contains("active") && jt();
   });
-  const ot = i("pixelTrailCanvas"), De = ot.getContext("2d");
-  let ie = !0, He = 0.7, _e = 600, rt = [], Oe = null, ue = { x: 0, y: 0, ready: !1 };
-  function Jn() {
-    const e = N.getBoundingClientRect(), t = ke(), n = Math.min(window.devicePixelRatio || 1, 2), a = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
-    ot.width = Math.max(1, Math.floor(a * n)), ot.height = Math.max(1, Math.floor(o * n)), ot.style.width = a + "px", ot.style.height = o + "px", De.setTransform(n, 0, 0, n, 0, 0);
+  const wt = i("pixelTrailCanvas"), Ke = wt.getContext("2d");
+  let me = !0, Je = 0.7, Qe = 600, kt = [], Xe = null, Te = { x: 0, y: 0, ready: !1 };
+  function bi() {
+    const e = H.getBoundingClientRect(), t = Ie(), n = Math.min(window.devicePixelRatio || 1, 2), a = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
+    wt.width = Math.max(1, Math.floor(a * n)), wt.height = Math.max(1, Math.floor(o * n)), wt.style.width = a + "px", wt.style.height = o + "px", Ke.setTransform(n, 0, 0, n, 0, 0);
   }
-  function ua(e, t) {
-    if (!ie) return;
+  function Wa(e, t) {
+    if (!me) return;
     const n = performance.now();
-    ue.ready || (ue = { x: e, y: t, ready: !0 });
+    Te.ready || (Te = { x: e, y: t, ready: !0 });
     const a = 7;
     for (let o = 1; o <= a; o++) {
       const r = o / a;
-      rt.push({
-        x: ue.x + (e - ue.x) * r,
-        y: ue.y + (t - ue.y) * r,
+      kt.push({
+        x: Te.x + (e - Te.x) * r,
+        y: Te.y + (t - Te.y) * r,
         born: n - (a - o) * 10
       });
     }
-    ue = { x: e, y: t, ready: !0 };
+    Te = { x: e, y: t, ready: !0 };
   }
-  function Mt(e) {
-    if (Oe = null, !D) return;
-    if (!Me.workout.classList.contains("active")) {
-      Oe = requestAnimationFrame(Mt);
+  function Yt(e) {
+    if (Xe = null, !O) return;
+    if (!qe.workout.classList.contains("active")) {
+      Xe = requestAnimationFrame(Yt);
       return;
     }
-    const t = N.getBoundingClientRect(), n = ke();
-    De.clearRect(0, 0, t.width / n, t.height / n), ie && (rt = rt.filter((o) => e - o.born < _e), De.fillStyle = i("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", rt.forEach((o) => {
-      const r = (e - o.born) / _e, l = (1 - r) * He, s = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
-      De.globalAlpha = Math.max(0, l);
-      const m = 2 + 5 * (1 - r) * He;
-      De.fillRect(s - m / 2, u - m / 2, m, m);
-    }), De.globalAlpha = 1), Oe = requestAnimationFrame(Mt);
+    const t = H.getBoundingClientRect(), n = Ie();
+    Ke.clearRect(0, 0, t.width / n, t.height / n), me && (kt = kt.filter((o) => e - o.born < Qe), Ke.fillStyle = i("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", kt.forEach((o) => {
+      const r = (e - o.born) / Qe, s = (1 - r) * Je, l = Math.round(o.x / 14) * 14, p = Math.round(o.y / 14) * 14;
+      Ke.globalAlpha = Math.max(0, s);
+      const u = 2 + 5 * (1 - r) * Je;
+      Ke.fillRect(l - u / 2, p - u / 2, u, u);
+    }), Ke.globalAlpha = 1), Xe = requestAnimationFrame(Yt);
   }
-  N.addEventListener("pointermove", (e) => {
-    const t = N.getBoundingClientRect(), n = ke();
-    ua((e.clientX - t.left) / n, (e.clientY - t.top) / n);
-  }), N.addEventListener("pointerleave", () => ue.ready = !1), new ResizeObserver(Jn).observe(N), Jn(), Oe = requestAnimationFrame(Mt);
-  const me = i("movementRippleCanvas"), ze = me.getContext("2d");
-  let Se = !0, qe = null, ma = performance.now();
-  function Qn() {
-    const e = me.parentElement.getBoundingClientRect(), t = ke(), n = Math.max(1, e.width / t), a = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
-    me.width = Math.max(1, Math.floor(n * o)), me.height = Math.max(1, Math.floor(a * o)), me.style.width = n + "px", me.style.height = a + "px", ze.setTransform(o, 0, 0, o, 0, 0);
+  H.addEventListener("pointermove", (e) => {
+    const t = H.getBoundingClientRect(), n = Ie();
+    Wa((e.clientX - t.left) / n, (e.clientY - t.top) / n);
+  }), H.addEventListener("pointerleave", () => Te.ready = !1), new ResizeObserver(bi).observe(H), bi(), Xe = requestAnimationFrame(Yt);
+  const Le = i("movementRippleCanvas"), $e = Le.getContext("2d");
+  let De = !0, et = null, ja = performance.now();
+  function yi() {
+    const e = Le.parentElement.getBoundingClientRect(), t = Ie(), n = Math.max(1, e.width / t), a = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
+    Le.width = Math.max(1, Math.floor(n * o)), Le.height = Math.max(1, Math.floor(a * o)), Le.style.width = n + "px", Le.style.height = a + "px", $e.setTransform(o, 0, 0, o, 0, 0);
   }
-  function $n() {
+  function wi() {
     var e;
-    return V || ((e = g[x]) == null ? void 0 : e.kind) === "rest";
+    return Q || ((e = v[k]) == null ? void 0 : e.kind) === "rest";
   }
-  function ga() {
-    const e = g[x];
-    return $n() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
+  function Ya() {
+    const e = v[k];
+    return wi() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
-  function Ft(e) {
-    if (qe = null, !D) return;
-    if (!Me.workout.classList.contains("active")) {
-      qe = requestAnimationFrame(Ft);
+  function Vt(e) {
+    if (et = null, !O) return;
+    if (!qe.workout.classList.contains("active")) {
+      et = requestAnimationFrame(Vt);
       return;
     }
-    const t = me.parentElement.getBoundingClientRect(), n = ke(), a = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
-    if (ze.clearRect(0, 0, a, o), Se) {
-      const r = ga(), l = (e - ma) % r / r, s = 15, u = Math.max(8, Math.round(s * o / Math.max(1, a))), m = a / (s + 1), c = o / (u + 1), d = a * 0.5, f = o * 0.52, M = Math.hypot(d, f), T = i("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let B = 1; B <= u; B++)
-        for (let I = 1; I <= s; I++) {
-          const p = I * m, y = B * c, j = Math.hypot(p - d, y - f) / M, ee = $n(), Da = ee ? Math.exp(-Math.pow((j - (l * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, Ha = Math.exp(-Math.pow((j - l * 1.25) * 7, 2)), It = ee ? Da : Ha, xi = ee ? 0.5 + 0.5 * Math.sin(l * Math.PI * 2 - j * 3) ** 2 : 0.35 + 0.65 * Math.sin(l * Math.PI * 2 - j * 5) ** 2, _a = ee ? 1.4 + It * 4.2 * xi : 1.2 + It * 5 * xi;
-          ze.beginPath(), ze.arc(p, y, _a, 0, Math.PI * 2), ze.fillStyle = `rgba(${T},${ee ? 0.08 + It * 0.48 : 0.05 + It * 0.55})`, ze.fill();
+    const t = Le.parentElement.getBoundingClientRect(), n = Ie(), a = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
+    if ($e.clearRect(0, 0, a, o), De) {
+      const r = Ya(), s = (e - ja) % r / r, l = 15, p = Math.max(8, Math.round(l * o / Math.max(1, a))), u = a / (l + 1), g = o / (p + 1), c = a * 0.5, d = o * 0.52, y = Math.hypot(c, d), S = i("app").classList.contains("light") ? "34,34,34" : "244,244,244";
+      for (let F = 1; F <= p; F++)
+        for (let B = 1; B <= l; B++) {
+          const m = B * u, w = F * g, G = Math.hypot(m - c, w - d) / y, D = wi(), ct = D ? Math.exp(-Math.pow((G - (s * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, xe = Math.exp(-Math.pow((G - s * 1.25) * 7, 2)), j = D ? ct : xe, Xt = D ? 0.5 + 0.5 * Math.sin(s * Math.PI * 2 - G * 3) ** 2 : 0.35 + 0.65 * Math.sin(s * Math.PI * 2 - G * 5) ** 2, $t = D ? 1.4 + j * 4.2 * Xt : 1.2 + j * 5 * Xt;
+          $e.beginPath(), $e.arc(m, w, $t, 0, Math.PI * 2), $e.fillStyle = `rgba(${S},${D ? 0.08 + j * 0.48 : 0.05 + j * 0.55})`, $e.fill();
         }
     }
-    qe = requestAnimationFrame(Ft);
+    et = requestAnimationFrame(Vt);
   }
-  new ResizeObserver(Qn).observe(me.parentElement), Qn(), qe = requestAnimationFrame(Ft);
-  const st = i("exerciseTitle"), ae = i("exerciseMeta"), dn = i("stepLabel"), Xn = i("digits"), ei = i("fill"), Ge = i("progress"), ge = i("pause"), va = i("nextName"), ha = i("nextMeta"), fa = i("nextIcon"), Rt = i("skipNextSession");
-  let Y = null;
-  function oe(e) {
-    for (let t = Math.max(0, e); t < g.length; t++)
-      if (!g[t].sessionHidden) return t;
+  new ResizeObserver(yi).observe(Le.parentElement), yi(), et = requestAnimationFrame(Vt);
+  const St = i("exerciseTitle"), ge = i("exerciseMeta"), En = i("stepLabel"), ki = i("digits"), Si = i("fill"), tt = i("progress"), Ee = i("pause"), Va = i("nextName"), Ua = i("nextMeta"), Za = i("nextIcon"), Ut = i("skipNextSession");
+  let $ = null;
+  function ve(e) {
+    for (let t = Math.max(0, e); t < v.length; t++)
+      if (!v[t].sessionHidden) return t;
     return -1;
   }
-  function xa() {
-    const e = g[x];
+  function Ka() {
+    const e = v[k];
     if (!e) return { name: "Complete", meta: "Move finished", icon: "✓" };
-    if (V) {
-      const a = oe(x + 1), o = a >= 0 ? g[a] : null;
+    if (Q) {
+      const a = ve(k + 1), o = a >= 0 ? v[a] : null;
       return o ? { name: o.name, meta: o.group + " · " + o.duration + " sec", icon: o.kind === "cooldown" ? "↘" : o.kind === "warmup" ? "↗" : "●" } : { name: "Complete", meta: "Move finished", icon: "✓" };
     }
     if (e.rest > 0) return { name: "Rest", meta: e.rest + " sec · " + (e.roundBreakAfter ? "round " + (e.round + 1) + " next" : "recovery"), icon: "Ⅱ" };
-    const t = oe(x + 1), n = t >= 0 ? g[t] : null;
+    const t = ve(k + 1), n = t >= 0 ? v[t] : null;
     return n ? { name: n.name, meta: n.group + " · " + n.duration + " sec", icon: n.kind === "cooldown" ? "↘" : n.kind === "warmup" ? "↗" : "●" } : { name: "Complete", meta: "Move finished", icon: "✓" };
   }
-  function ba() {
-    if (!g[x]) return g.length;
-    const t = oe(x + 1);
-    return t < 0 ? g.length : t + 1;
+  function Ja() {
+    if (!v[k]) return v.length;
+    const t = ve(k + 1);
+    return t < 0 ? v.length : t + 1;
   }
-  function ya(e) {
+  function Qa(e) {
     return e.kind === "cooldown" ? "↘" : e.kind === "warmup" ? "↗" : "●";
   }
-  function Bt() {
-    return g.length && g[g.length - 1].round || 1;
+  function Zt() {
+    return v.length && v[v.length - 1].round || 1;
   }
-  function ti(e) {
-    const t = g[e];
+  function Ci(e) {
+    const t = v[e];
     if (!t) return "";
-    const n = Bt();
-    if (n <= 1) return "Step " + (e + 1) + " of " + g.length;
+    const n = Zt();
+    if (n <= 1) return "Step " + (e + 1) + " of " + v.length;
     if (t.roundBreak) return "Round " + t.round + " of " + n + " · Rest";
-    const a = g.filter((o) => o.round === t.round && !o.roundBreak).length;
+    const a = v.filter((o) => o.round === t.round && !o.roundBreak).length;
     return "Round " + t.round + " of " + n + " · Step " + (t.roundIndex + 1) + " of " + a;
   }
-  function ni() {
-    return Ge.querySelector('[data-step="' + x + '"]');
+  function Ti() {
+    return tt.querySelector('[data-step="' + k + '"]');
   }
-  function wa() {
-    g[x] && Number(Ge.dataset.round) !== (g[x].round || 1) && un(), [...Ge.children].forEach((e) => {
+  function Xa() {
+    v[k] && Number(tt.dataset.round) !== (v[k].round || 1) && Rn(), [...tt.children].forEach((e) => {
       const t = Number(e.dataset.step);
-      e.classList.toggle("done", t < x), e.classList.toggle("active", t === x), e.classList.toggle("rewindable", t <= x), e.disabled = t > x, t === x && e.style.setProperty("--segment-progress", "0%");
-    }), g[x] && (dn.textContent = ti(x), Ve());
+      e.classList.toggle("done", t < k), e.classList.toggle("active", t === k), e.classList.toggle("rewindable", t <= k), e.disabled = t > k, t === k && e.style.setProperty("--segment-progress", "0%");
+    }), v[k] && (En.textContent = Ci(k), at());
   }
-  function ka(e) {
-    const t = g.indexOf(e);
-    t < 0 || t <= x || (e.sessionHidden = !e.sessionHidden, We(), z((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
+  function $a(e) {
+    const t = v.indexOf(e);
+    t < 0 || t <= k || (e.sessionHidden = !e.sessionHidden, nt(), U((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
   }
-  function ii() {
+  function Li() {
     const e = i("upcomingList");
     if (!e) return;
     e.innerHTML = "";
-    const t = ba(), n = g.slice(t);
-    (Fe === "all" ? n : n.slice(0, Math.max(1, Number(Fe) || 1))).forEach((o) => {
+    const t = Ja(), n = v.slice(t);
+    (Ge === "all" ? n : n.slice(0, Math.max(1, Number(Ge) || 1))).forEach((o) => {
       const r = document.createElement("section");
-      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + ya(o) + '</div><div><div class="upcomingName">' + F(o.name) + '</div><div class="upcomingMeta">' + F(o.group) + " · " + o.duration + " sec" + (Bt() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => ka(o)), e.appendChild(r);
+      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + Qa(o) + '</div><div><div class="upcomingName">' + P(o.name) + '</div><div class="upcomingMeta">' + P(o.group) + " · " + o.duration + " sec" + (Zt() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => $a(o)), e.appendChild(r);
     });
   }
-  function We() {
-    const e = xa();
-    if (va.textContent = e.name, ha.textContent = e.meta, fa.textContent = e.icon, Y = null, V) {
-      const t = oe(x + 1);
-      t >= 0 && (Y = g[t]);
+  function nt() {
+    const e = Ka();
+    if (Va.textContent = e.name, Ua.textContent = e.meta, Za.textContent = e.icon, $ = null, Q) {
+      const t = ve(k + 1);
+      t >= 0 && ($ = v[t]);
     } else {
-      const t = g[x];
+      const t = v[k];
       if (t && t.rest > 0)
-        Y = null;
+        $ = null;
       else {
-        const n = oe(x + 1);
-        n >= 0 && (Y = g[n]);
+        const n = ve(k + 1);
+        n >= 0 && ($ = v[n]);
       }
     }
-    Rt && (Rt.hidden = !Y, Rt.textContent = Y != null && Y.sessionHidden ? "Include this session" : "Skip this session"), ii();
+    Ut && (Ut.hidden = !$, Ut.textContent = $ != null && $.sessionHidden ? "Include this session" : "Skip this session"), Li();
   }
-  Rt.addEventListener("click", () => {
-    Y && (Y.sessionHidden = !Y.sessionHidden, z((Y.sessionHidden ? "Hidden " : "Included ") + Y.name + " for this session"), We());
+  Ut.addEventListener("click", () => {
+    $ && ($.sessionHidden = !$.sessionHidden, U(($.sessionHidden ? "Hidden " : "Included ") + $.name + " for this session"), nt());
   });
-  let X = null, cn = null;
-  function lt(e, t = {}) {
-    const n = b[k];
-    v.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: k, ...t });
+  let le = null, Mn = null;
+  function Ct(e, t = {}) {
+    const n = C[L];
+    h.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: L, ...t });
   }
-  function Sa() {
-    const e = b[k];
-    X = { key: k, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(cn), cn = setInterval(() => {
-      X && !q && X.active++;
-    }, 1e3), lt("started", { steps: g.length });
+  function eo() {
+    const e = C[L];
+    le = { key: L, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(Mn), Mn = setInterval(() => {
+      le && !Z && le.active++;
+    }, 1e3), Ct("started", { steps: v.length });
   }
-  function ai(e) {
-    if (clearInterval(cn), !X) return;
-    const t = X;
-    X = null, lt(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (w.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), w.history = w.history.slice(0, 1e3), xe(), Le(), se());
+  function Ei(e) {
+    if (clearInterval(Mn), !le) return;
+    const t = le;
+    le = null, Ct(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (T.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), T.history = T.history.slice(0, 1e3), Be(), Oe(), fe());
   }
-  function Ca() {
-    _t("workout"), Ta();
+  function to() {
+    nn("workout"), no();
   }
-  function pn() {
-    ai(!1), clearInterval(_), clearInterval(gt), V = !1, q = !1, ge.textContent = "Pause", i("app").classList.remove("resting", "paused"), it.classList.remove("active"), _t("home");
+  function Fn() {
+    Ei(!1), clearInterval(Y), clearInterval(Rt), Q = !1, Z = !1, Ee.textContent = "Pause", i("app").classList.remove("resting", "paused"), bt.classList.remove("active"), nn("home");
   }
-  function Ta() {
-    it.classList.add("active");
+  function no() {
+    bt.classList.add("active");
     let e = 5;
-    rn.textContent = e, requestAnimationFrame(Et), clearInterval(gt), gt = setInterval(() => {
-      e--, e > 0 ? (rn.textContent = e, Et()) : (clearInterval(gt), rn.textContent = "GO", Et(), setTimeout(() => {
-        it.classList.remove("active"), cancelAnimationFrame(at), Ea();
+    Cn.textContent = e, requestAnimationFrame(jt), clearInterval(Rt), Rt = setInterval(() => {
+      e--, e > 0 ? (Cn.textContent = e, jt()) : (clearInterval(Rt), Cn.textContent = "GO", jt(), setTimeout(() => {
+        bt.classList.remove("active"), cancelAnimationFrame(yt), ao();
       }, 650));
     }, 1e3);
   }
-  function un() {
+  function Rn() {
     var t;
-    Ge.innerHTML = "";
-    const e = ((t = g[Math.max(0, x)] || g[0]) == null ? void 0 : t.round) || 1;
-    Ge.dataset.round = e, g.forEach((n, a) => {
+    tt.innerHTML = "";
+    const e = ((t = v[Math.max(0, k)] || v[0]) == null ? void 0 : t.round) || 1;
+    tt.dataset.round = e, v.forEach((n, a) => {
       if ((n.round || 1) !== e) return;
       const o = document.createElement("button");
       o.dataset.step = a, o.type = "button", o.className = "progressSegment", o.setAttribute("aria-label", "Go to " + n.name), o.addEventListener("click", () => {
-        a <= x && La(a);
-      }), Ge.appendChild(o);
+        a <= k && io(a);
+      }), tt.appendChild(o);
     });
   }
-  function La(e) {
-    e < 0 || e >= g.length || e > x || (clearInterval(_), V = !1, i("app").classList.remove("resting"), x = e, q = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", je(), _ = setInterval(Ce, 1e3));
+  function io(e) {
+    e < 0 || e >= v.length || e > k || (clearInterval(Y), Q = !1, i("app").classList.remove("resting"), k = e, Z = !1, i("app").classList.remove("paused"), Ee.textContent = "Pause", it(), Y = setInterval(He, 1e3));
   }
-  function Ea() {
-    if (x = oe(0), q = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", un(), x < 0) {
-      st.textContent = "No activities", ae.textContent = "Open Edit and enable or add a movement", ae.hidden = !1;
+  function ao() {
+    if (k = ve(0), Z = !1, i("app").classList.remove("paused"), Ee.textContent = "Pause", Rn(), k < 0) {
+      St.textContent = "No activities", ge.textContent = "Open Edit and enable or add a movement", ge.hidden = !1;
       return;
     }
-    Sa(), je(), clearInterval(_), _ = setInterval(Ce, 1e3);
+    eo(), it(), clearInterval(Y), Y = setInterval(He, 1e3);
   }
-  function je() {
-    V = !1;
-    const e = g[x];
-    i("app").classList.toggle("resting", e.kind === "rest"), Z = e.duration, mt = e.duration, st.textContent = e.name, ae.textContent = e.group, ae.hidden = !0, dn.textContent = ti(x), X && lt("step", { name: e.name, group: e.group, kind: e.kind, step: x + 1, of: g.length, round: e.round || 1, rounds: Bt(), duration: e.duration }), We(), wa();
+  function it() {
+    Q = !1;
+    const e = v[k];
+    i("app").classList.toggle("resting", e.kind === "rest"), ne = e.duration, Ft = e.duration, St.textContent = e.name, ge.textContent = e.group, ge.hidden = !0, En.textContent = Ci(k), le && Ct("step", { name: e.name, group: e.group, kind: e.kind, step: k + 1, of: v.length, round: e.round || 1, rounds: Zt(), duration: e.duration }), nt(), Xa();
   }
-  function Ve() {
-    Xn.textContent = Z;
-    const e = Z / mt * 100;
-    ei.style.width = e + "%";
-    const t = ni();
-    if (t && !V) {
+  function at() {
+    ki.textContent = ne;
+    const e = ne / Ft * 100;
+    Si.style.width = e + "%";
+    const t = Ti();
+    if (t && !Q) {
       const n = 100 - e;
       t.style.setProperty("--segment-progress", n + "%");
     }
   }
-  function Ce() {
-    if (!q && (Z--, Ve(), Z <= 0)) {
-      const e = g[x];
-      e.rest > 0 ? oi(e.rest) : dt();
+  function He() {
+    if (!Z && (ne--, at(), ne <= 0)) {
+      const e = v[k];
+      e.rest > 0 ? Mi(e.rest) : Tt();
     }
   }
-  function oi(e) {
+  function Mi(e) {
     var n;
-    V = !0, i("app").classList.add("resting");
-    const t = ni();
-    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(_), Z = e, mt = e, X && lt("rest", { duration: e }), st.textContent = "Rest", ae.textContent = (n = g[x]) != null && n.roundBreakAfter ? "Round " + (g[x].round + 1) + " next" : "Recovery", We(), Ve(), _ = setInterval(() => {
-      q || (Z--, Ve(), Z <= 0 && (clearInterval(_), dt(), _ = setInterval(Ce, 1e3)));
+    Q = !0, i("app").classList.add("resting");
+    const t = Ti();
+    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(Y), ne = e, Ft = e, le && Ct("rest", { duration: e }), St.textContent = "Rest", ge.textContent = (n = v[k]) != null && n.roundBreakAfter ? "Round " + (v[k].round + 1) + " next" : "Recovery", nt(), at(), Y = setInterval(() => {
+      Z || (ne--, at(), ne <= 0 && (clearInterval(Y), Tt(), Y = setInterval(He, 1e3)));
     }, 1e3);
   }
-  function dt() {
-    V = !1;
-    const e = oe(x + 1);
+  function Tt() {
+    Q = !1;
+    const e = ve(k + 1);
     if (e >= 0)
-      x = e, je();
+      k = e, it();
     else {
-      q = !1, ge.textContent = "Pause", i("app").classList.remove("resting", "paused"), clearInterval(_), st.textContent = "Complete", ae.textContent = "Move finished", ae.hidden = !1, Xn.textContent = "✓";
+      Z = !1, Ee.textContent = "Pause", i("app").classList.remove("resting", "paused"), clearInterval(Y), St.textContent = "Complete", ge.textContent = "Move finished", ge.hidden = !1, ki.textContent = "✓";
       {
-        const t = Bt();
-        dn.textContent = t > 1 ? t + " rounds done" : g.filter((n) => !n.roundBreak).length + " steps done";
+        const t = Zt();
+        En.textContent = t > 1 ? t + " rounds done" : v.filter((n) => !n.roundBreak).length + " steps done";
       }
-      ai(!0);
+      Ei(!0);
       {
-        const t = mi(7).reduce((n, a) => n + a.minutes, 0);
-        ae.textContent = "Move finished · " + t + " min in the last 7 days";
+        const t = Di(7).reduce((n, a) => n + a.minutes, 0);
+        ge.textContent = "Move finished · " + t + " min in the last 7 days";
       }
-      ei.style.width = "100%", We();
+      Si.style.width = "100%", nt();
     }
   }
   i("skipExercise").addEventListener("click", () => {
-    clearInterval(_);
-    const e = g[x];
-    if (V) {
-      V = !1, i("app").classList.remove("resting");
-      const n = oe(x + 1);
-      n >= 0 ? (x = n, je(), _ = setInterval(Ce, 1e3)) : dt();
+    clearInterval(Y);
+    const e = v[k];
+    if (Q) {
+      Q = !1, i("app").classList.remove("resting");
+      const n = ve(k + 1);
+      n >= 0 ? (k = n, it(), Y = setInterval(He, 1e3)) : Tt();
       return;
     }
     if (e && e.rest > 0) {
-      oi(e.rest);
+      Mi(e.rest);
       return;
     }
-    const t = oe(x + 1);
-    t >= 0 ? (x = t, je(), _ = setInterval(Ce, 1e3)) : dt();
+    const t = ve(k + 1);
+    t >= 0 ? (k = t, it(), Y = setInterval(He, 1e3)) : Tt();
   }), i("restartSegment").addEventListener("click", () => {
-    if (clearInterval(_), q = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", V) {
-      const e = g[x];
-      Z = e.rest, mt = e.rest, st.textContent = "Rest", ae.textContent = "Recovery", i("app").classList.add("resting"), We(), Ve();
+    if (clearInterval(Y), Z = !1, i("app").classList.remove("paused"), Ee.textContent = "Pause", Q) {
+      const e = v[k];
+      ne = e.rest, Ft = e.rest, St.textContent = "Rest", ge.textContent = "Recovery", i("app").classList.add("resting"), nt(), at();
     } else
-      je();
-    _ = setInterval(V ? () => {
-      q || (Z--, Ve(), Z <= 0 && (clearInterval(_), dt(), _ = setInterval(Ce, 1e3)));
-    } : Ce, 1e3);
+      it();
+    Y = setInterval(Q ? () => {
+      Z || (ne--, at(), ne <= 0 && (clearInterval(Y), Tt(), Y = setInterval(He, 1e3)));
+    } : He, 1e3);
   });
-  function At(e, t, n, a) {
-    let o = 0, r = null, l = !1;
-    function s() {
-      r && cancelAnimationFrame(r), r = null, o = 0, l = !1, t.style.width = "0%", e.classList.remove("holding");
+  function Kt(e, t, n, a) {
+    let o = 0, r = null, s = !1;
+    function l() {
+      r && cancelAnimationFrame(r), r = null, o = 0, s = !1, t.style.width = "0%", e.classList.remove("holding");
     }
-    function u(d) {
-      if (!l) return;
-      o || (o = d);
-      const f = Math.min(1, (d - o) / n);
-      if (t.style.width = f * 100 + "%", f >= 1) {
-        l = !1, r && cancelAnimationFrame(r), r = null, t.style.width = "100%", setTimeout(() => t.style.width = "0%", 90), a();
+    function p(c) {
+      if (!s) return;
+      o || (o = c);
+      const d = Math.min(1, (c - o) / n);
+      if (t.style.width = d * 100 + "%", d >= 1) {
+        s = !1, r && cancelAnimationFrame(r), r = null, t.style.width = "100%", setTimeout(() => t.style.width = "0%", 90), a();
         return;
       }
-      r = requestAnimationFrame(u);
+      r = requestAnimationFrame(p);
     }
-    function m(d) {
-      var f;
-      if (!(d && d.button !== void 0 && d.button !== 0)) {
-        d == null || d.preventDefault(), s(), l = !0, e.classList.add("holding");
+    function u(c) {
+      var d;
+      if (!(c && c.button !== void 0 && c.button !== 0)) {
+        c == null || c.preventDefault(), l(), s = !0, e.classList.add("holding");
         try {
-          (f = e.setPointerCapture) == null || f.call(e, d.pointerId);
+          (d = e.setPointerCapture) == null || d.call(e, c.pointerId);
         } catch {
         }
-        r = requestAnimationFrame(u);
+        r = requestAnimationFrame(p);
       }
     }
-    function c() {
-      l && s();
+    function g() {
+      s && l();
     }
-    e.addEventListener("pointerdown", m), e.addEventListener("pointerup", c), e.addEventListener("pointercancel", c), e.addEventListener("lostpointercapture", c), e.addEventListener("keydown", (d) => {
-      (d.key === " " || d.key === "Enter") && !d.repeat && m(d);
-    }), e.addEventListener("keyup", (d) => {
-      (d.key === " " || d.key === "Enter") && c();
+    e.addEventListener("pointerdown", u), e.addEventListener("pointerup", g), e.addEventListener("pointercancel", g), e.addEventListener("lostpointercapture", g), e.addEventListener("keydown", (c) => {
+      (c.key === " " || c.key === "Enter") && !c.repeat && u(c);
+    }), e.addEventListener("keyup", (c) => {
+      (c.key === " " || c.key === "Enter") && g();
     });
   }
-  const Ma = i("endWorkout");
-  At(Ma, i("holdEndFill"), 1500, pn);
-  const Ue = i("deleteMoveConfirm");
+  const oo = i("endWorkout");
+  Kt(oo, i("holdEndFill"), 1500, Fn);
+  const ot = i("deleteMoveConfirm");
   i("deleteMoveOpen").addEventListener("click", () => {
-    Ue.classList.add("open"), Ue.setAttribute("aria-hidden", "false");
+    ot.classList.add("open"), ot.setAttribute("aria-hidden", "false");
   }), i("deleteMoveCancel").addEventListener("click", () => {
-    Ue.classList.remove("open"), Ue.setAttribute("aria-hidden", "true");
+    ot.classList.remove("open"), ot.setAttribute("aria-hidden", "true");
   });
-  function Fa() {
-    const e = k, t = h.querySelector('.workoutPanel[data-workout="' + e + '"]');
-    t && t.remove(), delete b[e], w.order = w.order.filter((a) => a !== e);
-    let n = h.querySelector(".workoutPanel[data-workout]");
+  function ro() {
+    const e = L, t = f.querySelector('.workoutPanel[data-workout="' + e + '"]');
+    t && t.remove(), delete C[e], T.order = T.order.filter((a) => a !== e);
+    let n = f.querySelector(".workoutPanel[data-workout]");
     if (!n) {
       const a = "custom-" + Date.now();
-      b[a] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, w.order.push(a), n = Gt(a, b[a]);
+      C[a] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, T.order.push(a), n = sn(a, C[a]);
     }
-    Ue.classList.remove("open"), Ue.setAttribute("aria-hidden", "true"), nt = null, Lt(), J(n.dataset.workout), xe(), z("Move deleted");
+    ot.classList.remove("open"), ot.setAttribute("aria-hidden", "true"), xt = null, Wt(), oe(n.dataset.workout), Be(), U("Move deleted");
   }
-  At(i("deleteMoveYes"), i("deleteMoveFill"), 1500, Fa);
-  const mn = h.querySelector(".rubberTabs"), Ye = i("rubberIndicator");
-  function ct(e, t = !0) {
-    if (!e || !mn || !Ye) return;
-    const n = mn.getBoundingClientRect(), a = e.getBoundingClientRect();
-    Ye.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
-    const o = ke();
-    Ye.style.left = (a.left - n.left) / o + mn.scrollLeft + "px", Ye.style.width = a.width / o + "px", t && (Ye.style.transform = "scaleX(1.08)", setTimeout(() => Ye.style.transform = "scaleX(1)", 180));
+  Kt(i("deleteMoveYes"), i("deleteMoveFill"), 1500, ro);
+  const Bn = f.querySelector(".rubberTabs"), rt = i("rubberIndicator");
+  function Lt(e, t = !0) {
+    if (!e || !Bn || !rt) return;
+    const n = Bn.getBoundingClientRect(), a = e.getBoundingClientRect();
+    rt.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
+    const o = Ie();
+    rt.style.left = (a.left - n.left) / o + Bn.scrollLeft + "px", rt.style.width = a.width / o + "px", t && (rt.style.transform = "scaleX(1.08)", setTimeout(() => rt.style.transform = "scaleX(1)", 180));
   }
-  h.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
-    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), h.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), h.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), i(e.dataset.pane).classList.add("active"), ct(e, !0);
-  })), requestAnimationFrame(() => ct(h.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => ct(h.querySelector(".tab.active"), !1));
-  const gn = i("pixelTrailToggle"), vn = i("rippleToggle"), Ze = i("trailStrength"), Ke = i("trailLife");
-  function K(e, t) {
-    E()[e] = t, xe();
+  f.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
+    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), f.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), f.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), i(e.dataset.pane).classList.add("active"), Lt(e, !0);
+  })), requestAnimationFrame(() => Lt(f.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => Lt(f.querySelector(".tab.active"), !1));
+  const An = i("pixelTrailToggle"), Nn = i("rippleToggle"), st = i("trailStrength"), lt = i("trailLife");
+  function ae(e, t) {
+    N()[e] = t, Be();
   }
-  const Je = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...E().toggles || {} };
-  function ri() {
-    h.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", Je[t.dataset.toggle] !== !1)), h.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
-      i(n).hidden = Je[t] === !1;
+  const dt = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...N().toggles || {} };
+  function Fi() {
+    f.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", dt[t.dataset.toggle] !== !1)), f.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
+      i(n).hidden = dt[t] === !1;
     });
-    const e = ["steps", "mood", "energyLevel"].some((t) => Je[t] !== !1);
-    h.querySelector(".activityCard").hidden = !e, i("insightCard").style.gridColumn = e ? "" : "span 12";
+    const e = ["steps", "mood", "energyLevel"].some((t) => dt[t] !== !1);
+    f.querySelector(".activityCard").hidden = !e, i("insightCard").style.gridColumn = e ? "" : "span 12";
   }
-  h.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
-    Je[e.dataset.toggle] = Je[e.dataset.toggle] === !1, ri(), K("toggles", { ...Je });
-  })), ri();
-  function Ra() {
-    gn.classList.toggle("on", ie), vn.classList.toggle("on", Se), Ze.value = Math.round(He * 100), i("trailStrengthValue").textContent = Ze.value + "%", Ke.value = _e, i("trailLifeValue").textContent = Ke.value + " ms";
+  f.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
+    dt[e.dataset.toggle] = dt[e.dataset.toggle] === !1, Fi(), ae("toggles", { ...dt });
+  })), Fi();
+  function so() {
+    An.classList.toggle("on", me), Nn.classList.toggle("on", De), st.value = Math.round(Je * 100), i("trailStrengthValue").textContent = st.value + "%", lt.value = Qe, i("trailLifeValue").textContent = lt.value + " ms";
   }
-  E().trailEnabled !== void 0 && (ie = E().trailEnabled), E().rippleEnabled !== void 0 && (Se = E().rippleEnabled), E().trailStrength !== void 0 && (He = E().trailStrength), E().trailMaxAge !== void 0 && (_e = E().trailMaxAge), Ra(), gn.addEventListener("click", () => {
-    ie = !ie, gn.classList.toggle("on", ie), ie || (rt = []), K("trailEnabled", ie);
-  }), vn.addEventListener("click", () => {
-    Se = !Se, vn.classList.toggle("on", Se), K("rippleEnabled", Se);
-  }), Ze.addEventListener("input", () => {
-    He = Number(Ze.value) / 100, i("trailStrengthValue").textContent = Ze.value + "%";
-  }), Ze.addEventListener("change", () => K("trailStrength", He)), Ke.addEventListener("input", () => {
-    _e = Number(Ke.value), i("trailLifeValue").textContent = Ke.value + " ms";
-  }), Ke.addEventListener("change", () => K("trailMaxAge", _e)), St.addEventListener("change", () => K("upcomingCount", Fe));
-  function si(e) {
-    h.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
+  N().trailEnabled !== void 0 && (me = N().trailEnabled), N().rippleEnabled !== void 0 && (De = N().rippleEnabled), N().trailStrength !== void 0 && (Je = N().trailStrength), N().trailMaxAge !== void 0 && (Qe = N().trailMaxAge), so(), An.addEventListener("click", () => {
+    me = !me, An.classList.toggle("on", me), me || (kt = []), ae("trailEnabled", me);
+  }), Nn.addEventListener("click", () => {
+    De = !De, Nn.classList.toggle("on", De), ae("rippleEnabled", De);
+  }), st.addEventListener("input", () => {
+    Je = Number(st.value) / 100, i("trailStrengthValue").textContent = st.value + "%";
+  }), st.addEventListener("change", () => ae("trailStrength", Je)), lt.addEventListener("input", () => {
+    Qe = Number(lt.value), i("trailLifeValue").textContent = lt.value + " ms";
+  }), lt.addEventListener("change", () => ae("trailMaxAge", Qe)), _t.addEventListener("change", () => ae("upcomingCount", Ge));
+  function Ri(e) {
+    f.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
     const t = e === "light";
-    i("app").classList.toggle("light", t), v.setLight(t);
+    i("app").classList.toggle("light", t), h.setLight(t);
   }
-  si(E().theme || "dark"), h.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
-    si(e.dataset.theme), K("theme", e.dataset.theme);
+  Ri(N().theme || "dark"), f.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
+    Ri(e.dataset.theme), ae("theme", e.dataset.theme);
   }));
-  const re = { steps: null, ...E().entities || {} };
-  let Te = null, hn = {};
-  function Ba(e) {
-    const t = Object.values(e).filter((s) => s.entity_id.startsWith("sensor.") || s.entity_id.startsWith("input_number.")), n = (s) => s.attributes.friendly_name || s.entity_id, a = t.filter((s) => /step/i.test(s.entity_id) || /step/i.test(n(s)) || ["steps", "step"].includes(String(s.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((s) => !a.includes(s)), r = (s, u) => n(s).localeCompare(n(u)), l = (s, u) => /health_steps/.test(u.entity_id) - /health_steps/.test(s.entity_id) || r(s, u);
-    return { suggested: a.sort(l), rest: o.sort(r), label: n };
+  const he = { steps: null, ...N().entities || {} };
+  let ze = null, Pn = {};
+  function lo(e) {
+    const t = Object.values(e).filter((l) => l.entity_id.startsWith("sensor.") || l.entity_id.startsWith("input_number.")), n = (l) => l.attributes.friendly_name || l.entity_id, a = t.filter((l) => /step/i.test(l.entity_id) || /step/i.test(n(l)) || ["steps", "step"].includes(String(l.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((l) => !a.includes(l)), r = (l, p) => n(l).localeCompare(n(p)), s = (l, p) => /health_steps/.test(p.entity_id) - /health_steps/.test(l.entity_id) || r(l, p);
+    return { suggested: a.sort(s), rest: o.sort(r), label: n };
   }
-  function li(e) {
+  function Bi(e) {
     const t = i("stepsEntity");
     if (!t || t.matches(":focus")) return;
-    const { suggested: n, rest: a, label: o } = Ba(e), r = (u) => '<option value="' + F(u.entity_id) + '">' + F(o(u)) + "</option>";
-    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (a.length ? '<optgroup label="All sensors">' + a.map(r).join("") + "</optgroup>" : ""), t.value = re.steps || "";
-    const l = i("stepsStatus"), s = re.steps && e[re.steps];
-    l.textContent = s ? "Connected · " + o(s) : l.dataset.empty;
+    const { suggested: n, rest: a, label: o } = lo(e), r = (p) => '<option value="' + P(p.entity_id) + '">' + P(o(p)) + "</option>";
+    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (a.length ? '<optgroup label="All sensors">' + a.map(r).join("") + "</optgroup>" : ""), t.value = he.steps || "";
+    const s = i("stepsStatus"), l = he.steps && e[he.steps];
+    s.textContent = l ? "Connected · " + o(l) : s.dataset.empty;
   }
   i("stepsEntity").addEventListener("change", () => {
-    re.steps = i("stepsEntity").value || null, K("entities", { ...re }), hn = {}, ui(), Te && (li(Te), ci(Te));
+    he.steps = i("stepsEntity").value || null, ae("entities", { ...he }), Pn = {}, Ii(), ze && (Bi(ze), Ni(ze));
   });
-  function Aa(e, t = 0) {
+  function co(e, t = 0) {
     return new Intl.NumberFormat(void 0, { maximumFractionDigits: t }).format(e);
   }
-  function di() {
-    const e = re.steps && (Te == null ? void 0 : Te[re.steps]), t = Number(e == null ? void 0 : e.state);
+  function Ai() {
+    const e = he.steps && (ze == null ? void 0 : ze[he.steps]), t = Number(e == null ? void 0 : e.state);
     return Number.isFinite(t) ? t : null;
   }
-  function ci(e) {
+  function Ni(e) {
     var a;
-    const t = re.steps, n = t ? Number((a = e[t]) == null ? void 0 : a.state) : NaN;
-    i("stepsMeta").textContent = t ? Number.isFinite(n) ? Aa(n) : "—" : "Set up in Settings";
+    const t = he.steps, n = t ? Number((a = e[t]) == null ? void 0 : a.state) : NaN;
+    i("stepsMeta").textContent = t ? Number.isFinite(n) ? co(n) : "—" : "Set up in Settings";
   }
-  let pi = 0;
-  async function ui() {
-    const e = re.steps;
-    if (!e || !v.ws) return;
-    pi = Date.now();
+  let Pi = 0;
+  async function Ii() {
+    const e = he.steps;
+    if (!e || !h.ws) return;
+    Pi = Date.now();
     const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - 30);
     try {
-      const a = await v.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (a == null ? void 0 : a[e]) || [], r = {};
-      if (o.forEach((l) => {
-        Number.isFinite(l.max) && (r[W(new Date(l.start))] = l.max);
+      const a = await h.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (a == null ? void 0 : a[e]) || [], r = {};
+      if (o.forEach((s) => {
+        Number.isFinite(s.max) && (r[J(new Date(s.start))] = s.max);
       }), !Object.keys(r).length) {
-        const l = await v.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
-        ((l == null ? void 0 : l[e]) || []).forEach((s) => {
-          const u = Number(s.s ?? s.state), m = s.lu ? s.lu * 1e3 : Date.parse(s.last_updated || s.last_changed);
-          if (!Number.isFinite(u) || !m) return;
-          const c = W(new Date(m));
-          r[c] = Math.max(r[c] || 0, u);
+        const s = await h.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
+        ((s == null ? void 0 : s[e]) || []).forEach((l) => {
+          const p = Number(l.s ?? l.state), u = l.lu ? l.lu * 1e3 : Date.parse(l.last_updated || l.last_changed);
+          if (!Number.isFinite(p) || !u) return;
+          const g = J(new Date(u));
+          r[g] = Math.max(r[g] || 0, p);
         });
       }
-      hn = r, se();
+      Pn = r, fe();
     } catch {
     }
   }
-  function Le() {
-    se();
+  function Oe() {
+    fe();
   }
-  Le(), setInterval(() => {
-    Le(), Xe(), we();
+  Oe(), setInterval(() => {
+    Oe(), vt(), Pe();
   }, 10 * 60 * 1e3);
-  function mi(e) {
+  function Di(e) {
     const t = {}, n = {};
-    w.history.forEach((l) => {
-      const s = W(new Date(l.start));
-      t[s] = (t[s] || 0) + (l.seconds || 0) / 60, n[s] = (n[s] || 0) + 1;
+    T.history.forEach((s) => {
+      const l = J(new Date(s.start));
+      t[l] = (t[l] || 0) + (s.seconds || 0) / 60, n[l] = (n[l] || 0) + 1;
     });
-    const a = /* @__PURE__ */ new Date(), o = W(a), r = [];
-    for (let l = e - 1; l >= 0; l--) {
-      const s = new Date(a.getFullYear(), a.getMonth(), a.getDate() - l), u = W(s), m = w.checkins.filter((d) => d.date === u), c = (d) => {
-        const f = m.map((M) => M[d]).filter(Boolean);
-        return f.length ? f.reduce((M, A) => M + A, 0) / f.length : null;
+    const a = /* @__PURE__ */ new Date(), o = J(a), r = [];
+    for (let s = e - 1; s >= 0; s--) {
+      const l = new Date(a.getFullYear(), a.getMonth(), a.getDate() - s), p = J(l), u = T.checkins.filter((c) => c.date === p), g = (c) => {
+        const d = u.map((y) => y[c]).filter(Boolean);
+        return d.length ? d.reduce((y, b) => y + b, 0) / d.length : null;
       };
       r.push({
-        key: u,
-        date: s,
-        minutes: Math.round(t[u] || 0),
-        moves: n[u] || 0,
-        steps: u === o && di() != null ? di() : hn[u] ?? null,
-        mood: c("mood"),
-        energy: c("energy")
+        key: p,
+        date: l,
+        minutes: Math.round(t[p] || 0),
+        moves: n[p] || 0,
+        steps: p === o && Ai() != null ? Ai() : Pn[p] ?? null,
+        mood: g("mood"),
+        energy: g("energy")
       });
     }
     return r;
   }
-  function Na(e) {
+  function po(e) {
     let t = e.length - 1;
     e[t] && !e[t].minutes && t--;
     let n = 0;
@@ -2032,104 +2207,104 @@ function qa(h, v) {
       n++, t--;
     return n;
   }
-  function se() {
+  function fe() {
     const e = i("insightCard");
     if (!e) return;
-    const t = mi(30), n = Na(t), a = t.reduce((d, f) => d + f.minutes, 0), o = /* @__PURE__ */ new Date(), r = W(o), l = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), s = [...Array(7)].map((d, f) => {
-      const M = new Date(l.getFullYear(), l.getMonth(), l.getDate() + f), A = W(M), T = t.find((B) => B.key === A);
-      return { d: M, k: A, minutes: T ? T.minutes : 0, today: A === r, future: A > r };
-    }), u = s.reduce((d, f) => d + f.minutes, 0), m = Math.max(10, ...s.map((d) => d.minutes)), c = (d, f, M) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + d + '</div><div><div class="activityRowName">' + F(f) + '</div><div class="activityRowMeta">' + F(M) + "</div></div></div>";
-    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + c("◷", "This week", u + " min") + c("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + c("▦", "30 days", a + " min") + '</div><div class="weekBars">' + s.map(
-      (d) => '<div class="weekBar' + (d.today ? " today" : "") + (d.future ? " future" : "") + '" title="' + F(d.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (d.minutes ? Math.max(6, d.minutes / m * 100) : 0) + '%"></span></div><div class="dayLabel">' + F(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(d.d)) + "</div></div>"
+    const t = Di(30), n = po(t), a = t.reduce((c, d) => c + d.minutes, 0), o = /* @__PURE__ */ new Date(), r = J(o), s = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), l = [...Array(7)].map((c, d) => {
+      const y = new Date(s.getFullYear(), s.getMonth(), s.getDate() + d), b = J(y), S = t.find((F) => F.key === b);
+      return { d: y, k: b, minutes: S ? S.minutes : 0, today: b === r, future: b > r };
+    }), p = l.reduce((c, d) => c + d.minutes, 0), u = Math.max(10, ...l.map((c) => c.minutes)), g = (c, d, y) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + c + '</div><div><div class="activityRowName">' + P(d) + '</div><div class="activityRowMeta">' + P(y) + "</div></div></div>";
+    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + g("◷", "This week", p + " min") + g("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + g("▦", "30 days", a + " min") + '</div><div class="weekBars">' + l.map(
+      (c) => '<div class="weekBar' + (c.today ? " today" : "") + (c.future ? " future" : "") + '" title="' + P(c.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (c.minutes ? Math.max(6, c.minutes / u * 100) : 0) + '%"></span></div><div class="dayLabel">' + P(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(c.d)) + "</div></div>"
     ).join("") + "</div>";
   }
-  const gi = i("tvNav");
-  v.fullscreenSupported || (gi.hidden = !0), gi.addEventListener("click", () => v.toggleFullscreen()), h.addEventListener("keydown", (e) => {
-    !Me.workout.classList.contains("active") || it.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), ge.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), i("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), i("restartSegment").click()));
-  }), [R, C, L, ve].forEach((e) => e.addEventListener("input", () => {
-    const t = b[k];
-    t && (t.total = Number(R.value), t.work = Number(C.value), t.rest = Number(L.value)), O();
-  })), En.addEventListener("click", pn), Mn.addEventListener("click", () => _t("settings")), i("settingsBack").addEventListener("click", pn), ge.addEventListener("click", () => {
-    q = !q, X && lt(q ? "paused" : "resumed"), ge.textContent = q ? "Resume" : "Pause", i("app").classList.toggle("paused", q);
-  }), J(k), kt(), Xe(), se(), i("healthHelpOpen").addEventListener("click", () => h.querySelector(".tab[data-pane=helpPane]").click()), At(i("resetStats"), i("resetStatsFill"), 1500, () => {
-    w.history = [], w.checkins = [], $e = "";
+  const Hi = i("tvNav");
+  h.fullscreenSupported || (Hi.hidden = !0), Hi.addEventListener("click", () => h.toggleFullscreen()), f.addEventListener("keydown", (e) => {
+    !qe.workout.classList.contains("active") || bt.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), Ee.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), i("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), i("restartSegment").click()));
+  }), [I, M, R, Re].forEach((e) => e.addEventListener("input", () => {
+    const t = C[L];
+    t && (t.total = Number(I.value), t.work = Number(M.value), t.rest = Number(R.value)), q();
+  })), Un.addEventListener("click", Fn), Zn.addEventListener("click", () => nn("settings")), i("settingsBack").addEventListener("click", Fn), Ee.addEventListener("click", () => {
+    Z = !Z, le && Ct(Z ? "paused" : "resumed"), Ee.textContent = Z ? "Resume" : "Pause", i("app").classList.toggle("paused", Z);
+  }), oe(L), Ot(), vt(), fe(), i("healthHelpOpen").addEventListener("click", () => f.querySelector(".tab[data-pane=helpPane]").click()), Kt(i("resetStats"), i("resetStatsFill"), 1500, () => {
+    T.history = [], T.checkins = [], gt = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
     } catch {
     }
-    xe(), Le(), Xe(), kt(), se(), we(), z("Stats reset");
+    Be(), Oe(), vt(), Ot(), fe(), Pe(), U("Stats reset");
   });
-  const fn = i("morningTime"), xn = i("eveningTime"), bn = i("checkinAutoOpen");
-  fn.value = te().morning, xn.value = te().evening, bn.classList.toggle("on", E().checkinAutoOpen !== !1), [["morningTime", fn], ["eveningTime", xn]].forEach(([e, t]) => t.addEventListener("change", () => {
-    t.value && (K(e, t.value), we());
-  })), bn.addEventListener("click", () => {
-    const e = E().checkinAutoOpen === !1;
-    bn.classList.toggle("on", e), K("checkinAutoOpen", e);
-  }), setTimeout(en, 800);
-  const vi = i("checkinNotify"), Nt = i("checkinNotifyTarget"), hi = i("checkinNotifyStatus"), Pa = hi.textContent;
-  function fi() {
-    const e = v.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, a = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
-    Nt.innerHTML = n.map((o) => '<option value="' + F(o) + '">' + F(a(o)) + "</option>").join(""), !E().notifyTarget && n[0] && (E().notifyTarget = n[0]), Nt.value = E().notifyTarget || "";
+  const In = i("morningTime"), Dn = i("eveningTime"), Hn = i("checkinAutoOpen");
+  In.value = pe().morning, Dn.value = pe().evening, Hn.classList.toggle("on", N().checkinAutoOpen !== !1), [["morningTime", In], ["eveningTime", Dn]].forEach(([e, t]) => t.addEventListener("change", () => {
+    t.value && (ae(e, t.value), Pe());
+  })), Hn.addEventListener("click", () => {
+    const e = N().checkinAutoOpen === !1;
+    Hn.classList.toggle("on", e), ae("checkinAutoOpen", e);
+  }), setTimeout(bn, 800);
+  const zi = i("checkinNotify"), Jt = i("checkinNotifyTarget"), Oi = i("checkinNotifyStatus"), uo = Oi.textContent;
+  function _i() {
+    const e = h.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, a = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
+    Jt.innerHTML = n.map((o) => '<option value="' + P(o) + '">' + P(a(o)) + "</option>").join(""), !N().notifyTarget && n[0] && (N().notifyTarget = n[0]), Jt.value = N().notifyTarget || "";
   }
-  function Pt() {
-    const e = !!E().notifyOn;
-    vi.classList.toggle("on", e), i("checkinNotifyTargetRow").hidden = !e;
-    const t = te();
-    hi.textContent = e ? "Sends at " + t.morning + " and " + t.evening : Pa;
+  function Qt() {
+    const e = !!N().notifyOn;
+    zi.classList.toggle("on", e), i("checkinNotifyTargetRow").hidden = !e;
+    const t = pe();
+    Oi.textContent = e ? "Sends at " + t.morning + " and " + t.evening : uo;
   }
-  async function yn() {
-    const e = !!E().notifyOn;
+  async function zn() {
+    const e = !!N().notifyOn;
     try {
-      return await v.setReminderAutomation(e ? { target: E().notifyTarget, times: te() } : null), !0;
+      return await h.setReminderAutomation(e ? { target: N().notifyTarget, times: pe() } : null), !0;
     } catch {
-      return z("Couldn't update the reminder in Home Assistant"), !1;
+      return U("Couldn't update the reminder in Home Assistant"), !1;
     }
   }
-  vi.addEventListener("click", async () => {
-    const e = !E().notifyOn;
-    if (e && (fi(), !E().notifyTarget)) {
-      z("Install the Companion app on your phone first");
+  zi.addEventListener("click", async () => {
+    const e = !N().notifyOn;
+    if (e && (_i(), !N().notifyTarget)) {
+      U("Install the Companion app on your phone first");
       return;
     }
-    E().notifyOn = e, Pt(), await yn() ? (xe(), z(e ? "Check-in notifications on" : "Check-in notifications off")) : (E().notifyOn = !e, Pt());
-  }), Nt.addEventListener("change", () => {
-    K("notifyTarget", Nt.value), E().notifyOn && yn();
-  }), [fn, xn].forEach((e) => e.addEventListener("change", () => {
-    Pt(), E().notifyOn && yn();
-  })), fi(), Pt();
-  let wn = null;
-  function Ia() {
-    wn || (wn = setTimeout(() => {
-      wn = null, se();
+    N().notifyOn = e, Qt(), await zn() ? (Be(), U(e ? "Check-in notifications on" : "Check-in notifications off")) : (N().notifyOn = !e, Qt());
+  }), Jt.addEventListener("change", () => {
+    ae("notifyTarget", Jt.value), N().notifyOn && zn();
+  }), [In, Dn].forEach((e) => e.addEventListener("change", () => {
+    Qt(), N().notifyOn && zn();
+  })), _i(), Qt();
+  let On = null;
+  function mo() {
+    On || (On = setTimeout(() => {
+      On = null, fe();
     }, 3e4));
   }
   return {
     updateStates(e) {
-      Te = e, li(e), ci(e), Date.now() - pi > 60 * 60 * 1e3 && ui(), Ia();
+      ze = e, Bi(e), Ni(e), Date.now() - Pi > 60 * 60 * 1e3 && Ii(), mo();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (w.history = e.history, Le()), Array.isArray(e.history) && se(), Array.isArray(e.checkins) && (w.checkins = e.checkins.map(An), we(), kt(), Xe(), Le(), se()), e.profiles && !U.classList.contains("open") && !X)) {
-        const t = Bn(e);
-        Object.keys(b).forEach((n) => delete b[n]), Object.assign(b, t.profiles), w.order = t.order, b[k] || (k = w.order[0]), Pn(), J(k);
+      if (e && (Array.isArray(e.history) && (T.history = e.history, Oe()), Array.isArray(e.history) && fe(), Array.isArray(e.checkins) && (T.checkins = e.checkins.map(Xn), Pe(), Ot(), vt(), Oe(), fe()), e.profiles && !X.classList.contains("open") && !le)) {
+        const t = Qn(e);
+        Object.keys(C).forEach((n) => delete C[n]), Object.assign(C, t.profiles), T.order = t.order, C[L] || (L = T.order[0]), ei(), oe(L);
       }
     },
     suspend() {
-      D = !1;
+      O = !1;
     },
     resume() {
-      D || (D = !0, Oe || (Oe = requestAnimationFrame(Mt)), qe || (qe = requestAnimationFrame(Ft)), ct(h.querySelector(".tab.active"), !1));
+      O || (O = !0, Xe || (Xe = requestAnimationFrame(Yt)), et || (et = requestAnimationFrame(Vt)), Lt(f.querySelector(".tab.active"), !1));
     }
   };
 }
-const Ga = "0.16.0", kn = "move_assistant", Wa = "move_assistant", bi = "move_assistant_checkin_reminder";
-function ja() {
+const yo = "0.17.0", Gn = "move_assistant", wo = "move_assistant", Vi = "move_assistant_checkin_reminder";
+function ko() {
   if (document.getElementById("move-assistant-inter")) return;
-  const h = document.createElement("link");
-  h.id = "move-assistant-inter", h.rel = "stylesheet", h.href = "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap", document.head.appendChild(h);
+  const f = document.createElement("link");
+  f.id = "move-assistant-inter", f.rel = "stylesheet", f.href = "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap", document.head.appendChild(f);
 }
-class Va extends HTMLElement {
-  setConfig(v) {
-    this._config = v || {};
+class So extends HTMLElement {
+  setConfig(h) {
+    this._config = h || {};
   }
   static getStubConfig() {
     return {};
@@ -2140,72 +2315,72 @@ class Va extends HTMLElement {
   getGridOptions() {
     return { columns: "full", min_columns: 12 };
   }
-  set hass(v) {
+  set hass(h) {
     const i = !this._hass;
-    if (this._hass = v, i) {
+    if (this._hass = h, i) {
       this._init();
       return;
     }
-    this._app && v.states !== this._lastStates && (this._lastStates = v.states, this._app.updateStates(v.states));
+    this._app && h.states !== this._lastStates && (this._lastStates = h.states, this._app.updateStates(h.states));
   }
   connectedCallback() {
-    var v;
-    (v = this._app) == null || v.resume();
+    var h;
+    (h = this._app) == null || h.resume();
   }
   disconnectedCallback() {
-    var v;
-    (v = this._app) == null || v.suspend();
+    var h;
+    (h = this._app) == null || h.suspend();
   }
   async _init() {
-    ja();
-    const v = this.shadowRoot || this.attachShadow({ mode: "open" });
-    v.innerHTML = `<style>${Oa}</style>${za}`;
-    const i = v.getElementById("app");
+    ko();
+    const h = this.shadowRoot || this.attachShadow({ mode: "open" });
+    h.innerHTML = `<style>${fo}</style>${xo}`;
+    const i = h.getElementById("app");
     i.style.opacity = "0";
-    let N = null;
+    let H = null;
     try {
-      const S = await this._hass.callWS({
+      const E = await this._hass.callWS({
         type: "frontend/get_user_data",
-        key: kn
+        key: Gn
       });
-      N = (S == null ? void 0 : S.value) ?? null;
+      H = (E == null ? void 0 : E.value) ?? null;
     } catch {
     }
-    this._lastSaved = JSON.stringify(N), this._app = qa(v, {
-      data: N,
-      save: (S) => this._save(S),
-      fire: (S, D) => this._fire(S, D),
-      ws: (S) => this._hass.callWS(S),
+    this._lastSaved = JSON.stringify(H), this._app = bo(h, {
+      data: H,
+      save: (E) => this._save(E),
+      fire: (E, O) => this._fire(E, O),
+      ws: (E) => this._hass.callWS(E),
       notifyServices: () => {
-        var S, D;
-        return Object.keys(((D = (S = this._hass) == null ? void 0 : S.services) == null ? void 0 : D.notify) || {}).sort();
+        var E, O;
+        return Object.keys(((O = (E = this._hass) == null ? void 0 : E.services) == null ? void 0 : O.notify) || {}).sort();
       },
-      setReminderAutomation: (S) => this._setReminderAutomation(S),
-      setLight: (S) => this.classList.toggle("lightBody", S),
+      setReminderAutomation: (E) => this._setReminderAutomation(E),
+      setLight: (E) => this.classList.toggle("lightBody", E),
       fullscreenSupported: !!(this.requestFullscreen || this.webkitRequestFullscreen),
       toggleFullscreen: () => this._toggleFullscreen()
     }), this._lastStates = this._hass.states, this._app.updateStates(this._hass.states), this.isConnected || this._app.suspend(), i.style.transition = "opacity .2s ease", i.style.opacity = "", this._subscribe();
   }
   _subscribe() {
     var i;
-    const v = (i = this._hass) == null ? void 0 : i.connection;
-    v != null && v.subscribeMessage && v.subscribeMessage(
-      (N) => {
-        var D;
-        const S = JSON.stringify((N == null ? void 0 : N.value) ?? null);
-        S === this._lastSaved || S === this._pendingJson || (this._lastSaved = S, (D = this._app) == null || D.applyRemoteData(N.value));
+    const h = (i = this._hass) == null ? void 0 : i.connection;
+    h != null && h.subscribeMessage && h.subscribeMessage(
+      (H) => {
+        var O;
+        const E = JSON.stringify((H == null ? void 0 : H.value) ?? null);
+        E === this._lastSaved || E === this._pendingJson || (this._lastSaved = E, (O = this._app) == null || O.applyRemoteData(H.value));
       },
-      { type: "frontend/subscribe_user_data", key: kn }
+      { type: "frontend/subscribe_user_data", key: Gn }
     ).catch(() => {
     });
   }
-  _save(v) {
-    this._pendingJson = JSON.stringify(v), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
+  _save(h) {
+    this._pendingJson = JSON.stringify(h), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
       const i = this._pendingJson;
       try {
         await this._hass.callWS({
           type: "frontend/set_user_data",
-          key: kn,
+          key: Gn,
           value: JSON.parse(i)
         }), this._lastSaved = i;
       } catch {
@@ -2213,54 +2388,54 @@ class Va extends HTMLElement {
       }
     }, 400);
   }
-  _fire(v, i = {}) {
-    var N, S;
-    ((N = this._config) == null ? void 0 : N.events) !== !1 && ((S = this._hass) == null || S.callWS({
+  _fire(h, i = {}) {
+    var H, E;
+    ((H = this._config) == null ? void 0 : H.events) !== !1 && ((E = this._hass) == null || E.callWS({
       type: "fire_event",
-      event_type: Wa,
-      event_data: { action: v, ...i }
+      event_type: wo,
+      event_data: { action: h, ...i }
     }).catch(() => {
     }));
   }
   // Keeps one Home Assistant automation in sync with the check-in times.
   // Passing null removes it.
-  async _setReminderAutomation(v) {
-    const i = `config/automation/config/${bi}`;
-    if (!v) {
+  async _setReminderAutomation(h) {
+    const i = `config/automation/config/${Vi}`;
+    if (!h) {
       try {
         await this._hass.callApi("DELETE", i);
-      } catch (D) {
-        if ((D == null ? void 0 : D.status_code) !== 404 && (D == null ? void 0 : D.status) !== 404) throw D;
+      } catch (O) {
+        if ((O == null ? void 0 : O.status_code) !== 404 && (O == null ? void 0 : O.status) !== 404) throw O;
       }
       return;
     }
-    const N = (D) => `${D}:00`, S = window.location.pathname;
+    const H = (O) => `${O}:00`, E = window.location.pathname;
     await this._hass.callApi("POST", i, {
-      id: bi,
+      id: Vi,
       alias: "Move Assistant check-in reminder",
       description: "Created by Move Assistant. Change it in Move Assistant → Settings → Check-in.",
       mode: "single",
       triggers: [
-        { trigger: "time", at: N(v.times.morning), id: "morning" },
-        { trigger: "time", at: N(v.times.evening), id: "evening" }
+        { trigger: "time", at: H(h.times.morning), id: "morning" },
+        { trigger: "time", at: H(h.times.evening), id: "evening" }
       ],
       conditions: [],
       actions: [
         {
-          action: `notify.${v.target}`,
+          action: `notify.${h.target}`,
           data: {
             title: "Move Assistant",
             message: "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
-            data: { url: S, clickAction: S }
+            data: { url: E, clickAction: E }
           }
         }
       ]
     });
   }
   _toggleFullscreen() {
-    const v = document;
-    if (v.fullscreenElement || v.webkitFullscreenElement) {
-      (v.exitFullscreen || v.webkitExitFullscreen).call(v);
+    const h = document;
+    if (h.fullscreenElement || h.webkitFullscreenElement) {
+      (h.exitFullscreen || h.webkitExitFullscreen).call(h);
       return;
     }
     const i = this.requestFullscreen || this.webkitRequestFullscreen;
@@ -2268,15 +2443,15 @@ class Va extends HTMLElement {
       () => this._toast("Full screen isn't available here")
     );
   }
-  _toast(v) {
-    var N;
-    const i = (N = this.shadowRoot) == null ? void 0 : N.getElementById("toast");
-    i && (i.textContent = v, i.classList.add("show"), setTimeout(() => i.classList.remove("show"), 2600));
+  _toast(h) {
+    var H;
+    const i = (H = this.shadowRoot) == null ? void 0 : H.getElementById("toast");
+    i && (i.textContent = h, i.classList.add("show"), setTimeout(() => i.classList.remove("show"), 2600));
   }
 }
-customElements.get("move-assistant-card") || (customElements.define("move-assistant-card", Va), window.customCards = window.customCards || [], window.customCards.push({
+customElements.get("move-assistant-card") || (customElements.define("move-assistant-card", So), window.customCards = window.customCards || [], window.customCards.push({
   type: "move-assistant-card",
   name: "Move Assistant",
   description: "Guided movement timer with your Home Assistant activity data.",
   preview: !1
-}), console.info(`%c MOVE ASSISTANT %c ${Ga} `, "background:#D0FF00;color:#090909;font-weight:700", ""));
+}), console.info(`%c MOVE ASSISTANT %c ${yo} `, "background:#D0FF00;color:#090909;font-weight:700", ""));

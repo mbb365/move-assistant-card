@@ -615,13 +615,14 @@ function buildRoutine(){
 const GRIP='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
 // ---- edit a movement in place ----
 let editingItem=null;
+let pendingNew=null; // {item,arr}: dropped into the list but not saved yet
 function splitDuration(sec){
   sec=Math.max(1,Number(sec)||0);
   if(sec>=3600&&sec%3600===0)return {value:sec/3600,unit:'hour'};
   if(sec>=60&&sec%60===0)return {value:sec/60,unit:'min'};
   return {value:sec,unit:'sec'};
 }
-function focusEditForm(){requestAnimationFrame(()=>root.querySelector('.moveEditForm input[data-f=name]')?.focus())}
+function focusEditForm(select=false){const f=root.querySelector('.moveEditForm input[data-f=name]');if(!f)return;f.focus({preventScroll:true});if(select)f.select()}
 function renderEditForm(item,i){
   const isRest=item.kind==='rest';
   const global=isRest?item.useGlobalTiming===true:item.useGlobalTiming!==false;
@@ -630,11 +631,13 @@ function renderEditForm(item,i){
   const row=document.createElement('div');
   row.className='moveRow editing';
   row.dataset.index=i;
+  row.dataset.id=item.id;
+  const isNew=pendingNew?.item===item;
   row.innerHTML=
     '<div class="moveEditForm">'+
       '<div class="moveEditFields">'+
-        '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.name)+'"></label>'+
-        '<label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="'+esc(item.group)+'"></label>'+
+        '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.name)+'" placeholder="'+(isRest?'Rest':'Name this movement')+'"></label>'+
+        '<label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="'+esc(item.group)+'" placeholder="'+(isRest?'Rest':'e.g. Glutes + legs')+'"></label>'+
       '</div>'+
       '<div class="moveEditTiming">'+
         '<label class="globalTimingToggle"><input type="checkbox" data-f="global"'+(global?' checked':'')+'>'+
@@ -652,7 +655,8 @@ function renderEditForm(item,i){
   const f=k=>row.querySelector('[data-f='+k+']');
   const syncGlobal=()=>{const on=f('global').checked;f('dur').disabled=on;f('unit').disabled=on;row.querySelector('.creatorDurationRow').classList.toggle('isDisabled',on)};
   f('global').addEventListener('change',syncGlobal);syncGlobal();
-  const close=()=>{editingItem=null;buildRoutine()};
+  // Cancelling a row that was just dropped in removes it again.
+  const close=()=>{if(isNew)discardPendingNew();editingItem=null;buildRoutine()};
   const save=()=>{
     const name=f('name').value.trim();
     if(!name){f('name').focus();return}
@@ -661,8 +665,9 @@ function renderEditForm(item,i){
     const on=f('global').checked;
     item.useGlobalTiming=on;
     if(!on)item.duration=Math.max(isRest?5:1,secondsFromCreator(f('dur').value,f('unit').value));
-    close();
-    showToast('Movement updated');
+    if(isNew)pendingNew=null;
+    editingItem=null;buildRoutine();
+    showToast(isNew?(isRest?'Rest added':'Movement added'):'Movement updated');
   };
   row.querySelector('[data-a=cancel]').addEventListener('click',close);
   row.querySelector('[data-a=save]').addEventListener('click',save);
@@ -679,6 +684,7 @@ function renderList(arr,targetId){
    const row=document.createElement('div');
    row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'');
    row.dataset.index=i;
+   row.dataset.id=item.id;
    const displayDuration=item.kind==='rest'
      ? (item.useGlobalTiming===true?'Global timing':formatDuration(item.duration))
      : (item.useGlobalTiming===false?formatDuration(item.duration):'Global timing');
@@ -689,7 +695,7 @@ function renderList(arr,targetId){
      '<div class="moveMeta">'+esc(item.group)+' · '+esc(displayDuration)+'</div></div>'+
      '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit '+esc(item.name)+'">Edit</button><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
      '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
-   row.querySelector('.editBtn').addEventListener('click',()=>{editingItem=item;buildRoutine();focusEditForm()});
+   row.querySelector('.editBtn').addEventListener('click',()=>{discardPendingNew();editingItem=item;buildRoutine();focusEditForm()});
    row.querySelector('.hideBtn:not(.editBtn)').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
    const removeBtn=row.querySelector('.removeBtn');
    bindFuseHold(removeBtn,removeBtn.querySelector('.removeFill'),1200,()=>{
@@ -806,12 +812,238 @@ function renderLists(){
  renderList(cooldown,'cooldownList');
 }
 
+// ---- grab "Add movement" / "Add rest" and drop it anywhere in the list ----
+// The new item sticks to the button for a moment (it stretches as you pull), then pops free
+// and springs after the pointer. Over a list it snaps into line, a gap opens where it will
+// land, and on drop it settles into the gap as a new row, already open for editing.
+function discardPendingNew(){
+  if(!pendingNew)return;
+  const {item,arr}=pendingNew;pendingNew=null;
+  const i=arr.indexOf(item);if(i>=0)arr.splice(i,1);
+  if(editingItem===item)editingItem=null;
+}
+function listContext(list){
+  if(list.id==='warmupList')return {arr:warmup,kind:'warmup',group:'Warm-up'};
+  if(list.id==='cooldownList')return {arr:cooldown,kind:'cooldown',group:'Cooldown'};
+  return {arr:strengthPool,kind:'work',group:''};
+}
+function newListItem(type,list){
+  const ctx=listContext(list),stamp=Date.now().toString(36);
+  return type==='rest'
+    ? {id:'rest-'+stamp,name:'Rest',group:'Rest',kind:'rest',hidden:false,useGlobalTiming:true,duration:Number(restInput.value)}
+    : {id:'movement-'+stamp,name:'',group:ctx.group,kind:ctx.kind,hidden:false,useGlobalTiming:true,duration:Number(workInput.value)};
+}
+const RUBBER='cubic-bezier(.34,1.56,.64,1)';
+// Rows (and section titles) glide from where they were to where they end up.
+function flipRows(scope,mutate){
+  if(reduceMotion()||!scope){mutate();return}
+  const key=el=>el.dataset?.id||el;
+  const all=()=>[...scope.querySelectorAll('.moveRow,.sectionTitle,.movementCreatorLaunch')];
+  const before=new Map(all().map(el=>[key(el),el.getBoundingClientRect().top]));
+  mutate();
+  all().forEach(el=>{
+    const top=before.get(key(el));if(top===undefined)return;
+    const dy=top-el.getBoundingClientRect().top;if(Math.abs(dy)<.5)return;
+    el.animate([{transform:'translateY('+dy+'px)'},{transform:'none'}],{duration:440,easing:RUBBER});
+  });
+}
+// The new row grows out of the gap it was dropped into.
+function revealNewRow(row,fromHeight){
+  if(!row||reduceMotion())return;
+  const h=row.offsetHeight,cut=Math.max(0,h-(fromHeight||0));
+  row.animate([{clipPath:'inset(0 0 '+cut+'px 0 round 20.8px)'},{clipPath:'inset(0 0 0 0 round 20.8px)'}],{duration:460,easing:RUBBER});
+}
+function addNewAt(type,list,index,fromHeight){
+  const {arr}=listContext(list);
+  const item=newListItem(type,list);
+  arr.splice(Math.max(0,Math.min(index,arr.length)),0,item);
+  pendingNew={item,arr};editingItem=item;
+  flipRows(list.closest('.exerciseScroller,.createStepSlot')||list,()=>buildRoutine());
+  const row=list.querySelector('.moveRow.editing');
+  revealNewRow(row,fromHeight);
+  focusEditForm(type==='rest');
+  return row;
+}
+function scrollParent(el){
+  for(let n=el;n&&n.nodeType===1;n=n.parentElement){
+    const oy=getComputedStyle(n).overflowY;
+    if(/(auto|scroll)/.test(oy)&&n.scrollHeight>n.clientHeight)return n;
+  }
+  return null;
+}
+function startAddDrag(btn,type,sx,sy){
+  if(editingItem||pendingNew){discardPendingNew();editingItem=null;buildRoutine()}
+  const motion=!reduceMotion();
+  const b=btn.getBoundingClientRect();
+  const rowH=root.querySelector('.moveList .moveRow:not(.editing)')?.offsetHeight||80;
+  const scroller=scrollParent(btn);
+  const column=btn.closest('.exerciseScroller,.createFlow')||scroller;
+  const ghost=document.createElement('div');
+  ghost.className='addGhost'+(type==='rest'?' rest':'');
+  ghost.setAttribute('aria-hidden','true');
+  ghost.innerHTML='<span class="addGhostGrip">'+GRIP+'</span><span class="addGhostText"><strong>'+(type==='rest'?'Rest':'New movement')+'</strong><small>'+(type==='rest'?'Rest · Global timing':'Drop to add, then name it')+'</small></span>';
+  ghost.style.width=b.width+'px';ghost.style.height=b.height+'px';
+  ghost.style.transform='translate('+b.left+'px,'+b.top+'px)';
+  $('workoutModal').appendChild(ghost);
+  btn.classList.add('lifting');
+  const grabX=sx-b.left,grabY=sy-b.top,STICK=44;
+  let px=sx,py=sy,x=b.left,y=b.top,vx=0,vy=0;
+  let free=!motion,over=null,slot=null,slotIndex=-1,raf=0,settle=null;
+  const lists=()=>['warmupList','strengthList','cooldownList'].map(id=>$(id)).filter(l=>l&&l.getClientRects().length&&!l.closest('[hidden]'));
+  const setOver=l=>{
+    if(l===over)return;over=l;
+    ghost.classList.toggle('overList',Boolean(l));
+    const w=l?l.getBoundingClientRect().width:b.width;
+    ghost.style.width=w+'px';ghost.style.height=(l?rowH:b.height)+'px';
+  };
+  const collapse=sl=>{sl.classList.add('leaving');sl.style.height='0px';sl.style.marginTop='-8px';setTimeout(()=>sl.remove(),motion?320:0)};
+  const placeSlot=(list,before,index)=>{
+    if(slot&&slot.parentNode===list&&slotIndex===index)return;
+    if(slot){collapse(slot);slot=null;slotIndex=-1}
+    if(!list)return;
+    const sl=document.createElement('div');sl.className='dropSlot';
+    list.insertBefore(sl,before);
+    slot=sl;slotIndex=index;
+    sl.getBoundingClientRect();
+    sl.style.height=rowH+'px';sl.style.marginTop='0px';
+  };
+  const updateDrop=()=>{
+    let best=null,bestD=Infinity;
+    for(const l of lists()){
+      const r=l.getBoundingClientRect();
+      if(px<r.left-48||px>r.right+48)continue;
+      const top=r.top-28,bottom=r.bottom+28;
+      const d=py<top?top-py:py>bottom?py-bottom:0;
+      if(d<bestD){bestD=d;best=l}
+    }
+    // anywhere over the list column snaps to the nearest spot; outside it, only right on a list
+    const c=column?.getBoundingClientRect();
+    const inColumn=c&&px>=c.left&&px<=c.right&&py>=c.top&&py<=c.bottom;
+    const target=inColumn||bestD===0?best:null;
+    if(target){
+      const rows=[...target.children].filter(r=>r.classList.contains('moveRow'));
+      let idx=rows.findIndex(r=>{const rb=r.getBoundingClientRect();return py<rb.top+rb.height/2});
+      if(idx<0)idx=rows.length;
+      placeSlot(target,rows[idx]||null,idx);
+    }else placeSlot(null);
+    setOver(target);
+  };
+  const aim=()=>{
+    if(settle)return settle.aim();
+    if(over){
+      const lb=over.getBoundingClientRect();
+      let ty=py-rowH/2;
+      if(slot)ty=ty*.6+slot.getBoundingClientRect().top*.4; // pulled towards the gap
+      return {x:lb.left,y:ty};
+    }
+    return {x:px-grabX,y:py-grabY};
+  };
+  const paint=(tilt,a,sx2,sy2)=>{
+    ghost.style.transform='translate('+x+'px,'+y+'px) rotate('+tilt+'deg) rotate('+a+'rad) scale('+sx2+','+sy2+') rotate('+(-a)+'rad)';
+  };
+  const frame=()=>{
+    raf=requestAnimationFrame(frame);
+    if(!free){
+      // still stuck to the button: it stretches towards the pointer
+      const dx=px-sx,dy=py-sy,t=Math.min(Math.hypot(dx,dy)/STICK,1);
+      x=b.left+dx*.35;y=b.top+dy*.35;
+      paint(0,Math.atan2(dy,dx),1+.22*t,1-.14*t);
+      return;
+    }
+    const T=aim();
+    if(!motion){x=T.x;y=T.y;paint(0,0,1,1);if(settle){cancelAnimationFrame(raf);settle.done()}return}
+    const k=settle?settle.k:.17,damp=settle?settle.d:.74;
+    vx=(vx+(T.x-x)*k)*damp;vy=(vy+(T.y-y)*k)*damp;
+    x+=vx;y+=vy;
+    const sp=Math.hypot(vx,vy),st=Math.min(sp/48,1);
+    const tilt=over||settle?0:Math.max(-7,Math.min(7,vx*.45));
+    paint(tilt,Math.atan2(vy,vx),1+.14*st,1-.09*st);
+    if(settle&&sp<.15&&Math.hypot(T.x-x,T.y-y)<.6){cancelAnimationFrame(raf);settle.done()}
+  };
+  const scrollTimer=setInterval(()=>{
+    if(!scroller||settle)return;
+    const r=scroller.getBoundingClientRect(),edge=64;
+    const dy=py<r.top+edge?-(r.top+edge-py)/4:py>r.bottom-edge?(py-(r.bottom-edge))/4:0;
+    if(dy){scroller.scrollTop+=Math.max(-18,Math.min(18,dy));updateDrop()}
+  },30);
+  raf=requestAnimationFrame(frame);
+  let finished=false;
+  const finish=(list,index)=>{
+    if(finished)return;finished=true;
+    cancelAnimationFrame(raf);
+    // the gap stays until the list re-renders, so nothing jumps
+    const fromH=slot?slot.offsetHeight:rowH;
+    if(!list&&slot){slot.remove();slot=null}
+    ghost.classList.add('leaving');setTimeout(()=>ghost.remove(),180);
+    btn.classList.remove('lifting');
+    if(list)addNewAt(type,list,index,fromH);
+  };
+  return {
+    move(cx,cy){
+      px=cx;py=cy;
+      if(!free&&Math.hypot(px-sx,py-sy)>STICK){free=true;vx=(px-sx)*.12;vy=(py-sy)*.12} // pops off the button
+      if(free)updateDrop();
+    },
+    drop(cancel){
+      clearInterval(scrollTimer);
+      const list=over,index=slotIndex;
+      if(!cancel&&list&&slot){
+        const s=slot;
+        settle={k:.24,d:.66,aim:()=>{const sb=s.getBoundingClientRect();return {x:sb.left,y:sb.top}},done:()=>finish(list,index)};
+        setTimeout(()=>finish(list,index),650);
+        if(!motion){cancelAnimationFrame(raf);finish(list,index)}
+        return;
+      }
+      // not over the list: spring back to the button
+      placeSlot(null);setOver(null);
+      settle={k:.2,d:.7,aim:()=>{const r=btn.getBoundingClientRect();return {x:r.left,y:r.top}},done:()=>finish(null)};
+      setTimeout(()=>finish(null),650);
+      if(!motion){cancelAnimationFrame(raf);finish(null)}
+    }
+  };
+}
+function bindAddDrag(btn,type){
+  let dragged=false;
+  btn.addEventListener('click',e=>{
+    if(dragged){dragged=false;e.preventDefault();return}
+    // a plain tap (or Enter on a remote) adds it to the end of the main list
+    const list=$('strengthList');
+    const row=addNewAt(type,list,listContext(list).arr.length,0);
+    row?.scrollIntoView({block:'nearest',behavior:reduceMotion()?'auto':'smooth'});
+  });
+  btn.addEventListener('pointerdown',e=>{
+    if(e.button!==undefined&&e.button!==0)return;
+    const sx=e.clientX,sy=e.clientY;let drag=null;
+    try{btn.setPointerCapture(e.pointerId)}catch(_){}
+    const onKey=ev=>{if(ev.key==='Escape'&&drag){ev.preventDefault();ev.stopPropagation();end(null,true)}};
+    const move=ev=>{
+      if(!drag){
+        if(Math.hypot(ev.clientX-sx,ev.clientY-sy)<6)return;
+        drag=startAddDrag(btn,type,sx,sy);
+        window.addEventListener('keydown',onKey,true);
+      }
+      drag.move(ev.clientX,ev.clientY);
+    };
+    const end=(ev,cancel)=>{
+      btn.removeEventListener('pointermove',move);
+      btn.removeEventListener('pointerup',up);
+      btn.removeEventListener('pointercancel',cancelled);
+      window.removeEventListener('keydown',onKey,true);
+      if(drag){const d=drag;drag=null;dragged=true;setTimeout(()=>{dragged=false},0);d.drop(cancel)}
+    };
+    const up=ev=>end(ev,false),cancelled=ev=>end(ev,true);
+    btn.addEventListener('pointermove',move);
+    btn.addEventListener('pointerup',up);
+    btn.addEventListener('pointercancel',cancelled);
+  });
+}
+
 function updateMovementCreatorAvailability(){
  const hasItems=strengthPool.length>0;
  const addMove=$('addMovementBtn');
  const addRest=$('addRestBtn');
- if(addMove)addMove.textContent='Add movement';
- if(addRest)addRest.textContent='Add rest';
+ if(addMove)addMove.innerHTML=GRIP+'<span>Add movement</span>';
+ if(addRest)addRest.innerHTML=GRIP+'<span>Add rest</span>';
 }
 function updateGlobalTimingUI(){
  const useGlobal=$('useGlobalTiming').checked;
@@ -1286,6 +1518,7 @@ function captureWorkoutEditSnapshot(){
 function openWorkoutEditor(isCreate=false){
   creatingNewMove=Boolean(isCreate);
   editingItem=null;
+  pendingNew=null;
   workoutEditSnapshot=captureWorkoutEditSnapshot();
   $('moveEditorTitle').textContent=creatingNewMove?'Create new move':'Edit move';
   $('moveEditorSubtitle').textContent='Build the sequence first, then set timing, then finish the move.';
@@ -1336,6 +1569,7 @@ $('warmupSwitch').addEventListener('click',()=>{
   syncWarmupSwitch();
 });
 function closeWorkoutEditor(){
+  pendingNew=null;editingItem=null;
   if(modal.classList.contains('createMode'))leaveCreateFlow();
   modal.classList.remove('createMode');
   modal.querySelector('.modal').classList.remove('createMode');
@@ -1380,6 +1614,7 @@ $('saveWorkoutEdit').addEventListener('click',()=>{
   const profile=workoutProfiles[selectedWorkoutKey];
   const name=workoutNameInput.value.trim()||'New move';
   if(profile)profile.name=name;
+  discardPendingNew();editingItem=null;
   buildRoutine();
 
   if(creatingNewMove && profile){
@@ -1416,19 +1651,8 @@ modal.addEventListener('click',e=>{
     closeWorkoutEditor();
   }
 });
-$('addMovementBtn').addEventListener('click',()=>{
-  const creator=$('movementCreator');
-  creator.hidden=false;
-  setCreatorItemType('movement');
-  updateGlobalTimingUI();
-  $('addMovementInput').focus();
-});
-$('addRestBtn').addEventListener('click',()=>{
-  const creator=$('movementCreator');
-  creator.hidden=false;
-  setCreatorItemType('rest');
-  $('addRestTitle').focus();
-});
+bindAddDrag($('addMovementBtn'),'movement');
+bindAddDrag($('addRestBtn'),'rest');
 $('closeMovementCreator').addEventListener('click',()=>{
   $('movementCreator').hidden=true;
 });
