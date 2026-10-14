@@ -643,31 +643,84 @@ function buildRoutine(){
    makeProgress();
  }
 }
+const GRIP='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
 function renderList(arr,targetId){
  const target=$(targetId);target.innerHTML='';
- arr.forEach(item=>{
+ arr.forEach((item,i)=>{
    const row=document.createElement('div');
    row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'');
+   row.dataset.index=i;
    const displayDuration=item.kind==='rest'
      ? (item.useGlobalTiming===true?'Global timing':formatDuration(item.duration))
      : (item.useGlobalTiming===false?formatDuration(item.duration):'Global timing');
-   const durationMeta=' · '+displayDuration;
    const kindBadge=item.kind==='rest'?'<span class="moveKindBadge">Rest</span>':'';
    row.innerHTML=
-     '<div><div class="moveItemName">'+item.name+kindBadge+'</div>'+
-     '<div class="moveMeta">'+item.group+durationMeta+'</div></div>'+
-     '<div style="display:flex;gap:6.4px"><button class="hideBtn">'+(item.hidden?'Show':'Hide')+'</button>'+
-     '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
+     '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder '+esc(item.name)+'. Drag, or use the up and down arrow keys">'+GRIP+'</button>'+
+     '<div class="moveText"><div class="moveItemName">'+esc(item.name)+kindBadge+'</div>'+
+     '<div class="moveMeta">'+esc(item.group)+' · '+esc(displayDuration)+'</div></div>'+
+     '<div class="moveActions"><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
+     '<button class="removeBtn" type="button" aria-label="Remove '+esc(item.name)+'">Remove</button></div>';
    row.querySelector('.hideBtn').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
-   const removeBtn=row.querySelector('.removeBtn');
-   bindFuseHold(removeBtn,removeBtn.querySelector('.removeFill'),1500,()=>{
+   row.querySelector('.removeBtn').addEventListener('click',()=>{
      const idx=arr.indexOf(item);
-     if(idx>-1)arr.splice(idx,1);
+     if(idx<0)return;
+     arr.splice(idx,1);
      buildRoutine();
-     showToast('Removed '+item.name);
+     showToast('Removed '+item.name,{label:'Undo',run:()=>{arr.splice(Math.min(idx,arr.length),0,item);buildRoutine()}});
+   });
+   const handle=row.querySelector('.dragHandle');
+   handle.addEventListener('pointerdown',e=>startRowDrag(e,row,target,arr));
+   handle.addEventListener('keydown',e=>{
+     if(e.key!=='ArrowUp'&&e.key!=='ArrowDown')return;
+     e.preventDefault();
+     const from=arr.indexOf(item),to=from+(e.key==='ArrowUp'?-1:1);
+     if(to<0||to>=arr.length)return;
+     arr.splice(from,1);arr.splice(to,0,item);
+     buildRoutine();
+     $(targetId).children[to]?.querySelector('.dragHandle')?.focus();
    });
    target.appendChild(row);
  });
+}
+// Drag a row by its handle: the row moves through the list as the pointer passes the
+// middle of its neighbours; the new order is saved on release.
+function startRowDrag(e,row,list,arr){
+ if(e.button!==undefined&&e.button!==0)return;
+ e.preventDefault();
+ const handle=e.currentTarget;
+ try{handle.setPointerCapture(e.pointerId)}catch(_){}
+ const scroller=row.closest('.exerciseScroller');
+ row.classList.add('dragging');
+ let lastY=e.clientY,scrollTimer=null;
+ const place=y=>{
+   const others=[...list.children].filter(r=>r!==row);
+   const before=others.find(r=>{const b=r.getBoundingClientRect();return y<b.top+b.height/2});
+   if(before){if(row.nextSibling!==before)list.insertBefore(row,before)}
+   else if(list.lastElementChild!==row)list.appendChild(row);
+ };
+ const autoScroll=()=>{
+   if(!scroller)return;
+   const b=scroller.getBoundingClientRect(),edge=56;
+   const dy=lastY<b.top+edge?-12:lastY>b.bottom-edge?12:0;
+   if(dy){scroller.scrollTop+=dy;place(lastY)}
+ };
+ const move=ev=>{lastY=ev.clientY;place(lastY)};
+ const end=()=>{
+   clearInterval(scrollTimer);
+   handle.removeEventListener('pointermove',move);
+   handle.removeEventListener('pointerup',end);
+   handle.removeEventListener('pointercancel',end);
+   row.classList.remove('dragging');
+   const order=[...list.children].map(r=>Number(r.dataset.index));
+   const moved=order.some((v,i)=>v!==i);
+   if(moved){const next=order.map(i=>arr[i]);arr.splice(0,arr.length,...next)}
+   buildRoutine();
+   if(moved)showToast('Order saved');
+ };
+ handle.addEventListener('pointermove',move);
+ handle.addEventListener('pointerup',end);
+ handle.addEventListener('pointercancel',end);
+ scrollTimer=setInterval(autoScroll,30);
 }
 function renderLists(){
  const profile=workoutProfiles[selectedWorkoutKey];
@@ -795,12 +848,19 @@ function addMovement(){
 
 /* energy */
 let toastTimer=null;
-function showToast(message){
+function showToast(message,action){
  const toast=$('toast');
- toast.textContent=message;
+ toast.innerHTML='';
+ const text=document.createElement('span');text.textContent=message;toast.appendChild(text);
+ if(action){
+   const btn=document.createElement('button');btn.type='button';btn.className='toastAction';btn.textContent=action.label;
+   btn.addEventListener('click',()=>{action.run();toast.classList.remove('show','withAction');clearTimeout(toastTimer)});
+   toast.appendChild(btn);
+ }
+ toast.classList.toggle('withAction',Boolean(action));
  toast.classList.add('show');
  clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
+ toastTimer=setTimeout(()=>toast.classList.remove('show','withAction'),action?5000:2200);
 }
 /* twice-daily check-in: mood + energy on a terrible → great slider (0–100) */
 const LEVELS=['Terrible','Poor','Meh','Okay','Good','Great'];
