@@ -410,7 +410,6 @@ function updateRangeFills(){
   totalFill.style.width=pct(totalInput.value,Number(totalInput.min),Number(totalInput.max))+'%';
   workFill.style.width=pct(workInput.value,Number(workInput.min),Number(workInput.max))+'%';
   restFill.style.width=pct(restInput.value,Number(restInput.min),Number(restInput.max))+'%';
-  totalOut.textContent=formatTotalMinutes(totalInput.value);
   workOut.textContent=formatDuration(workInput.value);
   restOut.textContent=formatDuration(restInput.value);
   const rounds=Number(roundsInput.value)||1;
@@ -502,9 +501,8 @@ function buildRoutine(){
  const target=Number(totalInput.value)*60;
  const work=Number(workInput.value);
  const rest=Number(restInput.value);
- const vWarm=visible(warmup),vStrength=visible(strengthPool),vCool=visible(cooldown);
-
  const profile=workoutProfiles[selectedWorkoutKey];
+ const vWarm=profile?.warmupOff?[]:visible(warmup),vStrength=visible(strengthPool),vCool=visible(cooldown);
  if(profile){
    profile.total=Number(totalInput.value);
    profile.work=work;
@@ -554,45 +552,9 @@ function buildRoutine(){
      routine=baseSequence;
    }
  }else{
-   const fixedCount=vWarm.length+vCool.length;
-   let bestSlots=vStrength.length?1:0;
-   let bestDelta=Infinity;
-   const maxSlots=80;
-   for(let slots=vStrength.length?1:0;slots<=maxSlots;slots++){
-     const n=fixedCount+slots;
-     if(n<=0)continue;
-     const base=n*work+Math.max(0,n-1)*rest;
-     const delta=target-base;
-     const adjustedLast=work+delta;
-     if(adjustedLast<15 || adjustedLast>120)continue;
-     if(Math.abs(delta)<Math.abs(bestDelta)){
-       bestDelta=delta;
-       bestSlots=slots;
-     }
-   }
-   if(bestDelta===Infinity){
-     const desiredCount=Math.max(fixedCount+(vStrength.length?1:0),Math.round((target+rest)/(work+rest)));
-     bestSlots=Math.max(vStrength.length?1:0,desiredCount-fixedCount);
-   }
-
-   const strength=[];
-   for(let i=0;i<bestSlots;i++){
-     const base=vStrength[i%Math.max(1,vStrength.length)];
-     if(base)strength.push({...base,duration:work,rest});
-   }
-
-   routine=[
-     ...vWarm.map(x=>({...x,duration:work,rest})),
-     ...strength,
-     ...vCool.map(x=>({...x,duration:work,rest}))
-   ];
-
-   if(routine.length){
-     const baseTotal=routine.reduce((sum,x)=>sum+x.duration,0)+Math.max(0,routine.length-1)*rest;
-     const delta=target-baseTotal;
-     routine[routine.length-1].duration=Math.max(15,routine[routine.length-1].duration+delta);
-     routine.forEach((x,i)=>x.rest=i<routine.length-1?rest:0);
-   }
+   // Play exactly the listed exercises, once each, in order.
+   routine=[...vWarm,...vStrength,...vCool].map(x=>({...x,duration:work,rest}));
+   if(routine.length)routine[routine.length-1].rest=0;
  }
  // Repeat the whole sequence for each round, with a normal rest between rounds.
  const rounds=Math.max(1,Math.min(10,Number(roundsInput.value)||1));
@@ -619,12 +581,12 @@ function buildRoutine(){
  const length=rounds>1
    ? formatTotalMinutes(roundMinutes)+' × '+rounds+' rounds ('+formatTotalMinutes(totalMinutes)+')'
    : formatTotalMinutes(totalMinutes);
+ const extras=[vWarm.length?'warm-up':'',vCool.length?'cooldown':''].filter(Boolean);
  const text=profile?.customSequence
    ? length+' · '+perRound+' items'
-   : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+' · warm-up + cooldown';
+   : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+(extras.length?' · '+extras.join(' + '):'');
+ totalOut.textContent=formatDuration(roundSeconds);
  const countText=perRound+' activities'+(rounds>1?' × '+rounds:'');
- // Custom moves get their length from their own steps, so the time slider doesn't apply.
- totalInput.closest('.timeTile').hidden=Boolean(profile?.customSequence);
  roundsOut.textContent=rounds>1?rounds+' rounds · '+formatTotalMinutes(totalMinutes)+' total':'1 round';
  if(profile){profile.summary=text;profile.activityCount=perRound}
  const activeSummary=root.querySelector('.workoutPanel.active .sub');
@@ -659,9 +621,10 @@ function renderList(arr,targetId){
      '<div class="moveText"><div class="moveItemName">'+esc(item.name)+kindBadge+'</div>'+
      '<div class="moveMeta">'+esc(item.group)+' · '+esc(displayDuration)+'</div></div>'+
      '<div class="moveActions"><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
-     '<button class="removeBtn" type="button" aria-label="Remove '+esc(item.name)+'">Remove</button></div>';
+     '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
    row.querySelector('.hideBtn').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
-   row.querySelector('.removeBtn').addEventListener('click',()=>{
+   const removeBtn=row.querySelector('.removeBtn');
+   bindFuseHold(removeBtn,removeBtn.querySelector('.removeFill'),1200,()=>{
      const idx=arr.indexOf(item);
      if(idx<0)return;
      arr.splice(idx,1);
@@ -682,45 +645,76 @@ function renderList(arr,targetId){
    target.appendChild(row);
  });
 }
-// Drag a row by its handle: the row moves through the list as the pointer passes the
-// middle of its neighbours; the new order is saved on release.
+// Drag a row by its handle. The row follows the pointer; when it passes the middle of a
+// neighbour the two swap, and the neighbours glide to their new places (FLIP animation).
+const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+const SETTLE='transform .24s cubic-bezier(.2,.8,.2,1)';
 function startRowDrag(e,row,list,arr){
  if(e.button!==undefined&&e.button!==0)return;
  e.preventDefault();
  const handle=e.currentTarget;
  try{handle.setPointerCapture(e.pointerId)}catch(_){}
  const scroller=row.closest('.exerciseScroller');
- row.classList.add('dragging');
+ const grab=e.clientY-row.getBoundingClientRect().top;
  let lastY=e.clientY,scrollTimer=null;
- const place=y=>{
+ row.classList.add('dragging');
+ row.style.transition='none';
+ const follow=()=>{
+   row.style.transform='';
+   const top=row.getBoundingClientRect().top;
+   row.style.transform='translateY('+(lastY-grab-top)+'px) scale(1.015)';
+ };
+ const glide=mutate=>{
    const others=[...list.children].filter(r=>r!==row);
-   const before=others.find(r=>{const b=r.getBoundingClientRect();return y<b.top+b.height/2});
-   if(before){if(row.nextSibling!==before)list.insertBefore(row,before)}
-   else if(list.lastElementChild!==row)list.appendChild(row);
+   const before=new Map(others.map(r=>[r,r.getBoundingClientRect().top]));
+   mutate();
+   if(reduceMotion())return;
+   others.forEach(r=>{
+     r.style.transition='none';r.style.transform='';
+     const dy=before.get(r)-r.getBoundingClientRect().top;
+     if(!dy)return;
+     r.style.transform='translateY('+dy+'px)';
+     r.getBoundingClientRect();
+     r.style.transition=SETTLE;r.style.transform='';
+   });
+ };
+ const place=()=>{
+   const others=[...list.children].filter(r=>r!==row);
+   const center=lastY-grab+row.offsetHeight/2;
+   const before=others.find(r=>{const b=r.getBoundingClientRect();return center<b.top+b.height/2});
+   if(before){if(row.nextElementSibling!==before)glide(()=>list.insertBefore(row,before))}
+   else if(list.lastElementChild!==row)glide(()=>list.appendChild(row));
+   follow();
  };
  const autoScroll=()=>{
    if(!scroller)return;
    const b=scroller.getBoundingClientRect(),edge=56;
-   const dy=lastY<b.top+edge?-12:lastY>b.bottom-edge?12:0;
-   if(dy){scroller.scrollTop+=dy;place(lastY)}
+   const dy=lastY<b.top+edge?-10:lastY>b.bottom-edge?10:0;
+   if(dy){scroller.scrollTop+=dy;place()}
  };
- const move=ev=>{lastY=ev.clientY;place(lastY)};
+ const move=ev=>{lastY=ev.clientY;place()};
  const end=()=>{
    clearInterval(scrollTimer);
    handle.removeEventListener('pointermove',move);
    handle.removeEventListener('pointerup',end);
    handle.removeEventListener('pointercancel',end);
-   row.classList.remove('dragging');
    const order=[...list.children].map(r=>Number(r.dataset.index));
    const moved=order.some((v,i)=>v!==i);
-   if(moved){const next=order.map(i=>arr[i]);arr.splice(0,arr.length,...next)}
-   buildRoutine();
-   if(moved)showToast('Order saved');
+   const finish=()=>{
+     row.classList.remove('dragging');row.style.transition='';row.style.transform='';
+     if(moved){const next=order.map(i=>arr[i]);arr.splice(0,arr.length,...next)}
+     buildRoutine();
+     if(moved)showToast('Order saved');
+   };
+   if(reduceMotion()){finish();return}
+   row.style.transition=SETTLE;row.style.transform='';
+   setTimeout(finish,250);
  };
  handle.addEventListener('pointermove',move);
  handle.addEventListener('pointerup',end);
  handle.addEventListener('pointercancel',end);
  scrollTimer=setInterval(autoScroll,30);
+ follow();
 }
 function renderLists(){
  const profile=workoutProfiles[selectedWorkoutKey];
@@ -735,7 +729,7 @@ function renderLists(){
      strengthTitle.textContent='Move sequence';
    }
  }else{
-   if(warmSection)warmSection.hidden=false;
+   if(warmSection)warmSection.hidden=Boolean(profile?.warmupOff);
    if(coolSection)coolSection.hidden=false;
    if(strengthTitle)strengthTitle.textContent='Kettlebell work';
  }
@@ -1096,7 +1090,6 @@ function updateTimingSlidersFromTempo(x,y){
   workInput.value=work;
   restInput.value=rest;
 
-  totalOut.textContent=total+' min';
   workOut.textContent=work+' sec';
   restOut.textContent=rest+' sec';
   updateRangeFills();
@@ -1226,18 +1219,22 @@ function openWorkoutEditor(isCreate=false){
   creatingNewMove=Boolean(isCreate);
   workoutEditSnapshot=captureWorkoutEditSnapshot();
   $('moveEditorTitle').textContent=creatingNewMove?'Create new move':'Edit move';
-  $('moveEditorSubtitle').textContent=creatingNewMove
-    ? 'Build the sequence first, then set timing, then finish the move.'
-    : 'Adjust timing and choose which movements are included today.';
+  $('moveEditorSubtitle').textContent='Build the sequence first, then set timing, then finish the move.';
+  $('moveEditorSubtitle').hidden=!creatingNewMove;
+  $('warmupRow').hidden=creatingNewMove;
   $('deleteMoveOpen').hidden=creatingNewMove;
   const createOptions=$('createMoveOptions');
   createOptions.hidden=!creatingNewMove;
+  {
+    const profile=workoutProfiles[selectedWorkoutKey];
+    $('includeWarmupPreset').checked=Boolean(profile?.includeWarmup);
+    $('includeCooldownPreset').checked=Boolean(profile?.includeCooldown);
+  }
+  syncWarmupSwitch();
   if(creatingNewMove){
     $('useGlobalTiming').checked=true;
     $('useGlobalRestTiming').checked=true;
     const profile=workoutProfiles[selectedWorkoutKey];
-    $('includeWarmupPreset').checked=Boolean(profile?.includeWarmup);
-    $('includeCooldownPreset').checked=Boolean(profile?.includeCooldown);
     applyCreatePreset(profile?.preset||'movement',false);
   }
   $('movementCreator').hidden=true;
@@ -1254,6 +1251,21 @@ function openWorkoutEditor(isCreate=false){
   modal.setAttribute('aria-hidden','false');
   if(creatingNewMove)enterCreateFlow();
 }
+function warmupIsOn(){
+  const p=workoutProfiles[selectedWorkoutKey];
+  return p?.customSequence?Boolean(p.includeWarmup):!p?.warmupOff;
+}
+function syncWarmupSwitch(){
+  const on=warmupIsOn(),sw=$('warmupSwitch');
+  sw.classList.toggle('on',on);sw.setAttribute('aria-checked',String(on));
+}
+$('warmupSwitch').addEventListener('click',()=>{
+  const p=workoutProfiles[selectedWorkoutKey];
+  if(!p)return;
+  if(p.customSequence){$('includeWarmupPreset').checked=!p.includeWarmup;syncPremadeSequence()}
+  else{p.warmupOff=!p.warmupOff;buildRoutine()}
+  syncWarmupSwitch();
+});
 function closeWorkoutEditor(){
   if(modal.classList.contains('createMode'))leaveCreateFlow();
   modal.classList.remove('createMode');

@@ -3,10 +3,6 @@
 
 <!-- HOME -->
 <section class="view active" id="homeView">
-  <div class="topbar">
-    <div><div class="title" id="homeClock">--:--</div></div>
-  </div>
-
   <div class="grid">
     <div class="moveSection">
       <div class="sectionLabel">Today’s movement</div>
@@ -342,6 +338,11 @@
         <input id="workoutNameInput" class="editNameInput" type="text" value="Kettlebell full body">
       </div>
 
+      <div class="setupSwitchRow" id="warmupRow">
+        <strong>Warm-up</strong>
+        <button class="switch on" id="warmupSwitch" type="button" role="switch" aria-checked="true" aria-label="Warm-up"></button>
+      </div>
+
       <section class="createMoveOptions" id="createMoveOptions" hidden>
         <div class="createOptionLabel">Preset</div>
         <div class="createPresetChoice" role="group" aria-label="Move preset">
@@ -368,45 +369,45 @@
       </section>
 
       <div class="timeTiles">
-      <section class="tile timeTile">
-        <div class="timeHeader">
-          <div class="timeIcon" aria-hidden="true">◷</div>
-          <div class="timeCopy">
-            <div class="timeLabel" id="totalLabel">Total time</div>
-            <div class="timeValue" id="totalOut">20 min</div>
+      <section class="tile timeTile timingGroup">
+        <div class="timeRow timeTotal">
+          <div class="timeHeader">
+            <div class="timeIcon" aria-hidden="true">◷</div>
+            <div class="timeCopy">
+              <div class="timeLabel" id="totalLabel">Total time</div>
+              <div class="timeValue" id="totalOut">20 min</div>
+            </div>
+          </div>
+          <div class="rangeTrack" hidden>
+            <div class="rangeFill" id="totalFill"></div>
+            <input class="rangeInput" id="totalTime" type="range" min="3" max="40" step="1" value="20" aria-label="Time per round in minutes" tabindex="-1">
           </div>
         </div>
-        <div class="rangeTrack">
-          <div class="rangeFill" id="totalFill"></div>
-          <input class="rangeInput" id="totalTime" type="range" min="3" max="40" step="1" value="20" aria-label="Time per round in minutes">
-        </div>
-      </section>
-
-      <section class="tile timeTile">
-        <div class="timeHeader">
-          <div class="timeIcon" aria-hidden="true">▶</div>
-          <div class="timeCopy">
-            <div class="timeLabel">Work</div>
-            <div class="timeValue" id="workOut">45 sec</div>
+        <div class="timeRow">
+          <div class="timeHeader">
+            <div class="timeIcon" aria-hidden="true">▶</div>
+            <div class="timeCopy">
+              <div class="timeLabel">Work</div>
+              <div class="timeValue" id="workOut">45 sec</div>
+            </div>
+          </div>
+          <div class="rangeTrack">
+            <div class="rangeFill" id="workFill"></div>
+            <input class="rangeInput" id="workTime" type="range" min="20" max="60" step="5" value="45" aria-label="Work interval">
           </div>
         </div>
-        <div class="rangeTrack">
-          <div class="rangeFill" id="workFill"></div>
-          <input class="rangeInput" id="workTime" type="range" min="20" max="60" step="5" value="45" aria-label="Work interval">
-        </div>
-      </section>
-
-      <section class="tile timeTile">
-        <div class="timeHeader">
-          <div class="timeIcon" aria-hidden="true">Ⅱ</div>
-          <div class="timeCopy">
-            <div class="timeLabel">Rest</div>
-            <div class="timeValue" id="restOut">15 sec</div>
+        <div class="timeRow">
+          <div class="timeHeader">
+            <div class="timeIcon" aria-hidden="true">Ⅱ</div>
+            <div class="timeCopy">
+              <div class="timeLabel">Rest</div>
+              <div class="timeValue" id="restOut">15 sec</div>
+            </div>
           </div>
-        </div>
-        <div class="rangeTrack">
-          <div class="rangeFill" id="restFill"></div>
-          <input class="rangeInput" id="restTime" type="range" min="5" max="30" step="5" value="15" aria-label="Rest interval">
+          <div class="rangeTrack">
+            <div class="rangeFill" id="restFill"></div>
+            <input class="rangeInput" id="restTime" type="range" min="5" max="30" step="5" value="15" aria-label="Rest interval">
+          </div>
         </div>
       </section>
 

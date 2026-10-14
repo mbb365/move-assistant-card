@@ -962,7 +962,7 @@ button,input{font:inherit}
 .hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:0.32px solid var(--line);background:#1b1b1b;color:#fff}
 
 .removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:0.32px solid var(--line);background:#1b1b1b;color:#fff;cursor:pointer}
-.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger);pointer-events:none;transition:width 0s linear}
+.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:#D53D3D;pointer-events:none;transition:width 0s linear}
 .removeLabel{position:relative;z-index:1}
 .addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}
 .addInput{min-height:41.6px;border-radius:799.2px;border:0.32px solid var(--line);background:#151515;color:#fff;padding:0 14.4px}
@@ -1753,7 +1753,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}
 
 /* Strong */
-.activityRowName,.integration strong,.toggleRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,
+.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,
 .panelCollapsedText,.activityCount,.helpSteps strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,
 .createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,
 .primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,
@@ -1861,12 +1861,26 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .modalTop{flex:0 0 auto;padding:22px 22px 0}
 .modalTop .modalHead{margin-bottom:0;padding-bottom:16px}
 @media(min-width:901px){
-  .modal:not(.createMode){display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,420px);grid-template-rows:auto minmax(0,1fr)}
+  .modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
   .modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:0.32px solid #343434}
-  .modal:not(.createMode) .exerciseScroller{grid-column:1;grid-row:2;border-top:0;padding-top:12px}
-  .modal:not(.createMode) .modalStatic{grid-column:2;grid-row:2;overflow-y:auto;border-bottom:0;border-left:0.32px solid #343434}
-  .modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr))}
-  .modal:not(.createMode) .timeTiles>.timeTile:last-child:nth-child(odd of .timeTile:not([hidden])){grid-column:1/-1}
+  .modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:0.32px solid #343434}
+  .modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}
+  .modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}
 }
 #app.light .modalTop{border-color:#fff}
-#app.light .modal:not(.createMode) .modalStatic{border-left-color:#fff}
+#app.light .modal:not(.createMode) .modalStatic{border-right-color:#fff}
+
+/* ---- edit move v0.14: grouped timing, warm-up switch, delete above editor ---- */
+.timeTiles{align-items:start}
+.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}
+.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}
+.timingGroup .timeRow+.timeRow{border-top:0.32px solid var(--line)}
+.timingGroup .timeTotal{padding-bottom:14px}
+#app.light .timingGroup .timeRow+.timeRow{border-top-color:#EEEDED}
+.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:#252525}
+#app.light .setupSwitchRow{background:rgba(255,255,255,.8)}
+.removeLabel{position:relative;z-index:1}
+.removeBtn.holding{border-color:#D53D3D}
+#deleteMoveConfirm{z-index:200}
+.moveRow{will-change:transform}
+.moveRow.dragging{box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 0 1.5px var(--primary);z-index:3}
