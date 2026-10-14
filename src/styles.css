@@ -1766,7 +1766,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}
 
 /* Caption */
-.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,
+.moveEditForm label>span,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,
 .dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,
 .testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,
 .globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,
@@ -1884,3 +1884,15 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 #deleteMoveConfirm{z-index:200}
 .moveRow{will-change:transform}
 .moveRow.dragging{box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 0 1.5px var(--primary);z-index:3}
+
+/* ---- edit a movement in place ---- */
+.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}
+.moveEditForm{display:grid;gap:14.4px}
+.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}
+.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}
+.moveEditForm .addInput{width:100%;min-width:0}
+.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}
+.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}
+.creatorDurationRow.isDisabled{opacity:.38}
+.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}
+@media(max-width:620px){.moveEditFields{grid-template-columns:1fr}}

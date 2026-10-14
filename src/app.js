@@ -272,7 +272,9 @@ function setWorkoutProfile(key){
    restInput.min=5; restInput.max=30; restInput.step=5;
    warmup=(profile.warmup||defaultWarmup).map(x=>({...x}));
    cooldown=(profile.cooldown||defaultCooldown).map(x=>({...x}));
-   strengthPool=profile.strength.map(([id,name,group,hidden=false])=>({id,name,group,kind:'work',hidden:Boolean(hidden)}));
+   strengthPool=profile.strength.map(entry=>Array.isArray(entry)
+     ? (([id,name,group,hidden=false])=>({id,name,group,kind:'work',hidden:Boolean(hidden)}))(entry)
+     : {...entry});
  }
  root.querySelectorAll('.workoutPanel[data-workout]').forEach(panel=>panel.classList.toggle('active',panel.dataset.workout===key));
  buildRoutine();
@@ -511,7 +513,7 @@ function buildRoutine(){
    if(profile.customSequence){
      profile.sequence=strengthPool.map(x=>({...x}));
    }else{
-     profile.strength=strengthPool.map(x=>[x.id,x.name,x.group,Boolean(x.hidden)]);
+     profile.strength=strengthPool.map(x=>({...x}));
      profile.warmup=warmup.map(x=>({...x}));
      profile.cooldown=cooldown.map(x=>({...x}));
    }
@@ -553,7 +555,12 @@ function buildRoutine(){
    }
  }else{
    // Play exactly the listed exercises, once each, in order.
-   routine=[...vWarm,...vStrength,...vCool].map(x=>({...x,duration:work,rest}));
+   routine=[...vWarm,...vStrength,...vCool].map(x=>{
+     if(x.kind==='rest')return {...x,duration:x.useGlobalTiming===true?rest:(Number(x.duration)||rest),rest:0};
+     return {...x,duration:x.useGlobalTiming===false?(Number(x.duration)||work):work,rest};
+   });
+   // no extra rest straight after (or before) a rest step
+   routine.forEach((x,i)=>{if(routine[i+1]?.kind==='rest')x.rest=0});
    if(routine.length)routine[routine.length-1].rest=0;
  }
  // Repeat the whole sequence for each round, with a normal rest between rounds.
@@ -606,9 +613,69 @@ function buildRoutine(){
  }
 }
 const GRIP='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
+// ---- edit a movement in place ----
+let editingItem=null;
+function splitDuration(sec){
+  sec=Math.max(1,Number(sec)||0);
+  if(sec>=3600&&sec%3600===0)return {value:sec/3600,unit:'hour'};
+  if(sec>=60&&sec%60===0)return {value:sec/60,unit:'min'};
+  return {value:sec,unit:'sec'};
+}
+function focusEditForm(){requestAnimationFrame(()=>root.querySelector('.moveEditForm input[data-f=name]')?.focus())}
+function renderEditForm(item,i){
+  const isRest=item.kind==='rest';
+  const global=isRest?item.useGlobalTiming===true:item.useGlobalTiming!==false;
+  const globalSec=Number(isRest?restInput.value:workInput.value);
+  const own=splitDuration(global?globalSec:(item.duration||globalSec));
+  const row=document.createElement('div');
+  row.className='moveRow editing';
+  row.dataset.index=i;
+  row.innerHTML=
+    '<div class="moveEditForm">'+
+      '<div class="moveEditFields">'+
+        '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.name)+'"></label>'+
+        '<label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="'+esc(item.group)+'"></label>'+
+      '</div>'+
+      '<div class="moveEditTiming">'+
+        '<label class="globalTimingToggle"><input type="checkbox" data-f="global"'+(global?' checked':'')+'>'+
+          '<span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span>'+
+          '<span class="toggleLabel">Use global timing · '+esc(formatDuration(globalSec))+'</span></label>'+
+        '<div class="creatorDurationRow">'+
+          '<input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="'+own.value+'" aria-label="Duration">'+
+          '<select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">'+
+            ['sec','min','hour'].map(u=>'<option value="'+u+'"'+(u===own.unit?' selected':'')+'>'+({sec:'seconds',min:'minutes',hour:'hours'})[u]+'</option>').join('')+
+          '</select>'+
+        '</div>'+
+      '</div>'+
+      '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>'+
+    '</div>';
+  const f=k=>row.querySelector('[data-f='+k+']');
+  const syncGlobal=()=>{const on=f('global').checked;f('dur').disabled=on;f('unit').disabled=on;row.querySelector('.creatorDurationRow').classList.toggle('isDisabled',on)};
+  f('global').addEventListener('change',syncGlobal);syncGlobal();
+  const close=()=>{editingItem=null;buildRoutine()};
+  const save=()=>{
+    const name=f('name').value.trim();
+    if(!name){f('name').focus();return}
+    item.name=name;
+    item.group=f('group').value.trim()||(isRest?'Rest':'Movement');
+    const on=f('global').checked;
+    item.useGlobalTiming=on;
+    if(!on)item.duration=Math.max(isRest?5:1,secondsFromCreator(f('dur').value,f('unit').value));
+    close();
+    showToast('Movement updated');
+  };
+  row.querySelector('[data-a=cancel]').addEventListener('click',close);
+  row.querySelector('[data-a=save]').addEventListener('click',save);
+  row.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close()}
+    if(e.key==='Enter'&&e.target.matches('input')){e.preventDefault();save()}
+  });
+  return row;
+}
 function renderList(arr,targetId){
  const target=$(targetId);target.innerHTML='';
  arr.forEach((item,i)=>{
+   if(item===editingItem){target.appendChild(renderEditForm(item,i));return}
    const row=document.createElement('div');
    row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'');
    row.dataset.index=i;
@@ -620,9 +687,10 @@ function renderList(arr,targetId){
      '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder '+esc(item.name)+'. Drag, or use the up and down arrow keys">'+GRIP+'</button>'+
      '<div class="moveText"><div class="moveItemName">'+esc(item.name)+kindBadge+'</div>'+
      '<div class="moveMeta">'+esc(item.group)+' · '+esc(displayDuration)+'</div></div>'+
-     '<div class="moveActions"><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
+     '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit '+esc(item.name)+'">Edit</button><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
      '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
-   row.querySelector('.hideBtn').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
+   row.querySelector('.editBtn').addEventListener('click',()=>{editingItem=item;buildRoutine();focusEditForm()});
+   row.querySelector('.hideBtn:not(.editBtn)').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
    const removeBtn=row.querySelector('.removeBtn');
    bindFuseHold(removeBtn,removeBtn.querySelector('.removeFill'),1200,()=>{
      const idx=arr.indexOf(item);
@@ -1217,6 +1285,7 @@ function captureWorkoutEditSnapshot(){
 }
 function openWorkoutEditor(isCreate=false){
   creatingNewMove=Boolean(isCreate);
+  editingItem=null;
   workoutEditSnapshot=captureWorkoutEditSnapshot();
   $('moveEditorTitle').textContent=creatingNewMove?'Create new move':'Edit move';
   $('moveEditorSubtitle').textContent='Build the sequence first, then set timing, then finish the move.';
