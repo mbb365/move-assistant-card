@@ -1,4 +1,4 @@
-const _a = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;--muted:#969696;--text:#f4f4f4;--line:#3f3f3f;--lineb:#252525;--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:rgba(255,255,255,.8);--card2:rgba(255,255,255,.8);--muted:#222222;--text:#222222;--line:#ffffff;--lineb:#ffffff}#app.light,#app.light *{color:#222!important}#app.light .pill{background:transparent;color:#222!important;border:0}#app.light .tab,#app.light .back,#app.light .navBtn,#app.light .primary,#app.light .themeBtn{background:#ffffffe0;color:#222!important;border-color:#fff}#app.light .holdEnd{background:#ffffffe0;border:.32px solid #fff;text-decoration:none}#app.light .energyBtn,#app.light .activityRow,#app.light .integration,#app.light .toggleRow,#app.light .weekChip,#app.light .sourceTag,#app.light .timeTile,#app.light .moveRow,#app.light .routineSummary,#app.light .workoutPanel{background:#fffc;color:#222!important}#app.light .timerCard,#app.light .movementCard,#app.light .nextCard{background:#fffc}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn{color:#222!important;background:#ffffffb8}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light,#app.light .shell{background:#eeeded}#app.light .modal{background:#fffffff0;border-color:#fff}#app.light .modalStatic{background:#fffffff0;border-bottom-color:#fff}#app.light .exerciseScroller{background:transparent;border-color:#ffffffe6}#app.light .addInput,#app.light .editNameInput{background:#ffffffeb;color:#222!important;border-color:#fff}#app.light .rangeTrack{background:#d8d6d6;border-color:#fff}#app.light .rangeFill{background:color-mix(in srgb,var(--primary) 45%,white)}#app.light .timerCard,#app.light .movementCard,#app.light .upcomingTile{background:#fffc;border-color:#fff}#app.light .fill{background:color-mix(in srgb,var(--primary) 30%,white)}#app.light .progress{background:transparent}#app.light .progressSegment{background:#c8c6c6}#app.light .progressSegment.active:after{background:var(--primary)}#app.light .progressSegment.done{background:transparent;opacity:0}#app.light .sourceTag,#app.light .activityRow,#app.light .weekChip,#app.light .integration,#app.light .toggleRow,#app.light .moveRow,#app.light .timeTile,#app.light .routineSummary{border-color:#fff}#app.light .countdown{background:#eeeded}#app.light .toast{background:#222;color:#eeeded!important}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:#171717;border:.32px solid var(--line);color:#fff}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:#f2f2f2;color:#090909}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:#292929;color:#cfcfcf}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:28.8px;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:28.8px;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}#app.light .startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}#app.light .energyFloat{background:transparent}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:#282828;border:.32px solid var(--line);color:#fff;cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#fff}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:#252525}.energyLog span:last-child{color:#999}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:#b8bcc6;text-decoration-color:#6d7480}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}#app.light .testingZone{background:#202226;border-color:#4a4f58}#app.light .testingZoneInner{background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226}#app.light .testingZone,#app.light .testingZone *{color:#d6d9df!important}#app.light .testingZone .testingFeedbackField,#app.light .testingZone .testingZoneExplanation,#app.light .testingZone .tempoReadout{color:#9ea5b0!important}#app.light .testingZone .tempoQuad{background:#202226;border-color:#5a606a}#app.light .testingZone .tempoDot{background:transparent;border-color:#c4cad4}#app.light .testingFeedbackForm{background:#2a2a2a;border-color:#4a4f58}#app.light .testingFeedbackField select,#app.light .testingFeedbackField textarea,#app.light .testingRating button{background:#171717;border-color:#4a4f58}#app.light .testingRating button.selected{background:#343434}#app.light .testingFeedbackSubmit{background:#ffffffe0;color:#111!important}#app.light .tempoQuad{background:#ffffff7a;border-color:#fff}#app.light .tempoDot{background:#222;box-shadow:0 0 0 4.8px #0000000d}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:#2e2e2e;display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:#292929;border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:#3a3a3a;display:grid;place-items:center;font-size:16px}.activityRowMeta{color:#b4b4b4;margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:#efefef;color:#090909;border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:#292929;border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:#888}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:#242424}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:#171717;text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:#efefef;pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:#666}.exerciseTitle{margin-top:4.8px;color:var(--secondary)}.meta{color:#969696;margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:#3f3f3f;border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:#efefef;transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}#app.light.resting .progressSegment:not(.done):not(.active),#app.light.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:#0d0d0d;overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:#f2f2f2;transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:#151515;min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:#d5d5d5;text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:#1d1d1d;padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:#2d2d2d;display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:#2d2d2d;display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextCard{background:#fffc;border-color:#fff}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}#app.light .skipBtn{background:transparent;color:#222!important;border-color:#fff}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:#2d2d2d;display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingCard{background:#fffc;border-color:#fff}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .skipSessionBtn{border-color:#fff;color:#222!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:#090909;z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:#000000a8;padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:#202020;border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:#202020;border-bottom:.32px solid #343434}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--line);background:#151515;color:var(--text);padding:0 14.4px}#app.light .editNameInput{background:#ffffffe0;color:#222!important;border-color:#fff}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:#252525;min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:#313131;display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:#cfcfcf;margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:#151515;overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:#efefef;border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid #303030;scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:#4a4a4a;border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:#999;margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:#2a2a2a;border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:#999;margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--line);background:#1b1b1b;color:#fff}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--line);background:#1b1b1b;color:#fff;cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:#d53d3d;pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--line);background:#151515;color:#fff;padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:#efefef;color:#090909}.routineSummary{margin-top:14.4px;background:#171717;border-radius:20.8px;padding:12.8px 14.4px;color:#cfcfcf}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:#171717;border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:#efefef;transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:#090909}#app.light .tabs.rubberTabs{background:#ffffffb3;border-color:#fff}#app.light .rubberIndicator{background:#222}#app.light .tabs.rubberTabs .tab.active{color:#fff!important}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:#282828;border-radius:22.4px;padding:14.4px 16px}.status{color:#999;margin-top:3.2px}.note{color:#999;line-height:1.5;max-width:688px}.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:#444;border:.32px solid var(--line);flex:0 0 auto;cursor:pointer}.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:#ddd;transition:left .18s ease}.switch.on{background:#eee}.switch.on:after{left:22.4px;background:#111}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--line);background:#1b1b1b;color:var(--text);cursor:pointer}.themeBtn.active{background:#efefef;color:#090909}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--line);background:#1b1b1b;color:var(--text);font:inherit}#app.light .settingsSelect{background:#ffffffe0;color:#222;border-color:#fff}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}#app.light .themeBtn.active{background:#222;color:#fff!important}.dangerText{color:#f77}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:#000000a8;align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid #8c2e2e;border-radius:12.8px;background:#311313;color:#fff;cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:#d53d3d;pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:#fff}#app.light .confirmCard{background:#fffffff0;border-color:#fff}#app.light .holdDelete{background:#f5dede;border-color:#e3a0a0;color:#222}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:#171717;border:.32px solid var(--line);color:#fff}.navBtn.active{background:#eee;color:#090909}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:#efefef;color:#090909}.restAddBtn{border:.32px solid var(--line);background:#1b1b1b;color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:#1d1d1d;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--line);background:#151515;color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:#484848;border:.32px solid var(--line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:#a9a9a9;transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:#efefef}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:#111}.toggleLabel{color:#ddd}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}#app.light .movementCreator{background:#ffffffdb;border-color:#fff}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:#22252a}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid #555b65;border-radius:799.2px;color:#9da5b2;vertical-align:middle}#app.light .movementCreator{background:#ffffffd1;border-color:#fff}#app.light .restAddBtn{background:#ffffffb8;color:#222;border-color:#fff}#app.light .toggleTrack{border-color:#fff}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:#242424;border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:#efefef;color:#090909;border-color:#efefef}.createPresetBtn.active span{color:#575757}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--line);background:#171717;color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:#9da5b2}#app.light .createMoveOptions{background:#fffc;border-color:#fff}#app.light .createPresetBtn,#app.light .createExtraToggle{border-color:#fff;color:#222}#app.light .creatorUnitSelect{background:#fff;color:#222;border-color:#fff}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--line);background:#1b1b1b;color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}#app.light .globalTimingValue{background:#ffffffc2;border-color:#fff}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:#222;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid #343434}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.light .createStep{background:#ffffffbd;border-color:#fff}#app.light .createStep.active .createStepHeader{border-bottom-color:#fff}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}#app.light .testingFeedbackThanks{background:#2a2a2a;border-color:#4a4f58}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:#ffffff14}#app.light .integration .status code{background:#0000000f}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:#ffffff0a;overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:#ffffff1f}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px #ffffff59}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px #555}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:#ffffff38}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}#app.light .dayBars{background:#0000000a}#app.light .stepBar{background:#0000001a}#app.light .lgSteps{background:#00000024}#app.light .day.today .dayBars{box-shadow:inset 0 0 0 .8px #00000040}#app.light .dayDot.empty{box-shadow:inset 0 0 0 .8px #bbb}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}#app.light .energyLog{background:#fffc}#app.light .energyLog span:last-child{color:#666!important}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:#171717;color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px #171717,0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:#232323}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px #171717,0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinTab{background:#ffffffe0;border-color:#fff}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px #ffffff4d}#app.light .feelDay.today{box-shadow:inset 0 0 0 .8px #0003}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:#ffffff14;overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}#app.light .feelTrack{background:#00000014}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:#5a5a5a}#app.light .weekly:hover{border-color:#fff;background:#ffffffeb}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:#4a4a4a;stroke-width:1.2;stroke-dasharray:2.5 2.5}#app.light .face.empty circle{stroke:#c4c4c4}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:#252525;color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:#313131;color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:#1b1b1b;color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:#ffffff14}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--line);color:var(--muted)}.helpNote strong{color:var(--text)}#app.light .helpSteps li{background:#fffc}#app.light .helpSteps li:before{background:var(--primary-tint)}#app.light .helpAction{background:#eeeded}#app.light .helpCard code{background:#0000000f}#app.light .helpNote{border-color:#fff}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:64px;--t-title:22px;--t-value:22px;--t-section:18px;--t-strong:16px;--t-body:14px;--t-caption:12px;--lh-display:1.05;--lh-title:1}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.helpSteps strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.moveEditForm label>span,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,.autoRestSummary,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:#292929;overflow:hidden}.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}.weekBar.future{opacity:.35}#app.light .weekBarTrack{background:#fffc}#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:#ffffff0f;color:var(--text)}#app.light .dragHandle:hover{background:#0000000d}.moveRow.dragging{box-shadow:0 10px 30px #00000073,inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}#app.light .toastAction{color:#eeeded!important}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid #343434}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid #343434}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}#app.light .modalTop{border-color:#fff}#app.light .modal:not(.createMode) .modalStatic{border-right-color:#fff}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--line)}.timingGroup .timeTotal{padding-bottom:14px}#app.light .timingGroup .timeRow+.timeRow{border-top-color:#eeeded}.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:#252525}#app.light .setupSwitchRow{background:#fffc}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:#d53d3d}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 14px 34px #00000080,inset 0 0 0 1.5px var(--primary);z-index:3}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}', za = `<main id="app"><div class="shell">
+const Oa = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;--tile:#252525;--tile-2:#292929;--row:#2a2a2a;--row-rest:#22252a;--raised:#282828;--chip:#292929;--bar-track:#292929;--control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#313131;--text:#f4f4f4;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);--line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;--bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;--segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;--hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);--today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;--danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;--tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;--control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);--text:#222222;--soft:#3F3F3F;--muted:#6B6B6B;--accent-text:#5B7A00;--line:#FFFFFF;--lineb:#FFFFFF;--field-line:#DAD8D8;--divider:#E6E4E4;--border-hover:#C9C7C7;--bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);--segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;--hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);--today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;--danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:28.8px;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:28.8px;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;cursor:pointer}.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:var(--knob-off);transition:left .18s ease}.switch.on{background:var(--bright)}.switch.on:after{left:22.4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:64px;--t-title:22px;--t-value:22px;--t-section:18px;--t-strong:16px;--t-body:14px;--t-caption:12px;--lh-display:1.05;--lh-title:1}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.helpSteps strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.moveEditForm label>span,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,.autoRestSummary,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:var(--bar-track);overflow:hidden}.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}.weekBar.future{opacity:.35}#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:var(--tile)}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 14px 34px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}', za = `<main id="app"><div class="shell">
 <div class="toast" id="toast" aria-live="polite"></div>
 
 <!-- HOME -->
@@ -636,8 +636,8 @@ const _a = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
   </section>
 </div>
 `;
-function qa(f, h) {
-  const i = (e) => f.getElementById(e), N = i("workoutView"), S = i("workoutNameInput");
+function qa(h, v) {
+  const i = (e) => h.getElementById(e), N = i("workoutView"), S = i("workoutNameInput");
   let D = !0;
   const Sn = i("homeClock");
   function Cn() {
@@ -658,47 +658,47 @@ function qa(f, h) {
     }), pt = [];
   }
   function Ee(e) {
-    f.querySelectorAll(".createStep").forEach((t) => {
+    h.querySelectorAll(".createStep").forEach((t) => {
       t.classList.toggle("active", t.dataset.createStep === e);
     }), e === "timing" && (Ht = !0), le();
   }
   function le() {
-    var u, g;
+    var u, m;
     if (!P) return;
-    x[k];
+    b[k];
     const e = H.filter((c) => !c.hidden), t = e.filter((c) => c.kind !== "rest").length, n = e.filter((c) => c.kind === "rest").length;
     ki.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
-    const a = t > 0, o = f.querySelector('[data-open-step="timing"]'), r = f.querySelector('[data-open-step="finish"]');
-    o.disabled = !a, Dt.disabled = !a, Si.textContent = a ? ye(B.value) + " · " + G(C.value) + " movement · " + G(L.value) + " rest" : "Add a movement first", r.disabled = !(a && Ht);
+    const a = t > 0, o = h.querySelector('[data-open-step="timing"]'), r = h.querySelector('[data-open-step="finish"]');
+    o.disabled = !a, Dt.disabled = !a, Si.textContent = a ? ye(R.value) + " · " + G(C.value) + " movement · " + G(L.value) + " rest" : "Add a movement first", r.disabled = !(a && Ht);
     const l = ((S == null ? void 0 : S.value) || "").trim(), s = [];
-    (u = i("includeWarmupPreset")) != null && u.checked && s.push("warm-up"), (g = i("includeCooldownPreset")) != null && g.checked && s.push("cooldown"), Ci.textContent = l ? l + (s.length ? " · " + s.join(" + ") : "") : s.length ? s.join(" + ") : "Name and optional extras";
+    (u = i("includeWarmupPreset")) != null && u.checked && s.push("warm-up"), (m = i("includeCooldownPreset")) != null && m.checked && s.push("cooldown"), Ci.textContent = l ? l + (s.length ? " · " + s.join(" + ") : "") : s.length ? s.join(" + ") : "Name and optional extras";
   }
-  function Ri() {
-    var v, M, F;
+  function Fi() {
+    var f, M, A;
     Tn.hidden = !1, Ht = !1;
-    const e = f.querySelector(".editNameRow"), t = i("createMoveOptions"), n = f.querySelector(".timeTiles"), a = i("routineSummaryModal"), o = f.querySelector(".tempoRevealRow"), r = i("tempoExperiment"), l = (v = i("warmupList")) == null ? void 0 : v.closest("section"), s = i("movementCreatorLaunch"), u = i("movementCreator"), g = (M = i("strengthList")) == null ? void 0 : M.closest("section"), c = (F = i("cooldownList")) == null ? void 0 : F.closest("section");
-    [l, s, u, g, c].forEach((T) => ut(T, yi)), [t, n, a, o, r].forEach((T) => ut(T, wi)), ut(e, Ln);
+    const e = h.querySelector(".editNameRow"), t = i("createMoveOptions"), n = h.querySelector(".timeTiles"), a = i("routineSummaryModal"), o = h.querySelector(".tempoRevealRow"), r = i("tempoExperiment"), l = (f = i("warmupList")) == null ? void 0 : f.closest("section"), s = i("movementCreatorLaunch"), u = i("movementCreator"), m = (M = i("strengthList")) == null ? void 0 : M.closest("section"), c = (A = i("cooldownList")) == null ? void 0 : A.closest("section");
+    [l, s, u, m, c].forEach((T) => ut(T, yi)), [t, n, a, o, r].forEach((T) => ut(T, wi)), ut(e, Ln);
     const d = t == null ? void 0 : t.querySelector(".createExtras");
     d && ut(d, Ln), Ee("movements"), le();
   }
-  function Bi() {
-    Mi(), Tn.hidden = !0, f.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
+  function Ri() {
+    Mi(), Tn.hidden = !0, h.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
   }
-  f.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
+  h.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
     e.disabled || Ee(e.dataset.openStep);
   })), Dt.addEventListener("click", () => {
     Dt.disabled || Ee("timing");
   }), Ti.addEventListener("click", () => Ee("finish")), Li.addEventListener("click", () => i("saveWorkoutEdit").click());
   const Me = { home: i("homeView"), workout: i("workoutView"), settings: i("settingsView") }, En = i("homeNav"), Mn = i("settingsNav");
-  function Ot(e) {
-    Object.entries(Me).forEach(([t, n]) => n.classList.toggle("active", t === e)), En.classList.toggle("active", e === "home"), Mn.classList.toggle("active", e === "settings"), e === "home" && setTimeout(en, 400), e === "settings" && requestAnimationFrame(() => ct(f.querySelector(".tab.active"), !1));
+  function _t(e) {
+    Object.entries(Me).forEach(([t, n]) => n.classList.toggle("active", t === e)), En.classList.toggle("active", e === "home"), Mn.classList.toggle("active", e === "settings"), e === "home" && setTimeout(en, 400), e === "settings" && requestAnimationFrame(() => ct(h.querySelector(".tab.active"), !1));
   }
-  const B = i("totalTime"), C = i("workTime"), L = i("restTime"), Ai = i("totalOut"), Rn = i("workOut"), Bn = i("restOut"), Fi = i("totalFill"), Ni = i("workFill"), Pi = i("restFill"), he = i("roundsInput"), Ii = i("roundsFill"), Di = i("roundsOut"), Hi = i("totalLabel"), Oi = i("routineSummaryModal"), _t = [
+  const R = i("totalTime"), C = i("workTime"), L = i("restTime"), Bi = i("totalOut"), Fn = i("workOut"), Rn = i("restOut"), Ai = i("totalFill"), Ni = i("workFill"), Pi = i("restFill"), ve = i("roundsInput"), Ii = i("roundsFill"), Di = i("roundsOut"), Hi = i("totalLabel"), _i = i("routineSummaryModal"), Ot = [
     { id: "standing-reach", name: "Standing reach", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
   ];
-  let fe = _t.map((e) => ({ ...e })), H = [
+  let he = Ot.map((e) => ({ ...e })), H = [
     { id: "goblet-squat", name: "Kettlebell goblet squat", group: "Glutes + legs", kind: "work", hidden: !1 },
     { id: "floor-press", name: "Kettlebell floor press", group: "Chest + triceps", kind: "work", hidden: !1 },
     { id: "one-arm-row", name: "One-arm kettlebell row", group: "Back + arms", kind: "work", hidden: !1 },
@@ -716,8 +716,8 @@ function qa(f, h) {
     { id: "hamstring", name: "Hamstring stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "slow-breathing", name: "Slow breathing", group: "Cooldown", kind: "cooldown", hidden: !1 }
   ];
-  let ve = zt.map((e) => ({ ...e }));
-  const _i = {
+  let fe = zt.map((e) => ({ ...e }));
+  const Oi = {
     kettlebell: {
       name: "Kettlebell full body",
       eyebrow: "",
@@ -767,10 +767,10 @@ function qa(f, h) {
         ["glute-bridge", "Glute bridge with kettlebell", "Glutes + core"]
       ]
     }
-  }, w = An(h.data), x = w.profiles;
-  let k = x[w.selected] ? w.selected : w.order.find((e) => x[e]) || "kettlebell";
-  function An(e) {
-    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(_i)), a = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
+  }, w = Bn(v.data), b = w.profiles;
+  let k = b[w.selected] ? w.selected : w.order.find((e) => b[e]) || "kettlebell";
+  function Bn(e) {
+    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Oi)), a = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
     return Object.keys(n).forEach((o) => {
       a.includes(o) || a.push(o);
     }), {
@@ -779,7 +779,7 @@ function qa(f, h) {
       order: a,
       selected: t.selected || a[0],
       history: Array.isArray(t.history) ? t.history : [],
-      checkins: (Array.isArray(t.checkins) ? t.checkins : zi(t.energy)).map(Fn),
+      checkins: (Array.isArray(t.checkins) ? t.checkins : zi(t.energy)).map(An),
       settings: { ...t.settings || {} }
     };
   }
@@ -795,29 +795,29 @@ function qa(f, h) {
       s > 0 && n.push({ date: r, slot: l, mood: null, energy: s, at: a.at });
     }), n;
   }
-  function Fn(e) {
+  function An(e) {
     if (e.scale === 100) return e;
     const t = (n) => n == null ? null : Math.round((Number(n) - 1) / 5 * 100);
     return { ...e, mood: t(e.mood), energy: t(e.energy), scale: 100 };
   }
-  function be() {
-    P || (w.selected = k, w.order = w.order.filter((e) => x[e] && e !== xe), h.save(w));
+  function xe() {
+    P || (w.selected = k, w.order = w.order.filter((e) => b[e] && e !== be), v.save(w));
   }
   function E() {
     return w.settings;
   }
   function J(e) {
-    const t = x[e];
+    const t = b[e];
     if (!t) return;
     k = e;
     const n = i("workoutNameInput");
-    n && (n.value = t.name), B.value = t.total, C.value = t.work, L.value = t.rest, he.value = t.rounds || 1, t.customSequence ? (fe = [], ve = [], H = (t.sequence || []).map((a) => ({ ...a })), Zt(t.preset || "movement", !1)) : (B.min = 3, B.max = 40, B.step = 1, C.min = 20, C.max = 60, C.step = 5, L.min = 5, L.max = 30, L.step = 5, fe = (t.warmup || _t).map((a) => ({ ...a })), ve = (t.cooldown || zt).map((a) => ({ ...a })), H = t.strength.map((a) => Array.isArray(a) ? (([o, r, l, s = !1]) => ({ id: o, name: r, group: l, kind: "work", hidden: !!s }))(a) : { ...a })), f.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === e)), _();
+    n && (n.value = t.name), R.value = t.total, C.value = t.work, L.value = t.rest, ve.value = t.rounds || 1, t.customSequence ? (he = [], fe = [], H = (t.sequence || []).map((a) => ({ ...a })), Vt(t.preset || "movement", !1)) : (R.min = 3, R.max = 40, R.step = 1, C.min = 20, C.max = 60, C.step = 5, L.min = 5, L.max = 30, L.step = 5, he = (t.warmup || Ot).map((a) => ({ ...a })), fe = (t.cooldown || zt).map((a) => ({ ...a })), H = t.strength.map((a) => Array.isArray(a) ? (([o, r, l, s = !1]) => ({ id: o, name: r, group: l, kind: "work", hidden: !!s }))(a) : { ...a })), h.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === e)), O();
   }
   function qi(e, t, n) {
     const a = e.getBoundingClientRect(), o = a.width / 2, r = a.height / 2, l = t - o, s = n - r;
-    let u = 1 / 0, g = 1 / 0;
-    l !== 0 && (u = o / Math.abs(l)), s !== 0 && (g = r / Math.abs(s));
-    const c = Math.min(Math.max(1 / Math.min(u, g), 0), 1);
+    let u = 1 / 0, m = 1 / 0;
+    l !== 0 && (u = o / Math.abs(l)), s !== 0 && (m = r / Math.abs(s));
+    const c = Math.min(Math.max(1 / Math.min(u, m), 0), 1);
     let d = Math.atan2(s, l) * (180 / Math.PI) + 90;
     return d < 0 && (d += 360), { edge: c, angle: d };
   }
@@ -833,8 +833,8 @@ function qa(f, h) {
     e.addEventListener("pointerleave", t), e.addEventListener("pointerup", t), e.addEventListener("pointercancel", t);
   }
   Nn(i("addWorkoutPanel"));
-  let P = !1, xe = null;
-  function R(e) {
+  let P = !1, be = null;
+  function F(e) {
     return String(e ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]);
   }
   function Gi(e) {
@@ -845,7 +845,7 @@ function qa(f, h) {
     const n = document.createElement("article");
     n.className = "workoutPanel", n.dataset.workout = e, n.tabIndex = 0;
     const a = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((l = t.sequence) == null ? void 0 : l.length) || 0);
-    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (a ? '<div class="eyebrow">' + R(a) + "</div>" : "") + '<div class="workoutName">' + R(t.name) + '</div><div class="sub">' + R(Gi(t)) + '</div><span class="sourceTag">' + R(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + R(t.name) + "</div></div>";
+    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (a ? '<div class="eyebrow">' + F(a) + "</div>" : "") + '<div class="workoutName">' + F(t.name) + '</div><div class="sub">' + F(Gi(t)) + '</div><span class="sourceTag">' + F(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + F(t.name) + "</div></div>";
     const r = i("addWorkoutPanel");
     return i("workoutGallery").insertBefore(n, r), Nn(n), n.addEventListener("click", (s) => {
       s.target.closest("button") || J(e);
@@ -858,14 +858,14 @@ function qa(f, h) {
     }), n;
   }
   function Pn() {
-    f.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), w.order.forEach((e) => {
-      x[e] && Gt(e, x[e]);
-    }), f.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === k));
+    h.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), w.order.forEach((e) => {
+      b[e] && Gt(e, b[e]);
+    }), h.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === k));
   }
   Pn(), i("addWorkoutPanel").addEventListener("keydown", (e) => {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), i("addWorkoutPanel").click());
   }), i("addWorkoutPanel").addEventListener("click", () => {
-    P = !0, xe = "custom-" + Date.now(), x[xe] = {
+    P = !0, be = "custom-" + Date.now(), b[be] = {
       name: "New move",
       source: "Custom move",
       total: 20,
@@ -877,10 +877,10 @@ function qa(f, h) {
       includeCooldown: !1,
       sequence: [],
       strength: []
-    }, J(xe), jn(!0);
+    }, J(be), jn(!0);
   });
-  let m = [], b = 0, Y = 0, gt = 1, q = !1, O = null, mt = null, Z = !1, Re = w.settings.upcomingCount ?? "all";
-  function ht(e, t, n) {
+  let g = [], x = 0, Z = 0, mt = 1, q = !1, _ = null, gt = null, V = !1, Fe = w.settings.upcomingCount ?? "all";
+  function vt(e, t, n) {
     return (Number(e) - t) / (n - t) * 100;
   }
   function G(e) {
@@ -891,10 +891,10 @@ function qa(f, h) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 60 && t % 60 === 0 ? t / 60 + " hr" : t >= 60 ? Math.floor(t / 60) + " hr " + t % 60 + " min" : t + " min";
   }
-  function ft() {
-    Fi.style.width = ht(B.value, Number(B.min), Number(B.max)) + "%", Ni.style.width = ht(C.value, Number(C.min), Number(C.max)) + "%", Pi.style.width = ht(L.value, Number(L.min), Number(L.max)) + "%", Rn.textContent = G(C.value), Bn.textContent = G(L.value);
-    const e = Number(he.value) || 1;
-    Ii.style.width = ht(e, 1, 10) + "%", Hi.textContent = e > 1 ? "Time per round" : "Total time";
+  function ht() {
+    Ai.style.width = vt(R.value, Number(R.min), Number(R.max)) + "%", Ni.style.width = vt(C.value, Number(C.min), Number(C.max)) + "%", Pi.style.width = vt(L.value, Number(L.min), Number(L.max)) + "%", Fn.textContent = G(C.value), Rn.textContent = G(L.value);
+    const e = Number(ve.value) || 1;
+    Ii.style.width = vt(e, 1, 10) + "%", Hi.textContent = e > 1 ? "Time per round" : "Total time";
   }
   function Wt(e) {
     return e.filter((t) => !t.hidden);
@@ -903,25 +903,25 @@ function qa(f, h) {
     const n = Math.max(0, Number(e) || 0);
     return Math.round(t === "hour" ? n * 3600 : t === "min" ? n * 60 : n);
   }
-  function Zt(e, t = !0) {
-    f.querySelectorAll(".createPresetBtn").forEach((a) => a.classList.toggle("active", a.dataset.movePreset === e));
-    const n = x[k];
-    n && (n.preset = e), e === "work" ? (B.min = 30, B.max = 480, B.step = 30, C.min = 300, C.max = 7200, C.step = 300, L.min = 60, L.max = 1800, L.step = 60, t && (B.value = 60, C.value = 1500, L.value = 300), i("addMovementUnit").value = "min", i("addMovementDuration").value = 25, i("addRestUnit").value = "min", i("addRestDuration").value = 5) : (B.min = 3, B.max = 40, B.step = 1, C.min = 20, C.max = 60, C.step = 5, L.min = 5, L.max = 30, L.step = 5, t && (B.value = 20, C.value = 45, L.value = 15), i("addMovementUnit").value = "sec", i("addMovementDuration").value = 45, i("addRestUnit").value = "sec", i("addRestDuration").value = 30), ft();
+  function Vt(e, t = !0) {
+    h.querySelectorAll(".createPresetBtn").forEach((a) => a.classList.toggle("active", a.dataset.movePreset === e));
+    const n = b[k];
+    n && (n.preset = e), e === "work" ? (R.min = 30, R.max = 480, R.step = 30, C.min = 300, C.max = 7200, C.step = 300, L.min = 60, L.max = 1800, L.step = 60, t && (R.value = 60, C.value = 1500, L.value = 300), i("addMovementUnit").value = "min", i("addMovementDuration").value = 25, i("addRestUnit").value = "min", i("addRestDuration").value = 5) : (R.min = 3, R.max = 40, R.step = 1, C.min = 20, C.max = 60, C.step = 5, L.min = 5, L.max = 30, L.step = 5, t && (R.value = 20, C.value = 45, L.value = 15), i("addMovementUnit").value = "sec", i("addMovementDuration").value = 45, i("addRestUnit").value = "sec", i("addRestDuration").value = 30), ht();
   }
-  function Vt() {
-    const e = x[k];
+  function Ut() {
+    const e = b[k];
     if (e != null && e.customSequence) {
-      if (H = H.filter((t) => !t.presetRole), i("includeWarmupPreset").checked ? (H = [..._t.map((n, a) => ({ ...n, id: "preset-warm-" + a + "-" + Date.now(), kind: "work", duration: Number(C.value), presetRole: "warmup" })), ...H], e.includeWarmup = !0) : e.includeWarmup = !1, i("includeCooldownPreset").checked) {
+      if (H = H.filter((t) => !t.presetRole), i("includeWarmupPreset").checked ? (H = [...Ot.map((n, a) => ({ ...n, id: "preset-warm-" + a + "-" + Date.now(), kind: "work", duration: Number(C.value), presetRole: "warmup" })), ...H], e.includeWarmup = !0) : e.includeWarmup = !1, i("includeCooldownPreset").checked) {
         const t = zt.map((n, a) => ({ ...n, id: "preset-cool-" + a + "-" + Date.now(), kind: "work", duration: Number(C.value), presetRole: "cooldown" }));
         H = [...H, ...t], e.includeCooldown = !0;
       } else e.includeCooldown = !1;
-      _();
+      O();
     }
   }
   function Wi() {
     const e = i("upcomingCountSetting");
     if (!e) return;
-    const t = Math.max(1, m.length - 1), n = Re;
+    const t = Math.max(1, g.length - 1), n = Fe;
     e.innerHTML = "";
     for (let r = 1; r <= t; r++) {
       const l = document.createElement("option");
@@ -930,12 +930,12 @@ function qa(f, h) {
     const a = document.createElement("option");
     a.value = "all", a.textContent = "All", e.appendChild(a);
     const o = n === "all" ? "all" : String(Math.min(Number(n) || 1, t));
-    e.value = o, Re = o === "all" ? "all" : Number(o);
+    e.value = o, Fe = o === "all" ? "all" : Number(o);
   }
-  function _() {
-    Number(B.value) * 60;
-    const e = Number(C.value), t = Number(L.value), n = x[k], a = n != null && n.warmupOff ? [] : Wt(fe), o = Wt(H), r = Wt(ve);
-    if (n && (n.total = Number(B.value), n.work = e, n.rest = t, n.rounds = Number(he.value) || 1, n.customSequence ? n.sequence = H.map((p) => ({ ...p })) : (n.strength = H.map((p) => ({ ...p })), n.warmup = fe.map((p) => ({ ...p })), n.cooldown = ve.map((p) => ({ ...p })))), n != null && n.customSequence) {
+  function O() {
+    Number(R.value) * 60;
+    const e = Number(C.value), t = Number(L.value), n = b[k], a = n != null && n.warmupOff ? [] : Wt(he), o = Wt(H), r = Wt(fe);
+    if (n && (n.total = Number(R.value), n.work = e, n.rest = t, n.rounds = Number(ve.value) || 1, n.customSequence ? n.sequence = H.map((p) => ({ ...p })) : (n.strength = H.map((p) => ({ ...p })), n.warmup = he.map((p) => ({ ...p })), n.cooldown = fe.map((p) => ({ ...p })))), n != null && n.customSequence) {
       const p = o.map((y) => {
         if (y.kind === "rest") {
           const ee = y.useGlobalTiming === !0 ? t : Number(y.duration) || t;
@@ -944,10 +944,10 @@ function qa(f, h) {
         const j = y.useGlobalTiming === !1 && Number(y.duration) || e;
         return { ...y, duration: j, rest: 0 };
       });
-      n.autoRest && Number(n.autoRestDuration) > 0 ? (m = [], p.forEach((y, j) => {
-        m.push(y);
+      n.autoRest && Number(n.autoRestDuration) > 0 ? (g = [], p.forEach((y, j) => {
+        g.push(y);
         const ee = p[j + 1];
-        y.kind !== "rest" && ee && ee.kind !== "rest" && m.push({
+        y.kind !== "rest" && ee && ee.kind !== "rest" && g.push({
           id: "auto-rest-" + j,
           name: "Rest",
           group: "Rest",
@@ -957,51 +957,51 @@ function qa(f, h) {
           rest: 0,
           autoGenerated: !0
         });
-      })) : m = p;
+      })) : g = p;
     } else
-      m = [...a, ...o, ...r].map((p) => p.kind === "rest" ? { ...p, duration: p.useGlobalTiming === !0 ? t : Number(p.duration) || t, rest: 0 } : { ...p, duration: p.useGlobalTiming === !1 && Number(p.duration) || e, rest: t }), m.forEach((p, y) => {
+      g = [...a, ...o, ...r].map((p) => p.kind === "rest" ? { ...p, duration: p.useGlobalTiming === !0 ? t : Number(p.duration) || t, rest: 0 } : { ...p, duration: p.useGlobalTiming === !1 && Number(p.duration) || e, rest: t }), g.forEach((p, y) => {
         var j;
-        ((j = m[y + 1]) == null ? void 0 : j.kind) === "rest" && (p.rest = 0);
-      }), m.length && (m[m.length - 1].rest = 0);
-    const l = Math.max(1, Math.min(10, Number(he.value) || 1)), s = m, u = s.length, g = s.reduce((p, y) => p + y.duration + y.rest, 0);
-    m = [];
+        ((j = g[y + 1]) == null ? void 0 : j.kind) === "rest" && (p.rest = 0);
+      }), g.length && (g[g.length - 1].rest = 0);
+    const l = Math.max(1, Math.min(10, Number(ve.value) || 1)), s = g, u = s.length, m = s.reduce((p, y) => p + y.duration + y.rest, 0);
+    g = [];
     for (let p = 1; p <= l; p++)
-      if (s.forEach((y, j) => m.push({ ...y, id: y.id + (l > 1 ? "-r" + p : ""), round: p, roundIndex: j })), p < l && u)
+      if (s.forEach((y, j) => g.push({ ...y, id: y.id + (l > 1 ? "-r" + p : ""), round: p, roundIndex: j })), p < l && u)
         if (n != null && n.customSequence)
-          m.push({ id: "round-break-" + p, name: "Rest", group: "Round " + (p + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: p, roundIndex: u, roundBreak: !0 });
+          g.push({ id: "round-break-" + p, name: "Rest", group: "Round " + (p + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: p, roundIndex: u, roundBreak: !0 });
         else {
-          const y = m[m.length - 1];
+          const y = g[g.length - 1];
           y.rest = t, y.roundBreakAfter = !0;
         }
-    ft();
-    const c = m.reduce((p, y) => p + y.duration + y.rest, 0), d = Math.round(g / 60), v = Math.round(c / 60), M = l > 1 ? ye(d) + " × " + l + " rounds (" + ye(v) + ")" : ye(v), F = [a.length ? "warm-up" : "", r.length ? "cooldown" : ""].filter(Boolean), T = n != null && n.customSequence ? M + " · " + u + " items" : M + " · " + G(e) + " / " + G(t) + (F.length ? " · " + F.join(" + ") : "");
-    Ai.textContent = G(g);
-    const A = u + " activities" + (l > 1 ? " × " + l : "");
-    Di.textContent = l > 1 ? l + " rounds · " + ye(v) + " total" : "1 round", n && (n.summary = T, n.activityCount = u);
-    const I = f.querySelector(".workoutPanel.active .sub");
-    I && (I.textContent = T), Oi.textContent = T, f.querySelectorAll(".workoutPanel.active .activityCount").forEach((p) => p.textContent = A), ft(), Ki(), Yt(), Be(), Wi(), P && le(), Me.workout.classList.contains("active") && !O && un();
+    ht();
+    const c = g.reduce((p, y) => p + y.duration + y.rest, 0), d = Math.round(m / 60), f = Math.round(c / 60), M = l > 1 ? ye(d) + " × " + l + " rounds (" + ye(f) + ")" : ye(f), A = [a.length ? "warm-up" : "", r.length ? "cooldown" : ""].filter(Boolean), T = n != null && n.customSequence ? M + " · " + u + " items" : M + " · " + G(e) + " / " + G(t) + (A.length ? " · " + A.join(" + ") : "");
+    Bi.textContent = G(m);
+    const B = u + " activities" + (l > 1 ? " × " + l : "");
+    Di.textContent = l > 1 ? l + " rounds · " + ye(f) + " total" : "1 round", n && (n.summary = T, n.activityCount = u);
+    const I = h.querySelector(".workoutPanel.active .sub");
+    I && (I.textContent = T), _i.textContent = T, h.querySelectorAll(".workoutPanel.active .activityCount").forEach((p) => p.textContent = B), ht(), Ki(), Zt(), Re(), Wi(), P && le(), Me.workout.classList.contains("active") && !_ && un();
   }
   const ji = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
-  let vt = null;
-  function Zi(e) {
+  let ft = null;
+  function Vi(e) {
     return e = Math.max(1, Number(e) || 0), e >= 3600 && e % 3600 === 0 ? { value: e / 3600, unit: "hour" } : e >= 60 && e % 60 === 0 ? { value: e / 60, unit: "min" } : { value: e, unit: "sec" };
   }
-  function Vi() {
+  function Ui() {
     requestAnimationFrame(() => {
       var e;
-      return (e = f.querySelector(".moveEditForm input[data-f=name]")) == null ? void 0 : e.focus();
+      return (e = h.querySelector(".moveEditForm input[data-f=name]")) == null ? void 0 : e.focus();
     });
   }
-  function Ui(e, t) {
-    const n = e.kind === "rest", a = n ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, o = Number(n ? L.value : C.value), r = Zi(a ? o : e.duration || o), l = document.createElement("div");
-    l.className = "moveRow editing", l.dataset.index = t, l.innerHTML = '<div class="moveEditForm"><div class="moveEditFields"><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + R(e.name) + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + R(e.group) + '"></label></div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (a ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">Use global timing · ' + R(G(o)) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + r.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((d) => '<option value="' + d + '"' + (d === r.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[d] + "</option>").join("") + '</select></div></div><div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div></div>';
+  function Yi(e, t) {
+    const n = e.kind === "rest", a = n ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, o = Number(n ? L.value : C.value), r = Vi(a ? o : e.duration || o), l = document.createElement("div");
+    l.className = "moveRow editing", l.dataset.index = t, l.innerHTML = '<div class="moveEditForm"><div class="moveEditFields"><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + F(e.name) + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + F(e.group) + '"></label></div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (a ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">Use global timing · ' + F(G(o)) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + r.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((d) => '<option value="' + d + '"' + (d === r.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[d] + "</option>").join("") + '</select></div></div><div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div></div>';
     const s = (d) => l.querySelector("[data-f=" + d + "]"), u = () => {
       const d = s("global").checked;
       s("dur").disabled = d, s("unit").disabled = d, l.querySelector(".creatorDurationRow").classList.toggle("isDisabled", d);
     };
     s("global").addEventListener("change", u), u();
-    const g = () => {
-      vt = null, _();
+    const m = () => {
+      ft = null, O();
     }, c = () => {
       const d = s("name").value.trim();
       if (!d) {
@@ -1009,42 +1009,42 @@ function qa(f, h) {
         return;
       }
       e.name = d, e.group = s("group").value.trim() || (n ? "Rest" : "Movement");
-      const v = s("global").checked;
-      e.useGlobalTiming = v, v || (e.duration = Math.max(n ? 5 : 1, jt(s("dur").value, s("unit").value))), g(), z("Movement updated");
+      const f = s("global").checked;
+      e.useGlobalTiming = f, f || (e.duration = Math.max(n ? 5 : 1, jt(s("dur").value, s("unit").value))), m(), z("Movement updated");
     };
-    return l.querySelector("[data-a=cancel]").addEventListener("click", g), l.querySelector("[data-a=save]").addEventListener("click", c), l.addEventListener("keydown", (d) => {
-      d.key === "Escape" && (d.preventDefault(), d.stopPropagation(), g()), d.key === "Enter" && d.target.matches("input") && (d.preventDefault(), c());
+    return l.querySelector("[data-a=cancel]").addEventListener("click", m), l.querySelector("[data-a=save]").addEventListener("click", c), l.addEventListener("keydown", (d) => {
+      d.key === "Escape" && (d.preventDefault(), d.stopPropagation(), m()), d.key === "Enter" && d.target.matches("input") && (d.preventDefault(), c());
     }), l;
   }
-  function Ut(e, t) {
+  function Yt(e, t) {
     const n = i(t);
     n.innerHTML = "", e.forEach((a, o) => {
-      if (a === vt) {
-        n.appendChild(Ui(a, o));
+      if (a === ft) {
+        n.appendChild(Yi(a, o));
         return;
       }
       const r = document.createElement("div");
       r.className = "moveRow" + (a.hidden ? " hidden" : "") + (a.kind === "rest" ? " restItem" : ""), r.dataset.index = o;
       const l = a.kind === "rest" ? a.useGlobalTiming === !0 ? "Global timing" : G(a.duration) : a.useGlobalTiming === !1 ? G(a.duration) : "Global timing", s = a.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : "";
-      r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + R(a.name) + '. Drag, or use the up and down arrow keys">' + ji + '</button><div class="moveText"><div class="moveItemName">' + R(a.name) + s + '</div><div class="moveMeta">' + R(a.group) + " · " + R(l) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + R(a.name) + '">Edit</button><button class="hideBtn" type="button">' + (a.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + R(a.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
-        vt = a, _(), Vi();
+      r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + F(a.name) + '. Drag, or use the up and down arrow keys">' + ji + '</button><div class="moveText"><div class="moveItemName">' + F(a.name) + s + '</div><div class="moveMeta">' + F(a.group) + " · " + F(l) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + F(a.name) + '">Edit</button><button class="hideBtn" type="button">' + (a.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + F(a.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
+        ft = a, O(), Ui();
       }), r.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
-        a.hidden = !a.hidden, _();
+        a.hidden = !a.hidden, O();
       });
       const u = r.querySelector(".removeBtn");
-      Ft(u, u.querySelector(".removeFill"), 1200, () => {
+      At(u, u.querySelector(".removeFill"), 1200, () => {
         const c = e.indexOf(a);
-        c < 0 || (e.splice(c, 1), _(), z("Removed " + a.name, { label: "Undo", run: () => {
-          e.splice(Math.min(c, e.length), 0, a), _();
+        c < 0 || (e.splice(c, 1), O(), z("Removed " + a.name, { label: "Undo", run: () => {
+          e.splice(Math.min(c, e.length), 0, a), O();
         } }));
       });
-      const g = r.querySelector(".dragHandle");
-      g.addEventListener("pointerdown", (c) => Yi(c, r, n, e)), g.addEventListener("keydown", (c) => {
-        var M, F;
+      const m = r.querySelector(".dragHandle");
+      m.addEventListener("pointerdown", (c) => Zi(c, r, n, e)), m.addEventListener("keydown", (c) => {
+        var M, A;
         if (c.key !== "ArrowUp" && c.key !== "ArrowDown") return;
         c.preventDefault();
-        const d = e.indexOf(a), v = d + (c.key === "ArrowUp" ? -1 : 1);
-        v < 0 || v >= e.length || (e.splice(d, 1), e.splice(v, 0, a), _(), (F = (M = i(t).children[v]) == null ? void 0 : M.querySelector(".dragHandle")) == null || F.focus());
+        const d = e.indexOf(a), f = d + (c.key === "ArrowUp" ? -1 : 1);
+        f < 0 || f >= e.length || (e.splice(d, 1), e.splice(f, 0, a), O(), (A = (M = i(t).children[f]) == null ? void 0 : M.querySelector(".dragHandle")) == null || A.focus());
       }), n.appendChild(r);
     });
   }
@@ -1052,7 +1052,7 @@ function qa(f, h) {
     var e;
     return (e = window.matchMedia) == null ? void 0 : e.call(window, "(prefers-reduced-motion: reduce)").matches;
   }, Dn = "transform .24s cubic-bezier(.2,.8,.2,1)";
-  function Yi(e, t, n, a) {
+  function Zi(e, t, n, a) {
     if (e.button !== void 0 && e.button !== 0) return;
     e.preventDefault();
     const o = e.currentTarget;
@@ -1063,37 +1063,37 @@ function qa(f, h) {
     const r = t.closest(".exerciseScroller"), l = e.clientY - t.getBoundingClientRect().top;
     let s = e.clientY, u = null;
     t.classList.add("dragging"), t.style.transition = "none";
-    const g = () => {
+    const m = () => {
       t.style.transform = "";
       const T = t.getBoundingClientRect().top;
       t.style.transform = "translateY(" + (s - l - T) + "px) scale(1.015)";
     }, c = (T) => {
-      const A = [...n.children].filter((p) => p !== t), I = new Map(A.map((p) => [p, p.getBoundingClientRect().top]));
-      T(), !In() && A.forEach((p) => {
+      const B = [...n.children].filter((p) => p !== t), I = new Map(B.map((p) => [p, p.getBoundingClientRect().top]));
+      T(), !In() && B.forEach((p) => {
         p.style.transition = "none", p.style.transform = "";
         const y = I.get(p) - p.getBoundingClientRect().top;
         y && (p.style.transform = "translateY(" + y + "px)", p.getBoundingClientRect(), p.style.transition = Dn, p.style.transform = "");
       });
     }, d = () => {
-      const T = [...n.children].filter((p) => p !== t), A = s - l + t.offsetHeight / 2, I = T.find((p) => {
+      const T = [...n.children].filter((p) => p !== t), B = s - l + t.offsetHeight / 2, I = T.find((p) => {
         const y = p.getBoundingClientRect();
-        return A < y.top + y.height / 2;
+        return B < y.top + y.height / 2;
       });
-      I ? t.nextElementSibling !== I && c(() => n.insertBefore(t, I)) : n.lastElementChild !== t && c(() => n.appendChild(t)), g();
-    }, v = () => {
+      I ? t.nextElementSibling !== I && c(() => n.insertBefore(t, I)) : n.lastElementChild !== t && c(() => n.appendChild(t)), m();
+    }, f = () => {
       if (!r) return;
-      const T = r.getBoundingClientRect(), A = 56, I = s < T.top + A ? -10 : s > T.bottom - A ? 10 : 0;
+      const T = r.getBoundingClientRect(), B = 56, I = s < T.top + B ? -10 : s > T.bottom - B ? 10 : 0;
       I && (r.scrollTop += I, d());
     }, M = (T) => {
       s = T.clientY, d();
-    }, F = () => {
-      clearInterval(u), o.removeEventListener("pointermove", M), o.removeEventListener("pointerup", F), o.removeEventListener("pointercancel", F);
-      const T = [...n.children].map((p) => Number(p.dataset.index)), A = T.some((p, y) => p !== y), I = () => {
-        if (t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", A) {
+    }, A = () => {
+      clearInterval(u), o.removeEventListener("pointermove", M), o.removeEventListener("pointerup", A), o.removeEventListener("pointercancel", A);
+      const T = [...n.children].map((p) => Number(p.dataset.index)), B = T.some((p, y) => p !== y), I = () => {
+        if (t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", B) {
           const p = T.map((y) => a[y]);
           a.splice(0, a.length, ...p);
         }
-        _(), A && z("Order saved");
+        O(), B && z("Order saved");
       };
       if (In()) {
         I();
@@ -1101,19 +1101,19 @@ function qa(f, h) {
       }
       t.style.transition = Dn, t.style.transform = "", setTimeout(I, 250);
     };
-    o.addEventListener("pointermove", M), o.addEventListener("pointerup", F), o.addEventListener("pointercancel", F), u = setInterval(v, 30), g();
+    o.addEventListener("pointermove", M), o.addEventListener("pointerup", A), o.addEventListener("pointercancel", A), u = setInterval(f, 30), m();
   }
   function Ki() {
     var o, r, l, s;
-    const e = x[k], t = (o = i("warmupList")) == null ? void 0 : o.closest("section"), n = (r = i("cooldownList")) == null ? void 0 : r.closest("section"), a = (s = (l = i("strengthList")) == null ? void 0 : l.closest("section")) == null ? void 0 : s.querySelector(".sectionTitle");
-    e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), a && (a.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), a && (a.textContent = "Kettlebell work")), Ut(fe, "warmupList"), Ut(H, "strengthList"), Ut(ve, "cooldownList");
+    const e = b[k], t = (o = i("warmupList")) == null ? void 0 : o.closest("section"), n = (r = i("cooldownList")) == null ? void 0 : r.closest("section"), a = (s = (l = i("strengthList")) == null ? void 0 : l.closest("section")) == null ? void 0 : s.querySelector(".sectionTitle");
+    e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), a && (a.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), a && (a.textContent = "Kettlebell work")), Yt(he, "warmupList"), Yt(H, "strengthList"), Yt(fe, "cooldownList");
   }
-  function Yt() {
+  function Zt() {
     H.length > 0;
     const e = i("addMovementBtn"), t = i("addRestBtn");
     e && (e.textContent = "Add movement"), t && (t.textContent = "Add rest");
   }
-  function Be() {
+  function Re() {
     const e = i("useGlobalTiming").checked, t = i("addMovementDuration"), n = i("addMovementUnit");
     t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", i("globalTimingValue").textContent = "Use global timing · " + G(C.value);
     const a = i("useGlobalRestTiming").checked, o = i("addRestDuration"), r = i("addRestUnit");
@@ -1123,10 +1123,10 @@ function qa(f, h) {
   function Kt(e) {
     Hn = e;
     const t = i("movementFields"), n = i("restFields");
-    t.hidden = e !== "movement", n.hidden = e !== "rest", i("movementCreatorHeading").textContent = e === "rest" ? "Add rest" : "Add movement", i("movementCreator").setAttribute("aria-label", e === "rest" ? "Create rest" : "Create movement"), Be();
+    t.hidden = e !== "movement", n.hidden = e !== "rest", i("movementCreatorHeading").textContent = e === "rest" ? "Add rest" : "Add movement", i("movementCreator").setAttribute("aria-label", e === "rest" ? "Create rest" : "Create movement"), Re();
   }
   function Jt() {
-    x[k];
+    b[k];
     const e = P ? !0 : i("useGlobalTiming").checked, t = e ? Number(C.value) : jt(
       i("addMovementDuration").value,
       i("addMovementUnit").value
@@ -1144,7 +1144,7 @@ function qa(f, h) {
         hidden: !1,
         useGlobalTiming: n,
         duration: Math.max(5, a || Number(L.value))
-      }), _(), i("movementCreator").hidden = !0, i("addRestTitle").value = "Rest", i("addRestGroup").value = "Rest", z("Rest added"), P && (Ee("movements"), le());
+      }), O(), i("movementCreator").hidden = !0, i("addRestTitle").value = "Rest", i("addRestGroup").value = "Rest", z("Rest added"), P && (Ee("movements"), le());
     } else {
       const o = i("addMovementInput").value.trim();
       if (!o) return;
@@ -1157,9 +1157,9 @@ function qa(f, h) {
         hidden: !1,
         useGlobalTiming: e,
         duration: Math.max(5, t || Number(C.value))
-      }), i("addMovementInput").value = "", i("addMovementGroup").value = "", _(), i("movementCreator").hidden = !0, z("Movement added"), P && (Ee("movements"), le());
+      }), i("addMovementInput").value = "", i("addMovementGroup").value = "", O(), i("movementCreator").hidden = !0, z("Movement added"), P && (Ee("movements"), le());
     }
-    Yt();
+    Zt();
   }
   let Qt = null;
   function z(e, t) {
@@ -1175,14 +1175,14 @@ function qa(f, h) {
     n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(Qt), Qt = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
   }
   const Ji = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], Qi = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
-  function On(e) {
+  function _n(e) {
     return Math.max(0, Math.min(5, Math.floor(Number(e) / 100 * 6)));
   }
-  function Ae(e, t) {
-    return Ji[On(t)];
+  function Be(e, t) {
+    return Ji[_n(t)];
   }
   function $i(e) {
-    return Qi[On(e)];
+    return Qi[_n(e)];
   }
   function W(e) {
     return e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0");
@@ -1190,41 +1190,41 @@ function qa(f, h) {
   function te() {
     return { morning: E().morningTime || "08:00", evening: E().eveningTime || "19:00" };
   }
-  function Fe(e) {
+  function Ae(e) {
     const [t, n] = String(e).split(":").map(Number);
     return (t || 0) * 60 + (n || 0);
   }
   function Xi(e) {
     const t = te();
-    return e.getHours() * 60 + e.getMinutes() >= Fe(t.evening) ? "evening" : "morning";
+    return e.getHours() * 60 + e.getMinutes() >= Ae(t.evening) ? "evening" : "morning";
   }
-  function bt(e, t) {
+  function xt(e, t) {
     return w.checkins.find((n) => n.date === e && n.slot === t);
   }
-  function xt(e) {
+  function bt(e) {
     return !!(e && e.mood != null && e.energy != null);
   }
   function yt() {
     const e = /* @__PURE__ */ new Date(), t = W(e), n = Xi(e), a = te(), o = e.getHours() * 60 + e.getMinutes();
-    return n === "morning" && o < Fe(a.morning) || xt(bt(t, n)) ? null : n;
+    return n === "morning" && o < Ae(a.morning) || bt(xt(t, n)) ? null : n;
   }
   const de = i("checkinModal"), ce = i("checkinTab"), ea = i("checkinBadge"), pe = { mood: { input: i("moodInput"), fill: i("moodFill") }, energy: { input: i("energyLevelInput"), fill: i("energyLevelFill") } };
-  function _n(e) {
+  function On(e) {
     const { input: t, fill: n } = pe[e];
-    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", Ae(e, t.value));
+    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", Be(e, t.value));
   }
-  Object.keys(pe).forEach((e) => pe[e].input.addEventListener("input", () => _n(e)));
+  Object.keys(pe).forEach((e) => pe[e].input.addEventListener("input", () => On(e)));
   let Q = null;
   function zn() {
     const e = te(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
-    return n < Fe(e.morning) ? "Next check-in at " + e.morning : n < Fe(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
+    return n < Ae(e.morning) ? "Next check-in at " + e.morning : n < Ae(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
   function ta() {
     const e = te(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), a = (o, r) => {
       const [l, s] = o.split(":").map(Number);
       return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), l, s);
     };
-    return n < Fe(e.morning) ? { date: a(e.morning), time: e.morning } : n < Fe(e.evening) ? { date: a(e.evening), time: e.evening } : { date: a(e.morning, !0), time: e.morning };
+    return n < Ae(e.morning) ? { date: a(e.morning), time: e.morning } : n < Ae(e.evening) ? { date: a(e.evening), time: e.evening } : { date: a(e.morning, !0), time: e.morning };
   }
   let $t = null, Xt = null;
   function qn() {
@@ -1248,9 +1248,9 @@ function qa(f, h) {
       return;
     }
     Q = { date: W(/* @__PURE__ */ new Date()), slot: e };
-    const n = bt(Q.date, e), a = w.checkins.find((r) => xt(r));
+    const n = xt(Q.date, e), a = w.checkins.find((r) => bt(r));
     Object.keys(pe).forEach((r) => {
-      pe[r].input.value = (n == null ? void 0 : n[r]) ?? (a == null ? void 0 : a[r]) ?? 50, _n(r);
+      pe[r].input.value = (n == null ? void 0 : n[r]) ?? (a == null ? void 0 : a[r]) ?? 50, On(r);
     });
     const o = te()[e];
     i("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, i("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", de.classList.add("open"), de.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => pe.mood.input.focus());
@@ -1265,13 +1265,13 @@ function qa(f, h) {
   }
   function ia() {
     if (!Q) return;
-    if (xt(bt(Q.date, Q.slot))) {
+    if (bt(xt(Q.date, Q.slot))) {
       Qe();
       return;
     }
     const { date: e, slot: t } = Q;
-    let n = bt(e, t);
-    n || (n = { date: e, slot: t }, w.checkins.unshift(n), w.checkins = w.checkins.slice(0, 2e3)), n.mood = Number(pe.mood.input.value), n.energy = Number(pe.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), be(), h.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: Ae("mood", n.mood), energy_label: Ae("energy", n.energy) }), z((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Qe(), kt(), Xe(), Le(), se();
+    let n = xt(e, t);
+    n || (n = { date: e, slot: t }, w.checkins.unshift(n), w.checkins = w.checkins.slice(0, 2e3)), n.mood = Number(pe.mood.input.value), n.energy = Number(pe.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), xe(), v.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: Be("mood", n.mood), energy_label: Be("energy", n.energy) }), z((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Qe(), kt(), Xe(), Le(), se();
   }
   let $e = "";
   try {
@@ -1285,7 +1285,7 @@ function qa(f, h) {
   function en() {
     we();
     const e = yt();
-    !e || de.classList.contains("open") || E().checkinAutoOpen !== !1 && (!Me.home.classList.contains("active") || V.classList.contains("open") || $e !== W(/* @__PURE__ */ new Date()) + "-" + e && Gn());
+    !e || de.classList.contains("open") || E().checkinAutoOpen !== !1 && (!Me.home.classList.contains("active") || U.classList.contains("open") || $e !== W(/* @__PURE__ */ new Date()) + "-" + e && Gn());
   }
   ce.addEventListener("click", Gn), i("checkinLater").addEventListener("click", Qe), i("checkinSave").addEventListener("click", ia), de.addEventListener("click", (e) => {
     e.target === de && Qe();
@@ -1296,29 +1296,29 @@ function qa(f, h) {
     const e = W(/* @__PURE__ */ new Date()), t = (n) => w.checkins.find((a) => a.date === e && a[n] != null);
     [["mood", "moodMeta"], ["energy", "energyLevelMeta"]].forEach(([n, a]) => {
       const o = t(n);
-      i(a).textContent = o ? Ae(n, o[n]) : "—";
+      i(a).textContent = o ? Be(n, o[n]) : "—";
     });
   }
   function Xe() {
     const e = i("feelCard");
     if (!e) return;
-    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), a = [...Array(7)].map((g, c) => {
-      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + c), v = W(d), M = w.checkins.filter((T) => T.date === v), F = (T) => {
-        const A = M.map((I) => I[T]).filter((I) => I != null);
-        return A.length ? A.reduce((I, p) => I + p, 0) / A.length : null;
+    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), a = [...Array(7)].map((m, c) => {
+      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + c), f = W(d), M = w.checkins.filter((T) => T.date === f), A = (T) => {
+        const B = M.map((I) => I[T]).filter((I) => I != null);
+        return B.length ? B.reduce((I, p) => I + p, 0) / B.length : null;
       };
-      return { d, key: v, mood: F("mood"), energy: F("energy"), count: M.filter(xt).length, future: d > t && v !== W(t) };
-    }), o = (g) => {
-      const c = a.map((d) => d[g]).filter((d) => d != null);
-      return c.length ? c.reduce((d, v) => d + v, 0) / c.length : null;
-    }, r = o("mood"), l = o("energy"), s = (g, c) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + g + "</span><span>" + (c == null ? "—" : R(Ae("", c))) + '</span></div><div class="feelTrack"><span style="width:' + (c == null ? 0 : Math.max(4, c)) + "%;background:" + (c == null ? "transparent" : $i(c)) + '"></span></div></div>', u = a.filter((g) => g.mood != null && g.energy != null).sort((g, c) => c.mood + c.energy - (g.mood + g.energy))[0];
-    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : R(Ae("", (r + l) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + R(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + a.map(
-      (g) => '<div class="weekChip feelDay' + (g.future ? " future" : "") + (g.key === W(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + R(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(g.d)) + "</strong>" + (g.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(g.count) + "</span>") + "</div>" + s("Mood", g.mood) + s("Energy", g.energy) + "</div>"
+      return { d, key: f, mood: A("mood"), energy: A("energy"), count: M.filter(bt).length, future: d > t && f !== W(t) };
+    }), o = (m) => {
+      const c = a.map((d) => d[m]).filter((d) => d != null);
+      return c.length ? c.reduce((d, f) => d + f, 0) / c.length : null;
+    }, r = o("mood"), l = o("energy"), s = (m, c) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + m + "</span><span>" + (c == null ? "—" : F(Be("", c))) + '</span></div><div class="feelTrack"><span style="width:' + (c == null ? 0 : Math.max(4, c)) + "%;background:" + (c == null ? "transparent" : $i(c)) + '"></span></div></div>', u = a.filter((m) => m.mood != null && m.energy != null).sort((m, c) => c.mood + c.energy - (m.mood + m.energy))[0];
+    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : F(Be("", (r + l) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + F(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + a.map(
+      (m) => '<div class="weekChip feelDay' + (m.future ? " future" : "") + (m.key === W(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + F(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(m.d)) + "</strong>" + (m.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(m.count) + "</span>") + "</div>" + s("Mood", m.mood) + s("Energy", m.energy) + "</div>"
     ).join("") + "</div>";
   }
   const St = i("upcomingCountSetting");
   St.addEventListener("change", () => {
-    Re = St.value === "all" ? "all" : Number(St.value), ii();
+    Fe = St.value === "all" ? "all" : Number(St.value), ii();
   });
   const et = i("tempoRevealBtn"), tn = i("tempoExperiment"), $ = i("tempoQuad"), Ne = i("tempoDot"), aa = i("tempoEstimate"), oa = i("tempoReadout");
   let Pe = { x: 0.5, y: 0.5 }, tt = !1, Ct = { total: 20, work: 45, rest: 15 };
@@ -1329,9 +1329,9 @@ function qa(f, h) {
   function ra(e, t) {
     const n = (e - 0.5) * 2, a = (t - 0.5) * 2, o = nn(
       Ct.total + n * 5 + a * 8,
-      Number(B.min),
-      Number(B.max),
-      Number(B.step)
+      Number(R.min),
+      Number(R.max),
+      Number(R.step)
     ), r = nn(
       Ct.work + n * 10 + a * 8,
       Number(C.min),
@@ -1343,7 +1343,7 @@ function qa(f, h) {
       Number(L.max),
       Number(L.step)
     );
-    return B.value = o, C.value = r, L.value = l, Rn.textContent = r + " sec", Bn.textContent = l + " sec", ft(), { total: o, work: r, rest: l };
+    return R.value = o, C.value = r, L.value = l, Fn.textContent = r + " sec", Rn.textContent = l + " sec", ht(), { total: o, work: r, rest: l };
   }
   function an(e, t) {
     const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", a = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = ra(e, t);
@@ -1356,18 +1356,18 @@ function qa(f, h) {
   et.addEventListener("click", () => {
     const e = tn.hidden;
     tn.hidden = !e, et.setAttribute("aria-expanded", e ? "true" : "false"), et.textContent = e ? "Now close this" : "Don’t try this!", e && (Ct = {
-      total: Number(B.value),
+      total: Number(R.value),
       work: Number(C.value),
       rest: Number(L.value)
     }, Pe = { x: 0.5, y: 0.5 }, Ne.style.left = "50%", Ne.style.top = "50%", an(Pe.x, Pe.y));
-  }), f.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
-    Number(e.dataset.feedbackRating), f.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
+  }), h.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
+    Number(e.dataset.feedbackRating), h.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
   }));
   const Tt = i("testingFeedbackForm"), Wn = i("testingFeedbackThanks"), sa = i("testingFeedbackAgain");
   Tt.addEventListener("submit", (e) => {
     e.preventDefault(), Tt.hidden = !0, Wn.hidden = !1, z("Feedback captured for prototype");
   }), sa.addEventListener("click", (e) => {
-    e.preventDefault(), Tt.reset(), f.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Wn.hidden = !0, Tt.hidden = !1;
+    e.preventDefault(), Tt.reset(), h.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Wn.hidden = !0, Tt.hidden = !1;
   }), $.addEventListener("pointerdown", (e) => {
     var t;
     tt = !0, on(e);
@@ -1378,68 +1378,68 @@ function qa(f, h) {
   }), $.addEventListener("pointermove", (e) => {
     tt && on(e);
   }), $.addEventListener("pointerup", (e) => {
-    tt && (tt = !1, on(e), _());
+    tt && (tt = !1, on(e), O());
   }), $.addEventListener("pointercancel", () => tt = !1), $.addEventListener("keydown", (e) => {
     let { x: t, y: n } = Pe, a = !0;
-    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : a = !1, a && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), Pe = { x: t, y: n }, Ne.style.left = t * 100 + "%", Ne.style.top = n * 100 + "%", an(t, n), _());
+    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : a = !1, a && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), Pe = { x: t, y: n }, Ne.style.left = t * 100 + "%", Ne.style.top = n * 100 + "%", an(t, n), O());
   });
-  const V = i("workoutModal");
+  const U = i("workoutModal");
   let nt = null;
   function Ie(e) {
     return e.map((t) => ({ ...t }));
   }
   function la() {
-    const e = x[k];
+    const e = b[k];
     return {
       key: k,
       profile: e ? JSON.parse(JSON.stringify(e)) : null,
-      warmup: Ie(fe),
+      warmup: Ie(he),
       strength: Ie(H),
-      cooldown: Ie(ve),
-      total: Number(B.value),
+      cooldown: Ie(fe),
+      total: Number(R.value),
       work: Number(C.value),
       rest: Number(L.value),
-      rounds: Number(he.value) || 1
+      rounds: Number(ve.value) || 1
     };
   }
   function jn(e = !1) {
-    P = !!e, vt = null, nt = la(), i("moveEditorTitle").textContent = P ? "Create new move" : "Edit move", i("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", i("moveEditorSubtitle").hidden = !P, i("warmupRow").hidden = P, i("deleteMoveOpen").hidden = P;
+    P = !!e, ft = null, nt = la(), i("moveEditorTitle").textContent = P ? "Create new move" : "Edit move", i("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", i("moveEditorSubtitle").hidden = !P, i("warmupRow").hidden = P, i("deleteMoveOpen").hidden = P;
     const t = i("createMoveOptions");
     t.hidden = !P;
     {
-      const n = x[k];
+      const n = b[k];
       i("includeWarmupPreset").checked = !!(n != null && n.includeWarmup), i("includeCooldownPreset").checked = !!(n != null && n.includeCooldown);
     }
-    if (Zn(), P) {
+    if (Vn(), P) {
       i("useGlobalTiming").checked = !0, i("useGlobalRestTiming").checked = !0;
-      const n = x[k];
-      Zt((n == null ? void 0 : n.preset) || "movement", !1);
+      const n = b[k];
+      Vt((n == null ? void 0 : n.preset) || "movement", !1);
     }
-    i("movementCreator").hidden = !0, Kt("movement"), Yt(), Be(), tn.hidden = !0, et.setAttribute("aria-expanded", "false"), et.textContent = "Don’t try this!", V.classList.toggle("createMode", P), V.querySelector(".modal").classList.toggle("createMode", P), V.classList.add("open"), V.setAttribute("aria-hidden", "false"), P && Ri();
+    i("movementCreator").hidden = !0, Kt("movement"), Zt(), Re(), tn.hidden = !0, et.setAttribute("aria-expanded", "false"), et.textContent = "Don’t try this!", U.classList.toggle("createMode", P), U.querySelector(".modal").classList.toggle("createMode", P), U.classList.add("open"), U.setAttribute("aria-hidden", "false"), P && Fi();
   }
   function da() {
-    const e = x[k];
+    const e = b[k];
     return e != null && e.customSequence ? !!e.includeWarmup : !(e != null && e.warmupOff);
   }
-  function Zn() {
+  function Vn() {
     const e = da(), t = i("warmupSwitch");
     t.classList.toggle("on", e), t.setAttribute("aria-checked", String(e));
   }
   i("warmupSwitch").addEventListener("click", () => {
-    const e = x[k];
-    e && (e.customSequence ? (i("includeWarmupPreset").checked = !e.includeWarmup, Vt()) : (e.warmupOff = !e.warmupOff, _()), Zn());
+    const e = b[k];
+    e && (e.customSequence ? (i("includeWarmupPreset").checked = !e.includeWarmup, Ut()) : (e.warmupOff = !e.warmupOff, O()), Vn());
   });
   function Lt() {
-    V.classList.contains("createMode") && Bi(), V.classList.remove("createMode"), V.querySelector(".modal").classList.remove("createMode"), V.classList.remove("open"), V.setAttribute("aria-hidden", "true");
+    U.classList.contains("createMode") && Ri(), U.classList.remove("createMode"), U.querySelector(".modal").classList.remove("createMode"), U.classList.remove("open"), U.setAttribute("aria-hidden", "true");
   }
-  function Vn() {
+  function Un() {
     if (!nt) return;
     const e = nt;
-    e.profile && (x[e.key] = JSON.parse(JSON.stringify(e.profile))), k = e.key, fe = Ie(e.warmup), H = Ie(e.strength), ve = Ie(e.cooldown), B.value = e.total, C.value = e.work, L.value = e.rest, he.value = e.rounds || 1;
-    const t = x[k];
+    e.profile && (b[e.key] = JSON.parse(JSON.stringify(e.profile))), k = e.key, he = Ie(e.warmup), H = Ie(e.strength), fe = Ie(e.cooldown), R.value = e.total, C.value = e.work, L.value = e.rest, ve.value = e.rounds || 1;
+    const t = b[k];
     if (t) {
-      f.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === k));
-      const n = f.querySelector(".workoutPanel.active");
+      h.querySelectorAll(".workoutPanel[data-workout]").forEach((a) => a.classList.toggle("active", a.dataset.workout === k));
+      const n = h.querySelector(".workoutPanel.active");
       if (n) {
         const a = n.querySelector(".workoutName");
         a && (a.textContent = t.name);
@@ -1450,21 +1450,21 @@ function qa(f, h) {
       }
       S.value = t.name;
     }
-    _();
+    O();
   }
   i("cancelWorkoutEdit").addEventListener("click", () => {
     if (P) {
       const e = k;
-      delete x[e], P = !1, xe = null, J(w.order.find((t) => x[t]) || Object.keys(x)[0]);
+      delete b[e], P = !1, be = null, J(w.order.find((t) => b[t]) || Object.keys(b)[0]);
     } else
-      Vn();
+      Un();
     Lt();
   }), i("saveWorkoutEdit").addEventListener("click", () => {
-    const e = x[k], t = S.value.trim() || "New move";
-    if (e && (e.name = t), _(), P && e)
-      Gt(k, e), f.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === k)), P = !1, xe = null, w.order.includes(k) || w.order.push(k), z("Move created");
+    const e = b[k], t = S.value.trim() || "New move";
+    if (e && (e.name = t), O(), P && e)
+      Gt(k, e), h.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === k)), P = !1, be = null, w.order.includes(k) || w.order.push(k), z("Move created");
     else {
-      const n = f.querySelector(".workoutPanel.active");
+      const n = h.querySelector(".workoutPanel.active");
       if (n) {
         const a = n.querySelector(".workoutName");
         a && (a.textContent = t);
@@ -1473,27 +1473,27 @@ function qa(f, h) {
       }
       z("Move saved");
     }
-    nt = null, Lt(), be();
-  }), V.addEventListener("click", (e) => {
-    if (e.target === V) {
+    nt = null, Lt(), xe();
+  }), U.addEventListener("click", (e) => {
+    if (e.target === U) {
       if (P) {
         const t = k;
-        delete x[t], P = !1, xe = null, J(w.order.find((n) => x[n]) || Object.keys(x)[0]);
+        delete b[t], P = !1, be = null, J(w.order.find((n) => b[n]) || Object.keys(b)[0]);
       } else
-        Vn();
+        Un();
       Lt();
     }
   }), i("addMovementBtn").addEventListener("click", () => {
     const e = i("movementCreator");
-    e.hidden = !1, Kt("movement"), Be(), i("addMovementInput").focus();
+    e.hidden = !1, Kt("movement"), Re(), i("addMovementInput").focus();
   }), i("addRestBtn").addEventListener("click", () => {
     const e = i("movementCreator");
     e.hidden = !1, Kt("rest"), i("addRestTitle").focus();
   }), i("closeMovementCreator").addEventListener("click", () => {
     i("movementCreator").hidden = !0;
-  }), i("useGlobalTiming").addEventListener("change", Be), i("useGlobalRestTiming").addEventListener("change", Be), f.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
-    Zt(e.dataset.movePreset, !0), _();
-  })), i("includeWarmupPreset").addEventListener("change", Vt), i("includeCooldownPreset").addEventListener("change", Vt), i("includeWarmupPreset").addEventListener("change", le), i("includeCooldownPreset").addEventListener("change", le), S.addEventListener("input", le), i("confirmAddMovement").addEventListener("click", Jt), i("confirmAddRest").addEventListener("click", Jt), i("addMovementInput").addEventListener("keydown", (e) => {
+  }), i("useGlobalTiming").addEventListener("change", Re), i("useGlobalRestTiming").addEventListener("change", Re), h.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
+    Vt(e.dataset.movePreset, !0), O();
+  })), i("includeWarmupPreset").addEventListener("change", Ut), i("includeCooldownPreset").addEventListener("change", Ut), i("includeWarmupPreset").addEventListener("change", le), i("includeCooldownPreset").addEventListener("change", le), S.addEventListener("input", le), i("confirmAddMovement").addEventListener("click", Jt), i("confirmAddRest").addEventListener("click", Jt), i("addMovementInput").addEventListener("keydown", (e) => {
     e.key === "Enter" && Jt();
   });
   const it = i("countdown"), rn = i("countNum"), ne = i("countdownPixelCanvas");
@@ -1524,26 +1524,26 @@ function qa(f, h) {
       this.size >= this.maxSize ? this.isReverse = !0 : this.size <= this.minSize && (this.isReverse = !1), this.size += this.isReverse ? -this.speed : this.speed;
     }
   }
-  let ln = [], Un = 1, Yn = 1;
+  let ln = [], Yn = 1, Zn = 1;
   function ke() {
     const e = parseFloat(getComputedStyle(i("app")).zoom);
     return Number.isFinite(e) && e > 0 ? e : 1;
   }
   function pa() {
-    var g;
+    var m;
     if (!ne) return;
     const e = ke(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
-    Un = t, Yn = n;
+    Yn = t, Zn = n;
     const a = Math.min(window.devicePixelRatio || 1, 2);
     ne.width = Math.floor(t * a), ne.height = Math.floor(n * a), ne.style.width = t + "px", ne.style.height = n + "px";
     const o = ne.getContext("2d");
     o.setTransform(a, 0, 0, a, 0, 0);
-    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], l = 12, s = (g = window.matchMedia) == null ? void 0 : g.call(window, "(prefers-reduced-motion: reduce)").matches, u = s ? 0 : 0.055;
+    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], l = 12, s = (m = window.matchMedia) == null ? void 0 : m.call(window, "(prefers-reduced-motion: reduce)").matches, u = s ? 0 : 0.055;
     ln = [];
     for (let c = 0; c < t; c += l)
       for (let d = 0; d < n; d += l) {
-        const v = c - t / 2, M = d - n / 2, F = Math.sqrt(v * v + M * M), T = s ? 0 : Math.random() * 75 + F * 0.05, A = new ca({ width: t, height: n }, o, c, d, r[Math.floor(Math.random() * r.length)], u, T);
-        A.maxSizeInteger = 4, A.maxSize = Math.random() * 3.2 + 0.8, A.sizeStep = 0.35 + Math.random() * 0.45, ln.push(A);
+        const f = c - t / 2, M = d - n / 2, A = Math.sqrt(f * f + M * M), T = s ? 0 : Math.random() * 75 + A * 0.05, B = new ca({ width: t, height: n }, o, c, d, r[Math.floor(Math.random() * r.length)], u, T);
+        B.maxSizeInteger = 4, B.maxSize = Math.random() * 3.2 + 0.8, B.sizeStep = 0.35 + Math.random() * 0.45, ln.push(B);
       }
   }
   function Kn(e) {
@@ -1551,7 +1551,7 @@ function qa(f, h) {
     const t = ne == null ? void 0 : ne.getContext("2d");
     if (!t) return;
     function n() {
-      t.clearRect(0, 0, Un, Yn);
+      t.clearRect(0, 0, Yn, Zn);
       let a = !0;
       ln.forEach((o) => {
         o[sn](), o.isIdle || (a = !1);
@@ -1566,7 +1566,7 @@ function qa(f, h) {
     it.classList.contains("active") && Et();
   });
   const ot = i("pixelTrailCanvas"), De = ot.getContext("2d");
-  let ie = !0, He = 0.7, Oe = 600, rt = [], _e = null, ue = { x: 0, y: 0, ready: !1 };
+  let ie = !0, He = 0.7, _e = 600, rt = [], Oe = null, ue = { x: 0, y: 0, ready: !1 };
   function Jn() {
     const e = N.getBoundingClientRect(), t = ke(), n = Math.min(window.devicePixelRatio || 1, 2), a = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
     ot.width = Math.max(1, Math.floor(a * n)), ot.height = Math.max(1, Math.floor(o * n)), ot.style.width = a + "px", ot.style.height = o + "px", De.setTransform(n, 0, 0, n, 0, 0);
@@ -1587,162 +1587,162 @@ function qa(f, h) {
     ue = { x: e, y: t, ready: !0 };
   }
   function Mt(e) {
-    if (_e = null, !D) return;
+    if (Oe = null, !D) return;
     if (!Me.workout.classList.contains("active")) {
-      _e = requestAnimationFrame(Mt);
+      Oe = requestAnimationFrame(Mt);
       return;
     }
     const t = N.getBoundingClientRect(), n = ke();
-    De.clearRect(0, 0, t.width / n, t.height / n), ie && (rt = rt.filter((o) => e - o.born < Oe), De.fillStyle = i("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", rt.forEach((o) => {
-      const r = (e - o.born) / Oe, l = (1 - r) * He, s = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
+    De.clearRect(0, 0, t.width / n, t.height / n), ie && (rt = rt.filter((o) => e - o.born < _e), De.fillStyle = i("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", rt.forEach((o) => {
+      const r = (e - o.born) / _e, l = (1 - r) * He, s = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
       De.globalAlpha = Math.max(0, l);
-      const g = 2 + 5 * (1 - r) * He;
-      De.fillRect(s - g / 2, u - g / 2, g, g);
-    }), De.globalAlpha = 1), _e = requestAnimationFrame(Mt);
+      const m = 2 + 5 * (1 - r) * He;
+      De.fillRect(s - m / 2, u - m / 2, m, m);
+    }), De.globalAlpha = 1), Oe = requestAnimationFrame(Mt);
   }
   N.addEventListener("pointermove", (e) => {
     const t = N.getBoundingClientRect(), n = ke();
     ua((e.clientX - t.left) / n, (e.clientY - t.top) / n);
-  }), N.addEventListener("pointerleave", () => ue.ready = !1), new ResizeObserver(Jn).observe(N), Jn(), _e = requestAnimationFrame(Mt);
-  const ge = i("movementRippleCanvas"), ze = ge.getContext("2d");
-  let Se = !0, qe = null, ga = performance.now();
+  }), N.addEventListener("pointerleave", () => ue.ready = !1), new ResizeObserver(Jn).observe(N), Jn(), Oe = requestAnimationFrame(Mt);
+  const me = i("movementRippleCanvas"), ze = me.getContext("2d");
+  let Se = !0, qe = null, ma = performance.now();
   function Qn() {
-    const e = ge.parentElement.getBoundingClientRect(), t = ke(), n = Math.max(1, e.width / t), a = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
-    ge.width = Math.max(1, Math.floor(n * o)), ge.height = Math.max(1, Math.floor(a * o)), ge.style.width = n + "px", ge.style.height = a + "px", ze.setTransform(o, 0, 0, o, 0, 0);
+    const e = me.parentElement.getBoundingClientRect(), t = ke(), n = Math.max(1, e.width / t), a = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
+    me.width = Math.max(1, Math.floor(n * o)), me.height = Math.max(1, Math.floor(a * o)), me.style.width = n + "px", me.style.height = a + "px", ze.setTransform(o, 0, 0, o, 0, 0);
   }
   function $n() {
     var e;
-    return Z || ((e = m[b]) == null ? void 0 : e.kind) === "rest";
+    return V || ((e = g[x]) == null ? void 0 : e.kind) === "rest";
   }
-  function ma() {
-    const e = m[b];
+  function ga() {
+    const e = g[x];
     return $n() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
-  function Rt(e) {
+  function Ft(e) {
     if (qe = null, !D) return;
     if (!Me.workout.classList.contains("active")) {
-      qe = requestAnimationFrame(Rt);
+      qe = requestAnimationFrame(Ft);
       return;
     }
-    const t = ge.parentElement.getBoundingClientRect(), n = ke(), a = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
+    const t = me.parentElement.getBoundingClientRect(), n = ke(), a = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
     if (ze.clearRect(0, 0, a, o), Se) {
-      const r = ma(), l = (e - ga) % r / r, s = 15, u = Math.max(8, Math.round(s * o / Math.max(1, a))), g = a / (s + 1), c = o / (u + 1), d = a * 0.5, v = o * 0.52, M = Math.hypot(d, v), T = i("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let A = 1; A <= u; A++)
+      const r = ga(), l = (e - ma) % r / r, s = 15, u = Math.max(8, Math.round(s * o / Math.max(1, a))), m = a / (s + 1), c = o / (u + 1), d = a * 0.5, f = o * 0.52, M = Math.hypot(d, f), T = i("app").classList.contains("light") ? "34,34,34" : "244,244,244";
+      for (let B = 1; B <= u; B++)
         for (let I = 1; I <= s; I++) {
-          const p = I * g, y = A * c, j = Math.hypot(p - d, y - v) / M, ee = $n(), Da = ee ? Math.exp(-Math.pow((j - (l * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, Ha = Math.exp(-Math.pow((j - l * 1.25) * 7, 2)), It = ee ? Da : Ha, bi = ee ? 0.5 + 0.5 * Math.sin(l * Math.PI * 2 - j * 3) ** 2 : 0.35 + 0.65 * Math.sin(l * Math.PI * 2 - j * 5) ** 2, Oa = ee ? 1.4 + It * 4.2 * bi : 1.2 + It * 5 * bi;
-          ze.beginPath(), ze.arc(p, y, Oa, 0, Math.PI * 2), ze.fillStyle = `rgba(${T},${ee ? 0.08 + It * 0.48 : 0.05 + It * 0.55})`, ze.fill();
+          const p = I * m, y = B * c, j = Math.hypot(p - d, y - f) / M, ee = $n(), Da = ee ? Math.exp(-Math.pow((j - (l * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, Ha = Math.exp(-Math.pow((j - l * 1.25) * 7, 2)), It = ee ? Da : Ha, xi = ee ? 0.5 + 0.5 * Math.sin(l * Math.PI * 2 - j * 3) ** 2 : 0.35 + 0.65 * Math.sin(l * Math.PI * 2 - j * 5) ** 2, _a = ee ? 1.4 + It * 4.2 * xi : 1.2 + It * 5 * xi;
+          ze.beginPath(), ze.arc(p, y, _a, 0, Math.PI * 2), ze.fillStyle = `rgba(${T},${ee ? 0.08 + It * 0.48 : 0.05 + It * 0.55})`, ze.fill();
         }
     }
-    qe = requestAnimationFrame(Rt);
+    qe = requestAnimationFrame(Ft);
   }
-  new ResizeObserver(Qn).observe(ge.parentElement), Qn(), qe = requestAnimationFrame(Rt);
-  const st = i("exerciseTitle"), ae = i("exerciseMeta"), dn = i("stepLabel"), Xn = i("digits"), ei = i("fill"), Ge = i("progress"), me = i("pause"), ha = i("nextName"), fa = i("nextMeta"), va = i("nextIcon"), Bt = i("skipNextSession");
-  let U = null;
+  new ResizeObserver(Qn).observe(me.parentElement), Qn(), qe = requestAnimationFrame(Ft);
+  const st = i("exerciseTitle"), ae = i("exerciseMeta"), dn = i("stepLabel"), Xn = i("digits"), ei = i("fill"), Ge = i("progress"), ge = i("pause"), va = i("nextName"), ha = i("nextMeta"), fa = i("nextIcon"), Rt = i("skipNextSession");
+  let Y = null;
   function oe(e) {
-    for (let t = Math.max(0, e); t < m.length; t++)
-      if (!m[t].sessionHidden) return t;
+    for (let t = Math.max(0, e); t < g.length; t++)
+      if (!g[t].sessionHidden) return t;
     return -1;
   }
-  function ba() {
-    const e = m[b];
+  function xa() {
+    const e = g[x];
     if (!e) return { name: "Complete", meta: "Move finished", icon: "✓" };
-    if (Z) {
-      const a = oe(b + 1), o = a >= 0 ? m[a] : null;
+    if (V) {
+      const a = oe(x + 1), o = a >= 0 ? g[a] : null;
       return o ? { name: o.name, meta: o.group + " · " + o.duration + " sec", icon: o.kind === "cooldown" ? "↘" : o.kind === "warmup" ? "↗" : "●" } : { name: "Complete", meta: "Move finished", icon: "✓" };
     }
     if (e.rest > 0) return { name: "Rest", meta: e.rest + " sec · " + (e.roundBreakAfter ? "round " + (e.round + 1) + " next" : "recovery"), icon: "Ⅱ" };
-    const t = oe(b + 1), n = t >= 0 ? m[t] : null;
+    const t = oe(x + 1), n = t >= 0 ? g[t] : null;
     return n ? { name: n.name, meta: n.group + " · " + n.duration + " sec", icon: n.kind === "cooldown" ? "↘" : n.kind === "warmup" ? "↗" : "●" } : { name: "Complete", meta: "Move finished", icon: "✓" };
   }
-  function xa() {
-    if (!m[b]) return m.length;
-    const t = oe(b + 1);
-    return t < 0 ? m.length : t + 1;
+  function ba() {
+    if (!g[x]) return g.length;
+    const t = oe(x + 1);
+    return t < 0 ? g.length : t + 1;
   }
   function ya(e) {
     return e.kind === "cooldown" ? "↘" : e.kind === "warmup" ? "↗" : "●";
   }
-  function At() {
-    return m.length && m[m.length - 1].round || 1;
+  function Bt() {
+    return g.length && g[g.length - 1].round || 1;
   }
   function ti(e) {
-    const t = m[e];
+    const t = g[e];
     if (!t) return "";
-    const n = At();
-    if (n <= 1) return "Step " + (e + 1) + " of " + m.length;
+    const n = Bt();
+    if (n <= 1) return "Step " + (e + 1) + " of " + g.length;
     if (t.roundBreak) return "Round " + t.round + " of " + n + " · Rest";
-    const a = m.filter((o) => o.round === t.round && !o.roundBreak).length;
+    const a = g.filter((o) => o.round === t.round && !o.roundBreak).length;
     return "Round " + t.round + " of " + n + " · Step " + (t.roundIndex + 1) + " of " + a;
   }
   function ni() {
-    return Ge.querySelector('[data-step="' + b + '"]');
+    return Ge.querySelector('[data-step="' + x + '"]');
   }
   function wa() {
-    m[b] && Number(Ge.dataset.round) !== (m[b].round || 1) && un(), [...Ge.children].forEach((e) => {
+    g[x] && Number(Ge.dataset.round) !== (g[x].round || 1) && un(), [...Ge.children].forEach((e) => {
       const t = Number(e.dataset.step);
-      e.classList.toggle("done", t < b), e.classList.toggle("active", t === b), e.classList.toggle("rewindable", t <= b), e.disabled = t > b, t === b && e.style.setProperty("--segment-progress", "0%");
-    }), m[b] && (dn.textContent = ti(b), Ze());
+      e.classList.toggle("done", t < x), e.classList.toggle("active", t === x), e.classList.toggle("rewindable", t <= x), e.disabled = t > x, t === x && e.style.setProperty("--segment-progress", "0%");
+    }), g[x] && (dn.textContent = ti(x), Ve());
   }
   function ka(e) {
-    const t = m.indexOf(e);
-    t < 0 || t <= b || (e.sessionHidden = !e.sessionHidden, We(), z((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
+    const t = g.indexOf(e);
+    t < 0 || t <= x || (e.sessionHidden = !e.sessionHidden, We(), z((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
   }
   function ii() {
     const e = i("upcomingList");
     if (!e) return;
     e.innerHTML = "";
-    const t = xa(), n = m.slice(t);
-    (Re === "all" ? n : n.slice(0, Math.max(1, Number(Re) || 1))).forEach((o) => {
+    const t = ba(), n = g.slice(t);
+    (Fe === "all" ? n : n.slice(0, Math.max(1, Number(Fe) || 1))).forEach((o) => {
       const r = document.createElement("section");
-      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + ya(o) + '</div><div><div class="upcomingName">' + R(o.name) + '</div><div class="upcomingMeta">' + R(o.group) + " · " + o.duration + " sec" + (At() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => ka(o)), e.appendChild(r);
+      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + ya(o) + '</div><div><div class="upcomingName">' + F(o.name) + '</div><div class="upcomingMeta">' + F(o.group) + " · " + o.duration + " sec" + (Bt() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => ka(o)), e.appendChild(r);
     });
   }
   function We() {
-    const e = ba();
-    if (ha.textContent = e.name, fa.textContent = e.meta, va.textContent = e.icon, U = null, Z) {
-      const t = oe(b + 1);
-      t >= 0 && (U = m[t]);
+    const e = xa();
+    if (va.textContent = e.name, ha.textContent = e.meta, fa.textContent = e.icon, Y = null, V) {
+      const t = oe(x + 1);
+      t >= 0 && (Y = g[t]);
     } else {
-      const t = m[b];
+      const t = g[x];
       if (t && t.rest > 0)
-        U = null;
+        Y = null;
       else {
-        const n = oe(b + 1);
-        n >= 0 && (U = m[n]);
+        const n = oe(x + 1);
+        n >= 0 && (Y = g[n]);
       }
     }
-    Bt && (Bt.hidden = !U, Bt.textContent = U != null && U.sessionHidden ? "Include this session" : "Skip this session"), ii();
+    Rt && (Rt.hidden = !Y, Rt.textContent = Y != null && Y.sessionHidden ? "Include this session" : "Skip this session"), ii();
   }
-  Bt.addEventListener("click", () => {
-    U && (U.sessionHidden = !U.sessionHidden, z((U.sessionHidden ? "Hidden " : "Included ") + U.name + " for this session"), We());
+  Rt.addEventListener("click", () => {
+    Y && (Y.sessionHidden = !Y.sessionHidden, z((Y.sessionHidden ? "Hidden " : "Included ") + Y.name + " for this session"), We());
   });
   let X = null, cn = null;
   function lt(e, t = {}) {
-    const n = x[k];
-    h.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: k, ...t });
+    const n = b[k];
+    v.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: k, ...t });
   }
   function Sa() {
-    const e = x[k];
+    const e = b[k];
     X = { key: k, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(cn), cn = setInterval(() => {
       X && !q && X.active++;
-    }, 1e3), lt("started", { steps: m.length });
+    }, 1e3), lt("started", { steps: g.length });
   }
   function ai(e) {
     if (clearInterval(cn), !X) return;
     const t = X;
-    X = null, lt(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (w.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), w.history = w.history.slice(0, 1e3), be(), Le(), se());
+    X = null, lt(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (w.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), w.history = w.history.slice(0, 1e3), xe(), Le(), se());
   }
   function Ca() {
-    Ot("workout"), Ta();
+    _t("workout"), Ta();
   }
   function pn() {
-    ai(!1), clearInterval(O), clearInterval(mt), Z = !1, q = !1, me.textContent = "Pause", i("app").classList.remove("resting", "paused"), it.classList.remove("active"), Ot("home");
+    ai(!1), clearInterval(_), clearInterval(gt), V = !1, q = !1, ge.textContent = "Pause", i("app").classList.remove("resting", "paused"), it.classList.remove("active"), _t("home");
   }
   function Ta() {
     it.classList.add("active");
     let e = 5;
-    rn.textContent = e, requestAnimationFrame(Et), clearInterval(mt), mt = setInterval(() => {
-      e--, e > 0 ? (rn.textContent = e, Et()) : (clearInterval(mt), rn.textContent = "GO", Et(), setTimeout(() => {
+    rn.textContent = e, requestAnimationFrame(Et), clearInterval(gt), gt = setInterval(() => {
+      e--, e > 0 ? (rn.textContent = e, Et()) : (clearInterval(gt), rn.textContent = "GO", Et(), setTimeout(() => {
         it.classList.remove("active"), cancelAnimationFrame(at), Ea();
       }, 650));
     }, 1e3);
@@ -1750,99 +1750,99 @@ function qa(f, h) {
   function un() {
     var t;
     Ge.innerHTML = "";
-    const e = ((t = m[Math.max(0, b)] || m[0]) == null ? void 0 : t.round) || 1;
-    Ge.dataset.round = e, m.forEach((n, a) => {
+    const e = ((t = g[Math.max(0, x)] || g[0]) == null ? void 0 : t.round) || 1;
+    Ge.dataset.round = e, g.forEach((n, a) => {
       if ((n.round || 1) !== e) return;
       const o = document.createElement("button");
       o.dataset.step = a, o.type = "button", o.className = "progressSegment", o.setAttribute("aria-label", "Go to " + n.name), o.addEventListener("click", () => {
-        a <= b && La(a);
+        a <= x && La(a);
       }), Ge.appendChild(o);
     });
   }
   function La(e) {
-    e < 0 || e >= m.length || e > b || (clearInterval(O), Z = !1, i("app").classList.remove("resting"), b = e, q = !1, i("app").classList.remove("paused"), me.textContent = "Pause", je(), O = setInterval(Ce, 1e3));
+    e < 0 || e >= g.length || e > x || (clearInterval(_), V = !1, i("app").classList.remove("resting"), x = e, q = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", je(), _ = setInterval(Ce, 1e3));
   }
   function Ea() {
-    if (b = oe(0), q = !1, i("app").classList.remove("paused"), me.textContent = "Pause", un(), b < 0) {
+    if (x = oe(0), q = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", un(), x < 0) {
       st.textContent = "No activities", ae.textContent = "Open Edit and enable or add a movement", ae.hidden = !1;
       return;
     }
-    Sa(), je(), clearInterval(O), O = setInterval(Ce, 1e3);
+    Sa(), je(), clearInterval(_), _ = setInterval(Ce, 1e3);
   }
   function je() {
-    Z = !1;
-    const e = m[b];
-    i("app").classList.toggle("resting", e.kind === "rest"), Y = e.duration, gt = e.duration, st.textContent = e.name, ae.textContent = e.group, ae.hidden = !0, dn.textContent = ti(b), X && lt("step", { name: e.name, group: e.group, kind: e.kind, step: b + 1, of: m.length, round: e.round || 1, rounds: At(), duration: e.duration }), We(), wa();
+    V = !1;
+    const e = g[x];
+    i("app").classList.toggle("resting", e.kind === "rest"), Z = e.duration, mt = e.duration, st.textContent = e.name, ae.textContent = e.group, ae.hidden = !0, dn.textContent = ti(x), X && lt("step", { name: e.name, group: e.group, kind: e.kind, step: x + 1, of: g.length, round: e.round || 1, rounds: Bt(), duration: e.duration }), We(), wa();
   }
-  function Ze() {
-    Xn.textContent = Y;
-    const e = Y / gt * 100;
+  function Ve() {
+    Xn.textContent = Z;
+    const e = Z / mt * 100;
     ei.style.width = e + "%";
     const t = ni();
-    if (t && !Z) {
+    if (t && !V) {
       const n = 100 - e;
       t.style.setProperty("--segment-progress", n + "%");
     }
   }
   function Ce() {
-    if (!q && (Y--, Ze(), Y <= 0)) {
-      const e = m[b];
+    if (!q && (Z--, Ve(), Z <= 0)) {
+      const e = g[x];
       e.rest > 0 ? oi(e.rest) : dt();
     }
   }
   function oi(e) {
     var n;
-    Z = !0, i("app").classList.add("resting");
+    V = !0, i("app").classList.add("resting");
     const t = ni();
-    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(O), Y = e, gt = e, X && lt("rest", { duration: e }), st.textContent = "Rest", ae.textContent = (n = m[b]) != null && n.roundBreakAfter ? "Round " + (m[b].round + 1) + " next" : "Recovery", We(), Ze(), O = setInterval(() => {
-      q || (Y--, Ze(), Y <= 0 && (clearInterval(O), dt(), O = setInterval(Ce, 1e3)));
+    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(_), Z = e, mt = e, X && lt("rest", { duration: e }), st.textContent = "Rest", ae.textContent = (n = g[x]) != null && n.roundBreakAfter ? "Round " + (g[x].round + 1) + " next" : "Recovery", We(), Ve(), _ = setInterval(() => {
+      q || (Z--, Ve(), Z <= 0 && (clearInterval(_), dt(), _ = setInterval(Ce, 1e3)));
     }, 1e3);
   }
   function dt() {
-    Z = !1;
-    const e = oe(b + 1);
+    V = !1;
+    const e = oe(x + 1);
     if (e >= 0)
-      b = e, je();
+      x = e, je();
     else {
-      q = !1, me.textContent = "Pause", i("app").classList.remove("resting", "paused"), clearInterval(O), st.textContent = "Complete", ae.textContent = "Move finished", ae.hidden = !1, Xn.textContent = "✓";
+      q = !1, ge.textContent = "Pause", i("app").classList.remove("resting", "paused"), clearInterval(_), st.textContent = "Complete", ae.textContent = "Move finished", ae.hidden = !1, Xn.textContent = "✓";
       {
-        const t = At();
-        dn.textContent = t > 1 ? t + " rounds done" : m.filter((n) => !n.roundBreak).length + " steps done";
+        const t = Bt();
+        dn.textContent = t > 1 ? t + " rounds done" : g.filter((n) => !n.roundBreak).length + " steps done";
       }
       ai(!0);
       {
-        const t = gi(7).reduce((n, a) => n + a.minutes, 0);
+        const t = mi(7).reduce((n, a) => n + a.minutes, 0);
         ae.textContent = "Move finished · " + t + " min in the last 7 days";
       }
       ei.style.width = "100%", We();
     }
   }
   i("skipExercise").addEventListener("click", () => {
-    clearInterval(O);
-    const e = m[b];
-    if (Z) {
-      Z = !1, i("app").classList.remove("resting");
-      const n = oe(b + 1);
-      n >= 0 ? (b = n, je(), O = setInterval(Ce, 1e3)) : dt();
+    clearInterval(_);
+    const e = g[x];
+    if (V) {
+      V = !1, i("app").classList.remove("resting");
+      const n = oe(x + 1);
+      n >= 0 ? (x = n, je(), _ = setInterval(Ce, 1e3)) : dt();
       return;
     }
     if (e && e.rest > 0) {
       oi(e.rest);
       return;
     }
-    const t = oe(b + 1);
-    t >= 0 ? (b = t, je(), O = setInterval(Ce, 1e3)) : dt();
+    const t = oe(x + 1);
+    t >= 0 ? (x = t, je(), _ = setInterval(Ce, 1e3)) : dt();
   }), i("restartSegment").addEventListener("click", () => {
-    if (clearInterval(O), q = !1, i("app").classList.remove("paused"), me.textContent = "Pause", Z) {
-      const e = m[b];
-      Y = e.rest, gt = e.rest, st.textContent = "Rest", ae.textContent = "Recovery", i("app").classList.add("resting"), We(), Ze();
+    if (clearInterval(_), q = !1, i("app").classList.remove("paused"), ge.textContent = "Pause", V) {
+      const e = g[x];
+      Z = e.rest, mt = e.rest, st.textContent = "Rest", ae.textContent = "Recovery", i("app").classList.add("resting"), We(), Ve();
     } else
       je();
-    O = setInterval(Z ? () => {
-      q || (Y--, Ze(), Y <= 0 && (clearInterval(O), dt(), O = setInterval(Ce, 1e3)));
+    _ = setInterval(V ? () => {
+      q || (Z--, Ve(), Z <= 0 && (clearInterval(_), dt(), _ = setInterval(Ce, 1e3)));
     } : Ce, 1e3);
   });
-  function Ft(e, t, n, a) {
+  function At(e, t, n, a) {
     let o = 0, r = null, l = !1;
     function s() {
       r && cancelAnimationFrame(r), r = null, o = 0, l = !1, t.style.width = "0%", e.classList.remove("holding");
@@ -1850,19 +1850,19 @@ function qa(f, h) {
     function u(d) {
       if (!l) return;
       o || (o = d);
-      const v = Math.min(1, (d - o) / n);
-      if (t.style.width = v * 100 + "%", v >= 1) {
+      const f = Math.min(1, (d - o) / n);
+      if (t.style.width = f * 100 + "%", f >= 1) {
         l = !1, r && cancelAnimationFrame(r), r = null, t.style.width = "100%", setTimeout(() => t.style.width = "0%", 90), a();
         return;
       }
       r = requestAnimationFrame(u);
     }
-    function g(d) {
-      var v;
+    function m(d) {
+      var f;
       if (!(d && d.button !== void 0 && d.button !== 0)) {
         d == null || d.preventDefault(), s(), l = !0, e.classList.add("holding");
         try {
-          (v = e.setPointerCapture) == null || v.call(e, d.pointerId);
+          (f = e.setPointerCapture) == null || f.call(e, d.pointerId);
         } catch {
         }
         r = requestAnimationFrame(u);
@@ -1871,95 +1871,95 @@ function qa(f, h) {
     function c() {
       l && s();
     }
-    e.addEventListener("pointerdown", g), e.addEventListener("pointerup", c), e.addEventListener("pointercancel", c), e.addEventListener("lostpointercapture", c), e.addEventListener("keydown", (d) => {
-      (d.key === " " || d.key === "Enter") && !d.repeat && g(d);
+    e.addEventListener("pointerdown", m), e.addEventListener("pointerup", c), e.addEventListener("pointercancel", c), e.addEventListener("lostpointercapture", c), e.addEventListener("keydown", (d) => {
+      (d.key === " " || d.key === "Enter") && !d.repeat && m(d);
     }), e.addEventListener("keyup", (d) => {
       (d.key === " " || d.key === "Enter") && c();
     });
   }
   const Ma = i("endWorkout");
-  Ft(Ma, i("holdEndFill"), 1500, pn);
-  const Ve = i("deleteMoveConfirm");
+  At(Ma, i("holdEndFill"), 1500, pn);
+  const Ue = i("deleteMoveConfirm");
   i("deleteMoveOpen").addEventListener("click", () => {
-    Ve.classList.add("open"), Ve.setAttribute("aria-hidden", "false");
+    Ue.classList.add("open"), Ue.setAttribute("aria-hidden", "false");
   }), i("deleteMoveCancel").addEventListener("click", () => {
-    Ve.classList.remove("open"), Ve.setAttribute("aria-hidden", "true");
+    Ue.classList.remove("open"), Ue.setAttribute("aria-hidden", "true");
   });
-  function Ra() {
-    const e = k, t = f.querySelector('.workoutPanel[data-workout="' + e + '"]');
-    t && t.remove(), delete x[e], w.order = w.order.filter((a) => a !== e);
-    let n = f.querySelector(".workoutPanel[data-workout]");
+  function Fa() {
+    const e = k, t = h.querySelector('.workoutPanel[data-workout="' + e + '"]');
+    t && t.remove(), delete b[e], w.order = w.order.filter((a) => a !== e);
+    let n = h.querySelector(".workoutPanel[data-workout]");
     if (!n) {
       const a = "custom-" + Date.now();
-      x[a] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, w.order.push(a), n = Gt(a, x[a]);
+      b[a] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, w.order.push(a), n = Gt(a, b[a]);
     }
-    Ve.classList.remove("open"), Ve.setAttribute("aria-hidden", "true"), nt = null, Lt(), J(n.dataset.workout), be(), z("Move deleted");
+    Ue.classList.remove("open"), Ue.setAttribute("aria-hidden", "true"), nt = null, Lt(), J(n.dataset.workout), xe(), z("Move deleted");
   }
-  Ft(i("deleteMoveYes"), i("deleteMoveFill"), 1500, Ra);
-  const gn = f.querySelector(".rubberTabs"), Ue = i("rubberIndicator");
+  At(i("deleteMoveYes"), i("deleteMoveFill"), 1500, Fa);
+  const mn = h.querySelector(".rubberTabs"), Ye = i("rubberIndicator");
   function ct(e, t = !0) {
-    if (!e || !gn || !Ue) return;
-    const n = gn.getBoundingClientRect(), a = e.getBoundingClientRect();
-    Ue.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
+    if (!e || !mn || !Ye) return;
+    const n = mn.getBoundingClientRect(), a = e.getBoundingClientRect();
+    Ye.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
     const o = ke();
-    Ue.style.left = (a.left - n.left) / o + gn.scrollLeft + "px", Ue.style.width = a.width / o + "px", t && (Ue.style.transform = "scaleX(1.08)", setTimeout(() => Ue.style.transform = "scaleX(1)", 180));
+    Ye.style.left = (a.left - n.left) / o + mn.scrollLeft + "px", Ye.style.width = a.width / o + "px", t && (Ye.style.transform = "scaleX(1.08)", setTimeout(() => Ye.style.transform = "scaleX(1)", 180));
   }
-  f.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
-    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), f.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), f.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), i(e.dataset.pane).classList.add("active"), ct(e, !0);
-  })), requestAnimationFrame(() => ct(f.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => ct(f.querySelector(".tab.active"), !1));
-  const mn = i("pixelTrailToggle"), hn = i("rippleToggle"), Ye = i("trailStrength"), Ke = i("trailLife");
+  h.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
+    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), h.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), h.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), i(e.dataset.pane).classList.add("active"), ct(e, !0);
+  })), requestAnimationFrame(() => ct(h.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => ct(h.querySelector(".tab.active"), !1));
+  const gn = i("pixelTrailToggle"), vn = i("rippleToggle"), Ze = i("trailStrength"), Ke = i("trailLife");
   function K(e, t) {
-    E()[e] = t, be();
+    E()[e] = t, xe();
   }
   const Je = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...E().toggles || {} };
   function ri() {
-    f.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", Je[t.dataset.toggle] !== !1)), f.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
+    h.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", Je[t.dataset.toggle] !== !1)), h.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
       i(n).hidden = Je[t] === !1;
     });
     const e = ["steps", "mood", "energyLevel"].some((t) => Je[t] !== !1);
-    f.querySelector(".activityCard").hidden = !e, i("insightCard").style.gridColumn = e ? "" : "span 12";
+    h.querySelector(".activityCard").hidden = !e, i("insightCard").style.gridColumn = e ? "" : "span 12";
   }
-  f.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
+  h.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
     Je[e.dataset.toggle] = Je[e.dataset.toggle] === !1, ri(), K("toggles", { ...Je });
   })), ri();
-  function Ba() {
-    mn.classList.toggle("on", ie), hn.classList.toggle("on", Se), Ye.value = Math.round(He * 100), i("trailStrengthValue").textContent = Ye.value + "%", Ke.value = Oe, i("trailLifeValue").textContent = Ke.value + " ms";
+  function Ra() {
+    gn.classList.toggle("on", ie), vn.classList.toggle("on", Se), Ze.value = Math.round(He * 100), i("trailStrengthValue").textContent = Ze.value + "%", Ke.value = _e, i("trailLifeValue").textContent = Ke.value + " ms";
   }
-  E().trailEnabled !== void 0 && (ie = E().trailEnabled), E().rippleEnabled !== void 0 && (Se = E().rippleEnabled), E().trailStrength !== void 0 && (He = E().trailStrength), E().trailMaxAge !== void 0 && (Oe = E().trailMaxAge), Ba(), mn.addEventListener("click", () => {
-    ie = !ie, mn.classList.toggle("on", ie), ie || (rt = []), K("trailEnabled", ie);
-  }), hn.addEventListener("click", () => {
-    Se = !Se, hn.classList.toggle("on", Se), K("rippleEnabled", Se);
-  }), Ye.addEventListener("input", () => {
-    He = Number(Ye.value) / 100, i("trailStrengthValue").textContent = Ye.value + "%";
-  }), Ye.addEventListener("change", () => K("trailStrength", He)), Ke.addEventListener("input", () => {
-    Oe = Number(Ke.value), i("trailLifeValue").textContent = Ke.value + " ms";
-  }), Ke.addEventListener("change", () => K("trailMaxAge", Oe)), St.addEventListener("change", () => K("upcomingCount", Re));
+  E().trailEnabled !== void 0 && (ie = E().trailEnabled), E().rippleEnabled !== void 0 && (Se = E().rippleEnabled), E().trailStrength !== void 0 && (He = E().trailStrength), E().trailMaxAge !== void 0 && (_e = E().trailMaxAge), Ra(), gn.addEventListener("click", () => {
+    ie = !ie, gn.classList.toggle("on", ie), ie || (rt = []), K("trailEnabled", ie);
+  }), vn.addEventListener("click", () => {
+    Se = !Se, vn.classList.toggle("on", Se), K("rippleEnabled", Se);
+  }), Ze.addEventListener("input", () => {
+    He = Number(Ze.value) / 100, i("trailStrengthValue").textContent = Ze.value + "%";
+  }), Ze.addEventListener("change", () => K("trailStrength", He)), Ke.addEventListener("input", () => {
+    _e = Number(Ke.value), i("trailLifeValue").textContent = Ke.value + " ms";
+  }), Ke.addEventListener("change", () => K("trailMaxAge", _e)), St.addEventListener("change", () => K("upcomingCount", Fe));
   function si(e) {
-    f.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
+    h.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
     const t = e === "light";
-    i("app").classList.toggle("light", t), h.setLight(t);
+    i("app").classList.toggle("light", t), v.setLight(t);
   }
-  si(E().theme || "dark"), f.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
+  si(E().theme || "dark"), h.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
     si(e.dataset.theme), K("theme", e.dataset.theme);
   }));
   const re = { steps: null, ...E().entities || {} };
-  let Te = null, fn = {};
-  function Aa(e) {
+  let Te = null, hn = {};
+  function Ba(e) {
     const t = Object.values(e).filter((s) => s.entity_id.startsWith("sensor.") || s.entity_id.startsWith("input_number.")), n = (s) => s.attributes.friendly_name || s.entity_id, a = t.filter((s) => /step/i.test(s.entity_id) || /step/i.test(n(s)) || ["steps", "step"].includes(String(s.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((s) => !a.includes(s)), r = (s, u) => n(s).localeCompare(n(u)), l = (s, u) => /health_steps/.test(u.entity_id) - /health_steps/.test(s.entity_id) || r(s, u);
     return { suggested: a.sort(l), rest: o.sort(r), label: n };
   }
   function li(e) {
     const t = i("stepsEntity");
     if (!t || t.matches(":focus")) return;
-    const { suggested: n, rest: a, label: o } = Aa(e), r = (u) => '<option value="' + R(u.entity_id) + '">' + R(o(u)) + "</option>";
+    const { suggested: n, rest: a, label: o } = Ba(e), r = (u) => '<option value="' + F(u.entity_id) + '">' + F(o(u)) + "</option>";
     t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (a.length ? '<optgroup label="All sensors">' + a.map(r).join("") + "</optgroup>" : ""), t.value = re.steps || "";
     const l = i("stepsStatus"), s = re.steps && e[re.steps];
     l.textContent = s ? "Connected · " + o(s) : l.dataset.empty;
   }
   i("stepsEntity").addEventListener("change", () => {
-    re.steps = i("stepsEntity").value || null, K("entities", { ...re }), fn = {}, ui(), Te && (li(Te), ci(Te));
+    re.steps = i("stepsEntity").value || null, K("entities", { ...re }), hn = {}, ui(), Te && (li(Te), ci(Te));
   });
-  function Fa(e, t = 0) {
+  function Aa(e, t = 0) {
     return new Intl.NumberFormat(void 0, { maximumFractionDigits: t }).format(e);
   }
   function di() {
@@ -1969,28 +1969,28 @@ function qa(f, h) {
   function ci(e) {
     var a;
     const t = re.steps, n = t ? Number((a = e[t]) == null ? void 0 : a.state) : NaN;
-    i("stepsMeta").textContent = t ? Number.isFinite(n) ? Fa(n) : "—" : "Set up in Settings";
+    i("stepsMeta").textContent = t ? Number.isFinite(n) ? Aa(n) : "—" : "Set up in Settings";
   }
   let pi = 0;
   async function ui() {
     const e = re.steps;
-    if (!e || !h.ws) return;
+    if (!e || !v.ws) return;
     pi = Date.now();
     const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - 30);
     try {
-      const a = await h.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (a == null ? void 0 : a[e]) || [], r = {};
+      const a = await v.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (a == null ? void 0 : a[e]) || [], r = {};
       if (o.forEach((l) => {
         Number.isFinite(l.max) && (r[W(new Date(l.start))] = l.max);
       }), !Object.keys(r).length) {
-        const l = await h.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
+        const l = await v.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
         ((l == null ? void 0 : l[e]) || []).forEach((s) => {
-          const u = Number(s.s ?? s.state), g = s.lu ? s.lu * 1e3 : Date.parse(s.last_updated || s.last_changed);
-          if (!Number.isFinite(u) || !g) return;
-          const c = W(new Date(g));
+          const u = Number(s.s ?? s.state), m = s.lu ? s.lu * 1e3 : Date.parse(s.last_updated || s.last_changed);
+          if (!Number.isFinite(u) || !m) return;
+          const c = W(new Date(m));
           r[c] = Math.max(r[c] || 0, u);
         });
       }
-      fn = r, se();
+      hn = r, se();
     } catch {
     }
   }
@@ -2000,7 +2000,7 @@ function qa(f, h) {
   Le(), setInterval(() => {
     Le(), Xe(), we();
   }, 10 * 60 * 1e3);
-  function gi(e) {
+  function mi(e) {
     const t = {}, n = {};
     w.history.forEach((l) => {
       const s = W(new Date(l.start));
@@ -2008,16 +2008,16 @@ function qa(f, h) {
     });
     const a = /* @__PURE__ */ new Date(), o = W(a), r = [];
     for (let l = e - 1; l >= 0; l--) {
-      const s = new Date(a.getFullYear(), a.getMonth(), a.getDate() - l), u = W(s), g = w.checkins.filter((d) => d.date === u), c = (d) => {
-        const v = g.map((M) => M[d]).filter(Boolean);
-        return v.length ? v.reduce((M, F) => M + F, 0) / v.length : null;
+      const s = new Date(a.getFullYear(), a.getMonth(), a.getDate() - l), u = W(s), m = w.checkins.filter((d) => d.date === u), c = (d) => {
+        const f = m.map((M) => M[d]).filter(Boolean);
+        return f.length ? f.reduce((M, A) => M + A, 0) / f.length : null;
       };
       r.push({
         key: u,
         date: s,
         minutes: Math.round(t[u] || 0),
         moves: n[u] || 0,
-        steps: u === o && di() != null ? di() : fn[u] ?? null,
+        steps: u === o && di() != null ? di() : hn[u] ?? null,
         mood: c("mood"),
         energy: c("energy")
       });
@@ -2035,68 +2035,68 @@ function qa(f, h) {
   function se() {
     const e = i("insightCard");
     if (!e) return;
-    const t = gi(30), n = Na(t), a = t.reduce((d, v) => d + v.minutes, 0), o = /* @__PURE__ */ new Date(), r = W(o), l = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), s = [...Array(7)].map((d, v) => {
-      const M = new Date(l.getFullYear(), l.getMonth(), l.getDate() + v), F = W(M), T = t.find((A) => A.key === F);
-      return { d: M, k: F, minutes: T ? T.minutes : 0, today: F === r, future: F > r };
-    }), u = s.reduce((d, v) => d + v.minutes, 0), g = Math.max(10, ...s.map((d) => d.minutes)), c = (d, v, M) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + d + '</div><div><div class="activityRowName">' + R(v) + '</div><div class="activityRowMeta">' + R(M) + "</div></div></div>";
+    const t = mi(30), n = Na(t), a = t.reduce((d, f) => d + f.minutes, 0), o = /* @__PURE__ */ new Date(), r = W(o), l = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), s = [...Array(7)].map((d, f) => {
+      const M = new Date(l.getFullYear(), l.getMonth(), l.getDate() + f), A = W(M), T = t.find((B) => B.key === A);
+      return { d: M, k: A, minutes: T ? T.minutes : 0, today: A === r, future: A > r };
+    }), u = s.reduce((d, f) => d + f.minutes, 0), m = Math.max(10, ...s.map((d) => d.minutes)), c = (d, f, M) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + d + '</div><div><div class="activityRowName">' + F(f) + '</div><div class="activityRowMeta">' + F(M) + "</div></div></div>";
     e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + c("◷", "This week", u + " min") + c("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + c("▦", "30 days", a + " min") + '</div><div class="weekBars">' + s.map(
-      (d) => '<div class="weekBar' + (d.today ? " today" : "") + (d.future ? " future" : "") + '" title="' + R(d.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (d.minutes ? Math.max(6, d.minutes / g * 100) : 0) + '%"></span></div><div class="dayLabel">' + R(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(d.d)) + "</div></div>"
+      (d) => '<div class="weekBar' + (d.today ? " today" : "") + (d.future ? " future" : "") + '" title="' + F(d.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (d.minutes ? Math.max(6, d.minutes / m * 100) : 0) + '%"></span></div><div class="dayLabel">' + F(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(d.d)) + "</div></div>"
     ).join("") + "</div>";
   }
-  const mi = i("tvNav");
-  h.fullscreenSupported || (mi.hidden = !0), mi.addEventListener("click", () => h.toggleFullscreen()), f.addEventListener("keydown", (e) => {
-    !Me.workout.classList.contains("active") || it.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), me.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), i("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), i("restartSegment").click()));
-  }), [B, C, L, he].forEach((e) => e.addEventListener("input", () => {
-    const t = x[k];
-    t && (t.total = Number(B.value), t.work = Number(C.value), t.rest = Number(L.value)), _();
-  })), En.addEventListener("click", pn), Mn.addEventListener("click", () => Ot("settings")), i("settingsBack").addEventListener("click", pn), me.addEventListener("click", () => {
-    q = !q, X && lt(q ? "paused" : "resumed"), me.textContent = q ? "Resume" : "Pause", i("app").classList.toggle("paused", q);
-  }), J(k), kt(), Xe(), se(), i("healthHelpOpen").addEventListener("click", () => f.querySelector(".tab[data-pane=helpPane]").click()), Ft(i("resetStats"), i("resetStatsFill"), 1500, () => {
+  const gi = i("tvNav");
+  v.fullscreenSupported || (gi.hidden = !0), gi.addEventListener("click", () => v.toggleFullscreen()), h.addEventListener("keydown", (e) => {
+    !Me.workout.classList.contains("active") || it.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), ge.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), i("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), i("restartSegment").click()));
+  }), [R, C, L, ve].forEach((e) => e.addEventListener("input", () => {
+    const t = b[k];
+    t && (t.total = Number(R.value), t.work = Number(C.value), t.rest = Number(L.value)), O();
+  })), En.addEventListener("click", pn), Mn.addEventListener("click", () => _t("settings")), i("settingsBack").addEventListener("click", pn), ge.addEventListener("click", () => {
+    q = !q, X && lt(q ? "paused" : "resumed"), ge.textContent = q ? "Resume" : "Pause", i("app").classList.toggle("paused", q);
+  }), J(k), kt(), Xe(), se(), i("healthHelpOpen").addEventListener("click", () => h.querySelector(".tab[data-pane=helpPane]").click()), At(i("resetStats"), i("resetStatsFill"), 1500, () => {
     w.history = [], w.checkins = [], $e = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
     } catch {
     }
-    be(), Le(), Xe(), kt(), se(), we(), z("Stats reset");
+    xe(), Le(), Xe(), kt(), se(), we(), z("Stats reset");
   });
-  const vn = i("morningTime"), bn = i("eveningTime"), xn = i("checkinAutoOpen");
-  vn.value = te().morning, bn.value = te().evening, xn.classList.toggle("on", E().checkinAutoOpen !== !1), [["morningTime", vn], ["eveningTime", bn]].forEach(([e, t]) => t.addEventListener("change", () => {
+  const fn = i("morningTime"), xn = i("eveningTime"), bn = i("checkinAutoOpen");
+  fn.value = te().morning, xn.value = te().evening, bn.classList.toggle("on", E().checkinAutoOpen !== !1), [["morningTime", fn], ["eveningTime", xn]].forEach(([e, t]) => t.addEventListener("change", () => {
     t.value && (K(e, t.value), we());
-  })), xn.addEventListener("click", () => {
+  })), bn.addEventListener("click", () => {
     const e = E().checkinAutoOpen === !1;
-    xn.classList.toggle("on", e), K("checkinAutoOpen", e);
+    bn.classList.toggle("on", e), K("checkinAutoOpen", e);
   }), setTimeout(en, 800);
-  const hi = i("checkinNotify"), Nt = i("checkinNotifyTarget"), fi = i("checkinNotifyStatus"), Pa = fi.textContent;
-  function vi() {
-    const e = h.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, a = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
-    Nt.innerHTML = n.map((o) => '<option value="' + R(o) + '">' + R(a(o)) + "</option>").join(""), !E().notifyTarget && n[0] && (E().notifyTarget = n[0]), Nt.value = E().notifyTarget || "";
+  const vi = i("checkinNotify"), Nt = i("checkinNotifyTarget"), hi = i("checkinNotifyStatus"), Pa = hi.textContent;
+  function fi() {
+    const e = v.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, a = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
+    Nt.innerHTML = n.map((o) => '<option value="' + F(o) + '">' + F(a(o)) + "</option>").join(""), !E().notifyTarget && n[0] && (E().notifyTarget = n[0]), Nt.value = E().notifyTarget || "";
   }
   function Pt() {
     const e = !!E().notifyOn;
-    hi.classList.toggle("on", e), i("checkinNotifyTargetRow").hidden = !e;
+    vi.classList.toggle("on", e), i("checkinNotifyTargetRow").hidden = !e;
     const t = te();
-    fi.textContent = e ? "Sends at " + t.morning + " and " + t.evening : Pa;
+    hi.textContent = e ? "Sends at " + t.morning + " and " + t.evening : Pa;
   }
   async function yn() {
     const e = !!E().notifyOn;
     try {
-      return await h.setReminderAutomation(e ? { target: E().notifyTarget, times: te() } : null), !0;
+      return await v.setReminderAutomation(e ? { target: E().notifyTarget, times: te() } : null), !0;
     } catch {
       return z("Couldn't update the reminder in Home Assistant"), !1;
     }
   }
-  hi.addEventListener("click", async () => {
+  vi.addEventListener("click", async () => {
     const e = !E().notifyOn;
-    if (e && (vi(), !E().notifyTarget)) {
+    if (e && (fi(), !E().notifyTarget)) {
       z("Install the Companion app on your phone first");
       return;
     }
-    E().notifyOn = e, Pt(), await yn() ? (be(), z(e ? "Check-in notifications on" : "Check-in notifications off")) : (E().notifyOn = !e, Pt());
+    E().notifyOn = e, Pt(), await yn() ? (xe(), z(e ? "Check-in notifications on" : "Check-in notifications off")) : (E().notifyOn = !e, Pt());
   }), Nt.addEventListener("change", () => {
     K("notifyTarget", Nt.value), E().notifyOn && yn();
-  }), [vn, bn].forEach((e) => e.addEventListener("change", () => {
+  }), [fn, xn].forEach((e) => e.addEventListener("change", () => {
     Pt(), E().notifyOn && yn();
-  })), vi(), Pt();
+  })), fi(), Pt();
   let wn = null;
   function Ia() {
     wn || (wn = setTimeout(() => {
@@ -2108,28 +2108,28 @@ function qa(f, h) {
       Te = e, li(e), ci(e), Date.now() - pi > 60 * 60 * 1e3 && ui(), Ia();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (w.history = e.history, Le()), Array.isArray(e.history) && se(), Array.isArray(e.checkins) && (w.checkins = e.checkins.map(Fn), we(), kt(), Xe(), Le(), se()), e.profiles && !V.classList.contains("open") && !X)) {
-        const t = An(e);
-        Object.keys(x).forEach((n) => delete x[n]), Object.assign(x, t.profiles), w.order = t.order, x[k] || (k = w.order[0]), Pn(), J(k);
+      if (e && (Array.isArray(e.history) && (w.history = e.history, Le()), Array.isArray(e.history) && se(), Array.isArray(e.checkins) && (w.checkins = e.checkins.map(An), we(), kt(), Xe(), Le(), se()), e.profiles && !U.classList.contains("open") && !X)) {
+        const t = Bn(e);
+        Object.keys(b).forEach((n) => delete b[n]), Object.assign(b, t.profiles), w.order = t.order, b[k] || (k = w.order[0]), Pn(), J(k);
       }
     },
     suspend() {
       D = !1;
     },
     resume() {
-      D || (D = !0, _e || (_e = requestAnimationFrame(Mt)), qe || (qe = requestAnimationFrame(Rt)), ct(f.querySelector(".tab.active"), !1));
+      D || (D = !0, Oe || (Oe = requestAnimationFrame(Mt)), qe || (qe = requestAnimationFrame(Ft)), ct(h.querySelector(".tab.active"), !1));
     }
   };
 }
-const Ga = "0.15.0", kn = "move_assistant", Wa = "move_assistant", xi = "move_assistant_checkin_reminder";
+const Ga = "0.16.0", kn = "move_assistant", Wa = "move_assistant", bi = "move_assistant_checkin_reminder";
 function ja() {
   if (document.getElementById("move-assistant-inter")) return;
-  const f = document.createElement("link");
-  f.id = "move-assistant-inter", f.rel = "stylesheet", f.href = "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap", document.head.appendChild(f);
+  const h = document.createElement("link");
+  h.id = "move-assistant-inter", h.rel = "stylesheet", h.href = "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap", document.head.appendChild(h);
 }
-class Za extends HTMLElement {
-  setConfig(h) {
-    this._config = h || {};
+class Va extends HTMLElement {
+  setConfig(v) {
+    this._config = v || {};
   }
   static getStubConfig() {
     return {};
@@ -2140,27 +2140,27 @@ class Za extends HTMLElement {
   getGridOptions() {
     return { columns: "full", min_columns: 12 };
   }
-  set hass(h) {
+  set hass(v) {
     const i = !this._hass;
-    if (this._hass = h, i) {
+    if (this._hass = v, i) {
       this._init();
       return;
     }
-    this._app && h.states !== this._lastStates && (this._lastStates = h.states, this._app.updateStates(h.states));
+    this._app && v.states !== this._lastStates && (this._lastStates = v.states, this._app.updateStates(v.states));
   }
   connectedCallback() {
-    var h;
-    (h = this._app) == null || h.resume();
+    var v;
+    (v = this._app) == null || v.resume();
   }
   disconnectedCallback() {
-    var h;
-    (h = this._app) == null || h.suspend();
+    var v;
+    (v = this._app) == null || v.suspend();
   }
   async _init() {
     ja();
-    const h = this.shadowRoot || this.attachShadow({ mode: "open" });
-    h.innerHTML = `<style>${_a}</style>${za}`;
-    const i = h.getElementById("app");
+    const v = this.shadowRoot || this.attachShadow({ mode: "open" });
+    v.innerHTML = `<style>${Oa}</style>${za}`;
+    const i = v.getElementById("app");
     i.style.opacity = "0";
     let N = null;
     try {
@@ -2171,7 +2171,7 @@ class Za extends HTMLElement {
       N = (S == null ? void 0 : S.value) ?? null;
     } catch {
     }
-    this._lastSaved = JSON.stringify(N), this._app = qa(h, {
+    this._lastSaved = JSON.stringify(N), this._app = qa(v, {
       data: N,
       save: (S) => this._save(S),
       fire: (S, D) => this._fire(S, D),
@@ -2188,8 +2188,8 @@ class Za extends HTMLElement {
   }
   _subscribe() {
     var i;
-    const h = (i = this._hass) == null ? void 0 : i.connection;
-    h != null && h.subscribeMessage && h.subscribeMessage(
+    const v = (i = this._hass) == null ? void 0 : i.connection;
+    v != null && v.subscribeMessage && v.subscribeMessage(
       (N) => {
         var D;
         const S = JSON.stringify((N == null ? void 0 : N.value) ?? null);
@@ -2199,8 +2199,8 @@ class Za extends HTMLElement {
     ).catch(() => {
     });
   }
-  _save(h) {
-    this._pendingJson = JSON.stringify(h), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
+  _save(v) {
+    this._pendingJson = JSON.stringify(v), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
       const i = this._pendingJson;
       try {
         await this._hass.callWS({
@@ -2213,20 +2213,20 @@ class Za extends HTMLElement {
       }
     }, 400);
   }
-  _fire(h, i = {}) {
+  _fire(v, i = {}) {
     var N, S;
     ((N = this._config) == null ? void 0 : N.events) !== !1 && ((S = this._hass) == null || S.callWS({
       type: "fire_event",
       event_type: Wa,
-      event_data: { action: h, ...i }
+      event_data: { action: v, ...i }
     }).catch(() => {
     }));
   }
   // Keeps one Home Assistant automation in sync with the check-in times.
   // Passing null removes it.
-  async _setReminderAutomation(h) {
-    const i = `config/automation/config/${xi}`;
-    if (!h) {
+  async _setReminderAutomation(v) {
+    const i = `config/automation/config/${bi}`;
+    if (!v) {
       try {
         await this._hass.callApi("DELETE", i);
       } catch (D) {
@@ -2236,18 +2236,18 @@ class Za extends HTMLElement {
     }
     const N = (D) => `${D}:00`, S = window.location.pathname;
     await this._hass.callApi("POST", i, {
-      id: xi,
+      id: bi,
       alias: "Move Assistant check-in reminder",
       description: "Created by Move Assistant. Change it in Move Assistant → Settings → Check-in.",
       mode: "single",
       triggers: [
-        { trigger: "time", at: N(h.times.morning), id: "morning" },
-        { trigger: "time", at: N(h.times.evening), id: "evening" }
+        { trigger: "time", at: N(v.times.morning), id: "morning" },
+        { trigger: "time", at: N(v.times.evening), id: "evening" }
       ],
       conditions: [],
       actions: [
         {
-          action: `notify.${h.target}`,
+          action: `notify.${v.target}`,
           data: {
             title: "Move Assistant",
             message: "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
@@ -2258,9 +2258,9 @@ class Za extends HTMLElement {
     });
   }
   _toggleFullscreen() {
-    const h = document;
-    if (h.fullscreenElement || h.webkitFullscreenElement) {
-      (h.exitFullscreen || h.webkitExitFullscreen).call(h);
+    const v = document;
+    if (v.fullscreenElement || v.webkitFullscreenElement) {
+      (v.exitFullscreen || v.webkitExitFullscreen).call(v);
       return;
     }
     const i = this.requestFullscreen || this.webkitRequestFullscreen;
@@ -2268,13 +2268,13 @@ class Za extends HTMLElement {
       () => this._toast("Full screen isn't available here")
     );
   }
-  _toast(h) {
+  _toast(v) {
     var N;
     const i = (N = this.shadowRoot) == null ? void 0 : N.getElementById("toast");
-    i && (i.textContent = h, i.classList.add("show"), setTimeout(() => i.classList.remove("show"), 2600));
+    i && (i.textContent = v, i.classList.add("show"), setTimeout(() => i.classList.remove("show"), 2600));
   }
 }
-customElements.get("move-assistant-card") || (customElements.define("move-assistant-card", Za), window.customCards = window.customCards || [], window.customCards.push({
+customElements.get("move-assistant-card") || (customElements.define("move-assistant-card", Va), window.customCards = window.customCards || [], window.customCards.push({
   type: "move-assistant-card",
   name: "Move Assistant",
   description: "Guided movement timer with your Home Assistant activity data.",
