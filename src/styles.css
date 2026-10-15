@@ -1818,13 +1818,13 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 /* ---- drag Add movement / Add rest into the list ---- */
 .moveList{display:flex;flex-direction:column}
 .movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;
-  transition:transform .42s cubic-bezier(.34,1.56,.64,1),opacity .2s ease}
+  transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}
 .movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}
 .movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}
 .addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;
   display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;
   border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;
-  transition:width .4s cubic-bezier(.34,1.56,.64,1),height .4s cubic-bezier(.34,1.56,.64,1),border-radius .3s ease,
+  transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,
     padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}
 .addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}
 .addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}
@@ -1838,6 +1838,8 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .addGhost.leaving{opacity:0}
 .dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;
   background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);
-  transition:height .42s cubic-bezier(.34,1.56,.64,1),margin-top .42s cubic-bezier(.34,1.56,.64,1),opacity .2s ease}
+  transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}
 .dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}
 @media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}
+/* the browser's scroll anchoring shifts the list while the drop gap opens; keep the list still */
+.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}

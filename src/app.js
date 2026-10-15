@@ -833,7 +833,7 @@ function newListItem(type,list){
     ? {id:'rest-'+stamp,name:'Rest',group:'Rest',kind:'rest',hidden:false,useGlobalTiming:true,duration:Number(restInput.value)}
     : {id:'movement-'+stamp,name:'',group:ctx.group,kind:ctx.kind,hidden:false,useGlobalTiming:true,duration:Number(workInput.value)};
 }
-const RUBBER='cubic-bezier(.34,1.56,.64,1)';
+const RUBBER='cubic-bezier(.34,1.46,.64,1)';
 // Rows (and section titles) glide from where they were to where they end up.
 function flipRows(scope,mutate){
   if(reduceMotion()||!scope){mutate();return}
@@ -947,17 +947,17 @@ function startAddDrag(btn,type,sx,sy){
       // still stuck to the button: it stretches towards the pointer
       const dx=px-sx,dy=py-sy,t=Math.min(Math.hypot(dx,dy)/STICK,1);
       x=b.left+dx*.35;y=b.top+dy*.35;
-      paint(0,Math.atan2(dy,dx),1+.22*t,1-.14*t);
+      paint(0,Math.atan2(dy,dx),1+.155*t,1-.1*t);
       return;
     }
     const T=aim();
     if(!motion){x=T.x;y=T.y;paint(0,0,1,1);if(settle){cancelAnimationFrame(raf);settle.done()}return}
-    const k=settle?settle.k:.17,damp=settle?settle.d:.74;
+    const k=settle?settle.k:.17,damp=settle?settle.d:.70;
     vx=(vx+(T.x-x)*k)*damp;vy=(vy+(T.y-y)*k)*damp;
     x+=vx;y+=vy;
     const sp=Math.hypot(vx,vy),st=Math.min(sp/48,1);
-    const tilt=over||settle?0:Math.max(-7,Math.min(7,vx*.45));
-    paint(tilt,Math.atan2(vy,vx),1+.14*st,1-.09*st);
+    const tilt=over||settle?0:Math.max(-5,Math.min(5,vx*.32));
+    paint(tilt,Math.atan2(vy,vx),1+.1*st,1-.063*st);
     if(settle&&sp<.15&&Math.hypot(T.x-x,T.y-y)<.6){cancelAnimationFrame(raf);settle.done()}
   };
   const scrollTimer=setInterval(()=>{
@@ -981,7 +981,7 @@ function startAddDrag(btn,type,sx,sy){
   return {
     move(cx,cy){
       px=cx;py=cy;
-      if(!free&&Math.hypot(px-sx,py-sy)>STICK){free=true;vx=(px-sx)*.12;vy=(py-sy)*.12} // pops off the button
+      if(!free&&Math.hypot(px-sx,py-sy)>STICK){free=true;vx=(px-sx)*.085;vy=(py-sy)*.085} // pops off the button
       if(free)updateDrop();
     },
     drop(cancel){
@@ -989,14 +989,14 @@ function startAddDrag(btn,type,sx,sy){
       const list=over,index=slotIndex;
       if(!cancel&&list&&slot){
         const s=slot;
-        settle={k:.24,d:.66,aim:()=>{const sb=s.getBoundingClientRect();return {x:sb.left,y:sb.top}},done:()=>finish(list,index)};
+        settle={k:.24,d:.62,aim:()=>{const sb=s.getBoundingClientRect();return {x:sb.left,y:sb.top}},done:()=>finish(list,index)};
         setTimeout(()=>finish(list,index),650);
         if(!motion){cancelAnimationFrame(raf);finish(list,index)}
         return;
       }
       // not over the list: spring back to the button
       placeSlot(null);setOver(null);
-      settle={k:.2,d:.7,aim:()=>{const r=btn.getBoundingClientRect();return {x:r.left,y:r.top}},done:()=>finish(null)};
+      settle={k:.2,d:.66,aim:()=>{const r=btn.getBoundingClientRect();return {x:r.left,y:r.top}},done:()=>finish(null)};
       setTimeout(()=>finish(null),650);
       if(!motion){cancelAnimationFrame(raf);finish(null)}
     }
@@ -1013,28 +1013,41 @@ function bindAddDrag(btn,type){
   });
   btn.addEventListener('pointerdown',e=>{
     if(e.button!==undefined&&e.button!==0)return;
-    const sx=e.clientX,sy=e.clientY;let drag=null;
-    try{btn.setPointerCapture(e.pointerId)}catch(_){}
-    const onKey=ev=>{if(ev.key==='Escape'&&drag){ev.preventDefault();ev.stopPropagation();end(null,true)}};
+    const id=e.pointerId,sx=e.clientX,sy=e.clientY;
+    let drag=null,ended=false;
+    try{btn.setPointerCapture(id)}catch(_){}
+    // Listen on the whole window (and for a lost capture) so letting go always ends the drag,
+    // even if something else on the page catches the release first.
     const move=ev=>{
+      if(ev.pointerId!==id)return;
+      if(ev.pointerType==='mouse'&&ev.buttons===0){end(false);return} // the release was missed
       if(!drag){
         if(Math.hypot(ev.clientX-sx,ev.clientY-sy)<6)return;
         drag=startAddDrag(btn,type,sx,sy);
-        window.addEventListener('keydown',onKey,true);
       }
       drag.move(ev.clientX,ev.clientY);
     };
-    const end=(ev,cancel)=>{
-      btn.removeEventListener('pointermove',move);
-      btn.removeEventListener('pointerup',up);
-      btn.removeEventListener('pointercancel',cancelled);
-      window.removeEventListener('keydown',onKey,true);
-      if(drag){const d=drag;drag=null;dragged=true;setTimeout(()=>{dragged=false},0);d.drop(cancel)}
-    };
-    const up=ev=>end(ev,false),cancelled=ev=>end(ev,true);
-    btn.addEventListener('pointermove',move);
-    btn.addEventListener('pointerup',up);
-    btn.addEventListener('pointercancel',cancelled);
+    const up=ev=>{if(ev.pointerId===id)end(false)};
+    const cancel=ev=>{if(ev.pointerId===id)end(true)};
+    const lost=()=>end(false);
+    const blur=()=>end(true);
+    const key=ev=>{if(ev.key==='Escape'&&drag){ev.preventDefault();ev.stopPropagation();end(true)}};
+    function end(cancelled){
+      if(ended)return;ended=true;
+      window.removeEventListener('pointermove',move,true);
+      window.removeEventListener('pointerup',up,true);
+      window.removeEventListener('pointercancel',cancel,true);
+      window.removeEventListener('keydown',key,true);
+      window.removeEventListener('blur',blur);
+      btn.removeEventListener('lostpointercapture',lost);
+      if(drag){const d=drag;drag=null;dragged=true;setTimeout(()=>{dragged=false},0);d.drop(cancelled)}
+    }
+    window.addEventListener('pointermove',move,true);
+    window.addEventListener('pointerup',up,true);
+    window.addEventListener('pointercancel',cancel,true);
+    window.addEventListener('keydown',key,true);
+    window.addEventListener('blur',blur);
+    btn.addEventListener('lostpointercapture',lost);
   });
 }
 
