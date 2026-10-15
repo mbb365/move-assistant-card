@@ -1204,6 +1204,8 @@ function openSheet(title,content,onClose,focus){
   $('sheet').setAttribute('aria-hidden','false');
   $('sheetScrim').classList.add('open');$('sheet').classList.add('open');
   setTimeout(()=>{
+    // only if this sheet is still the one showing (a quick Add/Cancel must not bring the keyboard back)
+    if(!$('sheet').classList.contains('open')||!body.contains(content))return;
     const el=focus?body.querySelector('input[data-f=url],input[data-f=name]'):body.querySelector('button,input,select');
     el?.focus({preventScroll:true});
   },reduceMotion()?0:360);
@@ -1212,7 +1214,9 @@ function closeSheet(){
   const sheet=$('sheet');
   if(!sheet.classList.contains('open'))return;
   sheet.classList.remove('open');$('sheetScrim').classList.remove('open');sheet.setAttribute('aria-hidden','true');
+  if(sheet.contains(root.activeElement))root.activeElement.blur(); // puts the phone keyboard away
   const done=sheetOnClose;sheetOnClose=null;done?.();
+  setTimeout(fitEditorToScreen,0);
 }
 $('sheetScrim').addEventListener('click',closeSheet);
 $('sheet').addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeSheet()}});
@@ -1341,6 +1345,19 @@ window.addEventListener('resize',()=>{
   if(hovering?.ghost.classList.contains('hovering')){const spot=hoverHome();hovering.ghost.style.width=spot.width+'px';hovering.ghost.style.transform='translate('+spot.left+'px,'+spot.top+'px)'}
 });
 phoneQuery?.addEventListener?.('change',()=>{closeSheet();if(hovering&&!phoneLayout())placeHoverAtEnd();renderLists()});
+// Belt and braces for browsers without overflow:clip: if anything scrolls the panel, put it back.
+{const panel=$('workoutModal').querySelector('.modal');
+ panel.addEventListener('scroll',()=>{if(panel.scrollTop||panel.scrollLeft){panel.scrollTop=0;panel.scrollLeft=0}});}
+// Phones: when the on-screen keyboard opens, the browser pans the page to show the field. Keep
+// the editor fitted to the part of the screen you can actually see, above the keyboard.
+function fitEditorToScreen(){
+  const backdrop=$('workoutModal'),vv=window.visualViewport;
+  const keyboardUp=vv&&backdrop.classList.contains('open')&&phoneLayout()&&(vv.height<window.innerHeight-1||vv.offsetTop>0);
+  if(!keyboardUp){['top','bottom','height'].forEach(k=>backdrop.style.removeProperty(k));return}
+  backdrop.style.top=vv.offsetTop+'px';backdrop.style.bottom='auto';backdrop.style.height=vv.height+'px';
+}
+window.visualViewport?.addEventListener('resize',fitEditorToScreen);
+window.visualViewport?.addEventListener('scroll',fitEditorToScreen);
 
 function updateMovementCreatorAvailability(){
  const hasItems=strengthPool.length>0;
@@ -1876,6 +1893,7 @@ $('warmupSwitch').addEventListener('click',()=>{
 });
 function closeWorkoutEditor(){
   closeSheet();endHover();
+  ['top','bottom','height'].forEach(k=>$('workoutModal').style.removeProperty(k));
   pendingNew=null;editingItem=null;
   if(modal.classList.contains('createMode'))leaveCreateFlow();
   modal.classList.remove('createMode');

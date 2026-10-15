@@ -1941,3 +1941,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   .moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}
 }
 @media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}
+
+/* The Edit move panel must never scroll as a whole: a focused field (the phone keyboard) or
+   scrollIntoView could slide it up under its header, leaving a see-through gap at the bottom. */
+.modal{overflow:clip}
