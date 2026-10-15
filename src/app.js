@@ -2140,7 +2140,7 @@ function showWorkout(){
  const first=nextVisibleRoutineIndex(0);
  if(first>=0&&routine[first].kind==='video')prepareVideo(routine[first]);
 }
-function showHome(){stopVideo();finishSession(false);clearInterval(timer);clearInterval(countTimer);isResting=false;paused=false;pauseBtn.textContent='Pause';$('app').classList.remove('resting','paused');countdown.classList.remove('active');showView('home')}
+function showHome(){stopVideo();finishSession(false);clearInterval(timer);clearInterval(countTimer);isResting=false;setPaused(false);$('app').classList.remove('resting');countdown.classList.remove('active');showView('home')}
 function startCountdown(){
  countdown.classList.add('active');
  let n=5;
@@ -2182,21 +2182,30 @@ function makeProgress(){
  });
 }
 
+// One place decides whether the move is paused. The Pause button, the blue screen, the timer
+// and a playing video all follow it, whichever control changed it.
+function setPaused(on){
+ on=Boolean(on);
+ const changed=paused!==on;
+ paused=on;
+ pauseBtn.textContent=on?'Resume':'Pause';
+ $('app').classList.toggle('paused',on);
+ if(ytActive&&yt){try{on?yt.pauseVideo():yt.playVideo()}catch(_){}}
+ if(changed&&session)moveEvent(on?'paused':'resumed');
+}
 function rewindToStep(stepIndex){
  if(stepIndex<0 || stepIndex>=routine.length || stepIndex>index)return;
  clearInterval(timer);
  isResting=false;
  $('app').classList.remove('resting');
  index=stepIndex;
- paused=false;
- $('app').classList.remove('paused');
- pauseBtn.textContent='Pause';
+ setPaused(false);
  loadStep();
  timer=setInterval(tick,1000);
 }
 function startRoutine(){
  index=nextVisibleRoutineIndex(0);
- paused=false;$('app').classList.remove('paused');pauseBtn.textContent='Pause';makeProgress();
+ setPaused(false);makeProgress();
  if(index<0){title.textContent='No activities';meta.textContent='Open Edit and enable or add a movement';meta.hidden=false;return}
  beginSession();
  loadStep();clearInterval(timer);timer=setInterval(tick,1000)
@@ -2205,7 +2214,8 @@ function startRoutine(){
    A video step plays in the right-hand third of the workout screen. During the step before it
    the video is loaded muted and held at its start, so it plays the moment its step begins. */
 const videoStage=$('videoStage'),videoSound=$('videoSound');
-const YT_ENDED=0,YT_PLAYING=1;
+const YT_ENDED=0,YT_PLAYING=1,YT_PAUSED=2;
+let ytQuietUntil=0; // ignore the pause the player reports while we start or seek it
 let ytApi=null,ytReady=null,yt=null,ytCued=null,ytCuedStart=0,ytPrimed=false,ytActive=null,ytSoundCheck=null;
 function loadYouTubeApi(){
   if(window.YT?.Player)return Promise.resolve(window.YT);
@@ -2257,6 +2267,11 @@ function onVideoState(state){
     return;
   }
   videoStage.classList.toggle('playing',state===YT_PLAYING);
+  // tapping play or pause on the video itself pauses or resumes the whole move
+  if(routine[index]===ytActive&&performance.now()>ytQuietUntil){
+    if(state===YT_PLAYING&&paused)setPaused(false);
+    else if(state===YT_PAUSED&&!paused)setPaused(true);
+  }
   if(state===YT_PLAYING&&rememberVideoLength(ytActive.videoId,yt.getDuration()))persist();
   if(state===YT_ENDED)videoFinished();
 }
@@ -2275,6 +2290,7 @@ function playVideoStep(item){
   if(!item.videoId){showToast('This video step has no link yet, so it was skipped');setTimeout(()=>videoFinished(),0);return}
   ytPlayer().then(p=>{
     if(ytActive!==item)return;
+    ytQuietUntil=performance.now()+1500;
     const start=Number(item.start)||0;
     if(ytCued!==item.videoId){ytCued=item.videoId;ytCuedStart=start;p.loadVideoById({videoId:item.videoId,startSeconds:start})}
     else{p.seekTo(start,true);p.playVideo()}
@@ -2425,10 +2441,10 @@ function advance(){
    index=nextIndex;
    loadStep();
  }else{
-   paused=false;pauseBtn.textContent='Pause';
-   $('app').classList.remove('resting','paused');
    clearInterval(timer);
    stopVideo();
+   setPaused(false);
+   $('app').classList.remove('resting');
    title.textContent='Complete';meta.textContent='Move finished';meta.hidden=false;digits.textContent='✓';
    {const rounds=totalRounds();stepLabel.textContent=rounds>1?rounds+' rounds done':routine.filter(x=>!x.roundBreak).length+' steps done';}
    finishSession(true);
@@ -2439,7 +2455,9 @@ function advance(){
 
 
 /* workout controls */
-$('skipExercise').addEventListener('click',()=>{
+// Skipping always carries on: if the move was paused, the next step starts running.
+$('skipExercise').addEventListener('click',()=>{skipStep();setPaused(false)});
+function skipStep(){
  clearInterval(timer);
  const current=routine[index];
 
@@ -2470,14 +2488,12 @@ $('skipExercise').addEventListener('click',()=>{
  }else{
    advance();
  }
-});
+}
 
 
 $('restartSegment').addEventListener('click',()=>{
  clearInterval(timer);
- paused=false;
- $('app').classList.remove('paused');
- pauseBtn.textContent='Pause';
+ setPaused(false);
  if(isResting){
    const current=routine[index];
    seconds=current.rest;
@@ -2891,13 +2907,7 @@ root.addEventListener('keydown',e=>{
 homeNav.addEventListener('click',showHome);
 settingsNav.addEventListener('click',()=>showView('settings'));
 $('settingsBack').addEventListener('click',showHome);
-pauseBtn.addEventListener('click',()=>{
- paused=!paused;
- if(session)moveEvent(paused?'paused':'resumed');
- pauseBtn.textContent=paused?'Resume':'Pause';
- $('app').classList.toggle('paused',paused);
- if(ytActive&&yt){try{paused?yt.pauseVideo():yt.playVideo()}catch(_){}}
-});
+pauseBtn.addEventListener('click',()=>setPaused(!paused));
 
 // Load the selected move's saved timing into the editor before building, so the
 // default slider values never overwrite what was saved.
