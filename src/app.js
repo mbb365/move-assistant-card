@@ -2259,6 +2259,16 @@ function playVideoStep(item){
     },1600);
   }).catch(()=>{if(ytActive!==item)return;showToast('YouTube didn’t load, so the video was skipped');videoFinished()});
 }
+// Theater mode height: whatever is left between the top of the video row and the controls
+// at the bottom of the screen.
+function fitTheater(){
+  if(!$('app').classList.contains('videoStep'))return;
+  const grid=root.querySelector('.workGrid'),controls=root.querySelector('.sessionControlRow');
+  const top=grid.getBoundingClientRect().top,controlsH=controls?.offsetHeight||42;
+  const avail=window.innerHeight-top-16-controlsH-84; // 84: room for the floating nav buttons
+  grid.style.setProperty('--theater-h',Math.max(240,Math.round(avail))+'px');
+}
+window.addEventListener('resize',fitTheater);
 function stopVideo(){
   clearTimeout(ytSoundCheck);
   const was=ytActive;ytActive=null;
@@ -2342,11 +2352,15 @@ function loadStep(){
  updateNextCard();
  refreshProgressState();
  prepareUpcomingVideo();
+ if(s.kind==='video')setTimeout(fitTheater,0);
 }
 function updateTimer(){
- const asClock=routine[index]?.kind==='video'&&!isResting&&seconds>=60;
+ const isVideo=routine[index]?.kind==='video'&&!isResting;
+ const asClock=isVideo&&seconds>=60;
  digits.textContent=asClock?clock(seconds):seconds;
  digits.classList.toggle('long',asClock);
+ // in theater mode the big digits make way for the video; the time left sits by the controls
+ if(isVideo)$('videoClock').textContent=clock(seconds)+' left';
  const remainingPct=(seconds/totalPhase)*100;
  fill.style.width=remainingPct+'%';
  const activeSeg=activeSegment();
