@@ -1687,7 +1687,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,
 .testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,
 .globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,
-.autoRestSummary,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,
+.autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,
 .chartLegend,#app code{
   font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}
 .eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}
@@ -1843,3 +1843,16 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 @media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}
 /* the browser's scroll anchoring shifts the list while the drop gap opens; keep the list still */
 .exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}
+
+/* ---- YouTube video steps: the video fills the right-hand third of the workout screen ---- */
+.videoStage{position:absolute;inset:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}
+#app.videoStep .videoStage{opacity:1;pointer-events:auto}
+.videoFrame{width:100%;aspect-ratio:16/9;max-height:100%}
+.videoFrame>*{display:block;width:100%;height:100%;border:0}
+.videoSound{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2}
+.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}
+.digits.long{font-size:clamp(96px,12.8vw,200px)}
+.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}
+.fieldError{margin:0;color:var(--danger)}
+.addInput.invalid{border-color:var(--danger)}
+@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}

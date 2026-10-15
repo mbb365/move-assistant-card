@@ -58,7 +58,7 @@
     </div>
   </div>
   <div class="progress" id="progress"></div>
-  <div class="workGrid"><section class="timerCard"><div class="fill" id="fill"></div><div class="digits" id="digits">30</div></section><section class="movementCard"><canvas id="movementRippleCanvas" class="movementRippleCanvas" aria-hidden="true"></canvas></section></div>
+  <div class="workGrid"><section class="timerCard"><div class="fill" id="fill"></div><div class="digits" id="digits">30</div></section><section class="movementCard"><canvas id="movementRippleCanvas" class="movementRippleCanvas" aria-hidden="true"></canvas><div class="videoStage" id="videoStage"><div class="videoFrame" id="videoFrame"></div><button class="primary videoSound" id="videoSound" type="button" hidden>Turn sound on</button></div></section></div>
 
   <div class="sessionControlRow">
     <button class="skipBtn" id="skipExercise" type="button">Skip</button>
@@ -547,6 +547,7 @@
     <div class="movementCreatorLaunch" id="movementCreatorLaunch">
       <button class="addBtn movementCreatorOpen" id="addMovementBtn" type="button">Add movement</button>
       <button class="restAddBtn" id="addRestBtn" type="button">Add rest</button>
+      <button class="restAddBtn" id="addVideoBtn" type="button">Add video</button>
     </div>
 
     <section class="movementCreator" id="movementCreator" hidden aria-label="Create movement">

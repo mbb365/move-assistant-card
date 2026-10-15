@@ -419,6 +419,39 @@ function updateRangeFills(){
   totalLabel.textContent=rounds>1?'Time per round':'Total time';
 }
 function visible(arr){return arr.filter(x=>!x.hidden)}
+// 754 -> "12:34", 3725 -> "1:02:05"
+function clock(seconds){
+  const s=Math.max(0,Math.round(Number(seconds)||0)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60;
+  return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(r).padStart(2,'0');
+}
+// Reads a YouTube link (watch, youtu.be, shorts, live, embed) and any start (t=1m30s) / end time.
+function parseYouTube(text){
+  let u;try{u=new URL(String(text||'').trim())}catch(_){return null}
+  const host=u.hostname.replace(/^(www|m|music)\./,'');
+  let id=null;
+  if(host==='youtu.be')id=u.pathname.slice(1).split('/')[0];
+  else if(/^youtube(-nocookie)?\.com$/.test(host)){
+    if(u.pathname==='/watch')id=u.searchParams.get('v');
+    else{const m=u.pathname.match(/^\/(embed|shorts|live|v)\/([^/?#]+)/);if(m)id=m[2]}
+  }
+  if(!id||!/^[\w-]{11}$/.test(id))return null;
+  const time=v=>{
+    if(!v)return 0;
+    if(/^\d+$/.test(v))return Number(v);
+    const m=v.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/);
+    return m?(Number(m[1])||0)*3600+(Number(m[2])||0)*60+(Number(m[3])||0):0;
+  };
+  const start=time(u.searchParams.get('t')||u.searchParams.get('start'));
+  const end=time(u.searchParams.get('end'));
+  return {id,start,end:end>start?end:null};
+}
+// How long a video step runs: the clip (link start to its end, or to the end of the video),
+// or the length you set yourself.
+function videoStepSeconds(x,fallback){
+  if(x.useVideoLength===false)return Math.max(5,Number(x.duration)||fallback||300);
+  const start=Number(x.start)||0,end=Number(x.end)||Number(x.videoDuration)||0;
+  return end>start?Math.round(end-start):(Number(x.duration)||300);
+}
 function secondsFromCreator(value,unit){
   const n=Math.max(0,Number(value)||0);
   if(unit==='hour')return Math.round(n*3600);
@@ -521,6 +554,7 @@ function buildRoutine(){
 
  if(profile?.customSequence){
    const baseSequence=vStrength.map(item=>{
+     if(item.kind==='video')return {...item,duration:videoStepSeconds(item,work),rest:0};
      if(item.kind==='rest'){
        const duration=item.useGlobalTiming===true
          ? rest
@@ -556,6 +590,7 @@ function buildRoutine(){
  }else{
    // Play exactly the listed exercises, once each, in order.
    routine=[...vWarm,...vStrength,...vCool].map(x=>{
+     if(x.kind==='video')return {...x,duration:videoStepSeconds(x,work),rest:0};
      if(x.kind==='rest')return {...x,duration:x.useGlobalTiming===true?rest:(Number(x.duration)||rest),rest:0};
      return {...x,duration:x.useGlobalTiming===false?(Number(x.duration)||work):work,rest};
    });
@@ -622,12 +657,22 @@ function splitDuration(sec){
   if(sec>=60&&sec%60===0)return {value:sec/60,unit:'min'};
   return {value:sec,unit:'sec'};
 }
-function focusEditForm(select=false){const f=root.querySelector('.moveEditForm input[data-f=name]');if(!f)return;f.focus({preventScroll:true});if(select)f.select()}
+function focusEditForm(select=false){const f=root.querySelector('.moveEditForm input[data-f=url],.moveEditForm input[data-f=name]');if(!f)return;f.focus({preventScroll:true});if(select)f.select()}
 function renderEditForm(item,i){
-  const isRest=item.kind==='rest';
-  const global=isRest?item.useGlobalTiming===true:item.useGlobalTiming!==false;
+  const isRest=item.kind==='rest',isVideo=item.kind==='video';
+  const global=isVideo?item.useVideoLength!==false:isRest?item.useGlobalTiming===true:item.useGlobalTiming!==false;
   const globalSec=Number(isRest?restInput.value:workInput.value);
-  const own=splitDuration(global?globalSec:(item.duration||globalSec));
+  const own=splitDuration(isVideo?(item.useVideoLength===false?item.duration:videoStepSeconds({...item,useVideoLength:true})):global?globalSec:(item.duration||globalSec));
+  const known=isVideo&&(Number(item.videoDuration)>0||Number(item.end)>0);
+  const fields=isVideo
+    ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="'+esc(item.url||'')+'" placeholder="Paste a YouTube link"></label>'+
+      '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.autoName?'':item.name)+'" placeholder="Uses the video’s title"></label>'+
+      '<p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>'
+    : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.name)+'" placeholder="'+(isRest?'Rest':'Name this movement')+'"></label>'+
+      '<label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="'+esc(item.group)+'" placeholder="'+(isRest?'Rest':'e.g. Glutes + legs')+'"></label>';
+  const toggleText=isVideo
+    ? 'Play the whole '+(Number(item.start)>0||Number(item.end)>0?'clip':'video')+(known?' · '+clock(videoStepSeconds({...item,useVideoLength:true})):'')
+    : 'Use global timing · '+formatDuration(globalSec);
   const row=document.createElement('div');
   row.className='moveRow editing';
   row.dataset.index=i;
@@ -635,14 +680,11 @@ function renderEditForm(item,i){
   const isNew=pendingNew?.item===item;
   row.innerHTML=
     '<div class="moveEditForm">'+
-      '<div class="moveEditFields">'+
-        '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.name)+'" placeholder="'+(isRest?'Rest':'Name this movement')+'"></label>'+
-        '<label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="'+esc(item.group)+'" placeholder="'+(isRest?'Rest':'e.g. Glutes + legs')+'"></label>'+
-      '</div>'+
+      '<div class="moveEditFields'+(isVideo?' videoFields':'')+'">'+fields+'</div>'+
       '<div class="moveEditTiming">'+
         '<label class="globalTimingToggle"><input type="checkbox" data-f="global"'+(global?' checked':'')+'>'+
           '<span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span>'+
-          '<span class="toggleLabel">Use global timing · '+esc(formatDuration(globalSec))+'</span></label>'+
+          '<span class="toggleLabel">'+esc(toggleText)+'</span></label>'+
         '<div class="creatorDurationRow">'+
           '<input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="'+own.value+'" aria-label="Duration">'+
           '<select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">'+
@@ -658,6 +700,7 @@ function renderEditForm(item,i){
   // Cancelling a row that was just dropped in removes it again.
   const close=()=>{if(isNew)discardPendingNew();editingItem=null;buildRoutine()};
   const save=()=>{
+    if(isVideo){saveVideo();return}
     const name=f('name').value.trim();
     if(!name){f('name').focus();return}
     item.name=name;
@@ -669,6 +712,24 @@ function renderEditForm(item,i){
     editingItem=null;buildRoutine();
     showToast(isNew?(isRest?'Rest added':'Movement added'):'Movement updated');
   };
+  const saveVideo=()=>{
+    const link=f('url').value.trim(),parsed=parseYouTube(link);
+    if(!parsed){f('urlError').hidden=false;f('url').classList.add('invalid');f('url').focus();return}
+    const changed=parsed.id!==item.videoId;
+    item.url=link;item.videoId=parsed.id;item.start=parsed.start;item.end=parsed.end;
+    if(changed){item.videoDuration=null;item.videoError=null}
+    const typed=f('name').value.trim();
+    item.autoName=!typed;
+    item.name=typed||(changed?'':item.name)||item.videoTitle||'YouTube video';
+    item.group='Video';
+    item.useVideoLength=f('global').checked;
+    if(!item.useVideoLength)item.duration=Math.max(5,secondsFromCreator(f('dur').value,f('unit').value));
+    if(isNew)pendingNew=null;
+    editingItem=null;buildRoutine();
+    showToast(isNew?'Video added':'Video updated');
+    if(changed||!item.videoDuration||(item.autoName&&!item.videoTitle))fetchVideoDetails(item);
+  };
+  if(isVideo)f('url').addEventListener('input',()=>{f('urlError').hidden=true;f('url').classList.remove('invalid')});
   row.querySelector('[data-a=cancel]').addEventListener('click',close);
   row.querySelector('[data-a=save]').addEventListener('click',save);
   row.addEventListener('keydown',e=>{
@@ -682,17 +743,20 @@ function renderList(arr,targetId){
  arr.forEach((item,i)=>{
    if(item===editingItem){target.appendChild(renderEditForm(item,i));return}
    const row=document.createElement('div');
-   row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'');
+   row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'')+(item.kind==='video'?' videoItem':'');
    row.dataset.index=i;
    row.dataset.id=item.id;
    const displayDuration=item.kind==='rest'
      ? (item.useGlobalTiming===true?'Global timing':formatDuration(item.duration))
      : (item.useGlobalTiming===false?formatDuration(item.duration):'Global timing');
-   const kindBadge=item.kind==='rest'?'<span class="moveKindBadge">Rest</span>':'';
+   const kindBadge=item.kind==='rest'?'<span class="moveKindBadge">Rest</span>':item.kind==='video'?'<span class="moveKindBadge">Video</span>':'';
+   const metaText=item.kind==='video'
+     ? (item.videoError?'YouTube · can’t play outside YouTube':'YouTube · '+(item.useVideoLength===false?'stops after '+formatDuration(item.duration):(Number(item.videoDuration)>0||Number(item.end)>0)?clock(videoStepSeconds(item)):'plays to the end'))
+     : item.group+' · '+displayDuration;
    row.innerHTML=
      '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder '+esc(item.name)+'. Drag, or use the up and down arrow keys">'+GRIP+'</button>'+
      '<div class="moveText"><div class="moveItemName">'+esc(item.name)+kindBadge+'</div>'+
-     '<div class="moveMeta">'+esc(item.group)+' · '+esc(displayDuration)+'</div></div>'+
+     '<div class="moveMeta">'+esc(metaText)+'</div></div>'+
      '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit '+esc(item.name)+'">Edit</button><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
      '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
    row.querySelector('.editBtn').addEventListener('click',()=>{discardPendingNew();editingItem=item;buildRoutine();focusEditForm()});
@@ -829,6 +893,7 @@ function listContext(list){
 }
 function newListItem(type,list){
   const ctx=listContext(list),stamp=Date.now().toString(36);
+  if(type==='video')return {id:'video-'+stamp,name:'',group:'Video',kind:'video',hidden:false,url:'',videoId:'',start:0,end:null,videoDuration:null,useVideoLength:true,autoName:true,duration:300};
   return type==='rest'
     ? {id:'rest-'+stamp,name:'Rest',group:'Rest',kind:'rest',hidden:false,useGlobalTiming:true,duration:Number(restInput.value)}
     : {id:'movement-'+stamp,name:'',group:ctx.group,kind:ctx.kind,hidden:false,useGlobalTiming:true,duration:Number(workInput.value)};
@@ -879,9 +944,10 @@ function startAddDrag(btn,type,sx,sy){
   const scroller=scrollParent(btn);
   const column=btn.closest('.exerciseScroller,.createFlow')||scroller;
   const ghost=document.createElement('div');
-  ghost.className='addGhost'+(type==='rest'?' rest':'');
+  ghost.className='addGhost'+(type==='movement'?'':' rest');
   ghost.setAttribute('aria-hidden','true');
-  ghost.innerHTML='<span class="addGhostGrip">'+GRIP+'</span><span class="addGhostText"><strong>'+(type==='rest'?'Rest':'New movement')+'</strong><small>'+(type==='rest'?'Rest · Global timing':'Drop to add, then name it')+'</small></span>';
+  const label={movement:['New movement','Drop to add, then name it'],rest:['Rest','Rest · Global timing'],video:['New video','Drop to add, then paste a YouTube link']}[type];
+  ghost.innerHTML='<span class="addGhostGrip">'+GRIP+'</span><span class="addGhostText"><strong>'+label[0]+'</strong><small>'+label[1]+'</small></span>';
   ghost.style.width=b.width+'px';ghost.style.height=b.height+'px';
   ghost.style.transform='translate('+b.left+'px,'+b.top+'px)';
   $('workoutModal').appendChild(ghost);
@@ -1057,6 +1123,7 @@ function updateMovementCreatorAvailability(){
  const addRest=$('addRestBtn');
  if(addMove)addMove.innerHTML=GRIP+'<span>Add movement</span>';
  if(addRest)addRest.innerHTML=GRIP+'<span>Add rest</span>';
+ const addVideo=$('addVideoBtn');if(addVideo)addVideo.innerHTML=GRIP+'<span>Add video</span>';
 }
 function updateGlobalTimingUI(){
  const useGlobal=$('useGlobalTiming').checked;
@@ -1666,6 +1733,7 @@ modal.addEventListener('click',e=>{
 });
 bindAddDrag($('addMovementBtn'),'movement');
 bindAddDrag($('addRestBtn'),'rest');
+bindAddDrag($('addVideoBtn'),'video');
 $('closeMovementCreator').addEventListener('click',()=>{
   $('movementCreator').hidden=true;
 });
@@ -1905,12 +1973,12 @@ function getNextPart(){
   if(isResting){
     const ni=nextVisibleRoutineIndex(index+1);
     const n=ni>=0?routine[ni]:null;
-    return n?{name:n.name,meta:n.group+' · '+n.duration+' sec',icon:n.kind==='cooldown'?'↘':n.kind==='warmup'?'↗':'●'}:{name:'Complete',meta:'Move finished',icon:'✓'};
+    return n?{name:n.name,meta:partMeta(n),icon:futureIcon(n)}:{name:'Complete',meta:'Move finished',icon:'✓'};
   }
   if(current.rest>0)return{name:'Rest',meta:current.rest+' sec · '+(current.roundBreakAfter?'round '+(current.round+1)+' next':'recovery'),icon:'Ⅱ'};
   const ni=nextVisibleRoutineIndex(index+1);
   const n=ni>=0?routine[ni]:null;
-  return n?{name:n.name,meta:n.group+' · '+n.duration+' sec',icon:n.kind==='cooldown'?'↘':n.kind==='warmup'?'↗':'●'}:{name:'Complete',meta:'Move finished',icon:'✓'};
+  return n?{name:n.name,meta:partMeta(n),icon:futureIcon(n)}:{name:'Complete',meta:'Move finished',icon:'✓'};
 }
 function getFutureExerciseStartIndex(){
   const current=routine[index];
@@ -1920,8 +1988,9 @@ function getFutureExerciseStartIndex(){
   return nextIndex+1;
 }
 function futureIcon(item){
-  return item.kind==='cooldown'?'↘':item.kind==='warmup'?'↗':'●';
+  return item.kind==='video'?'▶':item.kind==='cooldown'?'↘':item.kind==='warmup'?'↗':'●';
 }
+function partMeta(n){return n.kind==='video'?'YouTube · '+clock(n.duration):n.group+' · '+n.duration+' sec'}
 function totalRounds(){return routine.length?routine[routine.length-1].round||1:1}
 function stepText(i){
   const s=routine[i];
@@ -1970,7 +2039,7 @@ function renderUpcomingExercises(){
       '<div class="upcomingInfo">'+
         '<div class="upcomingIcon" aria-hidden="true">'+futureIcon(item)+'</div>'+
         '<div><div class="upcomingName">'+esc(item.name)+'</div>'+
-        '<div class="upcomingMeta">'+esc(item.group)+' · '+item.duration+' sec'+(totalRounds()>1?' · round '+item.round:'')+'</div></div>'+
+        '<div class="upcomingMeta">'+esc(partMeta(item))+(totalRounds()>1?' · round '+item.round:'')+'</div></div>'+
       '</div>'+
       '<button class="skipSessionBtn" type="button">'+(item.sessionHidden?'Include this session':'Skip this session')+'</button>';
     card.querySelector('.skipSessionBtn').addEventListener('click',()=>skipFutureExercise(item));
@@ -2037,8 +2106,12 @@ function finishSession(completed){
   renderInsights();
 }
 
-function showWorkout(){showView('workout');startCountdown()}
-function showHome(){finishSession(false);clearInterval(timer);clearInterval(countTimer);isResting=false;paused=false;pauseBtn.textContent='Pause';$('app').classList.remove('resting','paused');countdown.classList.remove('active');showView('home')}
+function showWorkout(){
+ showView('workout');startCountdown();
+ const first=nextVisibleRoutineIndex(0);
+ if(first>=0&&routine[first].kind==='video')prepareVideo(routine[first]);
+}
+function showHome(){stopVideo();finishSession(false);clearInterval(timer);clearInterval(countTimer);isResting=false;paused=false;pauseBtn.textContent='Pause';$('app').classList.remove('resting','paused');countdown.classList.remove('active');showView('home')}
 function startCountdown(){
  countdown.classList.add('active');
  let n=5;
@@ -2099,10 +2172,166 @@ function startRoutine(){
  beginSession();
  loadStep();clearInterval(timer);timer=setInterval(tick,1000)
 }
+/* ---- YouTube video steps ----
+   A video step plays in the right-hand third of the workout screen. During the step before it
+   the video is loaded muted and held at its start, so it plays the moment its step begins. */
+const videoStage=$('videoStage'),videoSound=$('videoSound');
+const YT_ENDED=0,YT_PLAYING=1;
+let ytApi=null,ytReady=null,yt=null,ytCued=null,ytCuedStart=0,ytPrimed=false,ytActive=null,ytSoundCheck=null;
+function loadYouTubeApi(){
+  if(window.YT?.Player)return Promise.resolve(window.YT);
+  if(ytApi)return ytApi;
+  ytApi=new Promise((resolve,reject)=>{
+    const prev=window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady=()=>{try{prev?.()}catch(_){}};
+    const poll=setInterval(()=>{if(window.YT?.Player){clearInterval(poll);clearTimeout(give);resolve(window.YT)}},100);
+    const give=setTimeout(()=>{clearInterval(poll);ytApi=null;reject(new Error('YouTube did not load'))},15000);
+    if(!document.querySelector('script[src*="youtube.com/iframe_api"]')){
+      const tag=document.createElement('script');
+      tag.src='https://www.youtube.com/iframe_api';tag.async=true;
+      tag.onerror=()=>{clearInterval(poll);clearTimeout(give);ytApi=null;reject(new Error('YouTube did not load'))};
+      document.head.appendChild(tag);
+    }
+  });
+  return ytApi;
+}
+function ytPlayer(){
+  if(ytReady)return ytReady;
+  ytReady=loadYouTubeApi().then(YT=>new Promise(resolve=>{
+    const host=document.createElement('div');
+    $('videoFrame').appendChild(host);
+    yt=new YT.Player(host,{width:'100%',height:'100%',
+      playerVars:{playsinline:1,rel:0,iv_load_policy:3,modestbranding:1},
+      events:{onReady:()=>resolve(yt),onStateChange:e=>onVideoState(e.data),onError:e=>onVideoError(e.data)}});
+  }));
+  ytReady.catch(()=>{ytReady=null});
+  return ytReady;
+}
+// Load the next video quietly so there's no wait when its step starts.
+function prepareVideo(item){
+  if(!item?.videoId||item.videoError)return;
+  ytPlayer().then(p=>{
+    if(ytActive||ytCued===item.videoId)return;
+    ytCued=item.videoId;ytCuedStart=Number(item.start)||0;ytPrimed=false;
+    p.mute();
+    p.loadVideoById({videoId:item.videoId,startSeconds:ytCuedStart});
+  }).catch(()=>{});
+}
+function prepareUpcomingVideo(){
+  const ni=nextVisibleRoutineIndex(index+1);
+  if(ni>=0&&routine[ni].kind==='video')prepareVideo(routine[ni]);
+}
+function onVideoState(state){
+  if(!ytActive){
+    // buffered while preparing: hold it at the start, ready to go
+    if(state===YT_PLAYING&&!ytPrimed){ytPrimed=true;yt.pauseVideo();yt.seekTo(ytCuedStart,true)}
+    return;
+  }
+  videoStage.classList.toggle('playing',state===YT_PLAYING);
+  if(state===YT_PLAYING&&rememberVideoLength(ytActive.videoId,yt.getDuration()))persist();
+  if(state===YT_ENDED)videoFinished();
+}
+function onVideoError(code){
+  const item=ytActive;
+  if(!item){ytCued=null;return}
+  if(code===101||code===150){markVideoError(item.videoId);showToast('That video can’t play outside YouTube, so it was skipped')}
+  else showToast('The video couldn’t play, so it was skipped');
+  videoFinished();
+}
+function playVideoStep(item){
+  $('app').classList.add('videoStep');
+  videoSound.hidden=true;
+  ytActive=item;
+  clearTimeout(ytSoundCheck);
+  if(!item.videoId){showToast('This video step has no link yet, so it was skipped');setTimeout(()=>videoFinished(),0);return}
+  ytPlayer().then(p=>{
+    if(ytActive!==item)return;
+    const start=Number(item.start)||0;
+    if(ytCued!==item.videoId){ytCued=item.videoId;ytCuedStart=start;p.loadVideoById({videoId:item.videoId,startSeconds:start})}
+    else{p.seekTo(start,true);p.playVideo()}
+    p.unMute();
+    if(paused)p.pauseVideo();
+    // Some browsers only allow sound after a tap: play muted instead and offer a button.
+    ytSoundCheck=setTimeout(()=>{
+      if(ytActive!==item||paused)return;
+      if(p.getPlayerState()!==YT_PLAYING){p.mute();p.playVideo();videoSound.hidden=false}
+      else if(p.isMuted())videoSound.hidden=false;
+    },1600);
+  }).catch(()=>{if(ytActive!==item)return;showToast('YouTube didn’t load, so the video was skipped');videoFinished()});
+}
+function stopVideo(){
+  clearTimeout(ytSoundCheck);
+  const was=ytActive;ytActive=null;
+  $('app').classList.remove('videoStep');videoStage.classList.remove('playing');videoSound.hidden=true;
+  if(was&&yt){try{yt.pauseVideo()}catch(_){}ytCued=null}
+}
+function videoFinished(){
+  const item=ytActive;
+  if(!item||routine[index]!==item)return;
+  stopVideo();
+  clearInterval(timer);advance();timer=setInterval(tick,1000);
+}
+videoSound.addEventListener('click',()=>{if(yt){yt.unMute();yt.playVideo()}videoSound.hidden=true});
+// When the video step ends: the link's end time, your own length, or the end of the video.
+function videoEndAt(s){
+  const start=Number(s.start)||0;
+  if(s.useVideoLength===false)return start+(Number(s.duration)||300);
+  const live=yt&&ytActive===s?Number(yt.getDuration?.())||0:0;
+  return Number(s.end)||live||Number(s.videoDuration)||start+(Number(s.duration)||300);
+}
+function eachVideoItem(videoId,fn){
+  const profile=workoutProfiles[selectedWorkoutKey];
+  [warmup,strengthPool,cooldown,profile?.warmup,profile?.strength,profile?.cooldown,profile?.sequence]
+    .forEach(list=>(Array.isArray(list)?list:[]).forEach(x=>{if(x&&x.kind==='video'&&x.videoId===videoId)fn(x)}));
+}
+function rememberVideoLength(videoId,sec){
+  sec=Math.round(Number(sec)||0);let changed=false;
+  if(videoId&&sec>0)eachVideoItem(videoId,x=>{if(x.videoDuration!==sec){x.videoDuration=sec;changed=true}});
+  return changed;
+}
+function markVideoError(videoId){eachVideoItem(videoId,x=>{x.videoError='embed'});persist()}
+// Title (for the name) and length, fetched once when a link is saved.
+function fetchVideoDetails(item){
+  const id=item.videoId;if(!id)return;
+  const refresh=()=>{
+    if(!modal.classList.contains('open')){buildRoutine();persist()}
+    else if(!editingItem)buildRoutine();
+  };
+  fetch('https://www.youtube.com/oembed?format=json&url='+encodeURIComponent('https://www.youtube.com/watch?v='+id))
+    .then(r=>r.ok?r.json():Promise.reject(r.status))
+    .then(d=>{if(item.videoId!==id)return;item.videoTitle=d.title||'';if(item.autoName&&d.title)item.name=d.title;refresh()})
+    .catch(status=>{if(item.videoId===id&&status===401){item.videoError='embed';refresh()}});
+  probeVideoLength(id)
+    .then(sec=>{if(rememberVideoLength(id,sec))refresh()})
+    .catch(err=>{if(err==='embed'&&item.videoId===id){item.videoError='embed';refresh()}});
+}
+// A throwaway player off-screen, just to read the video's length.
+function probeVideoLength(id){
+  return loadYouTubeApi().then(YT=>new Promise((resolve,reject)=>{
+    const box=document.createElement('div');box.className='videoProbe';box.setAttribute('aria-hidden','true');
+    const host=document.createElement('div');box.appendChild(host);$('app').appendChild(box);
+    let p=null,settled=false;
+    const finish=(sec,err)=>{
+      if(settled)return;settled=true;clearTimeout(timeout);
+      setTimeout(()=>{try{p?.destroy()}catch(_){}box.remove()},0);
+      err?reject(err):resolve(sec);
+    };
+    const timeout=setTimeout(()=>finish(0),20000);
+    const read=()=>{const d=Number(p?.getDuration?.())||0;if(d>0)finish(d);return d>0};
+    p=new YT.Player(host,{width:320,height:180,videoId:id,playerVars:{playsinline:1,mute:1,controls:0},
+      events:{
+        onReady:()=>{if(!read()){p.mute();p.playVideo()}},
+        onStateChange:()=>read(),
+        onError:e=>finish(0,(e.data===101||e.data===150)?'embed':'error')
+      }});
+  }));
+}
+
 function loadStep(){
  isResting=false;
  const s=routine[index];
  $('app').classList.toggle('resting',s.kind==='rest');
+ if(s.kind==='video')playVideoStep(s);else stopVideo();
  seconds=s.duration;
  totalPhase=s.duration;
  title.textContent=s.name;
@@ -2112,9 +2341,12 @@ function loadStep(){
  if(session)moveEvent('step',{name:s.name,group:s.group,kind:s.kind,step:index+1,of:routine.length,round:s.round||1,rounds:totalRounds(),duration:s.duration});
  updateNextCard();
  refreshProgressState();
+ prepareUpcomingVideo();
 }
 function updateTimer(){
- digits.textContent=seconds;
+ const asClock=routine[index]?.kind==='video'&&!isResting&&seconds>=60;
+ digits.textContent=asClock?clock(seconds):seconds;
+ digits.classList.toggle('long',asClock);
  const remainingPct=(seconds/totalPhase)*100;
  fill.style.width=remainingPct+'%';
  const activeSeg=activeSegment();
@@ -2123,7 +2355,20 @@ function updateTimer(){
    activeSeg.style.setProperty('--segment-progress',completedPct+'%');
  }
 }
-function tick(){if(paused)return;seconds--;updateTimer();if(seconds<=0){const s=routine[index];if(s.rest>0)startRest(s.rest);else advance()}}
+function tick(){
+ if(paused)return;
+ const s=routine[index];
+ // a video step follows the video itself
+ if(s?.kind==='video'&&!isResting&&ytActive===s){
+   const t=Number(yt?.getCurrentTime?.())||0,start=Number(s.start)||0,end=videoEndAt(s);
+   totalPhase=Math.max(1,end-start);
+   if(t>start||yt?.getPlayerState?.()===YT_PLAYING)seconds=Math.max(0,Math.ceil(end-t));
+   updateTimer();
+   if(t>start&&t>=end-.25)videoFinished();
+   return;
+ }
+ seconds--;updateTimer();if(seconds<=0){if(s.rest>0)startRest(s.rest);else advance()}
+}
 function startRest(restSec){
  isResting=true;$('app').classList.add('resting');
  const activeSeg=activeSegment();if(activeSeg)activeSeg.style.setProperty('--segment-progress','100%');
@@ -2140,6 +2385,7 @@ function advance(){
    paused=false;pauseBtn.textContent='Pause';
    $('app').classList.remove('resting','paused');
    clearInterval(timer);
+   stopVideo();
    title.textContent='Complete';meta.textContent='Move finished';meta.hidden=false;digits.textContent='✓';
    {const rounds=totalRounds();stepLabel.textContent=rounds>1?rounds+' rounds done':routine.filter(x=>!x.roundBreak).length+' steps done';}
    finishSession(true);
@@ -2607,6 +2853,7 @@ pauseBtn.addEventListener('click',()=>{
  if(session)moveEvent(paused?'paused':'resumed');
  pauseBtn.textContent=paused?'Resume':'Pause';
  $('app').classList.toggle('paused',paused);
+ if(ytActive&&yt){try{paused?yt.pauseVideo():yt.playVideo()}catch(_){}}
 });
 
 // Load the selected move's saved timing into the editor before building, so the
