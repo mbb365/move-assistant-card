@@ -1086,7 +1086,7 @@ function Qo(x, y) {
       }
       const r = document.createElement("div");
       r.className = "moveRow" + (i.hidden ? " hidden" : "") + (i.kind === "rest" ? " restItem" : "") + (i.kind === "video" ? " videoItem" : ""), r.dataset.index = o, r.dataset.id = i.id;
-      const s = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : $(i.duration) : i.useGlobalTiming === !1 ? $(i.duration) : "Global timing", l = i.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", g = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + $(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? Lt(Et(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + s;
+      const s = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : $(i.duration) : i.useGlobalTiming === !1 ? $(i.duration) : "Global timing", l = i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", g = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + $(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? Lt(Et(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + s;
       r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + P(i.name) + '. Drag, or use the up and down arrow keys">' + Mt + '</button><div class="moveText"><div class="moveItemName">' + P(i.name) + l + '</div><div class="moveMeta">' + P(g) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + P(i.name) + '">Edit</button><button class="hideBtn" type="button">' + (i.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + P(i.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
         $t(), ie = i, q(), ki();
       }), r.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
@@ -2567,7 +2567,7 @@ function Qo(x, y) {
     }
   };
 }
-const Xo = "0.20.0", di = "move_assistant", er = "move_assistant", fa = "move_assistant_checkin_reminder";
+const Xo = "0.20.1", di = "move_assistant", er = "move_assistant", fa = "move_assistant_checkin_reminder";
 function tr() {
   if (document.getElementById("move-assistant-inter")) return;
   const x = document.createElement("link");

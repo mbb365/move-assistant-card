@@ -774,7 +774,8 @@ function renderList(arr,targetId){
    const displayDuration=item.kind==='rest'
      ? (item.useGlobalTiming===true?'Global timing':formatDuration(item.duration))
      : (item.useGlobalTiming===false?formatDuration(item.duration):'Global timing');
-   const kindBadge=item.kind==='rest'?'<span class="moveKindBadge">Rest</span>':item.kind==='video'?'<span class="moveKindBadge">Video</span>':'';
+   // only other kinds of media get a chip; a rest row speaks for itself
+   const kindBadge=item.kind==='video'?'<span class="moveKindBadge">Video</span>':'';
    const metaText=item.kind==='video'
      ? (item.videoError?'YouTube · can’t play outside YouTube':'YouTube · '+(item.useVideoLength===false?'stops after '+formatDuration(item.duration):(Number(item.videoDuration)>0||Number(item.end)>0)?clock(videoStepSeconds(item)):'plays to the end')
         +(item.videoRounds==='first'?' · first round only':item.videoRounds==='last'?' · last round only':''))
