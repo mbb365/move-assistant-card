@@ -657,6 +657,7 @@ function buildRoutine(){
  const activeSummary=root.querySelector('.workoutPanel.active .sub');
  if(activeSummary)activeSummary.textContent=text;
  routineSummaryModal.textContent=text;
+ updateSetupSummary();
  root.querySelectorAll('.workoutPanel.active .activityCount').forEach(el=>el.textContent=countText);
  updateRangeFills();
  renderLists();
@@ -681,7 +682,9 @@ function splitDuration(sec){
   return {value:sec,unit:'sec'};
 }
 function focusEditForm(select=false){const f=root.querySelector('.moveEditForm input[data-f=url],.moveEditForm input[data-f=name]');if(!f)return;f.focus({preventScroll:true});if(select)f.select()}
-function renderEditForm(item,i){
+// opts.sheet: the form sits in the phone bottom sheet (with Hide / Remove, and callbacks
+// instead of the inline list behaviour). opts.isNew: a step that isn't in the list yet.
+function renderEditForm(item,i,opts={}){
   const isRest=item.kind==='rest',isVideo=item.kind==='video';
   const global=isVideo?item.useVideoLength!==false:isRest?item.useGlobalTiming===true:item.useGlobalTiming!==false;
   const globalSec=Number(isRest?restInput.value:workInput.value);
@@ -700,10 +703,17 @@ function renderEditForm(item,i){
     ? 'Play the whole '+(Number(item.start)>0||Number(item.end)>0?'clip':'video')+(known?' · '+clock(videoStepSeconds({...item,useVideoLength:true})):'')
     : 'Use global timing · '+formatDuration(globalSec);
   const row=document.createElement('div');
-  row.className='moveRow editing';
+  row.className='moveRow editing'+(opts.sheet?' inSheet':'');
   row.dataset.index=i;
   row.dataset.id=item.id;
-  const isNew=pendingNew?.item===item;
+  const isNew=opts.isNew??(pendingNew?.item===item);
+  const actions=opts.sheet
+    ? '<div class="moveEditActions sheetActions">'+
+        (isNew?'':'<div class="sheetSecondary"><button class="hideBtn" type="button" data-a="hide">'+(item.hidden?'Show':'Hide')+'</button>'+
+          '<button class="removeBtn" type="button" data-a="remove" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>')+
+        '<div class="sheetPrimary"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">'+(isNew?'Add':'Save')+'</button></div>'+
+      '</div>'
+    : '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>';
   row.innerHTML=
     '<div class="moveEditForm">'+
       '<div class="moveEditFields'+(isVideo?' videoFields':'')+'">'+fields+'</div>'+
@@ -718,13 +728,13 @@ function renderEditForm(item,i){
           '</select>'+
         '</div>'+
       '</div>'+
-      '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>'+
+      actions+
     '</div>';
   const f=k=>row.querySelector('[data-f='+k+']');
   const syncGlobal=()=>{const on=f('global').checked;f('dur').disabled=on;f('unit').disabled=on;row.querySelector('.creatorDurationRow').classList.toggle('isDisabled',on)};
   f('global').addEventListener('change',syncGlobal);syncGlobal();
   // Cancelling a row that was just dropped in removes it again.
-  const close=()=>{if(isNew)discardPendingNew();editingItem=null;buildRoutine()};
+  const close=()=>{if(opts.sheet){opts.onCancel?.();return}if(isNew)discardPendingNew();editingItem=null;buildRoutine()};
   const save=()=>{
     if(isVideo){saveVideo();return}
     const name=f('name').value.trim();
@@ -734,6 +744,7 @@ function renderEditForm(item,i){
     const on=f('global').checked;
     item.useGlobalTiming=on;
     if(!on)item.duration=Math.max(isRest?5:1,secondsFromCreator(f('dur').value,f('unit').value));
+    if(opts.sheet){opts.onSaved?.();return}
     if(isNew)pendingNew=null;
     editingItem=null;buildRoutine();
     showToast(isNew?(isRest?'Rest added':'Movement added'):'Movement updated');
@@ -751,14 +762,22 @@ function renderEditForm(item,i){
     item.videoRounds=f('rounds').value;
     item.useVideoLength=f('global').checked;
     if(!item.useVideoLength)item.duration=Math.max(5,secondsFromCreator(f('dur').value,f('unit').value));
-    if(isNew)pendingNew=null;
-    editingItem=null;buildRoutine();
-    showToast(isNew?'Video added':'Video updated');
+    if(opts.sheet)opts.onSaved?.();
+    else{
+      if(isNew)pendingNew=null;
+      editingItem=null;buildRoutine();
+      showToast(isNew?'Video added':'Video updated');
+    }
     if(changed||!item.videoDuration||(item.autoName&&!item.videoTitle))fetchVideoDetails(item);
   };
   if(isVideo)f('url').addEventListener('input',()=>{f('urlError').hidden=true;f('url').classList.remove('invalid')});
   row.querySelector('[data-a=cancel]').addEventListener('click',close);
   row.querySelector('[data-a=save]').addEventListener('click',save);
+  if(opts.sheet&&!isNew){
+    row.querySelector('[data-a=hide]').addEventListener('click',()=>opts.onHide?.());
+    const rm=row.querySelector('[data-a=remove]');
+    bindFuseHold(rm,rm.querySelector('.removeFill'),1200,()=>opts.onRemove?.());
+  }
   row.addEventListener('keydown',e=>{
     if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close()}
     if(e.key==='Enter'&&e.target.matches('input')){e.preventDefault();save()}
@@ -768,7 +787,7 @@ function renderEditForm(item,i){
 function renderList(arr,targetId){
  const target=$(targetId);target.innerHTML='';
  arr.forEach((item,i)=>{
-   if(item===editingItem){target.appendChild(renderEditForm(item,i));return}
+   if(item===editingItem&&!phoneLayout()){target.appendChild(renderEditForm(item,i));return}
    const row=document.createElement('div');
    row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'')+(item.kind==='video'?' videoItem':'')+(metaHidden(item)?' noMeta':'');
    row.dataset.index=i;
@@ -782,10 +801,31 @@ function renderList(arr,targetId){
      ? (item.videoError?'YouTube · can’t play outside YouTube':'YouTube · '+(item.useVideoLength===false?'stops after '+formatDuration(item.duration):(Number(item.videoDuration)>0||Number(item.end)>0)?clock(videoStepSeconds(item)):'plays to the end')
         +(item.videoRounds==='first'?' · first round only':item.videoRounds==='last'?' · last round only':''))
      : item.group+' · '+displayDuration;
-   row.innerHTML=
-     '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder '+esc(item.name)+'. Drag, or use the up and down arrow keys">'+GRIP+'</button>'+
-     '<div class="moveText"><div class="moveItemName">'+esc(item.name)+kindBadge+'</div>'+
-     '<div class="moveMeta">'+esc(metaText)+'</div></div>'+
+   const handleHtml='<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder '+esc(item.name)+'. Drag, or use the up and down arrow keys">'+GRIP+'</button>';
+   const textHtml='<div class="moveText"><div class="moveItemName">'+esc(item.name)+kindBadge+'</div><div class="moveMeta">'+esc(metaText)+'</div></div>';
+   const handleKeys=handle=>handle.addEventListener('keydown',e=>{
+     if(e.key!=='ArrowUp'&&e.key!=='ArrowDown')return;
+     e.preventDefault();
+     const from=arr.indexOf(item),to=from+(e.key==='ArrowUp'?-1:1);
+     if(to<0||to>=arr.length)return;
+     arr.splice(from,1);arr.splice(to,0,item);
+     buildRoutine();
+     $(targetId).children[to]?.querySelector('.dragHandle')?.focus();
+   });
+   // Phones: a clean row; tapping it opens the step in the bottom sheet.
+   if(phoneLayout()){
+     row.classList.add('phoneRow');
+     row.tabIndex=0;row.setAttribute('role','button');row.setAttribute('aria-label','Edit '+(item.name||'step'));
+     row.innerHTML=handleHtml+textHtml+'<span class="rowChevron" aria-hidden="true">›</span>';
+     const handle=row.querySelector('.dragHandle');
+     handle.addEventListener('pointerdown',e=>startRowDrag(e,row,target,arr));
+     handleKeys(handle);
+     row.addEventListener('click',e=>{if(!e.target.closest('.dragHandle'))openItemSheet(item,arr)});
+     row.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target===row){e.preventDefault();openItemSheet(item,arr)}});
+     target.appendChild(row);
+     return;
+   }
+   row.innerHTML=handleHtml+textHtml+
      '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit '+esc(item.name)+'">Edit</button><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
      '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
    row.querySelector('.editBtn').addEventListener('click',()=>{discardPendingNew();editingItem=item;buildRoutine();focusEditForm()});
@@ -800,15 +840,7 @@ function renderList(arr,targetId){
    });
    const handle=row.querySelector('.dragHandle');
    handle.addEventListener('pointerdown',e=>startRowDrag(e,row,target,arr));
-   handle.addEventListener('keydown',e=>{
-     if(e.key!=='ArrowUp'&&e.key!=='ArrowDown')return;
-     e.preventDefault();
-     const from=arr.indexOf(item),to=from+(e.key==='ArrowUp'?-1:1);
-     if(to<0||to>=arr.length)return;
-     arr.splice(from,1);arr.splice(to,0,item);
-     buildRoutine();
-     $(targetId).children[to]?.querySelector('.dragHandle')?.focus();
-   });
+   handleKeys(handle);
    target.appendChild(row);
  });
 }
@@ -965,29 +997,42 @@ function scrollParent(el){
   }
   return null;
 }
-function startAddDrag(btn,type,sx,sy){
-  if(editingItem||pendingNew){discardPendingNew();editingItem=null;buildRoutine()}
-  const motion=!reduceMotion();
-  const b=btn.getBoundingClientRect();
-  const rowH=root.querySelector('.moveList .moveRow:not(.editing)')?.offsetHeight||80;
-  const scroller=scrollParent(btn);
-  const column=btn.closest('.exerciseScroller,.createFlow')||scroller;
+const ADD_LABELS={movement:['New movement','Drop to add, then name it'],rest:['Rest','Rest · Global timing'],video:['New video','Drop to add, then paste a YouTube link']};
+function makeGhost(type,label){
   const ghost=document.createElement('div');
   ghost.className='addGhost'+(type==='movement'?'':' rest');
+  ghost.innerHTML='<span class="addGhostGrip">'+GRIP+'</span><span class="addGhostText"><strong>'+esc(label[0])+'</strong><small>'+esc(label[1])+'</small></span>';
+  $('workoutModal').appendChild(ghost);
+  return ghost;
+}
+function removeGhost(ghost){ghost.classList.add('leaving');setTimeout(()=>ghost.remove(),180)}
+// Desktop: pull a new step off the Add button.
+function startAddDrag(btn,type,sx,sy){
+  if(editingItem||pendingNew){discardPendingNew();editingItem=null;buildRoutine()}
+  const b=btn.getBoundingClientRect();
+  const ghost=makeGhost(type,ADD_LABELS[type]);
   ghost.setAttribute('aria-hidden','true');
-  const label={movement:['New movement','Drop to add, then name it'],rest:['Rest','Rest · Global timing'],video:['New video','Drop to add, then paste a YouTube link']}[type];
-  ghost.innerHTML='<span class="addGhostGrip">'+GRIP+'</span><span class="addGhostText"><strong>'+label[0]+'</strong><small>'+label[1]+'</small></span>';
   ghost.style.width=b.width+'px';ghost.style.height=b.height+'px';
   ghost.style.transform='translate('+b.left+'px,'+b.top+'px)';
-  $('workoutModal').appendChild(ghost);
   btn.classList.add('lifting');
+  const scroller=scrollParent(btn);
+  return startGhostDrag({ghost,origin:b,sx,sy,scroller,column:btn.closest('.exerciseScroller,.createFlow')||scroller,
+    home:()=>btn.getBoundingClientRect(),
+    onDrop:(list,index,fromH)=>{removeGhost(ghost);btn.classList.remove('lifting');addNewAt(type,list,index,fromH)},
+    onReturn:()=>{removeGhost(ghost);btn.classList.remove('lifting')}});
+}
+// The drag itself: sticky at first, then a springy follow; over a list it snaps into line and a
+// gap opens; on drop it settles into the gap, otherwise it springs back home.
+function startGhostDrag({ghost,origin:b,sx,sy,scroller,column,home,onDrop,onReturn,rowLook=false}){
+  const motion=!reduceMotion();
+  const rowH=root.querySelector('.moveList .moveRow:not(.editing)')?.offsetHeight||80;
   const grabX=sx-b.left,grabY=sy-b.top,STICK=44;
   let px=sx,py=sy,x=b.left,y=b.top,vx=0,vy=0;
   let free=!motion,over=null,slot=null,slotIndex=-1,raf=0,settle=null;
   const lists=()=>['warmupList','strengthList','cooldownList'].map(id=>$(id)).filter(l=>l&&l.getClientRects().length&&!l.closest('[hidden]'));
   const setOver=l=>{
     if(l===over)return;over=l;
-    ghost.classList.toggle('overList',Boolean(l));
+    ghost.classList.toggle('overList',Boolean(l)||rowLook);
     const w=l?l.getBoundingClientRect().width:b.width;
     ghost.style.width=w+'px';ghost.style.height=(l?rowH:b.height)+'px';
   };
@@ -1069,9 +1114,7 @@ function startAddDrag(btn,type,sx,sy){
     // the gap stays until the list re-renders, so nothing jumps
     const fromH=slot?slot.offsetHeight:rowH;
     if(!list&&slot){slot.remove();slot=null}
-    ghost.classList.add('leaving');setTimeout(()=>ghost.remove(),180);
-    btn.classList.remove('lifting');
-    if(list)addNewAt(type,list,index,fromH);
+    if(list)onDrop(list,index,fromH);else onReturn();
   };
   return {
     move(cx,cy){
@@ -1089,9 +1132,9 @@ function startAddDrag(btn,type,sx,sy){
         if(!motion){cancelAnimationFrame(raf);finish(list,index)}
         return;
       }
-      // not over the list: spring back to the button
+      // not over the list: spring back home
       placeSlot(null);setOver(null);
-      settle={k:.2,d:.66,aim:()=>{const r=btn.getBoundingClientRect();return {x:r.left,y:r.top}},done:()=>finish(null)};
+      settle={k:.2,d:.66,aim:()=>{const r=home();return {x:r.left,y:r.top}},done:()=>finish(null)};
       setTimeout(()=>finish(null),650);
       if(!motion){cancelAnimationFrame(raf);finish(null)}
     }
@@ -1101,6 +1144,7 @@ function bindAddDrag(btn,type){
   let dragged=false;
   btn.addEventListener('click',e=>{
     if(dragged){dragged=false;e.preventDefault();return}
+    if(phoneLayout()){openNewSheet(type);return}
     // a plain tap (or Enter on a remote) adds it to the end of the main list
     const list=$('strengthList');
     const row=addNewAt(type,list,listContext(list).arr.length,0);
@@ -1145,6 +1189,158 @@ function bindAddDrag(btn,type){
     btn.addEventListener('lostpointercapture',lost);
   });
 }
+
+/* ---- phones: rows open a bottom sheet; + adds a step that floats until you drag it into place ---- */
+const phoneQuery=window.matchMedia?.('(max-width: 620px)');
+function phoneLayout(){return Boolean(window.matchMedia?.('(max-width: 620px)').matches)}
+const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
+const kindWord=x=>x.kind==='rest'?'rest':x.kind==='video'?'video':'movement';
+let sheetOnClose=null,hovering=null;
+function openSheet(title,content,onClose,focus){
+  closeSheet();
+  $('sheetTitle').textContent=title;
+  const body=$('sheetBody');body.innerHTML='';body.appendChild(content);
+  sheetOnClose=onClose||null;
+  $('sheet').setAttribute('aria-hidden','false');
+  $('sheetScrim').classList.add('open');$('sheet').classList.add('open');
+  setTimeout(()=>{
+    const el=focus?body.querySelector('input[data-f=url],input[data-f=name]'):body.querySelector('button,input,select');
+    el?.focus({preventScroll:true});
+  },reduceMotion()?0:360);
+}
+function closeSheet(){
+  const sheet=$('sheet');
+  if(!sheet.classList.contains('open'))return;
+  sheet.classList.remove('open');$('sheetScrim').classList.remove('open');sheet.setAttribute('aria-hidden','true');
+  const done=sheetOnClose;sheetOnClose=null;done?.();
+}
+$('sheetScrim').addEventListener('click',closeSheet);
+$('sheet').addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeSheet()}});
+function openItemSheet(item,arr){
+  const form=renderEditForm(item,arr.indexOf(item),{sheet:true,isNew:false,
+    onSaved(){closeSheet();buildRoutine();showToast(cap(kindWord(item))+' updated')},
+    onCancel:closeSheet,
+    onHide(){item.hidden=!item.hidden;closeSheet();buildRoutine();showToast((item.hidden?'Hidden: ':'Showing: ')+item.name)},
+    onRemove(){
+      closeSheet();
+      const idx=arr.indexOf(item);if(idx<0)return;
+      arr.splice(idx,1);buildRoutine();
+      showToast('Removed '+item.name,{label:'Undo',run:()=>{arr.splice(Math.min(idx,arr.length),0,item);buildRoutine()}});
+    }});
+  openSheet('Edit '+kindWord(item),form,null,false);
+}
+function openAddChooser(){
+  const box=document.createElement('div');box.className='sheetChoices';
+  [['movement','●','Movement','Name it, then drag it into place'],['rest','Ⅱ','Rest','A pause between movements'],['video','▶','Video','Paste a YouTube link']].forEach(([type,icon,label,sub])=>{
+    const b=document.createElement('button');b.type='button';b.className='sheetChoice';
+    b.innerHTML='<span class="timeIcon" aria-hidden="true">'+icon+'</span><span><strong>'+label+'</strong><small>'+sub+'</small></span>';
+    b.addEventListener('click',()=>openNewSheet(type));
+    box.appendChild(b);
+  });
+  openSheet('Add to the move',box,null,false);
+}
+function openNewSheet(type){
+  if(hovering)placeHoverAtEnd(); // one floating step at a time
+  const item=newListItem(type,$('strengthList'));
+  const form=renderEditForm(item,-1,{sheet:true,isNew:true,
+    onSaved(){closeSheet();startHover(item,type)},
+    onCancel:closeSheet});
+  openSheet('New '+kindWord(item),form,null,true);
+}
+// Setup (name, warm-up, timing, rounds) folds into one line on phones and opens in the sheet.
+const setupPanel=$('workoutModal').querySelector('.modalStatic'),setupHome={parent:setupPanel.parentNode,next:setupPanel.nextSibling};
+function openSetupSheet(){
+  const holder=document.createElement('div');holder.className='sheetSetup';
+  holder.appendChild(setupPanel);
+  const done=document.createElement('button');done.type='button';done.className='primary sheetDone';done.textContent='Done';
+  done.addEventListener('click',closeSheet);holder.appendChild(done);
+  openSheet('Setup',holder,()=>{setupHome.parent.insertBefore(setupPanel,setupHome.next);updateSetupSummary()},false);
+}
+function updateSetupSummary(){
+  const name=$('setupSummaryName');if(!name)return;
+  name.textContent=($('workoutNameInput')?.value||'').trim()||workoutProfiles[selectedWorkoutKey]?.name||'Move';
+  $('setupSummaryMeta').textContent=routineSummaryModal.textContent;
+}
+$('setupSummary').addEventListener('click',openSetupSheet);
+$('addFab').addEventListener('click',openAddChooser);
+// The new step waits above the list, gently glowing, until it's dragged into place.
+function hoverScroller(){const list=$('strengthList');return scrollParent(list)||list.closest('.exerciseScroller')}
+function hoverHome(){
+  const lb=$('strengthList').getBoundingClientRect(),sc=(hoverScroller()||$('strengthList')).getBoundingClientRect();
+  const h=hovering?.ghost.offsetHeight||64;
+  return {left:lb.left,top:Math.max(sc.top+12,Math.min(sc.bottom-h-96,sc.top+sc.height*.55-h/2)),width:lb.width,height:h};
+}
+function startHover(item,type){
+  const ghost=makeGhost(type,[item.name||ADD_LABELS[type][0],'Drag into place']);
+  ghost.classList.add('overList','hovering');
+  ghost.setAttribute('aria-label',(item.name||'New step')+'. Drag it into place in the list, or add it at the end.');
+  const actions=document.createElement('span');actions.className='addGhostActions';
+  actions.innerHTML='<button class="hideBtn" type="button" data-a="end">Add at end</button><button class="hideBtn ghostDiscard" type="button" data-a="discard" aria-label="Discard '+esc(item.name)+'">✕</button>';
+  ghost.appendChild(actions);
+  hovering={item,type,ghost};
+  const rowH=root.querySelector('.moveList .moveRow:not(.editing)')?.offsetHeight||64;
+  ghost.style.width=$('strengthList').getBoundingClientRect().width+'px';ghost.style.height=rowH+'px';
+  const spot=hoverHome();
+  // it rises out of the closing sheet, then waits
+  const from=modal.querySelector('.modal').getBoundingClientRect().bottom;
+  ghost.style.transform='translate('+spot.left+'px,'+from+'px)';
+  ghost.getBoundingClientRect();
+  if(!reduceMotion()){ghost.classList.add('rising');setTimeout(()=>ghost.classList.remove('rising'),650)}
+  ghost.style.transform='translate('+spot.left+'px,'+spot.top+'px)';
+  actions.querySelector('[data-a=end]').addEventListener('click',placeHoverAtEnd);
+  actions.querySelector('[data-a=discard]').addEventListener('click',discardHover);
+  ghost.addEventListener('pointerdown',beginHoverDrag);
+}
+function beginHoverDrag(e){
+  if(!hovering||e.target.closest('button'))return;
+  if(e.button!==undefined&&e.button!==0)return;
+  e.preventDefault();
+  const {item,ghost}=hovering,id=e.pointerId;
+  try{ghost.setPointerCapture(id)}catch(_){}
+  ghost.classList.remove('hovering','rising');ghost.classList.add('held');
+  const r=ghost.getBoundingClientRect(),scroller=hoverScroller();
+  const drag=startGhostDrag({ghost,origin:{left:r.left,top:r.top,width:r.width,height:r.height},sx:e.clientX,sy:e.clientY,
+    scroller,column:$('strengthList').closest('.exerciseScroller,.createFlow')||scroller,rowLook:true,
+    home:hoverHome,
+    onDrop:(list,index,fromH)=>{hovering=null;removeGhost(ghost);placeNewItem(item,list,index,fromH)},
+    onReturn:()=>{ghost.classList.remove('held');ghost.classList.add('hovering')}});
+  let ended=false;
+  const move=ev=>{if(ev.pointerId!==id)return;if(ev.pointerType==='mouse'&&ev.buttons===0){end(false);return}drag.move(ev.clientX,ev.clientY)};
+  const up=ev=>{if(ev.pointerId===id)end(false)},cancel=ev=>{if(ev.pointerId===id)end(true)};
+  const lost=()=>end(false),blur=()=>end(true);
+  const key=ev=>{if(ev.key==='Escape'){ev.preventDefault();end(true)}};
+  function end(cancelled){
+    if(ended)return;ended=true;
+    window.removeEventListener('pointermove',move,true);window.removeEventListener('pointerup',up,true);
+    window.removeEventListener('pointercancel',cancel,true);window.removeEventListener('keydown',key,true);
+    window.removeEventListener('blur',blur);ghost.removeEventListener('lostpointercapture',lost);
+    drag.drop(cancelled);
+  }
+  window.addEventListener('pointermove',move,true);window.addEventListener('pointerup',up,true);
+  window.addEventListener('pointercancel',cancel,true);window.addEventListener('keydown',key,true);
+  window.addEventListener('blur',blur);ghost.addEventListener('lostpointercapture',lost);
+}
+function placeNewItem(item,list,index,fromH){
+  const ctx=listContext(list);
+  if(item.kind!=='rest'&&item.kind!=='video'){item.kind=ctx.kind;if(ctx.group&&(!item.group||item.group==='Movement'))item.group=ctx.group}
+  ctx.arr.splice(Math.max(0,Math.min(index,ctx.arr.length)),0,item);
+  flipRows(list.closest('.exerciseScroller,.createStepSlot')||list,()=>buildRoutine());
+  revealNewRow(list.querySelector('.moveRow[data-id="'+item.id+'"]'),fromH);
+  showToast(cap(kindWord(item))+' added');
+}
+function placeHoverAtEnd(){
+  if(!hovering)return;
+  const {item,ghost}=hovering;hovering=null;removeGhost(ghost);
+  const list=$('strengthList');
+  placeNewItem(item,list,listContext(list).arr.length,0);
+  list.querySelector('.moveRow[data-id="'+item.id+'"]')?.scrollIntoView({block:'nearest',behavior:reduceMotion()?'auto':'smooth'});
+}
+function discardHover(){if(!hovering)return;const g=hovering.ghost;hovering=null;removeGhost(g);showToast('Discarded')}
+function endHover(){if(!hovering)return;hovering.ghost.remove();hovering=null}
+window.addEventListener('resize',()=>{
+  if(hovering?.ghost.classList.contains('hovering')){const spot=hoverHome();hovering.ghost.style.width=spot.width+'px';hovering.ghost.style.transform='translate('+spot.left+'px,'+spot.top+'px)'}
+});
+phoneQuery?.addEventListener?.('change',()=>{closeSheet();if(hovering&&!phoneLayout())placeHoverAtEnd();renderLists()});
 
 function updateMovementCreatorAvailability(){
  const hasItems=strengthPool.length>0;
@@ -1628,6 +1824,7 @@ function openWorkoutEditor(isCreate=false){
   creatingNewMove=Boolean(isCreate);
   editingItem=null;
   pendingNew=null;
+  closeSheet();endHover();
   workoutEditSnapshot=captureWorkoutEditSnapshot();
   $('moveEditorTitle').textContent=creatingNewMove?'Create new move':'Edit move';
   $('moveEditorSubtitle').textContent='Build the sequence first, then set timing, then finish the move.';
@@ -1678,6 +1875,7 @@ $('warmupSwitch').addEventListener('click',()=>{
   syncWarmupSwitch();
 });
 function closeWorkoutEditor(){
+  closeSheet();endHover();
   pendingNew=null;editingItem=null;
   if(modal.classList.contains('createMode'))leaveCreateFlow();
   modal.classList.remove('createMode');
@@ -1720,6 +1918,8 @@ $('cancelWorkoutEdit').addEventListener('click',()=>{
   closeWorkoutEditor();
 });
 $('saveWorkoutEdit').addEventListener('click',()=>{
+  closeSheet();
+  if(hovering)placeHoverAtEnd(); // a step still floating goes at the end rather than being lost
   const profile=workoutProfiles[selectedWorkoutKey];
   const name=workoutNameInput.value.trim()||'New move';
   if(profile)profile.name=name;
@@ -1777,6 +1977,7 @@ $('includeCooldownPreset').addEventListener('change',syncPremadeSequence);
 $('includeWarmupPreset').addEventListener('change',updateCreateStepSummaries);
 $('includeCooldownPreset').addEventListener('change',updateCreateStepSummaries);
 workoutNameInput.addEventListener('input',updateCreateStepSummaries);
+workoutNameInput.addEventListener('input',updateSetupSummary);
 $('confirmAddMovement').addEventListener('click',addMovement);
 $('confirmAddRest').addEventListener('click',addMovement);
 $('addMovementInput').addEventListener('keydown',e=>{if(e.key==='Enter')addMovement()});
