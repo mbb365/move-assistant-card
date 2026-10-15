@@ -125,7 +125,7 @@ finishMoveButton.addEventListener('click',()=>$('saveWorkoutEdit').click());
 
 const views={home:$('homeView'),workout:$('workoutView'),settings:$('settingsView')};
 const homeNav=$('homeNav'),settingsNav=$('settingsNav');
-function showView(name){Object.entries(views).forEach(([k,v])=>v.classList.toggle('active',k===name));homeNav.classList.toggle('active',name==='home');settingsNav.classList.toggle('active',name==='settings');if(name==='home')setTimeout(checkCheckinDue,400);if(name==='settings')requestAnimationFrame(()=>positionRubberIndicator(root.querySelector('.tab.active'),false))}
+function showView(name){Object.entries(views).forEach(([k,v])=>v.classList.toggle('active',k===name));homeNav.classList.toggle('active',name==='home');settingsNav.classList.toggle('active',name==='settings');if(name==='home')setTimeout(checkCheckinDue,400);if(name==='settings'){requestAnimationFrame(()=>positionRubberIndicator(root.querySelector('.tab.active'),false));renderMetaTable()}}
 
 const totalInput=$('totalTime'),workInput=$('workTime'),restInput=$('restTime');
 const totalOut=$('totalOut'),workOut=$('workOut'),restOut=$('restOut');
@@ -770,7 +770,7 @@ function renderList(arr,targetId){
  arr.forEach((item,i)=>{
    if(item===editingItem){target.appendChild(renderEditForm(item,i));return}
    const row=document.createElement('div');
-   row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'')+(item.kind==='video'?' videoItem':'');
+   row.className='moveRow'+(item.hidden?' hidden':'')+(item.kind==='rest'?' restItem':'')+(item.kind==='video'?' videoItem':'')+(metaHidden(item)?' noMeta':'');
    row.dataset.index=i;
    row.dataset.id=item.id;
    const displayDuration=item.kind==='rest'
@@ -2063,7 +2063,7 @@ function renderUpcomingExercises(){
   const visibleFuture=upcomingVisibleCount==='all'?future:future.slice(0,Math.max(1,Number(upcomingVisibleCount)||1));
   visibleFuture.forEach(item=>{
     const card=document.createElement('section');
-    card.className='upcomingCard'+(item.sessionHidden?' sessionHidden':'');
+    card.className='upcomingCard'+(item.sessionHidden?' sessionHidden':'')+(metaHidden(item)?' noMeta':'');
     card.innerHTML=
       '<div class="upcomingInfo">'+
         '<div class="upcomingIcon" aria-hidden="true">'+futureIcon(item)+'</div>'+
@@ -2080,6 +2080,8 @@ function updateNextCard(){
   nextName.textContent=p.name;
   nextMeta.textContent=p.meta;
   nextIcon.textContent=p.icon;
+  {const n=isResting?routine[nextVisibleRoutineIndex(index+1)]:(routine[index]?.rest>0?{kind:'rest'}:routine[nextVisibleRoutineIndex(index+1)]);
+   root.querySelector('.nextCard').classList.toggle('noMeta',Boolean(n&&metaHidden(n)))}
 
   immediateNextItem=null;
   if(isResting){
@@ -2624,6 +2626,73 @@ const trailStrengthInput=$('trailStrength');
 const trailLifeInput=$('trailLife');
 
 function saveSetting(key,value){settings()[key]=value;persist()}
+
+/* ---- second line on phones: hide the small line under a step's name, per type ---- */
+const KIND_ORDER=['Warm-up','Movement','Cooldown','Rest','Video'];
+function typeKey(x){
+  if(x.kind==='rest')return 'rest';
+  if(x.kind==='video')return 'video';
+  return 'g:'+String(x.group||'').trim().toLowerCase();
+}
+function metaHidden(x){return Boolean(settings().hideMeta?.[typeKey(x)])}
+function collectTypes(){
+  const map=new Map();
+  const add=(x,listKind,moveName)=>{
+    if(!x)return;
+    if(Array.isArray(x))x={name:x[1],group:x[2],kind:'work'};
+    const key=typeKey(x);
+    let t=map.get(key);
+    if(!t){t={key,label:key==='rest'?'Rest':key==='video'?'Video':(String(x.group||'').trim()||'No type'),kinds:new Set(),moves:new Set(),count:0};map.set(key,t)}
+    t.kinds.add(key==='rest'?'Rest':key==='video'?'Video':listKind);t.moves.add(moveName);t.count++;
+  };
+  Object.values(workoutProfiles).forEach(p=>{
+    const name=p.name||'Move';
+    (p.warmup||(p.customSequence?[]:defaultWarmup)).forEach(x=>add(x,'Warm-up',name));
+    (p.customSequence?(p.sequence||[]):(p.strength||[])).forEach(x=>add(x,x.presetRole==='warmup'?'Warm-up':x.presetRole==='cooldown'?'Cooldown':'Movement',name));
+    (p.cooldown||(p.customSequence?[]:defaultCooldown)).forEach(x=>add(x,'Cooldown',name));
+  });
+  // rests and videos are always listed, so they can be set before you add one
+  [['rest','Rest'],['video','Video']].forEach(([key,label])=>{if(!map.has(key))map.set(key,{key,label,kinds:new Set([label]),moves:new Set(),count:0})});
+  return [...map.values()]
+    .map(t=>({...t,kind:t.kinds.has('Movement')?'Movement':[...t.kinds][0],moves:[...t.moves]}))
+    .sort((a,b)=>KIND_ORDER.indexOf(a.kind)-KIND_ORDER.indexOf(b.kind)||a.label.localeCompare(b.label));
+}
+let metaKind='all';
+function visibleTypes(){
+  const q=$('metaSearch').value.trim().toLowerCase();
+  return collectTypes().filter(t=>(metaKind==='all'||t.kind===metaKind)&&(!q||t.label.toLowerCase().includes(q)||t.moves.some(m=>m.toLowerCase().includes(q))));
+}
+function renderMetaTable(){
+  const body=$('metaTableBody');if(!body)return;
+  const hidden=settings().hideMeta||{},rows=visibleTypes();
+  body.innerHTML=rows.length?'':'<tr class="metaEmpty"><td colspan="4">No types match</td></tr>';
+  rows.forEach(t=>{
+    const on=!hidden[t.key];
+    const used=!t.count?'Not used yet':(t.moves.length>2?t.moves.slice(0,2).join(', ')+' + '+(t.moves.length-2)+' more':t.moves.join(', '))+' · '+t.count+' step'+(t.count===1?'':'s');
+    const tr=document.createElement('tr');tr.className=on?'':'off';
+    tr.innerHTML='<td><div class="metaType">'+esc(t.label)+'</div><div class="metaSub">'+esc(t.kind+' · '+used)+'</div></td>'+
+      '<td class="metaKindCol">'+esc(t.kind)+'</td><td class="metaUsedCol">'+esc(used)+'</td>'+
+      '<td class="metaSwitchCol"><button class="switch'+(on?' on':'')+'" type="button" role="switch" aria-checked="'+on+'" aria-label="Second line for '+esc(t.label)+' on phones"></button></td>';
+    tr.querySelector('.switch').addEventListener('click',()=>setMetaHidden([t.key],on));
+    body.appendChild(tr);
+  });
+  const off=rows.filter(t=>hidden[t.key]).length;
+  $('metaCount').textContent=rows.length?rows.length+' type'+(rows.length===1?'':'s')+(off?' · '+off+' hidden on phones':''):'';
+}
+function setMetaHidden(keys,hide){
+  const next={...(settings().hideMeta||{})};
+  keys.forEach(k=>{if(hide)next[k]=true;else delete next[k]});
+  saveSetting('hideMeta',next);
+  renderMetaTable();renderLists();updateNextCard();
+}
+$('metaSearch').addEventListener('input',renderMetaTable);
+$('metaKinds').querySelectorAll('.kindChip').forEach(b=>b.addEventListener('click',()=>{
+  metaKind=b.dataset.kind;
+  $('metaKinds').querySelectorAll('.kindChip').forEach(c=>c.classList.toggle('active',c===b));
+  renderMetaTable();
+}));
+$('metaHideAll').addEventListener('click',()=>setMetaHidden(visibleTypes().map(t=>t.key),true));
+$('metaShowAll').addEventListener('click',()=>setMetaHidden(visibleTypes().map(t=>t.key),false));
 
 /* what you see */
 const dataToggles={feel:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};

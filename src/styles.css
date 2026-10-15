@@ -1671,7 +1671,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 
 /* Strong */
 .activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,
-.panelCollapsedText,.activityCount,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,
+.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,
 .createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,
 .primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,
 .movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
@@ -1683,7 +1683,7 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}
 
 /* Caption */
-.moveEditForm label>span,.addGhostText small,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,
+.moveEditForm label>span,.addGhostText small,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,
 .dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,
 .testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,
 .globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,
@@ -1872,3 +1872,27 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}
 #app.videoStep .videoClock{display:block}
 @media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}
+
+/* ---- Settings: second line on phones, per type ---- */
+.metaCard{margin-top:16px}
+.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}
+.metaSearch{flex:1 1 200px;min-width:0}
+.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}
+.kindChip{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}
+.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}
+.metaTableWrap{overflow-x:auto;border-radius:22.4px;background:var(--raised)}
+.metaTable{width:100%;border-collapse:collapse}
+.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:0.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}
+.metaTable td{padding:12px 16px;border-top:0.32px solid var(--divider);vertical-align:middle;color:var(--soft)}
+.metaTable tbody tr:first-child td{border-top:0}
+.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}
+.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}
+.metaType{color:var(--text)}
+.metaTable tr.off .metaType{color:var(--muted)}
+.metaSub{display:none;margin-top:2px;color:var(--muted)}
+.metaEmpty td{text-align:center;color:var(--muted)}
+.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}
+.metaBulkActions{display:flex;gap:22.4px}
+@media(max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}
+/* phones: types switched off in Settings drop their second line to save space */
+@media(max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}

@@ -233,6 +233,32 @@
         </div>
       </div>
     </section>
+
+    <section class="card metaCard">
+      <h2 class="paneTitle">Second line on phones</h2>
+      <p class="note">Hide the small line under a step’s name on phones, by type, to fit more on screen.</p>
+      <div class="metaFilters">
+        <input class="addInput metaSearch" id="metaSearch" type="search" placeholder="Filter types" aria-label="Filter types" autocomplete="off">
+        <div class="metaKinds" id="metaKinds" role="group" aria-label="Show kind">
+          <button class="kindChip active" type="button" data-kind="all">All</button>
+          <button class="kindChip" type="button" data-kind="Warm-up">Warm-up</button>
+          <button class="kindChip" type="button" data-kind="Movement">Movements</button>
+          <button class="kindChip" type="button" data-kind="Cooldown">Cooldown</button>
+          <button class="kindChip" type="button" data-kind="Rest">Rest</button>
+          <button class="kindChip" type="button" data-kind="Video">Video</button>
+        </div>
+      </div>
+      <div class="metaTableWrap">
+        <table class="metaTable">
+          <thead><tr><th scope="col">Type</th><th scope="col" class="metaKindCol">Kind</th><th scope="col" class="metaUsedCol">Used in</th><th scope="col" class="metaSwitchCol">Second line</th></tr></thead>
+          <tbody id="metaTableBody"></tbody>
+        </table>
+      </div>
+      <div class="metaBulk">
+        <span class="status" id="metaCount"></span>
+        <div class="metaBulkActions"><button class="pill" id="metaHideAll" type="button">Hide for these</button><button class="pill" id="metaShowAll" type="button">Show for these</button></div>
+      </div>
+    </section>
   </div>
 </section>
 
