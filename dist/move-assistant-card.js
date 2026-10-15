@@ -639,68 +639,68 @@ const Jo = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
 </div>
 `;
 function Qo(x, y) {
-  const a = (e) => x.getElementById(e), H = a("workoutView"), F = a("workoutNameInput");
-  let q = !0;
-  const si = a("homeClock");
-  function li() {
-    si && (si.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
+  const a = (e) => x.getElementById(e), z = a("workoutView"), R = a("workoutNameInput");
+  let G = !0;
+  const ci = a("homeClock");
+  function pi() {
+    ci && (ci.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
-  li(), setInterval(li, 15e3);
-  const di = a("createFlow"), fa = a("createMovementsSlot"), ba = a("createTimingSlot"), ci = a("createFinishSlot"), xa = a("movementStepSummary"), ya = a("timingStepSummary"), wa = a("finishStepSummary"), mn = a("continueToTiming"), ka = a("continueToFinish"), Sa = a("finishMoveButton");
-  let gn = !1, qt = [];
-  function Ca(e) {
-    !e || qt.some((t) => t.node === e) || qt.push({ node: e, parent: e.parentNode, next: e.nextSibling });
+  pi(), setInterval(pi, 15e3);
+  const ui = a("createFlow"), ba = a("createMovementsSlot"), xa = a("createTimingSlot"), mi = a("createFinishSlot"), ya = a("movementStepSummary"), wa = a("timingStepSummary"), ka = a("finishStepSummary"), bn = a("continueToTiming"), Sa = a("continueToFinish"), Ca = a("finishMoveButton");
+  let xn = !1, jt = [];
+  function Ta(e) {
+    !e || jt.some((t) => t.node === e) || jt.push({ node: e, parent: e.parentNode, next: e.nextSibling });
   }
-  function Ot(e, t) {
-    e && (Ca(e), t.appendChild(e));
-  }
-  function Ta() {
-    [...qt].reverse().forEach(({ node: e, parent: t, next: n }) => {
-      t && (n && n.parentNode === t ? t.insertBefore(e, n) : t.appendChild(e));
-    }), qt = [];
-  }
-  function Ve(e) {
-    x.querySelectorAll(".createStep").forEach((t) => {
-      t.classList.toggle("active", t.dataset.createStep === e);
-    }), e === "timing" && (gn = !0), Te();
-  }
-  function Te() {
-    var u, p;
-    if (!z) return;
-    L[M];
-    const e = V.filter((m) => !m.hidden), t = e.filter((m) => m.kind !== "rest").length, n = e.filter((m) => m.kind === "rest").length;
-    xa.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
-    const i = t > 0, o = x.querySelector('[data-open-step="timing"]'), r = x.querySelector('[data-open-step="finish"]');
-    o.disabled = !i, mn.disabled = !i, ya.textContent = i ? He(P.value) + " · " + X(R.value) + " movement · " + X(B.value) + " rest" : "Add a movement first", r.disabled = !(i && gn);
-    const s = ((F == null ? void 0 : F.value) || "").trim(), l = [];
-    (u = a("includeWarmupPreset")) != null && u.checked && l.push("warm-up"), (p = a("includeCooldownPreset")) != null && p.checked && l.push("cooldown"), wa.textContent = s ? s + (l.length ? " · " + l.join(" + ") : "") : l.length ? l.join(" + ") : "Name and optional extras";
+  function Yt(e, t) {
+    e && (Ta(e), t.appendChild(e));
   }
   function La() {
-    var g, T, C;
-    di.hidden = !1, gn = !1;
-    const e = x.querySelector(".editNameRow"), t = a("createMoveOptions"), n = x.querySelector(".timeTiles"), i = a("routineSummaryModal"), o = x.querySelector(".tempoRevealRow"), r = a("tempoExperiment"), s = (g = a("warmupList")) == null ? void 0 : g.closest("section"), l = a("movementCreatorLaunch"), u = a("movementCreator"), p = (T = a("strengthList")) == null ? void 0 : T.closest("section"), m = (C = a("cooldownList")) == null ? void 0 : C.closest("section");
-    [s, l, u, p, m].forEach((v) => Ot(v, fa)), [t, n, i, o, r].forEach((v) => Ot(v, ba)), Ot(e, ci);
-    const d = t == null ? void 0 : t.querySelector(".createExtras");
-    d && Ot(d, ci), Ve("movements"), Te();
+    [...jt].reverse().forEach(({ node: e, parent: t, next: n }) => {
+      t && (n && n.parentNode === t ? t.insertBefore(e, n) : t.appendChild(e));
+    }), jt = [];
+  }
+  function Ke(e) {
+    x.querySelectorAll(".createStep").forEach((t) => {
+      t.classList.toggle("active", t.dataset.createStep === e);
+    }), e === "timing" && (xn = !0), Fe();
+  }
+  function Fe() {
+    var g, p;
+    if (!O) return;
+    L[F];
+    const e = j.filter((u) => !u.hidden), t = e.filter((u) => u.kind !== "rest").length, n = e.filter((u) => u.kind === "rest").length;
+    ya.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
+    const i = t > 0, o = x.querySelector('[data-open-step="timing"]'), r = x.querySelector('[data-open-step="finish"]');
+    o.disabled = !i, bn.disabled = !i, wa.textContent = i ? qe(D.value) + " · " + $(B.value) + " movement · " + $(A.value) + " rest" : "Add a movement first", r.disabled = !(i && xn);
+    const s = ((R == null ? void 0 : R.value) || "").trim(), l = [];
+    (g = a("includeWarmupPreset")) != null && g.checked && l.push("warm-up"), (p = a("includeCooldownPreset")) != null && p.checked && l.push("cooldown"), ka.textContent = s ? s + (l.length ? " · " + l.join(" + ") : "") : l.length ? l.join(" + ") : "Name and optional extras";
   }
   function Ea() {
-    Ta(), di.hidden = !0, x.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
+    var c, T, C;
+    ui.hidden = !1, xn = !1;
+    const e = x.querySelector(".editNameRow"), t = a("createMoveOptions"), n = x.querySelector(".timeTiles"), i = a("routineSummaryModal"), o = x.querySelector(".tempoRevealRow"), r = a("tempoExperiment"), s = (c = a("warmupList")) == null ? void 0 : c.closest("section"), l = a("movementCreatorLaunch"), g = a("movementCreator"), p = (T = a("strengthList")) == null ? void 0 : T.closest("section"), u = (C = a("cooldownList")) == null ? void 0 : C.closest("section");
+    [s, l, g, p, u].forEach((v) => Yt(v, ba)), [t, n, i, o, r].forEach((v) => Yt(v, xa)), Yt(e, mi);
+    const d = t == null ? void 0 : t.querySelector(".createExtras");
+    d && Yt(d, mi), Ke("movements"), Fe();
+  }
+  function Ma() {
+    La(), ui.hidden = !0, x.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
   }
   x.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
-    e.disabled || Ve(e.dataset.openStep);
-  })), mn.addEventListener("click", () => {
-    mn.disabled || Ve("timing");
-  }), ka.addEventListener("click", () => Ve("finish")), Sa.addEventListener("click", () => a("saveWorkoutEdit").click());
-  const je = { home: a("homeView"), workout: a("workoutView"), settings: a("settingsView") }, pi = a("homeNav"), ui = a("settingsNav");
-  function vn(e) {
-    Object.entries(je).forEach(([t, n]) => n.classList.toggle("active", t === e)), pi.classList.toggle("active", e === "home"), ui.classList.toggle("active", e === "settings"), e === "home" && setTimeout(Bn, 400), e === "settings" && requestAnimationFrame(() => _t(x.querySelector(".tab.active"), !1));
+    e.disabled || Ke(e.dataset.openStep);
+  })), bn.addEventListener("click", () => {
+    bn.disabled || Ke("timing");
+  }), Sa.addEventListener("click", () => Ke("finish")), Ca.addEventListener("click", () => a("saveWorkoutEdit").click());
+  const Je = { home: a("homeView"), workout: a("workoutView"), settings: a("settingsView") }, gi = a("homeNav"), vi = a("settingsNav");
+  function yn(e) {
+    Object.entries(Je).forEach(([t, n]) => n.classList.toggle("active", t === e)), gi.classList.toggle("active", e === "home"), vi.classList.toggle("active", e === "settings"), e === "home" && setTimeout(Dn, 400), e === "settings" && requestAnimationFrame(() => Vt(x.querySelector(".tab.active"), !1));
   }
-  const P = a("totalTime"), R = a("workTime"), B = a("restTime"), Ma = a("totalOut"), mi = a("workOut"), gi = a("restOut"), Fa = a("totalFill"), Ra = a("workFill"), Ba = a("restFill"), Pe = a("roundsInput"), Aa = a("roundsFill"), Na = a("roundsOut"), Ia = a("totalLabel"), Pa = a("routineSummaryModal"), hn = [
+  const D = a("totalTime"), B = a("workTime"), A = a("restTime"), Fa = a("totalOut"), hi = a("workOut"), fi = a("restOut"), Ra = a("totalFill"), Ba = a("workFill"), Aa = a("restFill"), _e = a("roundsInput"), Na = a("roundsFill"), Ia = a("roundsOut"), Pa = a("totalLabel"), Da = a("routineSummaryModal"), wn = [
     { id: "standing-reach", name: "Standing reach", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
   ];
-  let fe = hn.map((e) => ({ ...e })), V = [
+  let we = wn.map((e) => ({ ...e })), j = [
     { id: "goblet-squat", name: "Kettlebell goblet squat", group: "Glutes + legs", kind: "work", hidden: !1 },
     { id: "floor-press", name: "Kettlebell floor press", group: "Chest + triceps", kind: "work", hidden: !1 },
     { id: "one-arm-row", name: "One-arm kettlebell row", group: "Back + arms", kind: "work", hidden: !1 },
@@ -712,14 +712,14 @@ function Qo(x, y) {
     { id: "glute-bridge", name: "Glute bridge with kettlebell", group: "Glutes", kind: "work", hidden: !1 },
     { id: "pullover", name: "Kettlebell pullover", group: "Chest + core", kind: "work", hidden: !1 }
   ];
-  const fn = [
+  const kn = [
     { id: "hip-flexor", name: "Hip flexor stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "chest-opener", name: "Chest opener", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "hamstring", name: "Hamstring stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "slow-breathing", name: "Slow breathing", group: "Cooldown", kind: "cooldown", hidden: !1 }
   ];
-  let be = fn.map((e) => ({ ...e }));
-  const Da = {
+  let ke = kn.map((e) => ({ ...e }));
+  const Ha = {
     kettlebell: {
       name: "Kettlebell full body",
       eyebrow: "",
@@ -769,10 +769,10 @@ function Qo(x, y) {
         ["glute-bridge", "Glute bridge with kettlebell", "Glutes + core"]
       ]
     }
-  }, E = vi(y.data), L = E.profiles;
-  let M = L[E.selected] ? E.selected : E.order.find((e) => L[e]) || "kettlebell";
-  function vi(e) {
-    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Da)), i = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
+  }, M = bi(y.data), L = M.profiles;
+  let F = L[M.selected] ? M.selected : M.order.find((e) => L[e]) || "kettlebell";
+  function bi(e) {
+    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Ha)), i = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
     return Object.keys(n).forEach((o) => {
       i.includes(o) || i.push(o);
     }), {
@@ -781,93 +781,93 @@ function Qo(x, y) {
       order: i,
       selected: t.selected || i[0],
       history: Array.isArray(t.history) ? t.history : [],
-      checkins: (Array.isArray(t.checkins) ? t.checkins : Ha(t.energy)).map(hi),
+      checkins: (Array.isArray(t.checkins) ? t.checkins : za(t.energy)).map(xi),
       settings: { ...t.settings || {} }
     };
   }
-  function Ha(e) {
+  function za(e) {
     if (!Array.isArray(e)) return [];
     const t = ["Drained", "Low", "Okay", "Good", "Energised", "Great"], n = [];
     return e.forEach((i) => {
       const o = new Date(i.at);
       if (isNaN(o)) return;
       const r = o.getFullYear() + "-" + String(o.getMonth() + 1).padStart(2, "0") + "-" + String(o.getDate()).padStart(2, "0"), s = o.getHours() < 14 ? "morning" : "evening";
-      if (n.some((u) => u.date === r && u.slot === s)) return;
+      if (n.some((g) => g.date === r && g.slot === s)) return;
       const l = t.indexOf(i.value) + 1;
       l > 0 && n.push({ date: r, slot: s, mood: null, energy: l, at: i.at });
     }), n;
   }
-  function hi(e) {
+  function xi(e) {
     if (e.scale === 100) return e;
     const t = (n) => n == null ? null : Math.round((Number(n) - 1) / 5 * 100);
     return { ...e, mood: t(e.mood), energy: t(e.energy), scale: 100 };
   }
-  function ce() {
-    z || (E.selected = M, E.order = E.order.filter((e) => L[e] && e !== De), y.save(E));
+  function me() {
+    O || (M.selected = F, M.order = M.order.filter((e) => L[e] && e !== Oe), y.save(M));
   }
-  function N() {
-    return E.settings;
+  function I() {
+    return M.settings;
   }
-  function pe(e) {
+  function ge(e) {
     const t = L[e];
     if (!t) return;
-    M = e;
+    F = e;
     const n = a("workoutNameInput");
-    n && (n.value = t.name), P.value = t.total, R.value = t.work, B.value = t.rest, Pe.value = t.rounds || 1, t.customSequence ? (fe = [], be = [], V = (t.sequence || []).map((i) => ({ ...i })), wn(t.preset || "movement", !1)) : (P.min = 3, P.max = 40, P.step = 1, R.min = 20, R.max = 60, R.step = 5, B.min = 5, B.max = 30, B.step = 5, fe = (t.warmup || hn).map((i) => ({ ...i })), be = (t.cooldown || fn).map((i) => ({ ...i })), V = t.strength.map((i) => Array.isArray(i) ? (([o, r, s, l = !1]) => ({ id: o, name: r, group: s, kind: "work", hidden: !!l }))(i) : { ...i })), x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === e)), _();
+    n && (n.value = t.name), D.value = t.total, B.value = t.work, A.value = t.rest, _e.value = t.rounds || 1, t.customSequence ? (we = [], ke = [], j = (t.sequence || []).map((i) => ({ ...i })), Ln(t.preset || "movement", !1)) : (D.min = 3, D.max = 40, D.step = 1, B.min = 20, B.max = 60, B.step = 5, A.min = 5, A.max = 30, A.step = 5, we = (t.warmup || wn).map((i) => ({ ...i })), ke = (t.cooldown || kn).map((i) => ({ ...i })), j = t.strength.map((i) => Array.isArray(i) ? (([o, r, s, l = !1]) => ({ id: o, name: r, group: s, kind: "work", hidden: !!l }))(i) : { ...i })), x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === e)), q();
   }
-  function za(e, t, n) {
+  function _a(e, t, n) {
     const i = e.getBoundingClientRect(), o = i.width / 2, r = i.height / 2, s = t - o, l = n - r;
-    let u = 1 / 0, p = 1 / 0;
-    s !== 0 && (u = o / Math.abs(s)), l !== 0 && (p = r / Math.abs(l));
-    const m = Math.min(Math.max(1 / Math.min(u, p), 0), 1);
+    let g = 1 / 0, p = 1 / 0;
+    s !== 0 && (g = o / Math.abs(s)), l !== 0 && (p = r / Math.abs(l));
+    const u = Math.min(Math.max(1 / Math.min(g, p), 0), 1);
     let d = Math.atan2(l, s) * (180 / Math.PI) + 90;
-    return d < 0 && (d += 360), { edge: m, angle: d };
+    return d < 0 && (d += 360), { edge: u, angle: d };
   }
-  function bn(e, t, n = !1) {
-    const i = e.getBoundingClientRect(), o = t.clientX - i.left, r = t.clientY - i.top, { edge: s, angle: l } = za(e, o, r), u = n ? 100 : s * 100;
-    e.style.setProperty("--edge-proximity", u.toFixed(3)), e.style.setProperty("--cursor-angle", l.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || u >= 30);
+  function Sn(e, t, n = !1) {
+    const i = e.getBoundingClientRect(), o = t.clientX - i.left, r = t.clientY - i.top, { edge: s, angle: l } = _a(e, o, r), g = n ? 100 : s * 100;
+    e.style.setProperty("--edge-proximity", g.toFixed(3)), e.style.setProperty("--cursor-angle", l.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || g >= 30);
   }
-  function fi(e) {
-    e.addEventListener("pointermove", (n) => bn(e, n, !1)), e.addEventListener("pointerenter", (n) => bn(e, n, !1)), e.addEventListener("pointerdown", (n) => bn(e, n, !0));
+  function yi(e) {
+    e.addEventListener("pointermove", (n) => Sn(e, n, !1)), e.addEventListener("pointerenter", (n) => Sn(e, n, !1)), e.addEventListener("pointerdown", (n) => Sn(e, n, !0));
     const t = () => {
       e.classList.remove("borderGlowActive"), e.style.setProperty("--edge-proximity", "0");
     };
     e.addEventListener("pointerleave", t), e.addEventListener("pointerup", t), e.addEventListener("pointercancel", t);
   }
-  fi(a("addWorkoutPanel"));
-  let z = !1, De = null;
-  function I(e) {
+  yi(a("addWorkoutPanel"));
+  let O = !1, Oe = null;
+  function P(e) {
     return String(e ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]);
   }
-  function _a(e) {
-    return e.summary ? e.summary : e.customSequence ? He(e.total) + " · custom move" : He(e.total) + " · " + X(e.work) + " / " + X(e.rest) + " · warm-up + cooldown";
+  function Oa(e) {
+    return e.summary ? e.summary : e.customSequence ? qe(e.total) + " · custom move" : qe(e.total) + " · " + $(e.work) + " / " + $(e.rest) + " · warm-up + cooldown";
   }
-  function xn(e, t) {
+  function Cn(e, t) {
     var s;
     const n = document.createElement("article");
     n.className = "workoutPanel", n.dataset.workout = e, n.tabIndex = 0;
     const i = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((s = t.sequence) == null ? void 0 : s.length) || 0);
-    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (i ? '<div class="eyebrow">' + I(i) + "</div>" : "") + '<div class="workoutName">' + I(t.name) + '</div><div class="sub">' + I(_a(t)) + '</div><span class="sourceTag">' + I(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + I(t.name) + "</div></div>";
+    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (i ? '<div class="eyebrow">' + P(i) + "</div>" : "") + '<div class="workoutName">' + P(t.name) + '</div><div class="sub">' + P(Oa(t)) + '</div><span class="sourceTag">' + P(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + P(t.name) + "</div></div>";
     const r = a("addWorkoutPanel");
-    return a("workoutGallery").insertBefore(n, r), fi(n), n.addEventListener("click", (l) => {
-      l.target.closest("button") || pe(e);
+    return a("workoutGallery").insertBefore(n, r), yi(n), n.addEventListener("click", (l) => {
+      l.target.closest("button") || ge(e);
     }), n.addEventListener("keydown", (l) => {
-      (l.key === "Enter" || l.key === " ") && !l.target.closest("button") && (l.preventDefault(), pe(e));
+      (l.key === "Enter" || l.key === " ") && !l.target.closest("button") && (l.preventDefault(), ge(e));
     }), n.querySelector(".seeWorkoutBtn").addEventListener("click", (l) => {
-      l.stopPropagation(), pe(e), Ri(!1);
+      l.stopPropagation(), ge(e), Ni(!1);
     }), n.querySelector(".startWorkoutBtn").addEventListener("click", (l) => {
-      l.stopPropagation(), pe(e), Lo();
+      l.stopPropagation(), ge(e), Eo();
     }), n;
   }
-  function bi() {
-    x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), E.order.forEach((e) => {
-      L[e] && xn(e, L[e]);
-    }), x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === M));
+  function wi() {
+    x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), M.order.forEach((e) => {
+      L[e] && Cn(e, L[e]);
+    }), x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === F));
   }
-  bi(), a("addWorkoutPanel").addEventListener("keydown", (e) => {
+  wi(), a("addWorkoutPanel").addEventListener("keydown", (e) => {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), a("addWorkoutPanel").click());
   }), a("addWorkoutPanel").addEventListener("click", () => {
-    z = !0, De = "custom-" + Date.now(), L[De] = {
+    O = !0, Oe = "custom-" + Date.now(), L[Oe] = {
       name: "New move",
       source: "Custom move",
       total: 20,
@@ -879,29 +879,29 @@ function Qo(x, y) {
       includeCooldown: !1,
       sequence: [],
       strength: []
-    }, pe(De), Ri(!0);
+    }, ge(Oe), Ni(!0);
   });
-  let h = [], S = 0, $ = 0, yt = 1, Y = !1, j = null, Gt = null, Q = !1, Ye = E.settings.upcomingCount ?? "all";
-  function Wt(e, t, n) {
+  let h = [], S = 0, ee = 0, Tt = 1, K = !1, Y = null, Ut = null, te = !1, $e = M.settings.upcomingCount ?? "all";
+  function Zt(e, t, n) {
     return (Number(e) - t) / (n - t) * 100;
   }
-  function X(e) {
+  function $(e) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 3600 && t % 3600 === 0 ? t / 3600 + " hr" : t >= 60 && t % 60 === 0 ? t / 60 + " min" : t >= 60 ? Math.round(t / 60) + " min" : Math.round(t) + " sec";
   }
-  function He(e) {
+  function qe(e) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 60 && t % 60 === 0 ? t / 60 + " hr" : t >= 60 ? Math.floor(t / 60) + " hr " + t % 60 + " min" : t + " min";
   }
-  function Vt() {
-    Fa.style.width = Wt(P.value, Number(P.min), Number(P.max)) + "%", Ra.style.width = Wt(R.value, Number(R.min), Number(R.max)) + "%", Ba.style.width = Wt(B.value, Number(B.min), Number(B.max)) + "%", mi.textContent = X(R.value), gi.textContent = X(B.value);
-    const e = Number(Pe.value) || 1;
-    Aa.style.width = Wt(e, 1, 10) + "%", Ia.textContent = e > 1 ? "Time per round" : "Total time";
+  function Kt() {
+    Ra.style.width = Zt(D.value, Number(D.min), Number(D.max)) + "%", Ba.style.width = Zt(B.value, Number(B.min), Number(B.max)) + "%", Aa.style.width = Zt(A.value, Number(A.min), Number(A.max)) + "%", hi.textContent = $(B.value), fi.textContent = $(A.value);
+    const e = Number(_e.value) || 1;
+    Na.style.width = Zt(e, 1, 10) + "%", Pa.textContent = e > 1 ? "Time per round" : "Total time";
   }
-  function yn(e) {
+  function Tn(e) {
     return e.filter((t) => !t.hidden);
   }
-  function wt(e) {
+  function Lt(e) {
     const t = Math.max(0, Math.round(Number(e) || 0)), n = Math.floor(t / 3600), i = Math.floor(t % 3600 / 60), o = t % 60;
     return (n ? n + ":" + String(i).padStart(2, "0") : i) + ":" + String(o).padStart(2, "0");
   }
@@ -925,39 +925,39 @@ function Qo(x, y) {
     const o = (l) => {
       if (!l) return 0;
       if (/^\d+$/.test(l)) return Number(l);
-      const u = l.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/);
-      return u ? (Number(u[1]) || 0) * 3600 + (Number(u[2]) || 0) * 60 + (Number(u[3]) || 0) : 0;
+      const g = l.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/);
+      return g ? (Number(g[1]) || 0) * 3600 + (Number(g[2]) || 0) * 60 + (Number(g[3]) || 0) : 0;
     }, r = o(t.searchParams.get("t") || t.searchParams.get("start")), s = o(t.searchParams.get("end"));
     return { id: i, start: r, end: s > r ? s : null };
   }
-  function kt(e, t) {
+  function Et(e, t) {
     if (e.useVideoLength === !1) return Math.max(5, Number(e.duration) || t || 300);
     const n = Number(e.start) || 0, i = Number(e.end) || Number(e.videoDuration) || 0;
     return i > n ? Math.round(i - n) : Number(e.duration) || 300;
   }
-  function jt(e, t) {
+  function Jt(e, t) {
     const n = Math.max(0, Number(e) || 0);
     return Math.round(t === "hour" ? n * 3600 : t === "min" ? n * 60 : n);
   }
-  function wn(e, t = !0) {
+  function Ln(e, t = !0) {
     x.querySelectorAll(".createPresetBtn").forEach((i) => i.classList.toggle("active", i.dataset.movePreset === e));
-    const n = L[M];
-    n && (n.preset = e), e === "work" ? (P.min = 30, P.max = 480, P.step = 30, R.min = 300, R.max = 7200, R.step = 300, B.min = 60, B.max = 1800, B.step = 60, t && (P.value = 60, R.value = 1500, B.value = 300), a("addMovementUnit").value = "min", a("addMovementDuration").value = 25, a("addRestUnit").value = "min", a("addRestDuration").value = 5) : (P.min = 3, P.max = 40, P.step = 1, R.min = 20, R.max = 60, R.step = 5, B.min = 5, B.max = 30, B.step = 5, t && (P.value = 20, R.value = 45, B.value = 15), a("addMovementUnit").value = "sec", a("addMovementDuration").value = 45, a("addRestUnit").value = "sec", a("addRestDuration").value = 30), Vt();
+    const n = L[F];
+    n && (n.preset = e), e === "work" ? (D.min = 30, D.max = 480, D.step = 30, B.min = 300, B.max = 7200, B.step = 300, A.min = 60, A.max = 1800, A.step = 60, t && (D.value = 60, B.value = 1500, A.value = 300), a("addMovementUnit").value = "min", a("addMovementDuration").value = 25, a("addRestUnit").value = "min", a("addRestDuration").value = 5) : (D.min = 3, D.max = 40, D.step = 1, B.min = 20, B.max = 60, B.step = 5, A.min = 5, A.max = 30, A.step = 5, t && (D.value = 20, B.value = 45, A.value = 15), a("addMovementUnit").value = "sec", a("addMovementDuration").value = 45, a("addRestUnit").value = "sec", a("addRestDuration").value = 30), Kt();
   }
-  function kn() {
-    const e = L[M];
+  function En() {
+    const e = L[F];
     if (e != null && e.customSequence) {
-      if (V = V.filter((t) => !t.presetRole), a("includeWarmupPreset").checked ? (V = [...hn.map((n, i) => ({ ...n, id: "preset-warm-" + i + "-" + Date.now(), kind: "work", duration: Number(R.value), presetRole: "warmup" })), ...V], e.includeWarmup = !0) : e.includeWarmup = !1, a("includeCooldownPreset").checked) {
-        const t = fn.map((n, i) => ({ ...n, id: "preset-cool-" + i + "-" + Date.now(), kind: "work", duration: Number(R.value), presetRole: "cooldown" }));
-        V = [...V, ...t], e.includeCooldown = !0;
+      if (j = j.filter((t) => !t.presetRole), a("includeWarmupPreset").checked ? (j = [...wn.map((n, i) => ({ ...n, id: "preset-warm-" + i + "-" + Date.now(), kind: "work", duration: Number(B.value), presetRole: "warmup" })), ...j], e.includeWarmup = !0) : e.includeWarmup = !1, a("includeCooldownPreset").checked) {
+        const t = kn.map((n, i) => ({ ...n, id: "preset-cool-" + i + "-" + Date.now(), kind: "work", duration: Number(B.value), presetRole: "cooldown" }));
+        j = [...j, ...t], e.includeCooldown = !0;
       } else e.includeCooldown = !1;
-      _();
+      q();
     }
   }
-  function Oa() {
+  function Ga() {
     const e = a("upcomingCountSetting");
     if (!e) return;
-    const t = Math.max(1, h.length - 1), n = Ye;
+    const t = Math.max(1, h.length - 1), n = $e;
     e.innerHTML = "";
     for (let r = 1; r <= t; r++) {
       const s = document.createElement("option");
@@ -966,26 +966,26 @@ function Qo(x, y) {
     const i = document.createElement("option");
     i.value = "all", i.textContent = "All", e.appendChild(i);
     const o = n === "all" ? "all" : String(Math.min(Number(n) || 1, t));
-    e.value = o, Ye = o === "all" ? "all" : Number(o);
+    e.value = o, $e = o === "all" ? "all" : Number(o);
   }
-  function _() {
-    Number(P.value) * 60;
-    const e = Number(R.value), t = Number(B.value), n = L[M], i = n != null && n.warmupOff ? [] : yn(fe), o = yn(V), r = yn(be);
-    if (n && (n.total = Number(P.value), n.work = e, n.rest = t, n.rounds = Number(Pe.value) || 1, n.customSequence ? n.sequence = V.map((c) => ({ ...c })) : (n.strength = V.map((c) => ({ ...c })), n.warmup = fe.map((c) => ({ ...c })), n.cooldown = be.map((c) => ({ ...c })))), n != null && n.customSequence) {
-      const c = o.map((w) => {
-        if (w.kind === "video") return { ...w, duration: kt(w, e), rest: 0 };
-        if (w.kind === "rest") {
-          const U = w.useGlobalTiming === !0 ? t : Number(w.duration) || t;
-          return { ...w, duration: U, rest: 0 };
+  function q() {
+    Number(D.value) * 60;
+    const e = Number(B.value), t = Number(A.value), n = L[F], i = n != null && n.warmupOff ? [] : Tn(we), o = Tn(j), r = Tn(ke);
+    if (n && (n.total = Number(D.value), n.work = e, n.rest = t, n.rounds = Number(_e.value) || 1, n.customSequence ? n.sequence = j.map((m) => ({ ...m })) : (n.strength = j.map((m) => ({ ...m })), n.warmup = we.map((m) => ({ ...m })), n.cooldown = ke.map((m) => ({ ...m })))), n != null && n.customSequence) {
+      const m = o.map((E) => {
+        if (E.kind === "video") return { ...E, duration: Et(E, e), rest: 0 };
+        if (E.kind === "rest") {
+          const Ze = E.useGlobalTiming === !0 ? t : Number(E.duration) || t;
+          return { ...E, duration: Ze, rest: 0 };
         }
-        const O = w.useGlobalTiming === !1 && Number(w.duration) || e;
-        return { ...w, duration: O, rest: 0 };
+        const X = E.useGlobalTiming === !1 && Number(E.duration) || e;
+        return { ...E, duration: X, rest: 0 };
       });
-      n.autoRest && Number(n.autoRestDuration) > 0 ? (h = [], c.forEach((w, O) => {
-        h.push(w);
-        const U = c[O + 1];
-        w.kind !== "rest" && U && U.kind !== "rest" && h.push({
-          id: "auto-rest-" + O,
+      n.autoRest && Number(n.autoRestDuration) > 0 ? (h = [], m.forEach((E, X) => {
+        h.push(E);
+        const Ze = m[X + 1];
+        E.kind !== "rest" && Ze && Ze.kind !== "rest" && h.push({
+          id: "auto-rest-" + X,
           name: "Rest",
           group: "Rest",
           kind: "rest",
@@ -994,118 +994,126 @@ function Qo(x, y) {
           rest: 0,
           autoGenerated: !0
         });
-      })) : h = c;
+      })) : h = m;
     } else
-      h = [...i, ...o, ...r].map((c) => c.kind === "video" ? { ...c, duration: kt(c, e), rest: 0 } : c.kind === "rest" ? { ...c, duration: c.useGlobalTiming === !0 ? t : Number(c.duration) || t, rest: 0 } : { ...c, duration: c.useGlobalTiming === !1 && Number(c.duration) || e, rest: t }), h.forEach((c, w) => {
-        var O;
-        ((O = h[w + 1]) == null ? void 0 : O.kind) === "rest" && (c.rest = 0);
+      h = [...i.map((m) => ({ ...m, section: "warmup" })), ...o, ...r.map((m) => ({ ...m, section: "cooldown" }))].map((m) => m.kind === "video" ? { ...m, duration: Et(m, e), rest: 0 } : m.kind === "rest" ? { ...m, duration: m.useGlobalTiming === !0 ? t : Number(m.duration) || t, rest: 0 } : { ...m, duration: m.useGlobalTiming === !1 && Number(m.duration) || e, rest: t }), h.forEach((m, E) => {
+        var X;
+        ((X = h[E + 1]) == null ? void 0 : X.kind) === "rest" && (m.rest = 0);
       }), h.length && (h[h.length - 1].rest = 0);
-    const s = Math.max(1, Math.min(10, Number(Pe.value) || 1)), l = h, u = l.length, p = l.reduce((c, w) => c + w.duration + w.rest, 0);
+    const s = Math.max(1, Math.min(10, Number(_e.value) || 1)), l = h, g = (m) => s <= 1 ? null : m.section === "warmup" || m.presetRole === "warmup" ? "first" : m.section === "cooldown" || m.presetRole === "cooldown" ? "last" : m.kind === "video" && (m.videoRounds === "first" || m.videoRounds === "last") ? m.videoRounds : null, p = (m) => !!g(m), u = l.filter((m) => !p(m)), d = l.filter(p), c = u.length, T = u.reduce((m, E) => m + E.duration + E.rest, 0), C = d.reduce((m, E) => m + E.duration + E.rest, 0), v = [
+      d.some((m) => m.section === "warmup" || m.presetRole === "warmup") && "warm-up",
+      d.some((m) => m.section === "cooldown" || m.presetRole === "cooldown") && "cooldown",
+      d.some((m) => m.kind === "video" && !m.section && !m.presetRole) && "video"
+    ].filter(Boolean), b = v.length > 1 ? v.slice(0, -1).join(", ") + " & " + v[v.length - 1] : v[0] || "";
     h = [];
-    for (let c = 1; c <= s; c++)
-      if (l.forEach((w, O) => h.push({ ...w, id: w.id + (s > 1 ? "-r" + c : ""), round: c, roundIndex: O })), c < s && u)
+    const f = (m, E) => {
+      const X = g(m);
+      return !X || (X === "first" ? E === 1 : E === s);
+    };
+    for (let m = 1; m <= s; m++)
+      if (l.filter((E) => f(E, m)).forEach((E, X) => h.push({ ...E, id: E.id + (s > 1 ? "-r" + m : ""), round: m, roundIndex: X })), m < s && c)
         if (n != null && n.customSequence)
-          h.push({ id: "round-break-" + c, name: "Rest", group: "Round " + (c + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: c, roundIndex: u, roundBreak: !0 });
+          h.push({ id: "round-break-" + m, name: "Rest", group: "Round " + (m + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: m, roundIndex: c, roundBreak: !0 });
         else {
-          const w = h[h.length - 1];
-          w.rest = t, w.roundBreakAfter = !0;
+          const E = h[h.length - 1];
+          E.rest = t, E.roundBreakAfter = !0;
         }
-    Vt();
-    const m = h.reduce((c, w) => c + w.duration + w.rest, 0), d = Math.round(p / 60), g = Math.round(m / 60), T = s > 1 ? He(d) + " × " + s + " rounds (" + He(g) + ")" : He(g), C = [i.length ? "warm-up" : "", r.length ? "cooldown" : ""].filter(Boolean), v = n != null && n.customSequence ? T + " · " + u + " items" : T + " · " + X(e) + " / " + X(t) + (C.length ? " · " + C.join(" + ") : "");
-    Ma.textContent = X(p);
-    const b = u + " activities" + (s > 1 ? " × " + s : "");
-    Na.textContent = s > 1 ? s + " rounds · " + He(g) + " total" : "1 round", n && (n.summary = v, n.activityCount = u);
-    const f = x.querySelector(".workoutPanel.active .sub");
-    f && (f.textContent = v), Pa.textContent = v, x.querySelectorAll(".workoutPanel.active .activityCount").forEach((c) => c.textContent = b), Vt(), ja(), Ln(), Ct(), Oa(), z && Te(), je.workout.classList.contains("active") && !j && jn();
+    Kt();
+    const w = h.reduce((m, E) => m + E.duration + E.rest, 0), _ = Math.round(T / 60), Q = Math.round(w / 60), ne = s > 1 ? qe(_) + " × " + s + " rounds" + (C ? " + " + $(C) + " " + b : "") + " (" + qe(Q) + ")" : qe(Q), U = [i.length ? "warm-up" : "", r.length ? "cooldown" : ""].filter(Boolean), be = n != null && n.customSequence ? ne + " · " + c + " items" : ne + " · " + $(e) + " / " + $(t) + (U.length && !(s > 1 && C) ? " · " + U.join(" + ") : "");
+    Fa.textContent = $(T);
+    const se = h.filter((m) => !m.roundBreak).length, Z = s > 1 ? se + " activities · " + s + " rounds" : c + " activities";
+    Ia.textContent = s > 1 ? s + " rounds · " + qe(Q) + " total" : "1 round", n && (n.summary = be, n.activityCount = c);
+    const St = x.querySelector(".workoutPanel.active .sub");
+    St && (St.textContent = be), Da.textContent = be, x.querySelectorAll(".workoutPanel.active .activityCount").forEach((m) => m.textContent = Z), Kt(), Ya(), Bn(), Ft(), Ga(), O && Fe(), Je.workout.classList.contains("active") && !Y && Jn();
   }
-  const St = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
-  let ee = null, re = null;
-  function Ga(e) {
+  const Mt = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
+  let ie = null, ce = null;
+  function Wa(e) {
     return e = Math.max(1, Number(e) || 0), e >= 3600 && e % 3600 === 0 ? { value: e / 3600, unit: "hour" } : e >= 60 && e % 60 === 0 ? { value: e / 60, unit: "min" } : { value: e, unit: "sec" };
   }
-  function xi(e = !1) {
+  function ki(e = !1) {
     const t = x.querySelector(".moveEditForm input[data-f=url],.moveEditForm input[data-f=name]");
     t && (t.focus({ preventScroll: !0 }), e && t.select());
   }
-  function Wa(e, t) {
-    const n = e.kind === "rest", i = e.kind === "video", o = i ? e.useVideoLength !== !1 : n ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, r = Number(n ? B.value : R.value), s = Ga(i ? e.useVideoLength === !1 ? e.duration : kt({ ...e, useVideoLength: !0 }) : o ? r : e.duration || r), l = i && (Number(e.videoDuration) > 0 || Number(e.end) > 0), u = i ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + I(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + I(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + I(e.name) + '" placeholder="' + (n ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + I(e.group) + '" placeholder="' + (n ? "Rest" : "e.g. Glutes + legs") + '"></label>', p = i ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (l ? " · " + wt(kt({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + X(r), m = document.createElement("div");
-    m.className = "moveRow editing", m.dataset.index = t, m.dataset.id = e.id;
-    const d = (re == null ? void 0 : re.item) === e;
-    m.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (i ? " videoFields" : "") + '">' + u + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (o ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + I(p) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + s.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((f) => '<option value="' + f + '"' + (f === s.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[f] + "</option>").join("") + '</select></div></div><div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div></div>';
-    const g = (f) => m.querySelector("[data-f=" + f + "]"), T = () => {
-      const f = g("global").checked;
-      g("dur").disabled = f, g("unit").disabled = f, m.querySelector(".creatorDurationRow").classList.toggle("isDisabled", f);
+  function Va(e, t) {
+    const n = e.kind === "rest", i = e.kind === "video", o = i ? e.useVideoLength !== !1 : n ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, r = Number(n ? A.value : B.value), s = Wa(i ? e.useVideoLength === !1 ? e.duration : Et({ ...e, useVideoLength: !0 }) : o ? r : e.duration || r), l = i && (Number(e.videoDuration) > 0 || Number(e.end) > 0), g = i ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + P(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + P(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([f, w]) => '<option value="' + f + '"' + ((e.videoRounds || "every") === f ? " selected" : "") + ">" + w + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + P(e.name) + '" placeholder="' + (n ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + P(e.group) + '" placeholder="' + (n ? "Rest" : "e.g. Glutes + legs") + '"></label>', p = i ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (l ? " · " + Lt(Et({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + $(r), u = document.createElement("div");
+    u.className = "moveRow editing", u.dataset.index = t, u.dataset.id = e.id;
+    const d = (ce == null ? void 0 : ce.item) === e;
+    u.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (i ? " videoFields" : "") + '">' + g + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (o ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + P(p) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + s.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((f) => '<option value="' + f + '"' + (f === s.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[f] + "</option>").join("") + '</select></div></div><div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div></div>';
+    const c = (f) => u.querySelector("[data-f=" + f + "]"), T = () => {
+      const f = c("global").checked;
+      c("dur").disabled = f, c("unit").disabled = f, u.querySelector(".creatorDurationRow").classList.toggle("isDisabled", f);
     };
-    g("global").addEventListener("change", T), T();
+    c("global").addEventListener("change", T), T();
     const C = () => {
-      d && Yt(), ee = null, _();
+      d && $t(), ie = null, q();
     }, v = () => {
       if (i) {
         b();
         return;
       }
-      const f = g("name").value.trim();
+      const f = c("name").value.trim();
       if (!f) {
-        g("name").focus();
+        c("name").focus();
         return;
       }
-      e.name = f, e.group = g("group").value.trim() || (n ? "Rest" : "Movement");
-      const c = g("global").checked;
-      e.useGlobalTiming = c, c || (e.duration = Math.max(n ? 5 : 1, jt(g("dur").value, g("unit").value))), d && (re = null), ee = null, _(), W(d ? n ? "Rest added" : "Movement added" : "Movement updated");
+      e.name = f, e.group = c("group").value.trim() || (n ? "Rest" : "Movement");
+      const w = c("global").checked;
+      e.useGlobalTiming = w, w || (e.duration = Math.max(n ? 5 : 1, Jt(c("dur").value, c("unit").value))), d && (ce = null), ie = null, q(), V(d ? n ? "Rest added" : "Movement added" : "Movement updated");
     }, b = () => {
-      const f = g("url").value.trim(), c = qa(f);
-      if (!c) {
-        g("urlError").hidden = !1, g("url").classList.add("invalid"), g("url").focus();
+      const f = c("url").value.trim(), w = qa(f);
+      if (!w) {
+        c("urlError").hidden = !1, c("url").classList.add("invalid"), c("url").focus();
         return;
       }
-      const w = c.id !== e.videoId;
-      e.url = f, e.videoId = c.id, e.start = c.start, e.end = c.end, w && (e.videoDuration = null, e.videoError = null);
-      const O = g("name").value.trim();
-      e.autoName = !O, e.name = O || (w ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.useVideoLength = g("global").checked, e.useVideoLength || (e.duration = Math.max(5, jt(g("dur").value, g("unit").value))), d && (re = null), ee = null, _(), W(d ? "Video added" : "Video updated"), (w || !e.videoDuration || e.autoName && !e.videoTitle) && Ho(e);
+      const _ = w.id !== e.videoId;
+      e.url = f, e.videoId = w.id, e.start = w.start, e.end = w.end, _ && (e.videoDuration = null, e.videoError = null);
+      const Q = c("name").value.trim();
+      e.autoName = !Q, e.name = Q || (_ ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = c("rounds").value, e.useVideoLength = c("global").checked, e.useVideoLength || (e.duration = Math.max(5, Jt(c("dur").value, c("unit").value))), d && (ce = null), ie = null, q(), V(d ? "Video added" : "Video updated"), (_ || !e.videoDuration || e.autoName && !e.videoTitle) && zo(e);
     };
-    return i && g("url").addEventListener("input", () => {
-      g("urlError").hidden = !0, g("url").classList.remove("invalid");
-    }), m.querySelector("[data-a=cancel]").addEventListener("click", C), m.querySelector("[data-a=save]").addEventListener("click", v), m.addEventListener("keydown", (f) => {
+    return i && c("url").addEventListener("input", () => {
+      c("urlError").hidden = !0, c("url").classList.remove("invalid");
+    }), u.querySelector("[data-a=cancel]").addEventListener("click", C), u.querySelector("[data-a=save]").addEventListener("click", v), u.addEventListener("keydown", (f) => {
       f.key === "Escape" && (f.preventDefault(), f.stopPropagation(), C()), f.key === "Enter" && f.target.matches("input") && (f.preventDefault(), v());
-    }), m;
+    }), u;
   }
-  function Sn(e, t) {
+  function Mn(e, t) {
     const n = a(t);
     n.innerHTML = "", e.forEach((i, o) => {
-      if (i === ee) {
-        n.appendChild(Wa(i, o));
+      if (i === ie) {
+        n.appendChild(Va(i, o));
         return;
       }
       const r = document.createElement("div");
       r.className = "moveRow" + (i.hidden ? " hidden" : "") + (i.kind === "rest" ? " restItem" : "") + (i.kind === "video" ? " videoItem" : ""), r.dataset.index = o, r.dataset.id = i.id;
-      const s = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : X(i.duration) : i.useGlobalTiming === !1 ? X(i.duration) : "Global timing", l = i.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", u = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + X(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? wt(kt(i)) : "plays to the end") : i.group + " · " + s;
-      r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + I(i.name) + '. Drag, or use the up and down arrow keys">' + St + '</button><div class="moveText"><div class="moveItemName">' + I(i.name) + l + '</div><div class="moveMeta">' + I(u) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + I(i.name) + '">Edit</button><button class="hideBtn" type="button">' + (i.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + I(i.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
-        Yt(), ee = i, _(), xi();
+      const s = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : $(i.duration) : i.useGlobalTiming === !1 ? $(i.duration) : "Global timing", l = i.kind === "rest" ? '<span class="moveKindBadge">Rest</span>' : i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", g = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + $(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? Lt(Et(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + s;
+      r.innerHTML = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + P(i.name) + '. Drag, or use the up and down arrow keys">' + Mt + '</button><div class="moveText"><div class="moveItemName">' + P(i.name) + l + '</div><div class="moveMeta">' + P(g) + '</div></div><div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + P(i.name) + '">Edit</button><button class="hideBtn" type="button">' + (i.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + P(i.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
+        $t(), ie = i, q(), ki();
       }), r.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
-        i.hidden = !i.hidden, _();
+        i.hidden = !i.hidden, q();
       });
       const p = r.querySelector(".removeBtn");
-      cn(p, p.querySelector(".removeFill"), 1200, () => {
+      vn(p, p.querySelector(".removeFill"), 1200, () => {
         const d = e.indexOf(i);
-        d < 0 || (e.splice(d, 1), _(), W("Removed " + i.name, { label: "Undo", run: () => {
-          e.splice(Math.min(d, e.length), 0, i), _();
+        d < 0 || (e.splice(d, 1), q(), V("Removed " + i.name, { label: "Undo", run: () => {
+          e.splice(Math.min(d, e.length), 0, i), q();
         } }));
       });
-      const m = r.querySelector(".dragHandle");
-      m.addEventListener("pointerdown", (d) => Va(d, r, n, e)), m.addEventListener("keydown", (d) => {
+      const u = r.querySelector(".dragHandle");
+      u.addEventListener("pointerdown", (d) => ja(d, r, n, e)), u.addEventListener("keydown", (d) => {
         var C, v;
         if (d.key !== "ArrowUp" && d.key !== "ArrowDown") return;
         d.preventDefault();
-        const g = e.indexOf(i), T = g + (d.key === "ArrowUp" ? -1 : 1);
-        T < 0 || T >= e.length || (e.splice(g, 1), e.splice(T, 0, i), _(), (v = (C = a(t).children[T]) == null ? void 0 : C.querySelector(".dragHandle")) == null || v.focus());
+        const c = e.indexOf(i), T = c + (d.key === "ArrowUp" ? -1 : 1);
+        T < 0 || T >= e.length || (e.splice(c, 1), e.splice(T, 0, i), q(), (v = (C = a(t).children[T]) == null ? void 0 : C.querySelector(".dragHandle")) == null || v.focus());
       }), n.appendChild(r);
     });
   }
-  const Ue = () => {
+  const Qe = () => {
     var e;
     return (e = window.matchMedia) == null ? void 0 : e.call(window, "(prefers-reduced-motion: reduce)").matches;
-  }, yi = "transform .24s cubic-bezier(.2,.8,.2,1)";
-  function Va(e, t, n, i) {
+  }, Si = "transform .24s cubic-bezier(.2,.8,.2,1)";
+  function ja(e, t, n, i) {
     if (e.button !== void 0 && e.button !== 0) return;
     e.preventDefault();
     const o = e.currentTarget;
@@ -1114,70 +1122,70 @@ function Qo(x, y) {
     } catch {
     }
     const r = t.closest(".exerciseScroller"), s = e.clientY - t.getBoundingClientRect().top;
-    let l = e.clientY, u = null;
+    let l = e.clientY, g = null;
     t.classList.add("dragging"), t.style.transition = "none";
     const p = () => {
       t.style.transform = "";
       const v = t.getBoundingClientRect().top;
       t.style.transform = "translateY(" + (l - s - v) + "px) scale(1.015)";
-    }, m = (v) => {
-      const b = [...n.children].filter((c) => c !== t), f = new Map(b.map((c) => [c, c.getBoundingClientRect().top]));
-      v(), !Ue() && b.forEach((c) => {
-        c.style.transition = "none", c.style.transform = "";
-        const w = f.get(c) - c.getBoundingClientRect().top;
-        w && (c.style.transform = "translateY(" + w + "px)", c.getBoundingClientRect(), c.style.transition = yi, c.style.transform = "");
+    }, u = (v) => {
+      const b = [...n.children].filter((w) => w !== t), f = new Map(b.map((w) => [w, w.getBoundingClientRect().top]));
+      v(), !Qe() && b.forEach((w) => {
+        w.style.transition = "none", w.style.transform = "";
+        const _ = f.get(w) - w.getBoundingClientRect().top;
+        _ && (w.style.transform = "translateY(" + _ + "px)", w.getBoundingClientRect(), w.style.transition = Si, w.style.transform = "");
       });
     }, d = () => {
-      const v = [...n.children].filter((c) => c !== t), b = l - s + t.offsetHeight / 2, f = v.find((c) => {
-        const w = c.getBoundingClientRect();
-        return b < w.top + w.height / 2;
+      const v = [...n.children].filter((w) => w !== t), b = l - s + t.offsetHeight / 2, f = v.find((w) => {
+        const _ = w.getBoundingClientRect();
+        return b < _.top + _.height / 2;
       });
-      f ? t.nextElementSibling !== f && m(() => n.insertBefore(t, f)) : n.lastElementChild !== t && m(() => n.appendChild(t)), p();
-    }, g = () => {
+      f ? t.nextElementSibling !== f && u(() => n.insertBefore(t, f)) : n.lastElementChild !== t && u(() => n.appendChild(t)), p();
+    }, c = () => {
       if (!r) return;
       const v = r.getBoundingClientRect(), b = 56, f = l < v.top + b ? -10 : l > v.bottom - b ? 10 : 0;
       f && (r.scrollTop += f, d());
     }, T = (v) => {
       l = v.clientY, d();
     }, C = () => {
-      clearInterval(u), o.removeEventListener("pointermove", T), o.removeEventListener("pointerup", C), o.removeEventListener("pointercancel", C);
-      const v = [...n.children].map((c) => Number(c.dataset.index)), b = v.some((c, w) => c !== w), f = () => {
+      clearInterval(g), o.removeEventListener("pointermove", T), o.removeEventListener("pointerup", C), o.removeEventListener("pointercancel", C);
+      const v = [...n.children].map((w) => Number(w.dataset.index)), b = v.some((w, _) => w !== _), f = () => {
         if (t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", b) {
-          const c = v.map((w) => i[w]);
-          i.splice(0, i.length, ...c);
+          const w = v.map((_) => i[_]);
+          i.splice(0, i.length, ...w);
         }
-        _(), b && W("Order saved");
+        q(), b && V("Order saved");
       };
-      if (Ue()) {
+      if (Qe()) {
         f();
         return;
       }
-      t.style.transition = yi, t.style.transform = "", setTimeout(f, 250);
+      t.style.transition = Si, t.style.transform = "", setTimeout(f, 250);
     };
-    o.addEventListener("pointermove", T), o.addEventListener("pointerup", C), o.addEventListener("pointercancel", C), u = setInterval(g, 30), p();
+    o.addEventListener("pointermove", T), o.addEventListener("pointerup", C), o.addEventListener("pointercancel", C), g = setInterval(c, 30), p();
   }
-  function ja() {
+  function Ya() {
     var o, r, s, l;
-    const e = L[M], t = (o = a("warmupList")) == null ? void 0 : o.closest("section"), n = (r = a("cooldownList")) == null ? void 0 : r.closest("section"), i = (l = (s = a("strengthList")) == null ? void 0 : s.closest("section")) == null ? void 0 : l.querySelector(".sectionTitle");
-    e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), i && (i.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), i && (i.textContent = "Kettlebell work")), Sn(fe, "warmupList"), Sn(V, "strengthList"), Sn(be, "cooldownList");
+    const e = L[F], t = (o = a("warmupList")) == null ? void 0 : o.closest("section"), n = (r = a("cooldownList")) == null ? void 0 : r.closest("section"), i = (l = (s = a("strengthList")) == null ? void 0 : s.closest("section")) == null ? void 0 : l.querySelector(".sectionTitle");
+    e != null && e.customSequence ? (t && (t.hidden = !0), n && (n.hidden = !0), i && (i.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), i && (i.textContent = "Kettlebell work")), Mn(we, "warmupList"), Mn(j, "strengthList"), Mn(ke, "cooldownList");
   }
-  function Yt() {
-    if (!re) return;
-    const { item: e, arr: t } = re;
-    re = null;
+  function $t() {
+    if (!ce) return;
+    const { item: e, arr: t } = ce;
+    ce = null;
     const n = t.indexOf(e);
-    n >= 0 && t.splice(n, 1), ee === e && (ee = null);
+    n >= 0 && t.splice(n, 1), ie === e && (ie = null);
   }
-  function Cn(e) {
-    return e.id === "warmupList" ? { arr: fe, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: be, kind: "cooldown", group: "Cooldown" } : { arr: V, kind: "work", group: "" };
+  function Fn(e) {
+    return e.id === "warmupList" ? { arr: we, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: ke, kind: "cooldown", group: "Cooldown" } : { arr: j, kind: "work", group: "" };
   }
-  function Ya(e, t) {
-    const n = Cn(t), i = Date.now().toString(36);
-    return e === "video" ? { id: "video-" + i, name: "", group: "Video", kind: "video", hidden: !1, url: "", videoId: "", start: 0, end: null, videoDuration: null, useVideoLength: !0, autoName: !0, duration: 300 } : e === "rest" ? { id: "rest-" + i, name: "Rest", group: "Rest", kind: "rest", hidden: !1, useGlobalTiming: !0, duration: Number(B.value) } : { id: "movement-" + i, name: "", group: n.group, kind: n.kind, hidden: !1, useGlobalTiming: !0, duration: Number(R.value) };
-  }
-  const wi = "cubic-bezier(.34,1.46,.64,1)";
   function Ua(e, t) {
-    if (Ue() || !e) {
+    const n = Fn(t), i = Date.now().toString(36);
+    return e === "video" ? { id: "video-" + i, name: "", group: "Video", kind: "video", hidden: !1, url: "", videoId: "", start: 0, end: null, videoDuration: null, useVideoLength: !0, autoName: !0, duration: 300 } : e === "rest" ? { id: "rest-" + i, name: "Rest", group: "Rest", kind: "rest", hidden: !1, useGlobalTiming: !0, duration: Number(A.value) } : { id: "movement-" + i, name: "", group: n.group, kind: n.kind, hidden: !1, useGlobalTiming: !0, duration: Number(B.value) };
+  }
+  const Ci = "cubic-bezier(.34,1.46,.64,1)";
+  function Za(e, t) {
+    if (Qe() || !e) {
       t();
       return;
     }
@@ -1189,138 +1197,138 @@ function Qo(x, y) {
       const s = o.get(n(r));
       if (s === void 0) return;
       const l = s - r.getBoundingClientRect().top;
-      Math.abs(l) < 0.5 || r.animate([{ transform: "translateY(" + l + "px)" }, { transform: "none" }], { duration: 440, easing: wi });
+      Math.abs(l) < 0.5 || r.animate([{ transform: "translateY(" + l + "px)" }, { transform: "none" }], { duration: 440, easing: Ci });
     });
   }
-  function Za(e, t) {
-    if (!e || Ue()) return;
+  function Ka(e, t) {
+    if (!e || Qe()) return;
     const n = e.offsetHeight, i = Math.max(0, n - (t || 0));
-    e.animate([{ clipPath: "inset(0 0 " + i + "px 0 round 20.8px)" }, { clipPath: "inset(0 0 0 0 round 20.8px)" }], { duration: 460, easing: wi });
+    e.animate([{ clipPath: "inset(0 0 " + i + "px 0 round 20.8px)" }, { clipPath: "inset(0 0 0 0 round 20.8px)" }], { duration: 460, easing: Ci });
   }
-  function ki(e, t, n, i) {
-    const { arr: o } = Cn(t), r = Ya(e, t);
-    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), re = { item: r, arr: o }, ee = r, Ua(t.closest(".exerciseScroller,.createStepSlot") || t, () => _());
+  function Ti(e, t, n, i) {
+    const { arr: o } = Fn(t), r = Ua(e, t);
+    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), ce = { item: r, arr: o }, ie = r, Za(t.closest(".exerciseScroller,.createStepSlot") || t, () => q());
     const s = t.querySelector(".moveRow.editing");
-    return Za(s, i), xi(e === "rest"), s;
+    return Ka(s, i), ki(e === "rest"), s;
   }
-  function Ka(e) {
+  function Ja(e) {
     for (let t = e; t && t.nodeType === 1; t = t.parentElement) {
       const n = getComputedStyle(t).overflowY;
       if (/(auto|scroll)/.test(n) && t.scrollHeight > t.clientHeight) return t;
     }
     return null;
   }
-  function Ja(e, t, n, i) {
-    var ga;
-    (ee || re) && (Yt(), ee = null, _());
-    const o = !Ue(), r = e.getBoundingClientRect(), s = ((ga = x.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : ga.offsetHeight) || 80, l = Ka(e), u = e.closest(".exerciseScroller,.createFlow") || l, p = document.createElement("div");
+  function $a(e, t, n, i) {
+    var va;
+    (ie || ce) && ($t(), ie = null, q());
+    const o = !Qe(), r = e.getBoundingClientRect(), s = ((va = x.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : va.offsetHeight) || 80, l = Ja(e), g = e.closest(".exerciseScroller,.createFlow") || l, p = document.createElement("div");
     p.className = "addGhost" + (t === "movement" ? "" : " rest"), p.setAttribute("aria-hidden", "true");
-    const m = { movement: ["New movement", "Drop to add, then name it"], rest: ["Rest", "Rest · Global timing"], video: ["New video", "Drop to add, then paste a YouTube link"] }[t];
-    p.innerHTML = '<span class="addGhostGrip">' + St + '</span><span class="addGhostText"><strong>' + m[0] + "</strong><small>" + m[1] + "</small></span>", p.style.width = r.width + "px", p.style.height = r.height + "px", p.style.transform = "translate(" + r.left + "px," + r.top + "px)", a("workoutModal").appendChild(p), e.classList.add("lifting");
-    const d = n - r.left, g = i - r.top, T = 44;
-    let C = n, v = i, b = r.left, f = r.top, c = 0, w = 0, O = !o, U = null, Z = null, bt = -1, se = 0, K = null;
-    const ii = () => ["warmupList", "strengthList", "cooldownList"].map((k) => a(k)).filter((k) => k && k.getClientRects().length && !k.closest("[hidden]")), ca = (k) => {
-      if (k === U) return;
-      U = k, p.classList.toggle("overList", !!k);
-      const A = k ? k.getBoundingClientRect().width : r.width;
-      p.style.width = A + "px", p.style.height = (k ? s : r.height) + "px";
-    }, Uo = (k) => {
+    const u = { movement: ["New movement", "Drop to add, then name it"], rest: ["Rest", "Rest · Global timing"], video: ["New video", "Drop to add, then paste a YouTube link"] }[t];
+    p.innerHTML = '<span class="addGhostGrip">' + Mt + '</span><span class="addGhostText"><strong>' + u[0] + "</strong><small>" + u[1] + "</small></span>", p.style.width = r.width + "px", p.style.height = r.height + "px", p.style.transform = "translate(" + r.left + "px," + r.top + "px)", a("workoutModal").appendChild(p), e.classList.add("lifting");
+    const d = n - r.left, c = i - r.top, T = 44;
+    let C = n, v = i, b = r.left, f = r.top, w = 0, _ = 0, Q = !o, ne = null, U = null, be = -1, se = 0, Z = null;
+    const St = () => ["warmupList", "strengthList", "cooldownList"].map((k) => a(k)).filter((k) => k && k.getClientRects().length && !k.closest("[hidden]")), m = (k) => {
+      if (k === ne) return;
+      ne = k, p.classList.toggle("overList", !!k);
+      const N = k ? k.getBoundingClientRect().width : r.width;
+      p.style.width = N + "px", p.style.height = (k ? s : r.height) + "px";
+    }, E = (k) => {
       k.classList.add("leaving"), k.style.height = "0px", k.style.marginTop = "-8px", setTimeout(() => k.remove(), o ? 320 : 0);
-    }, ai = (k, A, G) => {
-      if (Z && Z.parentNode === k && bt === G || (Z && (Uo(Z), Z = null, bt = -1), !k)) return;
+    }, X = (k, N, W) => {
+      if (U && U.parentNode === k && be === W || (U && (E(U), U = null, be = -1), !k)) return;
       const J = document.createElement("div");
-      J.className = "dropSlot", k.insertBefore(J, A), Z = J, bt = G, J.getBoundingClientRect(), J.style.height = s + "px", J.style.marginTop = "0px";
-    }, pa = () => {
-      let k = null, A = 1 / 0;
-      for (const Ne of ii()) {
-        const oe = Ne.getBoundingClientRect();
-        if (C < oe.left - 48 || C > oe.right + 48) continue;
-        const he = oe.top - 28, Ie = oe.bottom + 28, va = v < he ? he - v : v > Ie ? v - Ie : 0;
-        va < A && (A = va, k = Ne);
+      J.className = "dropSlot", k.insertBefore(J, N), U = J, be = W, J.getBoundingClientRect(), J.style.height = s + "px", J.style.marginTop = "0px";
+    }, Ze = () => {
+      let k = null, N = 1 / 0;
+      for (const He of St()) {
+        const de = He.getBoundingClientRect();
+        if (C < de.left - 48 || C > de.right + 48) continue;
+        const ye = de.top - 28, ze = de.bottom + 28, ha = v < ye ? ye - v : v > ze ? v - ze : 0;
+        ha < N && (N = ha, k = He);
       }
-      const G = u == null ? void 0 : u.getBoundingClientRect(), ve = G && C >= G.left && C <= G.right && v >= G.top && v <= G.bottom || A === 0 ? k : null;
-      if (ve) {
-        const Ne = [...ve.children].filter((he) => he.classList.contains("moveRow"));
-        let oe = Ne.findIndex((he) => {
-          const Ie = he.getBoundingClientRect();
-          return v < Ie.top + Ie.height / 2;
+      const W = g == null ? void 0 : g.getBoundingClientRect(), xe = W && C >= W.left && C <= W.right && v >= W.top && v <= W.bottom || N === 0 ? k : null;
+      if (xe) {
+        const He = [...xe.children].filter((ye) => ye.classList.contains("moveRow"));
+        let de = He.findIndex((ye) => {
+          const ze = ye.getBoundingClientRect();
+          return v < ze.top + ze.height / 2;
         });
-        oe < 0 && (oe = Ne.length), ai(ve, Ne[oe] || null, oe);
-      } else ai(null);
-      ca(ve);
+        de < 0 && (de = He.length), X(xe, He[de] || null, de);
+      } else X(null);
+      m(xe);
     }, Zo = () => {
-      if (K) return K.aim();
-      if (U) {
-        const k = U.getBoundingClientRect();
-        let A = v - s / 2;
-        return Z && (A = A * 0.6 + Z.getBoundingClientRect().top * 0.4), { x: k.left, y: A };
+      if (Z) return Z.aim();
+      if (ne) {
+        const k = ne.getBoundingClientRect();
+        let N = v - s / 2;
+        return U && (N = N * 0.6 + U.getBoundingClientRect().top * 0.4), { x: k.left, y: N };
       }
-      return { x: C - d, y: v - g };
-    }, oi = (k, A, G, J) => {
-      p.style.transform = "translate(" + b + "px," + f + "px) rotate(" + k + "deg) rotate(" + A + "rad) scale(" + G + "," + J + ") rotate(" + -A + "rad)";
-    }, ua = () => {
-      if (se = requestAnimationFrame(ua), !O) {
-        const oe = C - n, he = v - i, Ie = Math.min(Math.hypot(oe, he) / T, 1);
-        b = r.left + oe * 0.35, f = r.top + he * 0.35, oi(0, Math.atan2(he, oe), 1 + 0.155 * Ie, 1 - 0.1 * Ie);
+      return { x: C - d, y: v - c };
+    }, li = (k, N, W, J) => {
+      p.style.transform = "translate(" + b + "px," + f + "px) rotate(" + k + "deg) rotate(" + N + "rad) scale(" + W + "," + J + ") rotate(" + -N + "rad)";
+    }, ma = () => {
+      if (se = requestAnimationFrame(ma), !Q) {
+        const de = C - n, ye = v - i, ze = Math.min(Math.hypot(de, ye) / T, 1);
+        b = r.left + de * 0.35, f = r.top + ye * 0.35, li(0, Math.atan2(ye, de), 1 + 0.155 * ze, 1 - 0.1 * ze);
         return;
       }
       const k = Zo();
       if (!o) {
-        b = k.x, f = k.y, oi(0, 0, 1, 1), K && (cancelAnimationFrame(se), K.done());
+        b = k.x, f = k.y, li(0, 0, 1, 1), Z && (cancelAnimationFrame(se), Z.done());
         return;
       }
-      const A = K ? K.k : 0.17, G = K ? K.d : 0.7;
-      c = (c + (k.x - b) * A) * G, w = (w + (k.y - f) * A) * G, b += c, f += w;
-      const J = Math.hypot(c, w), ve = Math.min(J / 48, 1), Ne = U || K ? 0 : Math.max(-5, Math.min(5, c * 0.32));
-      oi(Ne, Math.atan2(w, c), 1 + 0.1 * ve, 1 - 0.063 * ve), K && J < 0.15 && Math.hypot(k.x - b, k.y - f) < 0.6 && (cancelAnimationFrame(se), K.done());
+      const N = Z ? Z.k : 0.17, W = Z ? Z.d : 0.7;
+      w = (w + (k.x - b) * N) * W, _ = (_ + (k.y - f) * N) * W, b += w, f += _;
+      const J = Math.hypot(w, _), xe = Math.min(J / 48, 1), He = ne || Z ? 0 : Math.max(-5, Math.min(5, w * 0.32));
+      li(He, Math.atan2(_, w), 1 + 0.1 * xe, 1 - 0.063 * xe), Z && J < 0.15 && Math.hypot(k.x - b, k.y - f) < 0.6 && (cancelAnimationFrame(se), Z.done());
     }, Ko = setInterval(() => {
-      if (!l || K) return;
-      const k = l.getBoundingClientRect(), A = 64, G = v < k.top + A ? -(k.top + A - v) / 4 : v > k.bottom - A ? (v - (k.bottom - A)) / 4 : 0;
-      G && (l.scrollTop += Math.max(-18, Math.min(18, G)), pa());
+      if (!l || Z) return;
+      const k = l.getBoundingClientRect(), N = 64, W = v < k.top + N ? -(k.top + N - v) / 4 : v > k.bottom - N ? (v - (k.bottom - N)) / 4 : 0;
+      W && (l.scrollTop += Math.max(-18, Math.min(18, W)), Ze());
     }, 30);
-    se = requestAnimationFrame(ua);
-    let ma = !1;
-    const xt = (k, A) => {
-      if (ma) return;
-      ma = !0, cancelAnimationFrame(se);
-      const G = Z ? Z.offsetHeight : s;
-      !k && Z && (Z.remove(), Z = null), p.classList.add("leaving"), setTimeout(() => p.remove(), 180), e.classList.remove("lifting"), k && ki(t, k, A, G);
+    se = requestAnimationFrame(ma);
+    let ga = !1;
+    const Ct = (k, N) => {
+      if (ga) return;
+      ga = !0, cancelAnimationFrame(se);
+      const W = U ? U.offsetHeight : s;
+      !k && U && (U.remove(), U = null), p.classList.add("leaving"), setTimeout(() => p.remove(), 180), e.classList.remove("lifting"), k && Ti(t, k, N, W);
     };
     return {
-      move(k, A) {
-        C = k, v = A, !O && Math.hypot(C - n, v - i) > T && (O = !0, c = (C - n) * 0.085, w = (v - i) * 0.085), O && pa();
+      move(k, N) {
+        C = k, v = N, !Q && Math.hypot(C - n, v - i) > T && (Q = !0, w = (C - n) * 0.085, _ = (v - i) * 0.085), Q && Ze();
       },
       drop(k) {
         clearInterval(Ko);
-        const A = U, G = bt;
-        if (!k && A && Z) {
-          const J = Z;
-          K = { k: 0.24, d: 0.62, aim: () => {
-            const ve = J.getBoundingClientRect();
-            return { x: ve.left, y: ve.top };
-          }, done: () => xt(A, G) }, setTimeout(() => xt(A, G), 650), o || (cancelAnimationFrame(se), xt(A, G));
+        const N = ne, W = be;
+        if (!k && N && U) {
+          const J = U;
+          Z = { k: 0.24, d: 0.62, aim: () => {
+            const xe = J.getBoundingClientRect();
+            return { x: xe.left, y: xe.top };
+          }, done: () => Ct(N, W) }, setTimeout(() => Ct(N, W), 650), o || (cancelAnimationFrame(se), Ct(N, W));
           return;
         }
-        ai(null), ca(null), K = { k: 0.2, d: 0.66, aim: () => {
+        X(null), m(null), Z = { k: 0.2, d: 0.66, aim: () => {
           const J = e.getBoundingClientRect();
           return { x: J.left, y: J.top };
-        }, done: () => xt(null) }, setTimeout(() => xt(null), 650), o || (cancelAnimationFrame(se), xt(null));
+        }, done: () => Ct(null) }, setTimeout(() => Ct(null), 650), o || (cancelAnimationFrame(se), Ct(null));
       }
     };
   }
-  function Tn(e, t) {
+  function Rn(e, t) {
     let n = !1;
     e.addEventListener("click", (i) => {
       if (n) {
         n = !1, i.preventDefault();
         return;
       }
-      const o = a("strengthList"), r = ki(t, o, Cn(o).arr.length, 0);
-      r == null || r.scrollIntoView({ block: "nearest", behavior: Ue() ? "auto" : "smooth" });
+      const o = a("strengthList"), r = Ti(t, o, Fn(o).arr.length, 0);
+      r == null || r.scrollIntoView({ block: "nearest", behavior: Qe() ? "auto" : "smooth" });
     }), e.addEventListener("pointerdown", (i) => {
       if (i.button !== void 0 && i.button !== 0) return;
       const o = i.pointerId, r = i.clientX, s = i.clientY;
-      let l = null, u = !1;
+      let l = null, g = !1;
       try {
         e.setPointerCapture(o);
       } catch {
@@ -1333,361 +1341,361 @@ function Qo(x, y) {
           }
           if (!l) {
             if (Math.hypot(b.clientX - r, b.clientY - s) < 6) return;
-            l = Ja(e, t, r, s);
+            l = $a(e, t, r, s);
           }
           l.move(b.clientX, b.clientY);
         }
-      }, m = (b) => {
+      }, u = (b) => {
         b.pointerId === o && v(!1);
       }, d = (b) => {
         b.pointerId === o && v(!0);
-      }, g = () => v(!1), T = () => v(!0), C = (b) => {
+      }, c = () => v(!1), T = () => v(!0), C = (b) => {
         b.key === "Escape" && l && (b.preventDefault(), b.stopPropagation(), v(!0));
       };
       function v(b) {
-        if (!u && (u = !0, window.removeEventListener("pointermove", p, !0), window.removeEventListener("pointerup", m, !0), window.removeEventListener("pointercancel", d, !0), window.removeEventListener("keydown", C, !0), window.removeEventListener("blur", T), e.removeEventListener("lostpointercapture", g), l)) {
+        if (!g && (g = !0, window.removeEventListener("pointermove", p, !0), window.removeEventListener("pointerup", u, !0), window.removeEventListener("pointercancel", d, !0), window.removeEventListener("keydown", C, !0), window.removeEventListener("blur", T), e.removeEventListener("lostpointercapture", c), l)) {
           const f = l;
           l = null, n = !0, setTimeout(() => {
             n = !1;
           }, 0), f.drop(b);
         }
       }
-      window.addEventListener("pointermove", p, !0), window.addEventListener("pointerup", m, !0), window.addEventListener("pointercancel", d, !0), window.addEventListener("keydown", C, !0), window.addEventListener("blur", T), e.addEventListener("lostpointercapture", g);
+      window.addEventListener("pointermove", p, !0), window.addEventListener("pointerup", u, !0), window.addEventListener("pointercancel", d, !0), window.addEventListener("keydown", C, !0), window.addEventListener("blur", T), e.addEventListener("lostpointercapture", c);
     });
   }
-  function Ln() {
-    V.length > 0;
+  function Bn() {
+    j.length > 0;
     const e = a("addMovementBtn"), t = a("addRestBtn");
-    e && (e.innerHTML = St + "<span>Add movement</span>"), t && (t.innerHTML = St + "<span>Add rest</span>");
+    e && (e.innerHTML = Mt + "<span>Add movement</span>"), t && (t.innerHTML = Mt + "<span>Add rest</span>");
     const n = a("addVideoBtn");
-    n && (n.innerHTML = St + "<span>Add video</span>");
+    n && (n.innerHTML = Mt + "<span>Add video</span>");
   }
-  function Ct() {
+  function Ft() {
     const e = a("useGlobalTiming").checked, t = a("addMovementDuration"), n = a("addMovementUnit");
-    t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", a("globalTimingValue").textContent = "Use global timing · " + X(R.value);
+    t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", a("globalTimingValue").textContent = "Use global timing · " + $(B.value);
     const i = a("useGlobalRestTiming").checked, o = a("addRestDuration"), r = a("addRestUnit");
-    o.disabled = i, r.disabled = i, o.parentElement.style.opacity = i ? ".38" : "1", a("globalRestTimingValue").textContent = "Use global timing · " + X(B.value);
+    o.disabled = i, r.disabled = i, o.parentElement.style.opacity = i ? ".38" : "1", a("globalRestTimingValue").textContent = "Use global timing · " + $(A.value);
   }
-  let Si = "movement";
-  function $a(e) {
-    Si = e;
+  let Li = "movement";
+  function Qa(e) {
+    Li = e;
     const t = a("movementFields"), n = a("restFields");
-    t.hidden = e !== "movement", n.hidden = e !== "rest", a("movementCreatorHeading").textContent = "Add movement", a("movementCreator").setAttribute("aria-label", "Create movement"), Ct();
+    t.hidden = e !== "movement", n.hidden = e !== "rest", a("movementCreatorHeading").textContent = "Add movement", a("movementCreator").setAttribute("aria-label", "Create movement"), Ft();
   }
-  function En() {
-    L[M];
-    const e = z ? !0 : a("useGlobalTiming").checked, t = e ? Number(R.value) : jt(
+  function An() {
+    L[F];
+    const e = O ? !0 : a("useGlobalTiming").checked, t = e ? Number(B.value) : Jt(
       a("addMovementDuration").value,
       a("addMovementUnit").value
-    ), n = z ? !0 : a("useGlobalRestTiming").checked, i = n ? Number(B.value) : jt(
+    ), n = O ? !0 : a("useGlobalRestTiming").checked, i = n ? Number(A.value) : Jt(
       a("addRestDuration").value,
       a("addRestUnit").value
     );
-    if (Si === "rest") {
+    if (Li === "rest") {
       const o = a("addRestTitle").value.trim() || "Rest", r = a("addRestGroup").value.trim() || "Rest";
-      V.push({
+      j.push({
         id: "rest-" + Date.now(),
         name: o,
         group: r,
         kind: "rest",
         hidden: !1,
         useGlobalTiming: n,
-        duration: Math.max(5, i || Number(B.value))
-      }), _(), a("movementCreator").hidden = !0, a("addRestTitle").value = "Rest", a("addRestGroup").value = "Rest", W("Rest added"), z && (Ve("movements"), Te());
+        duration: Math.max(5, i || Number(A.value))
+      }), q(), a("movementCreator").hidden = !0, a("addRestTitle").value = "Rest", a("addRestGroup").value = "Rest", V("Rest added"), O && (Ke("movements"), Fe());
     } else {
       const o = a("addMovementInput").value.trim();
       if (!o) return;
       const r = a("addMovementGroup").value.trim() || "Movement";
-      V.push({
+      j.push({
         id: "movement-" + Date.now(),
         name: o,
         group: r,
         kind: "work",
         hidden: !1,
         useGlobalTiming: e,
-        duration: Math.max(5, t || Number(R.value))
-      }), a("addMovementInput").value = "", a("addMovementGroup").value = "", _(), a("movementCreator").hidden = !0, W("Movement added"), z && (Ve("movements"), Te());
+        duration: Math.max(5, t || Number(B.value))
+      }), a("addMovementInput").value = "", a("addMovementGroup").value = "", q(), a("movementCreator").hidden = !0, V("Movement added"), O && (Ke("movements"), Fe());
     }
-    Ln();
+    Bn();
   }
-  let Mn = null;
-  function W(e, t) {
+  let Nn = null;
+  function V(e, t) {
     const n = a("toast");
     n.innerHTML = "";
     const i = document.createElement("span");
     if (i.textContent = e, n.appendChild(i), t) {
       const o = document.createElement("button");
       o.type = "button", o.className = "toastAction", o.textContent = t.label, o.addEventListener("click", () => {
-        t.run(), n.classList.remove("show", "withAction"), clearTimeout(Mn);
+        t.run(), n.classList.remove("show", "withAction"), clearTimeout(Nn);
       }), n.appendChild(o);
     }
-    n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(Mn), Mn = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
+    n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(Nn), Nn = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
   }
-  const Qa = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], Xa = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
-  function Ci(e) {
+  const Xa = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], eo = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
+  function Ei(e) {
     return Math.max(0, Math.min(5, Math.floor(Number(e) / 100 * 6)));
   }
-  function Ze(e, t) {
-    return Qa[Ci(t)];
+  function Xe(e, t) {
+    return Xa[Ei(t)];
   }
-  function eo(e) {
-    return Xa[Ci(e)];
+  function to(e) {
+    return eo[Ei(e)];
   }
-  function te(e) {
+  function ae(e) {
     return e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0");
   }
-  function xe() {
-    return { morning: N().morningTime || "08:00", evening: N().eveningTime || "19:00" };
+  function Se() {
+    return { morning: I().morningTime || "08:00", evening: I().eveningTime || "19:00" };
   }
-  function Ke(e) {
+  function et(e) {
     const [t, n] = String(e).split(":").map(Number);
     return (t || 0) * 60 + (n || 0);
   }
-  function to(e) {
-    const t = xe();
-    return e.getHours() * 60 + e.getMinutes() >= Ke(t.evening) ? "evening" : "morning";
+  function no(e) {
+    const t = Se();
+    return e.getHours() * 60 + e.getMinutes() >= et(t.evening) ? "evening" : "morning";
   }
-  function Ut(e, t) {
-    return E.checkins.find((n) => n.date === e && n.slot === t);
+  function Qt(e, t) {
+    return M.checkins.find((n) => n.date === e && n.slot === t);
   }
-  function Zt(e) {
+  function Xt(e) {
     return !!(e && e.mood != null && e.energy != null);
   }
-  function Kt() {
-    const e = /* @__PURE__ */ new Date(), t = te(e), n = to(e), i = xe(), o = e.getHours() * 60 + e.getMinutes();
-    return n === "morning" && o < Ke(i.morning) || Zt(Ut(t, n)) ? null : n;
+  function en() {
+    const e = /* @__PURE__ */ new Date(), t = ae(e), n = no(e), i = Se(), o = e.getHours() * 60 + e.getMinutes();
+    return n === "morning" && o < et(i.morning) || Xt(Qt(t, n)) ? null : n;
   }
-  const Le = a("checkinModal"), Ee = a("checkinTab"), no = a("checkinBadge"), Me = { mood: { input: a("moodInput"), fill: a("moodFill") }, energy: { input: a("energyLevelInput"), fill: a("energyLevelFill") } };
-  function Ti(e) {
-    const { input: t, fill: n } = Me[e];
-    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", Ze(e, t.value));
+  const Re = a("checkinModal"), Be = a("checkinTab"), io = a("checkinBadge"), Ae = { mood: { input: a("moodInput"), fill: a("moodFill") }, energy: { input: a("energyLevelInput"), fill: a("energyLevelFill") } };
+  function Mi(e) {
+    const { input: t, fill: n } = Ae[e];
+    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", Xe(e, t.value));
   }
-  Object.keys(Me).forEach((e) => Me[e].input.addEventListener("input", () => Ti(e)));
-  let ue = null;
-  function Li() {
-    const e = xe(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
-    return n < Ke(e.morning) ? "Next check-in at " + e.morning : n < Ke(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
+  Object.keys(Ae).forEach((e) => Ae[e].input.addEventListener("input", () => Mi(e)));
+  let ve = null;
+  function Fi() {
+    const e = Se(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
+    return n < et(e.morning) ? "Next check-in at " + e.morning : n < et(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
-  function io() {
-    const e = xe(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), i = (o, r) => {
+  function ao() {
+    const e = Se(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), i = (o, r) => {
       const [s, l] = o.split(":").map(Number);
       return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), s, l);
     };
-    return n < Ke(e.morning) ? { date: i(e.morning), time: e.morning } : n < Ke(e.evening) ? { date: i(e.evening), time: e.evening } : { date: i(e.morning, !0), time: e.morning };
+    return n < et(e.morning) ? { date: i(e.morning), time: e.morning } : n < et(e.evening) ? { date: i(e.evening), time: e.evening } : { date: i(e.morning, !0), time: e.morning };
   }
-  let Fn = null, Rn = null;
-  function Ei() {
-    if (Kt()) {
-      Jt(), ze();
+  let In = null, Pn = null;
+  function Ri() {
+    if (en()) {
+      tn(), Ge();
       return;
     }
-    const e = io(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), i = Math.floor(t % 3600 / 60), o = t % 60;
+    const e = ao(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), i = Math.floor(t % 3600 / 60), o = t % 60;
     a("peekCountdown").textContent = n + ":" + String(i).padStart(2, "0") + ":" + String(o).padStart(2, "0"), a("peekAt").textContent = "Available at " + e.time;
   }
-  function ao() {
-    Ei(), Ee.classList.add("peek"), clearInterval(Rn), Rn = setInterval(Ei, 1e3), clearTimeout(Fn), Fn = setTimeout(Jt, 6e3);
+  function oo() {
+    Ri(), Be.classList.add("peek"), clearInterval(Pn), Pn = setInterval(Ri, 1e3), clearTimeout(In), In = setTimeout(tn, 6e3);
   }
-  function Jt() {
-    Ee.classList.remove("peek"), clearInterval(Rn), clearTimeout(Fn);
+  function tn() {
+    Be.classList.remove("peek"), clearInterval(Pn), clearTimeout(In);
   }
-  function Mi() {
-    const e = Kt();
+  function Bi() {
+    const e = en();
     if (!e) {
-      Ee.classList.contains("peek") ? Jt() : ao();
+      Be.classList.contains("peek") ? tn() : oo();
       return;
     }
-    ue = { date: te(/* @__PURE__ */ new Date()), slot: e };
-    const n = Ut(ue.date, e), i = E.checkins.find((r) => Zt(r));
-    Object.keys(Me).forEach((r) => {
-      Me[r].input.value = (n == null ? void 0 : n[r]) ?? (i == null ? void 0 : i[r]) ?? 50, Ti(r);
+    ve = { date: ae(/* @__PURE__ */ new Date()), slot: e };
+    const n = Qt(ve.date, e), i = M.checkins.find((r) => Xt(r));
+    Object.keys(Ae).forEach((r) => {
+      Ae[r].input.value = (n == null ? void 0 : n[r]) ?? (i == null ? void 0 : i[r]) ?? 50, Mi(r);
     });
-    const o = xe()[e];
-    a("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, a("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", Le.classList.add("open"), Le.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => Me.mood.input.focus());
+    const o = Se()[e];
+    a("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, a("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", Re.classList.add("open"), Re.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => Ae.mood.input.focus());
   }
-  function Tt() {
-    Le.classList.remove("open"), Le.setAttribute("aria-hidden", "true"), ue && (Lt = ue.date + "-" + ue.slot);
+  function Rt() {
+    Re.classList.remove("open"), Re.setAttribute("aria-hidden", "true"), ve && (Bt = ve.date + "-" + ve.slot);
     try {
-      localStorage.setItem("move-assistant-dismissed", Lt);
+      localStorage.setItem("move-assistant-dismissed", Bt);
     } catch {
     }
-    ue = null, ze();
+    ve = null, Ge();
   }
-  function oo() {
-    if (!ue) return;
-    if (Zt(Ut(ue.date, ue.slot))) {
-      Tt();
+  function ro() {
+    if (!ve) return;
+    if (Xt(Qt(ve.date, ve.slot))) {
+      Rt();
       return;
     }
-    const { date: e, slot: t } = ue;
-    let n = Ut(e, t);
-    n || (n = { date: e, slot: t }, E.checkins.unshift(n), E.checkins = E.checkins.slice(0, 2e3)), n.mood = Number(Me.mood.input.value), n.energy = Number(Me.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), ce(), y.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: Ze("mood", n.mood), energy_label: Ze("energy", n.energy) }), W((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Tt(), $t(), Et(), We(), Ce();
+    const { date: e, slot: t } = ve;
+    let n = Qt(e, t);
+    n || (n = { date: e, slot: t }, M.checkins.unshift(n), M.checkins = M.checkins.slice(0, 2e3)), n.mood = Number(Ae.mood.input.value), n.energy = Number(Ae.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), me(), y.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: Xe("mood", n.mood), energy_label: Xe("energy", n.energy) }), V((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Rt(), nn(), At(), Ue(), Me();
   }
-  let Lt = "";
+  let Bt = "";
   try {
-    Lt = localStorage.getItem("move-assistant-dismissed") || "";
+    Bt = localStorage.getItem("move-assistant-dismissed") || "";
   } catch {
   }
-  function ze() {
-    const e = Kt();
-    no.hidden = !e, Ee.hidden = !e, e || Jt(), Ee.classList.toggle("due", !!e), Ee.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : Li()), Ee.title = e ? "Check in now" : Li();
+  function Ge() {
+    const e = en();
+    io.hidden = !e, Be.hidden = !e, e || tn(), Be.classList.toggle("due", !!e), Be.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : Fi()), Be.title = e ? "Check in now" : Fi();
   }
-  function Bn() {
-    ze();
-    const e = Kt();
-    !e || Le.classList.contains("open") || N().checkinAutoOpen !== !1 && (!je.home.classList.contains("active") || ne.classList.contains("open") || Lt !== te(/* @__PURE__ */ new Date()) + "-" + e && Mi());
+  function Dn() {
+    Ge();
+    const e = en();
+    !e || Re.classList.contains("open") || I().checkinAutoOpen !== !1 && (!Je.home.classList.contains("active") || oe.classList.contains("open") || Bt !== ae(/* @__PURE__ */ new Date()) + "-" + e && Bi());
   }
-  Ee.addEventListener("click", Mi), a("checkinLater").addEventListener("click", Tt), a("checkinSave").addEventListener("click", oo), Le.addEventListener("click", (e) => {
-    e.target === Le && Tt();
-  }), Le.addEventListener("keydown", (e) => {
-    e.key === "Escape" && (e.preventDefault(), Tt());
-  }), setInterval(Bn, 3e4);
-  function $t() {
-    const e = te(/* @__PURE__ */ new Date()), t = (n) => E.checkins.find((i) => i.date === e && i[n] != null);
+  Be.addEventListener("click", Bi), a("checkinLater").addEventListener("click", Rt), a("checkinSave").addEventListener("click", ro), Re.addEventListener("click", (e) => {
+    e.target === Re && Rt();
+  }), Re.addEventListener("keydown", (e) => {
+    e.key === "Escape" && (e.preventDefault(), Rt());
+  }), setInterval(Dn, 3e4);
+  function nn() {
+    const e = ae(/* @__PURE__ */ new Date()), t = (n) => M.checkins.find((i) => i.date === e && i[n] != null);
     [["mood", "moodMeta"], ["energy", "energyLevelMeta"]].forEach(([n, i]) => {
       const o = t(n);
-      a(i).textContent = o ? Ze(n, o[n]) : "—";
+      a(i).textContent = o ? Xe(n, o[n]) : "—";
     });
   }
-  function Et() {
+  function At() {
     const e = a("feelCard");
     if (!e) return;
-    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), i = [...Array(7)].map((p, m) => {
-      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + m), g = te(d), T = E.checkins.filter((v) => v.date === g), C = (v) => {
+    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), i = [...Array(7)].map((p, u) => {
+      const d = new Date(n.getFullYear(), n.getMonth(), n.getDate() + u), c = ae(d), T = M.checkins.filter((v) => v.date === c), C = (v) => {
         const b = T.map((f) => f[v]).filter((f) => f != null);
-        return b.length ? b.reduce((f, c) => f + c, 0) / b.length : null;
+        return b.length ? b.reduce((f, w) => f + w, 0) / b.length : null;
       };
-      return { d, key: g, mood: C("mood"), energy: C("energy"), count: T.filter(Zt).length, future: d > t && g !== te(t) };
+      return { d, key: c, mood: C("mood"), energy: C("energy"), count: T.filter(Xt).length, future: d > t && c !== ae(t) };
     }), o = (p) => {
-      const m = i.map((d) => d[p]).filter((d) => d != null);
-      return m.length ? m.reduce((d, g) => d + g, 0) / m.length : null;
-    }, r = o("mood"), s = o("energy"), l = (p, m) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + p + "</span><span>" + (m == null ? "—" : I(Ze("", m))) + '</span></div><div class="feelTrack"><span style="width:' + (m == null ? 0 : Math.max(4, m)) + "%;background:" + (m == null ? "transparent" : eo(m)) + '"></span></div></div>', u = i.filter((p) => p.mood != null && p.energy != null).sort((p, m) => m.mood + m.energy - (p.mood + p.energy))[0];
-    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : I(Ze("", (r + s) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + I(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + i.map(
-      (p) => '<div class="weekChip feelDay' + (p.future ? " future" : "") + (p.key === te(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + I(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(p.d)) + "</strong>" + (p.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(p.count) + "</span>") + "</div>" + l("Mood", p.mood) + l("Energy", p.energy) + "</div>"
+      const u = i.map((d) => d[p]).filter((d) => d != null);
+      return u.length ? u.reduce((d, c) => d + c, 0) / u.length : null;
+    }, r = o("mood"), s = o("energy"), l = (p, u) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + p + "</span><span>" + (u == null ? "—" : P(Xe("", u))) + '</span></div><div class="feelTrack"><span style="width:' + (u == null ? 0 : Math.max(4, u)) + "%;background:" + (u == null ? "transparent" : to(u)) + '"></span></div></div>', g = i.filter((p) => p.mood != null && p.energy != null).sort((p, u) => u.mood + u.energy - (p.mood + p.energy))[0];
+    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : P(Xe("", (r + s) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (g ? " · best day " + P(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(g.d)) : "")) + '</div></div></div><div class="feelDays">' + i.map(
+      (p) => '<div class="weekChip feelDay' + (p.future ? " future" : "") + (p.key === ae(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + P(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(p.d)) + "</strong>" + (p.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(p.count) + "</span>") + "</div>" + l("Mood", p.mood) + l("Energy", p.energy) + "</div>"
     ).join("") + "</div>";
   }
-  const Qt = a("upcomingCountSetting");
-  Qt.addEventListener("change", () => {
-    Ye = Qt.value === "all" ? "all" : Number(Qt.value), Gi();
+  const an = a("upcomingCountSetting");
+  an.addEventListener("change", () => {
+    $e = an.value === "all" ? "all" : Number(an.value), ji();
   });
-  const Mt = a("tempoRevealBtn"), An = a("tempoExperiment"), me = a("tempoQuad"), Je = a("tempoDot"), ro = a("tempoEstimate"), so = a("tempoReadout");
-  let $e = { x: 0.5, y: 0.5 }, Ft = !1, Xt = { total: 20, work: 45, rest: 15 };
-  function Nn(e, t, n, i) {
+  const Nt = a("tempoRevealBtn"), Hn = a("tempoExperiment"), he = a("tempoQuad"), tt = a("tempoDot"), so = a("tempoEstimate"), lo = a("tempoReadout");
+  let nt = { x: 0.5, y: 0.5 }, It = !1, on = { total: 20, work: 45, rest: 15 };
+  function zn(e, t, n, i) {
     const o = Math.max(t, Math.min(n, e));
     return Math.round((o - t) / i) * i + t;
   }
-  function lo(e, t) {
-    const n = (e - 0.5) * 2, i = (t - 0.5) * 2, o = Nn(
-      Xt.total + n * 5 + i * 8,
-      Number(P.min),
-      Number(P.max),
-      Number(P.step)
-    ), r = Nn(
-      Xt.work + n * 10 + i * 8,
-      Number(R.min),
-      Number(R.max),
-      Number(R.step)
-    ), s = Nn(
-      Xt.rest + n * 6 + i * 6,
+  function co(e, t) {
+    const n = (e - 0.5) * 2, i = (t - 0.5) * 2, o = zn(
+      on.total + n * 5 + i * 8,
+      Number(D.min),
+      Number(D.max),
+      Number(D.step)
+    ), r = zn(
+      on.work + n * 10 + i * 8,
       Number(B.min),
       Number(B.max),
       Number(B.step)
+    ), s = zn(
+      on.rest + n * 6 + i * 6,
+      Number(A.min),
+      Number(A.max),
+      Number(A.step)
     );
-    return P.value = o, R.value = r, B.value = s, mi.textContent = r + " sec", gi.textContent = s + " sec", Vt(), { total: o, work: r, rest: s };
+    return D.value = o, B.value = r, A.value = s, hi.textContent = r + " sec", fi.textContent = s + " sec", Kt(), { total: o, work: r, rest: s };
   }
-  function In(e, t) {
-    const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", i = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = lo(e, t);
-    so.textContent = n + " + " + i, ro.textContent = o.total + " min", me.setAttribute("aria-valuetext", n + " and " + i + ", estimated " + o.total + " minutes");
+  function _n(e, t) {
+    const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", i = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = co(e, t);
+    lo.textContent = n + " + " + i, so.textContent = o.total + " min", he.setAttribute("aria-valuetext", n + " and " + i + ", estimated " + o.total + " minutes");
   }
-  function Pn(e) {
-    const t = me.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), i = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
-    $e = { x: n, y: i }, Je.style.left = n * 100 + "%", Je.style.top = i * 100 + "%", In(n, i);
+  function On(e) {
+    const t = he.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), i = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
+    nt = { x: n, y: i }, tt.style.left = n * 100 + "%", tt.style.top = i * 100 + "%", _n(n, i);
   }
-  Mt.addEventListener("click", () => {
-    const e = An.hidden;
-    An.hidden = !e, Mt.setAttribute("aria-expanded", e ? "true" : "false"), Mt.textContent = e ? "Now close this" : "Don’t try this!", e && (Xt = {
-      total: Number(P.value),
-      work: Number(R.value),
-      rest: Number(B.value)
-    }, $e = { x: 0.5, y: 0.5 }, Je.style.left = "50%", Je.style.top = "50%", In($e.x, $e.y));
+  Nt.addEventListener("click", () => {
+    const e = Hn.hidden;
+    Hn.hidden = !e, Nt.setAttribute("aria-expanded", e ? "true" : "false"), Nt.textContent = e ? "Now close this" : "Don’t try this!", e && (on = {
+      total: Number(D.value),
+      work: Number(B.value),
+      rest: Number(A.value)
+    }, nt = { x: 0.5, y: 0.5 }, tt.style.left = "50%", tt.style.top = "50%", _n(nt.x, nt.y));
   }), x.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
     Number(e.dataset.feedbackRating), x.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
   }));
-  const en = a("testingFeedbackForm"), Fi = a("testingFeedbackThanks"), co = a("testingFeedbackAgain");
-  en.addEventListener("submit", (e) => {
-    e.preventDefault(), en.hidden = !0, Fi.hidden = !1, W("Feedback captured for prototype");
-  }), co.addEventListener("click", (e) => {
-    e.preventDefault(), en.reset(), x.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Fi.hidden = !0, en.hidden = !1;
-  }), me.addEventListener("pointerdown", (e) => {
+  const rn = a("testingFeedbackForm"), Ai = a("testingFeedbackThanks"), po = a("testingFeedbackAgain");
+  rn.addEventListener("submit", (e) => {
+    e.preventDefault(), rn.hidden = !0, Ai.hidden = !1, V("Feedback captured for prototype");
+  }), po.addEventListener("click", (e) => {
+    e.preventDefault(), rn.reset(), x.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Ai.hidden = !0, rn.hidden = !1;
+  }), he.addEventListener("pointerdown", (e) => {
     var t;
-    Ft = !0, Pn(e);
+    It = !0, On(e);
     try {
-      (t = me.setPointerCapture) == null || t.call(me, e.pointerId);
+      (t = he.setPointerCapture) == null || t.call(he, e.pointerId);
     } catch {
     }
-  }), me.addEventListener("pointermove", (e) => {
-    Ft && Pn(e);
-  }), me.addEventListener("pointerup", (e) => {
-    Ft && (Ft = !1, Pn(e), _());
-  }), me.addEventListener("pointercancel", () => Ft = !1), me.addEventListener("keydown", (e) => {
-    let { x: t, y: n } = $e, i = !0;
-    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : i = !1, i && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), $e = { x: t, y: n }, Je.style.left = t * 100 + "%", Je.style.top = n * 100 + "%", In(t, n), _());
+  }), he.addEventListener("pointermove", (e) => {
+    It && On(e);
+  }), he.addEventListener("pointerup", (e) => {
+    It && (It = !1, On(e), q());
+  }), he.addEventListener("pointercancel", () => It = !1), he.addEventListener("keydown", (e) => {
+    let { x: t, y: n } = nt, i = !0;
+    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : i = !1, i && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), nt = { x: t, y: n }, tt.style.left = t * 100 + "%", tt.style.top = n * 100 + "%", _n(t, n), q());
   });
-  const ne = a("workoutModal");
-  let Rt = null;
-  function Qe(e) {
+  const oe = a("workoutModal");
+  let Pt = null;
+  function it(e) {
     return e.map((t) => ({ ...t }));
   }
-  function po() {
-    const e = L[M];
+  function uo() {
+    const e = L[F];
     return {
-      key: M,
+      key: F,
       profile: e ? JSON.parse(JSON.stringify(e)) : null,
-      warmup: Qe(fe),
-      strength: Qe(V),
-      cooldown: Qe(be),
-      total: Number(P.value),
-      work: Number(R.value),
-      rest: Number(B.value),
-      rounds: Number(Pe.value) || 1
+      warmup: it(we),
+      strength: it(j),
+      cooldown: it(ke),
+      total: Number(D.value),
+      work: Number(B.value),
+      rest: Number(A.value),
+      rounds: Number(_e.value) || 1
     };
   }
-  function Ri(e = !1) {
-    z = !!e, ee = null, re = null, Rt = po(), a("moveEditorTitle").textContent = z ? "Create new move" : "Edit move", a("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", a("moveEditorSubtitle").hidden = !z, a("warmupRow").hidden = z, a("deleteMoveOpen").hidden = z;
+  function Ni(e = !1) {
+    O = !!e, ie = null, ce = null, Pt = uo(), a("moveEditorTitle").textContent = O ? "Create new move" : "Edit move", a("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", a("moveEditorSubtitle").hidden = !O, a("warmupRow").hidden = O, a("deleteMoveOpen").hidden = O;
     const t = a("createMoveOptions");
-    t.hidden = !z;
+    t.hidden = !O;
     {
-      const n = L[M];
+      const n = L[F];
       a("includeWarmupPreset").checked = !!(n != null && n.includeWarmup), a("includeCooldownPreset").checked = !!(n != null && n.includeCooldown);
     }
-    if (Bi(), z) {
+    if (Ii(), O) {
       a("useGlobalTiming").checked = !0, a("useGlobalRestTiming").checked = !0;
-      const n = L[M];
-      wn((n == null ? void 0 : n.preset) || "movement", !1);
+      const n = L[F];
+      Ln((n == null ? void 0 : n.preset) || "movement", !1);
     }
-    a("movementCreator").hidden = !0, $a("movement"), Ln(), Ct(), An.hidden = !0, Mt.setAttribute("aria-expanded", "false"), Mt.textContent = "Don’t try this!", ne.classList.toggle("createMode", z), ne.querySelector(".modal").classList.toggle("createMode", z), ne.classList.add("open"), ne.setAttribute("aria-hidden", "false"), z && La();
+    a("movementCreator").hidden = !0, Qa("movement"), Bn(), Ft(), Hn.hidden = !0, Nt.setAttribute("aria-expanded", "false"), Nt.textContent = "Don’t try this!", oe.classList.toggle("createMode", O), oe.querySelector(".modal").classList.toggle("createMode", O), oe.classList.add("open"), oe.setAttribute("aria-hidden", "false"), O && Ea();
   }
-  function uo() {
-    const e = L[M];
+  function mo() {
+    const e = L[F];
     return e != null && e.customSequence ? !!e.includeWarmup : !(e != null && e.warmupOff);
   }
-  function Bi() {
-    const e = uo(), t = a("warmupSwitch");
+  function Ii() {
+    const e = mo(), t = a("warmupSwitch");
     t.classList.toggle("on", e), t.setAttribute("aria-checked", String(e));
   }
   a("warmupSwitch").addEventListener("click", () => {
-    const e = L[M];
-    e && (e.customSequence ? (a("includeWarmupPreset").checked = !e.includeWarmup, kn()) : (e.warmupOff = !e.warmupOff, _()), Bi());
+    const e = L[F];
+    e && (e.customSequence ? (a("includeWarmupPreset").checked = !e.includeWarmup, En()) : (e.warmupOff = !e.warmupOff, q()), Ii());
   });
-  function tn() {
-    re = null, ee = null, ne.classList.contains("createMode") && Ea(), ne.classList.remove("createMode"), ne.querySelector(".modal").classList.remove("createMode"), ne.classList.remove("open"), ne.setAttribute("aria-hidden", "true");
+  function sn() {
+    ce = null, ie = null, oe.classList.contains("createMode") && Ma(), oe.classList.remove("createMode"), oe.querySelector(".modal").classList.remove("createMode"), oe.classList.remove("open"), oe.setAttribute("aria-hidden", "true");
   }
-  function Ai() {
-    if (!Rt) return;
-    const e = Rt;
-    e.profile && (L[e.key] = JSON.parse(JSON.stringify(e.profile))), M = e.key, fe = Qe(e.warmup), V = Qe(e.strength), be = Qe(e.cooldown), P.value = e.total, R.value = e.work, B.value = e.rest, Pe.value = e.rounds || 1;
-    const t = L[M];
+  function Pi() {
+    if (!Pt) return;
+    const e = Pt;
+    e.profile && (L[e.key] = JSON.parse(JSON.stringify(e.profile))), F = e.key, we = it(e.warmup), j = it(e.strength), ke = it(e.cooldown), D.value = e.total, B.value = e.work, A.value = e.rest, _e.value = e.rounds || 1;
+    const t = L[F];
     if (t) {
-      x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === M));
+      x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === F));
       const n = x.querySelector(".workoutPanel.active");
       if (n) {
         const i = n.querySelector(".workoutName");
@@ -1697,21 +1705,21 @@ function Qo(x, y) {
         const r = n.querySelector(".sourceTag");
         r && (r.textContent = t.source);
       }
-      F.value = t.name;
+      R.value = t.name;
     }
-    _();
+    q();
   }
   a("cancelWorkoutEdit").addEventListener("click", () => {
-    if (z) {
-      const e = M;
-      delete L[e], z = !1, De = null, pe(E.order.find((t) => L[t]) || Object.keys(L)[0]);
+    if (O) {
+      const e = F;
+      delete L[e], O = !1, Oe = null, ge(M.order.find((t) => L[t]) || Object.keys(L)[0]);
     } else
-      Ai();
-    tn();
+      Pi();
+    sn();
   }), a("saveWorkoutEdit").addEventListener("click", () => {
-    const e = L[M], t = F.value.trim() || "New move";
-    if (e && (e.name = t), Yt(), ee = null, _(), z && e)
-      xn(M, e), x.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === M)), z = !1, De = null, E.order.includes(M) || E.order.push(M), W("Move created");
+    const e = L[F], t = R.value.trim() || "New move";
+    if (e && (e.name = t), $t(), ie = null, q(), O && e)
+      Cn(F, e), x.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === F)), O = !1, Oe = null, M.order.includes(F) || M.order.push(F), V("Move created");
     else {
       const n = x.querySelector(".workoutPanel.active");
       if (n) {
@@ -1720,28 +1728,28 @@ function Qo(x, y) {
         const o = n.querySelector(".panelCollapsedText");
         o && (o.textContent = t);
       }
-      W("Move saved");
+      V("Move saved");
     }
-    Rt = null, tn(), ce();
-  }), ne.addEventListener("click", (e) => {
-    if (e.target === ne) {
-      if (z) {
-        const t = M;
-        delete L[t], z = !1, De = null, pe(E.order.find((n) => L[n]) || Object.keys(L)[0]);
+    Pt = null, sn(), me();
+  }), oe.addEventListener("click", (e) => {
+    if (e.target === oe) {
+      if (O) {
+        const t = F;
+        delete L[t], O = !1, Oe = null, ge(M.order.find((n) => L[n]) || Object.keys(L)[0]);
       } else
-        Ai();
-      tn();
+        Pi();
+      sn();
     }
-  }), Tn(a("addMovementBtn"), "movement"), Tn(a("addRestBtn"), "rest"), Tn(a("addVideoBtn"), "video"), a("closeMovementCreator").addEventListener("click", () => {
+  }), Rn(a("addMovementBtn"), "movement"), Rn(a("addRestBtn"), "rest"), Rn(a("addVideoBtn"), "video"), a("closeMovementCreator").addEventListener("click", () => {
     a("movementCreator").hidden = !0;
-  }), a("useGlobalTiming").addEventListener("change", Ct), a("useGlobalRestTiming").addEventListener("change", Ct), x.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
-    wn(e.dataset.movePreset, !0), _();
-  })), a("includeWarmupPreset").addEventListener("change", kn), a("includeCooldownPreset").addEventListener("change", kn), a("includeWarmupPreset").addEventListener("change", Te), a("includeCooldownPreset").addEventListener("change", Te), F.addEventListener("input", Te), a("confirmAddMovement").addEventListener("click", En), a("confirmAddRest").addEventListener("click", En), a("addMovementInput").addEventListener("keydown", (e) => {
-    e.key === "Enter" && En();
+  }), a("useGlobalTiming").addEventListener("change", Ft), a("useGlobalRestTiming").addEventListener("change", Ft), x.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
+    Ln(e.dataset.movePreset, !0), q();
+  })), a("includeWarmupPreset").addEventListener("change", En), a("includeCooldownPreset").addEventListener("change", En), a("includeWarmupPreset").addEventListener("change", Fe), a("includeCooldownPreset").addEventListener("change", Fe), R.addEventListener("input", Fe), a("confirmAddMovement").addEventListener("click", An), a("confirmAddRest").addEventListener("click", An), a("addMovementInput").addEventListener("keydown", (e) => {
+    e.key === "Enter" && An();
   });
-  const Bt = a("countdown"), Dn = a("countNum"), ye = a("countdownPixelCanvas");
-  let At = null, Hn = "appear";
-  class mo {
+  const Dt = a("countdown"), qn = a("countNum"), Ce = a("countdownPixelCanvas");
+  let Ht = null, Gn = "appear";
+  class go {
     constructor(t, n, i, o, r, s, l) {
       this.width = t.width, this.height = t.height, this.ctx = n, this.x = i, this.y = o, this.color = r, this.speed = (Math.random() * 0.8 + 0.1) * s, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = l, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
     }
@@ -1767,261 +1775,261 @@ function Qo(x, y) {
       this.size >= this.maxSize ? this.isReverse = !0 : this.size <= this.minSize && (this.isReverse = !1), this.size += this.isReverse ? -this.speed : this.speed;
     }
   }
-  let zn = [], Ni = 1, Ii = 1;
-  function _e() {
+  let Wn = [], Di = 1, Hi = 1;
+  function We() {
     const e = parseFloat(getComputedStyle(a("app")).zoom);
     return Number.isFinite(e) && e > 0 ? e : 1;
   }
-  function go() {
+  function vo() {
     var p;
-    if (!ye) return;
-    const e = _e(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
-    Ni = t, Ii = n;
+    if (!Ce) return;
+    const e = We(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
+    Di = t, Hi = n;
     const i = Math.min(window.devicePixelRatio || 1, 2);
-    ye.width = Math.floor(t * i), ye.height = Math.floor(n * i), ye.style.width = t + "px", ye.style.height = n + "px";
-    const o = ye.getContext("2d");
+    Ce.width = Math.floor(t * i), Ce.height = Math.floor(n * i), Ce.style.width = t + "px", Ce.style.height = n + "px";
+    const o = Ce.getContext("2d");
     o.setTransform(i, 0, 0, i, 0, 0);
-    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], s = 12, l = (p = window.matchMedia) == null ? void 0 : p.call(window, "(prefers-reduced-motion: reduce)").matches, u = l ? 0 : 0.055;
-    zn = [];
-    for (let m = 0; m < t; m += s)
+    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], s = 12, l = (p = window.matchMedia) == null ? void 0 : p.call(window, "(prefers-reduced-motion: reduce)").matches, g = l ? 0 : 0.055;
+    Wn = [];
+    for (let u = 0; u < t; u += s)
       for (let d = 0; d < n; d += s) {
-        const g = m - t / 2, T = d - n / 2, C = Math.sqrt(g * g + T * T), v = l ? 0 : Math.random() * 75 + C * 0.05, b = new mo({ width: t, height: n }, o, m, d, r[Math.floor(Math.random() * r.length)], u, v);
-        b.maxSizeInteger = 4, b.maxSize = Math.random() * 3.2 + 0.8, b.sizeStep = 0.35 + Math.random() * 0.45, zn.push(b);
+        const c = u - t / 2, T = d - n / 2, C = Math.sqrt(c * c + T * T), v = l ? 0 : Math.random() * 75 + C * 0.05, b = new go({ width: t, height: n }, o, u, d, r[Math.floor(Math.random() * r.length)], g, v);
+        b.maxSizeInteger = 4, b.maxSize = Math.random() * 3.2 + 0.8, b.sizeStep = 0.35 + Math.random() * 0.45, Wn.push(b);
       }
   }
-  function Pi(e) {
-    cancelAnimationFrame(At), Hn = e;
-    const t = ye == null ? void 0 : ye.getContext("2d");
+  function zi(e) {
+    cancelAnimationFrame(Ht), Gn = e;
+    const t = Ce == null ? void 0 : Ce.getContext("2d");
     if (!t) return;
     function n() {
-      t.clearRect(0, 0, Ni, Ii);
+      t.clearRect(0, 0, Di, Hi);
       let i = !0;
-      zn.forEach((o) => {
-        o[Hn](), o.isIdle || (i = !1);
-      }), Hn === "disappear" && i || (At = requestAnimationFrame(n));
+      Wn.forEach((o) => {
+        o[Gn](), o.isIdle || (i = !1);
+      }), Gn === "disappear" && i || (Ht = requestAnimationFrame(n));
     }
-    At = requestAnimationFrame(n);
+    Ht = requestAnimationFrame(n);
   }
-  function nn() {
-    cancelAnimationFrame(At), go(), Pi("appear"), setTimeout(() => Pi("disappear"), 560);
+  function ln() {
+    cancelAnimationFrame(Ht), vo(), zi("appear"), setTimeout(() => zi("disappear"), 560);
   }
   window.addEventListener("resize", () => {
-    Bt.classList.contains("active") && nn();
+    Dt.classList.contains("active") && ln();
   });
-  const Nt = a("pixelTrailCanvas"), Xe = Nt.getContext("2d");
-  let we = !0, et = 0.7, tt = 600, It = [], nt = null, Fe = { x: 0, y: 0, ready: !1 };
-  function Di() {
-    const e = H.getBoundingClientRect(), t = _e(), n = Math.min(window.devicePixelRatio || 1, 2), i = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
-    Nt.width = Math.max(1, Math.floor(i * n)), Nt.height = Math.max(1, Math.floor(o * n)), Nt.style.width = i + "px", Nt.style.height = o + "px", Xe.setTransform(n, 0, 0, n, 0, 0);
+  const zt = a("pixelTrailCanvas"), at = zt.getContext("2d");
+  let Te = !0, ot = 0.7, rt = 600, _t = [], st = null, Ne = { x: 0, y: 0, ready: !1 };
+  function _i() {
+    const e = z.getBoundingClientRect(), t = We(), n = Math.min(window.devicePixelRatio || 1, 2), i = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
+    zt.width = Math.max(1, Math.floor(i * n)), zt.height = Math.max(1, Math.floor(o * n)), zt.style.width = i + "px", zt.style.height = o + "px", at.setTransform(n, 0, 0, n, 0, 0);
   }
-  function vo(e, t) {
-    if (!we) return;
+  function ho(e, t) {
+    if (!Te) return;
     const n = performance.now();
-    Fe.ready || (Fe = { x: e, y: t, ready: !0 });
+    Ne.ready || (Ne = { x: e, y: t, ready: !0 });
     const i = 7;
     for (let o = 1; o <= i; o++) {
       const r = o / i;
-      It.push({
-        x: Fe.x + (e - Fe.x) * r,
-        y: Fe.y + (t - Fe.y) * r,
+      _t.push({
+        x: Ne.x + (e - Ne.x) * r,
+        y: Ne.y + (t - Ne.y) * r,
         born: n - (i - o) * 10
       });
     }
-    Fe = { x: e, y: t, ready: !0 };
+    Ne = { x: e, y: t, ready: !0 };
   }
-  function an(e) {
-    if (nt = null, !q) return;
-    if (!je.workout.classList.contains("active")) {
-      nt = requestAnimationFrame(an);
+  function dn(e) {
+    if (st = null, !G) return;
+    if (!Je.workout.classList.contains("active")) {
+      st = requestAnimationFrame(dn);
       return;
     }
-    const t = H.getBoundingClientRect(), n = _e();
-    Xe.clearRect(0, 0, t.width / n, t.height / n), we && (It = It.filter((o) => e - o.born < tt), Xe.fillStyle = a("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", It.forEach((o) => {
-      const r = (e - o.born) / tt, s = (1 - r) * et, l = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
-      Xe.globalAlpha = Math.max(0, s);
-      const p = 2 + 5 * (1 - r) * et;
-      Xe.fillRect(l - p / 2, u - p / 2, p, p);
-    }), Xe.globalAlpha = 1), nt = requestAnimationFrame(an);
+    const t = z.getBoundingClientRect(), n = We();
+    at.clearRect(0, 0, t.width / n, t.height / n), Te && (_t = _t.filter((o) => e - o.born < rt), at.fillStyle = a("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", _t.forEach((o) => {
+      const r = (e - o.born) / rt, s = (1 - r) * ot, l = Math.round(o.x / 14) * 14, g = Math.round(o.y / 14) * 14;
+      at.globalAlpha = Math.max(0, s);
+      const p = 2 + 5 * (1 - r) * ot;
+      at.fillRect(l - p / 2, g - p / 2, p, p);
+    }), at.globalAlpha = 1), st = requestAnimationFrame(dn);
   }
-  H.addEventListener("pointermove", (e) => {
-    const t = H.getBoundingClientRect(), n = _e();
-    vo((e.clientX - t.left) / n, (e.clientY - t.top) / n);
-  }), H.addEventListener("pointerleave", () => Fe.ready = !1), new ResizeObserver(Di).observe(H), Di(), nt = requestAnimationFrame(an);
-  const Re = a("movementRippleCanvas"), it = Re.getContext("2d");
-  let qe = !0, at = null, ho = performance.now();
-  function Hi() {
-    const e = Re.parentElement.getBoundingClientRect(), t = _e(), n = Math.max(1, e.width / t), i = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
-    Re.width = Math.max(1, Math.floor(n * o)), Re.height = Math.max(1, Math.floor(i * o)), Re.style.width = n + "px", Re.style.height = i + "px", it.setTransform(o, 0, 0, o, 0, 0);
+  z.addEventListener("pointermove", (e) => {
+    const t = z.getBoundingClientRect(), n = We();
+    ho((e.clientX - t.left) / n, (e.clientY - t.top) / n);
+  }), z.addEventListener("pointerleave", () => Ne.ready = !1), new ResizeObserver(_i).observe(z), _i(), st = requestAnimationFrame(dn);
+  const Ie = a("movementRippleCanvas"), lt = Ie.getContext("2d");
+  let Ve = !0, dt = null, fo = performance.now();
+  function Oi() {
+    const e = Ie.parentElement.getBoundingClientRect(), t = We(), n = Math.max(1, e.width / t), i = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
+    Ie.width = Math.max(1, Math.floor(n * o)), Ie.height = Math.max(1, Math.floor(i * o)), Ie.style.width = n + "px", Ie.style.height = i + "px", lt.setTransform(o, 0, 0, o, 0, 0);
   }
-  function zi() {
+  function qi() {
     var e;
-    return Q || ((e = h[S]) == null ? void 0 : e.kind) === "rest";
+    return te || ((e = h[S]) == null ? void 0 : e.kind) === "rest";
   }
-  function fo() {
+  function bo() {
     const e = h[S];
-    return zi() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
+    return qi() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
-  function on(e) {
-    if (at = null, !q) return;
-    if (!je.workout.classList.contains("active")) {
-      at = requestAnimationFrame(on);
+  function cn(e) {
+    if (dt = null, !G) return;
+    if (!Je.workout.classList.contains("active")) {
+      dt = requestAnimationFrame(cn);
       return;
     }
-    const t = Re.parentElement.getBoundingClientRect(), n = _e(), i = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
-    if (it.clearRect(0, 0, i, o), qe) {
-      const r = fo(), s = (e - ho) % r / r, l = 15, u = Math.max(8, Math.round(l * o / Math.max(1, i))), p = i / (l + 1), m = o / (u + 1), d = i * 0.5, g = o * 0.52, T = Math.hypot(d, g), v = a("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let b = 1; b <= u; b++)
+    const t = Ie.parentElement.getBoundingClientRect(), n = We(), i = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
+    if (lt.clearRect(0, 0, i, o), Ve) {
+      const r = bo(), s = (e - fo) % r / r, l = 15, g = Math.max(8, Math.round(l * o / Math.max(1, i))), p = i / (l + 1), u = o / (g + 1), d = i * 0.5, c = o * 0.52, T = Math.hypot(d, c), v = a("app").classList.contains("light") ? "34,34,34" : "244,244,244";
+      for (let b = 1; b <= g; b++)
         for (let f = 1; f <= l; f++) {
-          const c = f * p, w = b * m, O = Math.hypot(c - d, w - g) / T, U = zi(), Z = U ? Math.exp(-Math.pow((O - (s * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, bt = Math.exp(-Math.pow((O - s * 1.25) * 7, 2)), se = U ? Z : bt, K = U ? 0.5 + 0.5 * Math.sin(s * Math.PI * 2 - O * 3) ** 2 : 0.35 + 0.65 * Math.sin(s * Math.PI * 2 - O * 5) ** 2, ii = U ? 1.4 + se * 4.2 * K : 1.2 + se * 5 * K;
-          it.beginPath(), it.arc(c, w, ii, 0, Math.PI * 2), it.fillStyle = `rgba(${v},${U ? 0.08 + se * 0.48 : 0.05 + se * 0.55})`, it.fill();
+          const w = f * p, _ = b * u, Q = Math.hypot(w - d, _ - c) / T, ne = qi(), U = ne ? Math.exp(-Math.pow((Q - (s * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, be = Math.exp(-Math.pow((Q - s * 1.25) * 7, 2)), se = ne ? U : be, Z = ne ? 0.5 + 0.5 * Math.sin(s * Math.PI * 2 - Q * 3) ** 2 : 0.35 + 0.65 * Math.sin(s * Math.PI * 2 - Q * 5) ** 2, St = ne ? 1.4 + se * 4.2 * Z : 1.2 + se * 5 * Z;
+          lt.beginPath(), lt.arc(w, _, St, 0, Math.PI * 2), lt.fillStyle = `rgba(${v},${ne ? 0.08 + se * 0.48 : 0.05 + se * 0.55})`, lt.fill();
         }
     }
-    at = requestAnimationFrame(on);
+    dt = requestAnimationFrame(cn);
   }
-  new ResizeObserver(Hi).observe(Re.parentElement), Hi(), at = requestAnimationFrame(on);
-  const Pt = a("exerciseTitle"), ke = a("exerciseMeta"), _n = a("stepLabel"), qn = a("digits"), _i = a("fill"), ot = a("progress"), Be = a("pause"), bo = a("nextName"), xo = a("nextMeta"), yo = a("nextIcon"), rn = a("skipNextSession");
-  let ae = null;
-  function le(e) {
+  new ResizeObserver(Oi).observe(Ie.parentElement), Oi(), dt = requestAnimationFrame(cn);
+  const Ot = a("exerciseTitle"), Le = a("exerciseMeta"), Vn = a("stepLabel"), jn = a("digits"), Gi = a("fill"), ct = a("progress"), Pe = a("pause"), xo = a("nextName"), yo = a("nextMeta"), wo = a("nextIcon"), pn = a("skipNextSession");
+  let le = null;
+  function pe(e) {
     for (let t = Math.max(0, e); t < h.length; t++)
       if (!h[t].sessionHidden) return t;
     return -1;
   }
-  function wo() {
+  function ko() {
     const e = h[S];
     if (!e) return { name: "Complete", meta: "Move finished", icon: "✓" };
-    if (Q) {
-      const i = le(S + 1), o = i >= 0 ? h[i] : null;
-      return o ? { name: o.name, meta: Gn(o), icon: On(o) } : { name: "Complete", meta: "Move finished", icon: "✓" };
+    if (te) {
+      const i = pe(S + 1), o = i >= 0 ? h[i] : null;
+      return o ? { name: o.name, meta: Un(o), icon: Yn(o) } : { name: "Complete", meta: "Move finished", icon: "✓" };
     }
     if (e.rest > 0) return { name: "Rest", meta: e.rest + " sec · " + (e.roundBreakAfter ? "round " + (e.round + 1) + " next" : "recovery"), icon: "Ⅱ" };
-    const t = le(S + 1), n = t >= 0 ? h[t] : null;
-    return n ? { name: n.name, meta: Gn(n), icon: On(n) } : { name: "Complete", meta: "Move finished", icon: "✓" };
+    const t = pe(S + 1), n = t >= 0 ? h[t] : null;
+    return n ? { name: n.name, meta: Un(n), icon: Yn(n) } : { name: "Complete", meta: "Move finished", icon: "✓" };
   }
-  function ko() {
+  function So() {
     if (!h[S]) return h.length;
-    const t = le(S + 1);
+    const t = pe(S + 1);
     return t < 0 ? h.length : t + 1;
   }
-  function On(e) {
+  function Yn(e) {
     return e.kind === "video" ? "▶" : e.kind === "cooldown" ? "↘" : e.kind === "warmup" ? "↗" : "●";
   }
-  function Gn(e) {
-    return e.kind === "video" ? "YouTube · " + wt(e.duration) : e.group + " · " + e.duration + " sec";
+  function Un(e) {
+    return e.kind === "video" ? "YouTube · " + Lt(e.duration) : e.group + " · " + e.duration + " sec";
   }
-  function sn() {
+  function un() {
     return h.length && h[h.length - 1].round || 1;
   }
-  function qi(e) {
+  function Wi(e) {
     const t = h[e];
     if (!t) return "";
-    const n = sn();
+    const n = un();
     if (n <= 1) return "Step " + (e + 1) + " of " + h.length;
     if (t.roundBreak) return "Round " + t.round + " of " + n + " · Rest";
     const i = h.filter((o) => o.round === t.round && !o.roundBreak).length;
     return "Round " + t.round + " of " + n + " · Step " + (t.roundIndex + 1) + " of " + i;
   }
-  function Oi() {
-    return ot.querySelector('[data-step="' + S + '"]');
+  function Vi() {
+    return ct.querySelector('[data-step="' + S + '"]');
   }
-  function So() {
-    h[S] && Number(ot.dataset.round) !== (h[S].round || 1) && jn(), [...ot.children].forEach((e) => {
+  function Co() {
+    h[S] && Number(ct.dataset.round) !== (h[S].round || 1) && Jn(), [...ct.children].forEach((e) => {
       const t = Number(e.dataset.step);
       e.classList.toggle("done", t < S), e.classList.toggle("active", t === S), e.classList.toggle("rewindable", t <= S), e.disabled = t > S, t === S && e.style.setProperty("--segment-progress", "0%");
-    }), h[S] && (_n.textContent = qi(S), Oe());
+    }), h[S] && (Vn.textContent = Wi(S), je());
   }
-  function Co(e) {
+  function To(e) {
     const t = h.indexOf(e);
-    t < 0 || t <= S || (e.sessionHidden = !e.sessionHidden, rt(), W((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
+    t < 0 || t <= S || (e.sessionHidden = !e.sessionHidden, pt(), V((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
   }
-  function Gi() {
+  function ji() {
     const e = a("upcomingList");
     if (!e) return;
     e.innerHTML = "";
-    const t = ko(), n = h.slice(t);
-    (Ye === "all" ? n : n.slice(0, Math.max(1, Number(Ye) || 1))).forEach((o) => {
+    const t = So(), n = h.slice(t);
+    ($e === "all" ? n : n.slice(0, Math.max(1, Number($e) || 1))).forEach((o) => {
       const r = document.createElement("section");
-      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + On(o) + '</div><div><div class="upcomingName">' + I(o.name) + '</div><div class="upcomingMeta">' + I(Gn(o)) + (sn() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => Co(o)), e.appendChild(r);
+      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + Yn(o) + '</div><div><div class="upcomingName">' + P(o.name) + '</div><div class="upcomingMeta">' + P(Un(o)) + (un() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => To(o)), e.appendChild(r);
     });
   }
-  function rt() {
-    const e = wo();
-    if (bo.textContent = e.name, xo.textContent = e.meta, yo.textContent = e.icon, ae = null, Q) {
-      const t = le(S + 1);
-      t >= 0 && (ae = h[t]);
+  function pt() {
+    const e = ko();
+    if (xo.textContent = e.name, yo.textContent = e.meta, wo.textContent = e.icon, le = null, te) {
+      const t = pe(S + 1);
+      t >= 0 && (le = h[t]);
     } else {
       const t = h[S];
       if (t && t.rest > 0)
-        ae = null;
+        le = null;
       else {
-        const n = le(S + 1);
-        n >= 0 && (ae = h[n]);
+        const n = pe(S + 1);
+        n >= 0 && (le = h[n]);
       }
     }
-    rn && (rn.hidden = !ae, rn.textContent = ae != null && ae.sessionHidden ? "Include this session" : "Skip this session"), Gi();
+    pn && (pn.hidden = !le, pn.textContent = le != null && le.sessionHidden ? "Include this session" : "Skip this session"), ji();
   }
-  rn.addEventListener("click", () => {
-    ae && (ae.sessionHidden = !ae.sessionHidden, W((ae.sessionHidden ? "Hidden " : "Included ") + ae.name + " for this session"), rt());
+  pn.addEventListener("click", () => {
+    le && (le.sessionHidden = !le.sessionHidden, V((le.sessionHidden ? "Hidden " : "Included ") + le.name + " for this session"), pt());
   });
-  let ge = null, Wn = null;
-  function Dt(e, t = {}) {
-    const n = L[M];
-    y.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: M, ...t });
-  }
-  function To() {
-    const e = L[M];
-    ge = { key: M, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(Wn), Wn = setInterval(() => {
-      ge && !Y && ge.active++;
-    }, 1e3), Dt("started", { steps: h.length });
-  }
-  function Wi(e) {
-    if (clearInterval(Wn), !ge) return;
-    const t = ge;
-    ge = null, Dt(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (E.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), E.history = E.history.slice(0, 1e3), ce(), We(), Ce());
+  let fe = null, Zn = null;
+  function qt(e, t = {}) {
+    const n = L[F];
+    y.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: F, ...t });
   }
   function Lo() {
-    vn("workout"), Eo();
-    const e = le(0);
-    e >= 0 && h[e].kind === "video" && Ui(h[e]);
+    const e = L[F];
+    fe = { key: F, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(Zn), Zn = setInterval(() => {
+      fe && !K && fe.active++;
+    }, 1e3), qt("started", { steps: h.length });
   }
-  function Vn() {
-    dn(), Wi(!1), clearInterval(j), clearInterval(Gt), Q = !1, Y = !1, Be.textContent = "Pause", a("app").classList.remove("resting", "paused"), Bt.classList.remove("active"), vn("home");
+  function Yi(e) {
+    if (clearInterval(Zn), !fe) return;
+    const t = fe;
+    fe = null, qt(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (M.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), M.history = M.history.slice(0, 1e3), me(), Ue(), Me());
   }
   function Eo() {
-    Bt.classList.add("active");
+    yn("workout"), Mo();
+    const e = pe(0);
+    e >= 0 && h[e].kind === "video" && Ji(h[e]);
+  }
+  function Kn() {
+    gn(), Yi(!1), clearInterval(Y), clearInterval(Ut), te = !1, K = !1, Pe.textContent = "Pause", a("app").classList.remove("resting", "paused"), Dt.classList.remove("active"), yn("home");
+  }
+  function Mo() {
+    Dt.classList.add("active");
     let e = 5;
-    Dn.textContent = e, requestAnimationFrame(nn), clearInterval(Gt), Gt = setInterval(() => {
-      e--, e > 0 ? (Dn.textContent = e, nn()) : (clearInterval(Gt), Dn.textContent = "GO", nn(), setTimeout(() => {
-        Bt.classList.remove("active"), cancelAnimationFrame(At), Fo();
+    qn.textContent = e, requestAnimationFrame(ln), clearInterval(Ut), Ut = setInterval(() => {
+      e--, e > 0 ? (qn.textContent = e, ln()) : (clearInterval(Ut), qn.textContent = "GO", ln(), setTimeout(() => {
+        Dt.classList.remove("active"), cancelAnimationFrame(Ht), Ro();
       }, 650));
     }, 1e3);
   }
-  function jn() {
+  function Jn() {
     var t;
-    ot.innerHTML = "";
+    ct.innerHTML = "";
     const e = ((t = h[Math.max(0, S)] || h[0]) == null ? void 0 : t.round) || 1;
-    ot.dataset.round = e, h.forEach((n, i) => {
+    ct.dataset.round = e, h.forEach((n, i) => {
       if ((n.round || 1) !== e) return;
       const o = document.createElement("button");
       o.dataset.step = i, o.type = "button", o.className = "progressSegment", o.setAttribute("aria-label", "Go to " + n.name), o.addEventListener("click", () => {
-        i <= S && Mo(i);
-      }), ot.appendChild(o);
+        i <= S && Fo(i);
+      }), ct.appendChild(o);
     });
   }
-  function Mo(e) {
-    e < 0 || e >= h.length || e > S || (clearInterval(j), Q = !1, a("app").classList.remove("resting"), S = e, Y = !1, a("app").classList.remove("paused"), Be.textContent = "Pause", pt(), j = setInterval(Ae, 1e3));
+  function Fo(e) {
+    e < 0 || e >= h.length || e > S || (clearInterval(Y), te = !1, a("app").classList.remove("resting"), S = e, K = !1, a("app").classList.remove("paused"), Pe.textContent = "Pause", ht(), Y = setInterval(De, 1e3));
   }
-  function Fo() {
-    if (S = le(0), Y = !1, a("app").classList.remove("paused"), Be.textContent = "Pause", jn(), S < 0) {
-      Pt.textContent = "No activities", ke.textContent = "Open Edit and enable or add a movement", ke.hidden = !1;
+  function Ro() {
+    if (S = pe(0), K = !1, a("app").classList.remove("paused"), Pe.textContent = "Pause", Jn(), S < 0) {
+      Ot.textContent = "No activities", Le.textContent = "Open Edit and enable or add a movement", Le.hidden = !1;
       return;
     }
-    To(), pt(), clearInterval(j), j = setInterval(Ae, 1e3);
+    Lo(), ht(), clearInterval(Y), Y = setInterval(De, 1e3);
   }
-  const Vi = a("videoStage"), st = a("videoSound"), Ro = 0, Ht = 1;
-  let lt = null, dt = null, D = null, ct = null, ln = 0, Yn = !1, ie = null, Un = null;
-  function ji() {
+  const Ui = a("videoStage"), ut = a("videoSound"), Bo = 0, Gt = 1;
+  let mt = null, gt = null, H = null, vt = null, mn = 0, $n = !1, re = null, Qn = null;
+  function Zi() {
     var e;
-    return (e = window.YT) != null && e.Player ? Promise.resolve(window.YT) : lt || (lt = new Promise((t, n) => {
+    return (e = window.YT) != null && e.Player ? Promise.resolve(window.YT) : mt || (mt = new Promise((t, n) => {
       const i = window.onYouTubeIframeAPIReady;
       window.onYouTubeIframeAPIReady = () => {
         try {
@@ -2033,153 +2041,153 @@ function Qo(x, y) {
         var s;
         (s = window.YT) != null && s.Player && (clearInterval(o), clearTimeout(r), t(window.YT));
       }, 100), r = setTimeout(() => {
-        clearInterval(o), lt = null, n(new Error("YouTube did not load"));
+        clearInterval(o), mt = null, n(new Error("YouTube did not load"));
       }, 15e3);
       if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
         const s = document.createElement("script");
         s.src = "https://www.youtube.com/iframe_api", s.async = !0, s.onerror = () => {
-          clearInterval(o), clearTimeout(r), lt = null, n(new Error("YouTube did not load"));
+          clearInterval(o), clearTimeout(r), mt = null, n(new Error("YouTube did not load"));
         }, document.head.appendChild(s);
       }
-    }), lt);
+    }), mt);
   }
-  function Yi() {
-    return dt || (dt = ji().then((e) => new Promise((t) => {
+  function Ki() {
+    return gt || (gt = Zi().then((e) => new Promise((t) => {
       const n = document.createElement("div");
-      a("videoFrame").appendChild(n), D = new e.Player(n, {
+      a("videoFrame").appendChild(n), H = new e.Player(n, {
         width: "100%",
         height: "100%",
         playerVars: { playsinline: 1, rel: 0, iv_load_policy: 3, modestbranding: 1 },
-        events: { onReady: () => t(D), onStateChange: (i) => Ao(i.data), onError: (i) => No(i.data) }
+        events: { onReady: () => t(H), onStateChange: (i) => No(i.data), onError: (i) => Io(i.data) }
       });
-    })), dt.catch(() => {
-      dt = null;
-    }), dt);
+    })), gt.catch(() => {
+      gt = null;
+    }), gt);
   }
-  function Ui(e) {
-    !(e != null && e.videoId) || e.videoError || Yi().then((t) => {
-      ie || ct === e.videoId || (ct = e.videoId, ln = Number(e.start) || 0, Yn = !1, t.mute(), t.loadVideoById({ videoId: e.videoId, startSeconds: ln }));
+  function Ji(e) {
+    !(e != null && e.videoId) || e.videoError || Ki().then((t) => {
+      re || vt === e.videoId || (vt = e.videoId, mn = Number(e.start) || 0, $n = !1, t.mute(), t.loadVideoById({ videoId: e.videoId, startSeconds: mn }));
     }).catch(() => {
     });
   }
-  function Bo() {
-    const e = le(S + 1);
-    e >= 0 && h[e].kind === "video" && Ui(h[e]);
-  }
-  function Ao(e) {
-    if (!ie) {
-      e === Ht && !Yn && (Yn = !0, D.pauseVideo(), D.seekTo(ln, !0));
-      return;
-    }
-    Vi.classList.toggle("playing", e === Ht), e === Ht && Ji(ie.videoId, D.getDuration()) && ce(), e === Ro && zt();
+  function Ao() {
+    const e = pe(S + 1);
+    e >= 0 && h[e].kind === "video" && Ji(h[e]);
   }
   function No(e) {
-    const t = ie;
-    if (!t) {
-      ct = null;
+    if (!re) {
+      e === Gt && !$n && ($n = !0, H.pauseVideo(), H.seekTo(mn, !0));
       return;
     }
-    e === 101 || e === 150 ? (Do(t.videoId), W("That video can’t play outside YouTube, so it was skipped")) : W("The video couldn’t play, so it was skipped"), zt();
+    Ui.classList.toggle("playing", e === Gt), e === Gt && Xi(re.videoId, H.getDuration()) && me(), e === Bo && Wt();
   }
   function Io(e) {
-    if (a("app").classList.add("videoStep"), st.hidden = !0, ie = e, clearTimeout(Un), !e.videoId) {
-      W("This video step has no link yet, so it was skipped"), setTimeout(() => zt(), 0);
+    const t = re;
+    if (!t) {
+      vt = null;
       return;
     }
-    Yi().then((t) => {
-      if (ie !== e) return;
+    e === 101 || e === 150 ? (Ho(t.videoId), V("That video can’t play outside YouTube, so it was skipped")) : V("The video couldn’t play, so it was skipped"), Wt();
+  }
+  function Po(e) {
+    if (a("app").classList.add("videoStep"), ut.hidden = !0, re = e, clearTimeout(Qn), !e.videoId) {
+      V("This video step has no link yet, so it was skipped"), setTimeout(() => Wt(), 0);
+      return;
+    }
+    Ki().then((t) => {
+      if (re !== e) return;
       const n = Number(e.start) || 0;
-      ct !== e.videoId ? (ct = e.videoId, ln = n, t.loadVideoById({ videoId: e.videoId, startSeconds: n })) : (t.seekTo(n, !0), t.playVideo()), t.unMute(), Y && t.pauseVideo(), Un = setTimeout(() => {
-        ie !== e || Y || (t.getPlayerState() !== Ht ? (t.mute(), t.playVideo(), st.hidden = !1) : t.isMuted() && (st.hidden = !1));
+      vt !== e.videoId ? (vt = e.videoId, mn = n, t.loadVideoById({ videoId: e.videoId, startSeconds: n })) : (t.seekTo(n, !0), t.playVideo()), t.unMute(), K && t.pauseVideo(), Qn = setTimeout(() => {
+        re !== e || K || (t.getPlayerState() !== Gt ? (t.mute(), t.playVideo(), ut.hidden = !1) : t.isMuted() && (ut.hidden = !1));
       }, 1600);
     }).catch(() => {
-      ie === e && (W("YouTube didn’t load, so the video was skipped"), zt());
+      re === e && (V("YouTube didn’t load, so the video was skipped"), Wt());
     });
   }
-  function Zi() {
+  function $i() {
     if (!a("app").classList.contains("videoStep")) return;
     const e = x.querySelector(".workGrid"), t = x.querySelector(".sessionControlRow"), n = e.getBoundingClientRect().top, i = (t == null ? void 0 : t.offsetHeight) || 42, o = window.innerHeight - n - 16 - i - 84;
     e.style.setProperty("--theater-h", Math.max(240, Math.round(o)) + "px");
   }
-  window.addEventListener("resize", Zi);
-  function dn() {
-    clearTimeout(Un);
-    const e = ie;
-    if (ie = null, a("app").classList.remove("videoStep"), Vi.classList.remove("playing"), st.hidden = !0, e && D) {
+  window.addEventListener("resize", $i);
+  function gn() {
+    clearTimeout(Qn);
+    const e = re;
+    if (re = null, a("app").classList.remove("videoStep"), Ui.classList.remove("playing"), ut.hidden = !0, e && H) {
       try {
-        D.pauseVideo();
+        H.pauseVideo();
       } catch {
       }
-      ct = null;
+      vt = null;
     }
   }
-  function zt() {
-    const e = ie;
-    !e || h[S] !== e || (dn(), clearInterval(j), ut(), j = setInterval(Ae, 1e3));
+  function Wt() {
+    const e = re;
+    !e || h[S] !== e || (gn(), clearInterval(Y), ft(), Y = setInterval(De, 1e3));
   }
-  st.addEventListener("click", () => {
-    D && (D.unMute(), D.playVideo()), st.hidden = !0;
+  ut.addEventListener("click", () => {
+    H && (H.unMute(), H.playVideo()), ut.hidden = !0;
   });
-  function Po(e) {
+  function Do(e) {
     var i;
     const t = Number(e.start) || 0;
     if (e.useVideoLength === !1) return t + (Number(e.duration) || 300);
-    const n = D && ie === e && Number((i = D.getDuration) == null ? void 0 : i.call(D)) || 0;
+    const n = H && re === e && Number((i = H.getDuration) == null ? void 0 : i.call(H)) || 0;
     return Number(e.end) || n || Number(e.videoDuration) || t + (Number(e.duration) || 300);
   }
-  function Ki(e, t) {
-    const n = L[M];
-    [fe, V, be, n == null ? void 0 : n.warmup, n == null ? void 0 : n.strength, n == null ? void 0 : n.cooldown, n == null ? void 0 : n.sequence].forEach((i) => (Array.isArray(i) ? i : []).forEach((o) => {
+  function Qi(e, t) {
+    const n = L[F];
+    [we, j, ke, n == null ? void 0 : n.warmup, n == null ? void 0 : n.strength, n == null ? void 0 : n.cooldown, n == null ? void 0 : n.sequence].forEach((i) => (Array.isArray(i) ? i : []).forEach((o) => {
       o && o.kind === "video" && o.videoId === e && t(o);
     }));
   }
-  function Ji(e, t) {
+  function Xi(e, t) {
     t = Math.round(Number(t) || 0);
     let n = !1;
-    return e && t > 0 && Ki(e, (i) => {
+    return e && t > 0 && Qi(e, (i) => {
       i.videoDuration !== t && (i.videoDuration = t, n = !0);
     }), n;
   }
-  function Do(e) {
-    Ki(e, (t) => {
-      t.videoError = "embed";
-    }), ce();
-  }
   function Ho(e) {
+    Qi(e, (t) => {
+      t.videoError = "embed";
+    }), me();
+  }
+  function zo(e) {
     const t = e.videoId;
     if (!t) return;
     const n = () => {
-      ne.classList.contains("open") ? ee || _() : (_(), ce());
+      oe.classList.contains("open") ? ie || q() : (q(), me());
     };
     fetch("https://www.youtube.com/oembed?format=json&url=" + encodeURIComponent("https://www.youtube.com/watch?v=" + t)).then((i) => i.ok ? i.json() : Promise.reject(i.status)).then((i) => {
       e.videoId === t && (e.videoTitle = i.title || "", e.autoName && i.title && (e.name = i.title), n());
     }).catch((i) => {
       e.videoId === t && i === 401 && (e.videoError = "embed", n());
-    }), zo(t).then((i) => {
-      Ji(t, i) && n();
+    }), _o(t).then((i) => {
+      Xi(t, i) && n();
     }).catch((i) => {
       i === "embed" && e.videoId === t && (e.videoError = "embed", n());
     });
   }
-  function zo(e) {
-    return ji().then((t) => new Promise((n, i) => {
+  function _o(e) {
+    return Zi().then((t) => new Promise((n, i) => {
       const o = document.createElement("div");
       o.className = "videoProbe", o.setAttribute("aria-hidden", "true");
       const r = document.createElement("div");
       o.appendChild(r), a("app").appendChild(o);
       let s = null, l = !1;
-      const u = (d, g) => {
+      const g = (d, c) => {
         l || (l = !0, clearTimeout(p), setTimeout(() => {
           try {
             s == null || s.destroy();
           } catch {
           }
           o.remove();
-        }, 0), g ? i(g) : n(d));
-      }, p = setTimeout(() => u(0), 2e4), m = () => {
-        var g;
-        const d = Number((g = s == null ? void 0 : s.getDuration) == null ? void 0 : g.call(s)) || 0;
-        return d > 0 && u(d), d > 0;
+        }, 0), c ? i(c) : n(d));
+      }, p = setTimeout(() => g(0), 2e4), u = () => {
+        var c;
+        const d = Number((c = s == null ? void 0 : s.getDuration) == null ? void 0 : c.call(s)) || 0;
+        return d > 0 && g(d), d > 0;
       };
       s = new t.Player(r, {
         width: 320,
@@ -2188,277 +2196,277 @@ function Qo(x, y) {
         playerVars: { playsinline: 1, mute: 1, controls: 0 },
         events: {
           onReady: () => {
-            m() || (s.mute(), s.playVideo());
+            u() || (s.mute(), s.playVideo());
           },
-          onStateChange: () => m(),
-          onError: (d) => u(0, d.data === 101 || d.data === 150 ? "embed" : "error")
+          onStateChange: () => u(),
+          onError: (d) => g(0, d.data === 101 || d.data === 150 ? "embed" : "error")
         }
       });
     }));
   }
-  function pt() {
-    Q = !1;
+  function ht() {
+    te = !1;
     const e = h[S];
-    a("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? Io(e) : dn(), $ = e.duration, yt = e.duration, Pt.textContent = e.name, ke.textContent = e.group, ke.hidden = !0, _n.textContent = qi(S), ge && Dt("step", { name: e.name, group: e.group, kind: e.kind, step: S + 1, of: h.length, round: e.round || 1, rounds: sn(), duration: e.duration }), rt(), So(), Bo(), e.kind === "video" && setTimeout(Zi, 0);
+    a("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? Po(e) : gn(), ee = e.duration, Tt = e.duration, Ot.textContent = e.name, Le.textContent = e.group, Le.hidden = !0, Vn.textContent = Wi(S), fe && qt("step", { name: e.name, group: e.group, kind: e.kind, step: S + 1, of: h.length, round: e.round || 1, rounds: un(), duration: e.duration }), pt(), Co(), Ao(), e.kind === "video" && setTimeout($i, 0);
   }
-  function Oe() {
+  function je() {
     var o;
-    const e = ((o = h[S]) == null ? void 0 : o.kind) === "video" && !Q, t = e && $ >= 60;
-    qn.textContent = t ? wt($) : $, qn.classList.toggle("long", t), e && (a("videoClock").textContent = wt($) + " left");
-    const n = $ / yt * 100;
-    _i.style.width = n + "%";
-    const i = Oi();
-    if (i && !Q) {
+    const e = ((o = h[S]) == null ? void 0 : o.kind) === "video" && !te, t = e && ee >= 60;
+    jn.textContent = t ? Lt(ee) : ee, jn.classList.toggle("long", t), e && (a("videoClock").textContent = Lt(ee) + " left");
+    const n = ee / Tt * 100;
+    Gi.style.width = n + "%";
+    const i = Vi();
+    if (i && !te) {
       const r = 100 - n;
       i.style.setProperty("--segment-progress", r + "%");
     }
   }
-  function Ae() {
+  function De() {
     var t, n;
-    if (Y) return;
+    if (K) return;
     const e = h[S];
-    if ((e == null ? void 0 : e.kind) === "video" && !Q && ie === e) {
-      const i = Number((t = D == null ? void 0 : D.getCurrentTime) == null ? void 0 : t.call(D)) || 0, o = Number(e.start) || 0, r = Po(e);
-      yt = Math.max(1, r - o), (i > o || ((n = D == null ? void 0 : D.getPlayerState) == null ? void 0 : n.call(D)) === Ht) && ($ = Math.max(0, Math.ceil(r - i))), Oe(), i > o && i >= r - 0.25 && zt();
+    if ((e == null ? void 0 : e.kind) === "video" && !te && re === e) {
+      const i = Number((t = H == null ? void 0 : H.getCurrentTime) == null ? void 0 : t.call(H)) || 0, o = Number(e.start) || 0, r = Do(e);
+      Tt = Math.max(1, r - o), (i > o || ((n = H == null ? void 0 : H.getPlayerState) == null ? void 0 : n.call(H)) === Gt) && (ee = Math.max(0, Math.ceil(r - i))), je(), i > o && i >= r - 0.25 && Wt();
       return;
     }
-    $--, Oe(), $ <= 0 && (e.rest > 0 ? $i(e.rest) : ut());
+    ee--, je(), ee <= 0 && (e.rest > 0 ? ea(e.rest) : ft());
   }
-  function $i(e) {
+  function ea(e) {
     var n;
-    Q = !0, a("app").classList.add("resting");
-    const t = Oi();
-    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(j), $ = e, yt = e, ge && Dt("rest", { duration: e }), Pt.textContent = "Rest", ke.textContent = (n = h[S]) != null && n.roundBreakAfter ? "Round " + (h[S].round + 1) + " next" : "Recovery", rt(), Oe(), j = setInterval(() => {
-      Y || ($--, Oe(), $ <= 0 && (clearInterval(j), ut(), j = setInterval(Ae, 1e3)));
+    te = !0, a("app").classList.add("resting");
+    const t = Vi();
+    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(Y), ee = e, Tt = e, fe && qt("rest", { duration: e }), Ot.textContent = "Rest", Le.textContent = (n = h[S]) != null && n.roundBreakAfter ? "Round " + (h[S].round + 1) + " next" : "Recovery", pt(), je(), Y = setInterval(() => {
+      K || (ee--, je(), ee <= 0 && (clearInterval(Y), ft(), Y = setInterval(De, 1e3)));
     }, 1e3);
   }
-  function ut() {
-    Q = !1;
-    const e = le(S + 1);
+  function ft() {
+    te = !1;
+    const e = pe(S + 1);
     if (e >= 0)
-      S = e, pt();
+      S = e, ht();
     else {
-      Y = !1, Be.textContent = "Pause", a("app").classList.remove("resting", "paused"), clearInterval(j), dn(), Pt.textContent = "Complete", ke.textContent = "Move finished", ke.hidden = !1, qn.textContent = "✓";
+      K = !1, Pe.textContent = "Pause", a("app").classList.remove("resting", "paused"), clearInterval(Y), gn(), Ot.textContent = "Complete", Le.textContent = "Move finished", Le.hidden = !1, jn.textContent = "✓";
       {
-        const t = sn();
-        _n.textContent = t > 1 ? t + " rounds done" : h.filter((n) => !n.roundBreak).length + " steps done";
+        const t = un();
+        Vn.textContent = t > 1 ? t + " rounds done" : h.filter((n) => !n.roundBreak).length + " steps done";
       }
-      Wi(!0);
+      Yi(!0);
       {
-        const t = oa(7).reduce((n, i) => n + i.minutes, 0);
-        ke.textContent = "Move finished · " + t + " min in the last 7 days";
+        const t = la(7).reduce((n, i) => n + i.minutes, 0);
+        Le.textContent = "Move finished · " + t + " min in the last 7 days";
       }
-      _i.style.width = "100%", rt();
+      Gi.style.width = "100%", pt();
     }
   }
   a("skipExercise").addEventListener("click", () => {
-    clearInterval(j);
+    clearInterval(Y);
     const e = h[S];
-    if (Q) {
-      Q = !1, a("app").classList.remove("resting");
-      const n = le(S + 1);
-      n >= 0 ? (S = n, pt(), j = setInterval(Ae, 1e3)) : ut();
+    if (te) {
+      te = !1, a("app").classList.remove("resting");
+      const n = pe(S + 1);
+      n >= 0 ? (S = n, ht(), Y = setInterval(De, 1e3)) : ft();
       return;
     }
     if (e && e.rest > 0) {
-      $i(e.rest);
+      ea(e.rest);
       return;
     }
-    const t = le(S + 1);
-    t >= 0 ? (S = t, pt(), j = setInterval(Ae, 1e3)) : ut();
+    const t = pe(S + 1);
+    t >= 0 ? (S = t, ht(), Y = setInterval(De, 1e3)) : ft();
   }), a("restartSegment").addEventListener("click", () => {
-    if (clearInterval(j), Y = !1, a("app").classList.remove("paused"), Be.textContent = "Pause", Q) {
+    if (clearInterval(Y), K = !1, a("app").classList.remove("paused"), Pe.textContent = "Pause", te) {
       const e = h[S];
-      $ = e.rest, yt = e.rest, Pt.textContent = "Rest", ke.textContent = "Recovery", a("app").classList.add("resting"), rt(), Oe();
+      ee = e.rest, Tt = e.rest, Ot.textContent = "Rest", Le.textContent = "Recovery", a("app").classList.add("resting"), pt(), je();
     } else
-      pt();
-    j = setInterval(Q ? () => {
-      Y || ($--, Oe(), $ <= 0 && (clearInterval(j), ut(), j = setInterval(Ae, 1e3)));
-    } : Ae, 1e3);
+      ht();
+    Y = setInterval(te ? () => {
+      K || (ee--, je(), ee <= 0 && (clearInterval(Y), ft(), Y = setInterval(De, 1e3)));
+    } : De, 1e3);
   });
-  function cn(e, t, n, i) {
+  function vn(e, t, n, i) {
     let o = 0, r = null, s = !1;
     function l() {
       r && cancelAnimationFrame(r), r = null, o = 0, s = !1, t.style.width = "0%", e.classList.remove("holding");
     }
-    function u(d) {
+    function g(d) {
       if (!s) return;
       o || (o = d);
-      const g = Math.min(1, (d - o) / n);
-      if (t.style.width = g * 100 + "%", g >= 1) {
+      const c = Math.min(1, (d - o) / n);
+      if (t.style.width = c * 100 + "%", c >= 1) {
         s = !1, r && cancelAnimationFrame(r), r = null, t.style.width = "100%", setTimeout(() => t.style.width = "0%", 90), i();
         return;
       }
-      r = requestAnimationFrame(u);
+      r = requestAnimationFrame(g);
     }
     function p(d) {
-      var g;
+      var c;
       if (!(d && d.button !== void 0 && d.button !== 0)) {
         d == null || d.preventDefault(), l(), s = !0, e.classList.add("holding");
         try {
-          (g = e.setPointerCapture) == null || g.call(e, d.pointerId);
+          (c = e.setPointerCapture) == null || c.call(e, d.pointerId);
         } catch {
         }
-        r = requestAnimationFrame(u);
+        r = requestAnimationFrame(g);
       }
     }
-    function m() {
+    function u() {
       s && l();
     }
-    e.addEventListener("pointerdown", p), e.addEventListener("pointerup", m), e.addEventListener("pointercancel", m), e.addEventListener("lostpointercapture", m), e.addEventListener("keydown", (d) => {
+    e.addEventListener("pointerdown", p), e.addEventListener("pointerup", u), e.addEventListener("pointercancel", u), e.addEventListener("lostpointercapture", u), e.addEventListener("keydown", (d) => {
       (d.key === " " || d.key === "Enter") && !d.repeat && p(d);
     }), e.addEventListener("keyup", (d) => {
-      (d.key === " " || d.key === "Enter") && m();
+      (d.key === " " || d.key === "Enter") && u();
     });
   }
-  const _o = a("endWorkout");
-  cn(_o, a("holdEndFill"), 1500, Vn);
-  const mt = a("deleteMoveConfirm");
+  const Oo = a("endWorkout");
+  vn(Oo, a("holdEndFill"), 1500, Kn);
+  const bt = a("deleteMoveConfirm");
   a("deleteMoveOpen").addEventListener("click", () => {
-    mt.classList.add("open"), mt.setAttribute("aria-hidden", "false");
+    bt.classList.add("open"), bt.setAttribute("aria-hidden", "false");
   }), a("deleteMoveCancel").addEventListener("click", () => {
-    mt.classList.remove("open"), mt.setAttribute("aria-hidden", "true");
+    bt.classList.remove("open"), bt.setAttribute("aria-hidden", "true");
   });
   function qo() {
-    const e = M, t = x.querySelector('.workoutPanel[data-workout="' + e + '"]');
-    t && t.remove(), delete L[e], E.order = E.order.filter((i) => i !== e);
+    const e = F, t = x.querySelector('.workoutPanel[data-workout="' + e + '"]');
+    t && t.remove(), delete L[e], M.order = M.order.filter((i) => i !== e);
     let n = x.querySelector(".workoutPanel[data-workout]");
     if (!n) {
       const i = "custom-" + Date.now();
-      L[i] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, E.order.push(i), n = xn(i, L[i]);
+      L[i] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, M.order.push(i), n = Cn(i, L[i]);
     }
-    mt.classList.remove("open"), mt.setAttribute("aria-hidden", "true"), Rt = null, tn(), pe(n.dataset.workout), ce(), W("Move deleted");
+    bt.classList.remove("open"), bt.setAttribute("aria-hidden", "true"), Pt = null, sn(), ge(n.dataset.workout), me(), V("Move deleted");
   }
-  cn(a("deleteMoveYes"), a("deleteMoveFill"), 1500, qo);
-  const Zn = x.querySelector(".rubberTabs"), gt = a("rubberIndicator");
-  function _t(e, t = !0) {
-    if (!e || !Zn || !gt) return;
-    const n = Zn.getBoundingClientRect(), i = e.getBoundingClientRect();
-    gt.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
-    const o = _e();
-    gt.style.left = (i.left - n.left) / o + Zn.scrollLeft + "px", gt.style.width = i.width / o + "px", t && (gt.style.transform = "scaleX(1.08)", setTimeout(() => gt.style.transform = "scaleX(1)", 180));
+  vn(a("deleteMoveYes"), a("deleteMoveFill"), 1500, qo);
+  const Xn = x.querySelector(".rubberTabs"), xt = a("rubberIndicator");
+  function Vt(e, t = !0) {
+    if (!e || !Xn || !xt) return;
+    const n = Xn.getBoundingClientRect(), i = e.getBoundingClientRect();
+    xt.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
+    const o = We();
+    xt.style.left = (i.left - n.left) / o + Xn.scrollLeft + "px", xt.style.width = i.width / o + "px", t && (xt.style.transform = "scaleX(1.08)", setTimeout(() => xt.style.transform = "scaleX(1)", 180));
   }
   x.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
-    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), x.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), x.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), a(e.dataset.pane).classList.add("active"), _t(e, !0);
-  })), requestAnimationFrame(() => _t(x.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => _t(x.querySelector(".tab.active"), !1));
-  const Kn = a("pixelTrailToggle"), Jn = a("rippleToggle"), vt = a("trailStrength"), ht = a("trailLife");
-  function de(e, t) {
-    N()[e] = t, ce();
+    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), x.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), x.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), a(e.dataset.pane).classList.add("active"), Vt(e, !0);
+  })), requestAnimationFrame(() => Vt(x.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => Vt(x.querySelector(".tab.active"), !1));
+  const ei = a("pixelTrailToggle"), ti = a("rippleToggle"), yt = a("trailStrength"), wt = a("trailLife");
+  function ue(e, t) {
+    I()[e] = t, me();
   }
-  const ft = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...N().toggles || {} };
-  function Qi() {
-    x.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", ft[t.dataset.toggle] !== !1)), x.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
-      a(n).hidden = ft[t] === !1;
+  const kt = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...I().toggles || {} };
+  function ta() {
+    x.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", kt[t.dataset.toggle] !== !1)), x.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
+      a(n).hidden = kt[t] === !1;
     });
-    const e = ["steps", "mood", "energyLevel"].some((t) => ft[t] !== !1);
+    const e = ["steps", "mood", "energyLevel"].some((t) => kt[t] !== !1);
     x.querySelector(".activityCard").hidden = !e, a("insightCard").style.gridColumn = e ? "" : "span 12";
   }
   x.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
-    ft[e.dataset.toggle] = ft[e.dataset.toggle] === !1, Qi(), de("toggles", { ...ft });
-  })), Qi();
-  function Oo() {
-    Kn.classList.toggle("on", we), Jn.classList.toggle("on", qe), vt.value = Math.round(et * 100), a("trailStrengthValue").textContent = vt.value + "%", ht.value = tt, a("trailLifeValue").textContent = ht.value + " ms";
+    kt[e.dataset.toggle] = kt[e.dataset.toggle] === !1, ta(), ue("toggles", { ...kt });
+  })), ta();
+  function Go() {
+    ei.classList.toggle("on", Te), ti.classList.toggle("on", Ve), yt.value = Math.round(ot * 100), a("trailStrengthValue").textContent = yt.value + "%", wt.value = rt, a("trailLifeValue").textContent = wt.value + " ms";
   }
-  N().trailEnabled !== void 0 && (we = N().trailEnabled), N().rippleEnabled !== void 0 && (qe = N().rippleEnabled), N().trailStrength !== void 0 && (et = N().trailStrength), N().trailMaxAge !== void 0 && (tt = N().trailMaxAge), Oo(), Kn.addEventListener("click", () => {
-    we = !we, Kn.classList.toggle("on", we), we || (It = []), de("trailEnabled", we);
-  }), Jn.addEventListener("click", () => {
-    qe = !qe, Jn.classList.toggle("on", qe), de("rippleEnabled", qe);
-  }), vt.addEventListener("input", () => {
-    et = Number(vt.value) / 100, a("trailStrengthValue").textContent = vt.value + "%";
-  }), vt.addEventListener("change", () => de("trailStrength", et)), ht.addEventListener("input", () => {
-    tt = Number(ht.value), a("trailLifeValue").textContent = ht.value + " ms";
-  }), ht.addEventListener("change", () => de("trailMaxAge", tt)), Qt.addEventListener("change", () => de("upcomingCount", Ye));
-  function Xi(e) {
+  I().trailEnabled !== void 0 && (Te = I().trailEnabled), I().rippleEnabled !== void 0 && (Ve = I().rippleEnabled), I().trailStrength !== void 0 && (ot = I().trailStrength), I().trailMaxAge !== void 0 && (rt = I().trailMaxAge), Go(), ei.addEventListener("click", () => {
+    Te = !Te, ei.classList.toggle("on", Te), Te || (_t = []), ue("trailEnabled", Te);
+  }), ti.addEventListener("click", () => {
+    Ve = !Ve, ti.classList.toggle("on", Ve), ue("rippleEnabled", Ve);
+  }), yt.addEventListener("input", () => {
+    ot = Number(yt.value) / 100, a("trailStrengthValue").textContent = yt.value + "%";
+  }), yt.addEventListener("change", () => ue("trailStrength", ot)), wt.addEventListener("input", () => {
+    rt = Number(wt.value), a("trailLifeValue").textContent = wt.value + " ms";
+  }), wt.addEventListener("change", () => ue("trailMaxAge", rt)), an.addEventListener("change", () => ue("upcomingCount", $e));
+  function na(e) {
     x.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
     const t = e === "light";
     a("app").classList.toggle("light", t), y.setLight(t);
   }
-  Xi(N().theme || "dark"), x.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
-    Xi(e.dataset.theme), de("theme", e.dataset.theme);
+  na(I().theme || "dark"), x.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
+    na(e.dataset.theme), ue("theme", e.dataset.theme);
   }));
-  const Se = { steps: null, ...N().entities || {} };
-  let Ge = null, $n = {};
-  function Go(e) {
-    const t = Object.values(e).filter((l) => l.entity_id.startsWith("sensor.") || l.entity_id.startsWith("input_number.")), n = (l) => l.attributes.friendly_name || l.entity_id, i = t.filter((l) => /step/i.test(l.entity_id) || /step/i.test(n(l)) || ["steps", "step"].includes(String(l.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((l) => !i.includes(l)), r = (l, u) => n(l).localeCompare(n(u)), s = (l, u) => /health_steps/.test(u.entity_id) - /health_steps/.test(l.entity_id) || r(l, u);
+  const Ee = { steps: null, ...I().entities || {} };
+  let Ye = null, ni = {};
+  function Wo(e) {
+    const t = Object.values(e).filter((l) => l.entity_id.startsWith("sensor.") || l.entity_id.startsWith("input_number.")), n = (l) => l.attributes.friendly_name || l.entity_id, i = t.filter((l) => /step/i.test(l.entity_id) || /step/i.test(n(l)) || ["steps", "step"].includes(String(l.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((l) => !i.includes(l)), r = (l, g) => n(l).localeCompare(n(g)), s = (l, g) => /health_steps/.test(g.entity_id) - /health_steps/.test(l.entity_id) || r(l, g);
     return { suggested: i.sort(s), rest: o.sort(r), label: n };
   }
-  function ea(e) {
+  function ia(e) {
     const t = a("stepsEntity");
     if (!t || t.matches(":focus")) return;
-    const { suggested: n, rest: i, label: o } = Go(e), r = (u) => '<option value="' + I(u.entity_id) + '">' + I(o(u)) + "</option>";
-    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (i.length ? '<optgroup label="All sensors">' + i.map(r).join("") + "</optgroup>" : ""), t.value = Se.steps || "";
-    const s = a("stepsStatus"), l = Se.steps && e[Se.steps];
+    const { suggested: n, rest: i, label: o } = Wo(e), r = (g) => '<option value="' + P(g.entity_id) + '">' + P(o(g)) + "</option>";
+    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (i.length ? '<optgroup label="All sensors">' + i.map(r).join("") + "</optgroup>" : ""), t.value = Ee.steps || "";
+    const s = a("stepsStatus"), l = Ee.steps && e[Ee.steps];
     s.textContent = l ? "Connected · " + o(l) : s.dataset.empty;
   }
   a("stepsEntity").addEventListener("change", () => {
-    Se.steps = a("stepsEntity").value || null, de("entities", { ...Se }), $n = {}, aa(), Ge && (ea(Ge), na(Ge));
+    Ee.steps = a("stepsEntity").value || null, ue("entities", { ...Ee }), ni = {}, sa(), Ye && (ia(Ye), oa(Ye));
   });
-  function Wo(e, t = 0) {
+  function Vo(e, t = 0) {
     return new Intl.NumberFormat(void 0, { maximumFractionDigits: t }).format(e);
   }
-  function ta() {
-    const e = Se.steps && (Ge == null ? void 0 : Ge[Se.steps]), t = Number(e == null ? void 0 : e.state);
+  function aa() {
+    const e = Ee.steps && (Ye == null ? void 0 : Ye[Ee.steps]), t = Number(e == null ? void 0 : e.state);
     return Number.isFinite(t) ? t : null;
   }
-  function na(e) {
+  function oa(e) {
     var i;
-    const t = Se.steps, n = t ? Number((i = e[t]) == null ? void 0 : i.state) : NaN;
-    a("stepsMeta").textContent = t ? Number.isFinite(n) ? Wo(n) : "—" : "Set up in Settings";
+    const t = Ee.steps, n = t ? Number((i = e[t]) == null ? void 0 : i.state) : NaN;
+    a("stepsMeta").textContent = t ? Number.isFinite(n) ? Vo(n) : "—" : "Set up in Settings";
   }
-  let ia = 0;
-  async function aa() {
-    const e = Se.steps;
+  let ra = 0;
+  async function sa() {
+    const e = Ee.steps;
     if (!e || !y.ws) return;
-    ia = Date.now();
+    ra = Date.now();
     const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - 30);
     try {
       const i = await y.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (i == null ? void 0 : i[e]) || [], r = {};
       if (o.forEach((s) => {
-        Number.isFinite(s.max) && (r[te(new Date(s.start))] = s.max);
+        Number.isFinite(s.max) && (r[ae(new Date(s.start))] = s.max);
       }), !Object.keys(r).length) {
         const s = await y.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
         ((s == null ? void 0 : s[e]) || []).forEach((l) => {
-          const u = Number(l.s ?? l.state), p = l.lu ? l.lu * 1e3 : Date.parse(l.last_updated || l.last_changed);
-          if (!Number.isFinite(u) || !p) return;
-          const m = te(new Date(p));
-          r[m] = Math.max(r[m] || 0, u);
+          const g = Number(l.s ?? l.state), p = l.lu ? l.lu * 1e3 : Date.parse(l.last_updated || l.last_changed);
+          if (!Number.isFinite(g) || !p) return;
+          const u = ae(new Date(p));
+          r[u] = Math.max(r[u] || 0, g);
         });
       }
-      $n = r, Ce();
+      ni = r, Me();
     } catch {
     }
   }
-  function We() {
-    Ce();
+  function Ue() {
+    Me();
   }
-  We(), setInterval(() => {
-    We(), Et(), ze();
+  Ue(), setInterval(() => {
+    Ue(), At(), Ge();
   }, 10 * 60 * 1e3);
-  function oa(e) {
+  function la(e) {
     const t = {}, n = {};
-    E.history.forEach((s) => {
-      const l = te(new Date(s.start));
+    M.history.forEach((s) => {
+      const l = ae(new Date(s.start));
       t[l] = (t[l] || 0) + (s.seconds || 0) / 60, n[l] = (n[l] || 0) + 1;
     });
-    const i = /* @__PURE__ */ new Date(), o = te(i), r = [];
+    const i = /* @__PURE__ */ new Date(), o = ae(i), r = [];
     for (let s = e - 1; s >= 0; s--) {
-      const l = new Date(i.getFullYear(), i.getMonth(), i.getDate() - s), u = te(l), p = E.checkins.filter((d) => d.date === u), m = (d) => {
-        const g = p.map((T) => T[d]).filter(Boolean);
-        return g.length ? g.reduce((T, C) => T + C, 0) / g.length : null;
+      const l = new Date(i.getFullYear(), i.getMonth(), i.getDate() - s), g = ae(l), p = M.checkins.filter((d) => d.date === g), u = (d) => {
+        const c = p.map((T) => T[d]).filter(Boolean);
+        return c.length ? c.reduce((T, C) => T + C, 0) / c.length : null;
       };
       r.push({
-        key: u,
+        key: g,
         date: l,
-        minutes: Math.round(t[u] || 0),
-        moves: n[u] || 0,
-        steps: u === o && ta() != null ? ta() : $n[u] ?? null,
-        mood: m("mood"),
-        energy: m("energy")
+        minutes: Math.round(t[g] || 0),
+        moves: n[g] || 0,
+        steps: g === o && aa() != null ? aa() : ni[g] ?? null,
+        mood: u("mood"),
+        energy: u("energy")
       });
     }
     return r;
   }
-  function Vo(e) {
+  function jo(e) {
     let t = e.length - 1;
     e[t] && !e[t].minutes && t--;
     let n = 0;
@@ -2466,100 +2474,100 @@ function Qo(x, y) {
       n++, t--;
     return n;
   }
-  function Ce() {
+  function Me() {
     const e = a("insightCard");
     if (!e) return;
-    const t = oa(30), n = Vo(t), i = t.reduce((d, g) => d + g.minutes, 0), o = /* @__PURE__ */ new Date(), r = te(o), s = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), l = [...Array(7)].map((d, g) => {
-      const T = new Date(s.getFullYear(), s.getMonth(), s.getDate() + g), C = te(T), v = t.find((b) => b.key === C);
+    const t = la(30), n = jo(t), i = t.reduce((d, c) => d + c.minutes, 0), o = /* @__PURE__ */ new Date(), r = ae(o), s = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), l = [...Array(7)].map((d, c) => {
+      const T = new Date(s.getFullYear(), s.getMonth(), s.getDate() + c), C = ae(T), v = t.find((b) => b.key === C);
       return { d: T, k: C, minutes: v ? v.minutes : 0, today: C === r, future: C > r };
-    }), u = l.reduce((d, g) => d + g.minutes, 0), p = Math.max(10, ...l.map((d) => d.minutes)), m = (d, g, T) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + d + '</div><div><div class="activityRowName">' + I(g) + '</div><div class="activityRowMeta">' + I(T) + "</div></div></div>";
-    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + m("◷", "This week", u + " min") + m("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + m("▦", "30 days", i + " min") + '</div><div class="weekBars">' + l.map(
-      (d) => '<div class="weekBar' + (d.today ? " today" : "") + (d.future ? " future" : "") + '" title="' + I(d.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (d.minutes ? Math.max(6, d.minutes / p * 100) : 0) + '%"></span></div><div class="dayLabel">' + I(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(d.d)) + "</div></div>"
+    }), g = l.reduce((d, c) => d + c.minutes, 0), p = Math.max(10, ...l.map((d) => d.minutes)), u = (d, c, T) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + d + '</div><div><div class="activityRowName">' + P(c) + '</div><div class="activityRowMeta">' + P(T) + "</div></div></div>";
+    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + u("◷", "This week", g + " min") + u("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + u("▦", "30 days", i + " min") + '</div><div class="weekBars">' + l.map(
+      (d) => '<div class="weekBar' + (d.today ? " today" : "") + (d.future ? " future" : "") + '" title="' + P(d.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (d.minutes ? Math.max(6, d.minutes / p * 100) : 0) + '%"></span></div><div class="dayLabel">' + P(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(d.d)) + "</div></div>"
     ).join("") + "</div>";
   }
-  const ra = a("tvNav");
-  y.fullscreenSupported || (ra.hidden = !0), ra.addEventListener("click", () => y.toggleFullscreen()), x.addEventListener("keydown", (e) => {
-    !je.workout.classList.contains("active") || Bt.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), Be.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), a("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), a("restartSegment").click()));
-  }), [P, R, B, Pe].forEach((e) => e.addEventListener("input", () => {
-    const t = L[M];
-    t && (t.total = Number(P.value), t.work = Number(R.value), t.rest = Number(B.value)), _();
-  })), pi.addEventListener("click", Vn), ui.addEventListener("click", () => vn("settings")), a("settingsBack").addEventListener("click", Vn), Be.addEventListener("click", () => {
-    if (Y = !Y, ge && Dt(Y ? "paused" : "resumed"), Be.textContent = Y ? "Resume" : "Pause", a("app").classList.toggle("paused", Y), ie && D)
+  const da = a("tvNav");
+  y.fullscreenSupported || (da.hidden = !0), da.addEventListener("click", () => y.toggleFullscreen()), x.addEventListener("keydown", (e) => {
+    !Je.workout.classList.contains("active") || Dt.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), Pe.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), a("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), a("restartSegment").click()));
+  }), [D, B, A, _e].forEach((e) => e.addEventListener("input", () => {
+    const t = L[F];
+    t && (t.total = Number(D.value), t.work = Number(B.value), t.rest = Number(A.value)), q();
+  })), gi.addEventListener("click", Kn), vi.addEventListener("click", () => yn("settings")), a("settingsBack").addEventListener("click", Kn), Pe.addEventListener("click", () => {
+    if (K = !K, fe && qt(K ? "paused" : "resumed"), Pe.textContent = K ? "Resume" : "Pause", a("app").classList.toggle("paused", K), re && H)
       try {
-        Y ? D.pauseVideo() : D.playVideo();
+        K ? H.pauseVideo() : H.playVideo();
       } catch {
       }
-  }), pe(M), $t(), Et(), Ce(), a("healthHelpOpen").addEventListener("click", () => x.querySelector(".tab[data-pane=helpPane]").click()), cn(a("resetStats"), a("resetStatsFill"), 1500, () => {
-    E.history = [], E.checkins = [], Lt = "";
+  }), ge(F), nn(), At(), Me(), a("healthHelpOpen").addEventListener("click", () => x.querySelector(".tab[data-pane=helpPane]").click()), vn(a("resetStats"), a("resetStatsFill"), 1500, () => {
+    M.history = [], M.checkins = [], Bt = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
     } catch {
     }
-    ce(), We(), Et(), $t(), Ce(), ze(), W("Stats reset");
+    me(), Ue(), At(), nn(), Me(), Ge(), V("Stats reset");
   });
-  const Qn = a("morningTime"), Xn = a("eveningTime"), ei = a("checkinAutoOpen");
-  Qn.value = xe().morning, Xn.value = xe().evening, ei.classList.toggle("on", N().checkinAutoOpen !== !1), [["morningTime", Qn], ["eveningTime", Xn]].forEach(([e, t]) => t.addEventListener("change", () => {
-    t.value && (de(e, t.value), ze());
-  })), ei.addEventListener("click", () => {
-    const e = N().checkinAutoOpen === !1;
-    ei.classList.toggle("on", e), de("checkinAutoOpen", e);
-  }), setTimeout(Bn, 800);
-  const sa = a("checkinNotify"), pn = a("checkinNotifyTarget"), la = a("checkinNotifyStatus"), jo = la.textContent;
-  function da() {
+  const ii = a("morningTime"), ai = a("eveningTime"), oi = a("checkinAutoOpen");
+  ii.value = Se().morning, ai.value = Se().evening, oi.classList.toggle("on", I().checkinAutoOpen !== !1), [["morningTime", ii], ["eveningTime", ai]].forEach(([e, t]) => t.addEventListener("change", () => {
+    t.value && (ue(e, t.value), Ge());
+  })), oi.addEventListener("click", () => {
+    const e = I().checkinAutoOpen === !1;
+    oi.classList.toggle("on", e), ue("checkinAutoOpen", e);
+  }), setTimeout(Dn, 800);
+  const ca = a("checkinNotify"), hn = a("checkinNotifyTarget"), pa = a("checkinNotifyStatus"), Yo = pa.textContent;
+  function ua() {
     const e = y.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, i = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
-    pn.innerHTML = n.map((o) => '<option value="' + I(o) + '">' + I(i(o)) + "</option>").join(""), !N().notifyTarget && n[0] && (N().notifyTarget = n[0]), pn.value = N().notifyTarget || "";
+    hn.innerHTML = n.map((o) => '<option value="' + P(o) + '">' + P(i(o)) + "</option>").join(""), !I().notifyTarget && n[0] && (I().notifyTarget = n[0]), hn.value = I().notifyTarget || "";
   }
-  function un() {
-    const e = !!N().notifyOn;
-    sa.classList.toggle("on", e), a("checkinNotifyTargetRow").hidden = !e;
-    const t = xe();
-    la.textContent = e ? "Sends at " + t.morning + " and " + t.evening : jo;
+  function fn() {
+    const e = !!I().notifyOn;
+    ca.classList.toggle("on", e), a("checkinNotifyTargetRow").hidden = !e;
+    const t = Se();
+    pa.textContent = e ? "Sends at " + t.morning + " and " + t.evening : Yo;
   }
-  async function ti() {
-    const e = !!N().notifyOn;
+  async function ri() {
+    const e = !!I().notifyOn;
     try {
-      return await y.setReminderAutomation(e ? { target: N().notifyTarget, times: xe() } : null), !0;
+      return await y.setReminderAutomation(e ? { target: I().notifyTarget, times: Se() } : null), !0;
     } catch {
-      return W("Couldn't update the reminder in Home Assistant"), !1;
+      return V("Couldn't update the reminder in Home Assistant"), !1;
     }
   }
-  sa.addEventListener("click", async () => {
-    const e = !N().notifyOn;
-    if (e && (da(), !N().notifyTarget)) {
-      W("Install the Companion app on your phone first");
+  ca.addEventListener("click", async () => {
+    const e = !I().notifyOn;
+    if (e && (ua(), !I().notifyTarget)) {
+      V("Install the Companion app on your phone first");
       return;
     }
-    N().notifyOn = e, un(), await ti() ? (ce(), W(e ? "Check-in notifications on" : "Check-in notifications off")) : (N().notifyOn = !e, un());
-  }), pn.addEventListener("change", () => {
-    de("notifyTarget", pn.value), N().notifyOn && ti();
-  }), [Qn, Xn].forEach((e) => e.addEventListener("change", () => {
-    un(), N().notifyOn && ti();
-  })), da(), un();
-  let ni = null;
-  function Yo() {
-    ni || (ni = setTimeout(() => {
-      ni = null, Ce();
+    I().notifyOn = e, fn(), await ri() ? (me(), V(e ? "Check-in notifications on" : "Check-in notifications off")) : (I().notifyOn = !e, fn());
+  }), hn.addEventListener("change", () => {
+    ue("notifyTarget", hn.value), I().notifyOn && ri();
+  }), [ii, ai].forEach((e) => e.addEventListener("change", () => {
+    fn(), I().notifyOn && ri();
+  })), ua(), fn();
+  let si = null;
+  function Uo() {
+    si || (si = setTimeout(() => {
+      si = null, Me();
     }, 3e4));
   }
   return {
     updateStates(e) {
-      Ge = e, ea(e), na(e), Date.now() - ia > 60 * 60 * 1e3 && aa(), Yo();
+      Ye = e, ia(e), oa(e), Date.now() - ra > 60 * 60 * 1e3 && sa(), Uo();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (E.history = e.history, We()), Array.isArray(e.history) && Ce(), Array.isArray(e.checkins) && (E.checkins = e.checkins.map(hi), ze(), $t(), Et(), We(), Ce()), e.profiles && !ne.classList.contains("open") && !ge)) {
-        const t = vi(e);
-        Object.keys(L).forEach((n) => delete L[n]), Object.assign(L, t.profiles), E.order = t.order, L[M] || (M = E.order[0]), bi(), pe(M);
+      if (e && (Array.isArray(e.history) && (M.history = e.history, Ue()), Array.isArray(e.history) && Me(), Array.isArray(e.checkins) && (M.checkins = e.checkins.map(xi), Ge(), nn(), At(), Ue(), Me()), e.profiles && !oe.classList.contains("open") && !fe)) {
+        const t = bi(e);
+        Object.keys(L).forEach((n) => delete L[n]), Object.assign(L, t.profiles), M.order = t.order, L[F] || (F = M.order[0]), wi(), ge(F);
       }
     },
     suspend() {
-      q = !1;
+      G = !1;
     },
     resume() {
-      q || (q = !0, nt || (nt = requestAnimationFrame(an)), at || (at = requestAnimationFrame(on)), _t(x.querySelector(".tab.active"), !1));
+      G || (G = !0, st || (st = requestAnimationFrame(dn)), dt || (dt = requestAnimationFrame(cn)), Vt(x.querySelector(".tab.active"), !1));
     }
   };
 }
-const Xo = "0.19.0", ri = "move_assistant", er = "move_assistant", ha = "move_assistant_checkin_reminder";
+const Xo = "0.20.0", di = "move_assistant", er = "move_assistant", fa = "move_assistant_checkin_reminder";
 function tr() {
   if (document.getElementById("move-assistant-inter")) return;
   const x = document.createElement("link");
@@ -2600,26 +2608,26 @@ class nr extends HTMLElement {
     y.innerHTML = `<style>${Jo}</style>${$o}`;
     const a = y.getElementById("app");
     a.style.opacity = "0";
-    let H = null;
+    let z = null;
     try {
-      const F = await this._hass.callWS({
+      const R = await this._hass.callWS({
         type: "frontend/get_user_data",
-        key: ri
+        key: di
       });
-      H = (F == null ? void 0 : F.value) ?? null;
+      z = (R == null ? void 0 : R.value) ?? null;
     } catch {
     }
-    this._lastSaved = JSON.stringify(H), this._app = Qo(y, {
-      data: H,
-      save: (F) => this._save(F),
-      fire: (F, q) => this._fire(F, q),
-      ws: (F) => this._hass.callWS(F),
+    this._lastSaved = JSON.stringify(z), this._app = Qo(y, {
+      data: z,
+      save: (R) => this._save(R),
+      fire: (R, G) => this._fire(R, G),
+      ws: (R) => this._hass.callWS(R),
       notifyServices: () => {
-        var F, q;
-        return Object.keys(((q = (F = this._hass) == null ? void 0 : F.services) == null ? void 0 : q.notify) || {}).sort();
+        var R, G;
+        return Object.keys(((G = (R = this._hass) == null ? void 0 : R.services) == null ? void 0 : G.notify) || {}).sort();
       },
-      setReminderAutomation: (F) => this._setReminderAutomation(F),
-      setLight: (F) => this.classList.toggle("lightBody", F),
+      setReminderAutomation: (R) => this._setReminderAutomation(R),
+      setLight: (R) => this.classList.toggle("lightBody", R),
       fullscreenSupported: !!(this.requestFullscreen || this.webkitRequestFullscreen),
       toggleFullscreen: () => this._toggleFullscreen()
     }), this._lastStates = this._hass.states, this._app.updateStates(this._hass.states), this.isConnected || this._app.suspend(), a.style.transition = "opacity .2s ease", a.style.opacity = "", this._subscribe();
@@ -2628,12 +2636,12 @@ class nr extends HTMLElement {
     var a;
     const y = (a = this._hass) == null ? void 0 : a.connection;
     y != null && y.subscribeMessage && y.subscribeMessage(
-      (H) => {
-        var q;
-        const F = JSON.stringify((H == null ? void 0 : H.value) ?? null);
-        F === this._lastSaved || F === this._pendingJson || (this._lastSaved = F, (q = this._app) == null || q.applyRemoteData(H.value));
+      (z) => {
+        var G;
+        const R = JSON.stringify((z == null ? void 0 : z.value) ?? null);
+        R === this._lastSaved || R === this._pendingJson || (this._lastSaved = R, (G = this._app) == null || G.applyRemoteData(z.value));
       },
-      { type: "frontend/subscribe_user_data", key: ri }
+      { type: "frontend/subscribe_user_data", key: di }
     ).catch(() => {
     });
   }
@@ -2643,7 +2651,7 @@ class nr extends HTMLElement {
       try {
         await this._hass.callWS({
           type: "frontend/set_user_data",
-          key: ri,
+          key: di,
           value: JSON.parse(a)
         }), this._lastSaved = a;
       } catch {
@@ -2652,8 +2660,8 @@ class nr extends HTMLElement {
     }, 400);
   }
   _fire(y, a = {}) {
-    var H, F;
-    ((H = this._config) == null ? void 0 : H.events) !== !1 && ((F = this._hass) == null || F.callWS({
+    var z, R;
+    ((z = this._config) == null ? void 0 : z.events) !== !1 && ((R = this._hass) == null || R.callWS({
       type: "fire_event",
       event_type: er,
       event_data: { action: y, ...a }
@@ -2663,24 +2671,24 @@ class nr extends HTMLElement {
   // Keeps one Home Assistant automation in sync with the check-in times.
   // Passing null removes it.
   async _setReminderAutomation(y) {
-    const a = `config/automation/config/${ha}`;
+    const a = `config/automation/config/${fa}`;
     if (!y) {
       try {
         await this._hass.callApi("DELETE", a);
-      } catch (q) {
-        if ((q == null ? void 0 : q.status_code) !== 404 && (q == null ? void 0 : q.status) !== 404) throw q;
+      } catch (G) {
+        if ((G == null ? void 0 : G.status_code) !== 404 && (G == null ? void 0 : G.status) !== 404) throw G;
       }
       return;
     }
-    const H = (q) => `${q}:00`, F = window.location.pathname;
+    const z = (G) => `${G}:00`, R = window.location.pathname;
     await this._hass.callApi("POST", a, {
-      id: ha,
+      id: fa,
       alias: "Move Assistant check-in reminder",
       description: "Created by Move Assistant. Change it in Move Assistant → Settings → Check-in.",
       mode: "single",
       triggers: [
-        { trigger: "time", at: H(y.times.morning), id: "morning" },
-        { trigger: "time", at: H(y.times.evening), id: "evening" }
+        { trigger: "time", at: z(y.times.morning), id: "morning" },
+        { trigger: "time", at: z(y.times.evening), id: "evening" }
       ],
       conditions: [],
       actions: [
@@ -2689,7 +2697,7 @@ class nr extends HTMLElement {
           data: {
             title: "Move Assistant",
             message: "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
-            data: { url: F, clickAction: F }
+            data: { url: R, clickAction: R }
           }
         }
       ]
@@ -2707,8 +2715,8 @@ class nr extends HTMLElement {
     );
   }
   _toast(y) {
-    var H;
-    const a = (H = this.shadowRoot) == null ? void 0 : H.getElementById("toast");
+    var z;
+    const a = (z = this.shadowRoot) == null ? void 0 : z.getElementById("toast");
     a && (a.textContent = y, a.classList.add("show"), setTimeout(() => a.classList.remove("show"), 2600));
   }
 }

@@ -589,7 +589,7 @@ function buildRoutine(){
    }
  }else{
    // Play exactly the listed exercises, once each, in order.
-   routine=[...vWarm,...vStrength,...vCool].map(x=>{
+   routine=[...vWarm.map(x=>({...x,section:'warmup'})),...vStrength,...vCool.map(x=>({...x,section:'cooldown'}))].map(x=>{
      if(x.kind==='video')return {...x,duration:videoStepSeconds(x,work),rest:0};
      if(x.kind==='rest')return {...x,duration:x.useGlobalTiming===true?rest:(Number(x.duration)||rest),rest:0};
      return {...x,duration:x.useGlobalTiming===false?(Number(x.duration)||work):work,rest};
@@ -601,11 +601,31 @@ function buildRoutine(){
  // Repeat the whole sequence for each round, with a normal rest between rounds.
  const rounds=Math.max(1,Math.min(10,Number(roundsInput.value)||1));
  const oneRound=routine;
- const perRound=oneRound.length;
- const roundSeconds=oneRound.reduce((sum,x)=>sum+x.duration+x.rest,0);
+ // Only the main section repeats: the warm-up plays once at the start of round 1, the cooldown
+ // once at the end of the last round, and a video can be set to play in just the first or last.
+ const onceIn=x=>{
+   if(rounds<=1)return null;
+   if(x.section==='warmup'||x.presetRole==='warmup')return 'first';
+   if(x.section==='cooldown'||x.presetRole==='cooldown')return 'last';
+   if(x.kind==='video'&&(x.videoRounds==='first'||x.videoRounds==='last'))return x.videoRounds;
+   return null;
+ };
+ const oneOff=x=>Boolean(onceIn(x));
+ const everyRound=oneRound.filter(x=>!oneOff(x)),onceItems=oneRound.filter(oneOff);
+ const perRound=everyRound.length;
+ const roundSeconds=everyRound.reduce((sum,x)=>sum+x.duration+x.rest,0);
+ const onceSeconds=onceItems.reduce((sum,x)=>sum+x.duration+x.rest,0);
+ const onceParts=[
+   onceItems.some(x=>x.section==='warmup'||x.presetRole==='warmup')&&'warm-up',
+   onceItems.some(x=>x.section==='cooldown'||x.presetRole==='cooldown')&&'cooldown',
+   onceItems.some(x=>x.kind==='video'&&!x.section&&!x.presetRole)&&'video'
+ ].filter(Boolean);
+ const onceText=onceParts.length>1?onceParts.slice(0,-1).join(', ')+' & '+onceParts[onceParts.length-1]:onceParts[0]||'';
  routine=[];
+ // a video step can be set to play only in the first or the last round
+ const playsIn=(x,r)=>{const once=onceIn(x);return !once||(once==='first'?r===1:r===rounds)};
  for(let r=1;r<=rounds;r++){
-   oneRound.forEach((item,i)=>routine.push({...item,id:item.id+(rounds>1?'-r'+r:''),round:r,roundIndex:i}));
+   oneRound.filter(x=>playsIn(x,r)).forEach((item,i)=>routine.push({...item,id:item.id+(rounds>1?'-r'+r:''),round:r,roundIndex:i}));
    if(r<rounds&&perRound){
      if(profile?.customSequence){
        routine.push({id:'round-break-'+r,name:'Rest',group:'Round '+(r+1)+' next',kind:'rest',hidden:false,duration:rest,rest:0,round:r,roundIndex:perRound,roundBreak:true});
@@ -621,14 +641,15 @@ function buildRoutine(){
  const roundMinutes=Math.round(roundSeconds/60);
  const totalMinutes=Math.round(actualSeconds/60);
  const length=rounds>1
-   ? formatTotalMinutes(roundMinutes)+' × '+rounds+' rounds ('+formatTotalMinutes(totalMinutes)+')'
+   ? formatTotalMinutes(roundMinutes)+' × '+rounds+' rounds'+(onceSeconds?' + '+formatDuration(onceSeconds)+' '+onceText:'')+' ('+formatTotalMinutes(totalMinutes)+')'
    : formatTotalMinutes(totalMinutes);
  const extras=[vWarm.length?'warm-up':'',vCool.length?'cooldown':''].filter(Boolean);
  const text=profile?.customSequence
    ? length+' · '+perRound+' items'
-   : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+(extras.length?' · '+extras.join(' + '):'');
+   : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+(extras.length&&!(rounds>1&&onceSeconds)?' · '+extras.join(' + '):'');
  totalOut.textContent=formatDuration(roundSeconds);
- const countText=perRound+' activities'+(rounds>1?' × '+rounds:'');
+ const steps=routine.filter(x=>!x.roundBreak).length;
+ const countText=rounds>1?steps+' activities · '+rounds+' rounds':perRound+' activities';
  roundsOut.textContent=rounds>1?rounds+' rounds · '+formatTotalMinutes(totalMinutes)+' total':'1 round';
  if(profile){profile.summary=text;profile.activityCount=perRound}
  const activeSummary=root.querySelector('.workoutPanel.active .sub');
@@ -667,6 +688,9 @@ function renderEditForm(item,i){
   const fields=isVideo
     ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="'+esc(item.url||'')+'" placeholder="Paste a YouTube link"></label>'+
       '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.autoName?'':item.name)+'" placeholder="Uses the video’s title"></label>'+
+      '<label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">'+
+        [['every','Every round'],['first','The first round only'],['last','The last round only']].map(([v,l])=>'<option value="'+v+'"'+((item.videoRounds||'every')===v?' selected':'')+'>'+l+'</option>').join('')+
+      '</select></label>'+
       '<p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>'
     : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="'+esc(item.name)+'" placeholder="'+(isRest?'Rest':'Name this movement')+'"></label>'+
       '<label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="'+esc(item.group)+'" placeholder="'+(isRest?'Rest':'e.g. Glutes + legs')+'"></label>';
@@ -722,6 +746,7 @@ function renderEditForm(item,i){
     item.autoName=!typed;
     item.name=typed||(changed?'':item.name)||item.videoTitle||'YouTube video';
     item.group='Video';
+    item.videoRounds=f('rounds').value;
     item.useVideoLength=f('global').checked;
     if(!item.useVideoLength)item.duration=Math.max(5,secondsFromCreator(f('dur').value,f('unit').value));
     if(isNew)pendingNew=null;
@@ -751,7 +776,8 @@ function renderList(arr,targetId){
      : (item.useGlobalTiming===false?formatDuration(item.duration):'Global timing');
    const kindBadge=item.kind==='rest'?'<span class="moveKindBadge">Rest</span>':item.kind==='video'?'<span class="moveKindBadge">Video</span>':'';
    const metaText=item.kind==='video'
-     ? (item.videoError?'YouTube · can’t play outside YouTube':'YouTube · '+(item.useVideoLength===false?'stops after '+formatDuration(item.duration):(Number(item.videoDuration)>0||Number(item.end)>0)?clock(videoStepSeconds(item)):'plays to the end'))
+     ? (item.videoError?'YouTube · can’t play outside YouTube':'YouTube · '+(item.useVideoLength===false?'stops after '+formatDuration(item.duration):(Number(item.videoDuration)>0||Number(item.end)>0)?clock(videoStepSeconds(item)):'plays to the end')
+        +(item.videoRounds==='first'?' · first round only':item.videoRounds==='last'?' · last round only':''))
      : item.group+' · '+displayDuration;
    row.innerHTML=
      '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder '+esc(item.name)+'. Drag, or use the up and down arrow keys">'+GRIP+'</button>'+
