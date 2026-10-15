@@ -1,4 +1,4 @@
-const Wr = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;--tile:#252525;--tile-2:#292929;--row:#2a2a2a;--row-rest:#22252a;--raised:#282828;--chip:#292929;--bar-track:#292929;--control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#313131;--text:#f4f4f4;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);--line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;--bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;--segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;--hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);--today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;--danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;--tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;--control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);--text:#222222;--soft:#3F3F3F;--muted:#6B6B6B;--accent-text:#5B7A00;--line:#FFFFFF;--lineb:#FFFFFF;--field-line:#DAD8D8;--divider:#E6E4E4;--border-hover:#C9C7C7;--bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);--segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;--hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);--today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;--danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:28.8px;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:28.8px;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;cursor:pointer}.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:var(--knob-off);transition:left .18s ease}.switch.on{background:var(--bright)}.switch.on:after{left:22.4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:64px;--t-title:22px;--t-value:22px;--t-section:18px;--t-strong:16px;--t-body:14px;--t-caption:12px;--lh-display:1.05;--lh-title:1}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.metaType,.setupSummaryText strong,.sheetChoice strong,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.moveEditForm label>span,.addGhostText small,.setupSummaryText small,.setupSummaryAction,.sheetChoice small,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,.autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:var(--bar-track);overflow:hidden}.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}.weekBar.future{opacity:.35}#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:var(--tile)}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 14px 34px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto;border-radius:22.4px;background:var(--raised)}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:28px 28px 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}', Vr = `<main id="app"><div class="shell">
+const Wr = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;--tile:#252525;--tile-2:#292929;--row:#2a2a2a;--row-rest:#22252a;--raised:#282828;--chip:#292929;--bar-track:#292929;--control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#313131;--text:#f4f4f4;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);--line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;--bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;--segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;--hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);--today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;--danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;--tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;--control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);--text:#222222;--soft:#3F3F3F;--muted:#6B6B6B;--accent-text:#5B7A00;--line:#FFFFFF;--lineb:#FFFFFF;--field-line:#DAD8D8;--divider:#E6E4E4;--border-hover:#C9C7C7;--bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);--segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;--hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);--today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;--danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:28.8px;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:28.8px;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;cursor:pointer}.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:var(--knob-off);transition:left .18s ease}.switch.on{background:var(--bright)}.switch.on:after{left:22.4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:64px;--t-title:22px;--t-value:22px;--t-section:18px;--t-strong:16px;--t-body:14px;--t-caption:12px;--lh-display:1.05;--lh-title:1}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.metaType,.setupSummaryText strong,.sheetChoice strong,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.moveEditForm label>span,.addGhostText small,.setupSummaryText small,.setupSummaryAction,.sheetChoice small,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,.autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:var(--bar-track);overflow:hidden}.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}.weekBar.future{opacity:.35}#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:var(--tile)}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto;border-radius:22.4px;background:var(--raised)}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:28px 28px 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}', Vr = `<main id="app"><div class="shell">
 <div class="toast" id="toast" aria-live="polite"></div>
 
 <!-- HOME -->
@@ -674,68 +674,68 @@ const Wr = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
   </section>
 </div>
 `;
-function jr(y, w) {
-  var to, no, io, ao;
-  const a = (e) => y.getElementById(e), O = a("workoutView"), B = a("workoutNameInput");
-  let Y = !0;
-  const Bi = a("homeClock");
-  function Ni() {
-    Bi && (Bi.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
+function jr(y, k) {
+  var ro, so, lo, co;
+  const a = (e) => y.getElementById(e), W = a("workoutView"), A = a("workoutNameInput");
+  let K = !0;
+  const _i = a("homeClock");
+  function Gi() {
+    _i && (_i.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
-  Ni(), setInterval(Ni, 15e3);
-  const Ii = a("createFlow"), po = a("createMovementsSlot"), uo = a("createTimingSlot"), mo = a("createFinishSlot"), go = a("movementStepSummary"), ho = a("timingStepSummary"), vo = a("finishStepSummary"), An = a("continueToTiming"), fo = a("continueToFinish"), bo = a("finishMoveButton");
-  let Bn = !1, Xt = [];
-  function xo(e) {
-    !e || Xt.some((t) => t.node === e) || Xt.push({ node: e, parent: e.parentNode, next: e.nextSibling });
+  Gi(), setInterval(Gi, 15e3);
+  const Oi = a("createFlow"), mo = a("createMovementsSlot"), go = a("createTimingSlot"), ho = a("createFinishSlot"), vo = a("movementStepSummary"), fo = a("timingStepSummary"), bo = a("finishStepSummary"), Hn = a("continueToTiming"), xo = a("continueToFinish"), yo = a("finishMoveButton");
+  let qn = !1, on = [];
+  function wo(e) {
+    !e || on.some((t) => t.node === e) || on.push({ node: e, parent: e.parentNode, next: e.nextSibling });
   }
-  function Nn(e, t) {
-    e && (xo(e), t.appendChild(e));
-  }
-  function yo() {
-    [...Xt].reverse().forEach(({ node: e, parent: t, next: n }) => {
-      t && (n && n.parentNode === t ? t.insertBefore(e, n) : t.appendChild(e));
-    }), Xt = [];
-  }
-  function et(e) {
-    y.querySelectorAll(".createStep").forEach((t) => {
-      t.classList.toggle("active", t.dataset.createStep === e);
-    }), e === "timing" && (Bn = !0), Ie();
-  }
-  function Ie() {
-    var u, v;
-    if (!V) return;
-    M[F];
-    const e = ae.filter((g) => !g.hidden), t = e.filter((g) => g.kind !== "rest").length, n = e.filter((g) => g.kind === "rest").length;
-    go.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
-    const i = t > 0, o = y.querySelector('[data-open-step="timing"]'), r = y.querySelector('[data-open-step="finish"]');
-    o.disabled = !i, An.disabled = !i, ho.textContent = i ? je(z.value) + " · " + Q(N.value) + " movement · " + Q(I.value) + " rest" : "Add a movement first", r.disabled = !(i && Bn);
-    const d = ((B == null ? void 0 : B.value) || "").trim(), s = [];
-    (u = a("includeWarmupPreset")) != null && u.checked && s.push("warm-up"), (v = a("includeCooldownPreset")) != null && v.checked && s.push("cooldown"), vo.textContent = d ? d + (s.length ? " · " + s.join(" + ") : "") : s.length ? s.join(" + ") : "Name and optional extras";
-  }
-  function wo() {
-    var b, C, h;
-    Ii.hidden = !1, Bn = !1;
-    const e = y.querySelector(".editNameRow"), t = a("createMoveOptions"), n = y.querySelector(".timeTiles"), i = a("routineSummaryModal"), o = y.querySelector(".tempoRevealRow"), r = a("tempoExperiment"), d = (b = a("warmupList")) == null ? void 0 : b.closest("section"), s = a("movementCreatorLaunch"), u = a("movementCreator"), v = (C = a("strengthList")) == null ? void 0 : C.closest("section"), g = (h = a("cooldownList")) == null ? void 0 : h.closest("section");
-    [t == null ? void 0 : t.querySelector(".createExtras"), d, s, u, v, g].forEach((c) => c && Nn(c, po)), [t, n, i, o, r].forEach((c) => Nn(c, uo)), Nn(e, mo), et("movements"), Ie();
+  function zn(e, t) {
+    e && (wo(e), t.appendChild(e));
   }
   function ko() {
-    yo(), Ii.hidden = !0, y.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
+    [...on].reverse().forEach(({ node: e, parent: t, next: n }) => {
+      t && (n && n.parentNode === t ? t.insertBefore(e, n) : t.appendChild(e));
+    }), on = [];
+  }
+  function st(e) {
+    y.querySelectorAll(".createStep").forEach((t) => {
+      t.classList.toggle("active", t.dataset.createStep === e);
+    }), e === "timing" && (qn = !0), qe();
+  }
+  function qe() {
+    var u, h;
+    if (!Y) return;
+    L[M];
+    const e = pe.filter((m) => !m.hidden), t = e.filter((m) => m.kind !== "rest").length, n = e.filter((m) => m.kind === "rest").length;
+    vo.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
+    const i = t > 0, o = y.querySelector('[data-open-step="timing"]'), r = y.querySelector('[data-open-step="finish"]');
+    o.disabled = !i, Hn.disabled = !i, fo.textContent = i ? Je(_.value) + " · " + re(N.value) + " movement · " + re(P.value) + " rest" : "Add a movement first", r.disabled = !(i && qn);
+    const d = ((A == null ? void 0 : A.value) || "").trim(), s = [];
+    (u = a("includeWarmupPreset")) != null && u.checked && s.push("warm-up"), (h = a("includeCooldownPreset")) != null && h.checked && s.push("cooldown"), bo.textContent = d ? d + (s.length ? " · " + s.join(" + ") : "") : s.length ? s.join(" + ") : "Name and optional extras";
+  }
+  function So() {
+    var b, C, v;
+    Oi.hidden = !1, qn = !1;
+    const e = y.querySelector(".editNameRow"), t = a("createMoveOptions"), n = y.querySelector(".timeTiles"), i = a("routineSummaryModal"), o = y.querySelector(".tempoRevealRow"), r = a("tempoExperiment"), d = (b = a("warmupList")) == null ? void 0 : b.closest("section"), s = a("movementCreatorLaunch"), u = a("movementCreator"), h = (C = a("strengthList")) == null ? void 0 : C.closest("section"), m = (v = a("cooldownList")) == null ? void 0 : v.closest("section");
+    [t == null ? void 0 : t.querySelector(".createExtras"), d, s, u, h, m].forEach((p) => p && zn(p, mo)), [t, n, i, o, r].forEach((p) => zn(p, go)), zn(e, ho), st("movements"), qe();
+  }
+  function Co() {
+    ko(), Oi.hidden = !0, y.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
   }
   y.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
-    e.disabled || et(e.dataset.openStep);
-  })), An.addEventListener("click", () => {
-    An.disabled || et("timing");
-  }), fo.addEventListener("click", () => et("finish")), bo.addEventListener("click", () => a("saveWorkoutEdit").click());
-  const tt = { home: a("homeView"), workout: a("workoutView"), settings: a("settingsView") }, Pi = a("homeNav"), Di = a("settingsNav");
-  function In(e) {
-    Object.entries(tt).forEach(([t, n]) => n.classList.toggle("active", t === e)), Pi.classList.toggle("active", e === "home"), Di.classList.toggle("active", e === "settings"), e === "home" && setTimeout(Qn, 400), e === "settings" && (requestAnimationFrame(() => $t(y.querySelector(".tab.active"), !1)), En());
+    e.disabled || st(e.dataset.openStep);
+  })), Hn.addEventListener("click", () => {
+    Hn.disabled || st("timing");
+  }), xo.addEventListener("click", () => st("finish")), yo.addEventListener("click", () => a("saveWorkoutEdit").click());
+  const dt = { home: a("homeView"), workout: a("workoutView"), settings: a("settingsView") }, Wi = a("homeNav"), Vi = a("settingsNav");
+  function _n(e) {
+    Object.entries(dt).forEach(([t, n]) => n.classList.toggle("active", t === e)), Wi.classList.toggle("active", e === "home"), Vi.classList.toggle("active", e === "settings"), e === "home" && setTimeout(di, 400), e === "settings" && (requestAnimationFrame(() => an(y.querySelector(".tab.active"), !1)), Nn());
   }
-  const z = a("totalTime"), N = a("workTime"), I = a("restTime"), So = a("totalOut"), Hi = a("workOut"), qi = a("restOut"), Co = a("totalFill"), To = a("workFill"), Lo = a("restFill"), We = a("roundsInput"), Eo = a("roundsFill"), Mo = a("roundsOut"), Ro = a("totalLabel"), zi = a("routineSummaryModal"), Qt = [
+  const _ = a("totalTime"), N = a("workTime"), P = a("restTime"), To = a("totalOut"), ji = a("workOut"), Yi = a("restOut"), Lo = a("totalFill"), Eo = a("workFill"), Mo = a("restFill"), Ze = a("roundsInput"), Fo = a("roundsFill"), Ro = a("roundsOut"), Ao = a("totalLabel"), Ui = a("routineSummaryModal"), rn = [
     { id: "standing-reach", name: "Standing reach", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
   ];
-  let me = Qt.map((e) => ({ ...e })), ae = [
+  let be = rn.map((e) => ({ ...e })), pe = [
     { id: "goblet-squat", name: "Kettlebell goblet squat", group: "Glutes + legs", kind: "work", hidden: !1 },
     { id: "floor-press", name: "Kettlebell floor press", group: "Chest + triceps", kind: "work", hidden: !1 },
     { id: "one-arm-row", name: "One-arm kettlebell row", group: "Back + arms", kind: "work", hidden: !1 },
@@ -747,14 +747,14 @@ function jr(y, w) {
     { id: "glute-bridge", name: "Glute bridge with kettlebell", group: "Glutes", kind: "work", hidden: !1 },
     { id: "pullover", name: "Kettlebell pullover", group: "Chest + core", kind: "work", hidden: !1 }
   ];
-  const en = [
+  const sn = [
     { id: "hip-flexor", name: "Hip flexor stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "chest-opener", name: "Chest opener", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "hamstring", name: "Hamstring stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "slow-breathing", name: "Slow breathing", group: "Cooldown", kind: "cooldown", hidden: !1 }
   ];
-  let ge = en.map((e) => ({ ...e }));
-  const Fo = {
+  let xe = sn.map((e) => ({ ...e }));
+  const Bo = {
     kettlebell: {
       name: "Kettlebell full body",
       eyebrow: "",
@@ -804,10 +804,10 @@ function jr(y, w) {
         ["glute-bridge", "Glute bridge with kettlebell", "Glutes + core"]
       ]
     }
-  }, A = _i(w.data), M = A.profiles;
-  let F = M[A.selected] ? A.selected : A.order.find((e) => M[e]) || "kettlebell";
-  function _i(e) {
-    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Fo)), i = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
+  }, F = Ki(k.data), L = F.profiles;
+  let M = L[F.selected] ? F.selected : F.order.find((e) => L[e]) || "kettlebell";
+  function Ki(e) {
+    const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Bo)), i = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
     return Object.keys(n).forEach((o) => {
       i.includes(o) || i.push(o);
     }), {
@@ -816,11 +816,11 @@ function jr(y, w) {
       order: i,
       selected: t.selected || i[0],
       history: Array.isArray(t.history) ? t.history : [],
-      checkins: (Array.isArray(t.checkins) ? t.checkins : Ao(t.energy)).map(Gi),
+      checkins: (Array.isArray(t.checkins) ? t.checkins : No(t.energy)).map(Zi),
       settings: { ...t.settings || {} }
     };
   }
-  function Ao(e) {
+  function No(e) {
     if (!Array.isArray(e)) return [];
     const t = ["Drained", "Low", "Okay", "Good", "Energised", "Great"], n = [];
     return e.forEach((i) => {
@@ -832,82 +832,82 @@ function jr(y, w) {
       s > 0 && n.push({ date: r, slot: d, mood: null, energy: s, at: i.at });
     }), n;
   }
-  function Gi(e) {
+  function Zi(e) {
     if (e.scale === 100) return e;
     const t = (n) => n == null ? null : Math.round((Number(n) - 1) / 5 * 100);
     return { ...e, mood: t(e.mood), energy: t(e.energy), scale: 100 };
   }
-  function xe() {
-    V || (A.selected = F, A.order = A.order.filter((e) => M[e] && e !== Ve), w.save(A));
+  function Ce() {
+    Y || (F.selected = M, F.order = F.order.filter((e) => L[e] && e !== Xe), k.save(F));
   }
-  function P() {
-    return A.settings;
+  function D() {
+    return F.settings;
   }
-  function ye(e) {
-    const t = M[e];
+  function Te(e) {
+    const t = L[e];
     if (!t) return;
-    F = e;
+    M = e;
     const n = a("workoutNameInput");
-    if (n && (n.value = t.name), z.value = t.total, N.value = t.work, I.value = t.rest, We.value = t.rounds || 1, t.customSequence) {
+    if (n && (n.value = t.name), _.value = t.total, N.value = t.work, P.value = t.rest, Ze.value = t.rounds || 1, t.customSequence) {
       const i = (t.sequence || []).map((r) => ({ ...r })), o = (r) => i.filter((d) => d.presetRole === r).map(({ presetRole: d, ...s }) => s);
-      me = (t.warmup || o("warmup")).map((r) => ({ ...r })), ge = (t.cooldown || o("cooldown")).map((r) => ({ ...r })), ae = i.filter((r) => !r.presetRole), qn(t.preset || "movement", !1);
+      be = (t.warmup || o("warmup")).map((r) => ({ ...r })), xe = (t.cooldown || o("cooldown")).map((r) => ({ ...r })), pe = i.filter((r) => !r.presetRole), Vn(t.preset || "movement", !1);
     } else
-      z.min = 3, z.max = 40, z.step = 1, N.min = 20, N.max = 60, N.step = 5, I.min = 5, I.max = 30, I.step = 5, me = (t.warmup || Qt).map((i) => ({ ...i })), ge = (t.cooldown || en).map((i) => ({ ...i })), ae = t.strength.map((i) => Array.isArray(i) ? (([o, r, d, s = !1]) => ({ id: o, name: r, group: d, kind: "work", hidden: !!s }))(i) : { ...i });
+      _.min = 3, _.max = 40, _.step = 1, N.min = 20, N.max = 60, N.step = 5, P.min = 5, P.max = 30, P.step = 5, be = (t.warmup || rn).map((i) => ({ ...i })), xe = (t.cooldown || sn).map((i) => ({ ...i })), pe = t.strength.map((i) => Array.isArray(i) ? (([o, r, d, s = !1]) => ({ id: o, name: r, group: d, kind: "work", hidden: !!s }))(i) : { ...i });
     y.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === e)), q();
   }
-  function Bo(e, t, n) {
+  function Io(e, t, n) {
     const i = e.getBoundingClientRect(), o = i.width / 2, r = i.height / 2, d = t - o, s = n - r;
-    let u = 1 / 0, v = 1 / 0;
-    d !== 0 && (u = o / Math.abs(d)), s !== 0 && (v = r / Math.abs(s));
-    const g = Math.min(Math.max(1 / Math.min(u, v), 0), 1);
+    let u = 1 / 0, h = 1 / 0;
+    d !== 0 && (u = o / Math.abs(d)), s !== 0 && (h = r / Math.abs(s));
+    const m = Math.min(Math.max(1 / Math.min(u, h), 0), 1);
     let l = Math.atan2(s, d) * (180 / Math.PI) + 90;
-    return l < 0 && (l += 360), { edge: g, angle: l };
+    return l < 0 && (l += 360), { edge: m, angle: l };
   }
-  function Pn(e, t, n = !1) {
-    const i = e.getBoundingClientRect(), o = t.clientX - i.left, r = t.clientY - i.top, { edge: d, angle: s } = Bo(e, o, r), u = n ? 100 : d * 100;
+  function Gn(e, t, n = !1) {
+    const i = e.getBoundingClientRect(), o = t.clientX - i.left, r = t.clientY - i.top, { edge: d, angle: s } = Io(e, o, r), u = n ? 100 : d * 100;
     e.style.setProperty("--edge-proximity", u.toFixed(3)), e.style.setProperty("--cursor-angle", s.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", n || u >= 30);
   }
-  function Oi(e) {
-    e.addEventListener("pointermove", (n) => Pn(e, n, !1)), e.addEventListener("pointerenter", (n) => Pn(e, n, !1)), e.addEventListener("pointerdown", (n) => Pn(e, n, !0));
+  function Xi(e) {
+    e.addEventListener("pointermove", (n) => Gn(e, n, !1)), e.addEventListener("pointerenter", (n) => Gn(e, n, !1)), e.addEventListener("pointerdown", (n) => Gn(e, n, !0));
     const t = () => {
       e.classList.remove("borderGlowActive"), e.style.setProperty("--edge-proximity", "0");
     };
     e.addEventListener("pointerleave", t), e.addEventListener("pointerup", t), e.addEventListener("pointercancel", t);
   }
-  Oi(a("addWorkoutPanel"));
-  let V = !1, Ve = null;
-  function R(e) {
+  Xi(a("addWorkoutPanel"));
+  let Y = !1, Xe = null;
+  function E(e) {
     return String(e ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]);
   }
-  function No(e) {
-    return e.summary ? e.summary : e.customSequence ? je(e.total) + " · custom move" : je(e.total) + " · " + Q(e.work) + " / " + Q(e.rest) + " · warm-up + cooldown";
+  function Po(e) {
+    return e.summary ? e.summary : e.customSequence ? Je(e.total) + " · custom move" : Je(e.total) + " · " + re(e.work) + " / " + re(e.rest) + " · warm-up + cooldown";
   }
-  function Dn(e, t) {
+  function On(e, t) {
     var d;
     const n = document.createElement("article");
     n.className = "workoutPanel", n.dataset.workout = e, n.tabIndex = 0;
     const i = t.eyebrow === void 0 ? "Movement" : t.eyebrow, o = t.activityCount ?? (((d = t.sequence) == null ? void 0 : d.length) || 0);
-    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (i ? '<div class="eyebrow">' + R(i) + "</div>" : "") + '<div class="workoutName">' + R(t.name) + '</div><div class="sub">' + R(No(t)) + '</div><span class="sourceTag">' + R(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + R(t.name) + "</div></div>";
+    n.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div>' + (i ? '<div class="eyebrow">' + E(i) + "</div>" : "") + '<div class="workoutName">' + E(t.name) + '</div><div class="sub">' + E(Po(t)) + '</div><span class="sourceTag">' + E(t.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (o ? o + " activities" + ((t.rounds || 1) > 1 ? " × " + t.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + E(t.name) + "</div></div>";
     const r = a("addWorkoutPanel");
-    return a("workoutGallery").insertBefore(n, r), Oi(n), n.addEventListener("click", (s) => {
-      s.target.closest("button") || ye(e);
+    return a("workoutGallery").insertBefore(n, r), Xi(n), n.addEventListener("click", (s) => {
+      s.target.closest("button") || Te(e);
     }), n.addEventListener("keydown", (s) => {
-      (s.key === "Enter" || s.key === " ") && !s.target.closest("button") && (s.preventDefault(), ye(e));
+      (s.key === "Enter" || s.key === " ") && !s.target.closest("button") && (s.preventDefault(), Te(e));
     }), n.querySelector(".seeWorkoutBtn").addEventListener("click", (s) => {
-      s.stopPropagation(), ye(e), ba(!1);
+      s.stopPropagation(), Te(e), Sa(!1);
     }), n.querySelector(".startWorkoutBtn").addEventListener("click", (s) => {
-      s.stopPropagation(), ye(e), fr();
+      s.stopPropagation(), Te(e), xr();
     }), n;
   }
-  function Wi() {
-    y.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), A.order.forEach((e) => {
-      M[e] && Dn(e, M[e]);
-    }), y.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === F));
+  function Ji() {
+    y.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), F.order.forEach((e) => {
+      L[e] && On(e, L[e]);
+    }), y.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === M));
   }
-  Wi(), a("addWorkoutPanel").addEventListener("keydown", (e) => {
+  Ji(), a("addWorkoutPanel").addEventListener("keydown", (e) => {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), a("addWorkoutPanel").click());
   }), a("addWorkoutPanel").addEventListener("click", () => {
-    V = !0, Ve = "custom-" + Date.now(), M[Ve] = {
+    Y = !0, Xe = "custom-" + Date.now(), L[Xe] = {
       name: "New move",
       source: "Custom move",
       total: 20,
@@ -919,33 +919,33 @@ function jr(y, w) {
       includeCooldown: !1,
       sequence: [],
       strength: []
-    }, ye(Ve), ba(!0);
+    }, Te(Xe), Sa(!0);
   });
-  let f = [], k = 0, te = 0, Mt = 1, be = !1, Z = null, tn = null, X = !1, nt = A.settings.upcomingCount ?? "all", Vi = "movement";
-  function nn(e, t, n) {
+  let f = [], S = 0, de = 0, It = 1, ke = !1, Q = null, dn = null, oe = !1, lt = F.settings.upcomingCount ?? "all", $i = "movement";
+  function ln(e, t, n) {
     return (Number(e) - t) / (n - t) * 100;
   }
-  function Q(e) {
+  function re(e) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 3600 && t % 3600 === 0 ? t / 3600 + " hr" : t >= 60 && t % 60 === 0 ? t / 60 + " min" : t >= 60 ? Math.round(t / 60) + " min" : Math.round(t) + " sec";
   }
-  function je(e) {
+  function Je(e) {
     const t = Math.max(0, Number(e) || 0);
     return t >= 60 && t % 60 === 0 ? t / 60 + " hr" : t >= 60 ? Math.floor(t / 60) + " hr " + t % 60 + " min" : t + " min";
   }
-  function an() {
-    Co.style.width = nn(z.value, Number(z.min), Number(z.max)) + "%", To.style.width = nn(N.value, Number(N.min), Number(N.max)) + "%", Lo.style.width = nn(I.value, Number(I.min), Number(I.max)) + "%", Hi.textContent = Q(N.value), qi.textContent = Q(I.value);
-    const e = Number(We.value) || 1;
-    Eo.style.width = nn(e, 1, 10) + "%", Ro.textContent = e > 1 ? "Time per round" : "Total time";
+  function cn() {
+    Lo.style.width = ln(_.value, Number(_.min), Number(_.max)) + "%", Eo.style.width = ln(N.value, Number(N.min), Number(N.max)) + "%", Mo.style.width = ln(P.value, Number(P.min), Number(P.max)) + "%", ji.textContent = re(N.value), Yi.textContent = re(P.value);
+    const e = Number(Ze.value) || 1;
+    Fo.style.width = ln(e, 1, 10) + "%", Ao.textContent = e > 1 ? "Time per round" : "Total time";
   }
-  function Hn(e) {
+  function Wn(e) {
     return e.filter((t) => !t.hidden);
   }
-  function Rt(e) {
+  function Pt(e) {
     const t = Math.max(0, Math.round(Number(e) || 0)), n = Math.floor(t / 3600), i = Math.floor(t % 3600 / 60), o = t % 60;
     return (n ? n + ":" + String(i).padStart(2, "0") : i) + ":" + String(o).padStart(2, "0");
   }
-  function Io(e) {
+  function Do(e) {
     let t;
     try {
       t = new URL(String(e || "").trim());
@@ -970,32 +970,32 @@ function jr(y, w) {
     }, r = o(t.searchParams.get("t") || t.searchParams.get("start")), d = o(t.searchParams.get("end"));
     return { id: i, start: r, end: d > r ? d : null };
   }
-  function Ft(e, t) {
+  function Dt(e, t) {
     if (e.useVideoLength === !1) return Math.max(5, Number(e.duration) || t || 300);
     const n = Number(e.start) || 0, i = Number(e.end) || Number(e.videoDuration) || 0;
     return i > n ? Math.round(i - n) : Number(e.duration) || 300;
   }
-  function on(e, t) {
+  function pn(e, t) {
     const n = Math.max(0, Number(e) || 0);
     return Math.round(t === "hour" ? n * 3600 : t === "min" ? n * 60 : n);
   }
-  function qn(e, t = !0) {
-    Vi = e, y.querySelectorAll(".createPresetBtn").forEach((i) => i.classList.toggle("active", i.dataset.movePreset === e));
-    const n = M[F];
-    n && (n.preset = e), e === "work" ? (z.min = 30, z.max = 480, z.step = 30, N.min = 300, N.max = 7200, N.step = 300, I.min = 60, I.max = 1800, I.step = 60, t && (z.value = 60, N.value = 1500, I.value = 300), a("addMovementUnit").value = "min", a("addMovementDuration").value = 25, a("addRestUnit").value = "min", a("addRestDuration").value = 5) : (z.min = 3, z.max = 40, z.step = 1, N.min = 20, N.max = 60, N.step = 5, I.min = 5, I.max = 30, I.step = 5, t && (z.value = 20, N.value = 45, I.value = 15), a("addMovementUnit").value = "sec", a("addMovementDuration").value = 45, a("addRestUnit").value = "sec", a("addRestDuration").value = 30), an();
+  function Vn(e, t = !0) {
+    $i = e, y.querySelectorAll(".createPresetBtn").forEach((i) => i.classList.toggle("active", i.dataset.movePreset === e));
+    const n = L[M];
+    n && (n.preset = e), e === "work" ? (_.min = 30, _.max = 480, _.step = 30, N.min = 300, N.max = 7200, N.step = 300, P.min = 60, P.max = 1800, P.step = 60, t && (_.value = 60, N.value = 1500, P.value = 300), a("addMovementUnit").value = "min", a("addMovementDuration").value = 25, a("addRestUnit").value = "min", a("addRestDuration").value = 5) : (_.min = 3, _.max = 40, _.step = 1, N.min = 20, N.max = 60, N.step = 5, P.min = 5, P.max = 30, P.step = 5, t && (_.value = 20, N.value = 45, P.value = 15), a("addMovementUnit").value = "sec", a("addMovementDuration").value = 45, a("addRestUnit").value = "sec", a("addRestDuration").value = 30), cn();
   }
-  function ji(e, t) {
-    const n = Vi === "work";
+  function Qi(e, t) {
+    const n = $i === "work";
     return e.map((i, o) => ({ ...i, id: t + "-" + o + "-" + Date.now().toString(36), useGlobalTiming: !n, duration: n ? 60 : Number(N.value) }));
   }
-  function zn() {
-    const e = M[F];
-    e != null && e.customSequence && (e.includeWarmup = a("includeWarmupPreset").checked, e.includeCooldown = a("includeCooldownPreset").checked, e.includeWarmup && !me.length && (me = ji(Qt, "warm")), e.includeCooldown && !ge.length && (ge = ji(en, "cool")), q());
+  function jn() {
+    const e = L[M];
+    e != null && e.customSequence && (e.includeWarmup = a("includeWarmupPreset").checked, e.includeCooldown = a("includeCooldownPreset").checked, e.includeWarmup && !be.length && (be = Qi(rn, "warm")), e.includeCooldown && !xe.length && (xe = Qi(sn, "cool")), q());
   }
-  function Po() {
+  function Ho() {
     const e = a("upcomingCountSetting");
     if (!e) return;
-    const t = Math.max(1, f.length - 1), n = nt;
+    const t = Math.max(1, f.length - 1), n = lt;
     e.innerHTML = "";
     for (let r = 1; r <= t; r++) {
       const d = document.createElement("option");
@@ -1004,26 +1004,26 @@ function jr(y, w) {
     const i = document.createElement("option");
     i.value = "all", i.textContent = "All", e.appendChild(i);
     const o = n === "all" ? "all" : String(Math.min(Number(n) || 1, t));
-    e.value = o, nt = o === "all" ? "all" : Number(o);
+    e.value = o, lt = o === "all" ? "all" : Number(o);
   }
   function q() {
-    Number(z.value) * 60;
-    const e = Number(N.value), t = Number(I.value), n = M[F], i = !!(n != null && n.customSequence), o = (i ? !n.includeWarmup : n != null && n.warmupOff) ? [] : Hn(me), r = Hn(ae), d = i && !n.includeCooldown ? [] : Hn(ge);
-    if (n && (n.total = Number(z.value), n.work = e, n.rest = t, n.rounds = Number(We.value) || 1, n.customSequence ? (n.sequence = ae.map((p) => ({ ...p })), n.warmup = me.map((p) => ({ ...p })), n.cooldown = ge.map((p) => ({ ...p }))) : (n.strength = ae.map((p) => ({ ...p })), n.warmup = me.map((p) => ({ ...p })), n.cooldown = ge.map((p) => ({ ...p })))), n != null && n.customSequence) {
-      const p = [...o.map((E) => ({ ...E, section: "warmup" })), ...r, ...d.map((E) => ({ ...E, section: "cooldown" }))].map((E) => {
-        if (E.kind === "video") return { ...E, duration: Ft(E, e), rest: 0 };
-        if (E.kind === "rest") {
-          const Qe = E.useGlobalTiming === !0 ? t : Number(E.duration) || t;
-          return { ...E, duration: Qe, rest: 0 };
+    Number(_.value) * 60;
+    const e = Number(N.value), t = Number(P.value), n = L[M], i = !!(n != null && n.customSequence), o = (i ? !n.includeWarmup : n != null && n.warmupOff) ? [] : Wn(be), r = Wn(pe), d = i && !n.includeCooldown ? [] : Wn(xe);
+    if (n && (n.total = Number(_.value), n.work = e, n.rest = t, n.rounds = Number(Ze.value) || 1, n.customSequence ? (n.sequence = pe.map((c) => ({ ...c })), n.warmup = be.map((c) => ({ ...c })), n.cooldown = xe.map((c) => ({ ...c }))) : (n.strength = pe.map((c) => ({ ...c })), n.warmup = be.map((c) => ({ ...c })), n.cooldown = xe.map((c) => ({ ...c })))), n != null && n.customSequence) {
+      const c = [...o.map((T) => ({ ...T, section: "warmup" })), ...r, ...d.map((T) => ({ ...T, section: "cooldown" }))].map((T) => {
+        if (T.kind === "video") return { ...T, duration: Dt(T, e), rest: 0 };
+        if (T.kind === "rest") {
+          const Se = T.useGlobalTiming === !0 ? t : Number(T.duration) || t;
+          return { ...T, duration: Se, rest: 0 };
         }
-        const ee = E.useGlobalTiming === !1 && Number(E.duration) || e;
-        return { ...E, duration: ee, rest: 0 };
+        const te = T.useGlobalTiming === !1 && Number(T.duration) || e;
+        return { ...T, duration: te, rest: 0 };
       });
-      n.autoRest && Number(n.autoRestDuration) > 0 ? (f = [], p.forEach((E, ee) => {
-        f.push(E);
-        const Qe = p[ee + 1];
-        E.kind !== "rest" && Qe && Qe.kind !== "rest" && f.push({
-          id: "auto-rest-" + ee,
+      n.autoRest && Number(n.autoRestDuration) > 0 ? (f = [], c.forEach((T, te) => {
+        f.push(T);
+        const Se = c[te + 1];
+        T.kind !== "rest" && Se && Se.kind !== "rest" && f.push({
+          id: "auto-rest-" + te,
           name: "Rest",
           group: "Rest",
           kind: "rest",
@@ -1032,230 +1032,251 @@ function jr(y, w) {
           rest: 0,
           autoGenerated: !0
         });
-      })) : f = p;
+      })) : f = c;
     } else
-      f = [...o.map((p) => ({ ...p, section: "warmup" })), ...r, ...d.map((p) => ({ ...p, section: "cooldown" }))].map((p) => p.kind === "video" ? { ...p, duration: Ft(p, e), rest: 0 } : p.kind === "rest" ? { ...p, duration: p.useGlobalTiming === !0 ? t : Number(p.duration) || t, rest: 0 } : { ...p, duration: p.useGlobalTiming === !1 && Number(p.duration) || e, rest: t }), f.forEach((p, E) => {
-        var ee;
-        ((ee = f[E + 1]) == null ? void 0 : ee.kind) === "rest" && (p.rest = 0);
+      f = [...o.map((c) => ({ ...c, section: "warmup" })), ...r, ...d.map((c) => ({ ...c, section: "cooldown" }))].map((c) => c.kind === "video" ? { ...c, duration: Dt(c, e), rest: 0 } : c.kind === "rest" ? { ...c, duration: c.useGlobalTiming === !0 ? t : Number(c.duration) || t, rest: 0 } : { ...c, duration: c.useGlobalTiming === !1 && Number(c.duration) || e, rest: t }), f.forEach((c, T) => {
+        var te;
+        ((te = f[T + 1]) == null ? void 0 : te.kind) === "rest" && (c.rest = 0);
       }), f.length && (f[f.length - 1].rest = 0);
-    const s = Math.max(1, Math.min(10, Number(We.value) || 1)), u = f, v = (p) => s <= 1 ? null : p.section === "warmup" || p.presetRole === "warmup" ? "first" : p.section === "cooldown" || p.presetRole === "cooldown" ? "last" : p.kind === "video" && (p.videoRounds === "first" || p.videoRounds === "last") ? p.videoRounds : null, g = (p) => !!v(p), l = u.filter((p) => !g(p)), b = u.filter(g), C = l.length, h = l.reduce((p, E) => p + E.duration + E.rest, 0), c = b.reduce((p, E) => p + E.duration + E.rest, 0), m = [
-      b.some((p) => p.section === "warmup" || p.presetRole === "warmup") && "warm-up",
-      b.some((p) => p.section === "cooldown" || p.presetRole === "cooldown") && "cooldown",
-      b.some((p) => p.kind === "video" && !p.section && !p.presetRole) && "video"
-    ].filter(Boolean), T = m.length > 1 ? m.slice(0, -1).join(", ") + " & " + m[m.length - 1] : m[0] || "";
+    const s = Math.max(1, Math.min(10, Number(Ze.value) || 1)), u = f, h = (c) => s <= 1 ? null : c.section === "warmup" || c.presetRole === "warmup" ? "first" : c.section === "cooldown" || c.presetRole === "cooldown" ? "last" : c.kind === "video" && (c.videoRounds === "first" || c.videoRounds === "last") ? c.videoRounds : null, m = (c) => !!h(c), l = u.filter((c) => !m(c)), b = u.filter(m), C = l.length, v = l.reduce((c, T) => c + T.duration + T.rest, 0), p = b.reduce((c, T) => c + T.duration + T.rest, 0), g = [
+      b.some((c) => c.section === "warmup" || c.presetRole === "warmup") && "warm-up",
+      b.some((c) => c.section === "cooldown" || c.presetRole === "cooldown") && "cooldown",
+      b.some((c) => c.kind === "video" && !c.section && !c.presetRole) && "video"
+    ].filter(Boolean), R = g.length > 1 ? g.slice(0, -1).join(", ") + " & " + g[g.length - 1] : g[0] || "";
     f = [];
-    const L = (p, E) => {
-      const ee = v(p);
-      return !ee || (ee === "first" ? E === 1 : E === s);
+    const Z = (c, T) => {
+      const te = h(c);
+      return !te || (te === "first" ? T === 1 : T === s);
     };
-    for (let p = 1; p <= s; p++)
-      if (u.filter((E) => L(E, p)).forEach((E, ee) => f.push({ ...E, id: E.id + (s > 1 ? "-r" + p : ""), round: p, roundIndex: ee })), p < s && C)
+    for (let c = 1; c <= s; c++)
+      if (u.filter((T) => Z(T, c)).forEach((T, te) => f.push({ ...T, id: T.id + (s > 1 ? "-r" + c : ""), round: c, roundIndex: te })), c < s && C)
         if (n != null && n.customSequence)
-          f.push({ id: "round-break-" + p, name: "Rest", group: "Round " + (p + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: p, roundIndex: C, roundBreak: !0 });
+          f.push({ id: "round-break-" + c, name: "Rest", group: "Round " + (c + 1) + " next", kind: "rest", hidden: !1, duration: t, rest: 0, round: c, roundIndex: C, roundBreak: !0 });
         else {
-          const E = f[f.length - 1];
-          E.rest = t, E.roundBreakAfter = !0;
+          const T = f[f.length - 1];
+          T.rest = t, T.roundBreakAfter = !0;
         }
-    an();
-    const x = f.reduce((p, E) => p + E.duration + E.rest, 0), H = Math.round(h / 60), K = Math.round(x / 60), de = s > 1 ? je(H) + " × " + s + " rounds" + (c ? " + " + Q(c) + " " + T : "") + " (" + je(K) + ")" : je(K), W = [o.length ? "warm-up" : "", d.length ? "cooldown" : ""].filter(Boolean), pe = n != null && n.customSequence ? de + " · " + C + " items" + (W.length && !(s > 1 && c) ? " · " + W.join(" + ") : "") : de + " · " + Q(e) + " / " + Q(t) + (W.length && !(s > 1 && c) ? " · " + W.join(" + ") : "");
-    So.textContent = Q(h);
-    const fe = f.filter((p) => !p.roundBreak).length, J = s > 1 ? fe + " activities · " + s + " rounds" : C + " activities";
-    Mo.textContent = s > 1 ? s + " rounds · " + je(K) + " total" : "1 round", n && (n.summary = pe, n.activityCount = C);
-    const Fn = y.querySelector(".workoutPanel.active .sub");
-    Fn && (Fn.textContent = pe), zi.textContent = pe, jn(), y.querySelectorAll(".workoutPanel.active .activityCount").forEach((p) => p.textContent = J), an(), On(), Kn(), Dt(), Po(), V && Ie(), tt.workout.classList.contains("active") && !Z && gi();
+    cn();
+    const w = f.reduce((c, T) => c + T.duration + T.rest, 0), B = Math.round(v / 60), V = Math.round(w / 60), j = s > 1 ? Je(B) + " × " + s + " rounds" + (p ? " + " + re(p) + " " + R : "") + " (" + Je(V) + ")" : Je(V), z = [o.length ? "warm-up" : "", d.length ? "cooldown" : ""].filter(Boolean), ne = n != null && n.customSequence ? j + " · " + C + " items" + (z.length && !(s > 1 && p) ? " · " + z.join(" + ") : "") : j + " · " + re(e) + " / " + re(t) + (z.length && !(s > 1 && p) ? " · " + z.join(" + ") : "");
+    To.textContent = re(v);
+    const se = f.filter((c) => !c.roundBreak).length, X = s > 1 ? se + " activities · " + s + " rounds" : C + " activities";
+    Ro.textContent = s > 1 ? s + " rounds · " + Je(V) + " total" : "1 round", n && (n.summary = ne, n.activityCount = C);
+    const ot = y.querySelector(".workoutPanel.active .sub");
+    ot && (ot.textContent = ne), Ui.textContent = ne, ei(), y.querySelectorAll(".workoutPanel.active .activityCount").forEach((c) => c.textContent = X), cn(), Zn(), ii(), Ot(), Ho(), Y && qe(), dt.workout.classList.contains("active") && !Q && Si();
   }
-  const At = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
-  let oe = null, he = null;
-  function Do(e) {
+  const Ht = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
+  let ue = null, ye = null;
+  function qo(e) {
     return e = Math.max(1, Number(e) || 0), e >= 3600 && e % 3600 === 0 ? { value: e / 3600, unit: "hour" } : e >= 60 && e % 60 === 0 ? { value: e / 60, unit: "min" } : { value: e, unit: "sec" };
   }
-  function Yi(e = !1) {
+  function ea(e = !1) {
     const t = y.querySelector(".moveEditForm input[data-f=url],.moveEditForm input[data-f=name]");
     t && (t.focus({ preventScroll: !0 }), e && t.select());
   }
-  function _n(e, t, n = {}) {
-    const i = e.kind === "rest", o = e.kind === "video", r = o ? e.useVideoLength !== !1 : i ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, d = Number(i ? I.value : N.value), s = Do(o ? e.useVideoLength === !1 ? e.duration : Ft({ ...e, useVideoLength: !0 }) : r ? d : e.duration || d), u = o && (Number(e.videoDuration) > 0 || Number(e.end) > 0), v = o ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + R(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + R(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([x, H]) => '<option value="' + x + '"' + ((e.videoRounds || "every") === x ? " selected" : "") + ">" + H + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + R(e.name) + '" placeholder="' + (i ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + R(e.group) + '" placeholder="' + (i ? "Rest" : "e.g. Glutes + legs") + '"></label>', g = o ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (u ? " · " + Rt(Ft({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + Q(d), l = document.createElement("div");
+  function Yn(e, t, n = {}) {
+    const i = e.kind === "rest", o = e.kind === "video", r = o ? e.useVideoLength !== !1 : i ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, d = Number(i ? P.value : N.value), s = qo(o ? e.useVideoLength === !1 ? e.duration : Dt({ ...e, useVideoLength: !0 }) : r ? d : e.duration || d), u = o && (Number(e.videoDuration) > 0 || Number(e.end) > 0), h = o ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + E(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + E(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([w, B]) => '<option value="' + w + '"' + ((e.videoRounds || "every") === w ? " selected" : "") + ">" + B + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + E(e.name) + '" placeholder="' + (i ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + E(e.group) + '" placeholder="' + (i ? "Rest" : "e.g. Glutes + legs") + '"></label>', m = o ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (u ? " · " + Pt(Dt({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + re(d), l = document.createElement("div");
     l.className = "moveRow editing" + (n.sheet ? " inSheet" : ""), l.dataset.index = t, l.dataset.id = e.id;
-    const b = n.isNew ?? (he == null ? void 0 : he.item) === e, C = n.sheet ? '<div class="moveEditActions sheetActions">' + (b ? "" : '<div class="sheetSecondary"><button class="hideBtn" type="button" data-a="hide">' + (e.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" data-a="remove" aria-label="Hold to remove ' + R(e.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>') + '<div class="sheetPrimary"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">' + (b ? "Add" : "Save") + "</button></div></div>" : '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>';
-    l.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (o ? " videoFields" : "") + '">' + v + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (r ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + R(g) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + s.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((x) => '<option value="' + x + '"' + (x === s.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[x] + "</option>").join("") + "</select></div></div>" + C + "</div>";
-    const h = (x) => l.querySelector("[data-f=" + x + "]"), c = () => {
-      const x = h("global").checked;
-      h("dur").disabled = x, h("unit").disabled = x, l.querySelector(".creatorDurationRow").classList.toggle("isDisabled", x);
+    const b = n.isNew ?? (ye == null ? void 0 : ye.item) === e, C = n.sheet ? '<div class="moveEditActions sheetActions">' + (b ? "" : '<div class="sheetSecondary"><button class="hideBtn" type="button" data-a="hide">' + (e.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" data-a="remove" aria-label="Hold to remove ' + E(e.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>') + '<div class="sheetPrimary"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">' + (b ? "Add" : "Save") + "</button></div></div>" : '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>';
+    l.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (o ? " videoFields" : "") + '">' + h + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (r ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + E(m) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + s.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((w) => '<option value="' + w + '"' + (w === s.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[w] + "</option>").join("") + "</select></div></div>" + C + "</div>";
+    const v = (w) => l.querySelector("[data-f=" + w + "]"), p = () => {
+      const w = v("global").checked;
+      v("dur").disabled = w, v("unit").disabled = w, l.querySelector(".creatorDurationRow").classList.toggle("isDisabled", w);
     };
-    h("global").addEventListener("change", c), c();
-    const m = () => {
-      var x;
+    v("global").addEventListener("change", p), p();
+    const g = () => {
+      var w;
       if (n.sheet) {
-        (x = n.onCancel) == null || x.call(n);
+        (w = n.onCancel) == null || w.call(n);
         return;
       }
-      b && rn(), oe = null, q();
-    }, T = () => {
-      var K;
+      b && un(), ue = null, q();
+    }, R = () => {
+      var V;
       if (o) {
-        L();
+        Z();
         return;
       }
-      const x = h("name").value.trim();
-      if (!x) {
-        h("name").focus();
+      const w = v("name").value.trim();
+      if (!w) {
+        v("name").focus();
         return;
       }
-      e.name = x, e.group = h("group").value.trim() || (i ? "Rest" : "Movement");
-      const H = h("global").checked;
-      if (e.useGlobalTiming = H, H || (e.duration = Math.max(i ? 5 : 1, on(h("dur").value, h("unit").value))), n.sheet) {
-        (K = n.onSaved) == null || K.call(n);
+      e.name = w, e.group = v("group").value.trim() || (i ? "Rest" : "Movement");
+      const B = v("global").checked;
+      if (e.useGlobalTiming = B, B || (e.duration = Math.max(i ? 5 : 1, pn(v("dur").value, v("unit").value))), n.sheet) {
+        (V = n.onSaved) == null || V.call(n);
         return;
       }
-      b && (he = null), oe = null, q(), G(b ? i ? "Rest added" : "Movement added" : "Movement updated");
-    }, L = () => {
-      var W;
-      const x = h("url").value.trim(), H = Io(x);
-      if (!H) {
-        h("urlError").hidden = !1, h("url").classList.add("invalid"), h("url").focus();
+      b && (ye = null), ue = null, q(), O(b ? i ? "Rest added" : "Movement added" : "Movement updated");
+    }, Z = () => {
+      var z;
+      const w = v("url").value.trim(), B = Do(w);
+      if (!B) {
+        v("urlError").hidden = !1, v("url").classList.add("invalid"), v("url").focus();
         return;
       }
-      const K = H.id !== e.videoId;
-      e.url = x, e.videoId = H.id, e.start = H.start, e.end = H.end, K && (e.videoDuration = null, e.videoError = null);
-      const de = h("name").value.trim();
-      e.autoName = !de, e.name = de || (K ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = h("rounds").value, e.useVideoLength = h("global").checked, e.useVideoLength || (e.duration = Math.max(5, on(h("dur").value, h("unit").value))), n.sheet ? (W = n.onSaved) == null || W.call(n) : (b && (he = null), oe = null, q(), G(b ? "Video added" : "Video updated")), (K || !e.videoDuration || e.autoName && !e.videoTitle) && Rr(e);
+      const V = B.id !== e.videoId;
+      e.url = w, e.videoId = B.id, e.start = B.start, e.end = B.end, V && (e.videoDuration = null, e.videoError = null);
+      const j = v("name").value.trim();
+      e.autoName = !j, e.name = j || (V ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = v("rounds").value, e.useVideoLength = v("global").checked, e.useVideoLength || (e.duration = Math.max(5, pn(v("dur").value, v("unit").value))), n.sheet ? (z = n.onSaved) == null || z.call(n) : (b && (ye = null), ue = null, q(), O(b ? "Video added" : "Video updated")), (V || !e.videoDuration || e.autoName && !e.videoTitle) && Ar(e);
     };
-    if (o && h("url").addEventListener("input", () => {
-      h("urlError").hidden = !0, h("url").classList.remove("invalid");
-    }), l.querySelector("[data-a=cancel]").addEventListener("click", m), l.querySelector("[data-a=save]").addEventListener("click", T), n.sheet && !b) {
+    if (o && v("url").addEventListener("input", () => {
+      v("urlError").hidden = !0, v("url").classList.remove("invalid");
+    }), l.querySelector("[data-a=cancel]").addEventListener("click", g), l.querySelector("[data-a=save]").addEventListener("click", R), n.sheet && !b) {
       l.querySelector("[data-a=hide]").addEventListener("click", () => {
-        var H;
-        return (H = n.onHide) == null ? void 0 : H.call(n);
+        var B;
+        return (B = n.onHide) == null ? void 0 : B.call(n);
       });
-      const x = l.querySelector("[data-a=remove]");
-      Jt(x, x.querySelector(".removeFill"), 1200, () => {
-        var H;
-        return (H = n.onRemove) == null ? void 0 : H.call(n);
+      const w = l.querySelector("[data-a=remove]");
+      nn(w, w.querySelector(".removeFill"), 1200, () => {
+        var B;
+        return (B = n.onRemove) == null ? void 0 : B.call(n);
       });
     }
-    return l.addEventListener("keydown", (x) => {
-      x.key === "Escape" && (x.preventDefault(), x.stopPropagation(), m()), x.key === "Enter" && x.target.matches("input") && (x.preventDefault(), T());
+    return l.addEventListener("keydown", (w) => {
+      w.key === "Escape" && (w.preventDefault(), w.stopPropagation(), g()), w.key === "Enter" && w.target.matches("input") && (w.preventDefault(), R());
     }), l;
   }
-  function Gn(e, t) {
+  function Un(e, t) {
     const n = a(t);
     n.innerHTML = "", e.forEach((i, o) => {
-      if (i === oe && !Pt()) {
-        n.appendChild(_n(i, o));
+      if (i === ue && !Gt()) {
+        n.appendChild(Yn(i, o));
         return;
       }
       const r = document.createElement("div");
-      r.className = "moveRow" + (i.hidden ? " hidden" : "") + (i.kind === "rest" ? " restItem" : "") + (i.kind === "video" ? " videoItem" : "") + (yi(i) ? " noMeta" : ""), r.dataset.index = o, r.dataset.id = i.id;
-      const d = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : Q(i.duration) : i.useGlobalTiming === !1 ? Q(i.duration) : "Global timing", s = i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", u = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + Q(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? Rt(Ft(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + d, v = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + R(i.name) + '. Drag, or use the up and down arrow keys">' + At + "</button>", g = '<div class="moveText"><div class="moveItemName">' + R(i.name) + s + '</div><div class="moveMeta">' + R(u) + "</div></div>", l = (h) => h.addEventListener("keydown", (c) => {
-        var L, x;
-        if (c.key !== "ArrowUp" && c.key !== "ArrowDown") return;
-        c.preventDefault();
-        const m = e.indexOf(i), T = m + (c.key === "ArrowUp" ? -1 : 1);
-        T < 0 || T >= e.length || (e.splice(m, 1), e.splice(T, 0, i), q(), (x = (L = a(t).children[T]) == null ? void 0 : L.querySelector(".dragHandle")) == null || x.focus());
+      r.className = "moveRow" + (i.hidden ? " hidden" : "") + (i.kind === "rest" ? " restItem" : "") + (i.kind === "video" ? " videoItem" : "") + (Fi(i) ? " noMeta" : ""), r.dataset.index = o, r.dataset.id = i.id;
+      const d = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : re(i.duration) : i.useGlobalTiming === !1 ? re(i.duration) : "Global timing", s = i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", u = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + re(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? Pt(Dt(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + d, h = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + E(i.name) + '. Drag, or use the up and down arrow keys">' + Ht + "</button>", m = '<div class="moveText"><div class="moveItemName">' + E(i.name) + s + '</div><div class="moveMeta">' + E(u) + "</div></div>", l = (v) => v.addEventListener("keydown", (p) => {
+        var Z, w;
+        if (p.key !== "ArrowUp" && p.key !== "ArrowDown") return;
+        p.preventDefault();
+        const g = e.indexOf(i), R = g + (p.key === "ArrowUp" ? -1 : 1);
+        R < 0 || R >= e.length || (e.splice(g, 1), e.splice(R, 0, i), q(), (w = (Z = a(t).children[R]) == null ? void 0 : Z.querySelector(".dragHandle")) == null || w.focus());
       });
-      if (Pt()) {
-        r.classList.add("phoneRow"), r.tabIndex = 0, r.setAttribute("role", "button"), r.setAttribute("aria-label", "Edit " + (i.name || "step")), r.innerHTML = v + g + '<span class="rowChevron" aria-hidden="true">›</span>';
-        const h = r.querySelector(".dragHandle");
-        h.addEventListener("pointerdown", (c) => Ki(c, r, n, e)), l(h), r.addEventListener("click", (c) => {
-          c.target.closest(".dragHandle") || oa(i, e);
-        }), r.addEventListener("keydown", (c) => {
-          c.key === "Enter" && c.target === r && (c.preventDefault(), oa(i, e));
+      if (Gt()) {
+        r.classList.add("phoneRow"), r.tabIndex = 0, r.setAttribute("role", "button"), r.setAttribute("aria-label", "Edit " + (i.name || "step")), r.innerHTML = h + m + '<span class="rowChevron" aria-hidden="true">›</span>';
+        const v = r.querySelector(".dragHandle");
+        v.addEventListener("pointerdown", (p) => ta(p, r, n, e)), l(v), r.addEventListener("click", (p) => {
+          p.target.closest(".dragHandle") || ca(i, e);
+        }), r.addEventListener("keydown", (p) => {
+          p.key === "Enter" && p.target === r && (p.preventDefault(), ca(i, e));
         }), n.appendChild(r);
         return;
       }
-      r.innerHTML = v + g + '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + R(i.name) + '">Edit</button><button class="hideBtn" type="button">' + (i.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + R(i.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
-        rn(), oe = i, q(), Yi();
+      r.innerHTML = h + m + '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit ' + E(i.name) + '">Edit</button><button class="hideBtn" type="button">' + (i.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" aria-label="Hold to remove ' + E(i.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>', r.querySelector(".editBtn").addEventListener("click", () => {
+        un(), ue = i, q(), ea();
       }), r.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
         i.hidden = !i.hidden, q();
       });
       const b = r.querySelector(".removeBtn");
-      Jt(b, b.querySelector(".removeFill"), 1200, () => {
-        const h = e.indexOf(i);
-        h < 0 || (e.splice(h, 1), q(), G("Removed " + i.name, { label: "Undo", run: () => {
-          e.splice(Math.min(h, e.length), 0, i), q();
+      nn(b, b.querySelector(".removeFill"), 1200, () => {
+        const v = e.indexOf(i);
+        v < 0 || (e.splice(v, 1), q(), O("Removed " + i.name, { label: "Undo", run: () => {
+          e.splice(Math.min(v, e.length), 0, i), q();
         } }));
       });
       const C = r.querySelector(".dragHandle");
-      C.addEventListener("pointerdown", (h) => Ki(h, r, n, e)), l(C), n.appendChild(r);
+      C.addEventListener("pointerdown", (v) => ta(v, r, n, e)), l(C), n.appendChild(r);
     });
   }
-  const Le = () => {
+  const ze = () => {
     var e;
     return (e = window.matchMedia) == null ? void 0 : e.call(window, "(prefers-reduced-motion: reduce)").matches;
-  }, Ui = "transform .24s cubic-bezier(.2,.8,.2,1)";
-  function Ki(e, t, n, i) {
-    if (e.button !== void 0 && e.button !== 0) return;
-    e.preventDefault();
-    const o = e.currentTarget;
+  }, Kn = (e) => {
+    var t;
     try {
-      o.setPointerCapture(e.pointerId);
+      (t = navigator.vibrate) == null || t.call(navigator, e);
     } catch {
     }
-    const r = t.closest(".exerciseScroller"), d = e.clientY - t.getBoundingClientRect().top;
-    let s = e.clientY, u = null;
-    t.classList.add("dragging"), t.style.transition = "none";
-    const v = () => {
-      t.style.transform = "";
-      const c = t.getBoundingClientRect().top;
-      t.style.transform = "translateY(" + (s - d - c) + "px) scale(1.015)";
-    }, g = (c) => {
-      const m = [...n.children].filter((L) => L !== t), T = new Map(m.map((L) => [L, L.getBoundingClientRect().top]));
-      c(), !Le() && m.forEach((L) => {
-        L.style.transition = "none", L.style.transform = "";
-        const x = T.get(L) - L.getBoundingClientRect().top;
-        x && (L.style.transform = "translateY(" + x + "px)", L.getBoundingClientRect(), L.style.transition = Ui, L.style.transform = "");
-      });
-    }, l = () => {
-      const c = [...n.children].filter((L) => L !== t), m = s - d + t.offsetHeight / 2, T = c.find((L) => {
-        const x = L.getBoundingClientRect();
-        return m < x.top + x.height / 2;
-      });
-      T ? t.nextElementSibling !== T && g(() => n.insertBefore(t, T)) : n.lastElementChild !== t && g(() => n.appendChild(t)), v();
-    }, b = () => {
-      if (!r) return;
-      const c = r.getBoundingClientRect(), m = 56, T = s < c.top + m ? -10 : s > c.bottom - m ? 10 : 0;
-      T && (r.scrollTop += T, l());
-    }, C = (c) => {
-      s = c.clientY, l();
-    }, h = () => {
-      clearInterval(u), o.removeEventListener("pointermove", C), o.removeEventListener("pointerup", h), o.removeEventListener("pointercancel", h);
-      const c = [...n.children].map((L) => Number(L.dataset.index)), m = c.some((L, x) => L !== x), T = () => {
-        if (t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", m) {
-          const L = c.map((x) => i[x]);
-          i.splice(0, i.length, ...L);
-        }
-        q(), m && G("Order saved");
-      };
-      if (Le()) {
-        T();
+  };
+  function ta(e, t, n, i) {
+    if (e.button !== void 0 && e.button !== 0) return;
+    e.preventDefault();
+    const o = e.currentTarget, r = e.pointerId, d = !ze();
+    try {
+      o.setPointerCapture(r);
+    } catch {
+    }
+    const s = t.closest(".exerciseScroller") || Jn(t), u = n.style.position;
+    n.style.position = "relative";
+    const h = () => n.getBoundingClientRect().top + t.offsetTop, m = t.getBoundingClientRect().top, l = e.clientY - m, b = e.clientX;
+    let C = e.clientY, v = e.clientX, p = m, g = 0, R = 0, Z = 0, w = 1, B = 0, V = 0, j = !1, z = !1, ne = null, se = !1;
+    t.classList.add("dragging"), t.style.transition = "none", Kn(8);
+    const X = () => {
+      const I = d ? Math.min(Math.abs(g) / 40, 1) : 0, ee = d ? Math.max(-3, Math.min(3, Z * 0.6)) : 0;
+      t.style.transform = "translate(" + R.toFixed(2) + "px," + (p - h()).toFixed(2) + "px) rotate(" + ee.toFixed(2) + "deg) scale(" + (w * (1 - 0.04 * I)).toFixed(4) + "," + (w * (1 + 0.06 * I)).toFixed(4) + ")";
+    }, ot = () => {
+      V = requestAnimationFrame(ot);
+      const I = j ? h() : C - l, ee = j ? 0 : Math.max(-22, Math.min(22, (v - b) * 0.22)), ie = j ? 1 : 1.035;
+      if (!d) {
+        p = I, R = 0, w = 1, X(), j && Se();
         return;
       }
-      t.style.transition = Ui, t.style.transform = "", setTimeout(T, 250);
+      const $ = j ? 0.24 : 0.2, x = j ? 0.62 : 0.68;
+      g = (g + (I - p) * $) * x, p += g, Z = (Z + (ee - R) * 0.16) * 0.7, R += Z, B = (B + (ie - w) * 0.22) * 0.6, w += B, X(), j && Math.abs(g) < 0.15 && Math.abs(I - p) < 0.5 && Math.abs(R) < 0.5 && Math.abs(w - 1) < 3e-3 && Se();
+    }, c = (I) => {
+      const ee = [...n.children].filter(($) => $ !== t), ie = new Map(ee.map(($) => [$, $.getBoundingClientRect().top]));
+      ee.forEach(($) => $.getAnimations().forEach((x) => x.cancel())), I(), Kn(4), d && ee.forEach(($) => {
+        const x = ie.get($) - $.getBoundingClientRect().top;
+        Math.abs(x) < 0.5 || $.animate([{ transform: "translateY(" + x + "px)" }, { transform: "none" }], { duration: 440, easing: Xn });
+      });
+    }, T = () => {
+      const I = n.getBoundingClientRect().top, ee = [...n.children].filter((x) => x !== t && x.classList.contains("moveRow")), ie = C - l + t.offsetHeight / 2, $ = ee.find((x) => ie < I + x.offsetTop + x.offsetHeight / 2);
+      $ ? t.nextElementSibling !== $ && c(() => n.insertBefore(t, $)) : n.lastElementChild !== t && c(() => n.appendChild(t));
+    }, te = setInterval(() => {
+      if (!s || j) return;
+      const I = s.getBoundingClientRect(), ee = 56, ie = C < I.top + ee ? -10 : C > I.bottom - ee ? 10 : 0;
+      ie && (s.scrollTop += ie, T());
+    }, 30);
+    function Se() {
+      if (z) return;
+      if (z = !0, cancelAnimationFrame(V), t.classList.remove("dragging"), t.style.transition = "", t.style.transform = "", n.style.position = u, se) {
+        const ie = ne.map(($) => i[$]);
+        i.splice(0, i.length, ...ie);
+      }
+      const I = t.dataset.id;
+      q();
+      const ee = I && n.querySelector('.moveRow[data-id="' + I + '"]');
+      ee && d && ee.animate([{ transform: "scale(1.02,.95)" }, { transform: "scale(.995,1.012)" }, { transform: "none" }], { duration: 340, easing: "ease-out" }), se && O("Order saved");
+    }
+    const Dn = (I) => {
+      if (I.pointerId === r) {
+        if (I.pointerType === "mouse" && I.buttons === 0) {
+          rt();
+          return;
+        }
+        C = I.clientY, v = I.clientX, T();
+      }
+    }, Ye = (I) => {
+      I.pointerId === r && rt();
     };
-    o.addEventListener("pointermove", C), o.addEventListener("pointerup", h), o.addEventListener("pointercancel", h), u = setInterval(b, 30), v();
+    function rt() {
+      j || (window.removeEventListener("pointermove", Dn, !0), window.removeEventListener("pointerup", Ye, !0), window.removeEventListener("pointercancel", Ye, !0), o.removeEventListener("lostpointercapture", rt), clearInterval(te), ne = [...n.children].filter((I) => I.classList.contains("moveRow")).map((I) => Number(I.dataset.index)), se = ne.some((I, ee) => I !== ee), j = !0, Kn(6), setTimeout(Se, 800));
+    }
+    window.addEventListener("pointermove", Dn, !0), window.addEventListener("pointerup", Ye, !0), window.addEventListener("pointercancel", Ye, !0), o.addEventListener("lostpointercapture", rt), V = requestAnimationFrame(ot), X();
   }
-  function On() {
+  function Zn() {
     var o, r, d, s;
-    const e = M[F], t = (o = a("warmupList")) == null ? void 0 : o.closest("section"), n = (r = a("cooldownList")) == null ? void 0 : r.closest("section"), i = (s = (d = a("strengthList")) == null ? void 0 : d.closest("section")) == null ? void 0 : s.querySelector(".sectionTitle");
-    e != null && e.customSequence ? (t && (t.hidden = !e.includeWarmup), n && (n.hidden = !e.includeCooldown), i && (i.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), i && (i.textContent = "Kettlebell work")), Gn(me, "warmupList"), Gn(ae, "strengthList"), Gn(ge, "cooldownList");
+    const e = L[M], t = (o = a("warmupList")) == null ? void 0 : o.closest("section"), n = (r = a("cooldownList")) == null ? void 0 : r.closest("section"), i = (s = (d = a("strengthList")) == null ? void 0 : d.closest("section")) == null ? void 0 : s.querySelector(".sectionTitle");
+    e != null && e.customSequence ? (t && (t.hidden = !e.includeWarmup), n && (n.hidden = !e.includeCooldown), i && (i.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), i && (i.textContent = "Kettlebell work")), Un(be, "warmupList"), Un(pe, "strengthList"), Un(xe, "cooldownList");
   }
-  function rn() {
-    if (!he) return;
-    const { item: e, arr: t } = he;
-    he = null;
+  function un() {
+    if (!ye) return;
+    const { item: e, arr: t } = ye;
+    ye = null;
     const n = t.indexOf(e);
-    n >= 0 && t.splice(n, 1), oe === e && (oe = null);
+    n >= 0 && t.splice(n, 1), ue === e && (ue = null);
   }
-  function Bt(e) {
-    return e.id === "warmupList" ? { arr: me, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: ge, kind: "cooldown", group: "Cooldown" } : { arr: ae, kind: "work", group: "" };
+  function qt(e) {
+    return e.id === "warmupList" ? { arr: be, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: xe, kind: "cooldown", group: "Cooldown" } : { arr: pe, kind: "work", group: "" };
   }
-  function Zi(e, t) {
-    const n = Bt(t), i = Date.now().toString(36);
-    return e === "video" ? { id: "video-" + i, name: "", group: "Video", kind: "video", hidden: !1, url: "", videoId: "", start: 0, end: null, videoDuration: null, useVideoLength: !0, autoName: !0, duration: 300 } : e === "rest" ? { id: "rest-" + i, name: "Rest", group: "Rest", kind: "rest", hidden: !1, useGlobalTiming: !0, duration: Number(I.value) } : { id: "movement-" + i, name: "", group: n.group, kind: n.kind, hidden: !1, useGlobalTiming: !0, duration: Number(N.value) };
+  function na(e, t) {
+    const n = qt(t), i = Date.now().toString(36);
+    return e === "video" ? { id: "video-" + i, name: "", group: "Video", kind: "video", hidden: !1, url: "", videoId: "", start: 0, end: null, videoDuration: null, useVideoLength: !0, autoName: !0, duration: 300 } : e === "rest" ? { id: "rest-" + i, name: "Rest", group: "Rest", kind: "rest", hidden: !1, useGlobalTiming: !0, duration: Number(P.value) } : { id: "movement-" + i, name: "", group: n.group, kind: n.kind, hidden: !1, useGlobalTiming: !0, duration: Number(N.value) };
   }
-  const Ji = "cubic-bezier(.34,1.46,.64,1)";
-  function $i(e, t) {
-    if (Le() || !e) {
+  const Xn = "cubic-bezier(.34,1.46,.64,1)";
+  function ia(e, t) {
+    if (ze() || !e) {
       t();
       return;
     }
@@ -1267,41 +1288,41 @@ function jr(y, w) {
       const d = o.get(n(r));
       if (d === void 0) return;
       const s = d - r.getBoundingClientRect().top;
-      Math.abs(s) < 0.5 || r.animate([{ transform: "translateY(" + s + "px)" }, { transform: "none" }], { duration: 440, easing: Ji });
+      Math.abs(s) < 0.5 || r.animate([{ transform: "translateY(" + s + "px)" }, { transform: "none" }], { duration: 440, easing: Xn });
     });
   }
-  function Xi(e, t) {
-    if (!e || Le()) return;
+  function aa(e, t) {
+    if (!e || ze()) return;
     const n = e.offsetHeight, i = Math.max(0, n - (t || 0));
-    e.animate([{ clipPath: "inset(0 0 " + i + "px 0 round 20.8px)" }, { clipPath: "inset(0 0 0 0 round 20.8px)" }], { duration: 460, easing: Ji });
+    e.animate([{ clipPath: "inset(0 0 " + i + "px 0 round 20.8px)" }, { clipPath: "inset(0 0 0 0 round 20.8px)" }], { duration: 460, easing: Xn });
   }
-  function Qi(e, t, n, i) {
-    const { arr: o } = Bt(t), r = Zi(e, t);
-    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), he = { item: r, arr: o }, oe = r, $i(t.closest(".exerciseScroller,.createStepSlot") || t, () => q());
+  function oa(e, t, n, i) {
+    const { arr: o } = qt(t), r = na(e, t);
+    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), ye = { item: r, arr: o }, ue = r, ia(t.closest(".exerciseScroller,.createStepSlot") || t, () => q());
     const d = t.querySelector(".moveRow.editing");
-    return Xi(d, i), Yi(e === "rest"), d;
+    return aa(d, i), ea(e === "rest"), d;
   }
-  function ea(e) {
+  function Jn(e) {
     for (let t = e; t && t.nodeType === 1; t = t.parentElement) {
       const n = getComputedStyle(t).overflowY;
       if (/(auto|scroll)/.test(n) && t.scrollHeight > t.clientHeight) return t;
     }
     return null;
   }
-  const ta = { movement: ["New movement", "Drop to add, then name it"], rest: ["Rest", "Rest · Global timing"], video: ["New video", "Drop to add, then paste a YouTube link"] };
-  function na(e, t) {
+  const ra = { movement: ["New movement", "Drop to add, then name it"], rest: ["Rest", "Rest · Global timing"], video: ["New video", "Drop to add, then paste a YouTube link"] };
+  function sa(e, t) {
     const n = document.createElement("div");
-    return n.className = "addGhost" + (e === "movement" ? "" : " rest"), n.innerHTML = '<span class="addGhostGrip">' + At + '</span><span class="addGhostText"><strong>' + R(t[0]) + "</strong><small>" + R(t[1]) + "</small></span>", a("workoutModal").appendChild(n), n;
+    return n.className = "addGhost" + (e === "movement" ? "" : " rest"), n.innerHTML = '<span class="addGhostGrip">' + Ht + '</span><span class="addGhostText"><strong>' + E(t[0]) + "</strong><small>" + E(t[1]) + "</small></span>", a("workoutModal").appendChild(n), n;
   }
-  function Nt(e) {
+  function zt(e) {
     e.classList.add("leaving"), setTimeout(() => e.remove(), 180);
   }
-  function Ho(e, t, n, i) {
-    (oe || he) && (rn(), oe = null, q());
-    const o = e.getBoundingClientRect(), r = na(t, ta[t]);
+  function zo(e, t, n, i) {
+    (ue || ye) && (un(), ue = null, q());
+    const o = e.getBoundingClientRect(), r = sa(t, ra[t]);
     r.setAttribute("aria-hidden", "true"), r.style.width = o.width + "px", r.style.height = o.height + "px", r.style.transform = "translate(" + o.left + "px," + o.top + "px)", e.classList.add("lifting");
-    const d = ea(e);
-    return ia({
+    const d = Jn(e);
+    return da({
       ghost: r,
       origin: o,
       sx: n,
@@ -1309,120 +1330,120 @@ function jr(y, w) {
       scroller: d,
       column: e.closest(".exerciseScroller,.createFlow") || d,
       home: () => e.getBoundingClientRect(),
-      onDrop: (s, u, v) => {
-        Nt(r), e.classList.remove("lifting"), Qi(t, s, u, v);
+      onDrop: (s, u, h) => {
+        zt(r), e.classList.remove("lifting"), oa(t, s, u, h);
       },
       onReturn: () => {
-        Nt(r), e.classList.remove("lifting");
+        zt(r), e.classList.remove("lifting");
       }
     });
   }
-  function ia({ ghost: e, origin: t, sx: n, sy: i, scroller: o, column: r, home: d, onDrop: s, onReturn: u, rowLook: v = !1 }) {
-    var so;
-    const g = !Le(), l = ((so = y.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : so.offsetHeight) || 80, b = n - t.left, C = i - t.top, h = 44;
-    let c = n, m = i, T = t.left, L = t.top, x = 0, H = 0, K = !g, de = null, W = null, pe = -1, fe = 0, J = null;
-    const Fn = () => ["warmupList", "strengthList", "cooldownList"].map((S) => a(S)).filter((S) => S && S.getClientRects().length && !S.closest("[hidden]")), p = (S) => {
-      if (S === de) return;
-      de = S, e.classList.toggle("overList", !!S || v);
-      const D = S ? S.getBoundingClientRect().width : t.width;
-      e.style.width = D + "px", e.style.height = (S ? l : t.height) + "px";
-    }, E = (S) => {
-      S.classList.add("leaving"), S.style.height = "0px", S.style.marginTop = "-8px", setTimeout(() => S.remove(), g ? 320 : 0);
-    }, ee = (S, D, U) => {
-      if (W && W.parentNode === S && pe === U || (W && (E(W), W = null, pe = -1), !S)) return;
-      const $ = document.createElement("div");
-      $.className = "dropSlot", S.insertBefore($, D), W = $, pe = U, $.getBoundingClientRect(), $.style.height = l + "px", $.style.marginTop = "0px";
-    }, Qe = () => {
-      let S = null, D = 1 / 0;
-      for (const Ge of Fn()) {
-        const ue = Ge.getBoundingClientRect();
-        if (c < ue.left - 48 || c > ue.right + 48) continue;
-        const Te = ue.top - 28, Oe = ue.bottom + 28, lo = m < Te ? Te - m : m > Oe ? m - Oe : 0;
-        lo < D && (D = lo, S = Ge);
+  function da({ ghost: e, origin: t, sx: n, sy: i, scroller: o, column: r, home: d, onDrop: s, onReturn: u, rowLook: h = !1 }) {
+    var $;
+    const m = !ze(), l = (($ = y.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : $.offsetHeight) || 80, b = n - t.left, C = i - t.top, v = 44;
+    let p = n, g = i, R = t.left, Z = t.top, w = 0, B = 0, V = !m, j = null, z = null, ne = -1, se = 0, X = null;
+    const ot = () => ["warmupList", "strengthList", "cooldownList"].map((x) => a(x)).filter((x) => x && x.getClientRects().length && !x.closest("[hidden]")), c = (x) => {
+      if (x === j) return;
+      j = x, e.classList.toggle("overList", !!x || h);
+      const H = x ? x.getBoundingClientRect().width : t.width;
+      e.style.width = H + "px", e.style.height = (x ? l : t.height) + "px";
+    }, T = (x) => {
+      x.classList.add("leaving"), x.style.height = "0px", x.style.marginTop = "-8px", setTimeout(() => x.remove(), m ? 320 : 0);
+    }, te = (x, H, J) => {
+      if (z && z.parentNode === x && ne === J || (z && (T(z), z = null, ne = -1), !x)) return;
+      const ae = document.createElement("div");
+      ae.className = "dropSlot", x.insertBefore(ae, H), z = ae, ne = J, ae.getBoundingClientRect(), ae.style.height = l + "px", ae.style.marginTop = "0px";
+    }, Se = () => {
+      let x = null, H = 1 / 0;
+      for (const Ue of ot()) {
+        const fe = Ue.getBoundingClientRect();
+        if (p < fe.left - 48 || p > fe.right + 48) continue;
+        const Re = fe.top - 28, Ke = fe.bottom + 28, po = g < Re ? Re - g : g > Ke ? g - Ke : 0;
+        po < H && (H = po, x = Ue);
       }
-      const U = r == null ? void 0 : r.getBoundingClientRect(), Ce = U && c >= U.left && c <= U.right && m >= U.top && m <= U.bottom || D === 0 ? S : null;
-      if (Ce) {
-        const Ge = [...Ce.children].filter((Te) => Te.classList.contains("moveRow"));
-        let ue = Ge.findIndex((Te) => {
-          const Oe = Te.getBoundingClientRect();
-          return m < Oe.top + Oe.height / 2;
+      const J = r == null ? void 0 : r.getBoundingClientRect(), Fe = J && p >= J.left && p <= J.right && g >= J.top && g <= J.bottom || H === 0 ? x : null;
+      if (Fe) {
+        const Ue = [...Fe.children].filter((Re) => Re.classList.contains("moveRow"));
+        let fe = Ue.findIndex((Re) => {
+          const Ke = Re.getBoundingClientRect();
+          return g < Ke.top + Ke.height / 2;
         });
-        ue < 0 && (ue = Ge.length), ee(Ce, Ge[ue] || null, ue);
-      } else ee(null);
-      p(Ce);
-    }, Gr = () => {
-      if (J) return J.aim();
-      if (de) {
-        const S = de.getBoundingClientRect();
-        let D = m - l / 2;
-        return W && (D = D * 0.6 + W.getBoundingClientRect().top * 0.4), { x: S.left, y: D };
+        fe < 0 && (fe = Ue.length), te(Fe, Ue[fe] || null, fe);
+      } else te(null);
+      c(Fe);
+    }, Dn = () => {
+      if (X) return X.aim();
+      if (j) {
+        const x = j.getBoundingClientRect();
+        let H = g - l / 2;
+        return z && (H = H * 0.6 + z.getBoundingClientRect().top * 0.4), { x: x.left, y: H };
       }
-      return { x: c - b, y: m - C };
-    }, Fi = (S, D, U, $) => {
-      e.style.transform = "translate(" + T + "px," + L + "px) rotate(" + S + "deg) rotate(" + D + "rad) scale(" + U + "," + $ + ") rotate(" + -D + "rad)";
-    }, oo = () => {
-      if (fe = requestAnimationFrame(oo), !K) {
-        const ue = c - n, Te = m - i, Oe = Math.min(Math.hypot(ue, Te) / h, 1);
-        T = t.left + ue * 0.35, L = t.top + Te * 0.35, Fi(0, Math.atan2(Te, ue), 1 + 0.155 * Oe, 1 - 0.1 * Oe);
+      return { x: p - b, y: g - C };
+    }, Ye = (x, H, J, ae) => {
+      e.style.transform = "translate(" + R + "px," + Z + "px) rotate(" + x + "deg) rotate(" + H + "rad) scale(" + J + "," + ae + ") rotate(" + -H + "rad)";
+    }, rt = () => {
+      if (se = requestAnimationFrame(rt), !V) {
+        const fe = p - n, Re = g - i, Ke = Math.min(Math.hypot(fe, Re) / v, 1);
+        R = t.left + fe * 0.35, Z = t.top + Re * 0.35, Ye(0, Math.atan2(Re, fe), 1 + 0.155 * Ke, 1 - 0.1 * Ke);
         return;
       }
-      const S = Gr();
-      if (!g) {
-        T = S.x, L = S.y, Fi(0, 0, 1, 1), J && (cancelAnimationFrame(fe), J.done());
+      const x = Dn();
+      if (!m) {
+        R = x.x, Z = x.y, Ye(0, 0, 1, 1), X && (cancelAnimationFrame(se), X.done());
         return;
       }
-      const D = J ? J.k : 0.17, U = J ? J.d : 0.7;
-      x = (x + (S.x - T) * D) * U, H = (H + (S.y - L) * D) * U, T += x, L += H;
-      const $ = Math.hypot(x, H), Ce = Math.min($ / 48, 1), Ge = de || J ? 0 : Math.max(-5, Math.min(5, x * 0.32));
-      Fi(Ge, Math.atan2(H, x), 1 + 0.1 * Ce, 1 - 0.063 * Ce), J && $ < 0.15 && Math.hypot(S.x - T, S.y - L) < 0.6 && (cancelAnimationFrame(fe), J.done());
-    }, Or = setInterval(() => {
-      if (!o || J) return;
-      const S = o.getBoundingClientRect(), D = 64, U = m < S.top + D ? -(S.top + D - m) / 4 : m > S.bottom - D ? (m - (S.bottom - D)) / 4 : 0;
-      U && (o.scrollTop += Math.max(-18, Math.min(18, U)), Qe());
+      const H = X ? X.k : 0.17, J = X ? X.d : 0.7;
+      w = (w + (x.x - R) * H) * J, B = (B + (x.y - Z) * H) * J, R += w, Z += B;
+      const ae = Math.hypot(w, B), Fe = Math.min(ae / 48, 1), Ue = j || X ? 0 : Math.max(-5, Math.min(5, w * 0.32));
+      Ye(Ue, Math.atan2(B, w), 1 + 0.1 * Fe, 1 - 0.063 * Fe), X && ae < 0.15 && Math.hypot(x.x - R, x.y - Z) < 0.6 && (cancelAnimationFrame(se), X.done());
+    }, I = setInterval(() => {
+      if (!o || X) return;
+      const x = o.getBoundingClientRect(), H = 64, J = g < x.top + H ? -(x.top + H - g) / 4 : g > x.bottom - H ? (g - (x.bottom - H)) / 4 : 0;
+      J && (o.scrollTop += Math.max(-18, Math.min(18, J)), Se());
     }, 30);
-    fe = requestAnimationFrame(oo);
-    let ro = !1;
-    const Et = (S, D) => {
-      if (ro) return;
-      ro = !0, cancelAnimationFrame(fe);
-      const U = W ? W.offsetHeight : l;
-      !S && W && (W.remove(), W = null), S ? s(S, D, U) : u();
+    se = requestAnimationFrame(rt);
+    let ee = !1;
+    const ie = (x, H) => {
+      if (ee) return;
+      ee = !0, cancelAnimationFrame(se);
+      const J = z ? z.offsetHeight : l;
+      !x && z && (z.remove(), z = null), x ? s(x, H, J) : u();
     };
     return {
-      move(S, D) {
-        c = S, m = D, !K && Math.hypot(c - n, m - i) > h && (K = !0, x = (c - n) * 0.085, H = (m - i) * 0.085), K && Qe();
+      move(x, H) {
+        p = x, g = H, !V && Math.hypot(p - n, g - i) > v && (V = !0, w = (p - n) * 0.085, B = (g - i) * 0.085), V && Se();
       },
-      drop(S) {
-        clearInterval(Or);
-        const D = de, U = pe;
-        if (!S && D && W) {
-          const $ = W;
-          J = { k: 0.24, d: 0.62, aim: () => {
-            const Ce = $.getBoundingClientRect();
-            return { x: Ce.left, y: Ce.top };
-          }, done: () => Et(D, U) }, setTimeout(() => Et(D, U), 650), g || (cancelAnimationFrame(fe), Et(D, U));
+      drop(x) {
+        clearInterval(I);
+        const H = j, J = ne;
+        if (!x && H && z) {
+          const ae = z;
+          X = { k: 0.24, d: 0.62, aim: () => {
+            const Fe = ae.getBoundingClientRect();
+            return { x: Fe.left, y: Fe.top };
+          }, done: () => ie(H, J) }, setTimeout(() => ie(H, J), 650), m || (cancelAnimationFrame(se), ie(H, J));
           return;
         }
-        ee(null), p(null), J = { k: 0.2, d: 0.66, aim: () => {
-          const $ = d();
-          return { x: $.left, y: $.top };
-        }, done: () => Et(null) }, setTimeout(() => Et(null), 650), g || (cancelAnimationFrame(fe), Et(null));
+        te(null), c(null), X = { k: 0.2, d: 0.66, aim: () => {
+          const ae = d();
+          return { x: ae.left, y: ae.top };
+        }, done: () => ie(null) }, setTimeout(() => ie(null), 650), m || (cancelAnimationFrame(se), ie(null));
       }
     };
   }
-  function Wn(e, t) {
+  function $n(e, t) {
     let n = !1;
     e.addEventListener("click", (i) => {
       if (n) {
         n = !1, i.preventDefault();
         return;
       }
-      if (Pt()) {
-        ra(t);
+      if (Gt()) {
+        pa(t);
         return;
       }
-      const o = a("strengthList"), r = Qi(t, o, Bt(o).arr.length, 0);
-      r == null || r.scrollIntoView({ block: "nearest", behavior: Le() ? "auto" : "smooth" });
+      const o = a("strengthList"), r = oa(t, o, qt(o).arr.length, 0);
+      r == null || r.scrollIntoView({ block: "nearest", behavior: ze() ? "auto" : "smooth" });
     }), e.addEventListener("pointerdown", (i) => {
       if (i.button !== void 0 && i.button !== 0) return;
       const o = i.pointerId, r = i.clientX, d = i.clientY;
@@ -1431,146 +1452,146 @@ function jr(y, w) {
         e.setPointerCapture(o);
       } catch {
       }
-      const v = (m) => {
-        if (m.pointerId === o) {
-          if (m.pointerType === "mouse" && m.buttons === 0) {
-            c(!1);
+      const h = (g) => {
+        if (g.pointerId === o) {
+          if (g.pointerType === "mouse" && g.buttons === 0) {
+            p(!1);
             return;
           }
           if (!s) {
-            if (Math.hypot(m.clientX - r, m.clientY - d) < 6) return;
-            s = Ho(e, t, r, d);
+            if (Math.hypot(g.clientX - r, g.clientY - d) < 6) return;
+            s = zo(e, t, r, d);
           }
-          s.move(m.clientX, m.clientY);
+          s.move(g.clientX, g.clientY);
         }
-      }, g = (m) => {
-        m.pointerId === o && c(!1);
-      }, l = (m) => {
-        m.pointerId === o && c(!0);
-      }, b = () => c(!1), C = () => c(!0), h = (m) => {
-        m.key === "Escape" && s && (m.preventDefault(), m.stopPropagation(), c(!0));
+      }, m = (g) => {
+        g.pointerId === o && p(!1);
+      }, l = (g) => {
+        g.pointerId === o && p(!0);
+      }, b = () => p(!1), C = () => p(!0), v = (g) => {
+        g.key === "Escape" && s && (g.preventDefault(), g.stopPropagation(), p(!0));
       };
-      function c(m) {
-        if (!u && (u = !0, window.removeEventListener("pointermove", v, !0), window.removeEventListener("pointerup", g, !0), window.removeEventListener("pointercancel", l, !0), window.removeEventListener("keydown", h, !0), window.removeEventListener("blur", C), e.removeEventListener("lostpointercapture", b), s)) {
-          const T = s;
+      function p(g) {
+        if (!u && (u = !0, window.removeEventListener("pointermove", h, !0), window.removeEventListener("pointerup", m, !0), window.removeEventListener("pointercancel", l, !0), window.removeEventListener("keydown", v, !0), window.removeEventListener("blur", C), e.removeEventListener("lostpointercapture", b), s)) {
+          const R = s;
           s = null, n = !0, setTimeout(() => {
             n = !1;
-          }, 0), T.drop(m);
+          }, 0), R.drop(g);
         }
       }
-      window.addEventListener("pointermove", v, !0), window.addEventListener("pointerup", g, !0), window.addEventListener("pointercancel", l, !0), window.addEventListener("keydown", h, !0), window.addEventListener("blur", C), e.addEventListener("lostpointercapture", b);
+      window.addEventListener("pointermove", h, !0), window.addEventListener("pointerup", m, !0), window.addEventListener("pointercancel", l, !0), window.addEventListener("keydown", v, !0), window.addEventListener("blur", C), e.addEventListener("lostpointercapture", b);
     });
   }
-  const It = (to = window.matchMedia) == null ? void 0 : to.call(window, "(max-width: 620px)");
-  function Pt() {
+  const _t = (ro = window.matchMedia) == null ? void 0 : ro.call(window, "(max-width: 620px)");
+  function Gt() {
     var e;
     return !!((e = window.matchMedia) != null && e.call(window, "(max-width: 620px)").matches);
   }
-  const aa = (e) => e.charAt(0).toUpperCase() + e.slice(1), sn = (e) => e.kind === "rest" ? "rest" : e.kind === "video" ? "video" : "movement";
-  let Vn = null, j = null;
-  function dn(e, t, n, i) {
-    re(), a("sheetTitle").textContent = e;
+  const la = (e) => e.charAt(0).toUpperCase() + e.slice(1), mn = (e) => e.kind === "rest" ? "rest" : e.kind === "video" ? "video" : "movement";
+  let Qn = null, U = null;
+  function gn(e, t, n, i) {
+    me(), a("sheetTitle").textContent = e;
     const o = a("sheetBody");
-    o.innerHTML = "", o.appendChild(t), Vn = n || null, a("sheet").setAttribute("aria-hidden", "false"), a("sheetScrim").classList.add("open"), a("sheet").classList.add("open"), setTimeout(() => {
+    o.innerHTML = "", o.appendChild(t), Qn = n || null, a("sheet").setAttribute("aria-hidden", "false"), a("sheetScrim").classList.add("open"), a("sheet").classList.add("open"), setTimeout(() => {
       if (!a("sheet").classList.contains("open") || !o.contains(t)) return;
       const r = i ? o.querySelector("input[data-f=url],input[data-f=name]") : o.querySelector("button,input,select");
       r == null || r.focus({ preventScroll: !0 });
-    }, Le() ? 0 : 360);
+    }, ze() ? 0 : 360);
   }
-  function re() {
+  function me() {
     const e = a("sheet");
     if (!e.classList.contains("open")) return;
     e.classList.remove("open"), a("sheetScrim").classList.remove("open"), e.setAttribute("aria-hidden", "true"), e.contains(y.activeElement) && y.activeElement.blur();
-    const t = Vn;
-    Vn = null, t == null || t(), setTimeout(Un, 0);
+    const t = Qn;
+    Qn = null, t == null || t(), setTimeout(ni, 0);
   }
-  a("sheetScrim").addEventListener("click", re), a("sheet").addEventListener("keydown", (e) => {
-    e.key === "Escape" && (e.preventDefault(), re());
+  a("sheetScrim").addEventListener("click", me), a("sheet").addEventListener("keydown", (e) => {
+    e.key === "Escape" && (e.preventDefault(), me());
   });
-  function oa(e, t) {
-    const n = _n(e, t.indexOf(e), {
+  function ca(e, t) {
+    const n = Yn(e, t.indexOf(e), {
       sheet: !0,
       isNew: !1,
       onSaved() {
-        re(), q(), G(aa(sn(e)) + " updated");
+        me(), q(), O(la(mn(e)) + " updated");
       },
-      onCancel: re,
+      onCancel: me,
       onHide() {
-        e.hidden = !e.hidden, re(), q(), G((e.hidden ? "Hidden: " : "Showing: ") + e.name);
+        e.hidden = !e.hidden, me(), q(), O((e.hidden ? "Hidden: " : "Showing: ") + e.name);
       },
       onRemove() {
-        re();
+        me();
         const i = t.indexOf(e);
-        i < 0 || (t.splice(i, 1), q(), G("Removed " + e.name, { label: "Undo", run: () => {
+        i < 0 || (t.splice(i, 1), q(), O("Removed " + e.name, { label: "Undo", run: () => {
           t.splice(Math.min(i, t.length), 0, e), q();
         } }));
       }
     });
-    dn("Edit " + sn(e), n, null, !1);
+    gn("Edit " + mn(e), n, null, !1);
   }
-  function qo() {
+  function _o() {
     const e = document.createElement("div");
     e.className = "sheetChoices", [["movement", "●", "Movement", "Name it, then drag it into place"], ["rest", "Ⅱ", "Rest", "A pause between movements"], ["video", "▶", "Video", "Paste a YouTube link"]].forEach(([t, n, i, o]) => {
       const r = document.createElement("button");
-      r.type = "button", r.className = "sheetChoice", r.innerHTML = '<span class="timeIcon" aria-hidden="true">' + n + "</span><span><strong>" + i + "</strong><small>" + o + "</small></span>", r.addEventListener("click", () => ra(t)), e.appendChild(r);
-    }), dn("Add to the move", e, null, !1);
+      r.type = "button", r.className = "sheetChoice", r.innerHTML = '<span class="timeIcon" aria-hidden="true">' + n + "</span><span><strong>" + i + "</strong><small>" + o + "</small></span>", r.addEventListener("click", () => pa(t)), e.appendChild(r);
+    }), gn("Add to the move", e, null, !1);
   }
-  function ra(e) {
-    j && cn();
-    const t = Zi(e, a("strengthList")), n = _n(t, -1, {
+  function pa(e) {
+    U && vn();
+    const t = na(e, a("strengthList")), n = Yn(t, -1, {
       sheet: !0,
       isNew: !0,
       onSaved() {
-        re(), _o(t, e);
+        me(), Oo(t, e);
       },
-      onCancel: re
+      onCancel: me
     });
-    dn("New " + sn(t), n, null, !0);
+    gn("New " + mn(t), n, null, !0);
   }
-  const ln = a("workoutModal").querySelector(".modalStatic"), sa = { parent: ln.parentNode, next: ln.nextSibling };
-  function zo() {
+  const hn = a("workoutModal").querySelector(".modalStatic"), ua = { parent: hn.parentNode, next: hn.nextSibling };
+  function Go() {
     const e = document.createElement("div");
-    e.className = "sheetSetup", e.appendChild(ln);
+    e.className = "sheetSetup", e.appendChild(hn);
     const t = document.createElement("button");
-    t.type = "button", t.className = "primary sheetDone", t.textContent = "Done", t.addEventListener("click", re), e.appendChild(t), dn("Setup", e, () => {
-      sa.parent.insertBefore(ln, sa.next), jn();
+    t.type = "button", t.className = "primary sheetDone", t.textContent = "Done", t.addEventListener("click", me), e.appendChild(t), gn("Setup", e, () => {
+      ua.parent.insertBefore(hn, ua.next), ei();
     }, !1);
   }
-  function jn() {
+  function ei() {
     var t, n;
     const e = a("setupSummaryName");
-    e && (e.textContent = (((t = a("workoutNameInput")) == null ? void 0 : t.value) || "").trim() || ((n = M[F]) == null ? void 0 : n.name) || "Move", a("setupSummaryMeta").textContent = zi.textContent);
+    e && (e.textContent = (((t = a("workoutNameInput")) == null ? void 0 : t.value) || "").trim() || ((n = L[M]) == null ? void 0 : n.name) || "Move", a("setupSummaryMeta").textContent = Ui.textContent);
   }
-  a("setupSummary").addEventListener("click", zo), a("addFab").addEventListener("click", qo);
-  function da() {
+  a("setupSummary").addEventListener("click", Go), a("addFab").addEventListener("click", _o);
+  function ma() {
     const e = a("strengthList");
-    return ea(e) || e.closest(".exerciseScroller");
+    return Jn(e) || e.closest(".exerciseScroller");
   }
-  function Yn() {
-    const e = a("strengthList").getBoundingClientRect(), t = (da() || a("strengthList")).getBoundingClientRect(), n = (j == null ? void 0 : j.ghost.offsetHeight) || 64;
+  function ti() {
+    const e = a("strengthList").getBoundingClientRect(), t = (ma() || a("strengthList")).getBoundingClientRect(), n = (U == null ? void 0 : U.ghost.offsetHeight) || 64;
     return { left: e.left, top: Math.max(t.top + 12, Math.min(t.bottom - n - 96, t.top + t.height * 0.55 - n / 2)), width: e.width, height: n };
   }
-  function _o(e, t) {
+  function Oo(e, t) {
     var s;
-    const n = na(t, [e.name || ta[t][0], "Drag into place"]);
+    const n = sa(t, [e.name || ra[t][0], "Drag into place"]);
     n.classList.add("overList", "hovering"), n.setAttribute("aria-label", (e.name || "New step") + ". Drag it into place in the list, or add it at the end.");
     const i = document.createElement("span");
-    i.className = "addGhostActions", i.innerHTML = '<button class="hideBtn" type="button" data-a="end">Add at end</button><button class="hideBtn ghostDiscard" type="button" data-a="discard" aria-label="Discard ' + R(e.name) + '">✕</button>', n.appendChild(i), j = { item: e, type: t, ghost: n };
+    i.className = "addGhostActions", i.innerHTML = '<button class="hideBtn" type="button" data-a="end">Add at end</button><button class="hideBtn ghostDiscard" type="button" data-a="discard" aria-label="Discard ' + E(e.name) + '">✕</button>', n.appendChild(i), U = { item: e, type: t, ghost: n };
     const o = ((s = y.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : s.offsetHeight) || 64;
     n.style.width = a("strengthList").getBoundingClientRect().width + "px", n.style.height = o + "px";
-    const r = Yn(), d = ne.querySelector(".modal").getBoundingClientRect().bottom;
-    n.style.transform = "translate(" + r.left + "px," + d + "px)", n.getBoundingClientRect(), Le() || (n.classList.add("rising"), setTimeout(() => n.classList.remove("rising"), 650)), n.style.transform = "translate(" + r.left + "px," + r.top + "px)", i.querySelector("[data-a=end]").addEventListener("click", cn), i.querySelector("[data-a=discard]").addEventListener("click", Oo), n.addEventListener("pointerdown", Go);
+    const r = ti(), d = le.querySelector(".modal").getBoundingClientRect().bottom;
+    n.style.transform = "translate(" + r.left + "px," + d + "px)", n.getBoundingClientRect(), ze() || (n.classList.add("rising"), setTimeout(() => n.classList.remove("rising"), 650)), n.style.transform = "translate(" + r.left + "px," + r.top + "px)", i.querySelector("[data-a=end]").addEventListener("click", vn), i.querySelector("[data-a=discard]").addEventListener("click", Vo), n.addEventListener("pointerdown", Wo);
   }
-  function Go(e) {
-    if (!j || e.target.closest("button") || e.button !== void 0 && e.button !== 0) return;
+  function Wo(e) {
+    if (!U || e.target.closest("button") || e.button !== void 0 && e.button !== 0) return;
     e.preventDefault();
-    const { item: t, ghost: n } = j, i = e.pointerId;
+    const { item: t, ghost: n } = U, i = e.pointerId;
     try {
       n.setPointerCapture(i);
     } catch {
     }
     n.classList.remove("hovering", "rising"), n.classList.add("held");
-    const o = n.getBoundingClientRect(), r = da(), d = ia({
+    const o = n.getBoundingClientRect(), r = ma(), d = da({
       ghost: n,
       origin: { left: o.left, top: o.top, width: o.width, height: o.height },
       sx: e.clientX,
@@ -1578,62 +1599,62 @@ function jr(y, w) {
       scroller: r,
       column: a("strengthList").closest(".exerciseScroller,.createFlow") || r,
       rowLook: !0,
-      home: Yn,
-      onDrop: (c, m, T) => {
-        j = null, Nt(n), la(t, c, m, T);
+      home: ti,
+      onDrop: (p, g, R) => {
+        U = null, zt(n), ga(t, p, g, R);
       },
       onReturn: () => {
         n.classList.remove("held"), n.classList.add("hovering");
       }
     });
     let s = !1;
-    const u = (c) => {
-      if (c.pointerId === i) {
-        if (c.pointerType === "mouse" && c.buttons === 0) {
-          h(!1);
+    const u = (p) => {
+      if (p.pointerId === i) {
+        if (p.pointerType === "mouse" && p.buttons === 0) {
+          v(!1);
           return;
         }
-        d.move(c.clientX, c.clientY);
+        d.move(p.clientX, p.clientY);
       }
-    }, v = (c) => {
-      c.pointerId === i && h(!1);
-    }, g = (c) => {
-      c.pointerId === i && h(!0);
-    }, l = () => h(!1), b = () => h(!0), C = (c) => {
-      c.key === "Escape" && (c.preventDefault(), h(!0));
+    }, h = (p) => {
+      p.pointerId === i && v(!1);
+    }, m = (p) => {
+      p.pointerId === i && v(!0);
+    }, l = () => v(!1), b = () => v(!0), C = (p) => {
+      p.key === "Escape" && (p.preventDefault(), v(!0));
     };
-    function h(c) {
-      s || (s = !0, window.removeEventListener("pointermove", u, !0), window.removeEventListener("pointerup", v, !0), window.removeEventListener("pointercancel", g, !0), window.removeEventListener("keydown", C, !0), window.removeEventListener("blur", b), n.removeEventListener("lostpointercapture", l), d.drop(c));
+    function v(p) {
+      s || (s = !0, window.removeEventListener("pointermove", u, !0), window.removeEventListener("pointerup", h, !0), window.removeEventListener("pointercancel", m, !0), window.removeEventListener("keydown", C, !0), window.removeEventListener("blur", b), n.removeEventListener("lostpointercapture", l), d.drop(p));
     }
-    window.addEventListener("pointermove", u, !0), window.addEventListener("pointerup", v, !0), window.addEventListener("pointercancel", g, !0), window.addEventListener("keydown", C, !0), window.addEventListener("blur", b), n.addEventListener("lostpointercapture", l);
+    window.addEventListener("pointermove", u, !0), window.addEventListener("pointerup", h, !0), window.addEventListener("pointercancel", m, !0), window.addEventListener("keydown", C, !0), window.addEventListener("blur", b), n.addEventListener("lostpointercapture", l);
   }
-  function la(e, t, n, i) {
-    const o = Bt(t);
-    e.kind !== "rest" && e.kind !== "video" && (e.kind = o.kind, o.group && (!e.group || e.group === "Movement") && (e.group = o.group)), o.arr.splice(Math.max(0, Math.min(n, o.arr.length)), 0, e), $i(t.closest(".exerciseScroller,.createStepSlot") || t, () => q()), Xi(t.querySelector('.moveRow[data-id="' + e.id + '"]'), i), G(aa(sn(e)) + " added");
+  function ga(e, t, n, i) {
+    const o = qt(t);
+    e.kind !== "rest" && e.kind !== "video" && (e.kind = o.kind, o.group && (!e.group || e.group === "Movement") && (e.group = o.group)), o.arr.splice(Math.max(0, Math.min(n, o.arr.length)), 0, e), ia(t.closest(".exerciseScroller,.createStepSlot") || t, () => q()), aa(t.querySelector('.moveRow[data-id="' + e.id + '"]'), i), O(la(mn(e)) + " added");
   }
-  function cn() {
+  function vn() {
     var i;
-    if (!j) return;
-    const { item: e, ghost: t } = j;
-    j = null, Nt(t);
+    if (!U) return;
+    const { item: e, ghost: t } = U;
+    U = null, zt(t);
     const n = a("strengthList");
-    la(e, n, Bt(n).arr.length, 0), (i = n.querySelector('.moveRow[data-id="' + e.id + '"]')) == null || i.scrollIntoView({ block: "nearest", behavior: Le() ? "auto" : "smooth" });
+    ga(e, n, qt(n).arr.length, 0), (i = n.querySelector('.moveRow[data-id="' + e.id + '"]')) == null || i.scrollIntoView({ block: "nearest", behavior: ze() ? "auto" : "smooth" });
   }
-  function Oo() {
-    if (!j) return;
-    const e = j.ghost;
-    j = null, Nt(e), G("Discarded");
+  function Vo() {
+    if (!U) return;
+    const e = U.ghost;
+    U = null, zt(e), O("Discarded");
   }
-  function ca() {
-    j && (j.ghost.remove(), j = null);
+  function ha() {
+    U && (U.ghost.remove(), U = null);
   }
   window.addEventListener("resize", () => {
-    if (j != null && j.ghost.classList.contains("hovering")) {
-      const e = Yn();
-      j.ghost.style.width = e.width + "px", j.ghost.style.transform = "translate(" + e.left + "px," + e.top + "px)";
+    if (U != null && U.ghost.classList.contains("hovering")) {
+      const e = ti();
+      U.ghost.style.width = e.width + "px", U.ghost.style.transform = "translate(" + e.left + "px," + e.top + "px)";
     }
-  }), (no = It == null ? void 0 : It.addEventListener) == null || no.call(It, "change", () => {
-    re(), j && !Pt() && cn(), On();
+  }), (so = _t == null ? void 0 : _t.addEventListener) == null || so.call(_t, "change", () => {
+    me(), U && !Gt() && vn(), Zn();
   });
   {
     const e = a("workoutModal").querySelector(".modal");
@@ -1641,59 +1662,59 @@ function jr(y, w) {
       (e.scrollTop || e.scrollLeft) && (e.scrollTop = 0, e.scrollLeft = 0);
     });
   }
-  function Un() {
+  function ni() {
     const e = a("workoutModal"), t = window.visualViewport;
-    if (!(t && e.classList.contains("open") && Pt() && (t.height < window.innerHeight - 1 || t.offsetTop > 0))) {
+    if (!(t && e.classList.contains("open") && Gt() && (t.height < window.innerHeight - 1 || t.offsetTop > 0))) {
       ["top", "bottom", "height"].forEach((i) => e.style.removeProperty(i));
       return;
     }
     e.style.top = t.offsetTop + "px", e.style.bottom = "auto", e.style.height = t.height + "px";
   }
-  (io = window.visualViewport) == null || io.addEventListener("resize", Un), (ao = window.visualViewport) == null || ao.addEventListener("scroll", Un);
-  function Kn() {
-    ae.length > 0;
+  (lo = window.visualViewport) == null || lo.addEventListener("resize", ni), (co = window.visualViewport) == null || co.addEventListener("scroll", ni);
+  function ii() {
+    pe.length > 0;
     const e = a("addMovementBtn"), t = a("addRestBtn");
-    e && (e.innerHTML = At + "<span>Add movement</span>"), t && (t.innerHTML = At + "<span>Add rest</span>");
+    e && (e.innerHTML = Ht + "<span>Add movement</span>"), t && (t.innerHTML = Ht + "<span>Add rest</span>");
     const n = a("addVideoBtn");
-    n && (n.innerHTML = At + "<span>Add video</span>");
+    n && (n.innerHTML = Ht + "<span>Add video</span>");
   }
-  function Dt() {
+  function Ot() {
     const e = a("useGlobalTiming").checked, t = a("addMovementDuration"), n = a("addMovementUnit");
-    t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", a("globalTimingValue").textContent = "Use global timing · " + Q(N.value);
+    t.disabled = e, n.disabled = e, t.parentElement.style.opacity = e ? ".38" : "1", a("globalTimingValue").textContent = "Use global timing · " + re(N.value);
     const i = a("useGlobalRestTiming").checked, o = a("addRestDuration"), r = a("addRestUnit");
-    o.disabled = i, r.disabled = i, o.parentElement.style.opacity = i ? ".38" : "1", a("globalRestTimingValue").textContent = "Use global timing · " + Q(I.value);
+    o.disabled = i, r.disabled = i, o.parentElement.style.opacity = i ? ".38" : "1", a("globalRestTimingValue").textContent = "Use global timing · " + re(P.value);
   }
-  let pa = "movement";
-  function Wo(e) {
-    pa = e;
+  let va = "movement";
+  function jo(e) {
+    va = e;
     const t = a("movementFields"), n = a("restFields");
-    t.hidden = e !== "movement", n.hidden = e !== "rest", a("movementCreatorHeading").textContent = "Add movement", a("movementCreator").setAttribute("aria-label", "Create movement"), Dt();
+    t.hidden = e !== "movement", n.hidden = e !== "rest", a("movementCreatorHeading").textContent = "Add movement", a("movementCreator").setAttribute("aria-label", "Create movement"), Ot();
   }
-  function Zn() {
-    M[F];
-    const e = V ? !0 : a("useGlobalTiming").checked, t = e ? Number(N.value) : on(
+  function ai() {
+    L[M];
+    const e = Y ? !0 : a("useGlobalTiming").checked, t = e ? Number(N.value) : pn(
       a("addMovementDuration").value,
       a("addMovementUnit").value
-    ), n = V ? !0 : a("useGlobalRestTiming").checked, i = n ? Number(I.value) : on(
+    ), n = Y ? !0 : a("useGlobalRestTiming").checked, i = n ? Number(P.value) : pn(
       a("addRestDuration").value,
       a("addRestUnit").value
     );
-    if (pa === "rest") {
+    if (va === "rest") {
       const o = a("addRestTitle").value.trim() || "Rest", r = a("addRestGroup").value.trim() || "Rest";
-      ae.push({
+      pe.push({
         id: "rest-" + Date.now(),
         name: o,
         group: r,
         kind: "rest",
         hidden: !1,
         useGlobalTiming: n,
-        duration: Math.max(5, i || Number(I.value))
-      }), q(), a("movementCreator").hidden = !0, a("addRestTitle").value = "Rest", a("addRestGroup").value = "Rest", G("Rest added"), V && (et("movements"), Ie());
+        duration: Math.max(5, i || Number(P.value))
+      }), q(), a("movementCreator").hidden = !0, a("addRestTitle").value = "Rest", a("addRestGroup").value = "Rest", O("Rest added"), Y && (st("movements"), qe());
     } else {
       const o = a("addMovementInput").value.trim();
       if (!o) return;
       const r = a("addMovementGroup").value.trim() || "Movement";
-      ae.push({
+      pe.push({
         id: "movement-" + Date.now(),
         name: o,
         group: r,
@@ -1701,288 +1722,288 @@ function jr(y, w) {
         hidden: !1,
         useGlobalTiming: e,
         duration: Math.max(5, t || Number(N.value))
-      }), a("addMovementInput").value = "", a("addMovementGroup").value = "", q(), a("movementCreator").hidden = !0, G("Movement added"), V && (et("movements"), Ie());
+      }), a("addMovementInput").value = "", a("addMovementGroup").value = "", q(), a("movementCreator").hidden = !0, O("Movement added"), Y && (st("movements"), qe());
     }
-    Kn();
+    ii();
   }
-  let Jn = null;
-  function G(e, t) {
+  let oi = null;
+  function O(e, t) {
     const n = a("toast");
     n.innerHTML = "";
     const i = document.createElement("span");
     if (i.textContent = e, n.appendChild(i), t) {
       const o = document.createElement("button");
       o.type = "button", o.className = "toastAction", o.textContent = t.label, o.addEventListener("click", () => {
-        t.run(), n.classList.remove("show", "withAction"), clearTimeout(Jn);
+        t.run(), n.classList.remove("show", "withAction"), clearTimeout(oi);
       }), n.appendChild(o);
     }
-    n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(Jn), Jn = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
+    n.classList.toggle("withAction", !!t), n.classList.add("show"), clearTimeout(oi), oi = setTimeout(() => n.classList.remove("show", "withAction"), t ? 5e3 : 2200);
   }
-  const Vo = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], jo = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
-  function ua(e) {
+  const Yo = ["Terrible", "Poor", "Meh", "Okay", "Good", "Great"], Uo = ["#6E63A8", "#5878A8", "#6F8B8A", "#5F9B72", "#D5A53E", "#D56B54"];
+  function fa(e) {
     return Math.max(0, Math.min(5, Math.floor(Number(e) / 100 * 6)));
   }
-  function it(e, t) {
-    return Vo[ua(t)];
+  function ct(e, t) {
+    return Yo[fa(t)];
   }
-  function Yo(e) {
-    return jo[ua(e)];
+  function Ko(e) {
+    return Uo[fa(e)];
   }
-  function se(e) {
+  function ge(e) {
     return e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0");
   }
-  function Ee() {
-    return { morning: P().morningTime || "08:00", evening: P().eveningTime || "19:00" };
+  function Ae() {
+    return { morning: D().morningTime || "08:00", evening: D().eveningTime || "19:00" };
   }
-  function at(e) {
+  function pt(e) {
     const [t, n] = String(e).split(":").map(Number);
     return (t || 0) * 60 + (n || 0);
   }
-  function Uo(e) {
-    const t = Ee();
-    return e.getHours() * 60 + e.getMinutes() >= at(t.evening) ? "evening" : "morning";
+  function Zo(e) {
+    const t = Ae();
+    return e.getHours() * 60 + e.getMinutes() >= pt(t.evening) ? "evening" : "morning";
   }
-  function pn(e, t) {
-    return A.checkins.find((n) => n.date === e && n.slot === t);
+  function fn(e, t) {
+    return F.checkins.find((n) => n.date === e && n.slot === t);
   }
-  function un(e) {
+  function bn(e) {
     return !!(e && e.mood != null && e.energy != null);
   }
-  function mn() {
-    const e = /* @__PURE__ */ new Date(), t = se(e), n = Uo(e), i = Ee(), o = e.getHours() * 60 + e.getMinutes();
-    return n === "morning" && o < at(i.morning) || un(pn(t, n)) ? null : n;
+  function xn() {
+    const e = /* @__PURE__ */ new Date(), t = ge(e), n = Zo(e), i = Ae(), o = e.getHours() * 60 + e.getMinutes();
+    return n === "morning" && o < pt(i.morning) || bn(fn(t, n)) ? null : n;
   }
-  const Pe = a("checkinModal"), De = a("checkinTab"), Ko = a("checkinBadge"), He = { mood: { input: a("moodInput"), fill: a("moodFill") }, energy: { input: a("energyLevelInput"), fill: a("energyLevelFill") } };
-  function ma(e) {
-    const { input: t, fill: n } = He[e];
-    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", it(e, t.value));
+  const _e = a("checkinModal"), Ge = a("checkinTab"), Xo = a("checkinBadge"), Oe = { mood: { input: a("moodInput"), fill: a("moodFill") }, energy: { input: a("energyLevelInput"), fill: a("energyLevelFill") } };
+  function ba(e) {
+    const { input: t, fill: n } = Oe[e];
+    n.style.width = t.value + "%", t.setAttribute("aria-valuetext", ct(e, t.value));
   }
-  Object.keys(He).forEach((e) => He[e].input.addEventListener("input", () => ma(e)));
-  let we = null;
-  function ga() {
-    const e = Ee(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
-    return n < at(e.morning) ? "Next check-in at " + e.morning : n < at(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
+  Object.keys(Oe).forEach((e) => Oe[e].input.addEventListener("input", () => ba(e)));
+  let Le = null;
+  function xa() {
+    const e = Ae(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
+    return n < pt(e.morning) ? "Next check-in at " + e.morning : n < pt(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
-  function Zo() {
-    const e = Ee(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), i = (o, r) => {
+  function Jo() {
+    const e = Ae(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), i = (o, r) => {
       const [d, s] = o.split(":").map(Number);
       return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), d, s);
     };
-    return n < at(e.morning) ? { date: i(e.morning), time: e.morning } : n < at(e.evening) ? { date: i(e.evening), time: e.evening } : { date: i(e.morning, !0), time: e.morning };
+    return n < pt(e.morning) ? { date: i(e.morning), time: e.morning } : n < pt(e.evening) ? { date: i(e.evening), time: e.evening } : { date: i(e.morning, !0), time: e.morning };
   }
-  let $n = null, Xn = null;
-  function ha() {
-    if (mn()) {
-      gn(), Ye();
+  let ri = null, si = null;
+  function ya() {
+    if (xn()) {
+      yn(), $e();
       return;
     }
-    const e = Zo(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), i = Math.floor(t % 3600 / 60), o = t % 60;
+    const e = Jo(), t = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), n = Math.floor(t / 3600), i = Math.floor(t % 3600 / 60), o = t % 60;
     a("peekCountdown").textContent = n + ":" + String(i).padStart(2, "0") + ":" + String(o).padStart(2, "0"), a("peekAt").textContent = "Available at " + e.time;
   }
-  function Jo() {
-    ha(), De.classList.add("peek"), clearInterval(Xn), Xn = setInterval(ha, 1e3), clearTimeout($n), $n = setTimeout(gn, 6e3);
+  function $o() {
+    ya(), Ge.classList.add("peek"), clearInterval(si), si = setInterval(ya, 1e3), clearTimeout(ri), ri = setTimeout(yn, 6e3);
   }
-  function gn() {
-    De.classList.remove("peek"), clearInterval(Xn), clearTimeout($n);
+  function yn() {
+    Ge.classList.remove("peek"), clearInterval(si), clearTimeout(ri);
   }
-  function va() {
-    const e = mn();
+  function wa() {
+    const e = xn();
     if (!e) {
-      De.classList.contains("peek") ? gn() : Jo();
+      Ge.classList.contains("peek") ? yn() : $o();
       return;
     }
-    we = { date: se(/* @__PURE__ */ new Date()), slot: e };
-    const n = pn(we.date, e), i = A.checkins.find((r) => un(r));
-    Object.keys(He).forEach((r) => {
-      He[r].input.value = (n == null ? void 0 : n[r]) ?? (i == null ? void 0 : i[r]) ?? 50, ma(r);
+    Le = { date: ge(/* @__PURE__ */ new Date()), slot: e };
+    const n = fn(Le.date, e), i = F.checkins.find((r) => bn(r));
+    Object.keys(Oe).forEach((r) => {
+      Oe[r].input.value = (n == null ? void 0 : n[r]) ?? (i == null ? void 0 : i[r]) ?? 50, ba(r);
     });
-    const o = Ee()[e];
-    a("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, a("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", Pe.classList.add("open"), Pe.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => He.mood.input.focus());
+    const o = Ae()[e];
+    a("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, a("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", _e.classList.add("open"), _e.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => Oe.mood.input.focus());
   }
-  function Ht() {
-    Pe.classList.remove("open"), Pe.setAttribute("aria-hidden", "true"), we && (qt = we.date + "-" + we.slot);
+  function Wt() {
+    _e.classList.remove("open"), _e.setAttribute("aria-hidden", "true"), Le && (Vt = Le.date + "-" + Le.slot);
     try {
-      localStorage.setItem("move-assistant-dismissed", qt);
+      localStorage.setItem("move-assistant-dismissed", Vt);
     } catch {
     }
-    we = null, Ye();
+    Le = null, $e();
   }
-  function $o() {
-    if (!we) return;
-    if (un(pn(we.date, we.slot))) {
-      Ht();
+  function Qo() {
+    if (!Le) return;
+    if (bn(fn(Le.date, Le.slot))) {
+      Wt();
       return;
     }
-    const { date: e, slot: t } = we;
-    let n = pn(e, t);
-    n || (n = { date: e, slot: t }, A.checkins.unshift(n), A.checkins = A.checkins.slice(0, 2e3)), n.mood = Number(He.mood.input.value), n.energy = Number(He.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), xe(), w.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: it("mood", n.mood), energy_label: it("energy", n.energy) }), G((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Ht(), hn(), zt(), Xe(), Ne();
+    const { date: e, slot: t } = Le;
+    let n = fn(e, t);
+    n || (n = { date: e, slot: t }, F.checkins.unshift(n), F.checkins = F.checkins.slice(0, 2e3)), n.mood = Number(Oe.mood.input.value), n.energy = Number(Oe.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), Ce(), k.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: ct("mood", n.mood), energy_label: ct("energy", n.energy) }), O((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Wt(), wn(), jt(), at(), He();
   }
-  let qt = "";
+  let Vt = "";
   try {
-    qt = localStorage.getItem("move-assistant-dismissed") || "";
+    Vt = localStorage.getItem("move-assistant-dismissed") || "";
   } catch {
   }
-  function Ye() {
-    const e = mn();
-    Ko.hidden = !e, De.hidden = !e, e || gn(), De.classList.toggle("due", !!e), De.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : ga()), De.title = e ? "Check in now" : ga();
+  function $e() {
+    const e = xn();
+    Xo.hidden = !e, Ge.hidden = !e, e || yn(), Ge.classList.toggle("due", !!e), Ge.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : xa()), Ge.title = e ? "Check in now" : xa();
   }
-  function Qn() {
-    Ye();
-    const e = mn();
-    !e || Pe.classList.contains("open") || P().checkinAutoOpen !== !1 && (!tt.home.classList.contains("active") || ne.classList.contains("open") || qt !== se(/* @__PURE__ */ new Date()) + "-" + e && va());
+  function di() {
+    $e();
+    const e = xn();
+    !e || _e.classList.contains("open") || D().checkinAutoOpen !== !1 && (!dt.home.classList.contains("active") || le.classList.contains("open") || Vt !== ge(/* @__PURE__ */ new Date()) + "-" + e && wa());
   }
-  De.addEventListener("click", va), a("checkinLater").addEventListener("click", Ht), a("checkinSave").addEventListener("click", $o), Pe.addEventListener("click", (e) => {
-    e.target === Pe && Ht();
-  }), Pe.addEventListener("keydown", (e) => {
-    e.key === "Escape" && (e.preventDefault(), Ht());
-  }), setInterval(Qn, 3e4);
-  function hn() {
-    const e = se(/* @__PURE__ */ new Date()), t = (n) => A.checkins.find((i) => i.date === e && i[n] != null);
+  Ge.addEventListener("click", wa), a("checkinLater").addEventListener("click", Wt), a("checkinSave").addEventListener("click", Qo), _e.addEventListener("click", (e) => {
+    e.target === _e && Wt();
+  }), _e.addEventListener("keydown", (e) => {
+    e.key === "Escape" && (e.preventDefault(), Wt());
+  }), setInterval(di, 3e4);
+  function wn() {
+    const e = ge(/* @__PURE__ */ new Date()), t = (n) => F.checkins.find((i) => i.date === e && i[n] != null);
     [["mood", "moodMeta"], ["energy", "energyLevelMeta"]].forEach(([n, i]) => {
       const o = t(n);
-      a(i).textContent = o ? it(n, o[n]) : "—";
+      a(i).textContent = o ? ct(n, o[n]) : "—";
     });
   }
-  function zt() {
+  function jt() {
     const e = a("feelCard");
     if (!e) return;
-    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), i = [...Array(7)].map((v, g) => {
-      const l = new Date(n.getFullYear(), n.getMonth(), n.getDate() + g), b = se(l), C = A.checkins.filter((c) => c.date === b), h = (c) => {
-        const m = C.map((T) => T[c]).filter((T) => T != null);
-        return m.length ? m.reduce((T, L) => T + L, 0) / m.length : null;
+    const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), i = [...Array(7)].map((h, m) => {
+      const l = new Date(n.getFullYear(), n.getMonth(), n.getDate() + m), b = ge(l), C = F.checkins.filter((p) => p.date === b), v = (p) => {
+        const g = C.map((R) => R[p]).filter((R) => R != null);
+        return g.length ? g.reduce((R, Z) => R + Z, 0) / g.length : null;
       };
-      return { d: l, key: b, mood: h("mood"), energy: h("energy"), count: C.filter(un).length, future: l > t && b !== se(t) };
-    }), o = (v) => {
-      const g = i.map((l) => l[v]).filter((l) => l != null);
-      return g.length ? g.reduce((l, b) => l + b, 0) / g.length : null;
-    }, r = o("mood"), d = o("energy"), s = (v, g) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + v + "</span><span>" + (g == null ? "—" : R(it("", g))) + '</span></div><div class="feelTrack"><span style="width:' + (g == null ? 0 : Math.max(4, g)) + "%;background:" + (g == null ? "transparent" : Yo(g)) + '"></span></div></div>', u = i.filter((v) => v.mood != null && v.energy != null).sort((v, g) => g.mood + g.energy - (v.mood + v.energy))[0];
-    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : R(it("", (r + d) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + R(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + i.map(
-      (v) => '<div class="weekChip feelDay' + (v.future ? " future" : "") + (v.key === se(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + R(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(v.d)) + "</strong>" + (v.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(v.count) + "</span>") + "</div>" + s("Mood", v.mood) + s("Energy", v.energy) + "</div>"
+      return { d: l, key: b, mood: v("mood"), energy: v("energy"), count: C.filter(bn).length, future: l > t && b !== ge(t) };
+    }), o = (h) => {
+      const m = i.map((l) => l[h]).filter((l) => l != null);
+      return m.length ? m.reduce((l, b) => l + b, 0) / m.length : null;
+    }, r = o("mood"), d = o("energy"), s = (h, m) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + h + "</span><span>" + (m == null ? "—" : E(ct("", m))) + '</span></div><div class="feelTrack"><span style="width:' + (m == null ? 0 : Math.max(4, m)) + "%;background:" + (m == null ? "transparent" : Ko(m)) + '"></span></div></div>', u = i.filter((h) => h.mood != null && h.energy != null).sort((h, m) => m.mood + m.energy - (h.mood + h.energy))[0];
+    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (r == null ? "No check-ins yet" : E(ct("", (r + d) / 2))) + '</div><div class="weekCopy">' + (r == null ? "Your first check-in will appear here." : "on average this week" + (u ? " · best day " + E(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(u.d)) : "")) + '</div></div></div><div class="feelDays">' + i.map(
+      (h) => '<div class="weekChip feelDay' + (h.future ? " future" : "") + (h.key === ge(t) ? " today" : "") + '"><div class="weekChipTop"><strong>' + E(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(h.d)) + "</strong>" + (h.count >= 2 ? '<span class="weekTick">✓</span>' : '<span class="feelDots">' + "●".repeat(h.count) + "</span>") + "</div>" + s("Mood", h.mood) + s("Energy", h.energy) + "</div>"
     ).join("") + "</div>";
   }
-  const vn = a("upcomingCountSetting");
-  vn.addEventListener("change", () => {
-    nt = vn.value === "all" ? "all" : Number(vn.value), Fa();
+  const kn = a("upcomingCountSetting");
+  kn.addEventListener("change", () => {
+    lt = kn.value === "all" ? "all" : Number(kn.value), Pa();
   });
-  const _t = a("tempoRevealBtn"), ei = a("tempoExperiment"), ke = a("tempoQuad"), ot = a("tempoDot"), Xo = a("tempoEstimate"), Qo = a("tempoReadout");
-  let rt = { x: 0.5, y: 0.5 }, Gt = !1, fn = { total: 20, work: 45, rest: 15 };
-  function ti(e, t, n, i) {
+  const Yt = a("tempoRevealBtn"), li = a("tempoExperiment"), Ee = a("tempoQuad"), ut = a("tempoDot"), er = a("tempoEstimate"), tr = a("tempoReadout");
+  let mt = { x: 0.5, y: 0.5 }, Ut = !1, Sn = { total: 20, work: 45, rest: 15 };
+  function ci(e, t, n, i) {
     const o = Math.max(t, Math.min(n, e));
     return Math.round((o - t) / i) * i + t;
   }
-  function er(e, t) {
-    const n = (e - 0.5) * 2, i = (t - 0.5) * 2, o = ti(
-      fn.total + n * 5 + i * 8,
-      Number(z.min),
-      Number(z.max),
-      Number(z.step)
-    ), r = ti(
-      fn.work + n * 10 + i * 8,
+  function nr(e, t) {
+    const n = (e - 0.5) * 2, i = (t - 0.5) * 2, o = ci(
+      Sn.total + n * 5 + i * 8,
+      Number(_.min),
+      Number(_.max),
+      Number(_.step)
+    ), r = ci(
+      Sn.work + n * 10 + i * 8,
       Number(N.min),
       Number(N.max),
       Number(N.step)
-    ), d = ti(
-      fn.rest + n * 6 + i * 6,
-      Number(I.min),
-      Number(I.max),
-      Number(I.step)
+    ), d = ci(
+      Sn.rest + n * 6 + i * 6,
+      Number(P.min),
+      Number(P.max),
+      Number(P.step)
     );
-    return z.value = o, N.value = r, I.value = d, Hi.textContent = r + " sec", qi.textContent = d + " sec", an(), { total: o, work: r, rest: d };
+    return _.value = o, N.value = r, P.value = d, ji.textContent = r + " sec", Yi.textContent = d + " sec", cn(), { total: o, work: r, rest: d };
   }
-  function ni(e, t) {
-    const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", i = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = er(e, t);
-    Qo.textContent = n + " + " + i, Xo.textContent = o.total + " min", ke.setAttribute("aria-valuetext", n + " and " + i + ", estimated " + o.total + " minutes");
+  function pi(e, t) {
+    const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", i = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = nr(e, t);
+    tr.textContent = n + " + " + i, er.textContent = o.total + " min", Ee.setAttribute("aria-valuetext", n + " and " + i + ", estimated " + o.total + " minutes");
   }
-  function ii(e) {
-    const t = ke.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), i = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
-    rt = { x: n, y: i }, ot.style.left = n * 100 + "%", ot.style.top = i * 100 + "%", ni(n, i);
+  function ui(e) {
+    const t = Ee.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), i = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
+    mt = { x: n, y: i }, ut.style.left = n * 100 + "%", ut.style.top = i * 100 + "%", pi(n, i);
   }
-  _t.addEventListener("click", () => {
-    const e = ei.hidden;
-    ei.hidden = !e, _t.setAttribute("aria-expanded", e ? "true" : "false"), _t.textContent = e ? "Now close this" : "Don’t try this!", e && (fn = {
-      total: Number(z.value),
+  Yt.addEventListener("click", () => {
+    const e = li.hidden;
+    li.hidden = !e, Yt.setAttribute("aria-expanded", e ? "true" : "false"), Yt.textContent = e ? "Now close this" : "Don’t try this!", e && (Sn = {
+      total: Number(_.value),
       work: Number(N.value),
-      rest: Number(I.value)
-    }, rt = { x: 0.5, y: 0.5 }, ot.style.left = "50%", ot.style.top = "50%", ni(rt.x, rt.y));
+      rest: Number(P.value)
+    }, mt = { x: 0.5, y: 0.5 }, ut.style.left = "50%", ut.style.top = "50%", pi(mt.x, mt.y));
   }), y.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
     Number(e.dataset.feedbackRating), y.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
   }));
-  const bn = a("testingFeedbackForm"), fa = a("testingFeedbackThanks"), tr = a("testingFeedbackAgain");
-  bn.addEventListener("submit", (e) => {
-    e.preventDefault(), bn.hidden = !0, fa.hidden = !1, G("Feedback captured for prototype");
-  }), tr.addEventListener("click", (e) => {
-    e.preventDefault(), bn.reset(), y.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), fa.hidden = !0, bn.hidden = !1;
-  }), ke.addEventListener("pointerdown", (e) => {
+  const Cn = a("testingFeedbackForm"), ka = a("testingFeedbackThanks"), ir = a("testingFeedbackAgain");
+  Cn.addEventListener("submit", (e) => {
+    e.preventDefault(), Cn.hidden = !0, ka.hidden = !1, O("Feedback captured for prototype");
+  }), ir.addEventListener("click", (e) => {
+    e.preventDefault(), Cn.reset(), y.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), ka.hidden = !0, Cn.hidden = !1;
+  }), Ee.addEventListener("pointerdown", (e) => {
     var t;
-    Gt = !0, ii(e);
+    Ut = !0, ui(e);
     try {
-      (t = ke.setPointerCapture) == null || t.call(ke, e.pointerId);
+      (t = Ee.setPointerCapture) == null || t.call(Ee, e.pointerId);
     } catch {
     }
-  }), ke.addEventListener("pointermove", (e) => {
-    Gt && ii(e);
-  }), ke.addEventListener("pointerup", (e) => {
-    Gt && (Gt = !1, ii(e), q());
-  }), ke.addEventListener("pointercancel", () => Gt = !1), ke.addEventListener("keydown", (e) => {
-    let { x: t, y: n } = rt, i = !0;
-    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : i = !1, i && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), rt = { x: t, y: n }, ot.style.left = t * 100 + "%", ot.style.top = n * 100 + "%", ni(t, n), q());
+  }), Ee.addEventListener("pointermove", (e) => {
+    Ut && ui(e);
+  }), Ee.addEventListener("pointerup", (e) => {
+    Ut && (Ut = !1, ui(e), q());
+  }), Ee.addEventListener("pointercancel", () => Ut = !1), Ee.addEventListener("keydown", (e) => {
+    let { x: t, y: n } = mt, i = !0;
+    e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : i = !1, i && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), mt = { x: t, y: n }, ut.style.left = t * 100 + "%", ut.style.top = n * 100 + "%", pi(t, n), q());
   });
-  const ne = a("workoutModal");
-  let Ot = null;
-  function st(e) {
+  const le = a("workoutModal");
+  let Kt = null;
+  function gt(e) {
     return e.map((t) => ({ ...t }));
   }
-  function nr() {
-    const e = M[F];
+  function ar() {
+    const e = L[M];
     return {
-      key: F,
+      key: M,
       profile: e ? JSON.parse(JSON.stringify(e)) : null,
-      warmup: st(me),
-      strength: st(ae),
-      cooldown: st(ge),
-      total: Number(z.value),
+      warmup: gt(be),
+      strength: gt(pe),
+      cooldown: gt(xe),
+      total: Number(_.value),
       work: Number(N.value),
-      rest: Number(I.value),
-      rounds: Number(We.value) || 1
+      rest: Number(P.value),
+      rounds: Number(Ze.value) || 1
     };
   }
-  function ba(e = !1) {
-    V = !!e, oe = null, he = null, re(), ca(), Ot = nr(), a("moveEditorTitle").textContent = V ? "Create new move" : "Edit move", a("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", a("moveEditorSubtitle").hidden = !V, a("warmupRow").hidden = V, a("deleteMoveOpen").hidden = V;
+  function Sa(e = !1) {
+    Y = !!e, ue = null, ye = null, me(), ha(), Kt = ar(), a("moveEditorTitle").textContent = Y ? "Create new move" : "Edit move", a("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", a("moveEditorSubtitle").hidden = !Y, a("warmupRow").hidden = Y, a("deleteMoveOpen").hidden = Y;
     const t = a("createMoveOptions");
-    t.hidden = !V;
+    t.hidden = !Y;
     {
-      const n = M[F];
+      const n = L[M];
       a("includeWarmupPreset").checked = !!(n != null && n.includeWarmup), a("includeCooldownPreset").checked = !!(n != null && n.includeCooldown);
     }
-    if (xa(), V) {
+    if (Ca(), Y) {
       a("useGlobalTiming").checked = !0, a("useGlobalRestTiming").checked = !0;
-      const n = M[F];
-      qn((n == null ? void 0 : n.preset) || "movement", !1);
+      const n = L[M];
+      Vn((n == null ? void 0 : n.preset) || "movement", !1);
     }
-    a("movementCreator").hidden = !0, Wo("movement"), Kn(), Dt(), ei.hidden = !0, _t.setAttribute("aria-expanded", "false"), _t.textContent = "Don’t try this!", ne.classList.toggle("createMode", V), ne.querySelector(".modal").classList.toggle("createMode", V), ne.classList.add("open"), ne.setAttribute("aria-hidden", "false"), V && wo();
+    a("movementCreator").hidden = !0, jo("movement"), ii(), Ot(), li.hidden = !0, Yt.setAttribute("aria-expanded", "false"), Yt.textContent = "Don’t try this!", le.classList.toggle("createMode", Y), le.querySelector(".modal").classList.toggle("createMode", Y), le.classList.add("open"), le.setAttribute("aria-hidden", "false"), Y && So();
   }
-  function ir() {
-    const e = M[F];
+  function or() {
+    const e = L[M];
     return e != null && e.customSequence ? !!e.includeWarmup : !(e != null && e.warmupOff);
   }
-  function xa() {
-    const e = ir(), t = a("warmupSwitch");
+  function Ca() {
+    const e = or(), t = a("warmupSwitch");
     t.classList.toggle("on", e), t.setAttribute("aria-checked", String(e));
   }
   a("warmupSwitch").addEventListener("click", () => {
-    const e = M[F];
-    e && (e.customSequence ? (a("includeWarmupPreset").checked = !e.includeWarmup, zn()) : (e.warmupOff = !e.warmupOff, q()), xa());
+    const e = L[M];
+    e && (e.customSequence ? (a("includeWarmupPreset").checked = !e.includeWarmup, jn()) : (e.warmupOff = !e.warmupOff, q()), Ca());
   });
-  function xn() {
-    re(), ca(), ["top", "bottom", "height"].forEach((e) => a("workoutModal").style.removeProperty(e)), he = null, oe = null, ne.classList.contains("createMode") && ko(), ne.classList.remove("createMode"), ne.querySelector(".modal").classList.remove("createMode"), ne.classList.remove("open"), ne.setAttribute("aria-hidden", "true");
+  function Tn() {
+    me(), ha(), ["top", "bottom", "height"].forEach((e) => a("workoutModal").style.removeProperty(e)), ye = null, ue = null, le.classList.contains("createMode") && Co(), le.classList.remove("createMode"), le.querySelector(".modal").classList.remove("createMode"), le.classList.remove("open"), le.setAttribute("aria-hidden", "true");
   }
-  function ya() {
-    if (!Ot) return;
-    const e = Ot;
-    e.profile && (M[e.key] = JSON.parse(JSON.stringify(e.profile))), F = e.key, me = st(e.warmup), ae = st(e.strength), ge = st(e.cooldown), z.value = e.total, N.value = e.work, I.value = e.rest, We.value = e.rounds || 1;
-    const t = M[F];
+  function Ta() {
+    if (!Kt) return;
+    const e = Kt;
+    e.profile && (L[e.key] = JSON.parse(JSON.stringify(e.profile))), M = e.key, be = gt(e.warmup), pe = gt(e.strength), xe = gt(e.cooldown), _.value = e.total, N.value = e.work, P.value = e.rest, Ze.value = e.rounds || 1;
+    const t = L[M];
     if (t) {
-      y.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === F));
+      y.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === M));
       const n = y.querySelector(".workoutPanel.active");
       if (n) {
         const i = n.querySelector(".workoutName");
@@ -1992,22 +2013,22 @@ function jr(y, w) {
         const r = n.querySelector(".sourceTag");
         r && (r.textContent = t.source);
       }
-      B.value = t.name;
+      A.value = t.name;
     }
     q();
   }
   a("cancelWorkoutEdit").addEventListener("click", () => {
-    if (V) {
-      const e = F;
-      delete M[e], V = !1, Ve = null, ye(A.order.find((t) => M[t]) || Object.keys(M)[0]);
+    if (Y) {
+      const e = M;
+      delete L[e], Y = !1, Xe = null, Te(F.order.find((t) => L[t]) || Object.keys(L)[0]);
     } else
-      ya();
-    xn();
+      Ta();
+    Tn();
   }), a("saveWorkoutEdit").addEventListener("click", () => {
-    re(), j && cn();
-    const e = M[F], t = B.value.trim() || "New move";
-    if (e && (e.name = t), rn(), oe = null, q(), V && e)
-      Dn(F, e), y.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === F)), V = !1, Ve = null, A.order.includes(F) || A.order.push(F), G("Move created");
+    me(), U && vn();
+    const e = L[M], t = A.value.trim() || "New move";
+    if (e && (e.name = t), un(), ue = null, q(), Y && e)
+      On(M, e), y.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === M)), Y = !1, Xe = null, F.order.includes(M) || F.order.push(M), O("Move created");
     else {
       const n = y.querySelector(".workoutPanel.active");
       if (n) {
@@ -2016,28 +2037,28 @@ function jr(y, w) {
         const o = n.querySelector(".panelCollapsedText");
         o && (o.textContent = t);
       }
-      G("Move saved");
+      O("Move saved");
     }
-    Ot = null, xn(), xe();
-  }), ne.addEventListener("click", (e) => {
-    if (e.target === ne) {
-      if (V) {
-        const t = F;
-        delete M[t], V = !1, Ve = null, ye(A.order.find((n) => M[n]) || Object.keys(M)[0]);
+    Kt = null, Tn(), Ce();
+  }), le.addEventListener("click", (e) => {
+    if (e.target === le) {
+      if (Y) {
+        const t = M;
+        delete L[t], Y = !1, Xe = null, Te(F.order.find((n) => L[n]) || Object.keys(L)[0]);
       } else
-        ya();
-      xn();
+        Ta();
+      Tn();
     }
-  }), Wn(a("addMovementBtn"), "movement"), Wn(a("addRestBtn"), "rest"), Wn(a("addVideoBtn"), "video"), a("closeMovementCreator").addEventListener("click", () => {
+  }), $n(a("addMovementBtn"), "movement"), $n(a("addRestBtn"), "rest"), $n(a("addVideoBtn"), "video"), a("closeMovementCreator").addEventListener("click", () => {
     a("movementCreator").hidden = !0;
-  }), a("useGlobalTiming").addEventListener("change", Dt), a("useGlobalRestTiming").addEventListener("change", Dt), y.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
-    qn(e.dataset.movePreset, !0), q();
-  })), a("includeWarmupPreset").addEventListener("change", zn), a("includeCooldownPreset").addEventListener("change", zn), a("includeWarmupPreset").addEventListener("change", Ie), a("includeCooldownPreset").addEventListener("change", Ie), B.addEventListener("input", Ie), B.addEventListener("input", jn), a("confirmAddMovement").addEventListener("click", Zn), a("confirmAddRest").addEventListener("click", Zn), a("addMovementInput").addEventListener("keydown", (e) => {
-    e.key === "Enter" && Zn();
+  }), a("useGlobalTiming").addEventListener("change", Ot), a("useGlobalRestTiming").addEventListener("change", Ot), y.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
+    Vn(e.dataset.movePreset, !0), q();
+  })), a("includeWarmupPreset").addEventListener("change", jn), a("includeCooldownPreset").addEventListener("change", jn), a("includeWarmupPreset").addEventListener("change", qe), a("includeCooldownPreset").addEventListener("change", qe), A.addEventListener("input", qe), A.addEventListener("input", ei), a("confirmAddMovement").addEventListener("click", ai), a("confirmAddRest").addEventListener("click", ai), a("addMovementInput").addEventListener("keydown", (e) => {
+    e.key === "Enter" && ai();
   });
-  const Wt = a("countdown"), ai = a("countNum"), Me = a("countdownPixelCanvas");
-  let Vt = null, oi = "appear";
-  class ar {
+  const Zt = a("countdown"), mi = a("countNum"), Be = a("countdownPixelCanvas");
+  let Xt = null, gi = "appear";
+  class rr {
     constructor(t, n, i, o, r, d, s) {
       this.width = t.width, this.height = t.height, this.ctx = n, this.x = i, this.y = o, this.color = r, this.speed = (Math.random() * 0.8 + 0.1) * d, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = s, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
     }
@@ -2063,277 +2084,277 @@ function jr(y, w) {
       this.size >= this.maxSize ? this.isReverse = !0 : this.size <= this.minSize && (this.isReverse = !1), this.size += this.isReverse ? -this.speed : this.speed;
     }
   }
-  let ri = [], wa = 1, ka = 1;
-  function Ue() {
+  let hi = [], La = 1, Ea = 1;
+  function Qe() {
     const e = parseFloat(getComputedStyle(a("app")).zoom);
     return Number.isFinite(e) && e > 0 ? e : 1;
   }
-  function or() {
-    var v;
-    if (!Me) return;
-    const e = Ue(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
-    wa = t, ka = n;
+  function sr() {
+    var h;
+    if (!Be) return;
+    const e = Qe(), t = Math.max(1, window.innerWidth / e), n = Math.max(1, window.innerHeight / e);
+    La = t, Ea = n;
     const i = Math.min(window.devicePixelRatio || 1, 2);
-    Me.width = Math.floor(t * i), Me.height = Math.floor(n * i), Me.style.width = t + "px", Me.style.height = n + "px";
-    const o = Me.getContext("2d");
+    Be.width = Math.floor(t * i), Be.height = Math.floor(n * i), Be.style.width = t + "px", Be.style.height = n + "px";
+    const o = Be.getContext("2d");
     o.setTransform(i, 0, 0, i, 0, 0);
-    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], d = 12, s = (v = window.matchMedia) == null ? void 0 : v.call(window, "(prefers-reduced-motion: reduce)").matches, u = s ? 0 : 0.055;
-    ri = [];
-    for (let g = 0; g < t; g += d)
+    const r = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], d = 12, s = (h = window.matchMedia) == null ? void 0 : h.call(window, "(prefers-reduced-motion: reduce)").matches, u = s ? 0 : 0.055;
+    hi = [];
+    for (let m = 0; m < t; m += d)
       for (let l = 0; l < n; l += d) {
-        const b = g - t / 2, C = l - n / 2, h = Math.sqrt(b * b + C * C), c = s ? 0 : Math.random() * 75 + h * 0.05, m = new ar({ width: t, height: n }, o, g, l, r[Math.floor(Math.random() * r.length)], u, c);
-        m.maxSizeInteger = 4, m.maxSize = Math.random() * 3.2 + 0.8, m.sizeStep = 0.35 + Math.random() * 0.45, ri.push(m);
+        const b = m - t / 2, C = l - n / 2, v = Math.sqrt(b * b + C * C), p = s ? 0 : Math.random() * 75 + v * 0.05, g = new rr({ width: t, height: n }, o, m, l, r[Math.floor(Math.random() * r.length)], u, p);
+        g.maxSizeInteger = 4, g.maxSize = Math.random() * 3.2 + 0.8, g.sizeStep = 0.35 + Math.random() * 0.45, hi.push(g);
       }
   }
-  function Sa(e) {
-    cancelAnimationFrame(Vt), oi = e;
-    const t = Me == null ? void 0 : Me.getContext("2d");
+  function Ma(e) {
+    cancelAnimationFrame(Xt), gi = e;
+    const t = Be == null ? void 0 : Be.getContext("2d");
     if (!t) return;
     function n() {
-      t.clearRect(0, 0, wa, ka);
+      t.clearRect(0, 0, La, Ea);
       let i = !0;
-      ri.forEach((o) => {
-        o[oi](), o.isIdle || (i = !1);
-      }), oi === "disappear" && i || (Vt = requestAnimationFrame(n));
+      hi.forEach((o) => {
+        o[gi](), o.isIdle || (i = !1);
+      }), gi === "disappear" && i || (Xt = requestAnimationFrame(n));
     }
-    Vt = requestAnimationFrame(n);
+    Xt = requestAnimationFrame(n);
   }
-  function yn() {
-    cancelAnimationFrame(Vt), or(), Sa("appear"), setTimeout(() => Sa("disappear"), 560);
+  function Ln() {
+    cancelAnimationFrame(Xt), sr(), Ma("appear"), setTimeout(() => Ma("disappear"), 560);
   }
   window.addEventListener("resize", () => {
-    Wt.classList.contains("active") && yn();
+    Zt.classList.contains("active") && Ln();
   });
-  const jt = a("pixelTrailCanvas"), dt = jt.getContext("2d");
-  let Re = !0, lt = 0.7, ct = 600, Yt = [], pt = null, qe = { x: 0, y: 0, ready: !1 };
-  function Ca() {
-    const e = O.getBoundingClientRect(), t = Ue(), n = Math.min(window.devicePixelRatio || 1, 2), i = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
-    jt.width = Math.max(1, Math.floor(i * n)), jt.height = Math.max(1, Math.floor(o * n)), jt.style.width = i + "px", jt.style.height = o + "px", dt.setTransform(n, 0, 0, n, 0, 0);
+  const Jt = a("pixelTrailCanvas"), ht = Jt.getContext("2d");
+  let Ne = !0, vt = 0.7, ft = 600, $t = [], bt = null, We = { x: 0, y: 0, ready: !1 };
+  function Fa() {
+    const e = W.getBoundingClientRect(), t = Qe(), n = Math.min(window.devicePixelRatio || 1, 2), i = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
+    Jt.width = Math.max(1, Math.floor(i * n)), Jt.height = Math.max(1, Math.floor(o * n)), Jt.style.width = i + "px", Jt.style.height = o + "px", ht.setTransform(n, 0, 0, n, 0, 0);
   }
-  function rr(e, t) {
-    if (!Re) return;
+  function dr(e, t) {
+    if (!Ne) return;
     const n = performance.now();
-    qe.ready || (qe = { x: e, y: t, ready: !0 });
+    We.ready || (We = { x: e, y: t, ready: !0 });
     const i = 7;
     for (let o = 1; o <= i; o++) {
       const r = o / i;
-      Yt.push({
-        x: qe.x + (e - qe.x) * r,
-        y: qe.y + (t - qe.y) * r,
+      $t.push({
+        x: We.x + (e - We.x) * r,
+        y: We.y + (t - We.y) * r,
         born: n - (i - o) * 10
       });
     }
-    qe = { x: e, y: t, ready: !0 };
+    We = { x: e, y: t, ready: !0 };
   }
-  function wn(e) {
-    if (pt = null, !Y) return;
-    if (!tt.workout.classList.contains("active")) {
-      pt = requestAnimationFrame(wn);
+  function En(e) {
+    if (bt = null, !K) return;
+    if (!dt.workout.classList.contains("active")) {
+      bt = requestAnimationFrame(En);
       return;
     }
-    const t = O.getBoundingClientRect(), n = Ue();
-    dt.clearRect(0, 0, t.width / n, t.height / n), Re && (Yt = Yt.filter((o) => e - o.born < ct), dt.fillStyle = a("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", Yt.forEach((o) => {
-      const r = (e - o.born) / ct, d = (1 - r) * lt, s = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
-      dt.globalAlpha = Math.max(0, d);
-      const v = 2 + 5 * (1 - r) * lt;
-      dt.fillRect(s - v / 2, u - v / 2, v, v);
-    }), dt.globalAlpha = 1), pt = requestAnimationFrame(wn);
+    const t = W.getBoundingClientRect(), n = Qe();
+    ht.clearRect(0, 0, t.width / n, t.height / n), Ne && ($t = $t.filter((o) => e - o.born < ft), ht.fillStyle = a("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", $t.forEach((o) => {
+      const r = (e - o.born) / ft, d = (1 - r) * vt, s = Math.round(o.x / 14) * 14, u = Math.round(o.y / 14) * 14;
+      ht.globalAlpha = Math.max(0, d);
+      const h = 2 + 5 * (1 - r) * vt;
+      ht.fillRect(s - h / 2, u - h / 2, h, h);
+    }), ht.globalAlpha = 1), bt = requestAnimationFrame(En);
   }
-  O.addEventListener("pointermove", (e) => {
-    const t = O.getBoundingClientRect(), n = Ue();
-    rr((e.clientX - t.left) / n, (e.clientY - t.top) / n);
-  }), O.addEventListener("pointerleave", () => qe.ready = !1), new ResizeObserver(Ca).observe(O), Ca(), pt = requestAnimationFrame(wn);
-  const ze = a("movementRippleCanvas"), ut = ze.getContext("2d");
-  let Ke = !0, mt = null, sr = performance.now();
-  function Ta() {
-    const e = ze.parentElement.getBoundingClientRect(), t = Ue(), n = Math.max(1, e.width / t), i = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
-    ze.width = Math.max(1, Math.floor(n * o)), ze.height = Math.max(1, Math.floor(i * o)), ze.style.width = n + "px", ze.style.height = i + "px", ut.setTransform(o, 0, 0, o, 0, 0);
+  W.addEventListener("pointermove", (e) => {
+    const t = W.getBoundingClientRect(), n = Qe();
+    dr((e.clientX - t.left) / n, (e.clientY - t.top) / n);
+  }), W.addEventListener("pointerleave", () => We.ready = !1), new ResizeObserver(Fa).observe(W), Fa(), bt = requestAnimationFrame(En);
+  const Ve = a("movementRippleCanvas"), xt = Ve.getContext("2d");
+  let et = !0, yt = null, lr = performance.now();
+  function Ra() {
+    const e = Ve.parentElement.getBoundingClientRect(), t = Qe(), n = Math.max(1, e.width / t), i = Math.max(1, e.height / t), o = Math.min(window.devicePixelRatio || 1, 2);
+    Ve.width = Math.max(1, Math.floor(n * o)), Ve.height = Math.max(1, Math.floor(i * o)), Ve.style.width = n + "px", Ve.style.height = i + "px", xt.setTransform(o, 0, 0, o, 0, 0);
   }
-  function La() {
+  function Aa() {
     var e;
-    return X || ((e = f[k]) == null ? void 0 : e.kind) === "rest";
+    return oe || ((e = f[S]) == null ? void 0 : e.kind) === "rest";
   }
-  function dr() {
-    const e = f[k];
-    return La() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
+  function cr() {
+    const e = f[S];
+    return Aa() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
-  function kn(e) {
-    if (mt = null, !Y) return;
-    if (!tt.workout.classList.contains("active")) {
-      mt = requestAnimationFrame(kn);
+  function Mn(e) {
+    if (yt = null, !K) return;
+    if (!dt.workout.classList.contains("active")) {
+      yt = requestAnimationFrame(Mn);
       return;
     }
-    const t = ze.parentElement.getBoundingClientRect(), n = Ue(), i = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
-    if (ut.clearRect(0, 0, i, o), Ke) {
-      const r = dr(), d = (e - sr) % r / r, s = 15, u = Math.max(8, Math.round(s * o / Math.max(1, i))), v = i / (s + 1), g = o / (u + 1), l = i * 0.5, b = o * 0.52, C = Math.hypot(l, b), c = a("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let m = 1; m <= u; m++)
-        for (let T = 1; T <= s; T++) {
-          const L = T * v, x = m * g, H = Math.hypot(L - l, x - b) / C, K = La(), de = K ? Math.exp(-Math.pow((H - (d * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, W = Math.exp(-Math.pow((H - d * 1.25) * 7, 2)), pe = K ? de : W, fe = K ? 0.5 + 0.5 * Math.sin(d * Math.PI * 2 - H * 3) ** 2 : 0.35 + 0.65 * Math.sin(d * Math.PI * 2 - H * 5) ** 2, J = K ? 1.4 + pe * 4.2 * fe : 1.2 + pe * 5 * fe;
-          ut.beginPath(), ut.arc(L, x, J, 0, Math.PI * 2), ut.fillStyle = `rgba(${c},${K ? 0.08 + pe * 0.48 : 0.05 + pe * 0.55})`, ut.fill();
+    const t = Ve.parentElement.getBoundingClientRect(), n = Qe(), i = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
+    if (xt.clearRect(0, 0, i, o), et) {
+      const r = cr(), d = (e - lr) % r / r, s = 15, u = Math.max(8, Math.round(s * o / Math.max(1, i))), h = i / (s + 1), m = o / (u + 1), l = i * 0.5, b = o * 0.52, C = Math.hypot(l, b), p = a("app").classList.contains("light") ? "34,34,34" : "244,244,244";
+      for (let g = 1; g <= u; g++)
+        for (let R = 1; R <= s; R++) {
+          const Z = R * h, w = g * m, B = Math.hypot(Z - l, w - b) / C, V = Aa(), j = V ? Math.exp(-Math.pow((B - (d * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, z = Math.exp(-Math.pow((B - d * 1.25) * 7, 2)), ne = V ? j : z, se = V ? 0.5 + 0.5 * Math.sin(d * Math.PI * 2 - B * 3) ** 2 : 0.35 + 0.65 * Math.sin(d * Math.PI * 2 - B * 5) ** 2, X = V ? 1.4 + ne * 4.2 * se : 1.2 + ne * 5 * se;
+          xt.beginPath(), xt.arc(Z, w, X, 0, Math.PI * 2), xt.fillStyle = `rgba(${p},${V ? 0.08 + ne * 0.48 : 0.05 + ne * 0.55})`, xt.fill();
         }
     }
-    mt = requestAnimationFrame(kn);
+    yt = requestAnimationFrame(Mn);
   }
-  new ResizeObserver(Ta).observe(ze.parentElement), Ta(), mt = requestAnimationFrame(kn);
-  const Ut = a("exerciseTitle"), Fe = a("exerciseMeta"), si = a("stepLabel"), di = a("digits"), Ea = a("fill"), gt = a("progress"), li = a("pause"), lr = a("nextName"), cr = a("nextMeta"), pr = a("nextIcon"), Sn = a("skipNextSession");
-  let le = null;
-  function ce(e) {
+  new ResizeObserver(Ra).observe(Ve.parentElement), Ra(), yt = requestAnimationFrame(Mn);
+  const Qt = a("exerciseTitle"), Ie = a("exerciseMeta"), vi = a("stepLabel"), fi = a("digits"), Ba = a("fill"), wt = a("progress"), bi = a("pause"), pr = a("nextName"), ur = a("nextMeta"), mr = a("nextIcon"), Fn = a("skipNextSession");
+  let he = null;
+  function ve(e) {
     for (let t = Math.max(0, e); t < f.length; t++)
       if (!f[t].sessionHidden) return t;
     return -1;
   }
-  function ur() {
-    const e = f[k];
+  function gr() {
+    const e = f[S];
     if (!e) return { name: "Complete", meta: "Move finished", icon: "✓" };
-    if (X) {
-      const i = ce(k + 1), o = i >= 0 ? f[i] : null;
-      return o ? { name: o.name, meta: pi(o), icon: ci(o) } : { name: "Complete", meta: "Move finished", icon: "✓" };
+    if (oe) {
+      const i = ve(S + 1), o = i >= 0 ? f[i] : null;
+      return o ? { name: o.name, meta: yi(o), icon: xi(o) } : { name: "Complete", meta: "Move finished", icon: "✓" };
     }
     if (e.rest > 0) return { name: "Rest", meta: e.rest + " sec · " + (e.roundBreakAfter ? "round " + (e.round + 1) + " next" : "recovery"), icon: "Ⅱ" };
-    const t = ce(k + 1), n = t >= 0 ? f[t] : null;
-    return n ? { name: n.name, meta: pi(n), icon: ci(n) } : { name: "Complete", meta: "Move finished", icon: "✓" };
+    const t = ve(S + 1), n = t >= 0 ? f[t] : null;
+    return n ? { name: n.name, meta: yi(n), icon: xi(n) } : { name: "Complete", meta: "Move finished", icon: "✓" };
   }
-  function mr() {
-    if (!f[k]) return f.length;
-    const t = ce(k + 1);
+  function hr() {
+    if (!f[S]) return f.length;
+    const t = ve(S + 1);
     return t < 0 ? f.length : t + 1;
   }
-  function ci(e) {
+  function xi(e) {
     return e.kind === "video" ? "▶" : e.kind === "cooldown" ? "↘" : e.kind === "warmup" ? "↗" : "●";
   }
-  function pi(e) {
-    return e.kind === "video" ? "YouTube · " + Rt(e.duration) : e.group + " · " + e.duration + " sec";
+  function yi(e) {
+    return e.kind === "video" ? "YouTube · " + Pt(e.duration) : e.group + " · " + e.duration + " sec";
   }
-  function Cn() {
+  function Rn() {
     return f.length && f[f.length - 1].round || 1;
   }
-  function Ma(e) {
+  function Na(e) {
     const t = f[e];
     if (!t) return "";
-    const n = Cn();
+    const n = Rn();
     if (n <= 1) return "Step " + (e + 1) + " of " + f.length;
     if (t.roundBreak) return "Round " + t.round + " of " + n + " · Rest";
     const i = f.filter((o) => o.round === t.round && !o.roundBreak).length;
     return "Round " + t.round + " of " + n + " · Step " + (t.roundIndex + 1) + " of " + i;
   }
-  function Ra() {
-    return gt.querySelector('[data-step="' + k + '"]');
+  function Ia() {
+    return wt.querySelector('[data-step="' + S + '"]');
   }
-  function gr() {
-    f[k] && Number(gt.dataset.round) !== (f[k].round || 1) && gi(), [...gt.children].forEach((e) => {
+  function vr() {
+    f[S] && Number(wt.dataset.round) !== (f[S].round || 1) && Si(), [...wt.children].forEach((e) => {
       const t = Number(e.dataset.step);
-      e.classList.toggle("done", t < k), e.classList.toggle("active", t === k), e.classList.toggle("rewindable", t <= k), e.disabled = t > k, t === k && e.style.setProperty("--segment-progress", "0%");
-    }), f[k] && (si.textContent = Ma(k), Je());
+      e.classList.toggle("done", t < S), e.classList.toggle("active", t === S), e.classList.toggle("rewindable", t <= S), e.disabled = t > S, t === S && e.style.setProperty("--segment-progress", "0%");
+    }), f[S] && (vi.textContent = Na(S), nt());
   }
-  function hr(e) {
+  function fr(e) {
     const t = f.indexOf(e);
-    t < 0 || t <= k || (e.sessionHidden = !e.sessionHidden, Ze(), G((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
+    t < 0 || t <= S || (e.sessionHidden = !e.sessionHidden, tt(), O((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
   }
-  function Fa() {
+  function Pa() {
     const e = a("upcomingList");
     if (!e) return;
     e.innerHTML = "";
-    const t = mr(), n = f.slice(t);
-    (nt === "all" ? n : n.slice(0, Math.max(1, Number(nt) || 1))).forEach((o) => {
+    const t = hr(), n = f.slice(t);
+    (lt === "all" ? n : n.slice(0, Math.max(1, Number(lt) || 1))).forEach((o) => {
       const r = document.createElement("section");
-      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : "") + (yi(o) ? " noMeta" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + ci(o) + '</div><div><div class="upcomingName">' + R(o.name) + '</div><div class="upcomingMeta">' + R(pi(o)) + (Cn() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => hr(o)), e.appendChild(r);
+      r.className = "upcomingCard" + (o.sessionHidden ? " sessionHidden" : "") + (Fi(o) ? " noMeta" : ""), r.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + xi(o) + '</div><div><div class="upcomingName">' + E(o.name) + '</div><div class="upcomingMeta">' + E(yi(o)) + (Rn() > 1 ? " · round " + o.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (o.sessionHidden ? "Include this session" : "Skip this session") + "</button>", r.querySelector(".skipSessionBtn").addEventListener("click", () => fr(o)), e.appendChild(r);
     });
   }
-  function Ze() {
+  function tt() {
     var t;
-    const e = ur();
-    lr.textContent = e.name, cr.textContent = e.meta, pr.textContent = e.icon;
+    const e = gr();
+    pr.textContent = e.name, ur.textContent = e.meta, mr.textContent = e.icon;
     {
-      const n = X ? f[ce(k + 1)] : ((t = f[k]) == null ? void 0 : t.rest) > 0 ? { kind: "rest" } : f[ce(k + 1)];
-      y.querySelector(".nextCard").classList.toggle("noMeta", !!(n && yi(n)));
+      const n = oe ? f[ve(S + 1)] : ((t = f[S]) == null ? void 0 : t.rest) > 0 ? { kind: "rest" } : f[ve(S + 1)];
+      y.querySelector(".nextCard").classList.toggle("noMeta", !!(n && Fi(n)));
     }
-    if (le = null, X) {
-      const n = ce(k + 1);
-      n >= 0 && (le = f[n]);
+    if (he = null, oe) {
+      const n = ve(S + 1);
+      n >= 0 && (he = f[n]);
     } else {
-      const n = f[k];
+      const n = f[S];
       if (n && n.rest > 0)
-        le = null;
+        he = null;
       else {
-        const i = ce(k + 1);
-        i >= 0 && (le = f[i]);
+        const i = ve(S + 1);
+        i >= 0 && (he = f[i]);
       }
     }
-    Sn && (Sn.hidden = !le, Sn.textContent = le != null && le.sessionHidden ? "Include this session" : "Skip this session"), Fa();
+    Fn && (Fn.hidden = !he, Fn.textContent = he != null && he.sessionHidden ? "Include this session" : "Skip this session"), Pa();
   }
-  Sn.addEventListener("click", () => {
-    le && (le.sessionHidden = !le.sessionHidden, G((le.sessionHidden ? "Hidden " : "Included ") + le.name + " for this session"), Ze());
+  Fn.addEventListener("click", () => {
+    he && (he.sessionHidden = !he.sessionHidden, O((he.sessionHidden ? "Hidden " : "Included ") + he.name + " for this session"), tt());
   });
-  let Se = null, ui = null;
-  function Kt(e, t = {}) {
-    const n = M[F];
-    w.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: F, ...t });
-  }
-  function vr() {
-    const e = M[F];
-    Se = { key: F, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(ui), ui = setInterval(() => {
-      Se && !be && Se.active++;
-    }, 1e3), Kt("started", { steps: f.length });
-  }
-  function Aa(e) {
-    if (clearInterval(ui), !Se) return;
-    const t = Se;
-    Se = null, Kt(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (A.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), A.history = A.history.slice(0, 1e3), xe(), Xe(), Ne());
-  }
-  function fr() {
-    In("workout"), br();
-    const e = ce(0);
-    e >= 0 && f[e].kind === "video" && Da(f[e]);
-  }
-  function mi() {
-    Ln(), Aa(!1), clearInterval(Z), clearInterval(tn), X = !1, Ae(!1), a("app").classList.remove("resting"), Wt.classList.remove("active"), In("home");
+  let Me = null, wi = null;
+  function en(e, t = {}) {
+    const n = L[M];
+    k.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: M, ...t });
   }
   function br() {
-    Wt.classList.add("active");
+    const e = L[M];
+    Me = { key: M, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(wi), wi = setInterval(() => {
+      Me && !ke && Me.active++;
+    }, 1e3), en("started", { steps: f.length });
+  }
+  function Da(e) {
+    if (clearInterval(wi), !Me) return;
+    const t = Me;
+    Me = null, en(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (F.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), F.history = F.history.slice(0, 1e3), Ce(), at(), He());
+  }
+  function xr() {
+    _n("workout"), yr();
+    const e = ve(0);
+    e >= 0 && f[e].kind === "video" && Ga(f[e]);
+  }
+  function ki() {
+    Bn(), Da(!1), clearInterval(Q), clearInterval(dn), oe = !1, Pe(!1), a("app").classList.remove("resting"), Zt.classList.remove("active"), _n("home");
+  }
+  function yr() {
+    Zt.classList.add("active");
     let e = 5;
-    ai.textContent = e, requestAnimationFrame(yn), clearInterval(tn), tn = setInterval(() => {
-      e--, e > 0 ? (ai.textContent = e, yn()) : (clearInterval(tn), ai.textContent = "GO", yn(), setTimeout(() => {
-        Wt.classList.remove("active"), cancelAnimationFrame(Vt), yr();
+    mi.textContent = e, requestAnimationFrame(Ln), clearInterval(dn), dn = setInterval(() => {
+      e--, e > 0 ? (mi.textContent = e, Ln()) : (clearInterval(dn), mi.textContent = "GO", Ln(), setTimeout(() => {
+        Zt.classList.remove("active"), cancelAnimationFrame(Xt), kr();
       }, 650));
     }, 1e3);
   }
-  function gi() {
+  function Si() {
     var t;
-    gt.innerHTML = "";
-    const e = ((t = f[Math.max(0, k)] || f[0]) == null ? void 0 : t.round) || 1;
-    gt.dataset.round = e, f.forEach((n, i) => {
+    wt.innerHTML = "";
+    const e = ((t = f[Math.max(0, S)] || f[0]) == null ? void 0 : t.round) || 1;
+    wt.dataset.round = e, f.forEach((n, i) => {
       if ((n.round || 1) !== e) return;
       const o = document.createElement("button");
       o.dataset.step = i, o.type = "button", o.className = "progressSegment", o.setAttribute("aria-label", "Go to " + n.name), o.addEventListener("click", () => {
-        i <= k && xr(i);
-      }), gt.appendChild(o);
+        i <= S && wr(i);
+      }), wt.appendChild(o);
     });
   }
-  function Ae(e) {
+  function Pe(e) {
     e = !!e;
-    const t = be !== e;
-    if (be = e, li.textContent = e ? "Resume" : "Pause", a("app").classList.toggle("paused", e), ie && _)
+    const t = ke !== e;
+    if (ke = e, bi.textContent = e ? "Resume" : "Pause", a("app").classList.toggle("paused", e), ce && G)
       try {
-        e ? _.pauseVideo() : _.playVideo();
+        e ? G.pauseVideo() : G.playVideo();
       } catch {
       }
-    t && Se && Kt(e ? "paused" : "resumed");
+    t && Me && en(e ? "paused" : "resumed");
   }
-  function xr(e) {
-    e < 0 || e >= f.length || e > k || (clearInterval(Z), X = !1, a("app").classList.remove("resting"), k = e, Ae(!1), yt(), Z = setInterval(_e, 1e3));
+  function wr(e) {
+    e < 0 || e >= f.length || e > S || (clearInterval(Q), oe = !1, a("app").classList.remove("resting"), S = e, Pe(!1), Et(), Q = setInterval(je, 1e3));
   }
-  function yr() {
-    if (k = ce(0), Ae(!1), gi(), k < 0) {
-      Ut.textContent = "No activities", Fe.textContent = "Open Edit and enable or add a movement", Fe.hidden = !1;
+  function kr() {
+    if (S = ve(0), Pe(!1), Si(), S < 0) {
+      Qt.textContent = "No activities", Ie.textContent = "Open Edit and enable or add a movement", Ie.hidden = !1;
       return;
     }
-    vr(), yt(), clearInterval(Z), Z = setInterval(_e, 1e3);
+    br(), Et(), clearInterval(Q), Q = setInterval(je, 1e3);
   }
-  const Ba = a("videoStage"), ht = a("videoSound"), wr = 0, vt = 1, kr = 2;
-  let Na = 0, ft = null, bt = null, _ = null, xt = null, Tn = 0, hi = !1, ie = null, vi = null;
-  function Ia() {
+  const Ha = a("videoStage"), kt = a("videoSound"), Sr = 0, St = 1, Cr = 2;
+  let qa = 0, Ct = null, Tt = null, G = null, Lt = null, An = 0, Ci = !1, ce = null, Ti = null;
+  function za() {
     var e;
-    return (e = window.YT) != null && e.Player ? Promise.resolve(window.YT) : ft || (ft = new Promise((t, n) => {
+    return (e = window.YT) != null && e.Player ? Promise.resolve(window.YT) : Ct || (Ct = new Promise((t, n) => {
       const i = window.onYouTubeIframeAPIReady;
       window.onYouTubeIframeAPIReady = () => {
         try {
@@ -2345,151 +2366,151 @@ function jr(y, w) {
         var d;
         (d = window.YT) != null && d.Player && (clearInterval(o), clearTimeout(r), t(window.YT));
       }, 100), r = setTimeout(() => {
-        clearInterval(o), ft = null, n(new Error("YouTube did not load"));
+        clearInterval(o), Ct = null, n(new Error("YouTube did not load"));
       }, 15e3);
       if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
         const d = document.createElement("script");
         d.src = "https://www.youtube.com/iframe_api", d.async = !0, d.onerror = () => {
-          clearInterval(o), clearTimeout(r), ft = null, n(new Error("YouTube did not load"));
+          clearInterval(o), clearTimeout(r), Ct = null, n(new Error("YouTube did not load"));
         }, document.head.appendChild(d);
       }
-    }), ft);
+    }), Ct);
   }
-  function Pa() {
-    return bt || (bt = Ia().then((e) => new Promise((t) => {
+  function _a() {
+    return Tt || (Tt = za().then((e) => new Promise((t) => {
       const n = document.createElement("div");
-      a("videoFrame").appendChild(n), _ = new e.Player(n, {
+      a("videoFrame").appendChild(n), G = new e.Player(n, {
         width: "100%",
         height: "100%",
         playerVars: { playsinline: 1, rel: 0, iv_load_policy: 3, modestbranding: 1 },
-        events: { onReady: () => t(_), onStateChange: (i) => Cr(i.data), onError: (i) => Tr(i.data) }
+        events: { onReady: () => t(G), onStateChange: (i) => Lr(i.data), onError: (i) => Er(i.data) }
       });
-    })), bt.catch(() => {
-      bt = null;
-    }), bt);
+    })), Tt.catch(() => {
+      Tt = null;
+    }), Tt);
   }
-  function Da(e) {
-    !(e != null && e.videoId) || e.videoError || Pa().then((t) => {
-      ie || xt === e.videoId || (xt = e.videoId, Tn = Number(e.start) || 0, hi = !1, t.mute(), t.loadVideoById({ videoId: e.videoId, startSeconds: Tn }));
+  function Ga(e) {
+    !(e != null && e.videoId) || e.videoError || _a().then((t) => {
+      ce || Lt === e.videoId || (Lt = e.videoId, An = Number(e.start) || 0, Ci = !1, t.mute(), t.loadVideoById({ videoId: e.videoId, startSeconds: An }));
     }).catch(() => {
     });
   }
-  function Sr() {
-    const e = ce(k + 1);
-    e >= 0 && f[e].kind === "video" && Da(f[e]);
-  }
-  function Cr(e) {
-    if (!ie) {
-      e === vt && !hi && (hi = !0, _.pauseVideo(), _.seekTo(Tn, !0));
-      return;
-    }
-    Ba.classList.toggle("playing", e === vt), f[k] === ie && performance.now() > Na && (e === vt && be ? Ae(!1) : e === kr && !be && Ae(!0)), e === vt && za(ie.videoId, _.getDuration()) && xe(), e === wr && Zt();
-  }
-  function Tr(e) {
-    const t = ie;
-    if (!t) {
-      xt = null;
-      return;
-    }
-    e === 101 || e === 150 ? (Mr(t.videoId), G("That video can’t play outside YouTube, so it was skipped")) : G("The video couldn’t play, so it was skipped"), Zt();
+  function Tr() {
+    const e = ve(S + 1);
+    e >= 0 && f[e].kind === "video" && Ga(f[e]);
   }
   function Lr(e) {
-    if (a("app").classList.add("videoStep"), ht.hidden = !0, ie = e, clearTimeout(vi), !e.videoId) {
-      G("This video step has no link yet, so it was skipped"), setTimeout(() => Zt(), 0);
+    if (!ce) {
+      e === St && !Ci && (Ci = !0, G.pauseVideo(), G.seekTo(An, !0));
       return;
     }
-    Pa().then((t) => {
-      if (ie !== e) return;
-      Na = performance.now() + 1500;
+    Ha.classList.toggle("playing", e === St), f[S] === ce && performance.now() > qa && (e === St && ke ? Pe(!1) : e === Cr && !ke && Pe(!0)), e === St && Va(ce.videoId, G.getDuration()) && Ce(), e === Sr && tn();
+  }
+  function Er(e) {
+    const t = ce;
+    if (!t) {
+      Lt = null;
+      return;
+    }
+    e === 101 || e === 150 ? (Rr(t.videoId), O("That video can’t play outside YouTube, so it was skipped")) : O("The video couldn’t play, so it was skipped"), tn();
+  }
+  function Mr(e) {
+    if (a("app").classList.add("videoStep"), kt.hidden = !0, ce = e, clearTimeout(Ti), !e.videoId) {
+      O("This video step has no link yet, so it was skipped"), setTimeout(() => tn(), 0);
+      return;
+    }
+    _a().then((t) => {
+      if (ce !== e) return;
+      qa = performance.now() + 1500;
       const n = Number(e.start) || 0;
-      xt !== e.videoId ? (xt = e.videoId, Tn = n, t.loadVideoById({ videoId: e.videoId, startSeconds: n })) : (t.seekTo(n, !0), t.playVideo()), t.unMute(), be && t.pauseVideo(), vi = setTimeout(() => {
-        ie !== e || be || (t.getPlayerState() !== vt ? (t.mute(), t.playVideo(), ht.hidden = !1) : t.isMuted() && (ht.hidden = !1));
+      Lt !== e.videoId ? (Lt = e.videoId, An = n, t.loadVideoById({ videoId: e.videoId, startSeconds: n })) : (t.seekTo(n, !0), t.playVideo()), t.unMute(), ke && t.pauseVideo(), Ti = setTimeout(() => {
+        ce !== e || ke || (t.getPlayerState() !== St ? (t.mute(), t.playVideo(), kt.hidden = !1) : t.isMuted() && (kt.hidden = !1));
       }, 1600);
     }).catch(() => {
-      ie === e && (G("YouTube didn’t load, so the video was skipped"), Zt());
+      ce === e && (O("YouTube didn’t load, so the video was skipped"), tn());
     });
   }
-  function Ha() {
+  function Oa() {
     if (!a("app").classList.contains("videoStep")) return;
     const e = y.querySelector(".workGrid"), t = y.querySelector(".sessionControlRow"), n = e.getBoundingClientRect().top, i = (t == null ? void 0 : t.offsetHeight) || 42, o = window.innerHeight - n - 16 - i - 84;
     e.style.setProperty("--theater-h", Math.max(240, Math.round(o)) + "px");
   }
-  window.addEventListener("resize", Ha);
-  function Ln() {
-    clearTimeout(vi);
-    const e = ie;
-    if (ie = null, a("app").classList.remove("videoStep"), Ba.classList.remove("playing"), ht.hidden = !0, e && _) {
+  window.addEventListener("resize", Oa);
+  function Bn() {
+    clearTimeout(Ti);
+    const e = ce;
+    if (ce = null, a("app").classList.remove("videoStep"), Ha.classList.remove("playing"), kt.hidden = !0, e && G) {
       try {
-        _.pauseVideo();
+        G.pauseVideo();
       } catch {
       }
-      xt = null;
+      Lt = null;
     }
   }
-  function Zt() {
-    const e = ie;
-    !e || f[k] !== e || (Ln(), clearInterval(Z), wt(), Z = setInterval(_e, 1e3));
+  function tn() {
+    const e = ce;
+    !e || f[S] !== e || (Bn(), clearInterval(Q), Mt(), Q = setInterval(je, 1e3));
   }
-  ht.addEventListener("click", () => {
-    _ && (_.unMute(), _.playVideo()), ht.hidden = !0;
+  kt.addEventListener("click", () => {
+    G && (G.unMute(), G.playVideo()), kt.hidden = !0;
   });
-  function Er(e) {
+  function Fr(e) {
     var i;
     const t = Number(e.start) || 0;
     if (e.useVideoLength === !1) return t + (Number(e.duration) || 300);
-    const n = _ && ie === e && Number((i = _.getDuration) == null ? void 0 : i.call(_)) || 0;
+    const n = G && ce === e && Number((i = G.getDuration) == null ? void 0 : i.call(G)) || 0;
     return Number(e.end) || n || Number(e.videoDuration) || t + (Number(e.duration) || 300);
   }
-  function qa(e, t) {
-    const n = M[F];
-    [me, ae, ge, n == null ? void 0 : n.warmup, n == null ? void 0 : n.strength, n == null ? void 0 : n.cooldown, n == null ? void 0 : n.sequence].forEach((i) => (Array.isArray(i) ? i : []).forEach((o) => {
+  function Wa(e, t) {
+    const n = L[M];
+    [be, pe, xe, n == null ? void 0 : n.warmup, n == null ? void 0 : n.strength, n == null ? void 0 : n.cooldown, n == null ? void 0 : n.sequence].forEach((i) => (Array.isArray(i) ? i : []).forEach((o) => {
       o && o.kind === "video" && o.videoId === e && t(o);
     }));
   }
-  function za(e, t) {
+  function Va(e, t) {
     t = Math.round(Number(t) || 0);
     let n = !1;
-    return e && t > 0 && qa(e, (i) => {
+    return e && t > 0 && Wa(e, (i) => {
       i.videoDuration !== t && (i.videoDuration = t, n = !0);
     }), n;
   }
-  function Mr(e) {
-    qa(e, (t) => {
-      t.videoError = "embed";
-    }), xe();
-  }
   function Rr(e) {
+    Wa(e, (t) => {
+      t.videoError = "embed";
+    }), Ce();
+  }
+  function Ar(e) {
     const t = e.videoId;
     if (!t) return;
     const n = () => {
-      ne.classList.contains("open") ? oe || q() : (q(), xe());
+      le.classList.contains("open") ? ue || q() : (q(), Ce());
     };
     fetch("https://www.youtube.com/oembed?format=json&url=" + encodeURIComponent("https://www.youtube.com/watch?v=" + t)).then((i) => i.ok ? i.json() : Promise.reject(i.status)).then((i) => {
       e.videoId === t && (e.videoTitle = i.title || "", e.autoName && i.title && (e.name = i.title), n());
     }).catch((i) => {
       e.videoId === t && i === 401 && (e.videoError = "embed", n());
-    }), Fr(t).then((i) => {
-      za(t, i) && n();
+    }), Br(t).then((i) => {
+      Va(t, i) && n();
     }).catch((i) => {
       i === "embed" && e.videoId === t && (e.videoError = "embed", n());
     });
   }
-  function Fr(e) {
-    return Ia().then((t) => new Promise((n, i) => {
+  function Br(e) {
+    return za().then((t) => new Promise((n, i) => {
       const o = document.createElement("div");
       o.className = "videoProbe", o.setAttribute("aria-hidden", "true");
       const r = document.createElement("div");
       o.appendChild(r), a("app").appendChild(o);
       let d = null, s = !1;
       const u = (l, b) => {
-        s || (s = !0, clearTimeout(v), setTimeout(() => {
+        s || (s = !0, clearTimeout(h), setTimeout(() => {
           try {
             d == null || d.destroy();
           } catch {
           }
           o.remove();
         }, 0), b ? i(b) : n(l));
-      }, v = setTimeout(() => u(0), 2e4), g = () => {
+      }, h = setTimeout(() => u(0), 2e4), m = () => {
         var b;
         const l = Number((b = d == null ? void 0 : d.getDuration) == null ? void 0 : b.call(d)) || 0;
         return l > 0 && u(l), l > 0;
@@ -2501,99 +2522,99 @@ function jr(y, w) {
         playerVars: { playsinline: 1, mute: 1, controls: 0 },
         events: {
           onReady: () => {
-            g() || (d.mute(), d.playVideo());
+            m() || (d.mute(), d.playVideo());
           },
-          onStateChange: () => g(),
+          onStateChange: () => m(),
           onError: (l) => u(0, l.data === 101 || l.data === 150 ? "embed" : "error")
         }
       });
     }));
   }
-  function yt() {
-    X = !1;
-    const e = f[k];
-    a("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? Lr(e) : Ln(), te = e.duration, Mt = e.duration, Ut.textContent = e.name, Fe.textContent = e.group, Fe.hidden = !0, si.textContent = Ma(k), Se && Kt("step", { name: e.name, group: e.group, kind: e.kind, step: k + 1, of: f.length, round: e.round || 1, rounds: Cn(), duration: e.duration }), Ze(), gr(), Sr(), e.kind === "video" && setTimeout(Ha, 0);
+  function Et() {
+    oe = !1;
+    const e = f[S];
+    a("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? Mr(e) : Bn(), de = e.duration, It = e.duration, Qt.textContent = e.name, Ie.textContent = e.group, Ie.hidden = !0, vi.textContent = Na(S), Me && en("step", { name: e.name, group: e.group, kind: e.kind, step: S + 1, of: f.length, round: e.round || 1, rounds: Rn(), duration: e.duration }), tt(), vr(), Tr(), e.kind === "video" && setTimeout(Oa, 0);
   }
-  function Je() {
+  function nt() {
     var o;
-    const e = ((o = f[k]) == null ? void 0 : o.kind) === "video" && !X, t = e && te >= 60;
-    di.textContent = t ? Rt(te) : te, di.classList.toggle("long", t), e && (a("videoClock").textContent = Rt(te) + " left");
-    const n = te / Mt * 100;
-    Ea.style.width = n + "%";
-    const i = Ra();
-    if (i && !X) {
+    const e = ((o = f[S]) == null ? void 0 : o.kind) === "video" && !oe, t = e && de >= 60;
+    fi.textContent = t ? Pt(de) : de, fi.classList.toggle("long", t), e && (a("videoClock").textContent = Pt(de) + " left");
+    const n = de / It * 100;
+    Ba.style.width = n + "%";
+    const i = Ia();
+    if (i && !oe) {
       const r = 100 - n;
       i.style.setProperty("--segment-progress", r + "%");
     }
   }
-  function _e() {
+  function je() {
     var t, n;
-    if (be) return;
-    const e = f[k];
-    if ((e == null ? void 0 : e.kind) === "video" && !X && ie === e) {
-      const i = Number((t = _ == null ? void 0 : _.getCurrentTime) == null ? void 0 : t.call(_)) || 0, o = Number(e.start) || 0, r = Er(e);
-      Mt = Math.max(1, r - o), (i > o || ((n = _ == null ? void 0 : _.getPlayerState) == null ? void 0 : n.call(_)) === vt) && (te = Math.max(0, Math.ceil(r - i))), Je(), i > o && i >= r - 0.25 && Zt();
+    if (ke) return;
+    const e = f[S];
+    if ((e == null ? void 0 : e.kind) === "video" && !oe && ce === e) {
+      const i = Number((t = G == null ? void 0 : G.getCurrentTime) == null ? void 0 : t.call(G)) || 0, o = Number(e.start) || 0, r = Fr(e);
+      It = Math.max(1, r - o), (i > o || ((n = G == null ? void 0 : G.getPlayerState) == null ? void 0 : n.call(G)) === St) && (de = Math.max(0, Math.ceil(r - i))), nt(), i > o && i >= r - 0.25 && tn();
       return;
     }
-    te--, Je(), te <= 0 && (e.rest > 0 ? _a(e.rest) : wt());
+    de--, nt(), de <= 0 && (e.rest > 0 ? ja(e.rest) : Mt());
   }
-  function _a(e) {
+  function ja(e) {
     var n;
-    X = !0, a("app").classList.add("resting");
-    const t = Ra();
-    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(Z), te = e, Mt = e, Se && Kt("rest", { duration: e }), Ut.textContent = "Rest", Fe.textContent = (n = f[k]) != null && n.roundBreakAfter ? "Round " + (f[k].round + 1) + " next" : "Recovery", Ze(), Je(), Z = setInterval(() => {
-      be || (te--, Je(), te <= 0 && (clearInterval(Z), wt(), Z = setInterval(_e, 1e3)));
+    oe = !0, a("app").classList.add("resting");
+    const t = Ia();
+    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(Q), de = e, It = e, Me && en("rest", { duration: e }), Qt.textContent = "Rest", Ie.textContent = (n = f[S]) != null && n.roundBreakAfter ? "Round " + (f[S].round + 1) + " next" : "Recovery", tt(), nt(), Q = setInterval(() => {
+      ke || (de--, nt(), de <= 0 && (clearInterval(Q), Mt(), Q = setInterval(je, 1e3)));
     }, 1e3);
   }
-  function wt() {
-    X = !1;
-    const e = ce(k + 1);
+  function Mt() {
+    oe = !1;
+    const e = ve(S + 1);
     if (e >= 0)
-      k = e, yt();
+      S = e, Et();
     else {
-      clearInterval(Z), Ln(), Ae(!1), a("app").classList.remove("resting"), Ut.textContent = "Complete", Fe.textContent = "Move finished", Fe.hidden = !1, di.textContent = "✓";
+      clearInterval(Q), Bn(), Pe(!1), a("app").classList.remove("resting"), Qt.textContent = "Complete", Ie.textContent = "Move finished", Ie.hidden = !1, fi.textContent = "✓";
       {
-        const t = Cn();
-        si.textContent = t > 1 ? t + " rounds done" : f.filter((n) => !n.roundBreak).length + " steps done";
+        const t = Rn();
+        vi.textContent = t > 1 ? t + " rounds done" : f.filter((n) => !n.roundBreak).length + " steps done";
       }
-      Aa(!0);
+      Da(!0);
       {
-        const t = Ja(7).reduce((n, i) => n + i.minutes, 0);
-        Fe.textContent = "Move finished · " + t + " min in the last 7 days";
+        const t = to(7).reduce((n, i) => n + i.minutes, 0);
+        Ie.textContent = "Move finished · " + t + " min in the last 7 days";
       }
-      Ea.style.width = "100%", Ze();
+      Ba.style.width = "100%", tt();
     }
   }
   a("skipExercise").addEventListener("click", () => {
-    Ar(), Ae(!1);
+    Nr(), Pe(!1);
   });
-  function Ar() {
-    clearInterval(Z);
-    const e = f[k];
-    if (X) {
-      X = !1, a("app").classList.remove("resting");
-      const n = ce(k + 1);
-      n >= 0 ? (k = n, yt(), Z = setInterval(_e, 1e3)) : wt();
+  function Nr() {
+    clearInterval(Q);
+    const e = f[S];
+    if (oe) {
+      oe = !1, a("app").classList.remove("resting");
+      const n = ve(S + 1);
+      n >= 0 ? (S = n, Et(), Q = setInterval(je, 1e3)) : Mt();
       return;
     }
     if (e && e.rest > 0) {
-      _a(e.rest);
+      ja(e.rest);
       return;
     }
-    const t = ce(k + 1);
-    t >= 0 ? (k = t, yt(), Z = setInterval(_e, 1e3)) : wt();
+    const t = ve(S + 1);
+    t >= 0 ? (S = t, Et(), Q = setInterval(je, 1e3)) : Mt();
   }
   a("restartSegment").addEventListener("click", () => {
-    if (clearInterval(Z), Ae(!1), X) {
-      const e = f[k];
-      te = e.rest, Mt = e.rest, Ut.textContent = "Rest", Fe.textContent = "Recovery", a("app").classList.add("resting"), Ze(), Je();
+    if (clearInterval(Q), Pe(!1), oe) {
+      const e = f[S];
+      de = e.rest, It = e.rest, Qt.textContent = "Rest", Ie.textContent = "Recovery", a("app").classList.add("resting"), tt(), nt();
     } else
-      yt();
-    Z = setInterval(X ? () => {
-      be || (te--, Je(), te <= 0 && (clearInterval(Z), wt(), Z = setInterval(_e, 1e3)));
-    } : _e, 1e3);
+      Et();
+    Q = setInterval(oe ? () => {
+      ke || (de--, nt(), de <= 0 && (clearInterval(Q), Mt(), Q = setInterval(je, 1e3)));
+    } : je, 1e3);
   });
-  function Jt(e, t, n, i) {
+  function nn(e, t, n, i) {
     let o = 0, r = null, d = !1;
     function s() {
       r && cancelAnimationFrame(r), r = null, o = 0, d = !1, t.style.width = "0%", e.classList.remove("holding");
@@ -2608,7 +2629,7 @@ function jr(y, w) {
       }
       r = requestAnimationFrame(u);
     }
-    function v(l) {
+    function h(l) {
       var b;
       if (!(l && l.button !== void 0 && l.button !== 0)) {
         l == null || l.preventDefault(), s(), d = !0, e.classList.add("holding");
@@ -2619,211 +2640,211 @@ function jr(y, w) {
         r = requestAnimationFrame(u);
       }
     }
-    function g() {
+    function m() {
       d && s();
     }
-    e.addEventListener("pointerdown", v), e.addEventListener("pointerup", g), e.addEventListener("pointercancel", g), e.addEventListener("lostpointercapture", g), e.addEventListener("keydown", (l) => {
-      (l.key === " " || l.key === "Enter") && !l.repeat && v(l);
+    e.addEventListener("pointerdown", h), e.addEventListener("pointerup", m), e.addEventListener("pointercancel", m), e.addEventListener("lostpointercapture", m), e.addEventListener("keydown", (l) => {
+      (l.key === " " || l.key === "Enter") && !l.repeat && h(l);
     }), e.addEventListener("keyup", (l) => {
-      (l.key === " " || l.key === "Enter") && g();
+      (l.key === " " || l.key === "Enter") && m();
     });
   }
-  const Br = a("endWorkout");
-  Jt(Br, a("holdEndFill"), 1500, mi);
-  const kt = a("deleteMoveConfirm");
+  const Ir = a("endWorkout");
+  nn(Ir, a("holdEndFill"), 1500, ki);
+  const Ft = a("deleteMoveConfirm");
   a("deleteMoveOpen").addEventListener("click", () => {
-    kt.classList.add("open"), kt.setAttribute("aria-hidden", "false");
+    Ft.classList.add("open"), Ft.setAttribute("aria-hidden", "false");
   }), a("deleteMoveCancel").addEventListener("click", () => {
-    kt.classList.remove("open"), kt.setAttribute("aria-hidden", "true");
+    Ft.classList.remove("open"), Ft.setAttribute("aria-hidden", "true");
   });
-  function Nr() {
-    const e = F, t = y.querySelector('.workoutPanel[data-workout="' + e + '"]');
-    t && t.remove(), delete M[e], A.order = A.order.filter((i) => i !== e);
+  function Pr() {
+    const e = M, t = y.querySelector('.workoutPanel[data-workout="' + e + '"]');
+    t && t.remove(), delete L[e], F.order = F.order.filter((i) => i !== e);
     let n = y.querySelector(".workoutPanel[data-workout]");
     if (!n) {
       const i = "custom-" + Date.now();
-      M[i] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, A.order.push(i), n = Dn(i, M[i]);
+      L[i] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, F.order.push(i), n = On(i, L[i]);
     }
-    kt.classList.remove("open"), kt.setAttribute("aria-hidden", "true"), Ot = null, xn(), ye(n.dataset.workout), xe(), G("Move deleted");
+    Ft.classList.remove("open"), Ft.setAttribute("aria-hidden", "true"), Kt = null, Tn(), Te(n.dataset.workout), Ce(), O("Move deleted");
   }
-  Jt(a("deleteMoveYes"), a("deleteMoveFill"), 1500, Nr);
-  const fi = y.querySelector(".rubberTabs"), St = a("rubberIndicator");
-  function $t(e, t = !0) {
-    if (!e || !fi || !St) return;
-    const n = fi.getBoundingClientRect(), i = e.getBoundingClientRect();
-    St.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
-    const o = Ue();
-    St.style.left = (i.left - n.left) / o + fi.scrollLeft + "px", St.style.width = i.width / o + "px", t && (St.style.transform = "scaleX(1.08)", setTimeout(() => St.style.transform = "scaleX(1)", 180));
+  nn(a("deleteMoveYes"), a("deleteMoveFill"), 1500, Pr);
+  const Li = y.querySelector(".rubberTabs"), Rt = a("rubberIndicator");
+  function an(e, t = !0) {
+    if (!e || !Li || !Rt) return;
+    const n = Li.getBoundingClientRect(), i = e.getBoundingClientRect();
+    Rt.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
+    const o = Qe();
+    Rt.style.left = (i.left - n.left) / o + Li.scrollLeft + "px", Rt.style.width = i.width / o + "px", t && (Rt.style.transform = "scaleX(1.08)", setTimeout(() => Rt.style.transform = "scaleX(1)", 180));
   }
   y.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
-    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), y.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), y.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), a(e.dataset.pane).classList.add("active"), $t(e, !0);
-  })), requestAnimationFrame(() => $t(y.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => $t(y.querySelector(".tab.active"), !1));
-  const bi = a("pixelTrailToggle"), xi = a("rippleToggle"), Ct = a("trailStrength"), Tt = a("trailLife");
-  function ve(e, t) {
-    P()[e] = t, xe();
+    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), y.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), y.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), a(e.dataset.pane).classList.add("active"), an(e, !0);
+  })), requestAnimationFrame(() => an(y.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => an(y.querySelector(".tab.active"), !1));
+  const Ei = a("pixelTrailToggle"), Mi = a("rippleToggle"), At = a("trailStrength"), Bt = a("trailLife");
+  function we(e, t) {
+    D()[e] = t, Ce();
   }
-  const Ga = ["Warm-up", "Movement", "Cooldown", "Rest", "Video"];
-  function Oa(e) {
+  const Ya = ["Warm-up", "Movement", "Cooldown", "Rest", "Video"];
+  function Ua(e) {
     return e.kind === "rest" ? "rest" : e.kind === "video" ? "video" : "g:" + String(e.group || "").trim().toLowerCase();
   }
-  function yi(e) {
+  function Fi(e) {
     var t;
-    return !!((t = P().hideMeta) != null && t[Oa(e)]);
+    return !!((t = D().hideMeta) != null && t[Ua(e)]);
   }
-  function Ir() {
+  function Dr() {
     const e = /* @__PURE__ */ new Map(), t = (n, i, o) => {
       if (!n) return;
       Array.isArray(n) && (n = { name: n[1], group: n[2], kind: "work" });
-      const r = Oa(n);
+      const r = Ua(n);
       let d = e.get(r);
       d || (d = { key: r, label: r === "rest" ? "Rest" : r === "video" ? "Video" : String(n.group || "").trim() || "No type", kinds: /* @__PURE__ */ new Set(), moves: /* @__PURE__ */ new Set(), count: 0 }, e.set(r, d)), d.kinds.add(r === "rest" ? "Rest" : r === "video" ? "Video" : i), d.moves.add(o), d.count++;
     };
-    return Object.values(M).forEach((n) => {
+    return Object.values(L).forEach((n) => {
       const i = n.name || "Move";
-      (n.warmup || (n.customSequence ? [] : Qt)).forEach((o) => t(o, "Warm-up", i)), (n.customSequence ? n.sequence || [] : n.strength || []).forEach((o) => t(o, o.presetRole === "warmup" ? "Warm-up" : o.presetRole === "cooldown" ? "Cooldown" : "Movement", i)), (n.cooldown || (n.customSequence ? [] : en)).forEach((o) => t(o, "Cooldown", i));
+      (n.warmup || (n.customSequence ? [] : rn)).forEach((o) => t(o, "Warm-up", i)), (n.customSequence ? n.sequence || [] : n.strength || []).forEach((o) => t(o, o.presetRole === "warmup" ? "Warm-up" : o.presetRole === "cooldown" ? "Cooldown" : "Movement", i)), (n.cooldown || (n.customSequence ? [] : sn)).forEach((o) => t(o, "Cooldown", i));
     }), [["rest", "Rest"], ["video", "Video"]].forEach(([n, i]) => {
       e.has(n) || e.set(n, { key: n, label: i, kinds: /* @__PURE__ */ new Set([i]), moves: /* @__PURE__ */ new Set(), count: 0 });
-    }), [...e.values()].map((n) => ({ ...n, kind: n.kinds.has("Movement") ? "Movement" : [...n.kinds][0], moves: [...n.moves] })).sort((n, i) => Ga.indexOf(n.kind) - Ga.indexOf(i.kind) || n.label.localeCompare(i.label));
+    }), [...e.values()].map((n) => ({ ...n, kind: n.kinds.has("Movement") ? "Movement" : [...n.kinds][0], moves: [...n.moves] })).sort((n, i) => Ya.indexOf(n.kind) - Ya.indexOf(i.kind) || n.label.localeCompare(i.label));
   }
-  let wi = "all";
-  function ki() {
+  let Ri = "all";
+  function Ai() {
     const e = a("metaSearch").value.trim().toLowerCase();
-    return Ir().filter((t) => (wi === "all" || t.kind === wi) && (!e || t.label.toLowerCase().includes(e) || t.moves.some((n) => n.toLowerCase().includes(e))));
+    return Dr().filter((t) => (Ri === "all" || t.kind === Ri) && (!e || t.label.toLowerCase().includes(e) || t.moves.some((n) => n.toLowerCase().includes(e))));
   }
-  function En() {
+  function Nn() {
     const e = a("metaTableBody");
     if (!e) return;
-    const t = P().hideMeta || {}, n = ki();
+    const t = D().hideMeta || {}, n = Ai();
     e.innerHTML = n.length ? "" : '<tr class="metaEmpty"><td colspan="4">No types match</td></tr>', n.forEach((o) => {
       const r = !t[o.key], d = o.count ? (o.moves.length > 2 ? o.moves.slice(0, 2).join(", ") + " + " + (o.moves.length - 2) + " more" : o.moves.join(", ")) + " · " + o.count + " step" + (o.count === 1 ? "" : "s") : "Not used yet", s = document.createElement("tr");
-      s.className = r ? "" : "off", s.innerHTML = '<td><div class="metaType">' + R(o.label) + '</div><div class="metaSub">' + R(o.kind + " · " + d) + '</div></td><td class="metaKindCol">' + R(o.kind) + '</td><td class="metaUsedCol">' + R(d) + '</td><td class="metaSwitchCol"><button class="switch' + (r ? " on" : "") + '" type="button" role="switch" aria-checked="' + r + '" aria-label="Second line for ' + R(o.label) + ' on phones"></button></td>', s.querySelector(".switch").addEventListener("click", () => Si([o.key], r)), e.appendChild(s);
+      s.className = r ? "" : "off", s.innerHTML = '<td><div class="metaType">' + E(o.label) + '</div><div class="metaSub">' + E(o.kind + " · " + d) + '</div></td><td class="metaKindCol">' + E(o.kind) + '</td><td class="metaUsedCol">' + E(d) + '</td><td class="metaSwitchCol"><button class="switch' + (r ? " on" : "") + '" type="button" role="switch" aria-checked="' + r + '" aria-label="Second line for ' + E(o.label) + ' on phones"></button></td>', s.querySelector(".switch").addEventListener("click", () => Bi([o.key], r)), e.appendChild(s);
     });
     const i = n.filter((o) => t[o.key]).length;
     a("metaCount").textContent = n.length ? n.length + " type" + (n.length === 1 ? "" : "s") + (i ? " · " + i + " hidden on phones" : "") : "";
   }
-  function Si(e, t) {
-    const n = { ...P().hideMeta || {} };
+  function Bi(e, t) {
+    const n = { ...D().hideMeta || {} };
     e.forEach((i) => {
       t ? n[i] = !0 : delete n[i];
-    }), ve("hideMeta", n), En(), On(), Ze();
+    }), we("hideMeta", n), Nn(), Zn(), tt();
   }
-  a("metaSearch").addEventListener("input", En), a("metaKinds").querySelectorAll(".kindChip").forEach((e) => e.addEventListener("click", () => {
-    wi = e.dataset.kind, a("metaKinds").querySelectorAll(".kindChip").forEach((t) => t.classList.toggle("active", t === e)), En();
-  })), a("metaHideAll").addEventListener("click", () => Si(ki().map((e) => e.key), !0)), a("metaShowAll").addEventListener("click", () => Si(ki().map((e) => e.key), !1));
-  const Lt = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...P().toggles || {} };
-  function Wa() {
-    y.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", Lt[t.dataset.toggle] !== !1)), y.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
-      a(n).hidden = Lt[t] === !1;
+  a("metaSearch").addEventListener("input", Nn), a("metaKinds").querySelectorAll(".kindChip").forEach((e) => e.addEventListener("click", () => {
+    Ri = e.dataset.kind, a("metaKinds").querySelectorAll(".kindChip").forEach((t) => t.classList.toggle("active", t === e)), Nn();
+  })), a("metaHideAll").addEventListener("click", () => Bi(Ai().map((e) => e.key), !0)), a("metaShowAll").addEventListener("click", () => Bi(Ai().map((e) => e.key), !1));
+  const Nt = { feel: !0, steps: !0, mood: !0, energyLevel: !0, ...D().toggles || {} };
+  function Ka() {
+    y.querySelectorAll("[data-toggle]").forEach((t) => t.classList.toggle("on", Nt[t.dataset.toggle] !== !1)), y.querySelector(".feelSection").hidden = !0, [["steps", "stepsRow"], ["mood", "moodRow"], ["energyLevel", "energyLevelRow"]].forEach(([t, n]) => {
+      a(n).hidden = Nt[t] === !1;
     });
-    const e = ["steps", "mood", "energyLevel"].some((t) => Lt[t] !== !1);
+    const e = ["steps", "mood", "energyLevel"].some((t) => Nt[t] !== !1);
     y.querySelector(".activityCard").hidden = !e, a("insightCard").style.gridColumn = e ? "" : "span 12";
   }
   y.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
-    Lt[e.dataset.toggle] = Lt[e.dataset.toggle] === !1, Wa(), ve("toggles", { ...Lt });
-  })), Wa();
-  function Pr() {
-    bi.classList.toggle("on", Re), xi.classList.toggle("on", Ke), Ct.value = Math.round(lt * 100), a("trailStrengthValue").textContent = Ct.value + "%", Tt.value = ct, a("trailLifeValue").textContent = Tt.value + " ms";
+    Nt[e.dataset.toggle] = Nt[e.dataset.toggle] === !1, Ka(), we("toggles", { ...Nt });
+  })), Ka();
+  function Hr() {
+    Ei.classList.toggle("on", Ne), Mi.classList.toggle("on", et), At.value = Math.round(vt * 100), a("trailStrengthValue").textContent = At.value + "%", Bt.value = ft, a("trailLifeValue").textContent = Bt.value + " ms";
   }
-  P().trailEnabled !== void 0 && (Re = P().trailEnabled), P().rippleEnabled !== void 0 && (Ke = P().rippleEnabled), P().trailStrength !== void 0 && (lt = P().trailStrength), P().trailMaxAge !== void 0 && (ct = P().trailMaxAge), Pr(), bi.addEventListener("click", () => {
-    Re = !Re, bi.classList.toggle("on", Re), Re || (Yt = []), ve("trailEnabled", Re);
-  }), xi.addEventListener("click", () => {
-    Ke = !Ke, xi.classList.toggle("on", Ke), ve("rippleEnabled", Ke);
-  }), Ct.addEventListener("input", () => {
-    lt = Number(Ct.value) / 100, a("trailStrengthValue").textContent = Ct.value + "%";
-  }), Ct.addEventListener("change", () => ve("trailStrength", lt)), Tt.addEventListener("input", () => {
-    ct = Number(Tt.value), a("trailLifeValue").textContent = Tt.value + " ms";
-  }), Tt.addEventListener("change", () => ve("trailMaxAge", ct)), vn.addEventListener("change", () => ve("upcomingCount", nt));
-  function Va(e) {
+  D().trailEnabled !== void 0 && (Ne = D().trailEnabled), D().rippleEnabled !== void 0 && (et = D().rippleEnabled), D().trailStrength !== void 0 && (vt = D().trailStrength), D().trailMaxAge !== void 0 && (ft = D().trailMaxAge), Hr(), Ei.addEventListener("click", () => {
+    Ne = !Ne, Ei.classList.toggle("on", Ne), Ne || ($t = []), we("trailEnabled", Ne);
+  }), Mi.addEventListener("click", () => {
+    et = !et, Mi.classList.toggle("on", et), we("rippleEnabled", et);
+  }), At.addEventListener("input", () => {
+    vt = Number(At.value) / 100, a("trailStrengthValue").textContent = At.value + "%";
+  }), At.addEventListener("change", () => we("trailStrength", vt)), Bt.addEventListener("input", () => {
+    ft = Number(Bt.value), a("trailLifeValue").textContent = Bt.value + " ms";
+  }), Bt.addEventListener("change", () => we("trailMaxAge", ft)), kn.addEventListener("change", () => we("upcomingCount", lt));
+  function Za(e) {
     y.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
     const t = e === "light";
-    a("app").classList.toggle("light", t), w.setLight(t);
+    a("app").classList.toggle("light", t), k.setLight(t);
   }
-  Va(P().theme || "dark"), y.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
-    Va(e.dataset.theme), ve("theme", e.dataset.theme);
+  Za(D().theme || "dark"), y.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
+    Za(e.dataset.theme), we("theme", e.dataset.theme);
   }));
-  const Be = { steps: null, ...P().entities || {} };
-  let $e = null, Ci = {};
-  function Dr(e) {
+  const De = { steps: null, ...D().entities || {} };
+  let it = null, Ni = {};
+  function qr(e) {
     const t = Object.values(e).filter((s) => s.entity_id.startsWith("sensor.") || s.entity_id.startsWith("input_number.")), n = (s) => s.attributes.friendly_name || s.entity_id, i = t.filter((s) => /step/i.test(s.entity_id) || /step/i.test(n(s)) || ["steps", "step"].includes(String(s.attributes.unit_of_measurement || "").toLowerCase())), o = t.filter((s) => !i.includes(s)), r = (s, u) => n(s).localeCompare(n(u)), d = (s, u) => /health_steps/.test(u.entity_id) - /health_steps/.test(s.entity_id) || r(s, u);
     return { suggested: i.sort(d), rest: o.sort(r), label: n };
   }
-  function ja(e) {
+  function Xa(e) {
     const t = a("stepsEntity");
     if (!t || t.matches(":focus")) return;
-    const { suggested: n, rest: i, label: o } = Dr(e), r = (u) => '<option value="' + R(u.entity_id) + '">' + R(o(u)) + "</option>";
-    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (i.length ? '<optgroup label="All sensors">' + i.map(r).join("") + "</optgroup>" : ""), t.value = Be.steps || "";
-    const d = a("stepsStatus"), s = Be.steps && e[Be.steps];
+    const { suggested: n, rest: i, label: o } = qr(e), r = (u) => '<option value="' + E(u.entity_id) + '">' + E(o(u)) + "</option>";
+    t.innerHTML = '<option value="">Not connected</option>' + (n.length ? '<optgroup label="Suggested">' + n.map(r).join("") + "</optgroup>" : "") + (i.length ? '<optgroup label="All sensors">' + i.map(r).join("") + "</optgroup>" : ""), t.value = De.steps || "";
+    const d = a("stepsStatus"), s = De.steps && e[De.steps];
     d.textContent = s ? "Connected · " + o(s) : d.dataset.empty;
   }
   a("stepsEntity").addEventListener("change", () => {
-    Be.steps = a("stepsEntity").value || null, ve("entities", { ...Be }), Ci = {}, Za(), $e && (ja($e), Ua($e));
+    De.steps = a("stepsEntity").value || null, we("entities", { ...De }), Ni = {}, eo(), it && (Xa(it), $a(it));
   });
-  function Hr(e, t = 0) {
+  function zr(e, t = 0) {
     return new Intl.NumberFormat(void 0, { maximumFractionDigits: t }).format(e);
   }
-  function Ya() {
-    const e = Be.steps && ($e == null ? void 0 : $e[Be.steps]), t = Number(e == null ? void 0 : e.state);
+  function Ja() {
+    const e = De.steps && (it == null ? void 0 : it[De.steps]), t = Number(e == null ? void 0 : e.state);
     return Number.isFinite(t) ? t : null;
   }
-  function Ua(e) {
+  function $a(e) {
     var i;
-    const t = Be.steps, n = t ? Number((i = e[t]) == null ? void 0 : i.state) : NaN;
-    a("stepsMeta").textContent = t ? Number.isFinite(n) ? Hr(n) : "—" : "Set up in Settings";
+    const t = De.steps, n = t ? Number((i = e[t]) == null ? void 0 : i.state) : NaN;
+    a("stepsMeta").textContent = t ? Number.isFinite(n) ? zr(n) : "—" : "Set up in Settings";
   }
-  let Ka = 0;
-  async function Za() {
-    const e = Be.steps;
-    if (!e || !w.ws) return;
-    Ka = Date.now();
+  let Qa = 0;
+  async function eo() {
+    const e = De.steps;
+    if (!e || !k.ws) return;
+    Qa = Date.now();
     const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - 30);
     try {
-      const i = await w.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (i == null ? void 0 : i[e]) || [], r = {};
+      const i = await k.ws({ type: "recorder/statistics_during_period", start_time: n.toISOString(), end_time: t.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), o = (i == null ? void 0 : i[e]) || [], r = {};
       if (o.forEach((d) => {
-        Number.isFinite(d.max) && (r[se(new Date(d.start))] = d.max);
+        Number.isFinite(d.max) && (r[ge(new Date(d.start))] = d.max);
       }), !Object.keys(r).length) {
-        const d = await w.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
+        const d = await k.ws({ type: "history/history_during_period", start_time: n.toISOString(), end_time: t.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
         ((d == null ? void 0 : d[e]) || []).forEach((s) => {
-          const u = Number(s.s ?? s.state), v = s.lu ? s.lu * 1e3 : Date.parse(s.last_updated || s.last_changed);
-          if (!Number.isFinite(u) || !v) return;
-          const g = se(new Date(v));
-          r[g] = Math.max(r[g] || 0, u);
+          const u = Number(s.s ?? s.state), h = s.lu ? s.lu * 1e3 : Date.parse(s.last_updated || s.last_changed);
+          if (!Number.isFinite(u) || !h) return;
+          const m = ge(new Date(h));
+          r[m] = Math.max(r[m] || 0, u);
         });
       }
-      Ci = r, Ne();
+      Ni = r, He();
     } catch {
     }
   }
-  function Xe() {
-    Ne();
+  function at() {
+    He();
   }
-  Xe(), setInterval(() => {
-    Xe(), zt(), Ye();
+  at(), setInterval(() => {
+    at(), jt(), $e();
   }, 10 * 60 * 1e3);
-  function Ja(e) {
+  function to(e) {
     const t = {}, n = {};
-    A.history.forEach((d) => {
-      const s = se(new Date(d.start));
+    F.history.forEach((d) => {
+      const s = ge(new Date(d.start));
       t[s] = (t[s] || 0) + (d.seconds || 0) / 60, n[s] = (n[s] || 0) + 1;
     });
-    const i = /* @__PURE__ */ new Date(), o = se(i), r = [];
+    const i = /* @__PURE__ */ new Date(), o = ge(i), r = [];
     for (let d = e - 1; d >= 0; d--) {
-      const s = new Date(i.getFullYear(), i.getMonth(), i.getDate() - d), u = se(s), v = A.checkins.filter((l) => l.date === u), g = (l) => {
-        const b = v.map((C) => C[l]).filter(Boolean);
-        return b.length ? b.reduce((C, h) => C + h, 0) / b.length : null;
+      const s = new Date(i.getFullYear(), i.getMonth(), i.getDate() - d), u = ge(s), h = F.checkins.filter((l) => l.date === u), m = (l) => {
+        const b = h.map((C) => C[l]).filter(Boolean);
+        return b.length ? b.reduce((C, v) => C + v, 0) / b.length : null;
       };
       r.push({
         key: u,
         date: s,
         minutes: Math.round(t[u] || 0),
         moves: n[u] || 0,
-        steps: u === o && Ya() != null ? Ya() : Ci[u] ?? null,
-        mood: g("mood"),
-        energy: g("energy")
+        steps: u === o && Ja() != null ? Ja() : Ni[u] ?? null,
+        mood: m("mood"),
+        energy: m("energy")
       });
     }
     return r;
   }
-  function qr(e) {
+  function _r(e) {
     let t = e.length - 1;
     e[t] && !e[t].minutes && t--;
     let n = 0;
@@ -2831,102 +2852,102 @@ function jr(y, w) {
       n++, t--;
     return n;
   }
-  function Ne() {
+  function He() {
     const e = a("insightCard");
     if (!e) return;
-    const t = Ja(30), n = qr(t), i = t.reduce((l, b) => l + b.minutes, 0), o = /* @__PURE__ */ new Date(), r = se(o), d = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), s = [...Array(7)].map((l, b) => {
-      const C = new Date(d.getFullYear(), d.getMonth(), d.getDate() + b), h = se(C), c = t.find((m) => m.key === h);
-      return { d: C, k: h, minutes: c ? c.minutes : 0, today: h === r, future: h > r };
-    }), u = s.reduce((l, b) => l + b.minutes, 0), v = Math.max(10, ...s.map((l) => l.minutes)), g = (l, b, C) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + l + '</div><div><div class="activityRowName">' + R(b) + '</div><div class="activityRowMeta">' + R(C) + "</div></div></div>";
-    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + g("◷", "This week", u + " min") + g("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + g("▦", "30 days", i + " min") + '</div><div class="weekBars">' + s.map(
-      (l) => '<div class="weekBar' + (l.today ? " today" : "") + (l.future ? " future" : "") + '" title="' + R(l.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (l.minutes ? Math.max(6, l.minutes / v * 100) : 0) + '%"></span></div><div class="dayLabel">' + R(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(l.d)) + "</div></div>"
+    const t = to(30), n = _r(t), i = t.reduce((l, b) => l + b.minutes, 0), o = /* @__PURE__ */ new Date(), r = ge(o), d = new Date(o.getFullYear(), o.getMonth(), o.getDate() - (o.getDay() + 6) % 7), s = [...Array(7)].map((l, b) => {
+      const C = new Date(d.getFullYear(), d.getMonth(), d.getDate() + b), v = ge(C), p = t.find((g) => g.key === v);
+      return { d: C, k: v, minutes: p ? p.minutes : 0, today: v === r, future: v > r };
+    }), u = s.reduce((l, b) => l + b.minutes, 0), h = Math.max(10, ...s.map((l) => l.minutes)), m = (l, b, C) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + l + '</div><div><div class="activityRowName">' + E(b) + '</div><div class="activityRowMeta">' + E(C) + "</div></div></div>";
+    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div><div class="activityRows movementReadings">' + m("◷", "This week", u + " min") + m("↯", "Streak", n + " day" + (n === 1 ? "" : "s")) + m("▦", "30 days", i + " min") + '</div><div class="weekBars">' + s.map(
+      (l) => '<div class="weekBar' + (l.today ? " today" : "") + (l.future ? " future" : "") + '" title="' + E(l.minutes + " min") + '"><div class="weekBarTrack"><span style="height:' + (l.minutes ? Math.max(6, l.minutes / h * 100) : 0) + '%"></span></div><div class="dayLabel">' + E(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(l.d)) + "</div></div>"
     ).join("") + "</div>";
   }
-  const $a = a("tvNav");
-  w.fullscreenSupported || ($a.hidden = !0), $a.addEventListener("click", () => w.toggleFullscreen()), y.addEventListener("keydown", (e) => {
-    !tt.workout.classList.contains("active") || Wt.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), li.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), a("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), a("restartSegment").click()));
-  }), [z, N, I, We].forEach((e) => e.addEventListener("input", () => {
-    const t = M[F];
-    t && (t.total = Number(z.value), t.work = Number(N.value), t.rest = Number(I.value)), q();
-  })), Pi.addEventListener("click", mi), Di.addEventListener("click", () => In("settings")), a("settingsBack").addEventListener("click", mi), li.addEventListener("click", () => Ae(!be)), ye(F), hn(), zt(), Ne(), a("healthHelpOpen").addEventListener("click", () => y.querySelector(".tab[data-pane=helpPane]").click()), Jt(a("resetStats"), a("resetStatsFill"), 1500, () => {
-    A.history = [], A.checkins = [], qt = "";
+  const no = a("tvNav");
+  k.fullscreenSupported || (no.hidden = !0), no.addEventListener("click", () => k.toggleFullscreen()), y.addEventListener("keydown", (e) => {
+    !dt.workout.classList.contains("active") || Zt.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), bi.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), a("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), a("restartSegment").click()));
+  }), [_, N, P, Ze].forEach((e) => e.addEventListener("input", () => {
+    const t = L[M];
+    t && (t.total = Number(_.value), t.work = Number(N.value), t.rest = Number(P.value)), q();
+  })), Wi.addEventListener("click", ki), Vi.addEventListener("click", () => _n("settings")), a("settingsBack").addEventListener("click", ki), bi.addEventListener("click", () => Pe(!ke)), Te(M), wn(), jt(), He(), a("healthHelpOpen").addEventListener("click", () => y.querySelector(".tab[data-pane=helpPane]").click()), nn(a("resetStats"), a("resetStatsFill"), 1500, () => {
+    F.history = [], F.checkins = [], Vt = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
     } catch {
     }
-    xe(), Xe(), zt(), hn(), Ne(), Ye(), G("Stats reset");
+    Ce(), at(), jt(), wn(), He(), $e(), O("Stats reset");
   });
-  const Ti = a("morningTime"), Li = a("eveningTime"), Ei = a("checkinAutoOpen");
-  Ti.value = Ee().morning, Li.value = Ee().evening, Ei.classList.toggle("on", P().checkinAutoOpen !== !1), [["morningTime", Ti], ["eveningTime", Li]].forEach(([e, t]) => t.addEventListener("change", () => {
-    t.value && (ve(e, t.value), Ye());
-  })), Ei.addEventListener("click", () => {
-    const e = P().checkinAutoOpen === !1;
-    Ei.classList.toggle("on", e), ve("checkinAutoOpen", e);
-  }), setTimeout(Qn, 800);
-  const Xa = a("checkinNotify"), Mn = a("checkinNotifyTarget"), Qa = a("checkinNotifyStatus"), zr = Qa.textContent;
-  function eo() {
-    const e = w.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, i = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
-    Mn.innerHTML = n.map((o) => '<option value="' + R(o) + '">' + R(i(o)) + "</option>").join(""), !P().notifyTarget && n[0] && (P().notifyTarget = n[0]), Mn.value = P().notifyTarget || "";
+  const Ii = a("morningTime"), Pi = a("eveningTime"), Di = a("checkinAutoOpen");
+  Ii.value = Ae().morning, Pi.value = Ae().evening, Di.classList.toggle("on", D().checkinAutoOpen !== !1), [["morningTime", Ii], ["eveningTime", Pi]].forEach(([e, t]) => t.addEventListener("change", () => {
+    t.value && (we(e, t.value), $e());
+  })), Di.addEventListener("click", () => {
+    const e = D().checkinAutoOpen === !1;
+    Di.classList.toggle("on", e), we("checkinAutoOpen", e);
+  }), setTimeout(di, 800);
+  const io = a("checkinNotify"), In = a("checkinNotifyTarget"), ao = a("checkinNotifyStatus"), Gr = ao.textContent;
+  function oo() {
+    const e = k.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, i = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
+    In.innerHTML = n.map((o) => '<option value="' + E(o) + '">' + E(i(o)) + "</option>").join(""), !D().notifyTarget && n[0] && (D().notifyTarget = n[0]), In.value = D().notifyTarget || "";
   }
-  function Rn() {
-    const e = !!P().notifyOn;
-    Xa.classList.toggle("on", e), a("checkinNotifyTargetRow").hidden = !e;
-    const t = Ee();
-    Qa.textContent = e ? "Sends at " + t.morning + " and " + t.evening : zr;
+  function Pn() {
+    const e = !!D().notifyOn;
+    io.classList.toggle("on", e), a("checkinNotifyTargetRow").hidden = !e;
+    const t = Ae();
+    ao.textContent = e ? "Sends at " + t.morning + " and " + t.evening : Gr;
   }
-  async function Mi() {
-    const e = !!P().notifyOn;
+  async function Hi() {
+    const e = !!D().notifyOn;
     try {
-      return await w.setReminderAutomation(e ? { target: P().notifyTarget, times: Ee() } : null), !0;
+      return await k.setReminderAutomation(e ? { target: D().notifyTarget, times: Ae() } : null), !0;
     } catch {
-      return G("Couldn't update the reminder in Home Assistant"), !1;
+      return O("Couldn't update the reminder in Home Assistant"), !1;
     }
   }
-  Xa.addEventListener("click", async () => {
-    const e = !P().notifyOn;
-    if (e && (eo(), !P().notifyTarget)) {
-      G("Install the Companion app on your phone first");
+  io.addEventListener("click", async () => {
+    const e = !D().notifyOn;
+    if (e && (oo(), !D().notifyTarget)) {
+      O("Install the Companion app on your phone first");
       return;
     }
-    P().notifyOn = e, Rn(), await Mi() ? (xe(), G(e ? "Check-in notifications on" : "Check-in notifications off")) : (P().notifyOn = !e, Rn());
-  }), Mn.addEventListener("change", () => {
-    ve("notifyTarget", Mn.value), P().notifyOn && Mi();
-  }), [Ti, Li].forEach((e) => e.addEventListener("change", () => {
-    Rn(), P().notifyOn && Mi();
-  })), eo(), Rn();
-  let Ri = null;
-  function _r() {
-    Ri || (Ri = setTimeout(() => {
-      Ri = null, Ne();
+    D().notifyOn = e, Pn(), await Hi() ? (Ce(), O(e ? "Check-in notifications on" : "Check-in notifications off")) : (D().notifyOn = !e, Pn());
+  }), In.addEventListener("change", () => {
+    we("notifyTarget", In.value), D().notifyOn && Hi();
+  }), [Ii, Pi].forEach((e) => e.addEventListener("change", () => {
+    Pn(), D().notifyOn && Hi();
+  })), oo(), Pn();
+  let qi = null;
+  function Or() {
+    qi || (qi = setTimeout(() => {
+      qi = null, He();
     }, 3e4));
   }
   return {
     updateStates(e) {
-      $e = e, ja(e), Ua(e), Date.now() - Ka > 60 * 60 * 1e3 && Za(), _r();
+      it = e, Xa(e), $a(e), Date.now() - Qa > 60 * 60 * 1e3 && eo(), Or();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (A.history = e.history, Xe()), Array.isArray(e.history) && Ne(), Array.isArray(e.checkins) && (A.checkins = e.checkins.map(Gi), Ye(), hn(), zt(), Xe(), Ne()), e.profiles && !ne.classList.contains("open") && !Se)) {
-        const t = _i(e);
-        Object.keys(M).forEach((n) => delete M[n]), Object.assign(M, t.profiles), A.order = t.order, M[F] || (F = A.order[0]), Wi(), ye(F);
+      if (e && (Array.isArray(e.history) && (F.history = e.history, at()), Array.isArray(e.history) && He(), Array.isArray(e.checkins) && (F.checkins = e.checkins.map(Zi), $e(), wn(), jt(), at(), He()), e.profiles && !le.classList.contains("open") && !Me)) {
+        const t = Ki(e);
+        Object.keys(L).forEach((n) => delete L[n]), Object.assign(L, t.profiles), F.order = t.order, L[M] || (M = F.order[0]), Ji(), Te(M);
       }
     },
     suspend() {
-      Y = !1;
+      K = !1;
     },
     resume() {
-      Y || (Y = !0, pt || (pt = requestAnimationFrame(wn)), mt || (mt = requestAnimationFrame(kn)), $t(y.querySelector(".tab.active"), !1));
+      K || (K = !0, bt || (bt = requestAnimationFrame(En)), yt || (yt = requestAnimationFrame(Mn)), an(y.querySelector(".tab.active"), !1));
     }
   };
 }
-const Yr = "0.23.1", Ai = "move_assistant", Ur = "move_assistant", co = "move_assistant_checkin_reminder";
+const Yr = "0.23.2", zi = "move_assistant", Ur = "move_assistant", uo = "move_assistant_checkin_reminder";
 function Kr() {
   if (document.getElementById("move-assistant-inter")) return;
   const y = document.createElement("link");
   y.id = "move-assistant-inter", y.rel = "stylesheet", y.href = "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap", document.head.appendChild(y);
 }
 class Zr extends HTMLElement {
-  setConfig(w) {
-    this._config = w || {};
+  setConfig(k) {
+    this._config = k || {};
   }
   static getStubConfig() {
     return {};
@@ -2937,72 +2958,72 @@ class Zr extends HTMLElement {
   getGridOptions() {
     return { columns: "full", min_columns: 12 };
   }
-  set hass(w) {
+  set hass(k) {
     const a = !this._hass;
-    if (this._hass = w, a) {
+    if (this._hass = k, a) {
       this._init();
       return;
     }
-    this._app && w.states !== this._lastStates && (this._lastStates = w.states, this._app.updateStates(w.states));
+    this._app && k.states !== this._lastStates && (this._lastStates = k.states, this._app.updateStates(k.states));
   }
   connectedCallback() {
-    var w;
-    (w = this._app) == null || w.resume();
+    var k;
+    (k = this._app) == null || k.resume();
   }
   disconnectedCallback() {
-    var w;
-    (w = this._app) == null || w.suspend();
+    var k;
+    (k = this._app) == null || k.suspend();
   }
   async _init() {
     Kr();
-    const w = this.shadowRoot || this.attachShadow({ mode: "open" });
-    w.innerHTML = `<style>${Wr}</style>${Vr}`;
-    const a = w.getElementById("app");
+    const k = this.shadowRoot || this.attachShadow({ mode: "open" });
+    k.innerHTML = `<style>${Wr}</style>${Vr}`;
+    const a = k.getElementById("app");
     a.style.opacity = "0";
-    let O = null;
+    let W = null;
     try {
-      const B = await this._hass.callWS({
+      const A = await this._hass.callWS({
         type: "frontend/get_user_data",
-        key: Ai
+        key: zi
       });
-      O = (B == null ? void 0 : B.value) ?? null;
+      W = (A == null ? void 0 : A.value) ?? null;
     } catch {
     }
-    this._lastSaved = JSON.stringify(O), this._app = jr(w, {
-      data: O,
-      save: (B) => this._save(B),
-      fire: (B, Y) => this._fire(B, Y),
-      ws: (B) => this._hass.callWS(B),
+    this._lastSaved = JSON.stringify(W), this._app = jr(k, {
+      data: W,
+      save: (A) => this._save(A),
+      fire: (A, K) => this._fire(A, K),
+      ws: (A) => this._hass.callWS(A),
       notifyServices: () => {
-        var B, Y;
-        return Object.keys(((Y = (B = this._hass) == null ? void 0 : B.services) == null ? void 0 : Y.notify) || {}).sort();
+        var A, K;
+        return Object.keys(((K = (A = this._hass) == null ? void 0 : A.services) == null ? void 0 : K.notify) || {}).sort();
       },
-      setReminderAutomation: (B) => this._setReminderAutomation(B),
-      setLight: (B) => this.classList.toggle("lightBody", B),
+      setReminderAutomation: (A) => this._setReminderAutomation(A),
+      setLight: (A) => this.classList.toggle("lightBody", A),
       fullscreenSupported: !!(this.requestFullscreen || this.webkitRequestFullscreen),
       toggleFullscreen: () => this._toggleFullscreen()
     }), this._lastStates = this._hass.states, this._app.updateStates(this._hass.states), this.isConnected || this._app.suspend(), a.style.transition = "opacity .2s ease", a.style.opacity = "", this._subscribe();
   }
   _subscribe() {
     var a;
-    const w = (a = this._hass) == null ? void 0 : a.connection;
-    w != null && w.subscribeMessage && w.subscribeMessage(
-      (O) => {
-        var Y;
-        const B = JSON.stringify((O == null ? void 0 : O.value) ?? null);
-        B === this._lastSaved || B === this._pendingJson || (this._lastSaved = B, (Y = this._app) == null || Y.applyRemoteData(O.value));
+    const k = (a = this._hass) == null ? void 0 : a.connection;
+    k != null && k.subscribeMessage && k.subscribeMessage(
+      (W) => {
+        var K;
+        const A = JSON.stringify((W == null ? void 0 : W.value) ?? null);
+        A === this._lastSaved || A === this._pendingJson || (this._lastSaved = A, (K = this._app) == null || K.applyRemoteData(W.value));
       },
-      { type: "frontend/subscribe_user_data", key: Ai }
+      { type: "frontend/subscribe_user_data", key: zi }
     ).catch(() => {
     });
   }
-  _save(w) {
-    this._pendingJson = JSON.stringify(w), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
+  _save(k) {
+    this._pendingJson = JSON.stringify(k), clearTimeout(this._saveTimer), this._saveTimer = setTimeout(async () => {
       const a = this._pendingJson;
       try {
         await this._hass.callWS({
           type: "frontend/set_user_data",
-          key: Ai,
+          key: zi,
           value: JSON.parse(a)
         }), this._lastSaved = a;
       } catch {
@@ -3010,54 +3031,54 @@ class Zr extends HTMLElement {
       }
     }, 400);
   }
-  _fire(w, a = {}) {
-    var O, B;
-    ((O = this._config) == null ? void 0 : O.events) !== !1 && ((B = this._hass) == null || B.callWS({
+  _fire(k, a = {}) {
+    var W, A;
+    ((W = this._config) == null ? void 0 : W.events) !== !1 && ((A = this._hass) == null || A.callWS({
       type: "fire_event",
       event_type: Ur,
-      event_data: { action: w, ...a }
+      event_data: { action: k, ...a }
     }).catch(() => {
     }));
   }
   // Keeps one Home Assistant automation in sync with the check-in times.
   // Passing null removes it.
-  async _setReminderAutomation(w) {
-    const a = `config/automation/config/${co}`;
-    if (!w) {
+  async _setReminderAutomation(k) {
+    const a = `config/automation/config/${uo}`;
+    if (!k) {
       try {
         await this._hass.callApi("DELETE", a);
-      } catch (Y) {
-        if ((Y == null ? void 0 : Y.status_code) !== 404 && (Y == null ? void 0 : Y.status) !== 404) throw Y;
+      } catch (K) {
+        if ((K == null ? void 0 : K.status_code) !== 404 && (K == null ? void 0 : K.status) !== 404) throw K;
       }
       return;
     }
-    const O = (Y) => `${Y}:00`, B = window.location.pathname;
+    const W = (K) => `${K}:00`, A = window.location.pathname;
     await this._hass.callApi("POST", a, {
-      id: co,
+      id: uo,
       alias: "Move Assistant check-in reminder",
       description: "Created by Move Assistant. Change it in Move Assistant → Settings → Check-in.",
       mode: "single",
       triggers: [
-        { trigger: "time", at: O(w.times.morning), id: "morning" },
-        { trigger: "time", at: O(w.times.evening), id: "evening" }
+        { trigger: "time", at: W(k.times.morning), id: "morning" },
+        { trigger: "time", at: W(k.times.evening), id: "evening" }
       ],
       conditions: [],
       actions: [
         {
-          action: `notify.${w.target}`,
+          action: `notify.${k.target}`,
           data: {
             title: "Move Assistant",
             message: "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
-            data: { url: B, clickAction: B }
+            data: { url: A, clickAction: A }
           }
         }
       ]
     });
   }
   _toggleFullscreen() {
-    const w = document;
-    if (w.fullscreenElement || w.webkitFullscreenElement) {
-      (w.exitFullscreen || w.webkitExitFullscreen).call(w);
+    const k = document;
+    if (k.fullscreenElement || k.webkitFullscreenElement) {
+      (k.exitFullscreen || k.webkitExitFullscreen).call(k);
       return;
     }
     const a = this.requestFullscreen || this.webkitRequestFullscreen;
@@ -3065,10 +3086,10 @@ class Zr extends HTMLElement {
       () => this._toast("Full screen isn't available here")
     );
   }
-  _toast(w) {
-    var O;
-    const a = (O = this.shadowRoot) == null ? void 0 : O.getElementById("toast");
-    a && (a.textContent = w, a.classList.add("show"), setTimeout(() => a.classList.remove("show"), 2600));
+  _toast(k) {
+    var W;
+    const a = (W = this.shadowRoot) == null ? void 0 : W.getElementById("toast");
+    a && (a.textContent = k, a.classList.add("show"), setTimeout(() => a.classList.remove("show"), 2600));
   }
 }
 customElements.get("move-assistant-card") || (customElements.define("move-assistant-card", Zr), window.customCards = window.customCards || [], window.customCards.push({

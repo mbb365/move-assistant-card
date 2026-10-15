@@ -844,76 +844,98 @@ function renderList(arr,targetId){
    target.appendChild(row);
  });
 }
-// Drag a row by its handle. The row follows the pointer; when it passes the middle of a
-// neighbour the two swap, and the neighbours glide to their new places (FLIP animation).
 const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-const SETTLE='transform .24s cubic-bezier(.2,.8,.2,1)';
+const buzz=ms=>{try{navigator.vibrate?.(ms)}catch(_){}}; // a tiny tap on phones that support it
+// Reordering has the same feel as dragging a new step in: the row lifts with a little pop, follows
+// the pointer on a spring (with a touch of sway, tilt and stretch), the rows it passes bounce out of
+// the way, and on release it springs into its new place and lands with a small squash.
 function startRowDrag(e,row,list,arr){
  if(e.button!==undefined&&e.button!==0)return;
  e.preventDefault();
- const handle=e.currentTarget;
- try{handle.setPointerCapture(e.pointerId)}catch(_){}
- const scroller=row.closest('.exerciseScroller');
- const grab=e.clientY-row.getBoundingClientRect().top;
- let lastY=e.clientY,scrollTimer=null;
- row.classList.add('dragging');
- row.style.transition='none';
- const follow=()=>{
-   row.style.transform='';
-   const top=row.getBoundingClientRect().top;
-   row.style.transform='translateY('+(lastY-grab-top)+'px) scale(1.015)';
+ const handle=e.currentTarget,pid=e.pointerId,motion=!reduceMotion();
+ try{handle.setPointerCapture(pid)}catch(_){}
+ const scroller=row.closest('.exerciseScroller')||scrollParent(row);
+ const prevPosition=list.style.position;list.style.position='relative'; // row.offsetTop is then measured from the list
+ const layoutTop=()=>list.getBoundingClientRect().top+row.offsetTop;
+ const startTop=row.getBoundingClientRect().top,grab=e.clientY-startTop,startX=e.clientX;
+ let lastY=e.clientY,lastX=e.clientX,y=startTop,vy=0,x=0,vx=0,lift=1,vl=0;
+ let raf=0,settling=false,landed=false,order=null,moved=false;
+ row.classList.add('dragging');row.style.transition='none';
+ buzz(8);
+ const paint=()=>{
+   const st=motion?Math.min(Math.abs(vy)/40,1):0;
+   const tilt=motion?Math.max(-3,Math.min(3,vx*.6)):0;
+   row.style.transform='translate('+x.toFixed(2)+'px,'+(y-layoutTop()).toFixed(2)+'px) rotate('+tilt.toFixed(2)+'deg) scale('+(lift*(1-.04*st)).toFixed(4)+','+(lift*(1+.06*st)).toFixed(4)+')';
  };
+ const frame=()=>{
+   raf=requestAnimationFrame(frame);
+   const ty=settling?layoutTop():lastY-grab;
+   const tx=settling?0:Math.max(-22,Math.min(22,(lastX-startX)*.22));
+   const tl=settling?1:1.035;
+   if(!motion){y=ty;x=0;lift=1;paint();if(settling)land();return}
+   const k=settling?.24:.2,d=settling?.62:.68;
+   vy=(vy+(ty-y)*k)*d;y+=vy;
+   vx=(vx+(tx-x)*.16)*.7;x+=vx;
+   vl=(vl+(tl-lift)*.22)*.6;lift+=vl;
+   paint();
+   if(settling&&Math.abs(vy)<.15&&Math.abs(ty-y)<.5&&Math.abs(x)<.5&&Math.abs(lift-1)<.003)land();
+ };
+ // the rows it passes bounce out of the way, carrying on from wherever they are mid-bounce
  const glide=mutate=>{
    const others=[...list.children].filter(r=>r!==row);
    const before=new Map(others.map(r=>[r,r.getBoundingClientRect().top]));
+   others.forEach(r=>r.getAnimations().forEach(a=>a.cancel()));
    mutate();
-   if(reduceMotion())return;
+   buzz(4);
+   if(!motion)return;
    others.forEach(r=>{
-     r.style.transition='none';r.style.transform='';
      const dy=before.get(r)-r.getBoundingClientRect().top;
-     if(!dy)return;
-     r.style.transform='translateY('+dy+'px)';
-     r.getBoundingClientRect();
-     r.style.transition=SETTLE;r.style.transform='';
+     if(Math.abs(dy)<.5)return;
+     r.animate([{transform:'translateY('+dy+'px)'},{transform:'none'}],{duration:440,easing:RUBBER});
    });
  };
  const place=()=>{
-   const others=[...list.children].filter(r=>r!==row);
+   const listTop=list.getBoundingClientRect().top;
+   const others=[...list.children].filter(r=>r!==row&&r.classList.contains('moveRow'));
    const center=lastY-grab+row.offsetHeight/2;
-   const before=others.find(r=>{const b=r.getBoundingClientRect();return center<b.top+b.height/2});
+   const before=others.find(r=>center<listTop+r.offsetTop+r.offsetHeight/2);
    if(before){if(row.nextElementSibling!==before)glide(()=>list.insertBefore(row,before))}
    else if(list.lastElementChild!==row)glide(()=>list.appendChild(row));
-   follow();
  };
- const autoScroll=()=>{
-   if(!scroller)return;
+ const scrollTimer=setInterval(()=>{
+   if(!scroller||settling)return;
    const b=scroller.getBoundingClientRect(),edge=56;
    const dy=lastY<b.top+edge?-10:lastY>b.bottom-edge?10:0;
    if(dy){scroller.scrollTop+=dy;place()}
- };
- const move=ev=>{lastY=ev.clientY;place()};
- const end=()=>{
+ },30);
+ function land(){
+   if(landed)return;landed=true;
+   cancelAnimationFrame(raf);
+   row.classList.remove('dragging');row.style.transition='';row.style.transform='';
+   list.style.position=prevPosition;
+   if(moved){const next=order.map(i=>arr[i]);arr.splice(0,arr.length,...next)}
+   const id=row.dataset.id;
+   buildRoutine();
+   const placed=id&&list.querySelector('.moveRow[data-id="'+id+'"]');
+   if(placed&&motion)placed.animate([{transform:'scale(1.02,.95)'},{transform:'scale(.995,1.012)'},{transform:'none'}],{duration:340,easing:'ease-out'});
+   if(moved)showToast('Order saved');
+ }
+ const move=ev=>{if(ev.pointerId!==pid)return;if(ev.pointerType==='mouse'&&ev.buttons===0){release();return}lastY=ev.clientY;lastX=ev.clientX;place()};
+ const up=ev=>{if(ev.pointerId===pid)release()};
+ function release(){
+   if(settling)return;
+   window.removeEventListener('pointermove',move,true);window.removeEventListener('pointerup',up,true);
+   window.removeEventListener('pointercancel',up,true);handle.removeEventListener('lostpointercapture',release);
    clearInterval(scrollTimer);
-   handle.removeEventListener('pointermove',move);
-   handle.removeEventListener('pointerup',end);
-   handle.removeEventListener('pointercancel',end);
-   const order=[...list.children].map(r=>Number(r.dataset.index));
-   const moved=order.some((v,i)=>v!==i);
-   const finish=()=>{
-     row.classList.remove('dragging');row.style.transition='';row.style.transform='';
-     if(moved){const next=order.map(i=>arr[i]);arr.splice(0,arr.length,...next)}
-     buildRoutine();
-     if(moved)showToast('Order saved');
-   };
-   if(reduceMotion()){finish();return}
-   row.style.transition=SETTLE;row.style.transform='';
-   setTimeout(finish,250);
- };
- handle.addEventListener('pointermove',move);
- handle.addEventListener('pointerup',end);
- handle.addEventListener('pointercancel',end);
- scrollTimer=setInterval(autoScroll,30);
- follow();
+   order=[...list.children].filter(r=>r.classList.contains('moveRow')).map(r=>Number(r.dataset.index));
+   moved=order.some((v,i)=>v!==i);
+   settling=true;buzz(6);
+   setTimeout(land,800);
+ }
+ window.addEventListener('pointermove',move,true);window.addEventListener('pointerup',up,true);
+ window.addEventListener('pointercancel',up,true);handle.addEventListener('lostpointercapture',release);
+ raf=requestAnimationFrame(frame);
+ paint();
 }
 function renderLists(){
  const profile=workoutProfiles[selectedWorkoutKey];
