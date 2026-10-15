@@ -100,12 +100,10 @@ function enterCreateFlow(){
   const strengthSection=$('strengthList')?.closest('section');
   const coolSection=$('cooldownList')?.closest('section');
 
-  [warmSection,movementLaunch,movementCreator,strengthSection,coolSection].forEach(node=>moveToCreateSlot(node,createMovementsSlot));
+  const extras=createMoveOptions?.querySelector('.createExtras');
+  [extras,warmSection,movementLaunch,movementCreator,strengthSection,coolSection].forEach(node=>node&&moveToCreateSlot(node,createMovementsSlot));
   [createMoveOptions,timeTiles,routineSummary,tempoRevealRow,tempoExperiment].forEach(node=>moveToCreateSlot(node,createTimingSlot));
   moveToCreateSlot(editNameRow,createFinishSlot);
-
-  const extras=createMoveOptions?.querySelector('.createExtras');
-  if(extras)moveToCreateSlot(extras,createFinishSlot);
 
   setCreateStep('movements');
   updateCreateStepSummaries();
@@ -262,9 +260,13 @@ function setWorkoutProfile(key){
  roundsInput.value=profile.rounds||1;
 
  if(profile.customSequence){
-   warmup=[];
-   cooldown=[];
-   strengthPool=(profile.sequence||[]).map(item=>({...item}));
+   // The premade warm-up and cooldown live in their own sections. Older saves mixed them into
+   // the sequence (marked with presetRole), so split those out.
+   const seq=(profile.sequence||[]).map(item=>({...item}));
+   const fromSeq=role=>seq.filter(x=>x.presetRole===role).map(({presetRole,...x})=>x);
+   warmup=(profile.warmup||fromSeq('warmup')).map(x=>({...x}));
+   cooldown=(profile.cooldown||fromSeq('cooldown')).map(x=>({...x}));
+   strengthPool=seq.filter(x=>!x.presetRole);
    applyCreatePreset(profile.preset||'movement',false);
  }else{
    totalInput.min=3; totalInput.max=40; totalInput.step=1;
@@ -493,23 +495,18 @@ function applyCreatePreset(preset,resetValues=true){
   }
   updateRangeFills();
 }
+function premadeItems(list,tag){
+  // focus-work moves run in long blocks, so their stretches get a minute each instead
+  const own=createMovePreset==='work';
+  return list.map((x,i)=>({...x,id:tag+'-'+i+'-'+Date.now().toString(36),useGlobalTiming:!own,duration:own?60:Number(workInput.value)}));
+}
 function syncPremadeSequence(){
   const profile=workoutProfiles[selectedWorkoutKey];
   if(!profile?.customSequence)return;
-
-  strengthPool=strengthPool.filter(item=>!item.presetRole);
-  if($('includeWarmupPreset').checked){
-    const preset=defaultWarmup.map((x,i)=>({...x,id:'preset-warm-'+i+'-'+Date.now(),kind:'work',duration:Number(workInput.value),presetRole:'warmup'}));
-    strengthPool=[...preset,...strengthPool];
-    profile.includeWarmup=true;
-  }else profile.includeWarmup=false;
-
-  if($('includeCooldownPreset').checked){
-    const preset=defaultCooldown.map((x,i)=>({...x,id:'preset-cool-'+i+'-'+Date.now(),kind:'work',duration:Number(workInput.value),presetRole:'cooldown'}));
-    strengthPool=[...strengthPool,...preset];
-    profile.includeCooldown=true;
-  }else profile.includeCooldown=false;
-
+  profile.includeWarmup=$('includeWarmupPreset').checked;
+  profile.includeCooldown=$('includeCooldownPreset').checked;
+  if(profile.includeWarmup&&!warmup.length)warmup=premadeItems(defaultWarmup,'warm');
+  if(profile.includeCooldown&&!cooldown.length)cooldown=premadeItems(defaultCooldown,'cool');
   buildRoutine();
 }
 function updateUpcomingCountOptions(){
@@ -537,7 +534,10 @@ function buildRoutine(){
  const work=Number(workInput.value);
  const rest=Number(restInput.value);
  const profile=workoutProfiles[selectedWorkoutKey];
- const vWarm=profile?.warmupOff?[]:visible(warmup),vStrength=visible(strengthPool),vCool=visible(cooldown);
+ const custom=Boolean(profile?.customSequence);
+ const vWarm=(custom?!profile.includeWarmup:profile?.warmupOff)?[]:visible(warmup);
+ const vStrength=visible(strengthPool);
+ const vCool=custom&&!profile.includeCooldown?[]:visible(cooldown);
  if(profile){
    profile.total=Number(totalInput.value);
    profile.work=work;
@@ -545,6 +545,8 @@ function buildRoutine(){
    profile.rounds=Number(roundsInput.value)||1;
    if(profile.customSequence){
      profile.sequence=strengthPool.map(x=>({...x}));
+     profile.warmup=warmup.map(x=>({...x}));
+     profile.cooldown=cooldown.map(x=>({...x}));
    }else{
      profile.strength=strengthPool.map(x=>({...x}));
      profile.warmup=warmup.map(x=>({...x}));
@@ -553,7 +555,7 @@ function buildRoutine(){
  }
 
  if(profile?.customSequence){
-   const baseSequence=vStrength.map(item=>{
+   const baseSequence=[...vWarm.map(x=>({...x,section:'warmup'})),...vStrength,...vCool.map(x=>({...x,section:'cooldown'}))].map(item=>{
      if(item.kind==='video')return {...item,duration:videoStepSeconds(item,work),rest:0};
      if(item.kind==='rest'){
        const duration=item.useGlobalTiming===true
@@ -645,7 +647,7 @@ function buildRoutine(){
    : formatTotalMinutes(totalMinutes);
  const extras=[vWarm.length?'warm-up':'',vCool.length?'cooldown':''].filter(Boolean);
  const text=profile?.customSequence
-   ? length+' · '+perRound+' items'
+   ? length+' · '+perRound+' items'+(extras.length&&!(rounds>1&&onceSeconds)?' · '+extras.join(' + '):'')
    : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+(extras.length&&!(rounds>1&&onceSeconds)?' · '+extras.join(' + '):'');
  totalOut.textContent=formatDuration(roundSeconds);
  const steps=routine.filter(x=>!x.roundBreak).length;
@@ -888,8 +890,8 @@ function renderLists(){
  const strengthTitle=$('strengthList')?.closest('section')?.querySelector('.sectionTitle');
 
  if(profile?.customSequence){
-   if(warmSection)warmSection.hidden=true;
-   if(coolSection)coolSection.hidden=true;
+   if(warmSection)warmSection.hidden=!profile.includeWarmup;
+   if(coolSection)coolSection.hidden=!profile.includeCooldown;
    if(strengthTitle){
      strengthTitle.textContent='Move sequence';
    }
