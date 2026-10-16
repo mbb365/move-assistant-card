@@ -672,6 +672,7 @@ function buildRoutine(){
  }
 }
 const GRIP='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
+const TRASH='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>';
 // ---- edit a movement in place ----
 let editingItem=null;
 let pendingNew=null; // {item,arr}: dropped into the list but not saved yet
@@ -826,8 +827,8 @@ function renderList(arr,targetId){
      return;
    }
    row.innerHTML=handleHtml+textHtml+
-     '<div class="moveActions"><button class="hideBtn editBtn" type="button" aria-label="Edit '+esc(item.name)+'">Edit</button><button class="hideBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
-     '<button class="removeBtn" type="button" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>';
+     '<div class="moveActions seg"><button class="hideBtn editBtn segBtn" type="button" aria-label="Edit '+esc(item.name)+'">Edit</button><button class="hideBtn segBtn" type="button">'+(item.hidden?'Show':'Hide')+'</button>'+
+     '<button class="removeBtn segBtn" type="button" title="Hold to remove" aria-label="Hold to remove '+esc(item.name)+'"><span class="removeFill"></span><span class="removeLabel">'+TRASH+'</span></button></div>';
    row.querySelector('.editBtn').addEventListener('click',()=>{discardPendingNew();editingItem=item;buildRoutine();focusEditForm()});
    row.querySelector('.hideBtn:not(.editBtn)').addEventListener('click',()=>{item.hidden=!item.hidden;buildRoutine()});
    const removeBtn=row.querySelector('.removeBtn');

@@ -5,16 +5,17 @@
   position:relative;
   background:#050505;
   color-scheme:dark;
-  --bg:#050505;--page:#090909;--card:#1d1d1d;--card2:#242424;
-  --tile:#252525;--tile-2:#292929;--row:#2a2a2a;--row-rest:#22252a;--raised:#282828;--chip:#292929;--bar-track:#292929;
-  --control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#313131;
-  --text:#f4f4f4;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);
+  --bg:#050505;--page:#090909;--card:#222222;--card2:#262626;
+  --tile:#2b2b2b;--tile-2:#2b2b2b;--row:#2b2b2b;--row-rest:#2b2b2b;--raised:#2b2b2b;--chip:#2b2b2b;--bar-track:#2b2b2b;
+  --control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#3f3f3f;
+  --text:#f1f1f1;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);
   --line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;
   --bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;
   --segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;
   --hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);
   --today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;
-  --danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;
+  --danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--on-danger-fill:#222222;
+  --seg-bg:#3f3f3f;--seg-on:#2b2b2b;
   --scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);
   --r:36px;--gap:20px}
 *{box-sizing:border-box}
@@ -30,13 +31,14 @@ button,input{font:inherit}
   --bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;
   --tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;
   --control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);
-  --text:#222222;--soft:#3F3F3F;--muted:#6B6B6B;--accent-text:#5B7A00;
-  --line:#FFFFFF;--lineb:#FFFFFF;--field-line:#DAD8D8;--divider:#E6E4E4;--border-hover:#C9C7C7;
+  --text:#222222;--soft:#3F3F3F;--muted:#3F3F3F;--accent-text:#5B7A00;
+  --line:#D8D6D6;--lineb:#D8D6D6;--field-line:#D8D6D6;--divider:#E6E4E4;--border-hover:#C9C7C7;
   --bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);
   --segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;
   --hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);
   --today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;
   --danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;
+  --seg-bg:#E3E1E1;--seg-on:#FFFFFF;
   --scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}
 #app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink) !important}
 #app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f !important}
@@ -149,7 +151,7 @@ button,input{font:inherit}
   pointer-events:none;
   position:absolute;
   inset:0;
-  border-radius:28.8px;
+  border-radius:inherit;
   pointer-events:none;
   transition:opacity .18s ease-out}
 
@@ -216,7 +218,7 @@ button,input{font:inherit}
   content:"";
   position:absolute;
   inset:19.2px;
-  border-radius:28.8px;
+  border-radius:inherit;
   box-shadow:
     inset 0 0 0 0.8px var(--glow-color-60),
     inset 0 0 2.4px 0 var(--glow-color-40),
@@ -962,9 +964,10 @@ button,input{font:inherit}
 .settingsPane{display:none}.settingsPane.active{display:block}
 .integrationList,.toggleList{display:grid;gap:9.6px}
 .integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}
-.switch{position:relative;width:46.4px;height:27.2px;border-radius:799.2px;background:var(--switch-off);border:0.32px solid var(--field-line);flex:0 0 auto;cursor:pointer}
-.switch:after{content:"";position:absolute;width:20.8px;height:20.8px;border-radius:799.2px;top:2.4px;left:2.4px;background:var(--knob-off);transition:left .18s ease}
-.switch.on{background:var(--bright)}.switch.on:after{left:22.4px;background:var(--on-bright)}
+/* Figma Switch: rounded-square track, a knob that is flat on the side facing the middle */
+.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-icon);background:var(--track);border:0.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}
+.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}
+.switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
 
 .themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}
 .themeBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
@@ -1038,13 +1041,14 @@ button,input{font:inherit}
 }
 @media(max-width:620px){.modal{width:100%;height:100%;max-height:100%}
   #app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}
-  .card,.timerCard,.movementCard,.nextCard,.modal,.tile{border-radius:24px}.exerciseTitle{}.timerCard{min-height:224px}.digits{font-size:144px}
+  .modal{border-radius:var(--r-tile)}.exerciseTitle{}.timerCard{min-height:224px}.digits{font-size:144px}
   .weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}
   .modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}
 }
 
-button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.switch,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment{border-radius:12px!important}
-.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:36px}
+/* buttons and fields share the control radius; segmented buttons and switches have their own shape */
+:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-control)!important}
+.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
 
 
 .movementCreatorLaunch{
@@ -1630,9 +1634,10 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   --primary-tint:color-mix(in srgb,var(--primary) 16%,white);
   --primary-ink:color-mix(in srgb,var(--primary) 75%,black);
   --font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  /* Synced from Figma text styles Desktop/* and Phone/* (2026-10-06) */
+  --font-tile:Geist,var(--font);
+  /* Synced from Figma text styles Desktop/*, Phone/* and Tile/* (2026-10-16) */
   --w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;
-  --t-display:64px;   /* move names, big numbers, page title */
+  --t-display:56px;   /* move names, big numbers, page title */
   --t-title:22px;     /* card + popup titles (Medium Italic) */
   --t-value:22px;     /* readings */
   --t-section:18px;   /* labels above cards */
@@ -1640,6 +1645,14 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
   --t-body:14px;      /* sentences */
   --t-caption:12px;   /* small extras */
   --lh-display:1.05;--lh-title:1;
+  /* Tile/Title + Tile/Detail (Geist): the name and second line inside every tile and row */
+  --t-tile-title:18px;--lh-tile-title:22.4px;
+  --t-tile-detail:16px;--lh-tile-detail:20px;
+  /* Shapes and tile layout, synced from Figma Radius + Component metrics (2026-10-16) */
+  --r-card:50px;--r-tile:36px;--r-icon:16px;--r-control:12px;--r-seg:32px;
+  --card-pad:22px 24px 24px;--card-gap:22px;
+  --tile-pad:16px 20px;--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;
+  --chip-size:46px;--glyph-size:34px;
 }
 @media(max-width:620px){:host{
   --t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;
@@ -1669,24 +1682,33 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 .sectionLabel,.nextLabel{
   font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}
 
+/* Tile title: the name inside a tile or row (Geist) */
+.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,
+.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{
+  font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
+
+/* Tile detail: the second line inside a tile or row (Geist) */
+.moveMeta,.status,.timeValue,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{
+  font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
+
 /* Strong */
-.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,.weekChipTop strong,.weekChipTime,
-.panelCollapsedText,.activityCount,.metaType,.setupSummaryText strong,.sheetChoice strong,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.createPresetBtn strong,
-.createExtraToggle strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,
+.weekChipTop strong,.weekChipTime,
+.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,
+.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,
 .primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,
 .movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
   font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}
 
 /* Body */
-.sub,.meta,.note,.weekCopy,.timeValue,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,
+.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,
 .helpSteps li,.helpNote,.createStepSummary,.insightLine{
   font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}
 
 /* Caption */
-.moveEditForm label>span,.addGhostText small,.setupSummaryText small,.setupSummaryAction,.sheetChoice small,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.status,.motionRangeWrap span,.moveMeta,.sectionTitle,.editNameLabel,
+.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,
 .dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,
 .testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,
-.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.createPresetBtn span,.createExtraToggle small,
+.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,
 .autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,
 .chartLegend,#app code{
   font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}
@@ -1950,3 +1972,92 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 /* pulled off to the side: it will go back where it started */
 .moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}
 @media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}
+
+/* =========================================================
+   Figma design system sync (2026-10-16)
+   Cards are 50 round with 22/24 padding. Everything inside a
+   card is a 36-round tile: 16/20 padding, at least 78 tall,
+   a 46 icon chip, then a Geist name + second line.
+   ========================================================= */
+.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--card-pad)}
+.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}
+.upcomingCard{padding:var(--card-pad)}
+
+/* move cards: the chosen one is a card, the others are tiles */
+.workoutPanel{border-radius:var(--r-tile);padding:var(--tile-pad)}
+.workoutPanel.active{border-radius:var(--r-card)}
+.workoutPanel.addPanel{padding:var(--tile-pad)}
+
+/* tiles */
+.activityRow,.integration,.toggleRow,.setupSwitchRow,.moveRow,.timeTile,.timingGroup .timeRow,
+.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary,.helpSteps li,.metaTableWrap,.routineSummary{border-radius:var(--r-tile)}
+.activityRow,.integration,.toggleRow,.setupSwitchRow,.moveRow{min-height:var(--tile-min);padding:var(--tile-pad);gap:var(--tile-gap)}
+.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}
+.activityRows{gap:12px}
+.timeTile{padding:var(--tile-pad);gap:var(--tile-action-gap)}
+.timeHeader{gap:var(--tile-gap)}
+.createPresetBtn,.createExtraToggle{padding:var(--tile-pad)}
+.routineSummary{padding:12px 20px}
+.weekBarTrack,.weekBarTrack span{border-radius:var(--r-tile)}
+
+/* the second line in a tile is full-strength text, like the name */
+.moveMeta,.status,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
+.createPresetBtn.active span{color:var(--on-bright)}
+.moveMeta,.status,.timeValue{margin-top:0}
+.activityRowMeta{margin-top:0}
+
+/* icon chips: 46, rounded 16 */
+.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);font-size:20px}
+.navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon)}
+
+/* timing: a card holding one tile per setting */
+.timingGroup{background:var(--card);border-radius:var(--r-card);padding:var(--card-pad);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
+.timingGroup .timeRow{background:var(--tile);padding:var(--tile-pad);gap:var(--tile-action-gap);min-height:var(--tile-min);align-content:center}
+.timingGroup .timeRow+.timeRow{border-top:0}
+.timingGroup .timeTotal{padding-bottom:16px}
+
+/* move rows */
+.moveRow.editing{padding:var(--tile-pad)}
+.moveRow.phoneRow{min-height:0;padding:12px 16px 12px 12px;gap:12px}
+.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-icon);background:var(--icon-bg);color:var(--muted)}
+.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}
+.moveRow.restItem .dragHandle{background:transparent}
+.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}
+.moveRow.restItem .dragHandle:hover{background:var(--hover)}
+.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}
+
+/* segmented control (Figma "Segmented control"): Edit | Hide | Delete on rows, tabs in Settings */
+.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-tile);background:var(--seg-bg);flex:0 0 auto}
+.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-seg);background:transparent;color:var(--text);cursor:pointer}
+.segBtn:hover{background:var(--hover)}
+.moveActions.seg{gap:4px}
+.moveActions .segBtn{min-width:100px}
+.moveActions .editBtn{background:var(--seg-on)}
+.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}
+.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}
+.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}
+.moveActions .removeBtn svg{display:block;width:24px;height:24px}
+.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}
+.moveActions .removeBtn.holding{color:#fff}
+@media(max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}
+
+.tabs.rubberTabs{padding:4px;border:0;border-radius:var(--r-tile);background:var(--seg-bg)}
+.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-seg);background:var(--seg-on)}
+.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}
+.tabs.rubberTabs .tab.active{color:var(--text)}
+#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}
+
+/* switch with a label (Use global timing): same shape as the Switch */
+.toggleTrack{width:50px;height:28px;border-radius:var(--r-icon);background:var(--track);border:0.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}
+.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}
+.globalTimingToggle input:checked + .toggleTrack{background:var(--bright);opacity:1}
+.globalTimingToggle input:checked + .toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
+
+/* tablets and phones: move cards are a swipeable row of full cards */
+@media(max-width:900px){
+  .workoutPanel:not(.addPanel){border-radius:var(--r-card);padding:var(--card-pad)}
+}
+/* phones keep their tighter spacing, in the same shapes */
+@media(max-width:620px){:host{
+  --card-pad:16px;--tile-pad:12px 16px;--tile-min:70px;--card-gap:16px;
+}}
