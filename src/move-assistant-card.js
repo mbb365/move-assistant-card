@@ -2,7 +2,7 @@ import css from "./styles.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 
-const VERSION = "0.23.2";
+const VERSION = "0.23.3";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";

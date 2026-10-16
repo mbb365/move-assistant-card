@@ -846,33 +846,71 @@ function renderList(arr,targetId){
 }
 const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const buzz=ms=>{try{navigator.vibrate?.(ms)}catch(_){}}; // a tiny tap on phones that support it
-// Reordering has the same feel as dragging a new step in: the row lifts with a little pop, follows
-// the pointer on a spring (with a touch of sway, tilt and stretch), the rows it passes bounce out of
-// the way, and on release it springs into its new place and lands with a small squash.
+// Reordering has the same feel as dragging a new step in: the row lifts with a little pop and
+// follows the pointer on a spring (sway, tilt and stretch). The grabbed row never moves in the page
+// while you drag (moving it would drop the pointer); the other rows slide out of the way on the
+// rubbery curve to show where it will land, however far you sweep. Pull it off to the side and the
+// gap closes: let go there and it springs back to where it started.
 function startRowDrag(e,row,list,arr){
  if(e.button!==undefined&&e.button!==0)return;
  e.preventDefault();
  const handle=e.currentTarget,pid=e.pointerId,motion=!reduceMotion();
  try{handle.setPointerCapture(pid)}catch(_){}
  const scroller=row.closest('.exerciseScroller')||scrollParent(row);
- const prevPosition=list.style.position;list.style.position='relative'; // row.offsetTop is then measured from the list
- const layoutTop=()=>list.getBoundingClientRect().top+row.offsetTop;
- const startTop=row.getBoundingClientRect().top,grab=e.clientY-startTop,startX=e.clientX;
- let lastY=e.clientY,lastX=e.clientX,y=startTop,vy=0,x=0,vx=0,lift=1,vl=0;
- let raf=0,settling=false,landed=false,order=null,moved=false;
- row.classList.add('dragging');row.style.transition='none';
+ const prevPosition=list.style.position;list.style.position='relative'; // offsets are then measured from the list
+ const rows=[...list.children].filter(r=>r.classList.contains('moveRow'));
+ const from=rows.indexOf(row);
+ const gap=parseFloat(getComputedStyle(list).rowGap)||8;
+ const h=row.offsetHeight,step=h+gap;
+ const tops=rows.map(r=>r.offsetTop),heights=rows.map(r=>r.offsetHeight);
+ const listTop=()=>list.getBoundingClientRect().top;
+ const width=list.getBoundingClientRect().width;
+ const grab=e.clientY-(listTop()+tops[from]),startX=e.clientX;
+ let lastY=e.clientY,lastX=e.clientX,y=listTop()+tops[from],vy=0,x=0,vx=0,lift=1,vl=0;
+ let to=from,cancelling=false,raf=0,settling=false,landed=false,finalTop=tops[from];
+ list.classList.add('reordering');row.classList.add('dragging');row.style.transition='none';
  buzz(8);
+ // how many of the other rows sit above the dragged row's centre (in the original layout)
+ const targetIndex=()=>{
+   const center=lastY-grab+h/2-listTop();
+   let n=0;
+   rows.forEach((r,i)=>{if(i!==from&&center>tops[i]+heights[i]/2)n++});
+   return n;
+ };
+ const shiftOthers=()=>{
+   rows.forEach((r,i)=>{
+     if(i===from)return;
+     const s=from<to&&i>from&&i<=to?-step:from>to&&i>=to&&i<from?step:0;
+     r.style.transform=s?'translateY('+s+'px)':'';
+   });
+ };
+ const update=()=>{
+   const lb=list.getBoundingClientRect();
+   const off=Math.abs(lastX-startX)>Math.max(80,width*.3)||lastX<lb.left-24||lastX>lb.right+24;
+   if(off!==cancelling){cancelling=off;row.classList.toggle('willReturn',off);buzz(off?10:4)}
+   const next=cancelling?from:targetIndex();
+   if(next!==to){to=next;shiftOthers();if(!cancelling)buzz(4)}
+ };
+ // the dragged row's top once it lands in slot `to`
+ const landingTop=()=>{
+   if(to===from)return tops[from];
+   const others=rows.filter((r,i)=>i!==from);
+   let top=tops[0];
+   for(let k=0;k<to;k++)top+=others[k].offsetHeight+gap;
+   return top;
+ };
  const paint=()=>{
    const st=motion?Math.min(Math.abs(vy)/40,1):0;
-   const tilt=motion?Math.max(-3,Math.min(3,vx*.6)):0;
-   row.style.transform='translate('+x.toFixed(2)+'px,'+(y-layoutTop()).toFixed(2)+'px) rotate('+tilt.toFixed(2)+'deg) scale('+(lift*(1-.04*st)).toFixed(4)+','+(lift*(1+.06*st)).toFixed(4)+')';
+   const tilt=motion&&!settling?Math.max(-3,Math.min(3,vx*.6)):0;
+   row.style.transform='translate('+x.toFixed(2)+'px,'+(y-(listTop()+tops[from])).toFixed(2)+'px) rotate('+tilt.toFixed(2)+'deg) scale('+(lift*(1-.04*st)).toFixed(4)+','+(lift*(1+.06*st)).toFixed(4)+')';
  };
  const frame=()=>{
    raf=requestAnimationFrame(frame);
-   const ty=settling?layoutTop():lastY-grab;
-   const tx=settling?0:Math.max(-22,Math.min(22,(lastX-startX)*.22));
-   const tl=settling?1:1.035;
-   if(!motion){y=ty;x=0;lift=1;paint();if(settling)land();return}
+   const dx=lastX-startX;
+   const ty=settling?listTop()+finalTop:lastY-grab;
+   const tx=settling?0:cancelling?dx*.9:Math.max(-22,Math.min(22,dx*.22));
+   const tl=settling?1:cancelling?.97:1.035;
+   if(!motion){y=ty;x=settling?0:tx;lift=1;paint();if(settling)land();return}
    const k=settling?.24:.2,d=settling?.62:.68;
    vy=(vy+(ty-y)*k)*d;y+=vy;
    vx=(vx+(tx-x)*.16)*.7;x+=vx;
@@ -880,55 +918,39 @@ function startRowDrag(e,row,list,arr){
    paint();
    if(settling&&Math.abs(vy)<.15&&Math.abs(ty-y)<.5&&Math.abs(x)<.5&&Math.abs(lift-1)<.003)land();
  };
- // the rows it passes bounce out of the way, carrying on from wherever they are mid-bounce
- const glide=mutate=>{
-   const others=[...list.children].filter(r=>r!==row);
-   const before=new Map(others.map(r=>[r,r.getBoundingClientRect().top]));
-   others.forEach(r=>r.getAnimations().forEach(a=>a.cancel()));
-   mutate();
-   buzz(4);
-   if(!motion)return;
-   others.forEach(r=>{
-     const dy=before.get(r)-r.getBoundingClientRect().top;
-     if(Math.abs(dy)<.5)return;
-     r.animate([{transform:'translateY('+dy+'px)'},{transform:'none'}],{duration:440,easing:RUBBER});
-   });
- };
- const place=()=>{
-   const listTop=list.getBoundingClientRect().top;
-   const others=[...list.children].filter(r=>r!==row&&r.classList.contains('moveRow'));
-   const center=lastY-grab+row.offsetHeight/2;
-   const before=others.find(r=>center<listTop+r.offsetTop+r.offsetHeight/2);
-   if(before){if(row.nextElementSibling!==before)glide(()=>list.insertBefore(row,before))}
-   else if(list.lastElementChild!==row)glide(()=>list.appendChild(row));
- };
  const scrollTimer=setInterval(()=>{
    if(!scroller||settling)return;
    const b=scroller.getBoundingClientRect(),edge=56;
    const dy=lastY<b.top+edge?-10:lastY>b.bottom-edge?10:0;
-   if(dy){scroller.scrollTop+=dy;place()}
+   if(dy){scroller.scrollTop+=dy;update()}
  },30);
  function land(){
    if(landed)return;landed=true;
    cancelAnimationFrame(raf);
-   row.classList.remove('dragging');row.style.transition='';row.style.transform='';
+   const moved=to!==from,id=row.dataset.id;
+   list.classList.remove('reordering');
+   rows.forEach(r=>{r.style.transition='none';r.style.transform=''});
+   row.classList.remove('dragging','willReturn');
    list.style.position=prevPosition;
-   if(moved){const next=order.map(i=>arr[i]);arr.splice(0,arr.length,...next)}
-   const id=row.dataset.id;
+   if(moved){const [it]=arr.splice(from,1);arr.splice(to,0,it)}
    buildRoutine();
    const placed=id&&list.querySelector('.moveRow[data-id="'+id+'"]');
    if(placed&&motion)placed.animate([{transform:'scale(1.02,.95)'},{transform:'scale(.995,1.012)'},{transform:'none'}],{duration:340,easing:'ease-out'});
    if(moved)showToast('Order saved');
  }
- const move=ev=>{if(ev.pointerId!==pid)return;if(ev.pointerType==='mouse'&&ev.buttons===0){release();return}lastY=ev.clientY;lastX=ev.clientX;place()};
+ const move=ev=>{
+   if(ev.pointerId!==pid)return;
+   if(ev.pointerType==='mouse'&&ev.buttons===0){release();return}
+   lastY=ev.clientY;lastX=ev.clientX;update();
+ };
  const up=ev=>{if(ev.pointerId===pid)release()};
  function release(){
    if(settling)return;
    window.removeEventListener('pointermove',move,true);window.removeEventListener('pointerup',up,true);
    window.removeEventListener('pointercancel',up,true);handle.removeEventListener('lostpointercapture',release);
    clearInterval(scrollTimer);
-   order=[...list.children].filter(r=>r.classList.contains('moveRow')).map(r=>Number(r.dataset.index));
-   moved=order.some((v,i)=>v!==i);
+   if(cancelling&&to!==from){to=from;shiftOthers()}
+   finalTop=landingTop();
    settling=true;buzz(6);
    setTimeout(land,800);
  }

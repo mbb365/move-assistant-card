@@ -1945,3 +1945,8 @@ button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.remove
 /* The Edit move panel must never scroll as a whole: a focused field (the phone keyboard) or
    scrollIntoView could slide it up under its header, leaving a see-through gap at the bottom. */
 .modal{overflow:clip}
+/* reordering: the other rows slide out of the way to show where the dragged one will land */
+.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}
+/* pulled off to the side: it will go back where it started */
+.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}
+@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}
