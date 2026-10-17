@@ -1393,16 +1393,27 @@ phoneQuery?.addEventListener?.('change',()=>{closeSheet();if(hovering&&!phoneLay
 // Belt and braces for browsers without overflow:clip: if anything scrolls the panel, put it back.
 {const panel=$('workoutModal').querySelector('.modal');
  panel.addEventListener('scroll',()=>{if(panel.scrollTop||panel.scrollLeft){panel.scrollTop=0;panel.scrollLeft=0}});}
-// Phones: when the on-screen keyboard opens, the browser pans the page to show the field. Keep
-// the editor fitted to the part of the screen you can actually see, above the keyboard.
+// Phones: the editor is a full-screen sheet sized to the part of the screen you can actually see —
+// the whole screen normally, the part above the keyboard while typing. It is measured rather than
+// left to CSS because the Home Assistant app (and the keyboard panning the page) can make a
+// "fixed, full height" panel end up taller, shorter or shifted.
 function fitEditorToScreen(){
   const backdrop=$('workoutModal'),vv=window.visualViewport;
-  const keyboardUp=vv&&backdrop.classList.contains('open')&&phoneLayout()&&(vv.height<window.innerHeight-1||vv.offsetTop>0);
-  if(!keyboardUp){['top','bottom','height'].forEach(k=>backdrop.style.removeProperty(k));return}
-  backdrop.style.top=vv.offsetTop+'px';backdrop.style.bottom='auto';backdrop.style.height=vv.height+'px';
+  if(!backdrop.classList.contains('open')||!phoneLayout()){unfitEditor();return}
+  const top=vv?vv.offsetTop:0,left=vv?vv.offsetLeft:0;
+  const w=vv?vv.width:window.innerWidth,h=vv?vv.height:window.innerHeight;
+  Object.assign(backdrop.style,{right:'auto',bottom:'auto',width:w+'px',height:h+'px',top:top+'px',left:left+'px'});
+  // If a parent element has turned "fixed" into "fixed to me", move it back onto the screen.
+  const r=backdrop.getBoundingClientRect();
+  if(Math.abs(r.top-top)>.5)backdrop.style.top=(2*top-r.top)+'px';
+  if(Math.abs(r.left-left)>.5)backdrop.style.left=(2*left-r.left)+'px';
 }
+function unfitEditor(){['top','left','right','bottom','width','height'].forEach(k=>$('workoutModal').style.removeProperty(k))}
 window.visualViewport?.addEventListener('resize',fitEditorToScreen);
 window.visualViewport?.addEventListener('scroll',fitEditorToScreen);
+window.addEventListener('resize',fitEditorToScreen);
+window.addEventListener('scroll',fitEditorToScreen,{passive:true});
+window.addEventListener('orientationchange',()=>setTimeout(fitEditorToScreen,250));
 
 function updateMovementCreatorAvailability(){
  const hasItems=strengthPool.length>0;
@@ -1919,6 +1930,7 @@ function openWorkoutEditor(isCreate=false){
   modal.querySelector('.modal').classList.toggle('createMode',creatingNewMove);
   modal.classList.add('open');
   modal.setAttribute('aria-hidden','false');
+  fitEditorToScreen();
   if(creatingNewMove)enterCreateFlow();
 }
 function warmupIsOn(){
@@ -1938,7 +1950,7 @@ $('warmupSwitch').addEventListener('click',()=>{
 });
 function closeWorkoutEditor(){
   closeSheet();endHover();
-  ['top','bottom','height'].forEach(k=>$('workoutModal').style.removeProperty(k));
+  unfitEditor();
   pendingNew=null;editingItem=null;
   if(modal.classList.contains('createMode'))leaveCreateFlow();
   modal.classList.remove('createMode');
