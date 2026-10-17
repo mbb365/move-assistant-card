@@ -3303,7 +3303,7 @@ function renderWeather(){
         '<div class="wxTemps"><div class="wxHigh">'+deg(d.temperature)+'</div><div class="wxLow">'+deg(d.templow)+'</div></div></div>').join('')+'</div>'
         :'<div class="wxNoDays">'+(wxNoForecast?'This weather service has no daily forecast':'Loading the forecast…')+'</div>')+
     '</div>'+
-    '<div class="wxCompact">'+header(wxIcon(st.state))+
+    '<div class="wxCompact">'+
       '<div class="activityRows">'+
         row(wxIcon(st.state),'Now · '+place,esc(temp+'° '+condition))+
         (today?row(wxIcon(today.condition),'Today',deg(today.temperature)+' / '+deg(today.templow)):'')+
