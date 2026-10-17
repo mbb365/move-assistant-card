@@ -1646,6 +1646,8 @@ button,input{font:inherit}
   --t-caption:12px;   /* small extras */
   --lh-display:1.05;--lh-title:1;
   /* Tile/Title + Tile/Detail (Geist): the name and second line inside every tile and row */
+  /* Weather/Temperature (Geist Medium) + Weather/Range (Geist Light) */
+  --t-wx-temp:64px;--t-wx-range:24px;
   --t-tile-title:18px;--lh-tile-title:22.4px;
   --t-tile-detail:16px;--lh-tile-detail:20px;
   /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
@@ -1761,18 +1763,8 @@ button,input{font:inherit}
 
 #app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
 
-/* ---- Movement card (M1): Activity-style readings + this week's bars ---- */
+/* ---- Movement card: Activity-style header + one shared tile (see "Joint data" at the end) ---- */
 .insightCard{display:flex;flex-direction:column;gap:0}
-.movementReadings{grid-template-columns:repeat(3,minmax(0,1fr))}
-.weekBars{flex:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9.6px;margin-top:16px;min-height:150px}
-.weekBar{display:grid;grid-template-rows:1fr auto;gap:8px;justify-items:center;min-height:0}
-.weekBarTrack{position:relative;width:100%;height:100%;min-height:110px;border-radius:24px;background:var(--bar-track);overflow:hidden}
-.weekBarTrack span{position:absolute;left:0;right:0;bottom:0;border-radius:24px;background:var(--primary)}
-.weekBar.today .weekBarTrack{box-shadow:inset 0 0 0 1.5px var(--primary)}
-.weekBar.today .dayLabel{color:var(--text);font-weight:var(--w-bold)}
-.weekBar.future{opacity:.35}
-#app.light .insightCard .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
-@media(max-width:900px){.movementReadings{grid-template-columns:1fr}.weekBarTrack{min-height:90px}}
 
 /* four timing tiles (time, work, rest, rounds): two per row on smaller screens */
 @media(max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}
@@ -1996,7 +1988,6 @@ button,input{font:inherit}
 .timeTile{padding:var(--tile-pad);gap:var(--tile-action-gap)}
 .timeHeader{gap:var(--tile-gap)}
 .createPresetBtn,.createExtraToggle{padding:var(--tile-pad)}
-.weekBarTrack,.weekBarTrack span{border-radius:var(--r-tile)}
 
 /* the second line in a tile is full-strength text, like the name */
 .moveMeta,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
@@ -2117,3 +2108,71 @@ button,input{font:inherit}
 #settingsView .helpSteps li{border-radius:0;background:transparent}
 #settingsView .helpSteps li+li::after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}
 #settingsView .metaTableWrap{border-radius:var(--r-group);background:var(--group-bg)}
+
+/* =========================================================
+   Movement & you, layout B (2026-10-17): Activity and
+   Movement narrow, Weather wide with the forecast.
+   ========================================================= */
+:host{--sun-core:#ffee00;--sun-edge:#ffd400;--wx-clear:var(--primary);--wx-cloudy:#d8d6d6;--wx-rain:#027fb7;--wx-night:#1d3b5c;--cloud:#ffffff}
+.activityCard{grid-column:span 3}
+.insightCard{grid-column:span 3}
+.weatherCard{grid-column:span 6}
+.grid.noWeather .activityCard,.grid.noWeather .insightCard{grid-column:span 6}
+.grid.noActivity .insightCard{grid-column:span 6}
+.grid.noActivity.noWeather .insightCard{grid-column:span 12}
+@media(max-width:1199px) and (min-width:901px){
+  .activityCard,.insightCard{grid-column:span 6}
+  .weatherCard{grid-column:span 12}
+  .grid.noActivity .insightCard{grid-column:span 12}
+}
+@media(max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}
+
+/* Joint data: readings that belong to one dataset share one tile (Figma "Movement summary 2") */
+.jointRows{gap:0;border-radius:var(--r-tile);background:var(--tile)}
+.jointRows>.activityRow{background:transparent}
+.insightCard .jointRows{flex:1;align-content:space-evenly}
+#app.light .insightCard .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}
+#app.light .insightCard .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}
+
+/* Weather card */
+.weatherCard{display:flex;flex-direction:column}
+.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--card-gap)}
+.wxNow{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.wxCurrent{display:flex;align-items:center;gap:16px;min-width:0}
+.wxTempBlock{display:grid;gap:4px;min-width:0}
+.wxTemp{display:flex;align-items:flex-start;gap:2px}
+.wxPlace{color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wxCondition{display:grid;gap:2px;padding:var(--tile-pad);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}
+/* the forecast stretches to fill the card, so the row of cards stays even */
+.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--tile-action-gap);min-width:0;padding:16px 8px;border-radius:var(--r-tile);background:var(--tile)}
+.wxTemps{display:grid;justify-items:center;gap:2px}
+.wxLow{color:var(--muted)}
+.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}
+.wxCompact{display:none}
+@media(max-width:620px){
+  .wxWide{display:none}
+  .wxCompact{display:grid;gap:var(--card-gap)}
+}
+.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);background:var(--wx-clear);overflow:hidden}
+.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
+.wxIcon.cloudy,.wxIcon.snow{background:var(--wx-cloudy)}
+.wxIcon.rain{background:var(--wx-rain)}
+.wxIcon.night{background:var(--wx-night)}
+.wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:radial-gradient(circle,var(--sun-core),var(--sun-edge))}
+.wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--cloud)}
+.wxIcon.partly .wxSun{left:12%;top:10%;width:52%;height:52%}
+.wxIcon.partly .wxCloud{left:26%;top:28%;width:66%;height:66%}
+.wxIcon.rain .wxCloud,.wxIcon.snow .wxCloud{top:2%}
+.wxIcon.snow .wxCloud{fill:var(--cloud)}
+.wxDrops{position:absolute;left:30%;right:30%;bottom:16%;display:flex;justify-content:space-between}
+.wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--cloud);transform:rotate(12deg)}
+.wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:#90a4b8}
+.weatherCard .activityRow>.wxIcon{width:var(--chip-size)}
+.activityHeader>.wxIcon{width:var(--chip-size);height:var(--chip-size)}
+
+/* Weather type: temperature + range (Geist), names and days use the tile styles */
+.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}
+.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}
+.wxPlace,.wxCondName,.wxHigh{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
+.wxDayName,.wxLow,.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}

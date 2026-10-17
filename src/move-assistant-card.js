@@ -2,7 +2,7 @@ import css from "./styles.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 
-const VERSION = "0.25.0";
+const VERSION = "0.26.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
@@ -14,7 +14,7 @@ function loadInter() {
   link.id = "move-assistant-inter";
   link.rel = "stylesheet";
   link.href =
-    "https://fonts.googleapis.com/css2?family=Geist:wght@400;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap";
+    "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap";
   document.head.appendChild(link);
 }
 
@@ -80,6 +80,10 @@ class MoveAssistantCard extends HTMLElement {
       save: (value) => this._save(value),
       fire: (action, payload) => this._fire(action, payload),
       ws: (msg) => this._hass.callWS(msg),
+      subscribe: (msg, cb) =>
+        this._hass?.connection?.subscribeMessage
+          ? this._hass.connection.subscribeMessage(cb, msg)
+          : Promise.reject(new Error("no connection")),
       notifyServices: () => Object.keys(this._hass?.services?.notify || {}).sort(),
       setReminderAutomation: (config) => this._setReminderAutomation(config),
       setLight: (isLight) => this.classList.toggle("lightBody", isLight),

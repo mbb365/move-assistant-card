@@ -2973,14 +2973,17 @@ $('metaHideAll').addEventListener('click',()=>setMetaHidden(visibleTypes().map(t
 $('metaShowAll').addEventListener('click',()=>setMetaHidden(visibleTypes().map(t=>t.key),false));
 
 /* what you see */
-const dataToggles={feel:true,steps:true,mood:true,energyLevel:true,...(settings().toggles||{})};
+const dataToggles={feel:true,steps:true,mood:true,energyLevel:true,weather:true,...(settings().toggles||{})};
 function applyDataToggles(){
   root.querySelectorAll('[data-toggle]').forEach(sw=>sw.classList.toggle('on',dataToggles[sw.dataset.toggle]!==false));
   root.querySelector('.feelSection').hidden=true; // parked for now
   [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
   const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
   root.querySelector('.activityCard').hidden=!anyActivity;
-  $('insightCard').style.gridColumn=anyActivity?'':'span 12';
+  $('weatherCard').hidden=dataToggles.weather===false;
+  const grid=root.querySelector('#homeView .grid');
+  grid.classList.toggle('noActivity',!anyActivity);
+  grid.classList.toggle('noWeather',dataToggles.weather===false);
 }
 root.querySelectorAll('[data-toggle]').forEach(sw=>sw.addEventListener('click',()=>{
   dataToggles[sw.dataset.toggle]=!(dataToggles[sw.dataset.toggle]!==false);
@@ -3041,7 +3044,7 @@ root.querySelectorAll('.themeBtn').forEach(btn=>btn.addEventListener('click',()=
 }));
 
 /* Home Assistant step sensor */
-const sensorEntities={steps:null,...(settings().entities||{})};
+const sensorEntities={steps:null,weather:null,...(settings().entities||{})};
 let lastStates=null;
 let stepsByDay={};
 function sensorChoices(states){
@@ -3194,38 +3197,120 @@ function compareText(c,scale,activeWord,restWord){
   return name+' '+esc(activeWord)+' · <strong>'+esc(on)+'</strong> vs '+esc(off);
 }
 function renderInsights(){
-  // Movement: three readings in the Activity tile style + one bar per day this week.
+  // Movement is one dataset: this week, the streak and 30 days are read together, so they share
+  // one tile (Figma "Movement summary 2") instead of three separate ones. No daily graph.
   const card=$('insightCard');if(!card)return;
   const series=dailySeries(30);
   const streak=currentStreak(series);
   const month=series.reduce((a,d)=>a+d.minutes,0);
   const now=new Date(),today=dayKey(now);
-  const monday=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7));
-  const weekDays=[...Array(7)].map((_,i)=>{
-    const d=new Date(monday.getFullYear(),monday.getMonth(),monday.getDate()+i);
-    const k=dayKey(d);
-    const hit=series.find(x=>x.key===k);
-    return {d,k,minutes:hit?hit.minutes:0,today:k===today,future:k>today};
-  });
-  const thisWeek=weekDays.reduce((a,x)=>a+x.minutes,0);
-  const max=Math.max(10,...weekDays.map(x=>x.minutes));
+  const monday=dayKey(new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)));
+  const thisWeek=series.filter(x=>x.key>=monday&&x.key<=today).reduce((a,x)=>a+x.minutes,0);
   const reading=(icon,name,value)=>
     '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">'+icon+'</div>'+
     '<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+esc(value)+'</div></div></div>';
   card.innerHTML=
     '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div>'+
-    '<div class="activityRows movementReadings">'+
+    '<div class="activityRows jointRows">'+
       reading('◷','This week',thisWeek+' min')+
       reading('↯','Streak',streak+' day'+(streak===1?'':'s'))+
       reading('▦','30 days',month+' min')+
-    '</div>'+
-    '<div class="weekBars">'+weekDays.map(x=>
-      '<div class="weekBar'+(x.today?' today':'')+(x.future?' future':'')+'" title="'+esc(x.minutes+' min')+'">'+
-        '<div class="weekBarTrack"><span style="height:'+(x.minutes?Math.max(6,x.minutes/max*100):0)+'%"></span></div>'+
-        '<div class="dayLabel">'+esc(new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(x.d))+'</div>'+
-      '</div>'
-    ).join('')+'</div>';
+    '</div>';
 }
+
+/* Weather: current conditions from a weather entity, daily forecast over the websocket */
+const WX_NAMES={'sunny':'Sunny','clear-night':'Clear','partlycloudy':'Partly cloudy','cloudy':'Cloudy','fog':'Fog','windy':'Windy','windy-variant':'Windy','exceptional':'Unusual weather',
+  'rainy':'Rain','pouring':'Heavy rain','lightning':'Thunder','lightning-rainy':'Thunderstorms','hail':'Hail','snowy':'Snow','snowy-rainy':'Sleet'};
+const wxKind=c=>c==='sunny'?'clear':c==='clear-night'?'night':c==='partlycloudy'?'partly':
+  ['rainy','pouring','lightning','lightning-rainy','hail'].includes(c)?'rain':['snowy','snowy-rainy'].includes(c)?'snow':'cloudy';
+const WX_CLOUD='<svg class="wxCloud" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19h10.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.6 8.6 5.2 5.2 0 0 0 7 19z"/></svg>';
+function wxIcon(condition,large){
+  const k=wxKind(condition);
+  const inner=k==='clear'?'<span class="wxSun"></span>':
+    k==='night'?'<svg class="wxMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.2A9 9 0 1 0 20.8 17 7.4 7.4 0 0 1 15.5 3.2z"/></svg>':
+    k==='partly'?'<span class="wxSun"></span>'+WX_CLOUD:
+    k==='rain'||k==='snow'?WX_CLOUD+'<span class="wxDrops '+k+'"><i></i><i></i><i></i></span>':WX_CLOUD;
+  return '<span class="wxIcon '+k+(large?' large':'')+'" aria-hidden="true">'+inner+'</span>';
+}
+let wxForecast=[],wxFor=undefined,wxUnsub=null,wxNoForecast=false;
+function weatherChoices(states){
+  return Object.values(states).filter(st=>st.entity_id.startsWith('weather.'))
+    .sort((a,b)=>(a.attributes.friendly_name||a.entity_id).localeCompare(b.attributes.friendly_name||b.entity_id));
+}
+function renderWeatherPicker(states){
+  const select=$('weatherEntity');
+  if(!select||select.matches(':focus'))return;
+  const list=weatherChoices(states);
+  select.innerHTML='<option value="">Not connected</option>'+list.map(st=>'<option value="'+esc(st.entity_id)+'">'+esc(st.attributes.friendly_name||st.entity_id)+'</option>').join('');
+  select.value=sensorEntities.weather||'';
+  const st=sensorEntities.weather&&states[sensorEntities.weather];
+  $('weatherStatus').textContent=st?'Connected · '+(st.attributes.friendly_name||st.entity_id):$('weatherStatus').dataset.empty;
+}
+function subscribeForecast(){
+  const id=sensorEntities.weather||null;
+  if(id===wxFor)return;
+  wxFor=id;wxForecast=[];wxNoForecast=false;
+  const old=wxUnsub;wxUnsub=null;
+  old?.then(u=>typeof u==='function'&&u()).catch(()=>{});
+  if(!id||!bridge.subscribe){renderWeather();return}
+  wxUnsub=bridge.subscribe({type:'weather/subscribe_forecast',forecast_type:'daily',entity_id:id},msg=>{
+    if(wxFor!==id)return;
+    wxForecast=Array.isArray(msg?.forecast)?msg.forecast:[];
+    renderWeather();
+  });
+  wxUnsub.catch(()=>{if(wxFor===id){wxNoForecast=true;renderWeather()}});
+  renderWeather();
+}
+$('weatherEntity').addEventListener('change',()=>{
+  sensorEntities.weather=$('weatherEntity').value||null;
+  saveSetting('entities',{...sensorEntities});
+  if(lastStates)renderWeatherPicker(lastStates);
+  subscribeForecast();
+});
+function renderWeather(){
+  const card=$('weatherCard');if(!card)return;
+  const id=sensorEntities.weather,st=id&&lastStates?.[id];
+  const header=(icon)=>'<div class="activityHeader">'+icon+'<div class="activityTitle">Weather</div></div>';
+  if(!st){
+    card.innerHTML=header(wxIcon('cloudy'))+'<div class="activityRows"><div class="activityRow"><div class="activityRowIcon" aria-hidden="true">☁</div>'+
+      '<div><div class="activityRowName">Forecast</div><div class="activityRowMeta">'+(id?'Not available':'Set up in Settings')+'</div></div></div></div>';
+    return;
+  }
+  const a=st.attributes||{};
+  const unit=a.temperature_unit||'°';
+  const deg=v=>Number.isFinite(Number(v))?Math.round(Number(v))+'°':'—';
+  const place=(a.friendly_name||'').replace(/^forecast\s+/i,'')||'Weather';
+  const condition=WX_NAMES[st.state]||(st.state?st.state.charAt(0).toUpperCase()+st.state.slice(1):'—');
+  const todayKey=dayKey(new Date());
+  const days=wxForecast.slice(0,7);
+  const today=days.find(d=>dayKey(new Date(d.datetime))===todayKey)||null;
+  const upcoming=days.filter(d=>dayKey(new Date(d.datetime))>=todayKey).slice(0,6);
+  const tomorrow=upcoming.find(d=>dayKey(new Date(d.datetime))>todayKey);
+  const range=today?'H '+deg(today.temperature)+'&ensp; L '+deg(today.templow):'';
+  const dayName=d=>new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(d.datetime));
+  const temp=Number.isFinite(Number(a.temperature))?Math.round(Number(a.temperature)):'—';
+  const row=(icon,name,value)=>'<div class="activityRow">'+icon+'<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+value+'</div></div></div>';
+  card.innerHTML=
+    '<div class="wxWide">'+
+      '<div class="wxNow">'+
+        '<div class="wxCurrent">'+wxIcon(st.state,true)+
+          '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">'+esc(String(temp))+'</span><span class="wxUnit">'+esc(unit)+'</span></div>'+
+          '<div class="wxPlace">'+esc(place)+'</div></div></div>'+
+        '<div class="wxCondition"><div class="wxCondName">'+esc(condition)+'</div>'+(range?'<div class="wxRange">'+range+'</div>':'')+'</div>'+
+      '</div>'+
+      (upcoming.length?'<div class="wxDays">'+upcoming.map(d=>
+        '<div class="wxDay"><div class="wxDayName">'+esc(dayName(d))+'</div>'+wxIcon(d.condition)+
+        '<div class="wxTemps"><div class="wxHigh">'+deg(d.temperature)+'</div><div class="wxLow">'+deg(d.templow)+'</div></div></div>').join('')+'</div>'
+        :'<div class="wxNoDays">'+(wxNoForecast?'This weather service has no daily forecast':'Loading the forecast…')+'</div>')+
+    '</div>'+
+    '<div class="wxCompact">'+header(wxIcon(st.state))+
+      '<div class="activityRows">'+
+        row(wxIcon(st.state),'Now · '+place,esc(temp+'° '+condition))+
+        (today?row(wxIcon(today.condition),'Today',deg(today.temperature)+' / '+deg(today.templow)):'')+
+        (tomorrow?row(wxIcon(tomorrow.condition),'Tomorrow',deg(tomorrow.temperature)+' / '+deg(tomorrow.templow)):'')+
+      '</div></div>';
+}
+renderWeather();
 
 /* TV mode */
 const tvNav=$('tvNav');
@@ -3363,9 +3448,13 @@ function renderInsightsSoon(){
 
 return {
   updateStates(states){
+    const weatherChanged=!lastStates||lastStates[sensorEntities.weather]!==states[sensorEntities.weather];
     lastStates=states;
     renderSensorPickers(states);
+    renderWeatherPicker(states);
     renderActivity(states);
+    subscribeForecast();
+    if(weatherChanged)renderWeather();
     if(Date.now()-stepHistoryLoadedAt>60*60*1000)loadStepHistory();
     renderInsightsSoon();
   },

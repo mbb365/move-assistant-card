@@ -6,7 +6,8 @@ Runs as a full-page dashboard card.
 - **Moves** you create, edit or delete are saved to your Home Assistant user, and stay in sync live across your phone, Mac and TV.
 - **Check-in** twice a day at times you choose (Settings → Check-in). It pops up when due; afterwards it lives in a tab on the right edge that shows a dot when the next one is due. Mood and energy are sliders from Terrible to Great.
 - **How you've felt this week** shows your average mood and energy, plus each day's.
-- **Movement & you** shows what you've already done (today, streak, last 30 days), a 14-day strip of moves, steps, mood and energy, and how your mood and energy differ on days you move.
+- **Movement** shows what you've already done (this week, your streak, the last 30 days) as one set of numbers that belong together.
+- **Weather** shows the weather now and the next six days, beside Activity and Movement (a shorter version on phones). Pick any Home Assistant weather entity in Settings → Integrations; turn it off in Settings → Data.
 - **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
 - **Apple Health**: Settings → Help explains turning on Apple Health sensors in the Home Assistant iPhone app (2026.9+), then picking the Health steps sensor.
 - **Rounds**: in Edit move, set how many times to repeat a move (1–10). Only the main section repeats, with a normal rest between rounds; the warm-up plays once at the start and the cooldown once at the end.
