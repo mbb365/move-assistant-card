@@ -365,11 +365,6 @@
         <input id="workoutNameInput" class="editNameInput" type="text" value="Kettlebell full body">
       </div>
 
-      <div class="setupSwitchRow" id="warmupRow">
-        <strong>Warm-up</strong>
-        <button class="switch on" id="warmupSwitch" type="button" role="switch" aria-checked="true" aria-label="Warm-up"></button>
-      </div>
-
       <section class="createMoveOptions" id="createMoveOptions" hidden>
         <div class="createOptionLabel">Preset</div>
         <div class="createPresetChoice" role="group" aria-label="Move preset">
@@ -395,63 +390,49 @@
         </div>
       </section>
 
-      <div class="timeTiles">
-      <section class="tile timeTile timingGroup">
-        <div class="timeRow timeTotal">
-          <div class="timeHeader">
-            <div class="timeIcon" aria-hidden="true">◷</div>
-            <div class="timeCopy">
-              <div class="timeLabel" id="totalLabel">Total time</div>
-              <div class="timeValue" id="totalOut">20 min</div>
+      <div class="timeTiles setupBlock">
+        <div class="setupCaption">Timing</div>
+        <div class="setupGroup">
+          <div class="setupRow timeTotal">
+            <span class="setupName" id="totalLabel">Total time</span>
+            <span class="setupValue" id="totalOut">20 min</span>
+            <div class="rangeTrack" hidden>
+              <div class="rangeFill" id="totalFill"></div>
+              <input class="rangeInput" id="totalTime" type="range" min="3" max="40" step="1" value="20" aria-label="Time per round in minutes" tabindex="-1">
             </div>
           </div>
-          <div class="rangeTrack" hidden>
-            <div class="rangeFill" id="totalFill"></div>
-            <input class="rangeInput" id="totalTime" type="range" min="3" max="40" step="1" value="20" aria-label="Time per round in minutes" tabindex="-1">
-          </div>
-        </div>
-        <div class="timeRow">
-          <div class="timeHeader">
-            <div class="timeIcon" aria-hidden="true">▶</div>
-            <div class="timeCopy">
-              <div class="timeLabel">Work</div>
-              <div class="timeValue" id="workOut">45 sec</div>
+          <div class="setupRow withSlider">
+            <div class="setupRowTop"><span class="setupName">Work</span><span class="setupValue" id="workOut">45 sec</span></div>
+            <div class="rangeTrack setupSlider">
+              <div class="rangeFill" id="workFill"></div>
+              <input class="rangeInput" id="workTime" type="range" min="20" max="60" step="5" value="45" aria-label="Work interval">
             </div>
           </div>
-          <div class="rangeTrack">
-            <div class="rangeFill" id="workFill"></div>
-            <input class="rangeInput" id="workTime" type="range" min="20" max="60" step="5" value="45" aria-label="Work interval">
-          </div>
-        </div>
-        <div class="timeRow">
-          <div class="timeHeader">
-            <div class="timeIcon" aria-hidden="true">Ⅱ</div>
-            <div class="timeCopy">
-              <div class="timeLabel">Rest</div>
-              <div class="timeValue" id="restOut">15 sec</div>
+          <div class="setupRow withSlider">
+            <div class="setupRowTop"><span class="setupName">Rest</span><span class="setupValue" id="restOut">15 sec</span></div>
+            <div class="rangeTrack setupSlider">
+              <div class="rangeFill" id="restFill"></div>
+              <input class="rangeInput" id="restTime" type="range" min="5" max="30" step="5" value="15" aria-label="Rest interval">
             </div>
           </div>
-          <div class="rangeTrack">
-            <div class="rangeFill" id="restFill"></div>
-            <input class="rangeInput" id="restTime" type="range" min="5" max="30" step="5" value="15" aria-label="Rest interval">
+          <div class="setupRow" id="roundsTile">
+            <div class="setupText"><span class="setupName">Rounds</span><span class="setupValue" id="roundsOut">1 round</span></div>
+            <div class="stepper" role="group" aria-label="Rounds">
+              <button class="stepBtn" type="button" data-rounds-step="-1" aria-label="One round fewer">−</button>
+              <span class="stepCount" id="roundsCount" aria-live="polite">1</span>
+              <button class="stepBtn" type="button" data-rounds-step="1" aria-label="One more round">+</button>
+            </div>
+            <div class="rangeTrack" hidden>
+              <div class="rangeFill" id="roundsFill"></div>
+              <input class="rangeInput" id="roundsInput" type="range" min="1" max="10" step="1" value="1" aria-label="How many times to repeat the move" tabindex="-1">
+            </div>
+          </div>
+          <div class="setupRow" id="warmupRow">
+            <span class="setupName">Warm-up</span>
+            <button class="switch on" id="warmupSwitch" type="button" role="switch" aria-checked="true" aria-label="Warm-up"></button>
           </div>
         </div>
-      </section>
-
-      <section class="tile timeTile" id="roundsTile">
-        <div class="timeHeader">
-          <div class="timeIcon" aria-hidden="true">↻</div>
-          <div class="timeCopy">
-            <div class="timeLabel">Rounds</div>
-            <div class="timeValue" id="roundsOut">1 round</div>
-          </div>
-        </div>
-        <div class="rangeTrack">
-          <div class="rangeFill" id="roundsFill"></div>
-          <input class="rangeInput" id="roundsInput" type="range" min="1" max="10" step="1" value="1" aria-label="How many times to repeat the move">
-        </div>
-      </section>
-    </div>
+      </div>
 
     <div class="routineSummary" id="routineSummaryModal">20 min · 45 / 15 · warm-up + cooldown</div>
     <div class="tempoRevealRow">

@@ -653,6 +653,8 @@ function buildRoutine(){
  const steps=routine.filter(x=>!x.roundBreak).length;
  const countText=rounds>1?steps+' activities · '+rounds+' rounds':perRound+' activities';
  roundsOut.textContent=rounds>1?rounds+' rounds · '+formatTotalMinutes(totalMinutes)+' total':'1 round';
+ $('roundsCount').textContent=rounds;
+ root.querySelectorAll('[data-rounds-step]').forEach(b=>{b.disabled=Number(b.dataset.roundsStep)<0?rounds<=1:rounds>=10});
  if(profile){profile.summary=text;profile.activityCount=perRound}
  const activeSummary=root.querySelector('.workoutPanel.active .sub');
  if(activeSummary)activeSummary.textContent=text;
@@ -3240,6 +3242,11 @@ root.addEventListener('keydown',e=>{
 });
 
 /* nav and controls */
+root.querySelectorAll('[data-rounds-step]').forEach(b=>b.addEventListener('click',()=>{
+ const next=Math.max(1,Math.min(10,(Number(roundsInput.value)||1)+Number(b.dataset.roundsStep)));
+ if(String(next)===roundsInput.value)return;
+ roundsInput.value=next;roundsInput.dispatchEvent(new Event('input',{bubbles:true}));
+}));
 [totalInput,workInput,restInput,roundsInput].forEach(i=>i.addEventListener('input',()=>{
  const profile=workoutProfiles[selectedWorkoutKey];
  if(profile){

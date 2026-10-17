@@ -1648,9 +1648,10 @@ button,input{font:inherit}
   /* Tile/Title + Tile/Detail (Geist): the name and second line inside every tile and row */
   --t-tile-title:18px;--lh-tile-title:22.4px;
   --t-tile-detail:16px;--lh-tile-detail:20px;
-  /* Shapes and tile layout, synced from Figma Radius + Component metrics (2026-10-16) */
-  --r-card:50px;--r-tile:36px;--r-icon:16px;--r-control:12px;--r-seg:32px;
-  --card-pad:22px 24px 24px;--card-gap:22px;
+  /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
+  --r-card:36px;--r-tile:32px;--r-group:20px;--r-icon:16px;--r-control:12px;--r-seg:28px;
+  --card-pad:20px;--card-gap:22px;
+  --gutter:22px;--grid-gap:16px;
   --tile-pad:16px 20px;--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;
   --chip-size:46px;--glyph-size:34px;
 }
@@ -1683,16 +1684,16 @@ button,input{font:inherit}
   font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}
 
 /* Tile title: the name inside a tile or row (Geist) */
-.activityRowName,.integration strong,.toggleRow strong,.setupSwitchRow strong,.timeLabel,.moveItemName,
+.activityRowName,.timeLabel,.moveItemName,
 .setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{
   font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
 
 /* Tile detail: the second line inside a tile or row (Geist) */
-.moveMeta,.status,.timeValue,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{
+.moveMeta,.timeValue,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{
   font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
 
 /* Strong */
-.weekChipTop strong,.weekChipTime,
+.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.weekChipTime,
 .panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,
 .testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,
 .primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,
@@ -1700,19 +1701,19 @@ button,input{font:inherit}
   font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}
 
 /* Body */
-.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,
+.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,
 .helpSteps li,.helpNote,.createStepSummary,.insightLine{
   font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}
 
 /* Caption */
-.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,
+.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,
 .dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,
 .testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,
 .globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,
 .autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,
 .chartLegend,#app code{
   font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}
-.eyebrow,#stepLabel,.sectionTitle{letter-spacing:.1em}
+.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}
 .globalTimingToggle{font-size:var(--t-caption)!important}
 
 /* move cards: room for a two-line Display name */
@@ -1810,7 +1811,6 @@ button,input{font:inherit}
 .timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}
 .timingGroup .timeRow+.timeRow{border-top:0.32px solid var(--divider)}
 .timingGroup .timeTotal{padding-bottom:14px}
-.setupSwitchRow{display:flex;align-items:center;justify-content:space-between;gap:12.8px;margin-bottom:11.2px;padding:12px 14px;border-radius:24px;background:var(--tile)}
 .removeLabel{position:relative;z-index:1}
 .removeBtn.holding{border-color:var(--danger-fill)}
 #deleteMoveConfirm{z-index:200}
@@ -1989,32 +1989,25 @@ button,input{font:inherit}
 .workoutPanel.addPanel{padding:var(--tile-pad)}
 
 /* tiles */
-.activityRow,.integration,.toggleRow,.setupSwitchRow,.moveRow,.timeTile,.timingGroup .timeRow,
-.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary,.helpSteps li,.metaTableWrap,.routineSummary{border-radius:var(--r-tile)}
-.activityRow,.integration,.toggleRow,.setupSwitchRow,.moveRow{min-height:var(--tile-min);padding:var(--tile-pad);gap:var(--tile-gap)}
+.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}
+.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--tile-pad);gap:var(--tile-gap)}
 .activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}
 .activityRows{gap:12px}
 .timeTile{padding:var(--tile-pad);gap:var(--tile-action-gap)}
 .timeHeader{gap:var(--tile-gap)}
 .createPresetBtn,.createExtraToggle{padding:var(--tile-pad)}
-.routineSummary{padding:12px 20px}
 .weekBarTrack,.weekBarTrack span{border-radius:var(--r-tile)}
 
 /* the second line in a tile is full-strength text, like the name */
-.moveMeta,.status,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
+.moveMeta,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
 .createPresetBtn.active span{color:var(--on-bright)}
-.moveMeta,.status,.timeValue{margin-top:0}
+.moveMeta,.timeValue{margin-top:0}
 .activityRowMeta{margin-top:0}
 
 /* icon chips: 46, rounded 16 */
 .activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);font-size:20px}
 .navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon)}
 
-/* timing: a card holding one tile per setting */
-.timingGroup{background:var(--card);border-radius:var(--r-card);padding:var(--card-pad);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
-.timingGroup .timeRow{background:var(--tile);padding:var(--tile-pad);gap:var(--tile-action-gap);min-height:var(--tile-min);align-content:center}
-.timingGroup .timeRow+.timeRow{border-top:0}
-.timingGroup .timeTotal{padding-bottom:16px}
 
 /* move rows */
 .moveRow.editing{padding:var(--tile-pad)}
@@ -2060,6 +2053,7 @@ button,input{font:inherit}
 /* phones keep their tighter spacing, in the same shapes */
 @media(max-width:620px){:host{
   --card-pad:16px;--tile-pad:12px 16px;--tile-min:70px;--card-gap:16px;
+  --gutter:0px;--grid-gap:8px;
 }}
 
 /* Phones: the editor is a full-screen sheet, edge to edge like the cards. Its size comes from
@@ -2070,3 +2064,56 @@ button,input{font:inherit}
   .modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}
   .modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}
 }
+
+/* =========================================================
+   Two families (2026-10-17)
+   Display — home, workout, check-in, the move list: cards
+   holding tiles, icon chips, Geist tile text.
+   Setup — Settings, the move's setup, sheets: one rounded
+   group of rows split by hairlines. One level of rounding,
+   Inter text, no icon chips.
+   ========================================================= */
+:host{--group-bg:var(--card)}
+.modal,.sheet{--group-bg:var(--tile)}
+.view{padding-left:var(--gutter);padding-right:var(--gutter)}
+.grid{gap:var(--grid-gap)}
+
+.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}
+.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}
+.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}
+:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow)::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}
+.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}
+.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.setupText{display:grid;gap:2px;min-width:0}
+.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}
+.setupRow .rangeTrack[hidden]{display:none}
+
+/* a slider in a setup row is a thin track with a knob, no box */
+.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}
+.rangeTrack.setupSlider::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}
+.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}
+.setupSlider .rangeFill::after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}
+.setupSlider:focus-within{outline:0}
+.setupSlider:focus-within .rangeFill::after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}
+
+.stepper{display:flex;align-items:center;gap:2px;padding:3px;border-radius:var(--r-control);background:var(--seg-bg);flex:0 0 auto}
+.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:9px!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}
+.stepBtn:hover:not(:disabled){background:var(--hover)}
+.stepBtn:disabled{opacity:.35;cursor:default}
+.stepCount{min-width:24px;text-align:center;font:600 16px/1 var(--font);font-variant-numeric:tabular-nums}
+
+/* the move's setup column */
+.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}
+.editNameLabel{text-transform:uppercase;letter-spacing:.1em;padding:0 4px}
+.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}
+
+/* Settings: plain sections — a heading, a sentence, then one group */
+#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}
+#settingsView .card+.card{margin-top:36px}
+#settingsView .paneTitle{margin:0 4px}
+#settingsView .note{margin:0 4px 4px}
+#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}
+#settingsView .helpSteps{gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}
+#settingsView .helpSteps li{border-radius:0;background:transparent}
+#settingsView .helpSteps li+li::after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}
+#settingsView .metaTableWrap{border-radius:var(--r-group);background:var(--group-bg)}
