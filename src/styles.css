@@ -1646,7 +1646,7 @@ button,input{font:inherit}
   /* Weather/Temperature (Geist Medium) + Weather/Range (Geist Light) */
   --t-wx-temp:64px;--t-wx-range:24px;
   --t-tile-title:14px;--lh-tile-title:22.4px;
-  --t-tile-detail:22px;--lh-tile-detail:20px;
+  --t-tile-detail:16px;--lh-tile-detail:20px;
   /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
   /* Corners follow one rule: inner = outer − gap (Figma Radius, Desktop/Phone). Card 40 · tile 24 · inner 8 · fine 4 */
   --r-card:40px;--r-tile:24px;--r-inner:8px;--r-fine:4px;
@@ -2167,8 +2167,8 @@ button,input{font:inherit}
 /* Weather type: temperature + range (Geist), names and days use the tile styles */
 .wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}
 .wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}
-.wxPlace,.wxCondName,.wxHigh{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
-.wxDayName,.wxLow,.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
+.wxPlace,.wxCondName,.wxLow{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
+.wxDayName,.wxHigh,.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
 
 /* =========================================================
    Segment states (Figma "Segment", 2026-10-19): plain at rest,
