@@ -1635,21 +1635,21 @@ button,input{font:inherit}
   --primary-ink:color-mix(in srgb,var(--primary) 75%,black);
   --font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --font-tile:Geist,var(--font);
-  /* Synced from Figma text styles Desktop/*, Phone/* and Tile/* (2026-10-16) */
+  /* Synced from Figma text styles Desktop/*, Phone/*, Tile/* and Weather/* (2026-10-19) */
   --w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;
-  --t-display:56px;   /* move names, big numbers, page title */
+  --t-display:52px;   /* move names, big numbers, page title */
   --t-title:22px;     /* card + popup titles (Medium Italic) */
-  --t-value:22px;     /* readings */
+  --t-value:16px;     /* readings */
   --t-section:18px;   /* labels above cards */
-  --t-strong:16px;    /* row/item names, buttons (Semi Bold) */
-  --t-body:14px;      /* sentences */
+  --t-strong:14px;    /* row/item names, buttons (Semi Bold) */
+  --t-body:12px;      /* sentences */
   --t-caption:12px;   /* small extras */
   --lh-display:1.05;--lh-title:1;
   /* Tile/Title + Tile/Detail (Geist): the name and second line inside every tile and row */
   /* Weather/Temperature (Geist Medium) + Weather/Range (Geist Light) */
   --t-wx-temp:64px;--t-wx-range:24px;
-  --t-tile-title:18px;--lh-tile-title:22.4px;
-  --t-tile-detail:16px;--lh-tile-detail:20px;
+  --t-tile-title:14px;--lh-tile-title:22.4px;
+  --t-tile-detail:22px;--lh-tile-detail:20px;
   /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
   --r-card:36px;--r-tile:32px;--r-group:20px;--r-icon:16px;--r-control:12px;--r-seg:28px;
   --card-pad:20px;--card-gap:22px;
