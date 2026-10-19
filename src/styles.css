@@ -2134,8 +2134,8 @@ button,input{font:inherit}
 /* Weather card */
 .weatherCard{display:flex;flex-direction:column}
 .wxWide{flex:1;display:flex;flex-direction:column;gap:var(--card-gap)}
-.wxNow{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.wxCurrent{display:flex;align-items:center;gap:16px;min-width:0}
+.wxNow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}
 .wxTempBlock{display:grid;gap:4px;min-width:0}
 .wxTemp{display:flex;align-items:flex-start;gap:2px}
 .wxPlace{color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2200,3 +2200,6 @@ button,input{font:inherit}
 
 /* Icons are generic greys for now (Figma: every icon uses color/text/muted) */
 .activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--muted)}
+
+/* the big weather icon sits exactly one inset from the card corner, so its corners are concentric (card − inset = tile) */
+.wxTempBlock{padding-top:6px}
