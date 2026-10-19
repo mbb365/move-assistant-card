@@ -615,7 +615,7 @@ button,input{font:inherit}
   }
 }
 
-.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}
+.activityHeader{display:flex;align-items:center;gap:var(--inset);margin-bottom:var(--inset)}
 .activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}
 .activityRows{display:grid;gap:9.6px}
 .activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}
@@ -962,7 +962,7 @@ button,input{font:inherit}
 .integrationList,.toggleList{display:grid;gap:9.6px}
 .integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}
 /* Figma Switch: rounded-square track, a knob that is flat on the side facing the middle */
-.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-icon);background:var(--track);border:0.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}
+.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--track);border:0.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}
 .switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}
 .switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
 
@@ -1044,7 +1044,7 @@ button,input{font:inherit}
 }
 
 /* buttons and fields share the control radius; segmented buttons and switches have their own shape */
-:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-control)!important}
+:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-inner)!important}
 .card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
 
 
@@ -1647,15 +1647,12 @@ button,input{font:inherit}
   --t-wx-temp:64px;--t-wx-range:24px;
   --t-tile-title:14px;--lh-tile-title:22.4px;
   --t-tile-detail:16px;--lh-tile-detail:20px;
-  /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
-  /* Corners follow one rule: inner = outer − gap (Figma Radius, Desktop/Phone). Desktop card 56 · tile 36 · inner 16 · fine 12 (inset 20); phone card 48 · tile 32 (inset 16) */
-  --r-card:56px;--r-tile:36px;--r-inner:16px;--r-fine:12px;
-  --r-group:var(--r-tile);--r-icon:var(--r-inner);--r-control:var(--r-inner);--r-seg:var(--r-fine);
-  /* inset: the one padding for cards and tiles, on every side (Figma Component metrics "inset") */
-  --inset:20px;--card-pad:var(--inset);--card-gap:20px;
+  /* Shapes: one spacing and four corners, the same on every screen size (Figma Component metrics + Radius).
+     Corners nest: card 48 = tile 32 + inset 16 · tile 32 = inner 16 + inset 16 · segments sit 4 inside a track: fine 12 = inner 16 − 4 */
+  --inset:16px;
+  --r-card:48px;--r-tile:32px;--r-inner:16px;--r-fine:12px;
+  --tile-min:78px;--chip-size:46px;--glyph-size:34px;
   --gutter:22px;--grid-gap:16px;
-  --tile-pad:var(--inset);--tile-min:86px;--tile-gap:16px;--tile-action-gap:16px;
-  --chip-size:46px;--glyph-size:34px;
 }
 @media(max-width:620px){:host{
   --t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;
@@ -1970,23 +1967,23 @@ button,input{font:inherit}
    card is a 36-round tile: 16/20 padding, at least 78 tall,
    a 46 icon chip, then a Geist name + second line.
    ========================================================= */
-.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--card-pad)}
+.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--inset)}
 .confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}
-.upcomingCard{padding:var(--card-pad)}
+.upcomingCard{padding:var(--inset)}
 
 /* move cards: the chosen one is a card, the others are tiles */
-.workoutPanel{border-radius:var(--r-tile);padding:var(--tile-pad)}
+.workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}
 .workoutPanel.active{border-radius:var(--r-card)}
-.workoutPanel.addPanel{padding:var(--tile-pad)}
+.workoutPanel.addPanel{padding:var(--inset)}
 
 /* tiles */
 .activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}
-.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--tile-pad);gap:var(--tile-gap)}
+.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--inset);gap:var(--inset)}
 .activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}
 .activityRows{gap:12px}
-.timeTile{padding:var(--tile-pad);gap:var(--tile-action-gap)}
-.timeHeader{gap:var(--tile-gap)}
-.createPresetBtn,.createExtraToggle{padding:var(--tile-pad)}
+.timeTile{padding:var(--inset);gap:var(--inset)}
+.timeHeader{gap:var(--inset)}
+.createPresetBtn,.createExtraToggle{padding:var(--inset)}
 
 /* the second line in a tile is full-strength text, like the name */
 .moveMeta,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
@@ -1995,14 +1992,14 @@ button,input{font:inherit}
 .activityRowMeta{margin-top:0}
 
 /* icon chips: 46, rounded 16 */
-.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);font-size:20px}
-.navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon)}
+.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);font-size:20px}
+.navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}
 
 
 /* move rows */
-.moveRow.editing{padding:var(--tile-pad)}
-.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--tile-gap)}
-.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-icon);background:var(--icon-bg);color:var(--muted)}
+.moveRow.editing{padding:var(--inset)}
+.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--inset)}
+.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-inner);background:var(--icon-bg);color:var(--muted)}
 .dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}
 .moveRow.restItem .dragHandle{background:transparent}
 .dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}
@@ -2011,7 +2008,7 @@ button,input{font:inherit}
 
 /* segmented control (Figma "Segmented control"): Edit | Hide | Delete on rows, tabs in Settings */
 .seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}
-.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-seg);background:transparent;color:var(--text);cursor:pointer}
+.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer}
 .segBtn:hover{background:var(--hover)}
 .moveActions.seg{gap:4px}
 .moveActions .segBtn{min-width:100px}
@@ -2025,27 +2022,23 @@ button,input{font:inherit}
 @media(max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}
 
 .tabs.rubberTabs{padding:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}
-.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-seg);background:var(--seg-on)}
+.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-fine);background:var(--seg-on)}
 .tabs.rubberTabs .tab{min-height:38px;padding:0 20px}
 .tabs.rubberTabs .tab.active{color:var(--text)}
 #app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}
 
 /* switch with a label (Use global timing): same shape as the Switch */
-.toggleTrack{width:50px;height:28px;border-radius:var(--r-icon);background:var(--track);border:0.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}
+.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--track);border:0.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}
 .toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}
 .globalTimingToggle input:checked + .toggleTrack{background:var(--bright);opacity:1}
 .globalTimingToggle input:checked + .toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
 
 /* tablets and phones: move cards are a swipeable row of full cards */
 @media(max-width:900px){
-  .workoutPanel:not(.addPanel){border-radius:var(--r-card);padding:var(--card-pad)}
+  .workoutPanel:not(.addPanel){border-radius:var(--r-card);padding:var(--inset)}
 }
-/* phones keep their tighter spacing, in the same shapes */
-@media(max-width:620px){:host{
-  --inset:16px;--card-pad:var(--inset);--tile-pad:var(--inset);--tile-min:78px;--card-gap:16px;
-  --r-card:48px;--r-tile:32px;
-  --gutter:0px;--grid-gap:8px;
-}}
+/* phones: cards go edge to edge with 8 between them; spacing and corners stay the same */
+@media(max-width:620px){:host{--gutter:0px;--grid-gap:8px}}
 
 /* Phones: the editor is a full-screen sheet, edge to edge like the cards. Its size comes from
    fitEditorToScreen(); the notch and home bar are kept clear with the safe-area insets. */
@@ -2070,7 +2063,7 @@ button,input{font:inherit}
 .grid{gap:var(--grid-gap)}
 
 .setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}
-.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}
+.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}
 .setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}
 :is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow)::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}
 .setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}
@@ -2087,7 +2080,7 @@ button,input{font:inherit}
 .setupSlider:focus-within{outline:0}
 .setupSlider:focus-within .rangeFill::after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}
 
-.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-control);background:var(--seg-bg);flex:0 0 auto}
+.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}
 .stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}
 .stepBtn:hover:not(:disabled){background:var(--hover)}
 .stepBtn:disabled{opacity:.35;cursor:default}
@@ -2104,10 +2097,10 @@ button,input{font:inherit}
 #settingsView .paneTitle{margin:0 4px}
 #settingsView .note{margin:0 4px 4px}
 #settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}
-#settingsView .helpSteps{gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}
+#settingsView .helpSteps{gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}
 #settingsView .helpSteps li{border-radius:0;background:transparent}
 #settingsView .helpSteps li+li::after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}
-#settingsView .metaTableWrap{border-radius:var(--r-group);background:var(--group-bg)}
+#settingsView .metaTableWrap{border-radius:var(--r-tile);background:var(--group-bg)}
 
 /* =========================================================
    Movement & you, layout B (2026-10-17): Activity and
@@ -2133,25 +2126,25 @@ button,input{font:inherit}
 
 /* Weather card */
 .weatherCard{display:flex;flex-direction:column}
-.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--card-gap)}
+.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--inset)}
 .wxNow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}
 .wxTempBlock{display:grid;gap:4px;min-width:0}
 .wxTemp{display:flex;align-items:flex-start;gap:2px}
 .wxPlace{color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wxCondition{display:grid;gap:2px;padding:var(--tile-pad);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}
+.wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}
 /* the forecast stretches to fill the card, so the row of cards stays even */
 .wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--tile-action-gap);min-width:0;padding:var(--tile-pad) 8px;border-radius:var(--r-tile);background:var(--tile)}
+.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 8px;border-radius:var(--r-tile);background:var(--tile)}
 .wxTemps{display:grid;justify-items:center;gap:2px}
 .wxLow{color:var(--muted)}
 .wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}
 .wxCompact{display:none}
 @media(max-width:620px){
   .wxWide{display:none}
-  .wxCompact{display:grid;gap:var(--card-gap)}
+  .wxCompact{display:grid;gap:var(--inset)}
 }
-.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);background:var(--icon-bg);overflow:hidden}
+.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
 .wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:var(--muted)}
 .wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--muted)}
