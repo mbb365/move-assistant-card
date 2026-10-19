@@ -1,4 +1,4 @@
-const os = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--bg:#050505;--page:#090909;--card:#222222;--card2:#262626;--tile:#2b2b2b;--tile-2:#2b2b2b;--row:#2b2b2b;--row-rest:#2b2b2b;--raised:#2b2b2b;--chip:#2b2b2b;--bar-track:#2b2b2b;--control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#3f3f3f;--text:#f1f1f1;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);--line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;--bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;--segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;--hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);--today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;--danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--on-danger-fill:#222222;--seg-bg:#3f3f3f;--seg-on:#2b2b2b;--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:#1f7a4d}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;--tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;--control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);--text:#222222;--soft:#3F3F3F;--muted:#3F3F3F;--accent-text:#5B7A00;--line:#D8D6D6;--lineb:#D8D6D6;--field-line:#D8D6D6;--divider:#E6E4E4;--border-hover:#C9C7C7;--bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);--segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;--hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);--today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;--danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;--seg-bg:#E3E1E1;--seg-on:#FFFFFF;--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink)!important}#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}#app.light .activityIcon{background:#e8e1ff;color:#7859c9!important}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}#app.light.resting .shell{background:#7dbb98}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:inherit;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-icon);background:var(--track);border:.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}.switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-control)!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-tile:Geist,var(--font);--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:52px;--t-title:22px;--t-value:16px;--t-section:18px;--t-strong:14px;--t-body:12px;--t-caption:12px;--lh-display:1.05;--lh-title:1;--t-wx-temp:64px;--t-wx-range:24px;--t-tile-title:14px;--lh-tile-title:22.4px;--t-tile-detail:22px;--lh-tile-detail:20px;--r-card:36px;--r-tile:32px;--r-group:20px;--r-icon:16px;--r-control:12px;--r-seg:28px;--card-pad:20px;--card-gap:22px;--gutter:22px;--grid-gap:16px;--tile-pad:16px 20px;--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;--chip-size:46px;--glyph-size:34px}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.timeLabel,.moveItemName,.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.moveMeta,.timeValue,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}.insightCard{display:flex;flex-direction:column;gap:0}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto;border-radius:22.4px;background:var(--raised)}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:28px 28px 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--card-pad)}.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}.upcomingCard{padding:var(--card-pad)}.workoutPanel{border-radius:var(--r-tile);padding:var(--tile-pad)}.workoutPanel.active{border-radius:var(--r-card)}.workoutPanel.addPanel{padding:var(--tile-pad)}.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--tile-pad);gap:var(--tile-gap)}.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}.activityRows{gap:12px}.timeTile{padding:var(--tile-pad);gap:var(--tile-action-gap)}.timeHeader{gap:var(--tile-gap)}.createPresetBtn,.createExtraToggle{padding:var(--tile-pad)}.moveMeta,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}.createPresetBtn.active span{color:var(--on-bright)}.moveMeta,.timeValue,.activityRowMeta{margin-top:0}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);font-size:20px}.navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon)}.moveRow.editing{padding:var(--tile-pad)}.moveRow.phoneRow{min-height:0;padding:12px 16px 12px 12px;gap:12px}.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-icon);background:var(--icon-bg);color:var(--muted)}.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}.moveRow.restItem .dragHandle{background:transparent}.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}.moveRow.restItem .dragHandle:hover{background:var(--hover)}.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-tile);background:var(--seg-bg);flex:0 0 auto}.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-seg);background:transparent;color:var(--text);cursor:pointer}.segBtn:hover{background:var(--hover)}.moveActions.seg{gap:4px}.moveActions .segBtn{min-width:100px}.moveActions .editBtn{background:var(--seg-on)}.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}.moveActions .removeBtn svg{display:block;width:24px;height:24px}.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}.moveActions .removeBtn.holding{color:#fff}@media (max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}.tabs.rubberTabs{padding:4px;border:0;border-radius:var(--r-tile);background:var(--seg-bg)}.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-seg);background:var(--seg-on)}.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}.tabs.rubberTabs .tab.active{color:var(--text)}#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}.toggleTrack{width:50px;height:28px;border-radius:var(--r-icon);background:var(--track);border:.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright);opacity:1}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}@media (max-width:900px){.workoutPanel:not(.addPanel){border-radius:var(--r-card);padding:var(--card-pad)}}@media (max-width:620px){:host{--card-pad:16px;--tile-pad:12px 16px;--tile-min:70px;--card-gap:16px;--gutter:0px;--grid-gap:8px}}@media (max-width:620px){.modalBackdrop{padding:0}.modal,.modal:not(.createMode){width:100%;height:100%;max-height:none;border-radius:0;border:0}.modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}.modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}}:host{--group-bg:var(--card)}.modal,.sheet{--group-bg:var(--tile)}.view{padding-left:var(--gutter);padding-right:var(--gutter)}.grid{gap:var(--grid-gap)}.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow):before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}.setupText{display:grid;gap:2px;min-width:0}.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}.setupRow .rangeTrack[hidden]{display:none}.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}.rangeTrack.setupSlider:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}.setupSlider .rangeFill:after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}.setupSlider:focus-within{outline:0}.setupSlider:focus-within .rangeFill:after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}.stepper{display:flex;align-items:center;gap:2px;padding:3px;border-radius:var(--r-control);background:var(--seg-bg);flex:0 0 auto}.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:9px!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}.stepBtn:hover:not(:disabled){background:var(--hover)}.stepBtn:disabled{opacity:.35;cursor:default}.stepCount{min-width:24px;text-align:center;font:600 16px/1 var(--font);font-variant-numeric:tabular-nums}.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}.editNameLabel{text-transform:uppercase;letter-spacing:.1em;padding:0 4px}.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}#settingsView .card+.card{margin-top:36px}#settingsView .paneTitle{margin:0 4px}#settingsView .note{margin:0 4px 4px}#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}#settingsView .helpSteps{gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}#settingsView .helpSteps li{border-radius:0;background:transparent}#settingsView .helpSteps li+li:after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}#settingsView .metaTableWrap{border-radius:var(--r-group);background:var(--group-bg)}:host{--sun-core:#ffee00;--sun-edge:#ffd400;--wx-clear:var(--primary);--wx-cloudy:#d8d6d6;--wx-rain:#027fb7;--wx-night:#1d3b5c;--cloud:#ffffff}.activityCard,.insightCard{grid-column:span 3}.weatherCard,.grid.noWeather .activityCard,.grid.noWeather .insightCard,.grid.noActivity .insightCard{grid-column:span 6}.grid.noActivity.noWeather .insightCard{grid-column:span 12}@media (max-width:1199px) and (min-width:901px){.activityCard,.insightCard{grid-column:span 6}.weatherCard,.grid.noActivity .insightCard{grid-column:span 12}}@media (max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}.jointRows{gap:0;border-radius:var(--r-tile);background:var(--tile)}.jointRows>.activityRow{background:transparent}.insightCard .jointRows{flex:1;align-content:space-evenly}#app.light .insightCard .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}#app.light .insightCard .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}.weatherCard{display:flex;flex-direction:column}.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--card-gap)}.wxNow{display:flex;justify-content:space-between;align-items:center;gap:16px}.wxCurrent{display:flex;align-items:center;gap:16px;min-width:0}.wxTempBlock{display:grid;gap:4px;min-width:0}.wxTemp{display:flex;align-items:flex-start;gap:2px}.wxPlace{color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wxCondition{display:grid;gap:2px;padding:var(--tile-pad);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--tile-action-gap);min-width:0;padding:16px 8px;border-radius:var(--r-tile);background:var(--tile)}.wxTemps{display:grid;justify-items:center;gap:2px}.wxLow{color:var(--muted)}.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}.wxCompact{display:none}@media (max-width:620px){.wxWide{display:none}.wxCompact{display:grid;gap:var(--card-gap)}}.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);background:var(--wx-clear);overflow:hidden}.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}.wxIcon.cloudy,.wxIcon.snow{background:var(--wx-cloudy)}.wxIcon.rain{background:var(--wx-rain)}.wxIcon.night{background:var(--wx-night)}.wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:radial-gradient(circle,var(--sun-core),var(--sun-edge))}.wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--cloud)}.wxIcon.partly .wxSun{left:12%;top:10%;width:52%;height:52%}.wxIcon.partly .wxCloud{left:26%;top:28%;width:66%;height:66%}.wxIcon.rain .wxCloud,.wxIcon.snow .wxCloud{top:2%}.wxIcon.snow .wxCloud{fill:var(--cloud)}.wxDrops{position:absolute;left:30%;right:30%;bottom:16%;display:flex;justify-content:space-between}.wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--cloud);transform:rotate(12deg)}.wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:#90a4b8}.weatherCard .activityRow>.wxIcon{width:var(--chip-size)}.activityHeader>.wxIcon{width:var(--chip-size);height:var(--chip-size)}.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}.wxPlace,.wxCondName,.wxHigh{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.wxDayName,.wxLow,.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}', rs = `<main id="app"><div class="shell">
+const os = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;--color-fill-bright:#f1f1f1;--color-text-primary:#f1f1f1;--color-text-muted:#969696;--color-text-on-bright:#090909;--color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;--color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;--color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;--color-state-hover:rgba(255,255,255,.08);--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);--r:36px;--gap:20px}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}#app{--bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-card);--tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);--segment:var(--color-bg-tile);--seg-on:var(--color-bg-tile);--scroll-thumb:var(--color-bg-tile);--checkin-due:var(--color-bg-tile);--control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--bar-track:var(--color-bg-ground);--icon-bg:var(--color-bg-ground);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--primary-tint:var(--color-bg-ground);--text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);--border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--dot-empty:var(--color-text-muted);--primary-ink:var(--color-text-muted);--line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);--bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);--hover:var(--color-state-hover);--wash:var(--color-state-hover);--wash-2:var(--color-state-hover);--wash-3:var(--color-state-pressed);--wash-4:var(--color-state-pressed);--danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);--primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:var(--color-bg-resting)}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}#app.light{--color-bg-ground:#eeeded;--color-bg-card:#ffffff;--color-bg-tile:#f4f3f3;--color-fill-bright:#222222;--color-text-primary:#222222;--color-text-muted:#3f3f3f;--color-text-on-bright:#ffffff;--color-line:rgba(0,0,0,.12);--color-text-accent:#222222;--color-bg-resting:#7dbb98;--color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#c62f2f;--color-state-hover:rgba(0,0,0,.06);--color-state-pressed:rgba(0,0,0,.12);--scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}#app.light .energyBtn:hover,#app.light .energyBtn:focus-visible,#app.light .energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 34%,white);color:#222!important}:host(.lightBody){background:#eeeded;color-scheme:light}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}.activityCard,.weekly{grid-column:span 6}.energySection{grid-column:span 12;margin-top:16px}.activityCard,.weekly{min-height:288px}.wellness{width:100%}.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color:hsl(199deg 97% 68% / 100%);--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-50:hsl(199deg 97% 68% / 50%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:inherit;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color:hsl(199deg 97% 48% / 100%);--glow-color-50:hsl(199deg 97% 48% / 50%);--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:#090909!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}.energyFloat{padding:22.4px;background:transparent;border:0}.energyScale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9.6px;margin-top:17.6px}.energyBtn{--feeling-color:#8f8f8f;--feeling-glow:rgba(255,255,255,.14);position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:43.2px;padding:0 9.6px;white-space:nowrap;border-radius:12.8px;background:var(--raised);border:.32px solid var(--line);color:var(--text);cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease}.energyBtn>span{position:relative;z-index:2}.energyBtn:before{content:"";position:absolute;top:-18%;right:-18%;bottom:-18%;left:-18%;z-index:-2;opacity:0;background:radial-gradient(ellipse at var(--feel-x,50%) var(--feel-y,50%),color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,transparent 72%);transform:scale(.82) skew(-3deg);filter:saturate(1.08) blur(.8px);transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}.energyBtn:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;opacity:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) .8px,transparent .8px,transparent 3.2px),linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),transparent 100%);mix-blend-mode:screen}.energyBtn:hover:before,.energyBtn:focus-visible:before,.energyBtn.selected:before{opacity:.92;transform:translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px)) scale(1.08) skew(2deg);animation:feelingWarp 1.45s ease-in-out infinite alternate}.energyBtn:hover:after,.energyBtn:focus-visible:after,.energyBtn.selected:after{opacity:.55;animation:feelingScan .9s linear infinite}.energyBtn:hover,.energyBtn:focus-visible,.energyBtn.selected{background:color-mix(in srgb,var(--feeling-color) 42%,#171717);border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);color:#f4f4f4}.energyBtn.selected{box-shadow:inset 0 0 0 .8px color-mix(in srgb,var(--feeling-color) 58%,transparent),0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}.energyBtn[data-energy=Drained]{--feeling-color:#6E63A8}.energyBtn[data-energy=Low]{--feeling-color:#5878A8}.energyBtn[data-energy=Okay]{--feeling-color:#6F8B8A}.energyBtn[data-energy=Good]{--feeling-color:#5F9B72}.energyBtn[data-energy=Energised]{--feeling-color:#D5A53E}.energyBtn[data-energy=Great]{--feeling-color:#D56B54}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}@media (prefers-reduced-motion: reduce){.energyBtn:before,.energyBtn:after{animation:none!important}}.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoExperimentHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:11.2px;margin-bottom:16px}.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekHero{display:block}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19.2px}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekChipMeta{color:var(--muted)}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.movementMark{position:relative;z-index:2}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:46.4px;border-radius:17.6px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.timeValue{color:var(--soft);margin-top:5.6px}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-icon);background:var(--track);border:.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}.switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--bright);color:var(--on-bright)}@media (max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}.weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}}:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-control)!important}.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.autoRestSummary{display:inline-flex;align-items:center;gap:6.4px;margin-left:6.4px;color:var(--muted)}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.movementDurationField{display:grid;gap:6.4px}.movementTimingHead{display:flex;align-items:center;justify-content:space-between;gap:9.6px;color:var(--muted)}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.movementTypeBtn:disabled{opacity:.32;cursor:not-allowed}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorActions{margin-top:14.4px}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#ffffff38}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.energyBtn[data-level="1"]{--feeling-color:#6E63A8}.energyBtn[data-level="2"]{--feeling-color:#5878A8}.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}.energyBtn[data-level="4"]{--feeling-color:#5F9B72}.energyBtn[data-level="5"]{--feeling-color:#D5A53E}.energyBtn[data-level="6"]{--feeling-color:#D56B54}.checkinQuestion+.checkinQuestion{margin-top:28.8px}.checkinStatus{margin-top:17.6px;color:var(--muted)}.checkinStatus.done{color:var(--text)}.checkinStatus.done:before{content:"✓  "}.insightSection{grid-column:span 12;margin-top:16px}.insightCard{display:grid;gap:22.4px}.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}.insightLines{display:grid;gap:9.6px}.insightLine.muted{color:var(--muted)}.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}.day{display:grid;gap:6.4px;justify-items:center}.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}.stepBar{left:0;right:0;background:var(--wash-3)}.moveBar{left:22%;right:22%;background:var(--primary)}.day.today .dayBars{box-shadow:inset 0 0 0 .8px var(--today-ring)}.dayDots{display:flex;gap:2.4px}.dayDot{width:6.4px;height:6.4px;border-radius:50%}.dayDot.empty{box-shadow:inset 0 0 0 .8px var(--dot-empty)}.dayLabel{color:var(--muted)}.day.today .dayLabel{color:var(--text)}.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-.8px}.lgMove{background:var(--primary)}.lgSteps{background:var(--wash-4)}.lgDot{background:linear-gradient(90deg,#5f9b72 50%,#d5a53e 50%);border-radius:50%!important}@media (max-width:900px){.insightSection{grid-column:auto}.insightTop,.insightBody{grid-template-columns:1fr}.insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}.dayBars{height:72px}}@media (max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:14.4px}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:9.6px;padding:14.4px 9.6px;border:.32px solid var(--line);border-right:0;border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}.checkinTab.due{background:var(--checkin-due)}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelTotals{display:grid;gap:9.6px}.feelCount{color:var(--muted)}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}.feelTotals .feelTrack{height:9.6px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}.weekly:hover .weeklyExpand{transform:scale(1.15)}.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}.weekChip.total .face{width:24px;height:24px}.insightBackdrop{z-index:155}.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}.insightModalHead .sectionLabel{margin:0}.insightModalCard .dayBars{height:160px}.insightBody.chartOnly{grid-template-columns:1fr}.dayFace .face{width:17.6px;height:17.6px}.chartLegend span{display:inline-flex;align-items:center}.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}.weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}.insightModalCard .dayBars{height:88px}.dayFace .face{width:12.8px;height:12.8px}}.weekChipTime{white-space:nowrap}.insightCard{grid-column:span 9;align-content:start}.insightEyebrow{margin-bottom:-11.2px}.insightStats{grid-auto-columns:minmax(88px,1fr)}.insightCard .dayBars{height:120px}@media (max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}@media (max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}.helpBackdrop{z-index:170}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:.32px solid var(--field-line);color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--primary-tint:color-mix(in srgb,var(--primary) 16%,white);--primary-ink:color-mix(in srgb,var(--primary) 75%,black);--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-tile:Geist,var(--font);--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:52px;--t-title:22px;--t-value:16px;--t-section:18px;--t-strong:14px;--t-body:12px;--t-caption:12px;--lh-display:1.05;--lh-title:1;--t-wx-temp:64px;--t-wx-range:24px;--t-tile-title:14px;--lh-tile-title:22.4px;--t-tile-detail:22px;--lh-tile-detail:20px;--r-card:36px;--r-tile:32px;--r-group:20px;--r-icon:16px;--r-control:12px;--r-seg:28px;--card-pad:20px;--card-gap:22px;--gutter:22px;--grid-gap:16px;--tile-pad:16px 20px;--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;--chip-size:46px;--glyph-size:34px}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}#app strong,#app b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.activityTitle,.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.insightLine strong{font-weight:var(--w-bold)}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.timeLabel,.moveItemName,.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.moveMeta,.timeValue,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.weekChipTime,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,.helpSteps li,.helpNote,.createStepSummary,.insightLine{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,.chartLegend,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.insightStats,.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}.insightCard{display:flex;flex-direction:column;gap:0}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}.timingGroup .timeRow+.timeRow{border-top:.32px solid var(--divider)}.timingGroup .timeTotal{padding-bottom:14px}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}#app.light .digits{mix-blend-mode:normal;color:var(--text)}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto;border-radius:22.4px;background:var(--raised)}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:28px 28px 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--card-pad)}.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}.upcomingCard{padding:var(--card-pad)}.workoutPanel{border-radius:var(--r-tile);padding:var(--tile-pad)}.workoutPanel.active{border-radius:var(--r-card)}.workoutPanel.addPanel{padding:var(--tile-pad)}.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--tile-pad);gap:var(--tile-gap)}.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}.activityRows{gap:12px}.timeTile{padding:var(--tile-pad);gap:var(--tile-action-gap)}.timeHeader{gap:var(--tile-gap)}.createPresetBtn,.createExtraToggle{padding:var(--tile-pad)}.moveMeta,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}.createPresetBtn.active span{color:var(--on-bright)}.moveMeta,.timeValue,.activityRowMeta{margin-top:0}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);font-size:20px}.navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon)}.moveRow.editing{padding:var(--tile-pad)}.moveRow.phoneRow{min-height:0;padding:12px 16px 12px 12px;gap:12px}.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-icon);background:var(--icon-bg);color:var(--muted)}.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}.moveRow.restItem .dragHandle{background:transparent}.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}.moveRow.restItem .dragHandle:hover{background:var(--hover)}.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-tile);background:var(--seg-bg);flex:0 0 auto}.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-seg);background:transparent;color:var(--text);cursor:pointer}.segBtn:hover{background:var(--hover)}.moveActions.seg{gap:4px}.moveActions .segBtn{min-width:100px}.moveActions .editBtn{background:var(--seg-on)}.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}.moveActions .removeBtn svg{display:block;width:24px;height:24px}.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}.moveActions .removeBtn.holding{color:#fff}@media (max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}.tabs.rubberTabs{padding:4px;border:0;border-radius:var(--r-tile);background:var(--seg-bg)}.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-seg);background:var(--seg-on)}.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}.tabs.rubberTabs .tab.active{color:var(--text)}#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}.toggleTrack{width:50px;height:28px;border-radius:var(--r-icon);background:var(--track);border:.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright);opacity:1}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}@media (max-width:900px){.workoutPanel:not(.addPanel){border-radius:var(--r-card);padding:var(--card-pad)}}@media (max-width:620px){:host{--card-pad:16px;--tile-pad:12px 16px;--tile-min:70px;--card-gap:16px;--gutter:0px;--grid-gap:8px}}@media (max-width:620px){.modalBackdrop{padding:0}.modal,.modal:not(.createMode){width:100%;height:100%;max-height:none;border-radius:0;border:0}.modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}.modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}}:host{--group-bg:var(--card)}.modal,.sheet{--group-bg:var(--tile)}.view{padding-left:var(--gutter);padding-right:var(--gutter)}.grid{gap:var(--grid-gap)}.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow):before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}.setupText{display:grid;gap:2px;min-width:0}.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}.setupRow .rangeTrack[hidden]{display:none}.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}.rangeTrack.setupSlider:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}.setupSlider .rangeFill:after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}.setupSlider:focus-within{outline:0}.setupSlider:focus-within .rangeFill:after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}.stepper{display:flex;align-items:center;gap:2px;padding:3px;border-radius:var(--r-control);background:var(--seg-bg);flex:0 0 auto}.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:9px!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}.stepBtn:hover:not(:disabled){background:var(--hover)}.stepBtn:disabled{opacity:.35;cursor:default}.stepCount{min-width:24px;text-align:center;font:600 16px/1 var(--font);font-variant-numeric:tabular-nums}.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}.editNameLabel{text-transform:uppercase;letter-spacing:.1em;padding:0 4px}.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}#settingsView .card+.card{margin-top:36px}#settingsView .paneTitle{margin:0 4px}#settingsView .note{margin:0 4px 4px}#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}#settingsView .helpSteps{gap:0;border-radius:var(--r-group);background:var(--group-bg);overflow:hidden}#settingsView .helpSteps li{border-radius:0;background:transparent}#settingsView .helpSteps li+li:after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}#settingsView .metaTableWrap{border-radius:var(--r-group);background:var(--group-bg)}.activityCard,.insightCard{grid-column:span 3}.weatherCard,.grid.noWeather .activityCard,.grid.noWeather .insightCard,.grid.noActivity .insightCard{grid-column:span 6}.grid.noActivity.noWeather .insightCard{grid-column:span 12}@media (max-width:1199px) and (min-width:901px){.activityCard,.insightCard{grid-column:span 6}.weatherCard,.grid.noActivity .insightCard{grid-column:span 12}}@media (max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}.jointRows{gap:0;border-radius:var(--r-tile);background:var(--tile)}.jointRows>.activityRow{background:transparent}.insightCard .jointRows{flex:1;align-content:space-evenly}.weatherCard{display:flex;flex-direction:column}.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--card-gap)}.wxNow{display:flex;justify-content:space-between;align-items:center;gap:16px}.wxCurrent{display:flex;align-items:center;gap:16px;min-width:0}.wxTempBlock{display:grid;gap:4px;min-width:0}.wxTemp{display:flex;align-items:flex-start;gap:2px}.wxPlace{color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wxCondition{display:grid;gap:2px;padding:var(--tile-pad);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--tile-action-gap);min-width:0;padding:16px 8px;border-radius:var(--r-tile);background:var(--tile)}.wxTemps{display:grid;justify-items:center;gap:2px}.wxLow{color:var(--muted)}.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}.wxCompact{display:none}@media (max-width:620px){.wxWide{display:none}.wxCompact{display:grid;gap:var(--card-gap)}}.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);background:var(--icon-bg);overflow:hidden}.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}.wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:var(--muted)}.wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--muted)}.wxIcon.partly .wxSun{left:12%;top:10%;width:52%;height:52%}.wxIcon.partly .wxCloud{left:26%;top:28%;width:66%;height:66%}.wxIcon.rain .wxCloud,.wxIcon.snow .wxCloud{top:2%}.wxDrops{position:absolute;left:30%;right:30%;bottom:16%;display:flex;justify-content:space-between}.wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--muted);transform:rotate(12deg)}.wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:var(--muted)}.weatherCard .activityRow>.wxIcon{width:var(--chip-size)}.activityHeader>.wxIcon{width:var(--chip-size);height:var(--chip-size)}.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}.wxPlace,.wxCondName,.wxHigh{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.wxDayName,.wxLow,.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.segBtn{transition:background .15s ease,transform .18s cubic-bezier(.34,1.46,.64,1),box-shadow .15s ease,color .15s ease}.segBtn:hover{background:transparent}@media (hover:hover){.segBtn:hover{background:var(--color-state-hover)}}.tabs.rubberTabs .tab.active:hover{background:transparent}.segBtn:active{background:var(--color-state-pressed);transform:scale(.97)}.segBtn:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--color-border-focus)}.segBtn:disabled{opacity:.4;cursor:default}.moveActions.seg{background:transparent;transition:background .18s ease}.moveActions.seg:focus-within{background:var(--seg-bg)}@media (hover:hover){.moveActions.seg:hover{background:var(--seg-bg)}}.moveActions .editBtn,.moveActions .editBtn:hover{background:transparent}.moveActions .removeBtn,.moveActions .removeBtn:hover{background:transparent;color:var(--text)}@media (hover:hover){.moveActions .editBtn:hover{background:var(--color-state-hover)}.moveActions .removeBtn:hover{background:var(--danger-fill);color:var(--color-text-on-danger)}}.moveActions .removeBtn:active{background:linear-gradient(var(--color-state-pressed-on-bright),var(--color-state-pressed-on-bright)),var(--danger-fill);color:var(--color-text-on-danger)}.moveActions .removeBtn.holding{background:var(--danger-bg);color:var(--color-text-on-danger)}.moveActions .removeFill{background:var(--danger-fill)}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--muted)}', rs = `<main id="app"><div class="shell">
 <div class="toast" id="toast" aria-live="polite"></div>
 
 <!-- HOME -->
@@ -660,22 +660,22 @@ const os = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
 `;
 function ss(x, w) {
   var bo, xo, wo, yo;
-  const a = (e) => x.getElementById(e), K = a("workoutView"), B = a("workoutNameInput");
+  const a = (e) => x.getElementById(e), K = a("workoutView"), N = a("workoutNameInput");
   let Z = !0;
   const Pt = a("homeClock");
   function Dt() {
     Pt && (Pt.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
   Dt(), setInterval(Dt, 15e3);
-  const Zi = a("createFlow"), So = a("createMovementsSlot"), Co = a("createTimingSlot"), To = a("createFinishSlot"), Lo = a("movementStepSummary"), Eo = a("timingStepSummary"), Mo = a("finishStepSummary"), Yn = a("continueToTiming"), Ro = a("continueToFinish"), Fo = a("finishMoveButton");
+  const Zi = a("createFlow"), So = a("createMovementsSlot"), Co = a("createTimingSlot"), To = a("createFinishSlot"), Lo = a("movementStepSummary"), Eo = a("timingStepSummary"), Mo = a("finishStepSummary"), Yn = a("continueToTiming"), Ro = a("continueToFinish"), Ao = a("finishMoveButton");
   let Un = !1, ln = [];
-  function Ao(e) {
+  function Bo(e) {
     !e || ln.some((t) => t.node === e) || ln.push({ node: e, parent: e.parentNode, next: e.nextSibling });
   }
   function Kn(e, t) {
-    e && (Ao(e), t.appendChild(e));
+    e && (Bo(e), t.appendChild(e));
   }
-  function Bo() {
+  function No() {
     [...ln].reverse().forEach(({ node: e, parent: t, next: n }) => {
       t && (n && n.parentNode === t ? t.insertBefore(e, n) : t.appendChild(e));
     }), ln = [];
@@ -688,28 +688,28 @@ function ss(x, w) {
   function qe() {
     var m, u;
     if (!J) return;
-    R[N];
-    const e = he.filter((p) => !p.hidden), t = e.filter((p) => p.kind !== "rest").length, n = e.filter((p) => p.kind === "rest").length;
+    R[F];
+    const e = ve.filter((p) => !p.hidden), t = e.filter((p) => p.kind !== "rest").length, n = e.filter((p) => p.kind === "rest").length;
     Lo.textContent = t ? t + " movement" + (t === 1 ? "" : "s") + (n ? " · " + n + " rest" + (n === 1 ? "" : "s") : "") : "No movements yet";
     const i = t > 0, o = x.querySelector('[data-open-step="timing"]'), r = x.querySelector('[data-open-step="finish"]');
     o.disabled = !i, Yn.disabled = !i, Eo.textContent = i ? Je(W.value) + " · " + le(D.value) + " movement · " + le(z.value) + " rest" : "Add a movement first", r.disabled = !(i && Un);
-    const s = ((B == null ? void 0 : B.value) || "").trim(), d = [];
+    const s = ((N == null ? void 0 : N.value) || "").trim(), d = [];
     (m = a("includeWarmupPreset")) != null && m.checked && d.push("warm-up"), (u = a("includeCooldownPreset")) != null && u.checked && d.push("cooldown"), Mo.textContent = s ? s + (d.length ? " · " + d.join(" + ") : "") : d.length ? d.join(" + ") : "Name and optional extras";
   }
-  function No() {
-    var b, E, v;
+  function Fo() {
+    var b, E, h;
     Zi.hidden = !1, Un = !1;
-    const e = x.querySelector(".editNameRow"), t = a("createMoveOptions"), n = x.querySelector(".timeTiles"), i = a("routineSummaryModal"), o = x.querySelector(".tempoRevealRow"), r = a("tempoExperiment"), s = (b = a("warmupList")) == null ? void 0 : b.closest("section"), d = a("movementCreatorLaunch"), m = a("movementCreator"), u = (E = a("strengthList")) == null ? void 0 : E.closest("section"), p = (v = a("cooldownList")) == null ? void 0 : v.closest("section");
+    const e = x.querySelector(".editNameRow"), t = a("createMoveOptions"), n = x.querySelector(".timeTiles"), i = a("routineSummaryModal"), o = x.querySelector(".tempoRevealRow"), r = a("tempoExperiment"), s = (b = a("warmupList")) == null ? void 0 : b.closest("section"), d = a("movementCreatorLaunch"), m = a("movementCreator"), u = (E = a("strengthList")) == null ? void 0 : E.closest("section"), p = (h = a("cooldownList")) == null ? void 0 : h.closest("section");
     [t == null ? void 0 : t.querySelector(".createExtras"), s, d, m, u, p].forEach((g) => g && Kn(g, So)), [t, n, i, o, r].forEach((g) => Kn(g, Co)), Kn(e, To), ot("movements"), qe();
   }
   function Io() {
-    Bo(), Zi.hidden = !0, x.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
+    No(), Zi.hidden = !0, x.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
   }
   x.querySelectorAll("[data-open-step]").forEach((e) => e.addEventListener("click", () => {
     e.disabled || ot(e.dataset.openStep);
   })), Yn.addEventListener("click", () => {
     Yn.disabled || ot("timing");
-  }), Ro.addEventListener("click", () => ot("finish")), Fo.addEventListener("click", () => a("saveWorkoutEdit").click());
+  }), Ro.addEventListener("click", () => ot("finish")), Ao.addEventListener("click", () => a("saveWorkoutEdit").click());
   const rt = { home: a("homeView"), workout: a("workoutView"), settings: a("settingsView") }, Xi = a("homeNav"), Ji = a("settingsNav");
   function Zn(e) {
     Object.entries(rt).forEach(([t, n]) => n.classList.toggle("active", t === e)), Xi.classList.toggle("active", e === "home"), Ji.classList.toggle("active", e === "settings"), e === "home" && setTimeout(gi, 400), e === "settings" && (requestAnimationFrame(() => sn(x.querySelector(".tab.active"), !1)), zn());
@@ -719,7 +719,7 @@ function ss(x, w) {
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
   ];
-  let Se = cn.map((e) => ({ ...e })), he = [
+  let Se = cn.map((e) => ({ ...e })), ve = [
     { id: "goblet-squat", name: "Kettlebell goblet squat", group: "Glutes + legs", kind: "work", hidden: !1 },
     { id: "floor-press", name: "Kettlebell floor press", group: "Chest + triceps", kind: "work", hidden: !1 },
     { id: "one-arm-row", name: "One-arm kettlebell row", group: "Back + arms", kind: "work", hidden: !1 },
@@ -789,7 +789,7 @@ function ss(x, w) {
       ]
     }
   }, I = ta(w.data), R = I.profiles;
-  let N = R[I.selected] ? I.selected : I.order.find((e) => R[e]) || "kettlebell";
+  let F = R[I.selected] ? I.selected : I.order.find((e) => R[e]) || "kettlebell";
   function ta(e) {
     const t = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, n = t.profiles && Object.keys(t.profiles).length ? t.profiles : JSON.parse(JSON.stringify(Oo)), i = (Array.isArray(t.order) ? t.order : Object.keys(n)).filter((o) => n[o]);
     return Object.keys(n).forEach((o) => {
@@ -822,7 +822,7 @@ function ss(x, w) {
     return { ...e, mood: t(e.mood), energy: t(e.energy), scale: 100 };
   }
   function Me() {
-    J || (I.selected = N, I.order = I.order.filter((e) => R[e] && e !== Xe), w.save(I));
+    J || (I.selected = F, I.order = I.order.filter((e) => R[e] && e !== Xe), w.save(I));
   }
   function q() {
     return I.settings;
@@ -830,13 +830,13 @@ function ss(x, w) {
   function Re(e) {
     const t = R[e];
     if (!t) return;
-    N = e;
+    F = e;
     const n = a("workoutNameInput");
     if (n && (n.value = t.name), W.value = t.total, D.value = t.work, z.value = t.rest, Le.value = t.rounds || 1, t.customSequence) {
       const i = (t.sequence || []).map((r) => ({ ...r })), o = (r) => i.filter((s) => s.presetRole === r).map(({ presetRole: s, ...d }) => d);
-      Se = (t.warmup || o("warmup")).map((r) => ({ ...r })), Ce = (t.cooldown || o("cooldown")).map((r) => ({ ...r })), he = i.filter((r) => !r.presetRole), Qn(t.preset || "movement", !1);
+      Se = (t.warmup || o("warmup")).map((r) => ({ ...r })), Ce = (t.cooldown || o("cooldown")).map((r) => ({ ...r })), ve = i.filter((r) => !r.presetRole), Qn(t.preset || "movement", !1);
     } else
-      W.min = 3, W.max = 40, W.step = 1, D.min = 20, D.max = 60, D.step = 5, z.min = 5, z.max = 30, z.step = 5, Se = (t.warmup || cn).map((i) => ({ ...i })), Ce = (t.cooldown || pn).map((i) => ({ ...i })), he = t.strength.map((i) => Array.isArray(i) ? (([o, r, s, d = !1]) => ({ id: o, name: r, group: s, kind: "work", hidden: !!d }))(i) : { ...i });
+      W.min = 3, W.max = 40, W.step = 1, D.min = 20, D.max = 60, D.step = 5, z.min = 5, z.max = 30, z.step = 5, Se = (t.warmup || cn).map((i) => ({ ...i })), Ce = (t.cooldown || pn).map((i) => ({ ...i })), ve = t.strength.map((i) => Array.isArray(i) ? (([o, r, s, d = !1]) => ({ id: o, name: r, group: s, kind: "work", hidden: !!d }))(i) : { ...i });
     x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === e)), G();
   }
   function Vo(e, t, n) {
@@ -878,15 +878,15 @@ function ss(x, w) {
     }), n.addEventListener("keydown", (d) => {
       (d.key === "Enter" || d.key === " ") && !d.target.closest("button") && (d.preventDefault(), Re(e));
     }), n.querySelector(".seeWorkoutBtn").addEventListener("click", (d) => {
-      d.stopPropagation(), Re(e), Ba(!1);
+      d.stopPropagation(), Re(e), Na(!1);
     }), n.querySelector(".startWorkoutBtn").addEventListener("click", (d) => {
-      d.stopPropagation(), Re(e), Fr();
+      d.stopPropagation(), Re(e), Ar();
     }), n;
   }
   function aa() {
     x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.remove()), I.order.forEach((e) => {
       R[e] && Jn(e, R[e]);
-    }), x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === N));
+    }), x.querySelectorAll(".workoutPanel[data-workout]").forEach((e) => e.classList.toggle("active", e.dataset.workout === F));
   }
   aa(), a("addWorkoutPanel").addEventListener("keydown", (e) => {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), a("addWorkoutPanel").click());
@@ -903,7 +903,7 @@ function ss(x, w) {
       includeCooldown: !1,
       sequence: [],
       strength: []
-    }, Re(Xe), Ba(!0);
+    }, Re(Xe), Na(!0);
   });
   let f = [], T = 0, ce = 0, Ht = 1, Ee = !1, Q = null, un = null, de = !1, st = I.settings.upcomingCount ?? "all", oa = "movement";
   function mn(e, t, n) {
@@ -959,13 +959,13 @@ function ss(x, w) {
     const n = Number(e.start) || 0, i = Number(e.end) || Number(e.videoDuration) || 0;
     return i > n ? Math.round(i - n) : Number(e.duration) || 300;
   }
-  function hn(e, t) {
+  function vn(e, t) {
     const n = Math.max(0, Number(e) || 0);
     return Math.round(t === "hour" ? n * 3600 : t === "min" ? n * 60 : n);
   }
   function Qn(e, t = !0) {
     oa = e, x.querySelectorAll(".createPresetBtn").forEach((i) => i.classList.toggle("active", i.dataset.movePreset === e));
-    const n = R[N];
+    const n = R[F];
     n && (n.preset = e), e === "work" ? (W.min = 30, W.max = 480, W.step = 30, D.min = 300, D.max = 7200, D.step = 300, z.min = 60, z.max = 1800, z.step = 60, t && (W.value = 60, D.value = 1500, z.value = 300), a("addMovementUnit").value = "min", a("addMovementDuration").value = 25, a("addRestUnit").value = "min", a("addRestDuration").value = 5) : (W.min = 3, W.max = 40, W.step = 1, D.min = 20, D.max = 60, D.step = 5, z.min = 5, z.max = 30, z.step = 5, t && (W.value = 20, D.value = 45, z.value = 15), a("addMovementUnit").value = "sec", a("addMovementDuration").value = 45, a("addRestUnit").value = "sec", a("addRestDuration").value = 30), gn();
   }
   function ra(e, t) {
@@ -973,7 +973,7 @@ function ss(x, w) {
     return e.map((i, o) => ({ ...i, id: t + "-" + o + "-" + Date.now().toString(36), useGlobalTiming: !n, duration: n ? 60 : Number(D.value) }));
   }
   function ei() {
-    const e = R[N];
+    const e = R[F];
     e != null && e.customSequence && (e.includeWarmup = a("includeWarmupPreset").checked, e.includeCooldown = a("includeCooldownPreset").checked, e.includeWarmup && !Se.length && (Se = ra(cn, "warm")), e.includeCooldown && !Ce.length && (Ce = ra(pn, "cool")), G());
   }
   function Uo() {
@@ -992,8 +992,8 @@ function ss(x, w) {
   }
   function G() {
     Number(W.value) * 60;
-    const e = Number(D.value), t = Number(z.value), n = R[N], i = !!(n != null && n.customSequence), o = (i ? !n.includeWarmup : n != null && n.warmupOff) ? [] : $n(Se), r = $n(he), s = i && !n.includeCooldown ? [] : $n(Ce);
-    if (n && (n.total = Number(W.value), n.work = e, n.rest = t, n.rounds = Number(Le.value) || 1, n.customSequence ? (n.sequence = he.map((c) => ({ ...c })), n.warmup = Se.map((c) => ({ ...c })), n.cooldown = Ce.map((c) => ({ ...c }))) : (n.strength = he.map((c) => ({ ...c })), n.warmup = Se.map((c) => ({ ...c })), n.cooldown = Ce.map((c) => ({ ...c })))), n != null && n.customSequence) {
+    const e = Number(D.value), t = Number(z.value), n = R[F], i = !!(n != null && n.customSequence), o = (i ? !n.includeWarmup : n != null && n.warmupOff) ? [] : $n(Se), r = $n(ve), s = i && !n.includeCooldown ? [] : $n(Ce);
+    if (n && (n.total = Number(W.value), n.work = e, n.rest = t, n.rounds = Number(Le.value) || 1, n.customSequence ? (n.sequence = ve.map((c) => ({ ...c })), n.warmup = Se.map((c) => ({ ...c })), n.cooldown = Ce.map((c) => ({ ...c }))) : (n.strength = ve.map((c) => ({ ...c })), n.warmup = Se.map((c) => ({ ...c })), n.cooldown = Ce.map((c) => ({ ...c })))), n != null && n.customSequence) {
       const c = [...o.map((S) => ({ ...S, section: "warmup" })), ...r, ...s.map((S) => ({ ...S, section: "cooldown" }))].map((S) => {
         if (S.kind === "video") return { ...S, duration: qt(S, e), rest: 0 };
         if (S.kind === "rest") {
@@ -1022,11 +1022,11 @@ function ss(x, w) {
         var te;
         ((te = f[S + 1]) == null ? void 0 : te.kind) === "rest" && (c.rest = 0);
       }), f.length && (f[f.length - 1].rest = 0);
-    const d = Math.max(1, Math.min(10, Number(Le.value) || 1)), m = f, u = (c) => d <= 1 ? null : c.section === "warmup" || c.presetRole === "warmup" ? "first" : c.section === "cooldown" || c.presetRole === "cooldown" ? "last" : c.kind === "video" && (c.videoRounds === "first" || c.videoRounds === "last") ? c.videoRounds : null, p = (c) => !!u(c), l = m.filter((c) => !p(c)), b = m.filter(p), E = l.length, v = l.reduce((c, S) => c + S.duration + S.rest, 0), g = b.reduce((c, S) => c + S.duration + S.rest, 0), h = [
+    const d = Math.max(1, Math.min(10, Number(Le.value) || 1)), m = f, u = (c) => d <= 1 ? null : c.section === "warmup" || c.presetRole === "warmup" ? "first" : c.section === "cooldown" || c.presetRole === "cooldown" ? "last" : c.kind === "video" && (c.videoRounds === "first" || c.videoRounds === "last") ? c.videoRounds : null, p = (c) => !!u(c), l = m.filter((c) => !p(c)), b = m.filter(p), E = l.length, h = l.reduce((c, S) => c + S.duration + S.rest, 0), g = b.reduce((c, S) => c + S.duration + S.rest, 0), v = [
       b.some((c) => c.section === "warmup" || c.presetRole === "warmup") && "warm-up",
       b.some((c) => c.section === "cooldown" || c.presetRole === "cooldown") && "cooldown",
       b.some((c) => c.kind === "video" && !c.section && !c.presetRole) && "video"
-    ].filter(Boolean), P = h.length > 1 ? h.slice(0, -1).join(", ") + " & " + h[h.length - 1] : h[0] || "";
+    ].filter(Boolean), P = v.length > 1 ? v.slice(0, -1).join(", ") + " & " + v[v.length - 1] : v[0] || "";
     f = [];
     const M = (c, S) => {
       const te = u(c);
@@ -1041,8 +1041,8 @@ function ss(x, w) {
           S.rest = t, S.roundBreakAfter = !0;
         }
     gn();
-    const y = f.reduce((c, S) => c + S.duration + S.rest, 0), A = Math.round(v / 60), j = Math.round(y / 60), ee = d > 1 ? Je(A) + " × " + d + " rounds" + (g ? " + " + le(g) + " " + P : "") + " (" + Je(j) + ")" : Je(j), _ = [o.length ? "warm-up" : "", s.length ? "cooldown" : ""].filter(Boolean), ae = n != null && n.customSequence ? ee + " · " + E + " items" + (_.length && !(d > 1 && g) ? " · " + _.join(" + ") : "") : ee + " · " + le(e) + " / " + le(t) + (_.length && !(d > 1 && g) ? " · " + _.join(" + ") : "");
-    Po.textContent = le(v);
+    const y = f.reduce((c, S) => c + S.duration + S.rest, 0), B = Math.round(h / 60), j = Math.round(y / 60), ee = d > 1 ? Je(B) + " × " + d + " rounds" + (g ? " + " + le(g) + " " + P : "") + " (" + Je(j) + ")" : Je(j), _ = [o.length ? "warm-up" : "", s.length ? "cooldown" : ""].filter(Boolean), ae = n != null && n.customSequence ? ee + " · " + E + " items" + (_.length && !(d > 1 && g) ? " · " + _.join(" + ") : "") : ee + " · " + le(e) + " / " + le(t) + (_.length && !(d > 1 && g) ? " · " + _.join(" + ") : "");
+    Po.textContent = le(h);
     const se = f.filter((c) => !c.roundBreak).length, X = d > 1 ? se + " activities · " + d + " rounds" : E + " activities";
     _o.textContent = d > 1 ? d + " rounds · " + Je(j) + " total" : "1 round", a("roundsCount").textContent = d, x.querySelectorAll("[data-rounds-step]").forEach((c) => {
       c.disabled = Number(c.dataset.roundsStep) < 0 ? d <= 1 : d >= 10;
@@ -1051,7 +1051,7 @@ function ss(x, w) {
     Ke && (Ke.textContent = ae), ea.textContent = ae, si(), x.querySelectorAll(".workoutPanel.active .activityCount").forEach((c) => c.textContent = X), gn(), ii(), li(), jt(), Uo(), J && qe(), rt.workout.classList.contains("active") && !Q && Ri();
   }
   const _t = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>', Ko = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>';
-  let ve = null, Te = null;
+  let he = null, Te = null;
   function Zo(e) {
     return e = Math.max(1, Number(e) || 0), e >= 3600 && e % 3600 === 0 ? { value: e / 3600, unit: "hour" } : e >= 60 && e % 60 === 0 ? { value: e / 60, unit: "min" } : { value: e, unit: "sec" };
   }
@@ -1060,89 +1060,89 @@ function ss(x, w) {
     t && (t.focus({ preventScroll: !0 }), e && t.select());
   }
   function ti(e, t, n = {}) {
-    const i = e.kind === "rest", o = e.kind === "video", r = o ? e.useVideoLength !== !1 : i ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, s = Number(i ? z.value : D.value), d = Zo(o ? e.useVideoLength === !1 ? e.duration : qt({ ...e, useVideoLength: !0 }) : r ? s : e.duration || s), m = o && (Number(e.videoDuration) > 0 || Number(e.end) > 0), u = o ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + L(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + L(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([y, A]) => '<option value="' + y + '"' + ((e.videoRounds || "every") === y ? " selected" : "") + ">" + A + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + L(e.name) + '" placeholder="' + (i ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + L(e.group) + '" placeholder="' + (i ? "Rest" : "e.g. Glutes + legs") + '"></label>', p = o ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (m ? " · " + zt(qt({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + le(s), l = document.createElement("div");
+    const i = e.kind === "rest", o = e.kind === "video", r = o ? e.useVideoLength !== !1 : i ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, s = Number(i ? z.value : D.value), d = Zo(o ? e.useVideoLength === !1 ? e.duration : qt({ ...e, useVideoLength: !0 }) : r ? s : e.duration || s), m = o && (Number(e.videoDuration) > 0 || Number(e.end) > 0), u = o ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + L(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + L(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([y, B]) => '<option value="' + y + '"' + ((e.videoRounds || "every") === y ? " selected" : "") + ">" + B + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + L(e.name) + '" placeholder="' + (i ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + L(e.group) + '" placeholder="' + (i ? "Rest" : "e.g. Glutes + legs") + '"></label>', p = o ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (m ? " · " + zt(qt({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + le(s), l = document.createElement("div");
     l.className = "moveRow editing" + (n.sheet ? " inSheet" : ""), l.dataset.index = t, l.dataset.id = e.id;
     const b = n.isNew ?? (Te == null ? void 0 : Te.item) === e, E = n.sheet ? '<div class="moveEditActions sheetActions">' + (b ? "" : '<div class="sheetSecondary"><button class="hideBtn" type="button" data-a="hide">' + (e.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" data-a="remove" aria-label="Hold to remove ' + L(e.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>') + '<div class="sheetPrimary"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">' + (b ? "Add" : "Save") + "</button></div></div>" : '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>';
     l.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (o ? " videoFields" : "") + '">' + u + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (r ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + L(p) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + d.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((y) => '<option value="' + y + '"' + (y === d.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[y] + "</option>").join("") + "</select></div></div>" + E + "</div>";
-    const v = (y) => l.querySelector("[data-f=" + y + "]"), g = () => {
-      const y = v("global").checked;
-      v("dur").disabled = y, v("unit").disabled = y, l.querySelector(".creatorDurationRow").classList.toggle("isDisabled", y);
+    const h = (y) => l.querySelector("[data-f=" + y + "]"), g = () => {
+      const y = h("global").checked;
+      h("dur").disabled = y, h("unit").disabled = y, l.querySelector(".creatorDurationRow").classList.toggle("isDisabled", y);
     };
-    v("global").addEventListener("change", g), g();
-    const h = () => {
+    h("global").addEventListener("change", g), g();
+    const v = () => {
       var y;
       if (n.sheet) {
         (y = n.onCancel) == null || y.call(n);
         return;
       }
-      b && fn(), ve = null, G();
+      b && fn(), he = null, G();
     }, P = () => {
       var j;
       if (o) {
         M();
         return;
       }
-      const y = v("name").value.trim();
+      const y = h("name").value.trim();
       if (!y) {
-        v("name").focus();
+        h("name").focus();
         return;
       }
-      e.name = y, e.group = v("group").value.trim() || (i ? "Rest" : "Movement");
-      const A = v("global").checked;
-      if (e.useGlobalTiming = A, A || (e.duration = Math.max(i ? 5 : 1, hn(v("dur").value, v("unit").value))), n.sheet) {
+      e.name = y, e.group = h("group").value.trim() || (i ? "Rest" : "Movement");
+      const B = h("global").checked;
+      if (e.useGlobalTiming = B, B || (e.duration = Math.max(i ? 5 : 1, vn(h("dur").value, h("unit").value))), n.sheet) {
         (j = n.onSaved) == null || j.call(n);
         return;
       }
-      b && (Te = null), ve = null, G(), Y(b ? i ? "Rest added" : "Movement added" : "Movement updated");
+      b && (Te = null), he = null, G(), Y(b ? i ? "Rest added" : "Movement added" : "Movement updated");
     }, M = () => {
       var _;
-      const y = v("url").value.trim(), A = Yo(y);
-      if (!A) {
-        v("urlError").hidden = !1, v("url").classList.add("invalid"), v("url").focus();
+      const y = h("url").value.trim(), B = Yo(y);
+      if (!B) {
+        h("urlError").hidden = !1, h("url").classList.add("invalid"), h("url").focus();
         return;
       }
-      const j = A.id !== e.videoId;
-      e.url = y, e.videoId = A.id, e.start = A.start, e.end = A.end, j && (e.videoDuration = null, e.videoError = null);
-      const ee = v("name").value.trim();
-      e.autoName = !ee, e.name = ee || (j ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = v("rounds").value, e.useVideoLength = v("global").checked, e.useVideoLength || (e.duration = Math.max(5, hn(v("dur").value, v("unit").value))), n.sheet ? (_ = n.onSaved) == null || _.call(n) : (b && (Te = null), ve = null, G(), Y(b ? "Video added" : "Video updated")), (j || !e.videoDuration || e.autoName && !e.videoTitle) && Or(e);
+      const j = B.id !== e.videoId;
+      e.url = y, e.videoId = B.id, e.start = B.start, e.end = B.end, j && (e.videoDuration = null, e.videoError = null);
+      const ee = h("name").value.trim();
+      e.autoName = !ee, e.name = ee || (j ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = h("rounds").value, e.useVideoLength = h("global").checked, e.useVideoLength || (e.duration = Math.max(5, vn(h("dur").value, h("unit").value))), n.sheet ? (_ = n.onSaved) == null || _.call(n) : (b && (Te = null), he = null, G(), Y(b ? "Video added" : "Video updated")), (j || !e.videoDuration || e.autoName && !e.videoTitle) && Or(e);
     };
-    if (o && v("url").addEventListener("input", () => {
-      v("urlError").hidden = !0, v("url").classList.remove("invalid");
-    }), l.querySelector("[data-a=cancel]").addEventListener("click", h), l.querySelector("[data-a=save]").addEventListener("click", P), n.sheet && !b) {
+    if (o && h("url").addEventListener("input", () => {
+      h("urlError").hidden = !0, h("url").classList.remove("invalid");
+    }), l.querySelector("[data-a=cancel]").addEventListener("click", v), l.querySelector("[data-a=save]").addEventListener("click", P), n.sheet && !b) {
       l.querySelector("[data-a=hide]").addEventListener("click", () => {
-        var A;
-        return (A = n.onHide) == null ? void 0 : A.call(n);
+        var B;
+        return (B = n.onHide) == null ? void 0 : B.call(n);
       });
       const y = l.querySelector("[data-a=remove]");
       rn(y, y.querySelector(".removeFill"), 1200, () => {
-        var A;
-        return (A = n.onRemove) == null ? void 0 : A.call(n);
+        var B;
+        return (B = n.onRemove) == null ? void 0 : B.call(n);
       });
     }
     return l.addEventListener("keydown", (y) => {
-      y.key === "Escape" && (y.preventDefault(), y.stopPropagation(), h()), y.key === "Enter" && y.target.matches("input") && (y.preventDefault(), P());
+      y.key === "Escape" && (y.preventDefault(), y.stopPropagation(), v()), y.key === "Enter" && y.target.matches("input") && (y.preventDefault(), P());
     }), l;
   }
   function ni(e, t) {
     const n = a(t);
     n.innerHTML = "", e.forEach((i, o) => {
-      if (i === ve && !Vt()) {
+      if (i === he && !Vt()) {
         n.appendChild(ti(i, o));
         return;
       }
       const r = document.createElement("div");
       r.className = "moveRow" + (i.hidden ? " hidden" : "") + (i.kind === "rest" ? " restItem" : "") + (i.kind === "video" ? " videoItem" : "") + (Pi(i) ? " noMeta" : ""), r.dataset.index = o, r.dataset.id = i.id;
-      const s = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : le(i.duration) : i.useGlobalTiming === !1 ? le(i.duration) : "Global timing", d = i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", m = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + le(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? zt(qt(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + s, u = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + L(i.name) + '. Drag, or use the up and down arrow keys">' + _t + "</button>", p = '<div class="moveText"><div class="moveItemName">' + L(i.name) + d + '</div><div class="moveMeta">' + L(m) + "</div></div>", l = (v) => v.addEventListener("keydown", (g) => {
+      const s = i.kind === "rest" ? i.useGlobalTiming === !0 ? "Global timing" : le(i.duration) : i.useGlobalTiming === !1 ? le(i.duration) : "Global timing", d = i.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", m = i.kind === "video" ? i.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (i.useVideoLength === !1 ? "stops after " + le(i.duration) : Number(i.videoDuration) > 0 || Number(i.end) > 0 ? zt(qt(i)) : "plays to the end") + (i.videoRounds === "first" ? " · first round only" : i.videoRounds === "last" ? " · last round only" : "") : i.group + " · " + s, u = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + L(i.name) + '. Drag, or use the up and down arrow keys">' + _t + "</button>", p = '<div class="moveText"><div class="moveItemName">' + L(i.name) + d + '</div><div class="moveMeta">' + L(m) + "</div></div>", l = (h) => h.addEventListener("keydown", (g) => {
         var M, y;
         if (g.key !== "ArrowUp" && g.key !== "ArrowDown") return;
         g.preventDefault();
-        const h = e.indexOf(i), P = h + (g.key === "ArrowUp" ? -1 : 1);
-        P < 0 || P >= e.length || (e.splice(h, 1), e.splice(P, 0, i), G(), (y = (M = a(t).children[P]) == null ? void 0 : M.querySelector(".dragHandle")) == null || y.focus());
+        const v = e.indexOf(i), P = v + (g.key === "ArrowUp" ? -1 : 1);
+        P < 0 || P >= e.length || (e.splice(v, 1), e.splice(P, 0, i), G(), (y = (M = a(t).children[P]) == null ? void 0 : M.querySelector(".dragHandle")) == null || y.focus());
       });
       if (Vt()) {
         r.classList.add("phoneRow"), r.tabIndex = 0, r.setAttribute("role", "button"), r.setAttribute("aria-label", "Edit " + (i.name || "step")), r.innerHTML = u + p + '<span class="rowChevron" aria-hidden="true">›</span>';
-        const v = r.querySelector(".dragHandle");
-        v.addEventListener("pointerdown", (g) => da(g, r, n, e)), l(v), r.addEventListener("click", (g) => {
+        const h = r.querySelector(".dragHandle");
+        h.addEventListener("pointerdown", (g) => da(g, r, n, e)), l(h), r.addEventListener("click", (g) => {
           g.target.closest(".dragHandle") || ba(i, e);
         }), r.addEventListener("keydown", (g) => {
           g.key === "Enter" && g.target === r && (g.preventDefault(), ba(i, e));
@@ -1150,25 +1150,25 @@ function ss(x, w) {
         return;
       }
       r.innerHTML = u + p + '<div class="moveActions seg"><button class="hideBtn editBtn segBtn" type="button" aria-label="Edit ' + L(i.name) + '">Edit</button><button class="hideBtn segBtn" type="button">' + (i.hidden ? "Show" : "Hide") + '</button><button class="removeBtn segBtn" type="button" title="Hold to remove" aria-label="Hold to remove ' + L(i.name) + '"><span class="removeFill"></span><span class="removeLabel">' + Ko + "</span></button></div>", r.querySelector(".editBtn").addEventListener("click", () => {
-        fn(), ve = i, G(), sa();
+        fn(), he = i, G(), sa();
       }), r.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
         i.hidden = !i.hidden, G();
       });
       const b = r.querySelector(".removeBtn");
       rn(b, b.querySelector(".removeFill"), 1200, () => {
-        const v = e.indexOf(i);
-        v < 0 || (e.splice(v, 1), G(), Y("Removed " + i.name, { label: "Undo", run: () => {
-          e.splice(Math.min(v, e.length), 0, i), G();
+        const h = e.indexOf(i);
+        h < 0 || (e.splice(h, 1), G(), Y("Removed " + i.name, { label: "Undo", run: () => {
+          e.splice(Math.min(h, e.length), 0, i), G();
         } }));
       });
       const E = r.querySelector(".dragHandle");
-      E.addEventListener("pointerdown", (v) => da(v, r, n, e)), l(E), n.appendChild(r);
+      E.addEventListener("pointerdown", (h) => da(h, r, n, e)), l(E), n.appendChild(r);
     });
   }
   const _e = () => {
     var e;
     return (e = window.matchMedia) == null ? void 0 : e.call(window, "(prefers-reduced-motion: reduce)").matches;
-  }, vn = (e) => {
+  }, hn = (e) => {
     var t;
     try {
       (t = navigator.vibrate) == null || t.call(navigator, e);
@@ -1185,53 +1185,53 @@ function ss(x, w) {
     }
     const d = t.closest(".exerciseScroller") || ai(t), m = n.style.position;
     n.style.position = "relative";
-    const u = [...n.children].filter((C) => C.classList.contains("moveRow")), p = u.indexOf(t), l = parseFloat(getComputedStyle(n).rowGap) || 8, b = t.offsetHeight, E = b + l, v = u.map((C) => C.offsetTop), g = u.map((C) => C.offsetHeight), h = () => n.getBoundingClientRect().top, P = n.getBoundingClientRect().width, M = e.clientY - (h() + v[p]), y = e.clientX;
-    let A = e.clientY, j = e.clientX, ee = h() + v[p], _ = 0, ae = 0, se = 0, X = 1, Ke = 0, c = p, S = !1, te = 0, ne = !1, Wn = !1, Nt = v[p];
-    n.classList.add("reordering"), t.classList.add("dragging"), t.style.transition = "none", vn(8);
+    const u = [...n.children].filter((C) => C.classList.contains("moveRow")), p = u.indexOf(t), l = parseFloat(getComputedStyle(n).rowGap) || 8, b = t.offsetHeight, E = b + l, h = u.map((C) => C.offsetTop), g = u.map((C) => C.offsetHeight), v = () => n.getBoundingClientRect().top, P = n.getBoundingClientRect().width, M = e.clientY - (v() + h[p]), y = e.clientX;
+    let B = e.clientY, j = e.clientX, ee = v() + h[p], _ = 0, ae = 0, se = 0, X = 1, Ke = 0, c = p, S = !1, te = 0, ne = !1, Wn = !1, Ft = h[p];
+    n.classList.add("reordering"), t.classList.add("dragging"), t.style.transition = "none", hn(8);
     const Vn = () => {
-      const C = A - M + b / 2 - h();
-      let F = 0;
+      const C = B - M + b / 2 - v();
+      let A = 0;
       return u.forEach((O, ge) => {
-        ge !== p && C > v[ge] + g[ge] / 2 && F++;
-      }), F;
+        ge !== p && C > h[ge] + g[ge] / 2 && A++;
+      }), A;
     }, jn = () => {
-      u.forEach((C, F) => {
-        if (F === p) return;
-        const O = p < c && F > p && F <= c ? -E : p > c && F >= c && F < p ? E : 0;
+      u.forEach((C, A) => {
+        if (A === p) return;
+        const O = p < c && A > p && A <= c ? -E : p > c && A >= c && A < p ? E : 0;
         C.style.transform = O ? "translateY(" + O + "px)" : "";
       });
     }, dn = () => {
-      const C = n.getBoundingClientRect(), F = Math.abs(j - y) > Math.max(80, P * 0.3) || j < C.left - 24 || j > C.right + 24;
-      F !== S && (S = F, t.classList.toggle("willReturn", F), vn(F ? 10 : 4));
+      const C = n.getBoundingClientRect(), A = Math.abs(j - y) > Math.max(80, P * 0.3) || j < C.left - 24 || j > C.right + 24;
+      A !== S && (S = A, t.classList.toggle("willReturn", A), hn(A ? 10 : 4));
       const O = S ? p : Vn();
-      O !== c && (c = O, jn(), S || vn(4));
+      O !== c && (c = O, jn(), S || hn(4));
     }, Ze = () => {
-      if (c === p) return v[p];
+      if (c === p) return h[p];
       const C = u.filter((O, ge) => ge !== p);
-      let F = v[0];
-      for (let O = 0; O < c; O++) F += C[O].offsetHeight + l;
-      return F;
+      let A = h[0];
+      for (let O = 0; O < c; O++) A += C[O].offsetHeight + l;
+      return A;
     }, It = () => {
-      const C = s ? Math.min(Math.abs(_) / 40, 1) : 0, F = s && !ne ? Math.max(-3, Math.min(3, se * 0.6)) : 0;
-      t.style.transform = "translate(" + ae.toFixed(2) + "px," + (ee - (h() + v[p])).toFixed(2) + "px) rotate(" + F.toFixed(2) + "deg) scale(" + (X * (1 - 0.04 * C)).toFixed(4) + "," + (X * (1 + 0.06 * C)).toFixed(4) + ")";
+      const C = s ? Math.min(Math.abs(_) / 40, 1) : 0, A = s && !ne ? Math.max(-3, Math.min(3, se * 0.6)) : 0;
+      t.style.transform = "translate(" + ae.toFixed(2) + "px," + (ee - (v() + h[p])).toFixed(2) + "px) rotate(" + A.toFixed(2) + "deg) scale(" + (X * (1 - 0.04 * C)).toFixed(4) + "," + (X * (1 + 0.06 * C)).toFixed(4) + ")";
     }, k = () => {
       te = requestAnimationFrame(k);
-      const C = j - y, F = ne ? h() + Nt : A - M, O = ne ? 0 : S ? C * 0.9 : Math.max(-22, Math.min(22, C * 0.22)), ge = ne ? 1 : S ? 0.97 : 1.035;
+      const C = j - y, A = ne ? v() + Ft : B - M, O = ne ? 0 : S ? C * 0.9 : Math.max(-22, Math.min(22, C * 0.22)), ge = ne ? 1 : S ? 0.97 : 1.035;
       if (!s) {
-        ee = F, ae = ne ? 0 : O, X = 1, It(), ne && U();
+        ee = A, ae = ne ? 0 : O, X = 1, It(), ne && U();
         return;
       }
       const is = ne ? 0.24 : 0.2, as = ne ? 0.62 : 0.68;
-      _ = (_ + (F - ee) * is) * as, ee += _, se = (se + (O - ae) * 0.16) * 0.7, ae += se, Ke = (Ke + (ge - X) * 0.22) * 0.6, X += Ke, It(), ne && Math.abs(_) < 0.15 && Math.abs(F - ee) < 0.5 && Math.abs(ae) < 0.5 && Math.abs(X - 1) < 3e-3 && U();
+      _ = (_ + (A - ee) * is) * as, ee += _, se = (se + (O - ae) * 0.16) * 0.7, ae += se, Ke = (Ke + (ge - X) * 0.22) * 0.6, X += Ke, It(), ne && Math.abs(_) < 0.15 && Math.abs(A - ee) < 0.5 && Math.abs(ae) < 0.5 && Math.abs(X - 1) < 3e-3 && U();
     }, H = setInterval(() => {
       if (!d || ne) return;
-      const C = d.getBoundingClientRect(), F = 56, O = A < C.top + F ? -10 : A > C.bottom - F ? 10 : 0;
+      const C = d.getBoundingClientRect(), A = 56, O = B < C.top + A ? -10 : B > C.bottom - A ? 10 : 0;
       O && (d.scrollTop += O, dn());
     }, 30);
     function U() {
       if (Wn) return;
       Wn = !0, cancelAnimationFrame(te);
-      const C = c !== p, F = t.dataset.id;
+      const C = c !== p, A = t.dataset.id;
       if (n.classList.remove("reordering"), u.forEach((ge) => {
         ge.style.transition = "none", ge.style.transform = "";
       }), t.classList.remove("dragging", "willReturn"), n.style.position = m, C) {
@@ -1239,7 +1239,7 @@ function ss(x, w) {
         i.splice(c, 0, ge);
       }
       G();
-      const O = F && n.querySelector('.moveRow[data-id="' + F + '"]');
+      const O = A && n.querySelector('.moveRow[data-id="' + A + '"]');
       O && s && O.animate([{ transform: "scale(1.02,.95)" }, { transform: "scale(.995,1.012)" }, { transform: "none" }], { duration: 340, easing: "ease-out" }), C && Y("Order saved");
     }
     const ie = (C) => {
@@ -1248,30 +1248,30 @@ function ss(x, w) {
           ke();
           return;
         }
-        A = C.clientY, j = C.clientX, dn();
+        B = C.clientY, j = C.clientX, dn();
       }
     }, me = (C) => {
       C.pointerId === r && ke();
     };
     function ke() {
-      ne || (window.removeEventListener("pointermove", ie, !0), window.removeEventListener("pointerup", me, !0), window.removeEventListener("pointercancel", me, !0), o.removeEventListener("lostpointercapture", ke), clearInterval(H), S && c !== p && (c = p, jn()), Nt = Ze(), ne = !0, vn(6), setTimeout(U, 800));
+      ne || (window.removeEventListener("pointermove", ie, !0), window.removeEventListener("pointerup", me, !0), window.removeEventListener("pointercancel", me, !0), o.removeEventListener("lostpointercapture", ke), clearInterval(H), S && c !== p && (c = p, jn()), Ft = Ze(), ne = !0, hn(6), setTimeout(U, 800));
     }
     window.addEventListener("pointermove", ie, !0), window.addEventListener("pointerup", me, !0), window.addEventListener("pointercancel", me, !0), o.addEventListener("lostpointercapture", ke), te = requestAnimationFrame(k), It();
   }
   function ii() {
     var o, r, s, d;
-    const e = R[N], t = (o = a("warmupList")) == null ? void 0 : o.closest("section"), n = (r = a("cooldownList")) == null ? void 0 : r.closest("section"), i = (d = (s = a("strengthList")) == null ? void 0 : s.closest("section")) == null ? void 0 : d.querySelector(".sectionTitle");
-    e != null && e.customSequence ? (t && (t.hidden = !e.includeWarmup), n && (n.hidden = !e.includeCooldown), i && (i.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), i && (i.textContent = "Kettlebell work")), ni(Se, "warmupList"), ni(he, "strengthList"), ni(Ce, "cooldownList");
+    const e = R[F], t = (o = a("warmupList")) == null ? void 0 : o.closest("section"), n = (r = a("cooldownList")) == null ? void 0 : r.closest("section"), i = (d = (s = a("strengthList")) == null ? void 0 : s.closest("section")) == null ? void 0 : d.querySelector(".sectionTitle");
+    e != null && e.customSequence ? (t && (t.hidden = !e.includeWarmup), n && (n.hidden = !e.includeCooldown), i && (i.textContent = "Move sequence")) : (t && (t.hidden = !!(e != null && e.warmupOff)), n && (n.hidden = !1), i && (i.textContent = "Kettlebell work")), ni(Se, "warmupList"), ni(ve, "strengthList"), ni(Ce, "cooldownList");
   }
   function fn() {
     if (!Te) return;
     const { item: e, arr: t } = Te;
     Te = null;
     const n = t.indexOf(e);
-    n >= 0 && t.splice(n, 1), ve === e && (ve = null);
+    n >= 0 && t.splice(n, 1), he === e && (he = null);
   }
   function Gt(e) {
-    return e.id === "warmupList" ? { arr: Se, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: Ce, kind: "cooldown", group: "Cooldown" } : { arr: he, kind: "work", group: "" };
+    return e.id === "warmupList" ? { arr: Se, kind: "warmup", group: "Warm-up" } : e.id === "cooldownList" ? { arr: Ce, kind: "cooldown", group: "Cooldown" } : { arr: ve, kind: "work", group: "" };
   }
   function la(e, t) {
     const n = Gt(t), i = Date.now().toString(36);
@@ -1301,7 +1301,7 @@ function ss(x, w) {
   }
   function ma(e, t, n, i) {
     const { arr: o } = Gt(t), r = la(e, t);
-    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), Te = { item: r, arr: o }, ve = r, pa(t.closest(".exerciseScroller,.createStepSlot") || t, () => G());
+    o.splice(Math.max(0, Math.min(n, o.length)), 0, r), Te = { item: r, arr: o }, he = r, pa(t.closest(".exerciseScroller,.createStepSlot") || t, () => G());
     const s = t.querySelector(".moveRow.editing");
     return ua(s, i), sa(e === "rest"), s;
   }
@@ -1313,7 +1313,7 @@ function ss(x, w) {
     return null;
   }
   const ga = { movement: ["New movement", "Drop to add, then name it"], rest: ["Rest", "Rest · Global timing"], video: ["New video", "Drop to add, then paste a YouTube link"] };
-  function ha(e, t) {
+  function va(e, t) {
     const n = document.createElement("div");
     return n.className = "addGhost" + (e === "movement" ? "" : " rest"), n.innerHTML = '<span class="addGhostGrip">' + _t + '</span><span class="addGhostText"><strong>' + L(t[0]) + "</strong><small>" + L(t[1]) + "</small></span>", a("workoutModal").appendChild(n), n;
   }
@@ -1321,11 +1321,11 @@ function ss(x, w) {
     e.classList.add("leaving"), setTimeout(() => e.remove(), 180);
   }
   function Xo(e, t, n, i) {
-    (ve || Te) && (fn(), ve = null, G());
-    const o = e.getBoundingClientRect(), r = ha(t, ga[t]);
+    (he || Te) && (fn(), he = null, G());
+    const o = e.getBoundingClientRect(), r = va(t, ga[t]);
     r.setAttribute("aria-hidden", "true"), r.style.width = o.width + "px", r.style.height = o.height + "px", r.style.transform = "translate(" + o.left + "px," + o.top + "px)", e.classList.add("lifting");
     const s = ai(e);
-    return va({
+    return ha({
       ghost: r,
       origin: o,
       sx: n,
@@ -1341,10 +1341,10 @@ function ss(x, w) {
       }
     });
   }
-  function va({ ghost: e, origin: t, sx: n, sy: i, scroller: o, column: r, home: s, onDrop: d, onReturn: m, rowLook: u = !1 }) {
+  function ha({ ghost: e, origin: t, sx: n, sy: i, scroller: o, column: r, home: s, onDrop: d, onReturn: m, rowLook: u = !1 }) {
     var It;
-    const p = !_e(), l = ((It = x.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : It.offsetHeight) || 80, b = n - t.left, E = i - t.top, v = 44;
-    let g = n, h = i, P = t.left, M = t.top, y = 0, A = 0, j = !p, ee = null, _ = null, ae = -1, se = 0, X = null;
+    const p = !_e(), l = ((It = x.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : It.offsetHeight) || 80, b = n - t.left, E = i - t.top, h = 44;
+    let g = n, v = i, P = t.left, M = t.top, y = 0, B = 0, j = !p, ee = null, _ = null, ae = -1, se = 0, X = null;
     const Ke = () => ["warmupList", "strengthList", "cooldownList"].map((k) => a(k)).filter((k) => k && k.getClientRects().length && !k.closest("[hidden]")), c = (k) => {
       if (k === ee) return;
       ee = k, e.classList.toggle("overList", !!k || u);
@@ -1361,15 +1361,15 @@ function ss(x, w) {
       for (const ke of Ke()) {
         const C = ke.getBoundingClientRect();
         if (g < C.left - 48 || g > C.right + 48) continue;
-        const F = C.top - 28, O = C.bottom + 28, ge = h < F ? F - h : h > O ? h - O : 0;
+        const A = C.top - 28, O = C.bottom + 28, ge = v < A ? A - v : v > O ? v - O : 0;
         ge < H && (H = ge, k = ke);
       }
-      const U = r == null ? void 0 : r.getBoundingClientRect(), me = U && g >= U.left && g <= U.right && h >= U.top && h <= U.bottom || H === 0 ? k : null;
+      const U = r == null ? void 0 : r.getBoundingClientRect(), me = U && g >= U.left && g <= U.right && v >= U.top && v <= U.bottom || H === 0 ? k : null;
       if (me) {
-        const ke = [...me.children].filter((F) => F.classList.contains("moveRow"));
-        let C = ke.findIndex((F) => {
-          const O = F.getBoundingClientRect();
-          return h < O.top + O.height / 2;
+        const ke = [...me.children].filter((A) => A.classList.contains("moveRow"));
+        let C = ke.findIndex((A) => {
+          const O = A.getBoundingClientRect();
+          return v < O.top + O.height / 2;
         });
         C < 0 && (C = ke.length), te(me, ke[C] || null, C);
       } else te(null);
@@ -1378,30 +1378,30 @@ function ss(x, w) {
       if (X) return X.aim();
       if (ee) {
         const k = ee.getBoundingClientRect();
-        let H = h - l / 2;
+        let H = v - l / 2;
         return _ && (H = H * 0.6 + _.getBoundingClientRect().top * 0.4), { x: k.left, y: H };
       }
-      return { x: g - b, y: h - E };
-    }, Nt = (k, H, U, ie) => {
+      return { x: g - b, y: v - E };
+    }, Ft = (k, H, U, ie) => {
       e.style.transform = "translate(" + P + "px," + M + "px) rotate(" + k + "deg) rotate(" + H + "rad) scale(" + U + "," + ie + ") rotate(" + -H + "rad)";
     }, Vn = () => {
       if (se = requestAnimationFrame(Vn), !j) {
-        const C = g - n, F = h - i, O = Math.min(Math.hypot(C, F) / v, 1);
-        P = t.left + C * 0.35, M = t.top + F * 0.35, Nt(0, Math.atan2(F, C), 1 + 0.155 * O, 1 - 0.1 * O);
+        const C = g - n, A = v - i, O = Math.min(Math.hypot(C, A) / h, 1);
+        P = t.left + C * 0.35, M = t.top + A * 0.35, Ft(0, Math.atan2(A, C), 1 + 0.155 * O, 1 - 0.1 * O);
         return;
       }
       const k = Wn();
       if (!p) {
-        P = k.x, M = k.y, Nt(0, 0, 1, 1), X && (cancelAnimationFrame(se), X.done());
+        P = k.x, M = k.y, Ft(0, 0, 1, 1), X && (cancelAnimationFrame(se), X.done());
         return;
       }
       const H = X ? X.k : 0.17, U = X ? X.d : 0.7;
-      y = (y + (k.x - P) * H) * U, A = (A + (k.y - M) * H) * U, P += y, M += A;
-      const ie = Math.hypot(y, A), me = Math.min(ie / 48, 1), ke = ee || X ? 0 : Math.max(-5, Math.min(5, y * 0.32));
-      Nt(ke, Math.atan2(A, y), 1 + 0.1 * me, 1 - 0.063 * me), X && ie < 0.15 && Math.hypot(k.x - P, k.y - M) < 0.6 && (cancelAnimationFrame(se), X.done());
+      y = (y + (k.x - P) * H) * U, B = (B + (k.y - M) * H) * U, P += y, M += B;
+      const ie = Math.hypot(y, B), me = Math.min(ie / 48, 1), ke = ee || X ? 0 : Math.max(-5, Math.min(5, y * 0.32));
+      Ft(ke, Math.atan2(B, y), 1 + 0.1 * me, 1 - 0.063 * me), X && ie < 0.15 && Math.hypot(k.x - P, k.y - M) < 0.6 && (cancelAnimationFrame(se), X.done());
     }, jn = setInterval(() => {
       if (!o || X) return;
-      const k = o.getBoundingClientRect(), H = 64, U = h < k.top + H ? -(k.top + H - h) / 4 : h > k.bottom - H ? (h - (k.bottom - H)) / 4 : 0;
+      const k = o.getBoundingClientRect(), H = 64, U = v < k.top + H ? -(k.top + H - v) / 4 : v > k.bottom - H ? (v - (k.bottom - H)) / 4 : 0;
       U && (o.scrollTop += Math.max(-18, Math.min(18, U)), ne());
     }, 30);
     se = requestAnimationFrame(Vn);
@@ -1414,7 +1414,7 @@ function ss(x, w) {
     };
     return {
       move(k, H) {
-        g = k, h = H, !j && Math.hypot(g - n, h - i) > v && (j = !0, y = (g - n) * 0.085, A = (h - i) * 0.085), j && ne();
+        g = k, v = H, !j && Math.hypot(g - n, v - i) > h && (j = !0, y = (g - n) * 0.085, B = (v - i) * 0.085), j && ne();
       },
       drop(k) {
         clearInterval(jn);
@@ -1455,34 +1455,34 @@ function ss(x, w) {
         e.setPointerCapture(o);
       } catch {
       }
-      const u = (h) => {
-        if (h.pointerId === o) {
-          if (h.pointerType === "mouse" && h.buttons === 0) {
+      const u = (v) => {
+        if (v.pointerId === o) {
+          if (v.pointerType === "mouse" && v.buttons === 0) {
             g(!1);
             return;
           }
           if (!d) {
-            if (Math.hypot(h.clientX - r, h.clientY - s) < 6) return;
+            if (Math.hypot(v.clientX - r, v.clientY - s) < 6) return;
             d = Xo(e, t, r, s);
           }
-          d.move(h.clientX, h.clientY);
+          d.move(v.clientX, v.clientY);
         }
-      }, p = (h) => {
-        h.pointerId === o && g(!1);
-      }, l = (h) => {
-        h.pointerId === o && g(!0);
-      }, b = () => g(!1), E = () => g(!0), v = (h) => {
-        h.key === "Escape" && d && (h.preventDefault(), h.stopPropagation(), g(!0));
+      }, p = (v) => {
+        v.pointerId === o && g(!1);
+      }, l = (v) => {
+        v.pointerId === o && g(!0);
+      }, b = () => g(!1), E = () => g(!0), h = (v) => {
+        v.key === "Escape" && d && (v.preventDefault(), v.stopPropagation(), g(!0));
       };
-      function g(h) {
-        if (!m && (m = !0, window.removeEventListener("pointermove", u, !0), window.removeEventListener("pointerup", p, !0), window.removeEventListener("pointercancel", l, !0), window.removeEventListener("keydown", v, !0), window.removeEventListener("blur", E), e.removeEventListener("lostpointercapture", b), d)) {
+      function g(v) {
+        if (!m && (m = !0, window.removeEventListener("pointermove", u, !0), window.removeEventListener("pointerup", p, !0), window.removeEventListener("pointercancel", l, !0), window.removeEventListener("keydown", h, !0), window.removeEventListener("blur", E), e.removeEventListener("lostpointercapture", b), d)) {
           const P = d;
           d = null, n = !0, setTimeout(() => {
             n = !1;
-          }, 0), P.drop(h);
+          }, 0), P.drop(v);
         }
       }
-      window.addEventListener("pointermove", u, !0), window.addEventListener("pointerup", p, !0), window.addEventListener("pointercancel", l, !0), window.addEventListener("keydown", v, !0), window.addEventListener("blur", E), e.addEventListener("lostpointercapture", b);
+      window.addEventListener("pointermove", u, !0), window.addEventListener("pointerup", p, !0), window.addEventListener("pointercancel", l, !0), window.addEventListener("keydown", h, !0), window.addEventListener("blur", E), e.addEventListener("lostpointercapture", b);
     });
   }
   const Wt = (bo = window.matchMedia) == null ? void 0 : bo.call(window, "(max-width: 620px)");
@@ -1563,7 +1563,7 @@ function ss(x, w) {
   function si() {
     var t, n;
     const e = a("setupSummaryName");
-    e && (e.textContent = (((t = a("workoutNameInput")) == null ? void 0 : t.value) || "").trim() || ((n = R[N]) == null ? void 0 : n.name) || "Move", a("setupSummaryMeta").textContent = ea.textContent);
+    e && (e.textContent = (((t = a("workoutNameInput")) == null ? void 0 : t.value) || "").trim() || ((n = R[F]) == null ? void 0 : n.name) || "Move", a("setupSummaryMeta").textContent = ea.textContent);
   }
   a("setupSummary").addEventListener("click", $o), a("addFab").addEventListener("click", Jo);
   function ya() {
@@ -1576,7 +1576,7 @@ function ss(x, w) {
   }
   function Qo(e, t) {
     var d;
-    const n = ha(t, [e.name || ga[t][0], "Drag into place"]);
+    const n = va(t, [e.name || ga[t][0], "Drag into place"]);
     n.classList.add("overList", "hovering"), n.setAttribute("aria-label", (e.name || "New step") + ". Drag it into place in the list, or add it at the end.");
     const i = document.createElement("span");
     i.className = "addGhostActions", i.innerHTML = '<button class="hideBtn" type="button" data-a="end">Add at end</button><button class="hideBtn ghostDiscard" type="button" data-a="discard" aria-label="Discard ' + L(e.name) + '">✕</button>', n.appendChild(i), $ = { item: e, type: t, ghost: n };
@@ -1594,7 +1594,7 @@ function ss(x, w) {
     } catch {
     }
     n.classList.remove("hovering", "rising"), n.classList.add("held");
-    const o = n.getBoundingClientRect(), r = ya(), s = va({
+    const o = n.getBoundingClientRect(), r = ya(), s = ha({
       ghost: n,
       origin: { left: o.left, top: o.top, width: o.width, height: o.height },
       sx: e.clientX,
@@ -1603,8 +1603,8 @@ function ss(x, w) {
       column: a("strengthList").closest(".exerciseScroller,.createFlow") || r,
       rowLook: !0,
       home: di,
-      onDrop: (g, h, P) => {
-        $ = null, Ot(n), ka(t, g, h, P);
+      onDrop: (g, v, P) => {
+        $ = null, Ot(n), ka(t, g, v, P);
       },
       onReturn: () => {
         n.classList.remove("held"), n.classList.add("hovering");
@@ -1614,19 +1614,19 @@ function ss(x, w) {
     const m = (g) => {
       if (g.pointerId === i) {
         if (g.pointerType === "mouse" && g.buttons === 0) {
-          v(!1);
+          h(!1);
           return;
         }
         s.move(g.clientX, g.clientY);
       }
     }, u = (g) => {
-      g.pointerId === i && v(!1);
+      g.pointerId === i && h(!1);
     }, p = (g) => {
-      g.pointerId === i && v(!0);
-    }, l = () => v(!1), b = () => v(!0), E = (g) => {
-      g.key === "Escape" && (g.preventDefault(), v(!0));
+      g.pointerId === i && h(!0);
+    }, l = () => h(!1), b = () => h(!0), E = (g) => {
+      g.key === "Escape" && (g.preventDefault(), h(!0));
     };
-    function v(g) {
+    function h(g) {
       d || (d = !0, window.removeEventListener("pointermove", m, !0), window.removeEventListener("pointerup", u, !0), window.removeEventListener("pointercancel", p, !0), window.removeEventListener("keydown", E, !0), window.removeEventListener("blur", b), n.removeEventListener("lostpointercapture", l), s.drop(g));
     }
     window.addEventListener("pointermove", m, !0), window.addEventListener("pointerup", u, !0), window.addEventListener("pointercancel", p, !0), window.addEventListener("keydown", E, !0), window.addEventListener("blur", b), n.addEventListener("lostpointercapture", l);
@@ -1681,7 +1681,7 @@ function ss(x, w) {
   }
   (wo = window.visualViewport) == null || wo.addEventListener("resize", $e), (yo = window.visualViewport) == null || yo.addEventListener("scroll", $e), window.addEventListener("resize", $e), window.addEventListener("scroll", $e, { passive: !0 }), window.addEventListener("orientationchange", () => setTimeout($e, 250));
   function li() {
-    he.length > 0;
+    ve.length > 0;
     const e = a("addMovementBtn"), t = a("addRestBtn");
     e && (e.innerHTML = _t + "<span>Add movement</span>"), t && (t.innerHTML = _t + "<span>Add rest</span>");
     const n = a("addVideoBtn");
@@ -1700,17 +1700,17 @@ function ss(x, w) {
     t.hidden = e !== "movement", n.hidden = e !== "rest", a("movementCreatorHeading").textContent = "Add movement", a("movementCreator").setAttribute("aria-label", "Create movement"), jt();
   }
   function ci() {
-    R[N];
-    const e = J ? !0 : a("useGlobalTiming").checked, t = e ? Number(D.value) : hn(
+    R[F];
+    const e = J ? !0 : a("useGlobalTiming").checked, t = e ? Number(D.value) : vn(
       a("addMovementDuration").value,
       a("addMovementUnit").value
-    ), n = J ? !0 : a("useGlobalRestTiming").checked, i = n ? Number(z.value) : hn(
+    ), n = J ? !0 : a("useGlobalRestTiming").checked, i = n ? Number(z.value) : vn(
       a("addRestDuration").value,
       a("addRestUnit").value
     );
     if (Ta === "rest") {
       const o = a("addRestTitle").value.trim() || "Rest", r = a("addRestGroup").value.trim() || "Rest";
-      he.push({
+      ve.push({
         id: "rest-" + Date.now(),
         name: o,
         group: r,
@@ -1723,7 +1723,7 @@ function ss(x, w) {
       const o = a("addMovementInput").value.trim();
       if (!o) return;
       const r = a("addMovementGroup").value.trim() || "Movement";
-      he.push({
+      ve.push({
         id: "movement-" + Date.now(),
         name: o,
         group: r,
@@ -1761,7 +1761,7 @@ function ss(x, w) {
   function oe(e) {
     return e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0");
   }
-  function Ne() {
+  function Fe() {
     return { morning: q().morningTime || "08:00", evening: q().eveningTime || "19:00" };
   }
   function lt(e) {
@@ -1769,7 +1769,7 @@ function ss(x, w) {
     return (t || 0) * 60 + (n || 0);
   }
   function rr(e) {
-    const t = Ne();
+    const t = Fe();
     return e.getHours() * 60 + e.getMinutes() >= lt(t.evening) ? "evening" : "morning";
   }
   function kn(e, t) {
@@ -1779,7 +1779,7 @@ function ss(x, w) {
     return !!(e && e.mood != null && e.energy != null);
   }
   function Cn() {
-    const e = /* @__PURE__ */ new Date(), t = oe(e), n = rr(e), i = Ne(), o = e.getHours() * 60 + e.getMinutes();
+    const e = /* @__PURE__ */ new Date(), t = oe(e), n = rr(e), i = Fe(), o = e.getHours() * 60 + e.getMinutes();
     return n === "morning" && o < lt(i.morning) || Sn(kn(t, n)) ? null : n;
   }
   const Ge = a("checkinModal"), Oe = a("checkinTab"), sr = a("checkinBadge"), We = { mood: { input: a("moodInput"), fill: a("moodFill") }, energy: { input: a("energyLevelInput"), fill: a("energyLevelFill") } };
@@ -1788,13 +1788,13 @@ function ss(x, w) {
     n.style.width = t.value + "%", t.setAttribute("aria-valuetext", dt(e, t.value));
   }
   Object.keys(We).forEach((e) => We[e].input.addEventListener("input", () => Ea(e)));
-  let Fe = null;
+  let Ae = null;
   function Ma() {
-    const e = Ne(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
+    const e = Fe(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes();
     return n < lt(e.morning) ? "Next check-in at " + e.morning : n < lt(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
   function dr() {
-    const e = Ne(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), i = (o, r) => {
+    const e = Fe(), t = /* @__PURE__ */ new Date(), n = t.getHours() * 60 + t.getMinutes(), i = (o, r) => {
       const [s, d] = o.split(":").map(Number);
       return new Date(t.getFullYear(), t.getMonth(), t.getDate() + (r ? 1 : 0), s, d);
     };
@@ -1815,35 +1815,35 @@ function ss(x, w) {
   function Tn() {
     Oe.classList.remove("peek"), clearInterval(mi), clearTimeout(ui);
   }
-  function Fa() {
+  function Aa() {
     const e = Cn();
     if (!e) {
       Oe.classList.contains("peek") ? Tn() : lr();
       return;
     }
-    Fe = { date: oe(/* @__PURE__ */ new Date()), slot: e };
-    const n = kn(Fe.date, e), i = I.checkins.find((r) => Sn(r));
+    Ae = { date: oe(/* @__PURE__ */ new Date()), slot: e };
+    const n = kn(Ae.date, e), i = I.checkins.find((r) => Sn(r));
     Object.keys(We).forEach((r) => {
       We[r].input.value = (n == null ? void 0 : n[r]) ?? (i == null ? void 0 : i[r]) ?? 50, Ea(r);
     });
-    const o = Ne()[e];
+    const o = Fe()[e];
     a("checkinEyebrow").textContent = (e === "morning" ? "Morning" : "Evening") + " · " + o, a("checkinTitle").textContent = e === "morning" ? "Morning check-in" : "Evening check-in", Ge.classList.add("open"), Ge.setAttribute("aria-hidden", "false"), requestAnimationFrame(() => We.mood.input.focus());
   }
   function Yt() {
-    Ge.classList.remove("open"), Ge.setAttribute("aria-hidden", "true"), Fe && (Ut = Fe.date + "-" + Fe.slot);
+    Ge.classList.remove("open"), Ge.setAttribute("aria-hidden", "true"), Ae && (Ut = Ae.date + "-" + Ae.slot);
     try {
       localStorage.setItem("move-assistant-dismissed", Ut);
     } catch {
     }
-    Fe = null, Qe();
+    Ae = null, Qe();
   }
   function cr() {
-    if (!Fe) return;
-    if (Sn(kn(Fe.date, Fe.slot))) {
+    if (!Ae) return;
+    if (Sn(kn(Ae.date, Ae.slot))) {
       Yt();
       return;
     }
-    const { date: e, slot: t } = Fe;
+    const { date: e, slot: t } = Ae;
     let n = kn(e, t);
     n || (n = { date: e, slot: t }, I.checkins.unshift(n), I.checkins = I.checkins.slice(0, 2e3)), n.mood = Number(We.mood.input.value), n.energy = Number(We.energy.input.value), n.scale = 100, n.at = (/* @__PURE__ */ new Date()).toISOString(), Me(), w.fire("checkin", { slot: t, mood: n.mood, energy: n.energy, mood_label: dt("mood", n.mood), energy_label: dt("energy", n.energy) }), Y((t === "morning" ? "Morning" : "Evening") + " check-in saved"), Yt(), Ln(), Kt(), at(), ze();
   }
@@ -1859,9 +1859,9 @@ function ss(x, w) {
   function gi() {
     Qe();
     const e = Cn();
-    !e || Ge.classList.contains("open") || q().checkinAutoOpen !== !1 && (!rt.home.classList.contains("active") || pe.classList.contains("open") || Ut !== oe(/* @__PURE__ */ new Date()) + "-" + e && Fa());
+    !e || Ge.classList.contains("open") || q().checkinAutoOpen !== !1 && (!rt.home.classList.contains("active") || pe.classList.contains("open") || Ut !== oe(/* @__PURE__ */ new Date()) + "-" + e && Aa());
   }
-  Oe.addEventListener("click", Fa), a("checkinLater").addEventListener("click", Yt), a("checkinSave").addEventListener("click", cr), Ge.addEventListener("click", (e) => {
+  Oe.addEventListener("click", Aa), a("checkinLater").addEventListener("click", Yt), a("checkinSave").addEventListener("click", cr), Ge.addEventListener("click", (e) => {
     e.target === Ge && Yt();
   }), Ge.addEventListener("keydown", (e) => {
     e.key === "Escape" && (e.preventDefault(), Yt());
@@ -1877,11 +1877,11 @@ function ss(x, w) {
     const e = a("feelCard");
     if (!e) return;
     const t = /* @__PURE__ */ new Date(), n = new Date(t.getFullYear(), t.getMonth(), t.getDate() - (t.getDay() + 6) % 7), i = [...Array(7)].map((u, p) => {
-      const l = new Date(n.getFullYear(), n.getMonth(), n.getDate() + p), b = oe(l), E = I.checkins.filter((g) => g.date === b), v = (g) => {
-        const h = E.map((P) => P[g]).filter((P) => P != null);
-        return h.length ? h.reduce((P, M) => P + M, 0) / h.length : null;
+      const l = new Date(n.getFullYear(), n.getMonth(), n.getDate() + p), b = oe(l), E = I.checkins.filter((g) => g.date === b), h = (g) => {
+        const v = E.map((P) => P[g]).filter((P) => P != null);
+        return v.length ? v.reduce((P, M) => P + M, 0) / v.length : null;
       };
-      return { d: l, key: b, mood: v("mood"), energy: v("energy"), count: E.filter(Sn).length, future: l > t && b !== oe(t) };
+      return { d: l, key: b, mood: h("mood"), energy: h("energy"), count: E.filter(Sn).length, future: l > t && b !== oe(t) };
     }), o = (u) => {
       const p = i.map((l) => l[u]).filter((l) => l != null);
       return p.length ? p.reduce((l, b) => l + b, 0) / p.length : null;
@@ -1894,24 +1894,24 @@ function ss(x, w) {
   En.addEventListener("change", () => {
     st = En.value === "all" ? "all" : Number(En.value), Va();
   });
-  const Zt = a("tempoRevealBtn"), hi = a("tempoExperiment"), Ae = a("tempoQuad"), ct = a("tempoDot"), pr = a("tempoEstimate"), ur = a("tempoReadout");
+  const Zt = a("tempoRevealBtn"), vi = a("tempoExperiment"), Be = a("tempoQuad"), ct = a("tempoDot"), pr = a("tempoEstimate"), ur = a("tempoReadout");
   let pt = { x: 0.5, y: 0.5 }, Xt = !1, Mn = { total: 20, work: 45, rest: 15 };
-  function vi(e, t, n, i) {
+  function hi(e, t, n, i) {
     const o = Math.max(t, Math.min(n, e));
     return Math.round((o - t) / i) * i + t;
   }
   function mr(e, t) {
-    const n = (e - 0.5) * 2, i = (t - 0.5) * 2, o = vi(
+    const n = (e - 0.5) * 2, i = (t - 0.5) * 2, o = hi(
       Mn.total + n * 5 + i * 8,
       Number(W.min),
       Number(W.max),
       Number(W.step)
-    ), r = vi(
+    ), r = hi(
       Mn.work + n * 10 + i * 8,
       Number(D.min),
       Number(D.max),
       Number(D.step)
-    ), s = vi(
+    ), s = hi(
       Mn.rest + n * 6 + i * 6,
       Number(z.min),
       Number(z.max),
@@ -1921,15 +1921,15 @@ function ss(x, w) {
   }
   function fi(e, t) {
     const n = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", i = t < 0.34 ? "Fast" : t > 0.66 ? "Slow" : "Balanced", o = mr(e, t);
-    ur.textContent = n + " + " + i, pr.textContent = o.total + " min", Ae.setAttribute("aria-valuetext", n + " and " + i + ", estimated " + o.total + " minutes");
+    ur.textContent = n + " + " + i, pr.textContent = o.total + " min", Be.setAttribute("aria-valuetext", n + " and " + i + ", estimated " + o.total + " minutes");
   }
   function bi(e) {
-    const t = Ae.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), i = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
+    const t = Be.getBoundingClientRect(), n = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width)), i = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
     pt = { x: n, y: i }, ct.style.left = n * 100 + "%", ct.style.top = i * 100 + "%", fi(n, i);
   }
   Zt.addEventListener("click", () => {
-    const e = hi.hidden;
-    hi.hidden = !e, Zt.setAttribute("aria-expanded", e ? "true" : "false"), Zt.textContent = e ? "Now close this" : "Don’t try this!", e && (Mn = {
+    const e = vi.hidden;
+    vi.hidden = !e, Zt.setAttribute("aria-expanded", e ? "true" : "false"), Zt.textContent = e ? "Now close this" : "Don’t try this!", e && (Mn = {
       total: Number(W.value),
       work: Number(D.value),
       rest: Number(z.value)
@@ -1937,23 +1937,23 @@ function ss(x, w) {
   }), x.querySelectorAll("[data-feedback-rating]").forEach((e) => e.addEventListener("click", () => {
     Number(e.dataset.feedbackRating), x.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.toggle("selected", t === e));
   }));
-  const Rn = a("testingFeedbackForm"), Aa = a("testingFeedbackThanks"), gr = a("testingFeedbackAgain");
+  const Rn = a("testingFeedbackForm"), Ba = a("testingFeedbackThanks"), gr = a("testingFeedbackAgain");
   Rn.addEventListener("submit", (e) => {
-    e.preventDefault(), Rn.hidden = !0, Aa.hidden = !1, Y("Feedback captured for prototype");
+    e.preventDefault(), Rn.hidden = !0, Ba.hidden = !1, Y("Feedback captured for prototype");
   }), gr.addEventListener("click", (e) => {
-    e.preventDefault(), Rn.reset(), x.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Aa.hidden = !0, Rn.hidden = !1;
-  }), Ae.addEventListener("pointerdown", (e) => {
+    e.preventDefault(), Rn.reset(), x.querySelectorAll("[data-feedback-rating]").forEach((t) => t.classList.remove("selected")), Ba.hidden = !0, Rn.hidden = !1;
+  }), Be.addEventListener("pointerdown", (e) => {
     var t;
     Xt = !0, bi(e);
     try {
-      (t = Ae.setPointerCapture) == null || t.call(Ae, e.pointerId);
+      (t = Be.setPointerCapture) == null || t.call(Be, e.pointerId);
     } catch {
     }
-  }), Ae.addEventListener("pointermove", (e) => {
+  }), Be.addEventListener("pointermove", (e) => {
     Xt && bi(e);
-  }), Ae.addEventListener("pointerup", (e) => {
+  }), Be.addEventListener("pointerup", (e) => {
     Xt && (Xt = !1, bi(e), G());
-  }), Ae.addEventListener("pointercancel", () => Xt = !1), Ae.addEventListener("keydown", (e) => {
+  }), Be.addEventListener("pointercancel", () => Xt = !1), Be.addEventListener("keydown", (e) => {
     let { x: t, y: n } = pt, i = !0;
     e.key === "ArrowLeft" ? t -= 0.05 : e.key === "ArrowRight" ? t += 0.05 : e.key === "ArrowUp" ? n -= 0.05 : e.key === "ArrowDown" ? n += 0.05 : i = !1, i && (e.preventDefault(), t = Math.max(0, Math.min(1, t)), n = Math.max(0, Math.min(1, n)), pt = { x: t, y: n }, ct.style.left = t * 100 + "%", ct.style.top = n * 100 + "%", fi(t, n), G());
   });
@@ -1962,13 +1962,13 @@ function ss(x, w) {
   function ut(e) {
     return e.map((t) => ({ ...t }));
   }
-  function hr() {
-    const e = R[N];
+  function vr() {
+    const e = R[F];
     return {
-      key: N,
+      key: F,
       profile: e ? JSON.parse(JSON.stringify(e)) : null,
       warmup: ut(Se),
-      strength: ut(he),
+      strength: ut(ve),
       cooldown: ut(Ce),
       total: Number(W.value),
       work: Number(D.value),
@@ -1976,43 +1976,43 @@ function ss(x, w) {
       rounds: Number(Le.value) || 1
     };
   }
-  function Ba(e = !1) {
-    J = !!e, ve = null, Te = null, fe(), Sa(), Jt = hr(), a("moveEditorTitle").textContent = J ? "Create new move" : "Edit move", a("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", a("moveEditorSubtitle").hidden = !J, a("warmupRow").hidden = J, a("deleteMoveOpen").hidden = J;
+  function Na(e = !1) {
+    J = !!e, he = null, Te = null, fe(), Sa(), Jt = vr(), a("moveEditorTitle").textContent = J ? "Create new move" : "Edit move", a("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", a("moveEditorSubtitle").hidden = !J, a("warmupRow").hidden = J, a("deleteMoveOpen").hidden = J;
     const t = a("createMoveOptions");
     t.hidden = !J;
     {
-      const n = R[N];
+      const n = R[F];
       a("includeWarmupPreset").checked = !!(n != null && n.includeWarmup), a("includeCooldownPreset").checked = !!(n != null && n.includeCooldown);
     }
-    if (Na(), J) {
+    if (Fa(), J) {
       a("useGlobalTiming").checked = !0, a("useGlobalRestTiming").checked = !0;
-      const n = R[N];
+      const n = R[F];
       Qn((n == null ? void 0 : n.preset) || "movement", !1);
     }
-    a("movementCreator").hidden = !0, nr("movement"), li(), jt(), hi.hidden = !0, Zt.setAttribute("aria-expanded", "false"), Zt.textContent = "Don’t try this!", pe.classList.toggle("createMode", J), pe.querySelector(".modal").classList.toggle("createMode", J), pe.classList.add("open"), pe.setAttribute("aria-hidden", "false"), $e(), J && No();
+    a("movementCreator").hidden = !0, nr("movement"), li(), jt(), vi.hidden = !0, Zt.setAttribute("aria-expanded", "false"), Zt.textContent = "Don’t try this!", pe.classList.toggle("createMode", J), pe.querySelector(".modal").classList.toggle("createMode", J), pe.classList.add("open"), pe.setAttribute("aria-hidden", "false"), $e(), J && Fo();
   }
-  function vr() {
-    const e = R[N];
+  function hr() {
+    const e = R[F];
     return e != null && e.customSequence ? !!e.includeWarmup : !(e != null && e.warmupOff);
   }
-  function Na() {
-    const e = vr(), t = a("warmupSwitch");
+  function Fa() {
+    const e = hr(), t = a("warmupSwitch");
     t.classList.toggle("on", e), t.setAttribute("aria-checked", String(e));
   }
   a("warmupSwitch").addEventListener("click", () => {
-    const e = R[N];
-    e && (e.customSequence ? (a("includeWarmupPreset").checked = !e.includeWarmup, ei()) : (e.warmupOff = !e.warmupOff, G()), Na());
+    const e = R[F];
+    e && (e.customSequence ? (a("includeWarmupPreset").checked = !e.includeWarmup, ei()) : (e.warmupOff = !e.warmupOff, G()), Fa());
   });
-  function Fn() {
-    fe(), Sa(), Ca(), Te = null, ve = null, pe.classList.contains("createMode") && Io(), pe.classList.remove("createMode"), pe.querySelector(".modal").classList.remove("createMode"), pe.classList.remove("open"), pe.setAttribute("aria-hidden", "true");
+  function An() {
+    fe(), Sa(), Ca(), Te = null, he = null, pe.classList.contains("createMode") && Io(), pe.classList.remove("createMode"), pe.querySelector(".modal").classList.remove("createMode"), pe.classList.remove("open"), pe.setAttribute("aria-hidden", "true");
   }
   function Ia() {
     if (!Jt) return;
     const e = Jt;
-    e.profile && (R[e.key] = JSON.parse(JSON.stringify(e.profile))), N = e.key, Se = ut(e.warmup), he = ut(e.strength), Ce = ut(e.cooldown), W.value = e.total, D.value = e.work, z.value = e.rest, Le.value = e.rounds || 1;
-    const t = R[N];
+    e.profile && (R[e.key] = JSON.parse(JSON.stringify(e.profile))), F = e.key, Se = ut(e.warmup), ve = ut(e.strength), Ce = ut(e.cooldown), W.value = e.total, D.value = e.work, z.value = e.rest, Le.value = e.rounds || 1;
+    const t = R[F];
     if (t) {
-      x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === N));
+      x.querySelectorAll(".workoutPanel[data-workout]").forEach((i) => i.classList.toggle("active", i.dataset.workout === F));
       const n = x.querySelector(".workoutPanel.active");
       if (n) {
         const i = n.querySelector(".workoutName");
@@ -2022,22 +2022,22 @@ function ss(x, w) {
         const r = n.querySelector(".sourceTag");
         r && (r.textContent = t.source);
       }
-      B.value = t.name;
+      N.value = t.name;
     }
     G();
   }
   a("cancelWorkoutEdit").addEventListener("click", () => {
     if (J) {
-      const e = N;
+      const e = F;
       delete R[e], J = !1, Xe = null, Re(I.order.find((t) => R[t]) || Object.keys(R)[0]);
     } else
       Ia();
-    Fn();
+    An();
   }), a("saveWorkoutEdit").addEventListener("click", () => {
     fe(), $ && yn();
-    const e = R[N], t = B.value.trim() || "New move";
-    if (e && (e.name = t), fn(), ve = null, G(), J && e)
-      Jn(N, e), x.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === N)), J = !1, Xe = null, I.order.includes(N) || I.order.push(N), Y("Move created");
+    const e = R[F], t = N.value.trim() || "New move";
+    if (e && (e.name = t), fn(), he = null, G(), J && e)
+      Jn(F, e), x.querySelectorAll(".workoutPanel[data-workout]").forEach((n) => n.classList.toggle("active", n.dataset.workout === F)), J = !1, Xe = null, I.order.includes(F) || I.order.push(F), Y("Move created");
     else {
       const n = x.querySelector(".workoutPanel.active");
       if (n) {
@@ -2048,21 +2048,21 @@ function ss(x, w) {
       }
       Y("Move saved");
     }
-    Jt = null, Fn(), Me();
+    Jt = null, An(), Me();
   }), pe.addEventListener("click", (e) => {
     if (e.target === pe) {
       if (J) {
-        const t = N;
+        const t = F;
         delete R[t], J = !1, Xe = null, Re(I.order.find((n) => R[n]) || Object.keys(R)[0]);
       } else
         Ia();
-      Fn();
+      An();
     }
   }), oi(a("addMovementBtn"), "movement"), oi(a("addRestBtn"), "rest"), oi(a("addVideoBtn"), "video"), a("closeMovementCreator").addEventListener("click", () => {
     a("movementCreator").hidden = !0;
   }), a("useGlobalTiming").addEventListener("change", jt), a("useGlobalRestTiming").addEventListener("change", jt), x.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
     Qn(e.dataset.movePreset, !0), G();
-  })), a("includeWarmupPreset").addEventListener("change", ei), a("includeCooldownPreset").addEventListener("change", ei), a("includeWarmupPreset").addEventListener("change", qe), a("includeCooldownPreset").addEventListener("change", qe), B.addEventListener("input", qe), B.addEventListener("input", si), a("confirmAddMovement").addEventListener("click", ci), a("confirmAddRest").addEventListener("click", ci), a("addMovementInput").addEventListener("keydown", (e) => {
+  })), a("includeWarmupPreset").addEventListener("change", ei), a("includeCooldownPreset").addEventListener("change", ei), a("includeWarmupPreset").addEventListener("change", qe), a("includeCooldownPreset").addEventListener("change", qe), N.addEventListener("input", qe), N.addEventListener("input", si), a("confirmAddMovement").addEventListener("click", ci), a("confirmAddRest").addEventListener("click", ci), a("addMovementInput").addEventListener("keydown", (e) => {
     e.key === "Enter" && ci();
   });
   const $t = a("countdown"), xi = a("countNum"), Ie = a("countdownPixelCanvas");
@@ -2111,8 +2111,8 @@ function ss(x, w) {
     yi = [];
     for (let p = 0; p < t; p += s)
       for (let l = 0; l < n; l += s) {
-        const b = p - t / 2, E = l - n / 2, v = Math.sqrt(b * b + E * E), g = d ? 0 : Math.random() * 75 + v * 0.05, h = new fr({ width: t, height: n }, o, p, l, r[Math.floor(Math.random() * r.length)], m, g);
-        h.maxSizeInteger = 4, h.maxSize = Math.random() * 3.2 + 0.8, h.sizeStep = 0.35 + Math.random() * 0.45, yi.push(h);
+        const b = p - t / 2, E = l - n / 2, h = Math.sqrt(b * b + E * E), g = d ? 0 : Math.random() * 75 + h * 0.05, v = new fr({ width: t, height: n }, o, p, l, r[Math.floor(Math.random() * r.length)], m, g);
+        v.maxSizeInteger = 4, v.maxSize = Math.random() * 3.2 + 0.8, v.sizeStep = 0.35 + Math.random() * 0.45, yi.push(v);
       }
   }
   function Ha(e) {
@@ -2128,14 +2128,14 @@ function ss(x, w) {
     }
     Qt = requestAnimationFrame(n);
   }
-  function An() {
+  function Bn() {
     cancelAnimationFrame(Qt), br(), Ha("appear"), setTimeout(() => Ha("disappear"), 560);
   }
   window.addEventListener("resize", () => {
-    $t.classList.contains("active") && An();
+    $t.classList.contains("active") && Bn();
   });
   const en = a("pixelTrailCanvas"), mt = en.getContext("2d");
-  let Pe = !0, gt = 0.7, ht = 600, tn = [], vt = null, Ve = { x: 0, y: 0, ready: !1 };
+  let Pe = !0, gt = 0.7, vt = 600, tn = [], ht = null, Ve = { x: 0, y: 0, ready: !1 };
   function za() {
     const e = K.getBoundingClientRect(), t = et(), n = Math.min(window.devicePixelRatio || 1, 2), i = Math.max(1, e.width / t), o = Math.max(1, e.height / t);
     en.width = Math.max(1, Math.floor(i * n)), en.height = Math.max(1, Math.floor(o * n)), en.style.width = i + "px", en.style.height = o + "px", mt.setTransform(n, 0, 0, n, 0, 0);
@@ -2155,24 +2155,24 @@ function ss(x, w) {
     }
     Ve = { x: e, y: t, ready: !0 };
   }
-  function Bn(e) {
-    if (vt = null, !Z) return;
+  function Nn(e) {
+    if (ht = null, !Z) return;
     if (!rt.workout.classList.contains("active")) {
-      vt = requestAnimationFrame(Bn);
+      ht = requestAnimationFrame(Nn);
       return;
     }
     const t = K.getBoundingClientRect(), n = et();
-    mt.clearRect(0, 0, t.width / n, t.height / n), Pe && (tn = tn.filter((o) => e - o.born < ht), mt.fillStyle = a("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", tn.forEach((o) => {
-      const r = (e - o.born) / ht, s = (1 - r) * gt, d = Math.round(o.x / 14) * 14, m = Math.round(o.y / 14) * 14;
+    mt.clearRect(0, 0, t.width / n, t.height / n), Pe && (tn = tn.filter((o) => e - o.born < vt), mt.fillStyle = a("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", tn.forEach((o) => {
+      const r = (e - o.born) / vt, s = (1 - r) * gt, d = Math.round(o.x / 14) * 14, m = Math.round(o.y / 14) * 14;
       mt.globalAlpha = Math.max(0, s);
       const u = 2 + 5 * (1 - r) * gt;
       mt.fillRect(d - u / 2, m - u / 2, u, u);
-    }), mt.globalAlpha = 1), vt = requestAnimationFrame(Bn);
+    }), mt.globalAlpha = 1), ht = requestAnimationFrame(Nn);
   }
   K.addEventListener("pointermove", (e) => {
     const t = K.getBoundingClientRect(), n = et();
     xr((e.clientX - t.left) / n, (e.clientY - t.top) / n);
-  }), K.addEventListener("pointerleave", () => Ve.ready = !1), new ResizeObserver(za).observe(K), za(), vt = requestAnimationFrame(Bn);
+  }), K.addEventListener("pointerleave", () => Ve.ready = !1), new ResizeObserver(za).observe(K), za(), ht = requestAnimationFrame(Nn);
   const je = a("movementRippleCanvas"), ft = je.getContext("2d");
   let tt = !0, bt = null, wr = performance.now();
   function qa() {
@@ -2187,24 +2187,24 @@ function ss(x, w) {
     const e = f[T];
     return _a() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
-  function Nn(e) {
+  function Fn(e) {
     if (bt = null, !Z) return;
     if (!rt.workout.classList.contains("active")) {
-      bt = requestAnimationFrame(Nn);
+      bt = requestAnimationFrame(Fn);
       return;
     }
     const t = je.parentElement.getBoundingClientRect(), n = et(), i = Math.max(1, t.width / n), o = Math.max(1, t.height / n);
     if (ft.clearRect(0, 0, i, o), tt) {
       const r = yr(), s = (e - wr) % r / r, d = 15, m = Math.max(8, Math.round(d * o / Math.max(1, i))), u = i / (d + 1), p = o / (m + 1), l = i * 0.5, b = o * 0.52, E = Math.hypot(l, b), g = a("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let h = 1; h <= m; h++)
+      for (let v = 1; v <= m; v++)
         for (let P = 1; P <= d; P++) {
-          const M = P * u, y = h * p, A = Math.hypot(M - l, y - b) / E, j = _a(), ee = j ? Math.exp(-Math.pow((A - (s * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, _ = Math.exp(-Math.pow((A - s * 1.25) * 7, 2)), ae = j ? ee : _, se = j ? 0.5 + 0.5 * Math.sin(s * Math.PI * 2 - A * 3) ** 2 : 0.35 + 0.65 * Math.sin(s * Math.PI * 2 - A * 5) ** 2, X = j ? 1.4 + ae * 4.2 * se : 1.2 + ae * 5 * se;
+          const M = P * u, y = v * p, B = Math.hypot(M - l, y - b) / E, j = _a(), ee = j ? Math.exp(-Math.pow((B - (s * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, _ = Math.exp(-Math.pow((B - s * 1.25) * 7, 2)), ae = j ? ee : _, se = j ? 0.5 + 0.5 * Math.sin(s * Math.PI * 2 - B * 3) ** 2 : 0.35 + 0.65 * Math.sin(s * Math.PI * 2 - B * 5) ** 2, X = j ? 1.4 + ae * 4.2 * se : 1.2 + ae * 5 * se;
           ft.beginPath(), ft.arc(M, y, X, 0, Math.PI * 2), ft.fillStyle = `rgba(${g},${j ? 0.08 + ae * 0.48 : 0.05 + ae * 0.55})`, ft.fill();
         }
     }
-    bt = requestAnimationFrame(Nn);
+    bt = requestAnimationFrame(Fn);
   }
-  new ResizeObserver(qa).observe(je.parentElement), qa(), bt = requestAnimationFrame(Nn);
+  new ResizeObserver(qa).observe(je.parentElement), qa(), bt = requestAnimationFrame(Fn);
   const nn = a("exerciseTitle"), De = a("exerciseMeta"), ki = a("stepLabel"), Si = a("digits"), Ga = a("fill"), xt = a("progress"), Ci = a("pause"), kr = a("nextName"), Sr = a("nextMeta"), Cr = a("nextIcon"), In = a("skipNextSession");
   let xe = null;
   function we(e) {
@@ -2294,36 +2294,36 @@ function ss(x, w) {
   In.addEventListener("click", () => {
     xe && (xe.sessionHidden = !xe.sessionHidden, Y((xe.sessionHidden ? "Hidden " : "Included ") + xe.name + " for this session"), nt());
   });
-  let Be = null, Ei = null;
+  let Ne = null, Ei = null;
   function an(e, t = {}) {
-    const n = R[N];
-    w.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: N, ...t });
+    const n = R[F];
+    w.fire(e, { move: (n == null ? void 0 : n.name) || "", move_id: F, ...t });
   }
   function Rr() {
-    const e = R[N];
-    Be = { key: N, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(Ei), Ei = setInterval(() => {
-      Be && !Ee && Be.active++;
+    const e = R[F];
+    Ne = { key: F, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(Ei), Ei = setInterval(() => {
+      Ne && !Ee && Ne.active++;
     }, 1e3), an("started", { steps: f.length });
   }
   function ja(e) {
-    if (clearInterval(Ei), !Be) return;
-    const t = Be;
-    Be = null, an(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (I.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), I.history = I.history.slice(0, 1e3), Me(), at(), ze());
+    if (clearInterval(Ei), !Ne) return;
+    const t = Ne;
+    Ne = null, an(e ? "completed" : "ended", { seconds: t.active }), !(t.active < 30) && (I.history.unshift({ id: "h-" + t.startedAt, move_id: t.key, name: t.name, start: new Date(t.startedAt).toISOString(), seconds: t.active, completed: e }), I.history = I.history.slice(0, 1e3), Me(), at(), ze());
   }
-  function Fr() {
-    Zn("workout"), Ar();
+  function Ar() {
+    Zn("workout"), Br();
     const e = we(0);
     e >= 0 && f[e].kind === "video" && Xa(f[e]);
   }
   function Mi() {
     Hn(), ja(!1), clearInterval(Q), clearInterval(un), de = !1, He(!1), a("app").classList.remove("resting"), $t.classList.remove("active"), Zn("home");
   }
-  function Ar() {
+  function Br() {
     $t.classList.add("active");
     let e = 5;
-    xi.textContent = e, requestAnimationFrame(An), clearInterval(un), un = setInterval(() => {
-      e--, e > 0 ? (xi.textContent = e, An()) : (clearInterval(un), xi.textContent = "GO", An(), setTimeout(() => {
-        $t.classList.remove("active"), cancelAnimationFrame(Qt), Nr();
+    xi.textContent = e, requestAnimationFrame(Bn), clearInterval(un), un = setInterval(() => {
+      e--, e > 0 ? (xi.textContent = e, Bn()) : (clearInterval(un), xi.textContent = "GO", Bn(), setTimeout(() => {
+        $t.classList.remove("active"), cancelAnimationFrame(Qt), Fr();
       }, 650));
     }, 1e3);
   }
@@ -2335,7 +2335,7 @@ function ss(x, w) {
       if ((n.round || 1) !== e) return;
       const o = document.createElement("button");
       o.dataset.step = i, o.type = "button", o.className = "progressSegment", o.setAttribute("aria-label", "Go to " + n.name), o.addEventListener("click", () => {
-        i <= T && Br(i);
+        i <= T && Nr(i);
       }), xt.appendChild(o);
     });
   }
@@ -2347,12 +2347,12 @@ function ss(x, w) {
         e ? V.pauseVideo() : V.playVideo();
       } catch {
       }
-    t && Be && an(e ? "paused" : "resumed");
+    t && Ne && an(e ? "paused" : "resumed");
   }
-  function Br(e) {
+  function Nr(e) {
     e < 0 || e >= f.length || e > T || (clearInterval(Q), de = !1, a("app").classList.remove("resting"), T = e, He(!1), Tt(), Q = setInterval(Ye, 1e3));
   }
-  function Nr() {
+  function Fr() {
     if (T = we(0), He(!1), Ri(), T < 0) {
       nn.textContent = "No activities", De.textContent = "Open Edit and enable or add a movement", De.hidden = !1;
       return;
@@ -2360,7 +2360,7 @@ function ss(x, w) {
     Rr(), Tt(), clearInterval(Q), Q = setInterval(Ye, 1e3);
   }
   const Ya = a("videoStage"), wt = a("videoSound"), Ir = 0, yt = 1, Pr = 2;
-  let Ua = 0, kt = null, St = null, V = null, Ct = null, Dn = 0, Fi = !1, ue = null, Ai = null;
+  let Ua = 0, kt = null, St = null, V = null, Ct = null, Dn = 0, Ai = !1, ue = null, Bi = null;
   function Ka() {
     var e;
     return (e = window.YT) != null && e.Player ? Promise.resolve(window.YT) : kt || (kt = new Promise((t, n) => {
@@ -2400,7 +2400,7 @@ function ss(x, w) {
   }
   function Xa(e) {
     !(e != null && e.videoId) || e.videoError || Za().then((t) => {
-      ue || Ct === e.videoId || (Ct = e.videoId, Dn = Number(e.start) || 0, Fi = !1, t.mute(), t.loadVideoById({ videoId: e.videoId, startSeconds: Dn }));
+      ue || Ct === e.videoId || (Ct = e.videoId, Dn = Number(e.start) || 0, Ai = !1, t.mute(), t.loadVideoById({ videoId: e.videoId, startSeconds: Dn }));
     }).catch(() => {
     });
   }
@@ -2410,7 +2410,7 @@ function ss(x, w) {
   }
   function Hr(e) {
     if (!ue) {
-      e === yt && !Fi && (Fi = !0, V.pauseVideo(), V.seekTo(Dn, !0));
+      e === yt && !Ai && (Ai = !0, V.pauseVideo(), V.seekTo(Dn, !0));
       return;
     }
     Ya.classList.toggle("playing", e === yt), f[T] === ue && performance.now() > Ua && (e === yt && Ee ? He(!1) : e === Pr && !Ee && He(!0)), e === yt && Qa(ue.videoId, V.getDuration()) && Me(), e === Ir && on();
@@ -2424,7 +2424,7 @@ function ss(x, w) {
     e === 101 || e === 150 ? (Gr(t.videoId), Y("That video can’t play outside YouTube, so it was skipped")) : Y("The video couldn’t play, so it was skipped"), on();
   }
   function qr(e) {
-    if (a("app").classList.add("videoStep"), wt.hidden = !0, ue = e, clearTimeout(Ai), !e.videoId) {
+    if (a("app").classList.add("videoStep"), wt.hidden = !0, ue = e, clearTimeout(Bi), !e.videoId) {
       Y("This video step has no link yet, so it was skipped"), setTimeout(() => on(), 0);
       return;
     }
@@ -2432,7 +2432,7 @@ function ss(x, w) {
       if (ue !== e) return;
       Ua = performance.now() + 1500;
       const n = Number(e.start) || 0;
-      Ct !== e.videoId ? (Ct = e.videoId, Dn = n, t.loadVideoById({ videoId: e.videoId, startSeconds: n })) : (t.seekTo(n, !0), t.playVideo()), t.unMute(), Ee && t.pauseVideo(), Ai = setTimeout(() => {
+      Ct !== e.videoId ? (Ct = e.videoId, Dn = n, t.loadVideoById({ videoId: e.videoId, startSeconds: n })) : (t.seekTo(n, !0), t.playVideo()), t.unMute(), Ee && t.pauseVideo(), Bi = setTimeout(() => {
         ue !== e || Ee || (t.getPlayerState() !== yt ? (t.mute(), t.playVideo(), wt.hidden = !1) : t.isMuted() && (wt.hidden = !1));
       }, 1600);
     }).catch(() => {
@@ -2446,7 +2446,7 @@ function ss(x, w) {
   }
   window.addEventListener("resize", Ja);
   function Hn() {
-    clearTimeout(Ai);
+    clearTimeout(Bi);
     const e = ue;
     if (ue = null, a("app").classList.remove("videoStep"), Ya.classList.remove("playing"), wt.hidden = !0, e && V) {
       try {
@@ -2471,8 +2471,8 @@ function ss(x, w) {
     return Number(e.end) || n || Number(e.videoDuration) || t + (Number(e.duration) || 300);
   }
   function $a(e, t) {
-    const n = R[N];
-    [Se, he, Ce, n == null ? void 0 : n.warmup, n == null ? void 0 : n.strength, n == null ? void 0 : n.cooldown, n == null ? void 0 : n.sequence].forEach((i) => (Array.isArray(i) ? i : []).forEach((o) => {
+    const n = R[F];
+    [Se, ve, Ce, n == null ? void 0 : n.warmup, n == null ? void 0 : n.strength, n == null ? void 0 : n.cooldown, n == null ? void 0 : n.sequence].forEach((i) => (Array.isArray(i) ? i : []).forEach((o) => {
       o && o.kind === "video" && o.videoId === e && t(o);
     }));
   }
@@ -2492,7 +2492,7 @@ function ss(x, w) {
     const t = e.videoId;
     if (!t) return;
     const n = () => {
-      pe.classList.contains("open") ? ve || G() : (G(), Me());
+      pe.classList.contains("open") ? he || G() : (G(), Me());
     };
     fetch("https://www.youtube.com/oembed?format=json&url=" + encodeURIComponent("https://www.youtube.com/watch?v=" + t)).then((i) => i.ok ? i.json() : Promise.reject(i.status)).then((i) => {
       e.videoId === t && (e.videoTitle = i.title || "", e.autoName && i.title && (e.name = i.title), n());
@@ -2542,7 +2542,7 @@ function ss(x, w) {
   function Tt() {
     de = !1;
     const e = f[T];
-    a("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? qr(e) : Hn(), ce = e.duration, Ht = e.duration, nn.textContent = e.name, De.textContent = e.group, De.hidden = !0, ki.textContent = Oa(T), Be && an("step", { name: e.name, group: e.group, kind: e.kind, step: T + 1, of: f.length, round: e.round || 1, rounds: Pn(), duration: e.duration }), nt(), Er(), Dr(), e.kind === "video" && setTimeout(Ja, 0);
+    a("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? qr(e) : Hn(), ce = e.duration, Ht = e.duration, nn.textContent = e.name, De.textContent = e.group, De.hidden = !0, ki.textContent = Oa(T), Ne && an("step", { name: e.name, group: e.group, kind: e.kind, step: T + 1, of: f.length, round: e.round || 1, rounds: Pn(), duration: e.duration }), nt(), Er(), Dr(), e.kind === "video" && setTimeout(Ja, 0);
   }
   function it() {
     var o;
@@ -2571,7 +2571,7 @@ function ss(x, w) {
     var n;
     de = !0, a("app").classList.add("resting");
     const t = Wa();
-    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(Q), ce = e, Ht = e, Be && an("rest", { duration: e }), nn.textContent = "Rest", De.textContent = (n = f[T]) != null && n.roundBreakAfter ? "Round " + (f[T].round + 1) + " next" : "Recovery", nt(), it(), Q = setInterval(() => {
+    t && t.style.setProperty("--segment-progress", "100%"), clearInterval(Q), ce = e, Ht = e, Ne && an("rest", { duration: e }), nn.textContent = "Rest", De.textContent = (n = f[T]) != null && n.roundBreakAfter ? "Round " + (f[T].round + 1) + " next" : "Recovery", nt(), it(), Q = setInterval(() => {
       Ee || (ce--, it(), ce <= 0 && (clearInterval(Q), Lt(), Q = setInterval(Ye, 1e3)));
     }, 1e3);
   }
@@ -2667,28 +2667,28 @@ function ss(x, w) {
     Et.classList.remove("open"), Et.setAttribute("aria-hidden", "true");
   });
   function Yr() {
-    const e = N, t = x.querySelector('.workoutPanel[data-workout="' + e + '"]');
+    const e = F, t = x.querySelector('.workoutPanel[data-workout="' + e + '"]');
     t && t.remove(), delete R[e], I.order = I.order.filter((i) => i !== e);
     let n = x.querySelector(".workoutPanel[data-workout]");
     if (!n) {
       const i = "custom-" + Date.now();
       R[i] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, I.order.push(i), n = Jn(i, R[i]);
     }
-    Et.classList.remove("open"), Et.setAttribute("aria-hidden", "true"), Jt = null, Fn(), Re(n.dataset.workout), Me(), Y("Move deleted");
+    Et.classList.remove("open"), Et.setAttribute("aria-hidden", "true"), Jt = null, An(), Re(n.dataset.workout), Me(), Y("Move deleted");
   }
   rn(a("deleteMoveYes"), a("deleteMoveFill"), 1500, Yr);
-  const Bi = x.querySelector(".rubberTabs"), Mt = a("rubberIndicator");
+  const Ni = x.querySelector(".rubberTabs"), Mt = a("rubberIndicator");
   function sn(e, t = !0) {
-    if (!e || !Bi || !Mt) return;
-    const n = Bi.getBoundingClientRect(), i = e.getBoundingClientRect();
+    if (!e || !Ni || !Mt) return;
+    const n = Ni.getBoundingClientRect(), i = e.getBoundingClientRect();
     Mt.style.transition = t ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
     const o = et();
-    Mt.style.left = (i.left - n.left) / o + Bi.scrollLeft + "px", Mt.style.width = i.width / o + "px", t && (Mt.style.transform = "scaleX(1.08)", setTimeout(() => Mt.style.transform = "scaleX(1)", 180));
+    Mt.style.left = (i.left - n.left) / o + Ni.scrollLeft + "px", Mt.style.width = i.width / o + "px", t && (Mt.style.transform = "scaleX(1.08)", setTimeout(() => Mt.style.transform = "scaleX(1)", 180));
   }
   x.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
     e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), x.querySelectorAll(".tab").forEach((t) => t.classList.remove("active")), x.querySelectorAll(".settingsPane").forEach((t) => t.classList.remove("active")), e.classList.add("active"), a(e.dataset.pane).classList.add("active"), sn(e, !0);
   })), requestAnimationFrame(() => sn(x.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => sn(x.querySelector(".tab.active"), !1));
-  const Ni = a("pixelTrailToggle"), Ii = a("rippleToggle"), Rt = a("trailStrength"), Ft = a("trailLife");
+  const Fi = a("pixelTrailToggle"), Ii = a("rippleToggle"), Rt = a("trailStrength"), At = a("trailLife");
   function ye(e, t) {
     q()[e] = t, Me();
   }
@@ -2754,17 +2754,17 @@ function ss(x, w) {
     Ue[e.dataset.toggle] = Ue[e.dataset.toggle] === !1, io(), ye("toggles", { ...Ue });
   })), io();
   function Kr() {
-    Ni.classList.toggle("on", Pe), Ii.classList.toggle("on", tt), Rt.value = Math.round(gt * 100), a("trailStrengthValue").textContent = Rt.value + "%", Ft.value = ht, a("trailLifeValue").textContent = Ft.value + " ms";
+    Fi.classList.toggle("on", Pe), Ii.classList.toggle("on", tt), Rt.value = Math.round(gt * 100), a("trailStrengthValue").textContent = Rt.value + "%", At.value = vt, a("trailLifeValue").textContent = At.value + " ms";
   }
-  q().trailEnabled !== void 0 && (Pe = q().trailEnabled), q().rippleEnabled !== void 0 && (tt = q().rippleEnabled), q().trailStrength !== void 0 && (gt = q().trailStrength), q().trailMaxAge !== void 0 && (ht = q().trailMaxAge), Kr(), Ni.addEventListener("click", () => {
-    Pe = !Pe, Ni.classList.toggle("on", Pe), Pe || (tn = []), ye("trailEnabled", Pe);
+  q().trailEnabled !== void 0 && (Pe = q().trailEnabled), q().rippleEnabled !== void 0 && (tt = q().rippleEnabled), q().trailStrength !== void 0 && (gt = q().trailStrength), q().trailMaxAge !== void 0 && (vt = q().trailMaxAge), Kr(), Fi.addEventListener("click", () => {
+    Pe = !Pe, Fi.classList.toggle("on", Pe), Pe || (tn = []), ye("trailEnabled", Pe);
   }), Ii.addEventListener("click", () => {
     tt = !tt, Ii.classList.toggle("on", tt), ye("rippleEnabled", tt);
   }), Rt.addEventListener("input", () => {
     gt = Number(Rt.value) / 100, a("trailStrengthValue").textContent = Rt.value + "%";
-  }), Rt.addEventListener("change", () => ye("trailStrength", gt)), Ft.addEventListener("input", () => {
-    ht = Number(Ft.value), a("trailLifeValue").textContent = Ft.value + " ms";
-  }), Ft.addEventListener("change", () => ye("trailMaxAge", ht)), En.addEventListener("change", () => ye("upcomingCount", st));
+  }), Rt.addEventListener("change", () => ye("trailStrength", gt)), At.addEventListener("input", () => {
+    vt = Number(At.value), a("trailLifeValue").textContent = At.value + " ms";
+  }), At.addEventListener("change", () => ye("trailMaxAge", vt)), En.addEventListener("change", () => ye("upcomingCount", st));
   function ao(e) {
     x.querySelectorAll(".themeBtn").forEach((n) => n.classList.toggle("active", n.dataset.theme === e));
     const t = e === "light";
@@ -2841,7 +2841,7 @@ function ss(x, w) {
     for (let s = e - 1; s >= 0; s--) {
       const d = new Date(i.getFullYear(), i.getMonth(), i.getDate() - s), m = oe(d), u = I.checkins.filter((l) => l.date === m), p = (l) => {
         const b = u.map((E) => E[l]).filter(Boolean);
-        return b.length ? b.reduce((E, v) => E + v, 0) / b.length : null;
+        return b.length ? b.reduce((E, h) => E + h, 0) / b.length : null;
       };
       r.push({
         key: m,
@@ -2886,7 +2886,7 @@ function ss(x, w) {
     snowy: "Snow",
     "snowy-rainy": "Sleet"
   }, Qr = (e) => e === "sunny" ? "clear" : e === "clear-night" ? "night" : e === "partlycloudy" ? "partly" : ["rainy", "pouring", "lightning", "lightning-rainy", "hail"].includes(e) ? "rain" : ["snowy", "snowy-rainy"].includes(e) ? "snow" : "cloudy", _i = '<svg class="wxCloud" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19h10.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.6 8.6 5.2 5.2 0 0 0 7 19z"/></svg>';
-  function At(e, t) {
+  function Bt(e, t) {
     const n = Qr(e), i = n === "clear" ? '<span class="wxSun"></span>' : n === "night" ? '<svg class="wxMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.2A9 9 0 1 0 20.8 17 7.4 7.4 0 0 1 15.5 3.2z"/></svg>' : n === "partly" ? '<span class="wxSun"></span>' + _i : n === "rain" || n === "snow" ? _i + '<span class="wxDrops ' + n + '"><i></i><i></i><i></i></span>' : _i;
     return '<span class="wxIcon ' + n + (t ? " large" : "") + '" aria-hidden="true">' + i + "</span>";
   }
@@ -2909,30 +2909,30 @@ function ss(x, w) {
     const t = _n;
     if (_n = null, t == null || t.then((n) => typeof n == "function" && n()).catch(() => {
     }), !e || !w.subscribe) {
-      Bt();
+      Nt();
       return;
     }
     _n = w.subscribe({ type: "weather/subscribe_forecast", forecast_type: "daily", entity_id: e }, (n) => {
-      qn === e && (Gi = Array.isArray(n == null ? void 0 : n.forecast) ? n.forecast : [], Bt());
+      qn === e && (Gi = Array.isArray(n == null ? void 0 : n.forecast) ? n.forecast : [], Nt());
     }), _n.catch(() => {
-      qn === e && (Oi = !0, Bt());
-    }), Bt();
+      qn === e && (Oi = !0, Nt());
+    }), Nt();
   }
   a("weatherEntity").addEventListener("change", () => {
     re.weather = a("weatherEntity").value || null, ye("entities", { ...re }), be && uo(be), mo();
   });
-  function Bt() {
+  function Nt() {
     const e = a("weatherCard");
     if (!e) return;
     const t = re.weather, n = t && (be == null ? void 0 : be[t]), i = (M) => '<div class="activityHeader">' + M + '<div class="activityTitle">Weather</div></div>';
     if (!n) {
-      e.innerHTML = i(At("cloudy")) + '<div class="activityRows"><div class="activityRow"><div class="activityRowIcon" aria-hidden="true">☁</div><div><div class="activityRowName">Forecast</div><div class="activityRowMeta">' + (t ? "Not available" : "Set up in Settings") + "</div></div></div></div>";
+      e.innerHTML = i(Bt("cloudy")) + '<div class="activityRows"><div class="activityRow"><div class="activityRowIcon" aria-hidden="true">☁</div><div><div class="activityRowName">Forecast</div><div class="activityRowMeta">' + (t ? "Not available" : "Set up in Settings") + "</div></div></div></div>";
       return;
     }
-    const o = n.attributes || {}, r = o.temperature_unit || "°", s = (M) => Number.isFinite(Number(M)) ? Math.round(Number(M)) + "°" : "—", d = (o.friendly_name || "").replace(/^forecast\s+/i, "") || "Weather", m = $r[n.state] || (n.state ? n.state.charAt(0).toUpperCase() + n.state.slice(1) : "—"), u = oe(/* @__PURE__ */ new Date()), p = Gi.slice(0, 7), l = p.find((M) => oe(new Date(M.datetime)) === u) || null, b = p.filter((M) => oe(new Date(M.datetime)) >= u).slice(0, 6), E = b.find((M) => oe(new Date(M.datetime)) > u), v = l ? "H " + s(l.temperature) + "&ensp; L " + s(l.templow) : "", g = (M) => new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(new Date(M.datetime)), h = Number.isFinite(Number(o.temperature)) ? Math.round(Number(o.temperature)) : "—", P = (M, y, A) => '<div class="activityRow">' + M + '<div><div class="activityRowName">' + L(y) + '</div><div class="activityRowMeta">' + A + "</div></div></div>";
-    e.innerHTML = '<div class="wxWide"><div class="wxNow"><div class="wxCurrent">' + At(n.state, !0) + '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">' + L(String(h)) + '</span><span class="wxUnit">' + L(r) + '</span></div><div class="wxPlace">' + L(d) + '</div></div></div><div class="wxCondition"><div class="wxCondName">' + L(m) + "</div>" + (v ? '<div class="wxRange">' + v + "</div>" : "") + "</div></div>" + (b.length ? '<div class="wxDays">' + b.map((M) => '<div class="wxDay"><div class="wxDayName">' + L(g(M)) + "</div>" + At(M.condition) + '<div class="wxTemps"><div class="wxHigh">' + s(M.temperature) + '</div><div class="wxLow">' + s(M.templow) + "</div></div></div>").join("") + "</div>" : '<div class="wxNoDays">' + (Oi ? "This weather service has no daily forecast" : "Loading the forecast…") + "</div>") + '</div><div class="wxCompact"><div class="activityRows">' + P(At(n.state), "Now · " + d, L(h + "° " + m)) + (l ? P(At(l.condition), "Today", s(l.temperature) + " / " + s(l.templow)) : "") + (E ? P(At(E.condition), "Tomorrow", s(E.temperature) + " / " + s(E.templow)) : "") + "</div></div>";
+    const o = n.attributes || {}, r = o.temperature_unit || "°", s = (M) => Number.isFinite(Number(M)) ? Math.round(Number(M)) + "°" : "—", d = (o.friendly_name || "").replace(/^forecast\s+/i, "") || "Weather", m = $r[n.state] || (n.state ? n.state.charAt(0).toUpperCase() + n.state.slice(1) : "—"), u = oe(/* @__PURE__ */ new Date()), p = Gi.slice(0, 7), l = p.find((M) => oe(new Date(M.datetime)) === u) || null, b = p.filter((M) => oe(new Date(M.datetime)) >= u).slice(0, 6), E = b.find((M) => oe(new Date(M.datetime)) > u), h = l ? "H " + s(l.temperature) + "&ensp; L " + s(l.templow) : "", g = (M) => new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(new Date(M.datetime)), v = Number.isFinite(Number(o.temperature)) ? Math.round(Number(o.temperature)) : "—", P = (M, y, B) => '<div class="activityRow">' + M + '<div><div class="activityRowName">' + L(y) + '</div><div class="activityRowMeta">' + B + "</div></div></div>";
+    e.innerHTML = '<div class="wxWide"><div class="wxNow"><div class="wxCurrent">' + Bt(n.state, !0) + '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">' + L(String(v)) + '</span><span class="wxUnit">' + L(r) + '</span></div><div class="wxPlace">' + L(d) + '</div></div></div><div class="wxCondition"><div class="wxCondName">' + L(m) + "</div>" + (h ? '<div class="wxRange">' + h + "</div>" : "") + "</div></div>" + (b.length ? '<div class="wxDays">' + b.map((M) => '<div class="wxDay"><div class="wxDayName">' + L(g(M)) + "</div>" + Bt(M.condition) + '<div class="wxTemps"><div class="wxHigh">' + s(M.temperature) + '</div><div class="wxLow">' + s(M.templow) + "</div></div></div>").join("") + "</div>" : '<div class="wxNoDays">' + (Oi ? "This weather service has no daily forecast" : "Loading the forecast…") + "</div>") + '</div><div class="wxCompact"><div class="activityRows">' + P(Bt(n.state), "Now · " + d, L(v + "° " + m)) + (l ? P(Bt(l.condition), "Today", s(l.temperature) + " / " + s(l.templow)) : "") + (E ? P(Bt(E.condition), "Tomorrow", s(E.temperature) + " / " + s(E.templow)) : "") + "</div></div>";
   }
-  Bt();
+  Nt();
   const go = a("tvNav");
   w.fullscreenSupported || (go.hidden = !0), go.addEventListener("click", () => w.toggleFullscreen()), x.addEventListener("keydown", (e) => {
     !rt.workout.classList.contains("active") || $t.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), Ci.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), a("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), a("restartSegment").click()));
@@ -2940,9 +2940,9 @@ function ss(x, w) {
     const t = Math.max(1, Math.min(10, (Number(Le.value) || 1) + Number(e.dataset.roundsStep)));
     String(t) !== Le.value && (Le.value = t, Le.dispatchEvent(new Event("input", { bubbles: !0 })));
   })), [W, D, z, Le].forEach((e) => e.addEventListener("input", () => {
-    const t = R[N];
+    const t = R[F];
     t && (t.total = Number(W.value), t.work = Number(D.value), t.rest = Number(z.value)), G();
-  })), Xi.addEventListener("click", Mi), Ji.addEventListener("click", () => Zn("settings")), a("settingsBack").addEventListener("click", Mi), Ci.addEventListener("click", () => He(!Ee)), Re(N), Ln(), Kt(), ze(), a("healthHelpOpen").addEventListener("click", () => x.querySelector(".tab[data-pane=helpPane]").click()), rn(a("resetStats"), a("resetStatsFill"), 1500, () => {
+  })), Xi.addEventListener("click", Mi), Ji.addEventListener("click", () => Zn("settings")), a("settingsBack").addEventListener("click", Mi), Ci.addEventListener("click", () => He(!Ee)), Re(F), Ln(), Kt(), ze(), a("healthHelpOpen").addEventListener("click", () => x.querySelector(".tab[data-pane=helpPane]").click()), rn(a("resetStats"), a("resetStatsFill"), 1500, () => {
     I.history = [], I.checkins = [], Ut = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
@@ -2951,32 +2951,32 @@ function ss(x, w) {
     Me(), at(), Kt(), Ln(), ze(), Qe(), Y("Stats reset");
   });
   const Wi = a("morningTime"), Vi = a("eveningTime"), ji = a("checkinAutoOpen");
-  Wi.value = Ne().morning, Vi.value = Ne().evening, ji.classList.toggle("on", q().checkinAutoOpen !== !1), [["morningTime", Wi], ["eveningTime", Vi]].forEach(([e, t]) => t.addEventListener("change", () => {
+  Wi.value = Fe().morning, Vi.value = Fe().evening, ji.classList.toggle("on", q().checkinAutoOpen !== !1), [["morningTime", Wi], ["eveningTime", Vi]].forEach(([e, t]) => t.addEventListener("change", () => {
     t.value && (ye(e, t.value), Qe());
   })), ji.addEventListener("click", () => {
     const e = q().checkinAutoOpen === !1;
     ji.classList.toggle("on", e), ye("checkinAutoOpen", e);
   }), setTimeout(gi, 800);
-  const ho = a("checkinNotify"), Gn = a("checkinNotifyTarget"), vo = a("checkinNotifyStatus"), ts = vo.textContent;
+  const vo = a("checkinNotify"), Gn = a("checkinNotifyTarget"), ho = a("checkinNotifyStatus"), ts = ho.textContent;
   function fo() {
     const e = w.notifyServices(), t = e.filter((o) => o.startsWith("mobile_app_")), n = t.length ? t : e, i = (o) => o.replace(/^mobile_app_/, "").replace(/_/g, " ");
     Gn.innerHTML = n.map((o) => '<option value="' + L(o) + '">' + L(i(o)) + "</option>").join(""), !q().notifyTarget && n[0] && (q().notifyTarget = n[0]), Gn.value = q().notifyTarget || "";
   }
   function On() {
     const e = !!q().notifyOn;
-    ho.classList.toggle("on", e), a("checkinNotifyTargetRow").hidden = !e;
-    const t = Ne();
-    vo.textContent = e ? "Sends at " + t.morning + " and " + t.evening : ts;
+    vo.classList.toggle("on", e), a("checkinNotifyTargetRow").hidden = !e;
+    const t = Fe();
+    ho.textContent = e ? "Sends at " + t.morning + " and " + t.evening : ts;
   }
   async function Yi() {
     const e = !!q().notifyOn;
     try {
-      return await w.setReminderAutomation(e ? { target: q().notifyTarget, times: Ne() } : null), !0;
+      return await w.setReminderAutomation(e ? { target: q().notifyTarget, times: Fe() } : null), !0;
     } catch {
       return Y("Couldn't update the reminder in Home Assistant"), !1;
     }
   }
-  ho.addEventListener("click", async () => {
+  vo.addEventListener("click", async () => {
     const e = !q().notifyOn;
     if (e && (fo(), !q().notifyTarget)) {
       Y("Install the Companion app on your phone first");
@@ -2997,23 +2997,23 @@ function ss(x, w) {
   return {
     updateStates(e) {
       const t = !be || be[re.weather] !== e[re.weather];
-      be = e, oo(e), uo(e), so(e), mo(), t && Bt(), Date.now() - lo > 60 * 60 * 1e3 && co(), ns();
+      be = e, oo(e), uo(e), so(e), mo(), t && Nt(), Date.now() - lo > 60 * 60 * 1e3 && co(), ns();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (I.history = e.history, at()), Array.isArray(e.history) && ze(), Array.isArray(e.checkins) && (I.checkins = e.checkins.map(na), Qe(), Ln(), Kt(), at(), ze()), e.profiles && !pe.classList.contains("open") && !Be)) {
+      if (e && (Array.isArray(e.history) && (I.history = e.history, at()), Array.isArray(e.history) && ze(), Array.isArray(e.checkins) && (I.checkins = e.checkins.map(na), Qe(), Ln(), Kt(), at(), ze()), e.profiles && !pe.classList.contains("open") && !Ne)) {
         const t = ta(e);
-        Object.keys(R).forEach((n) => delete R[n]), Object.assign(R, t.profiles), I.order = t.order, R[N] || (N = I.order[0]), aa(), Re(N);
+        Object.keys(R).forEach((n) => delete R[n]), Object.assign(R, t.profiles), I.order = t.order, R[F] || (F = I.order[0]), aa(), Re(F);
       }
     },
     suspend() {
       Z = !1;
     },
     resume() {
-      Z || (Z = !0, vt || (vt = requestAnimationFrame(Bn)), bt || (bt = requestAnimationFrame(Nn)), sn(x.querySelector(".tab.active"), !1));
+      Z || (Z = !0, ht || (ht = requestAnimationFrame(Nn)), bt || (bt = requestAnimationFrame(Fn)), sn(x.querySelector(".tab.active"), !1));
     }
   };
 }
-const ds = "0.27.0", Ki = "move_assistant", ls = "move_assistant", ko = "move_assistant_checkin_reminder";
+const ds = "0.28.0", Ki = "move_assistant", ls = "move_assistant", ko = "move_assistant_checkin_reminder";
 function cs() {
   if (document.getElementById("move-assistant-inter")) return;
   const x = document.createElement("link");
@@ -3056,28 +3056,28 @@ class ps extends HTMLElement {
     a.style.opacity = "0";
     let K = null;
     try {
-      const B = await this._hass.callWS({
+      const N = await this._hass.callWS({
         type: "frontend/get_user_data",
         key: Ki
       });
-      K = (B == null ? void 0 : B.value) ?? null;
+      K = (N == null ? void 0 : N.value) ?? null;
     } catch {
     }
     this._lastSaved = JSON.stringify(K), this._app = ss(w, {
       data: K,
-      save: (B) => this._save(B),
-      fire: (B, Z) => this._fire(B, Z),
-      ws: (B) => this._hass.callWS(B),
-      subscribe: (B, Z) => {
+      save: (N) => this._save(N),
+      fire: (N, Z) => this._fire(N, Z),
+      ws: (N) => this._hass.callWS(N),
+      subscribe: (N, Z) => {
         var Pt, Dt;
-        return (Dt = (Pt = this._hass) == null ? void 0 : Pt.connection) != null && Dt.subscribeMessage ? this._hass.connection.subscribeMessage(Z, B) : Promise.reject(new Error("no connection"));
+        return (Dt = (Pt = this._hass) == null ? void 0 : Pt.connection) != null && Dt.subscribeMessage ? this._hass.connection.subscribeMessage(Z, N) : Promise.reject(new Error("no connection"));
       },
       notifyServices: () => {
-        var B, Z;
-        return Object.keys(((Z = (B = this._hass) == null ? void 0 : B.services) == null ? void 0 : Z.notify) || {}).sort();
+        var N, Z;
+        return Object.keys(((Z = (N = this._hass) == null ? void 0 : N.services) == null ? void 0 : Z.notify) || {}).sort();
       },
-      setReminderAutomation: (B) => this._setReminderAutomation(B),
-      setLight: (B) => this.classList.toggle("lightBody", B),
+      setReminderAutomation: (N) => this._setReminderAutomation(N),
+      setLight: (N) => this.classList.toggle("lightBody", N),
       fullscreenSupported: !!(this.requestFullscreen || this.webkitRequestFullscreen),
       toggleFullscreen: () => this._toggleFullscreen()
     }), this._lastStates = this._hass.states, this._app.updateStates(this._hass.states), this.isConnected || this._app.suspend(), a.style.transition = "opacity .2s ease", a.style.opacity = "", this._subscribe();
@@ -3088,8 +3088,8 @@ class ps extends HTMLElement {
     w != null && w.subscribeMessage && w.subscribeMessage(
       (K) => {
         var Z;
-        const B = JSON.stringify((K == null ? void 0 : K.value) ?? null);
-        B === this._lastSaved || B === this._pendingJson || (this._lastSaved = B, (Z = this._app) == null || Z.applyRemoteData(K.value));
+        const N = JSON.stringify((K == null ? void 0 : K.value) ?? null);
+        N === this._lastSaved || N === this._pendingJson || (this._lastSaved = N, (Z = this._app) == null || Z.applyRemoteData(K.value));
       },
       { type: "frontend/subscribe_user_data", key: Ki }
     ).catch(() => {
@@ -3110,8 +3110,8 @@ class ps extends HTMLElement {
     }, 400);
   }
   _fire(w, a = {}) {
-    var K, B;
-    ((K = this._config) == null ? void 0 : K.events) !== !1 && ((B = this._hass) == null || B.callWS({
+    var K, N;
+    ((K = this._config) == null ? void 0 : K.events) !== !1 && ((N = this._hass) == null || N.callWS({
       type: "fire_event",
       event_type: ls,
       event_data: { action: w, ...a }
@@ -3130,7 +3130,7 @@ class ps extends HTMLElement {
       }
       return;
     }
-    const K = (Z) => `${Z}:00`, B = window.location.pathname;
+    const K = (Z) => `${Z}:00`, N = window.location.pathname;
     await this._hass.callApi("POST", a, {
       id: ko,
       alias: "Move Assistant check-in reminder",
@@ -3147,7 +3147,7 @@ class ps extends HTMLElement {
           data: {
             title: "Move Assistant",
             message: "{{ 'Morning' if trigger.id == 'morning' else 'Evening' }} check-in is ready",
-            data: { url: B, clickAction: B }
+            data: { url: N, clickAction: N }
           }
         }
       ]

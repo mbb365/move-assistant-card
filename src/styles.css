@@ -5,17 +5,13 @@
   position:relative;
   background:#050505;
   color-scheme:dark;
-  --bg:#050505;--page:#090909;--card:#222222;--card2:#262626;
-  --tile:#2b2b2b;--tile-2:#2b2b2b;--row:#2b2b2b;--row-rest:#2b2b2b;--raised:#2b2b2b;--chip:#2b2b2b;--bar-track:#2b2b2b;
-  --control:#171717;--control-2:#1b1b1b;--sunken:#171717;--input:#151515;--track:#151515;--modal:#202020;--icon-bg:#3f3f3f;
-  --text:#f1f1f1;--soft:#cfcfcf;--muted:#969696;--accent-text:var(--secondary);
-  --line:#3f3f3f;--lineb:#252525;--field-line:#3f3f3f;--divider:#343434;--border-hover:#5a5a5a;
-  --bright:#efefef;--on-bright:#090909;--switch-off:#444;--knob-off:#ddd;--slider-fill:#efefef;
-  --segment:#3f3f3f;--segment-fill:#efefef;--timer:#0d0d0d;--timer-fill:#f2f2f2;--stage:#151515;
-  --hover:rgba(255,255,255,.06);--wash:rgba(255,255,255,.04);--wash-2:rgba(255,255,255,.08);--wash-3:rgba(255,255,255,.12);--wash-4:rgba(255,255,255,.22);
-  --today-ring:rgba(255,255,255,.35);--dot-empty:#555;--scroll-thumb:#4a4a4a;--checkin-due:#232323;
-  --danger:#ff7777;--danger-bg:#311313;--danger-line:#8c2e2e;--danger-fill:#D53D3D;--on-danger-fill:#222222;
-  --seg-bg:#3f3f3f;--seg-on:#2b2b2b;
+  /* Base palette — mirrors the Figma "Color" variables (Dark). A sync changes only these two blocks. */
+  --color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;
+  --color-fill-bright:#f1f1f1;--color-text-primary:#f1f1f1;--color-text-muted:#969696;--color-text-on-bright:#090909;
+  --color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;
+  --color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;
+  --color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;
+  --color-state-hover:rgba(255,255,255,.08);--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);
   --scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);
   --r:36px;--gap:20px}
 *{box-sizing:border-box}
@@ -23,28 +19,32 @@
 [hidden]{display:none!important}
 button,input{font:inherit}
 #app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}
+/* The card's older colour names, each pointing at one base colour (three greys, two text greys, one bright fill, one line) */
+#app{
+  --bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-card);
+  --tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);
+  --segment:var(--color-bg-tile);--seg-on:var(--color-bg-tile);--scroll-thumb:var(--color-bg-tile);--checkin-due:var(--color-bg-tile);
+  --control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);
+  --bar-track:var(--color-bg-ground);--icon-bg:var(--color-bg-ground);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--primary-tint:var(--color-bg-ground);
+  --text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);
+  --border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--dot-empty:var(--color-text-muted);--primary-ink:var(--color-text-muted);
+  --line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);
+  --bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);
+  --hover:var(--color-state-hover);--wash:var(--color-state-hover);--wash-2:var(--color-state-hover);--wash-3:var(--color-state-pressed);--wash-4:var(--color-state-pressed);
+  --danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);
+  --primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}
 .shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}
-#app.resting .shell{background:#1f7a4d}
+#app.resting .shell{background:var(--color-bg-resting)}
 #app.paused .shell{background:var(--primary)}
 #app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}
 #app.light{
-  --bg:#EEEDED;--page:#EEEDED;--card:#FFFFFF;--card2:#F7F6F6;
-  --tile:#F4F3F3;--tile-2:#F4F3F3;--row:#F4F3F3;--row-rest:#ECF1F6;--raised:#F4F3F3;--chip:#EEEDED;--bar-track:#EEEDED;
-  --control:#FFFFFF;--control-2:#FFFFFF;--sunken:#F4F3F3;--input:#FFFFFF;--track:#E3E1E1;--modal:#FFFFFF;--icon-bg:var(--primary-tint);
-  --text:#222222;--soft:#3F3F3F;--muted:#3F3F3F;--accent-text:#5B7A00;
-  --line:#D8D6D6;--lineb:#D8D6D6;--field-line:#D8D6D6;--divider:#E6E4E4;--border-hover:#C9C7C7;
-  --bright:#222222;--on-bright:#FFFFFF;--switch-off:#D8D6D6;--knob-off:#FFFFFF;--slider-fill:color-mix(in srgb,var(--primary) 45%,white);
-  --segment:#D3D1D1;--segment-fill:var(--primary);--timer:#FFFFFF;--timer-fill:color-mix(in srgb,var(--primary) 30%,white);--stage:#FFFFFF;
-  --hover:rgba(0,0,0,.05);--wash:rgba(0,0,0,.04);--wash-2:rgba(0,0,0,.06);--wash-3:rgba(0,0,0,.1);--wash-4:rgba(0,0,0,.14);
-  --today-ring:rgba(0,0,0,.25);--dot-empty:#bbb;--scroll-thumb:#CFCDCD;--checkin-due:#FFFFFF;
-  --danger:#C62F2F;--danger-bg:#F5DEDE;--danger-line:#E3A0A0;
-  --seg-bg:#E3E1E1;--seg-on:#FFFFFF;
+  /* Base palette — mirrors the Figma "Color" variables (Light) */
+  --color-bg-ground:#eeeded;--color-bg-card:#ffffff;--color-bg-tile:#f4f3f3;
+  --color-fill-bright:#222222;--color-text-primary:#222222;--color-text-muted:#3f3f3f;--color-text-on-bright:#ffffff;
+  --color-line:rgba(0,0,0,.12);--color-text-accent:#222222;--color-bg-resting:#7dbb98;
+  --color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#c62f2f;
+  --color-state-hover:rgba(0,0,0,.06);--color-state-pressed:rgba(0,0,0,.12);
   --scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}
-#app.light .activityRow:nth-child(1) .activityRowIcon{background:var(--primary-tint);color:var(--primary-ink) !important}
-#app.light .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f !important}
-#app.light .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63 !important}
-#app.light .activityIcon{background:#e8e1ff;color:#7859c9 !important}
-#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a !important}
 #app.light .energyBtn:hover,
 #app.light .energyBtn:focus-visible,
 #app.light .energyBtn.selected{
@@ -53,7 +53,6 @@ button,input{font:inherit}
 }
 
 :host(.lightBody){background:#EEEDED;color-scheme:light}
-#app.light.resting .shell{background:#7DBB98}
 
 .view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}
 .card,.panel,.tile{
@@ -777,7 +776,6 @@ button,input{font:inherit}
 .nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}
 .skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:0.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}
 .pause{min-width:120px;min-height:41.6px;padding:0 14.4px}
-#app.light .nextIcon{background:#ffe6ef;color:#bd4b7a!important}
 
 
 .upcomingList{
@@ -825,7 +823,6 @@ button,input{font:inherit}
   border:0.8px solid var(--line);
   background:transparent;
   color:var(--text)}
-#app.light .upcomingIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
 
 @media(max-width:900px){.weekCopy{white-space:normal}
   .nextCard{align-items:flex-start;flex-direction:column}
@@ -1761,7 +1758,6 @@ button,input{font:inherit}
   .tabs.rubberTabs .tab{flex:0 0 auto}
 }
 
-#app.light .timeIcon{background:var(--primary-tint);color:var(--primary-ink)!important}
 
 /* ---- Movement card: Activity-style header + one shared tile (see "Joint data" at the end) ---- */
 .insightCard{display:flex;flex-direction:column;gap:0}
@@ -2113,7 +2109,6 @@ button,input{font:inherit}
    Movement & you, layout B (2026-10-17): Activity and
    Movement narrow, Weather wide with the forecast.
    ========================================================= */
-:host{--sun-core:#ffee00;--sun-edge:#ffd400;--wx-clear:var(--primary);--wx-cloudy:#d8d6d6;--wx-rain:#027fb7;--wx-night:#1d3b5c;--cloud:#ffffff}
 .activityCard{grid-column:span 3}
 .insightCard{grid-column:span 3}
 .weatherCard{grid-column:span 6}
@@ -2131,8 +2126,6 @@ button,input{font:inherit}
 .jointRows{gap:0;border-radius:var(--r-tile);background:var(--tile)}
 .jointRows>.activityRow{background:transparent}
 .insightCard .jointRows{flex:1;align-content:space-evenly}
-#app.light .insightCard .activityRow:nth-child(2) .activityRowIcon{background:#ffe8c8;color:#c8741f!important}
-#app.light .insightCard .activityRow:nth-child(3) .activityRowIcon{background:#d9f4e6;color:#2e8b63!important}
 
 /* Weather card */
 .weatherCard{display:flex;flex-direction:column}
@@ -2154,20 +2147,16 @@ button,input{font:inherit}
   .wxWide{display:none}
   .wxCompact{display:grid;gap:var(--card-gap)}
 }
-.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);background:var(--wx-clear);overflow:hidden}
+.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-icon);background:var(--icon-bg);overflow:hidden}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
-.wxIcon.cloudy,.wxIcon.snow{background:var(--wx-cloudy)}
-.wxIcon.rain{background:var(--wx-rain)}
-.wxIcon.night{background:var(--wx-night)}
-.wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:radial-gradient(circle,var(--sun-core),var(--sun-edge))}
-.wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--cloud)}
+.wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:var(--muted)}
+.wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--muted)}
 .wxIcon.partly .wxSun{left:12%;top:10%;width:52%;height:52%}
 .wxIcon.partly .wxCloud{left:26%;top:28%;width:66%;height:66%}
 .wxIcon.rain .wxCloud,.wxIcon.snow .wxCloud{top:2%}
-.wxIcon.snow .wxCloud{fill:var(--cloud)}
 .wxDrops{position:absolute;left:30%;right:30%;bottom:16%;display:flex;justify-content:space-between}
-.wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--cloud);transform:rotate(12deg)}
-.wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:#90a4b8}
+.wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--muted);transform:rotate(12deg)}
+.wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:var(--muted)}
 .weatherCard .activityRow>.wxIcon{width:var(--chip-size)}
 .activityHeader>.wxIcon{width:var(--chip-size);height:var(--chip-size)}
 
@@ -2176,3 +2165,34 @@ button,input{font:inherit}
 .wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}
 .wxPlace,.wxCondName,.wxHigh{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
 .wxDayName,.wxLow,.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
+
+/* =========================================================
+   Segment states (Figma "Segment", 2026-10-19): plain at rest,
+   hover tint, pressed tint + a small squash, chosen = tile,
+   blue focus ring. Hover only with a real pointer, so taps on
+   phones never leave a button looking hovered.
+   ========================================================= */
+.segBtn{transition:background .15s ease,transform .18s cubic-bezier(.34,1.46,.64,1),box-shadow .15s ease,color .15s ease}
+.segBtn:hover{background:transparent}
+@media (hover:hover){.segBtn:hover{background:var(--color-state-hover)}}
+.tabs.rubberTabs .tab.active:hover{background:transparent}
+.segBtn:active{background:var(--color-state-pressed);transform:scale(.97)}
+.segBtn:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--color-border-focus)}
+.segBtn:disabled{opacity:.4;cursor:default}
+
+/* Move row actions: no track until you interact; Edit, Hide and the bin look the same; the bin turns red on hover */
+.moveActions.seg{background:transparent;transition:background .18s ease}
+.moveActions.seg:focus-within{background:var(--seg-bg)}
+@media (hover:hover){.moveActions.seg:hover{background:var(--seg-bg)}}
+.moveActions .editBtn,.moveActions .editBtn:hover{background:transparent}
+.moveActions .removeBtn,.moveActions .removeBtn:hover{background:transparent;color:var(--text)}
+@media (hover:hover){
+  .moveActions .editBtn:hover{background:var(--color-state-hover)}
+  .moveActions .removeBtn:hover{background:var(--danger-fill);color:var(--color-text-on-danger)}
+}
+.moveActions .removeBtn:active{background:linear-gradient(var(--color-state-pressed-on-bright),var(--color-state-pressed-on-bright)),var(--danger-fill);color:var(--color-text-on-danger)}
+.moveActions .removeBtn.holding{background:var(--danger-bg);color:var(--color-text-on-danger)}
+.moveActions .removeFill{background:var(--danger-fill)}
+
+/* Icons are generic greys for now (Figma: every icon uses color/text/muted) */
+.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--muted)}
