@@ -963,8 +963,8 @@ button,input{font:inherit}
 .integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}
 /* Figma Switch: rounded-square track, a knob that is flat on the side facing the middle */
 .switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-icon);background:var(--track);border:0.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}
-.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:6px var(--r-fine) var(--r-fine) 6px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}
-.switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:var(--r-fine) 6px 6px var(--r-fine);background:var(--on-bright)}
+.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}
+.switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
 
 .themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}
 .themeBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
@@ -1044,7 +1044,7 @@ button,input{font:inherit}
 }
 
 /* buttons and fields share the control radius; segmented buttons and switches have their own shape */
-:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-control)!important}
+:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-control)!important}
 .card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
 
 
@@ -1648,13 +1648,13 @@ button,input{font:inherit}
   --t-tile-title:14px;--lh-tile-title:22.4px;
   --t-tile-detail:16px;--lh-tile-detail:20px;
   /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
-  /* Corners follow one rule: inner = outer − gap (Figma Radius, Desktop/Phone). Card 40 · tile 24 · inner 8 · fine 4 */
-  --r-card:40px;--r-tile:24px;--r-inner:8px;--r-fine:4px;
+  /* Corners follow one rule: inner = outer − gap (Figma Radius, Desktop/Phone). Desktop card 56 · tile 36 · inner 16 · fine 12 (inset 20); phone card 48 · tile 32 (inset 16) */
+  --r-card:56px;--r-tile:36px;--r-inner:16px;--r-fine:12px;
   --r-group:var(--r-tile);--r-icon:var(--r-inner);--r-control:var(--r-inner);--r-seg:var(--r-fine);
   /* inset: the one padding for cards and tiles, on every side (Figma Component metrics "inset") */
-  --inset:16px;--card-pad:var(--inset);--card-gap:22px;
+  --inset:20px;--card-pad:var(--inset);--card-gap:20px;
   --gutter:22px;--grid-gap:16px;
-  --tile-pad:var(--inset);--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;
+  --tile-pad:var(--inset);--tile-min:86px;--tile-gap:16px;--tile-action-gap:16px;
   --chip-size:46px;--glyph-size:34px;
 }
 @media(max-width:620px){:host{
@@ -2001,7 +2001,7 @@ button,input{font:inherit}
 
 /* move rows */
 .moveRow.editing{padding:var(--tile-pad)}
-.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:12px}
+.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--tile-gap)}
 .dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-icon);background:var(--icon-bg);color:var(--muted)}
 .dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}
 .moveRow.restItem .dragHandle{background:transparent}
@@ -2032,9 +2032,9 @@ button,input{font:inherit}
 
 /* switch with a label (Use global timing): same shape as the Switch */
 .toggleTrack{width:50px;height:28px;border-radius:var(--r-icon);background:var(--track);border:0.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}
-.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:6px var(--r-fine) var(--r-fine) 6px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}
+.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}
 .globalTimingToggle input:checked + .toggleTrack{background:var(--bright);opacity:1}
-.globalTimingToggle input:checked + .toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:var(--r-fine) 6px 6px var(--r-fine);background:var(--on-bright)}
+.globalTimingToggle input:checked + .toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
 
 /* tablets and phones: move cards are a swipeable row of full cards */
 @media(max-width:900px){
@@ -2042,8 +2042,8 @@ button,input{font:inherit}
 }
 /* phones keep their tighter spacing, in the same shapes */
 @media(max-width:620px){:host{
-  --inset:12px;--card-pad:var(--inset);--tile-pad:var(--inset);--tile-min:70px;--card-gap:16px;
-  --r-card:32px;--r-tile:20px;
+  --inset:16px;--card-pad:var(--inset);--tile-pad:var(--inset);--tile-min:78px;--card-gap:16px;
+  --r-card:48px;--r-tile:32px;
   --gutter:0px;--grid-gap:8px;
 }}
 
@@ -2087,7 +2087,7 @@ button,input{font:inherit}
 .setupSlider:focus-within{outline:0}
 .setupSlider:focus-within .rangeFill::after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}
 
-.stepper{display:flex;align-items:center;gap:2px;padding:3px;border-radius:var(--r-control);background:var(--seg-bg);flex:0 0 auto}
+.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-control);background:var(--seg-bg);flex:0 0 auto}
 .stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}
 .stepBtn:hover:not(:disabled){background:var(--hover)}
 .stepBtn:disabled{opacity:.35;cursor:default}
@@ -2142,7 +2142,7 @@ button,input{font:inherit}
 .wxCondition{display:grid;gap:2px;padding:var(--tile-pad);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}
 /* the forecast stretches to fill the card, so the row of cards stays even */
 .wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--tile-action-gap);min-width:0;padding:16px 8px;border-radius:var(--r-tile);background:var(--tile)}
+.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--tile-action-gap);min-width:0;padding:var(--tile-pad) 8px;border-radius:var(--r-tile);background:var(--tile)}
 .wxTemps{display:grid;justify-items:center;gap:2px}
 .wxLow{color:var(--muted)}
 .wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}
