@@ -1649,9 +1649,10 @@ button,input{font:inherit}
   --t-tile-detail:22px;--lh-tile-detail:20px;
   /* Shapes and tile layout, synced from Figma Radius, Component metrics and Layout (2026-10-17) */
   --r-card:36px;--r-tile:32px;--r-group:20px;--r-icon:16px;--r-control:12px;--r-seg:28px;
-  --card-pad:20px;--card-gap:22px;
+  /* inset: the one padding for cards and tiles, on every side (Figma Component metrics "inset") */
+  --inset:16px;--card-pad:var(--inset);--card-gap:22px;
   --gutter:22px;--grid-gap:16px;
-  --tile-pad:16px 20px;--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;
+  --tile-pad:var(--inset);--tile-min:78px;--tile-gap:14px;--tile-action-gap:16px;
   --chip-size:46px;--glyph-size:34px;
 }
 @media(max-width:620px){:host{
@@ -1998,7 +1999,7 @@ button,input{font:inherit}
 
 /* move rows */
 .moveRow.editing{padding:var(--tile-pad)}
-.moveRow.phoneRow{min-height:0;padding:12px 16px 12px 12px;gap:12px}
+.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:12px}
 .dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-icon);background:var(--icon-bg);color:var(--muted)}
 .dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}
 .moveRow.restItem .dragHandle{background:transparent}
@@ -2039,7 +2040,7 @@ button,input{font:inherit}
 }
 /* phones keep their tighter spacing, in the same shapes */
 @media(max-width:620px){:host{
-  --card-pad:16px;--tile-pad:12px 16px;--tile-min:70px;--card-gap:16px;
+  --inset:12px;--card-pad:var(--inset);--tile-pad:var(--inset);--tile-min:70px;--card-gap:16px;
   --gutter:0px;--grid-gap:8px;
 }}
 
