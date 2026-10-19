@@ -161,7 +161,6 @@ let cooldown=defaultCooldown.map(x=>({...x}));
 const defaultProfiles={
  kettlebell:{
    name:'Kettlebell full body',
-   eyebrow:'',
    source:'Example imported routine',
    total:20,work:45,rest:15,
    strength:[
@@ -336,12 +335,10 @@ function createMovePanel(key,profile){
   panel.className='workoutPanel';
   panel.dataset.workout=key;
   panel.tabIndex=0;
-  const eyebrow=profile.eyebrow===undefined?'Movement':profile.eyebrow;
   const count=profile.activityCount??(profile.sequence?.length||0);
   panel.innerHTML=
     '<span class="edgeLight" aria-hidden="true"></span>'+
     '<div class="panelExpanded"><div><div class="workoutPanelTop"><div>'+
-      (eyebrow?'<div class="eyebrow">'+esc(eyebrow)+'</div>':'')+
       '<div class="workoutName">'+esc(profile.name)+'</div>'+
       '<div class="sub">'+esc(panelSummary(profile))+'</div>'+
       '<span class="sourceTag">'+esc(profile.source||'Custom move')+'</span>'+
@@ -675,6 +672,27 @@ function buildRoutine(){
 }
 const GRIP='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
 const TRASH='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>';
+// Icons: path data from the Figma Icon/* components (24 grid, 2px stroke), drawn at the slot's glyph size.
+const ICONS={
+  activity:'<path d="M22 12H18L15 21L9 3L6 12H2"/>',
+  steps:'<path d="M12 19V5"/><path d="M5 12L12 5L19 12"/>',
+  mood:'<path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z"/><path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14"/><path d="M9 9H9.01"/><path d="M15 9H15.01"/>',
+  energy:'<path d="M13 2L3 14H12L11 22L21 10H12L13 2Z"/>',
+  clock:'<path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z"/><path d="M12 6V12L16 14"/>',
+  streak:'<path d="M22 7L13.5 15.5L8.5 10.5L2 17"/><path d="M16 7H22V13"/>',
+  calendar:'<path d="M19 4H5C3.9 4 3 4.9 3 6V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4Z"/><path d="M16 2V6"/><path d="M8 2V6"/><path d="M3 10H21"/>',
+  home:'<path d="M3 10.5L12 3L21 10.5V21H3V10.5Z"/>',
+  settings:'<path d="M21 4H14"/><path d="M10 4H3"/><path d="M21 12H12"/><path d="M8 12H3"/><path d="M21 20H16"/><path d="M12 20H3"/><path d="M14 2V6"/><path d="M8 10V14"/><path d="M16 18V22"/>',
+  fullscreen:'<path d="M8 3H5C3.9 3 3 3.9 3 5V8"/><path d="M21 8V5C21 3.9 20.1 3 19 3H16"/><path d="M3 16V19C3 20.1 3.9 21 5 21H8"/><path d="M16 21H19C20.1 21 21 20.1 21 19V16"/>',
+  move:'<path d="M7 17L17 7"/><path d="M7 7H17V17"/>',
+  check:'<path d="M20 6L9 17L4 12"/>',
+  back:'<path d="M15 18L9 12L15 6"/>',
+  add:'<path d="M5 12H19"/><path d="M12 5V19"/>',
+  play:'<path d="M8 5.5V18.5L18.5 12L8 5.5Z"/>',
+  pause:'<path d="M9 6V18"/><path d="M15 6V18"/>'
+};
+const icon=name=>'<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">'+(ICONS[name]||'')+'</svg>';
+root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon)});
 // ---- edit a movement in place ----
 let editingItem=null;
 let pendingNew=null; // {item,arr}: dropped into the list but not saved yet
@@ -1282,9 +1300,9 @@ function openItemSheet(item,arr){
 }
 function openAddChooser(){
   const box=document.createElement('div');box.className='sheetChoices';
-  [['movement','●','Movement','Name it, then drag it into place'],['rest','Ⅱ','Rest','A pause between movements'],['video','▶','Video','Paste a YouTube link']].forEach(([type,icon,label,sub])=>{
+  [['movement','activity','Movement','Name it, then drag it into place'],['rest','pause','Rest','A pause between movements'],['video','play','Video','Paste a YouTube link']].forEach(([type,ic,label,sub])=>{
     const b=document.createElement('button');b.type='button';b.className='sheetChoice';
-    b.innerHTML='<span class="timeIcon" aria-hidden="true">'+icon+'</span><span><strong>'+label+'</strong><small>'+sub+'</small></span>';
+    b.innerHTML='<span class="timeIcon" aria-hidden="true">'+icon(ic)+'</span><span><strong>'+label+'</strong><small>'+sub+'</small></span>';
     b.addEventListener('click',()=>openNewSheet(type));
     box.appendChild(b);
   });
@@ -1617,8 +1635,6 @@ function openCheckin(){
     sliders[scale].input.value=existing?.[scale]??last?.[scale]??50;
     paintSlider(scale);
   });
-  const t=checkinTimes()[slot];
-  $('checkinEyebrow').textContent=(slot==='morning'?'Morning':'Evening')+' · '+t;
   $('checkinTitle').textContent=slot==='morning'?'Morning check-in':'Evening check-in';
   checkinModal.classList.add('open');
   checkinModal.setAttribute('aria-hidden','false');
@@ -1713,7 +1729,7 @@ function renderFeelWeek(){
     '</div>'+
     '<div class="feelDays">'+days.map(x=>
       '<div class="weekChip feelDay'+(x.future?' future':'')+(x.key===dayKey(now)?' today':'')+'">'+
-        '<div class="weekChipTop"><strong>'+esc(new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(x.d))+'</strong>'+(x.count>=2?'<span class="weekTick">✓</span>':'<span class="feelDots">'+'●'.repeat(x.count)+'</span>')+'</div>'+
+        '<div class="weekChipTop"><strong>'+esc(new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(x.d))+'</strong>'+(x.count>=2?'<span class="weekTick">'+icon('check')+'</span>':'<span class="feelDots">'+'●'.repeat(x.count)+'</span>')+'</div>'+
         meter('Mood',x.mood)+meter('Energy',x.energy)+
       '</div>'
     ).join('')+'</div>';
@@ -1733,17 +1749,8 @@ const tempoEstimate=$('tempoEstimate');
 const tempoReadout=$('tempoReadout');
 
 let tempoValue={x:.5,y:.5},tempoDragging=false;
-let tempoProfile={strength:1,warmup:1,cooldown:1,rest:1};
 let tempoSliderBase={total:20,work:45,rest:15};
 
-function estimateRoutineMinutes(){
-  if(!routine.length)return Number(totalInput.value)||0;
-  const seconds=routine.reduce((sum,item)=>{
-    const kindFactor=item.kind==='warmup'?tempoProfile.warmup:item.kind==='cooldown'?tempoProfile.cooldown:tempoProfile.strength;
-    return sum+(item.duration*kindFactor)+(item.rest*tempoProfile.rest);
-  },0);
-  return Math.max(1,Math.round(seconds/60));
-}
 
 function clampToStep(value,min,max,step){
   const clamped=Math.max(min,Math.min(max,value));
@@ -1779,15 +1786,6 @@ function updateTimingSlidersFromTempo(x,y){
 
 function updateTempoProfile(x,y){
   // x: Low -> Hard. y: Fast -> Slow.
-  const hard=x;
-  const slow=y;
-  // Different activity families react differently by design.
-  tempoProfile={
-    strength: Math.max(.55,Math.min(1.55, .72 + hard*.55 + slow*.20)),
-    warmup:   Math.max(.55,Math.min(1.45, .62 + slow*.62 + hard*.08)),
-    cooldown: Math.max(.55,Math.min(1.55, .60 + slow*.72 + (1-hard)*.08)),
-    rest:     Math.max(.55,Math.min(1.60, .62 + hard*.58 + slow*.18))
-  };
   const horiz=x<.34?'Low':x>.66?'Hard':'Medium';
   const vert=y<.34?'Fast':y>.66?'Slow':'Balanced';
   const timing=updateTimingSlidersFromTempo(x,y);
@@ -2276,16 +2274,16 @@ function nextVisibleRoutineIndex(fromIndex){
 }
 function getNextPart(){
   const current=routine[index];
-  if(!current)return{name:'Complete',meta:'Move finished',icon:'✓'};
+  if(!current)return{name:'Complete',meta:'Move finished',icon:'check'};
   if(isResting){
     const ni=nextVisibleRoutineIndex(index+1);
     const n=ni>=0?routine[ni]:null;
-    return n?{name:n.name,meta:partMeta(n),icon:futureIcon(n)}:{name:'Complete',meta:'Move finished',icon:'✓'};
+    return n?{name:n.name,meta:partMeta(n),icon:futureIcon(n)}:{name:'Complete',meta:'Move finished',icon:'check'};
   }
-  if(current.rest>0)return{name:'Rest',meta:current.rest+' sec · '+(current.roundBreakAfter?'round '+(current.round+1)+' next':'recovery'),icon:'Ⅱ'};
+  if(current.rest>0)return{name:'Rest',meta:current.rest+' sec · '+(current.roundBreakAfter?'round '+(current.round+1)+' next':'recovery'),icon:'pause'};
   const ni=nextVisibleRoutineIndex(index+1);
   const n=ni>=0?routine[ni]:null;
-  return n?{name:n.name,meta:partMeta(n),icon:futureIcon(n)}:{name:'Complete',meta:'Move finished',icon:'✓'};
+  return n?{name:n.name,meta:partMeta(n),icon:futureIcon(n)}:{name:'Complete',meta:'Move finished',icon:'check'};
 }
 function getFutureExerciseStartIndex(){
   const current=routine[index];
@@ -2295,7 +2293,7 @@ function getFutureExerciseStartIndex(){
   return nextIndex+1;
 }
 function futureIcon(item){
-  return item.kind==='video'?'▶':item.kind==='cooldown'?'↘':item.kind==='warmup'?'↗':'●';
+  return item.kind==='video'?'play':'clock';
 }
 function partMeta(n){return n.kind==='video'?'YouTube · '+clock(n.duration):n.group+' · '+n.duration+' sec'}
 function totalRounds(){return routine.length?routine[routine.length-1].round||1:1}
@@ -2344,7 +2342,7 @@ function renderUpcomingExercises(){
     card.className='upcomingCard'+(item.sessionHidden?' sessionHidden':'')+(metaHidden(item)?' noMeta':'');
     card.innerHTML=
       '<div class="upcomingInfo">'+
-        '<div class="upcomingIcon" aria-hidden="true">'+futureIcon(item)+'</div>'+
+        '<div class="upcomingIcon" aria-hidden="true">'+icon(futureIcon(item))+'</div>'+
         '<div><div class="upcomingName">'+esc(item.name)+'</div>'+
         '<div class="upcomingMeta">'+esc(partMeta(item))+(totalRounds()>1?' · round '+item.round:'')+'</div></div>'+
       '</div>'+
@@ -2357,7 +2355,7 @@ function updateNextCard(){
   const p=getNextPart();
   nextName.textContent=p.name;
   nextMeta.textContent=p.meta;
-  nextIcon.textContent=p.icon;
+  nextIcon.innerHTML=icon(p.icon);
   {const n=isResting?routine[nextVisibleRoutineIndex(index+1)]:(routine[index]?.rest>0?{kind:'rest'}:routine[nextVisibleRoutineIndex(index+1)]);
    root.querySelector('.nextCard').classList.toggle('noMeta',Boolean(n&&metaHidden(n)))}
 
@@ -3120,21 +3118,6 @@ async function loadStepHistory(){
 }
 
 /* weekly movement from the session log */
-// A small face for how a day felt: colour + smile from the average of mood and energy (0–100).
-function faceSvg(v){
-  if(v==null)return '<svg class="face empty" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/></svg>';
-  const k=(v-50)/50;
-  return '<svg class="face" viewBox="0 0 24 24" role="img" aria-label="'+esc(levelLabel('',v))+'">'+
-    '<circle cx="12" cy="12" r="11" fill="'+levelColor(v)+'"/>'+
-    '<circle cx="8.5" cy="10" r="1.4" fill="#111"/><circle cx="15.5" cy="10" r="1.4" fill="#111"/>'+
-    '<path d="M7.5 '+(15.5-k).toFixed(2)+' Q12 '+(15.5+4*k).toFixed(2)+' 16.5 '+(15.5-k).toFixed(2)+'" stroke="#111" stroke-width="1.7" fill="none" stroke-linecap="round"/>'+
-  '</svg>';
-}
-function dayFeeling(key){
-  const v=[];
-  store.checkins.filter(c=>c.date===key).forEach(c=>{if(c.mood!=null)v.push(c.mood);if(c.energy!=null)v.push(c.energy)});
-  return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
-}
 function renderWeek(){renderInsights()}
 renderWeek();
 setInterval(()=>{renderWeek();renderFeelWeek();updateCheckinTab()},10*60*1000);
@@ -3172,30 +3155,6 @@ function currentStreak(series){
   while(i>=0&&series[i].minutes>0){n++;i--}
   return n;
 }
-function average(list){return list.length?list.reduce((a,b)=>a+b,0)/list.length:null}
-function compare(days,isActive,scale){
-  const withScale=days.filter(d=>d[scale]!=null);
-  const on=withScale.filter(isActive).map(d=>d[scale]);
-  const off=withScale.filter(d=>!isActive(d)).map(d=>d[scale]);
-  if(on.length<3||off.length<3)return null;
-  return {on:average(on),off:average(off),onDays:on.length,offDays:off.length};
-}
-function headline(series,streak){
-  const today=series[series.length-1];
-  const week=series.slice(-7).reduce((a,d)=>a+d.minutes,0);
-  const month=series.reduce((a,d)=>a+d.minutes,0);
-  if(today.minutes)return {big:today.minutes+' min',line:"already moved today. Why stop now?"};
-  if(streak>1)return {big:streak+' days',line:'in a row. Keep the streak alive today.'};
-  if(week)return {big:week+' min',line:'moved in the last 7 days. One more move?'};
-  if(month)return {big:month+' min',line:'moved this month. Pick it back up today.'};
-  return {big:'Day one',line:'Every move counts. Start with one today.'};
-}
-function compareText(c,scale,activeWord,restWord){
-  const name=scale==='energy'?'Energy':'Mood';
-  const on=levelLabel(scale,c.on),off=levelLabel(scale,c.off);
-  if(Math.abs(c.on-c.off)<5)return name+' '+esc(activeWord)+' · <strong>no change</strong>';
-  return name+' '+esc(activeWord)+' · <strong>'+esc(on)+'</strong> vs '+esc(off);
-}
 function renderInsights(){
   // Movement is one dataset: this week, the streak and 30 days are read together, so they share
   // one tile (Figma "Movement summary 2") instead of three separate ones. No daily graph.
@@ -3210,11 +3169,11 @@ function renderInsights(){
     '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">'+icon+'</div>'+
     '<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+esc(value)+'</div></div></div>';
   card.innerHTML=
-    '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">↗</div><div class="activityTitle">Movement</div></div>'+
+    '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">'+icon('move')+'</div><div class="activityTitle">Movement</div></div>'+
     '<div class="activityRows jointRows">'+
-      reading('◷','This week',thisWeek+' min')+
-      reading('↯','Streak',streak+' day'+(streak===1?'':'s'))+
-      reading('▦','30 days',month+' min')+
+      reading(icon('clock'),'This week',thisWeek+' min')+
+      reading(icon('streak'),'Streak',streak+' day'+(streak===1?'':'s'))+
+      reading(icon('calendar'),'30 days',month+' min')+
     '</div>';
 }
 
@@ -3224,8 +3183,22 @@ const WX_NAMES={'sunny':'Sunny','clear-night':'Clear','partlycloudy':'Partly clo
 const wxKind=c=>c==='sunny'?'clear':c==='clear-night'?'night':c==='partlycloudy'?'partly':
   ['rainy','pouring','lightning','lightning-rainy','hail'].includes(c)?'rain':['snowy','snowy-rainy'].includes(c)?'snow':'cloudy';
 const WX_CLOUD='<svg class="wxCloud" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19h10.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.6 8.6 5.2 5.2 0 0 0 7 19z"/></svg>';
+// Weather icons: artwork from the Figma "Weather icon" component, [Small 54, Large 90]; the background colour is in CSS.
+// Night and snow aren't designed in Figma yet, so they keep the placeholder drawing below.
+let wxGrad=0;
+const WX_ART={
+ clear:[g=>'<circle cx="23" cy="23" r="17" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>',
+        g=>'<circle cx="45" cy="45" r="33.26" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>'],
+ partly:[()=>'<circle cx="18" cy="17" r="12" fill="#FFE100"/><path class="wxBright" d="M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z"/>',
+         ()=>'<circle cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/><path class="wxBright" d="M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z"/>'],
+ cloudy:[()=>'<path class="wxBright" d="M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z"/>',
+         ()=>'<path class="wxMuted" d="M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z"/>'],
+ rain:[()=>'<path class="wxCloudLight" d="M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z"/><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 19 38)"/><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 26 38)"/><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 33 38)"/>',
+       ()=>'<path class="wxMuted" d="M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z"/><rect class="wxMuted" x="29.35" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 29.35 60.65)"/><rect class="wxMuted" x="43.04" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 43.04 60.65)"/><rect class="wxMuted" x="56.74" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 56.74 60.65)"/>']
+};
 function wxIcon(condition,large){
   const k=wxKind(condition);
+  if(WX_ART[k]){const n=large?90:54;return '<span class="wxIcon '+k+(large?' large':'')+'" aria-hidden="true"><svg viewBox="0 0 '+n+' '+n+'">'+WX_ART[k][large?1:0]('wxg'+(++wxGrad))+'</svg></span>'}
   const inner=k==='clear'?'<span class="wxSun"></span>':
     k==='night'?'<svg class="wxMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.2A9 9 0 1 0 20.8 17 7.4 7.4 0 0 1 15.5 3.2z"/></svg>':
     k==='partly'?'<span class="wxSun"></span>'+WX_CLOUD:
@@ -3272,7 +3245,7 @@ function renderWeather(){
   const id=sensorEntities.weather,st=id&&lastStates?.[id];
   const header=(icon)=>'<div class="activityHeader">'+icon+'<div class="activityTitle">Weather</div></div>';
   if(!st){
-    card.innerHTML=header(wxIcon('cloudy'))+'<div class="activityRows"><div class="activityRow"><div class="activityRowIcon" aria-hidden="true">☁</div>'+
+    card.innerHTML='<div class="activityHeader"><div class="activityTitle">Weather</div></div><div class="activityRows"><div class="activityRow">'+wxIcon('cloudy')+
       '<div><div class="activityRowName">Forecast</div><div class="activityRowMeta">'+(id?'Not available':'Set up in Settings')+'</div></div></div></div>';
     return;
   }

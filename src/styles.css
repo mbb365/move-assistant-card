@@ -11,9 +11,11 @@
   --color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;
   --color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;
   --color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;
-  --color-state-hover:rgba(255,255,255,.08);--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);
-  --scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5);
-  --r:36px;--gap:20px}
+  --color-state-hover:rgba(255,255,255,.08);
+  /* Weather · to design (same in light and dark) */
+  --wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;
+  --color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);
+  --scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}
 *{box-sizing:border-box}
 #app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}
 [hidden]{display:none!important}
@@ -21,16 +23,15 @@ button,input{font:inherit}
 #app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}
 /* The card's older colour names, each pointing at one base colour (three greys, two text greys, one bright fill, one line) */
 #app{
-  --bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-card);
+  --bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);
   --tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);
-  --segment:var(--color-bg-tile);--seg-on:var(--color-bg-tile);--scroll-thumb:var(--color-bg-tile);--checkin-due:var(--color-bg-tile);
-  --control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);
-  --bar-track:var(--color-bg-ground);--icon-bg:var(--color-bg-ground);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--primary-tint:var(--color-bg-ground);
+  --segment:var(--color-bg-tile);--seg-on:var(--color-bg-tile);--scroll-thumb:var(--color-bg-tile);
+  --control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-ground);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);
   --text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);
-  --border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--dot-empty:var(--color-text-muted);--primary-ink:var(--color-text-muted);
+  --border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);
   --line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);
   --bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);
-  --hover:var(--color-state-hover);--wash:var(--color-state-hover);--wash-2:var(--color-state-hover);--wash-3:var(--color-state-pressed);--wash-4:var(--color-state-pressed);
+  --hover:var(--color-state-hover);--wash-2:var(--color-state-hover);
   --danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);
   --primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}
 .shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}
@@ -45,12 +46,6 @@ button,input{font:inherit}
   --color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#c62f2f;
   --color-state-hover:rgba(0,0,0,.06);--color-state-pressed:rgba(0,0,0,.12);
   --scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}
-#app.light .energyBtn:hover,
-#app.light .energyBtn:focus-visible,
-#app.light .energyBtn.selected{
-  background:color-mix(in srgb,var(--feeling-color) 34%,white);
-  color:#222!important
-}
 
 :host(.lightBody){background:#EEEDED;color-scheme:light}
 
@@ -74,16 +69,13 @@ button,input{font:inherit}
   text-decoration-thickness:0.8px;
   text-underline-offset:3.2px}
 .tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:0.32px solid var(--line);color:var(--text)}
-.primary{border-radius:799.2px;min-height:41.6px;padding:0 17.6px;border:0;background:var(--bright);color:var(--on-bright)}
-.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:19.2px}
+.primary{border-radius:799.2px;min-height:41.6px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}
 
 /* HOME */
 .activityCard{grid-column:span 6}
 .weekly{grid-column:span 6}
-.energySection{grid-column:span 12;margin-top:16px}
 .activityCard,.weekly{min-height:288px}
-.wellness{width:100%}
-.sourceTag{display:inline-flex;margin-top:11.2px;padding:6.4px 9.6px;border-radius:799.2px;background:var(--chip);color:var(--soft)}
+.sourceTag{display:inline-flex;margin-top:11.2px;padding:4px;border-radius:799.2px;background:var(--chip);color:var(--soft)}
 .workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}
 
 .workoutGallery{
@@ -127,9 +119,7 @@ button,input{font:inherit}
   --color-sensitivity:56;
   --cone-spread:25;
   --fill-opacity:.18;
-  --glow-color:hsl(199deg 97% 68% / 100%);
   --glow-color-60:hsl(199deg 97% 68% / 60%);
-  --glow-color-50:hsl(199deg 97% 68% / 50%);
   --glow-color-40:hsl(199deg 97% 68% / 40%);
   --glow-color-30:hsl(199deg 97% 68% / 30%);
   --glow-color-20:hsl(199deg 97% 68% / 20%);
@@ -235,8 +225,6 @@ button,input{font:inherit}
   transition:opacity .35s ease-out}
 
 #app.light .workoutPanel{
-  --glow-color:hsl(199deg 97% 48% / 100%);
-  --glow-color-50:hsl(199deg 97% 48% / 50%);
   --glow-color-40:hsl(199deg 97% 48% / 40%);
   --glow-color-30:hsl(199deg 97% 48% / 30%);
   --glow-color-20:hsl(199deg 97% 48% / 20%);
@@ -283,102 +271,6 @@ button,input{font:inherit}
 }
 .moveActions{display:flex;gap:22.4px;flex-wrap:wrap}
 
-.energyFloat{
-  padding:22.4px;
-  background:transparent;
-  border:0}
-
-.energyScale{
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:9.6px;
-  margin-top:17.6px}
-.energyBtn{
-  --feeling-color:#8f8f8f;
-  --feeling-glow:rgba(255,255,255,.14);
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  width:100%;
-  min-height:43.2px;
-  padding:0 9.6px;
-  white-space:nowrap;
-  border-radius:12.8px;
-  background:var(--raised);
-  border:0.32px solid var(--line);
-  color:var(--text);
-  cursor:pointer;
-  transition:color .18s ease,border-color .18s ease,background .18s ease}
-.energyBtn>span{position:relative;z-index:2}
-.energyBtn::before{
-  content:"";
-  position:absolute;
-  inset:-18%;
-  z-index:-2;
-  opacity:0;
-  background:
-    radial-gradient(
-      ellipse at var(--feel-x,50%) var(--feel-y,50%),
-      color-mix(in srgb,var(--feeling-color) 88%,transparent) 0%,
-      color-mix(in srgb,var(--feeling-color) 54%,transparent) 34%,
-      transparent 72%
-    );
-  transform:scale(.82) skewX(-3deg);
-  filter:saturate(1.08) blur(0.8px);
-  transition:opacity .18s ease,transform .28s cubic-bezier(.2,.8,.2,1)}
-.energyBtn::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  opacity:0;
-  pointer-events:none;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,.07) 0,
-      rgba(255,255,255,.07) 0.8px,
-      transparent 0.8px,
-      transparent 3.2px
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      color-mix(in srgb,var(--feeling-color) 34%,transparent) var(--feel-x,50%),
-      transparent 100%
-    );
-  mix-blend-mode:screen}
-.energyBtn:hover::before,
-.energyBtn:focus-visible::before,
-.energyBtn.selected::before{
-  opacity:.92;
-  transform:
-    translate(var(--feel-shift-x,0px),var(--feel-shift-y,0px))
-    scale(1.08)
-    skewX(2deg);
-  animation:feelingWarp 1.45s ease-in-out infinite alternate}
-.energyBtn:hover::after,
-.energyBtn:focus-visible::after,
-.energyBtn.selected::after{
-  opacity:.55;
-  animation:feelingScan .9s linear infinite}
-.energyBtn:hover,
-.energyBtn:focus-visible,
-.energyBtn.selected{
-  background:color-mix(in srgb,var(--feeling-color) 42%,#171717);
-  border-color:color-mix(in srgb,var(--feeling-color) 72%,#ffffff 10%);
-  color:#f4f4f4}
-.energyBtn.selected{
-  box-shadow:
-    inset 0 0 0 0.8px color-mix(in srgb,var(--feeling-color) 58%,transparent),
-    0 0 14.4px color-mix(in srgb,var(--feeling-color) 24%,transparent)}
-.energyBtn[data-energy="Drained"]{--feeling-color:#6E63A8}
-.energyBtn[data-energy="Low"]{--feeling-color:#5878A8}
-.energyBtn[data-energy="Okay"]{--feeling-color:#6F8B8A}
-.energyBtn[data-energy="Good"]{--feeling-color:#5F9B72}
-.energyBtn[data-energy="Energised"]{--feeling-color:#D5A53E}
-.energyBtn[data-energy="Great"]{--feeling-color:#D56B54}
-
 @keyframes feelingWarp{
   0%{
     transform:scale(1.03) skewX(-2deg) translateX(-1.5%);
@@ -397,19 +289,12 @@ button,input{font:inherit}
   0%{background-position:0 0, -80% 0}
   100%{background-position:0 8px, 180% 0}
 }
-@media (prefers-reduced-motion: reduce){
-  .energyBtn::before,.energyBtn::after{animation:none!important}
-}
-.energyHistory{display:grid;gap:6.4px;margin-top:9.6px}.energyLog{display:flex;justify-content:space-between;gap:9.6px;padding:8px 9.6px;border-radius:16px;background:var(--tile)}.energyLog span:last-child{color:var(--muted)}
 
 
 .tempoExperiment{
   margin-top:14.4px;
   padding-top:16px;
   border-top:0.32px solid var(--line)
-}
-.tempoExperimentHead{
-  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px
 }
 .tempoEstimate{white-space:nowrap}
 .tempoQuad{
@@ -616,21 +501,20 @@ button,input{font:inherit}
 }
 
 .activityHeader{display:flex;align-items:center;gap:var(--inset);margin-bottom:var(--inset)}
-.activityIcon{width:35.2px;height:35.2px;border-radius:13.6px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}
+.activityIcon{display:grid;place-items:center}
+/* Icons (Figma Icon/*): 24 grid drawn at the slot's glyph size (34 in chips and nav buttons), 2px stroke at any size */
+.icon{width:var(--glyph-size);height:var(--glyph-size);flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icon *{vector-effect:non-scaling-stroke}
+.addPanelPlus .icon,.addFab .icon{width:24px;height:24px}
+.checkinTabIcon .icon{width:18px;height:18px}
+.weekTick .icon{width:1em;height:1em}
 .activityRows{display:grid;gap:9.6px}
 .activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}
 .activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}
 .activityRowMeta{color:var(--soft);margin-top:2.4px}
 .toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
 .toast.show{opacity:1;transform:none}
-.weekHero{display:block}
 .weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}
-.weekChips{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:8px;
-  margin-top:19.2px
-}
 .weekChip{
   background:var(--tile-2);
   border-radius:12.8px;
@@ -642,8 +526,6 @@ button,input{font:inherit}
   gap:6.4px
 }
 .weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}
-.weekChipTime{}
-.weekChipMeta{color:var(--muted)}
 .weekTick{font-size:11.2px;font-weight:800;line-height:1}
 .weekChip.total{background:var(--card2)}
 
@@ -723,11 +605,9 @@ button,input{font:inherit}
 .fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}
 .digits{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:white;mix-blend-mode:difference;font-variant-numeric:tabular-nums}
 .movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}
-.movementMark{font-size:16px;font-weight:760;color:var(--soft);text-align:center}
 
 .movementCard{overflow:hidden}
 .movementRippleCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.movementMark{position:relative;z-index:2}
 
 
 .sectionLabel{
@@ -773,9 +653,8 @@ button,input{font:inherit}
   align-items:center;
   margin-top:16px
 }
-.nextActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}
 .skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:0.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}
-.pause{min-width:120px;min-height:41.6px;padding:0 14.4px}
+.pause{min-width:120px;min-height:41.6px;padding:0 16px}
 
 
 .upcomingList{
@@ -859,7 +738,7 @@ button,input{font:inherit}
 .modalHead h2{margin:2.4px 0 0}
 .editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}
 .editNameLabel{color:var(--muted)}
-.editNameInput{min-height:46.4px;border-radius:17.6px;border:0.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}
+.editNameInput{min-height:42px;border-radius:var(--r-inner);border:0.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 16px}
 .timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}
 .timeTile{
   background:var(--tile);
@@ -883,9 +762,6 @@ button,input{font:inherit}
   font-size:17.6px;
   font-weight:760}
 .timeCopy{min-width:0}
-.timeValue{
-  color:var(--soft);
-  margin-top:5.6px}
 .rangeTrack{
   height:46.4px;
   border-radius:17.6px;
@@ -920,9 +796,8 @@ button,input{font:inherit}
 .removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
 .removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}
 .removeLabel{position:relative;z-index:1}
-.addRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14.4px}
 .addInput{min-height:41.6px;border-radius:799.2px;border:0.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}
-.addBtn{border-radius:799.2px;min-height:41.6px;padding:0 14.4px;border:0;background:var(--bright);color:var(--on-bright)}
+.addBtn{border-radius:799.2px;min-height:42px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}
 .routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}
 
 /* SETTINGS */
@@ -975,8 +850,8 @@ button,input{font:inherit}
 .settingsSelect{
   min-width:96px;
   min-height:32px;
-  padding:0 27.2px 0 9.6px;
-  border-radius:12.8px;
+  padding:0 27.2px 0 12px;
+  border-radius:var(--r-inner);
   border:0.32px solid var(--field-line);
   background:var(--control-2);
   color:var(--text);
@@ -1030,21 +905,18 @@ button,input{font:inherit}
 .navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:0.32px solid var(--line);color:var(--text)}
 .navBtn.active{background:var(--bright);color:var(--on-bright)}
 
-@media(max-width:900px){.weekCopy{white-space:normal}.moveOption,.addMoveCard{flex-basis:144px}.weekHero{display:block}
-  .grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly,.energySection{grid-column:auto}
+@media(max-width:900px){.weekCopy{white-space:normal}
+  .grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly{grid-column:auto}
   .workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}
-  .weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}
   .timeTiles{grid-auto-flow:row;grid-template-columns:1fr}
 }
 @media(max-width:620px){.modal{width:100%;height:100%;max-height:100%}
-  #app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}
-  .exerciseTitle{}.timerCard{min-height:224px}.digits{font-size:144px}
-  .weekChips{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}.addRow{grid-template-columns:1fr}
+  #app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}
+  .modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}
 }
 
 /* buttons and fields share the control radius; segmented buttons and switches have their own shape */
-:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-inner)!important}
+:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-inner)!important}
 .card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
 
 
@@ -1272,24 +1144,8 @@ button,input{font:inherit}
   color:var(--text);
   font:inherit
 }
-.autoRestSummary{
-  display:inline-flex;
-  align-items:center;
-  gap:6.4px;
-  margin-left:6.4px;
-  color:var(--muted)}
 @media(max-width:900px){
   .createPresetChoice,.createExtras{grid-template-columns:1fr}
-}
-
-
-.movementDurationField{display:grid;gap:6.4px}
-.movementTimingHead{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:9.6px;
-  color:var(--muted)
 }
 .globalTimingToggle{
   display:inline-flex!important;
@@ -1309,10 +1165,6 @@ button,input{font:inherit}
   border:0.32px solid var(--field-line);
   background:var(--control-2);
   color:var(--muted)}
-.movementTypeBtn:disabled{
-  opacity:.32;
-  cursor:not-allowed
-}
 
 
 .createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}
@@ -1376,7 +1228,6 @@ button,input{font:inherit}
 .modal.createMode .movementCreatorFields.restFields{
   grid-template-columns:1fr
 }
-.modal.createMode .movementCreatorActions{margin-top:14.4px}
 .modal.createMode .movementCreatorLaunch{margin-top:0}
 .modal.createMode .sectionTitle{margin-top:9.6px}
 
@@ -1431,7 +1282,7 @@ button,input{font:inherit}
 /* ---- Home Assistant card additions ---- */
 :host(:fullscreen){overflow:auto;width:100vw;height:100vh}
 
-.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis}
+.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis;field-sizing:content}
 .integration .status code{padding:0.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}
 .integration .pill[disabled]{cursor:default;opacity:.7}
 /* remote / controller focus */
@@ -1448,57 +1299,17 @@ button,input{font:inherit}
 .grid>*{min-width:0}
 
 /* ---- check-in: mood + energy ---- */
-.energyBtn[data-level="1"]{--feeling-color:#6E63A8}
-.energyBtn[data-level="2"]{--feeling-color:#5878A8}
-.energyBtn[data-level="3"]{--feeling-color:#6F8B8A}
-.energyBtn[data-level="4"]{--feeling-color:#5F9B72}
-.energyBtn[data-level="5"]{--feeling-color:#D5A53E}
-.energyBtn[data-level="6"]{--feeling-color:#D56B54}
-.checkinQuestion+.checkinQuestion{margin-top:28.8px}
-.checkinStatus{margin-top:17.6px;color:var(--muted)}
-.checkinStatus.done{color:var(--text)}
-.checkinStatus.done::before{content:"✓  "}
 
 /* ---- movement & you ---- */
-.insightSection{grid-column:span 12;margin-top:16px}
 .insightCard{display:grid;gap:22.4px}
-.insightTop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22.4px;align-items:end}
-.insightStats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:8px}
-.insightBody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:22.4px;align-items:end}
-.insightLines{display:grid;gap:9.6px}
-.insightLine strong{}
-.insightLine.muted{color:var(--muted)}
-.dayStrip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4.8px;align-items:end}
 .day{display:grid;gap:6.4px;justify-items:center}
-.dayBars{position:relative;width:100%;height:96px;border-radius:9.6px;background:var(--wash);overflow:hidden}
-.stepBar,.moveBar{position:absolute;bottom:0;border-radius:8px}
-.stepBar{left:0;right:0;background:var(--wash-3)}
-.moveBar{left:22%;right:22%;background:var(--primary)}
-.day.today .dayBars{box-shadow:inset 0 0 0 0.8px var(--today-ring)}
-.dayDots{display:flex;gap:2.4px}
-.dayDot{width:6.4px;height:6.4px;border-radius:50%}
-.dayDot.empty{box-shadow:inset 0 0 0 0.8px var(--dot-empty)}
-.dayLabel{color:var(--muted)}
-.day.today .dayLabel{color:var(--text)}
-.chartLegend{display:flex;gap:14.4px;flex-wrap:wrap;margin-top:11.2px;color:var(--muted)}
-.chartLegend i{display:inline-block;width:8px;height:8px;border-radius:2.4px;margin-right:4.8px;vertical-align:-0.8px}
-.lgMove{background:var(--primary)}
-.lgSteps{background:var(--wash-4)}
-.lgDot{background:linear-gradient(90deg,#5F9B72 50%,#D5A53E 50%);border-radius:50%!important}
-@media(max-width:900px){
-  .insightSection{grid-column:auto}
-  .insightTop,.insightBody{grid-template-columns:1fr}
-  .insightStats{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
-  .dayBars{height:72px}
-}
-@media(max-width:900px){.energyScale{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* ---- check-in popup ---- */
 .checkinBackdrop{z-index:160}
 .checkinCard{width:min(576px,100%)}
 .checkinCard .sub{margin-top:8px}
 .checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}
-.checkinTile{min-height:0;gap:14.4px}
+.checkinTile{min-height:0;gap:var(--inset);border:0}
 .scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}
 .rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}
 
@@ -1506,15 +1317,14 @@ button,input{font:inherit}
 /* ---- side tab ---- */
 .checkinTab{
   position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;
-  display:flex;flex-direction:column;align-items:center;gap:9.6px;
-  padding:14.4px 9.6px;border:0.32px solid var(--line);border-right:0;
-  border-radius:12.8px 0 0 12.8px!important;background:var(--control);color:var(--text);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:16px 4px;border:0.32px solid var(--line);border-right:0;
+  border-radius:var(--r-fine) 0 0 var(--r-fine)!important;background:var(--control);color:var(--text);cursor:pointer;
   transition:padding .18s ease,background .18s ease}
 .checkinTab:hover{padding-right:12.8px}
 .checkinTabIcon{font-size:16px;line-height:1}
 .checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}
 .checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}
-.checkinTab.due{background:var(--checkin-due)}
 @keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}
 @media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}
 .shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}
@@ -1524,8 +1334,6 @@ button,input{font:inherit}
 .feelSection{grid-column:span 12;margin-top:16px}
 .feelCard{display:grid;gap:19.2px}
 .feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}
-.feelTotals{display:grid;gap:9.6px}
-.feelCount{color:var(--muted)}
 .feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
 .feelDay{min-height:0;gap:9.6px}
 .feelDay.future{opacity:.4}
@@ -1536,7 +1344,6 @@ button,input{font:inherit}
 .feelMeterTop span:last-child{color:var(--text)}
 .feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}
 .feelTrack span{display:block;height:100%;border-radius:799.2px}
-.feelTotals .feelTrack{height:9.6px}
 @media(max-width:900px){
   .feelSection{grid-column:auto}
   .feelTop{grid-template-columns:1fr}
@@ -1551,55 +1358,29 @@ button,input{font:inherit}
 .activityCard{grid-column:span 3}
 .weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}
 .weekly:hover{border-color:var(--border-hover)}
-.weeklyExpand{position:absolute;top:19.2px;right:22.4px;font-size:16px;color:var(--muted);transition:transform .18s ease}
-.weekly:hover .weeklyExpand{transform:scale(1.15)}
-.weekChips{grid-template-columns:repeat(8,minmax(0,1fr))}
-.weekChipBottom{display:flex;justify-content:space-between;align-items:flex-end;gap:4.8px}
-.face{width:20.8px;height:20.8px;flex:0 0 auto;display:block}
-.face.empty circle{fill:none;stroke:var(--dot-empty);stroke-width:1.2;stroke-dasharray:2.5 2.5}
-.weekChip.total .face{width:24px;height:24px}
 
 /* Movement & you popup */
-.insightBackdrop{z-index:155}
-.insightModalCard{width:min(992px,100%);max-height:calc(100dvh - 56px);overflow:auto}
-.insightModalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9.6px}
-.insightModalHead .sectionLabel{margin:0}
-.insightModalCard .dayBars{height:160px}
-.insightBody.chartOnly{grid-template-columns:1fr}
-.dayFace .face{width:17.6px;height:17.6px}
-.chartLegend span{display:inline-flex;align-items:center}
-.chartLegend .face{width:9.6px;height:9.6px;margin-right:4.8px}
 
 @media(max-width:1200px){
   .activityCard{grid-column:span 4}.weekly{grid-column:span 8}
-  .weekChips{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media(max-width:900px){
   .activityCard,.weekly{grid-column:auto}
-  .insightModalCard .dayBars{height:88px}
-  .dayFace .face{width:12.8px;height:12.8px}
 }
-.weekChipTime{white-space:nowrap}
 
 /* ---- Movement & you as the main card ---- */
 .insightCard{grid-column:span 9;align-content:start}
-.insightEyebrow{margin-bottom:-11.2px}
-.insightStats{grid-auto-columns:minmax(88px,1fr)}
-.insightCard .dayBars{height:120px}
-@media(max-width:1200px){.insightCard{grid-column:span 8}.insightTop{grid-template-columns:1fr}}
-@media(max-width:900px){.insightCard{grid-column:auto}.insightCard .dayBars{height:80px}}
+@media(max-width:1200px){.insightCard{grid-column:span 8}}
+@media(max-width:900px){.insightCard{grid-column:auto}}
 
 /* ---- Apple Health help ---- */
-.helpBackdrop{z-index:170}
 .helpCard .helpSteps,.helpCard .helpNote{max-width:688px}
-.helpHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .helpCard .note{margin:0}
 .helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}
 .helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}
 .helpSteps li::before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}
 .helpSteps strong{color:var(--text)}
 .helpSteps b,.helpNote b{color:var(--text)}
-.helpAction{display:block;padding:8px 9.6px;border-radius:11.2px;background:var(--control-2);border:0.32px solid var(--field-line);color:var(--text)}
 .helpCard code{padding:0.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}
 .helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:0.32px solid var(--field-line);color:var(--muted)}
 .helpNote strong{color:var(--text)}
@@ -1607,7 +1388,7 @@ button,input{font:inherit}
 
 /* ---- check-in tab: peek with countdown ---- */
 .checkinTab{flex-direction:row;align-items:center;gap:0}
-.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:9.6px}
+.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:4px}
 .checkinPeek{
   display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;
   max-width:0;opacity:0;margin-right:0;
@@ -1628,14 +1409,13 @@ button,input{font:inherit}
 :host{
   --primary:#03A9F4;
   --secondary:#D0FF00;
-  --primary-tint:color-mix(in srgb,var(--primary) 16%,white);
-  --primary-ink:color-mix(in srgb,var(--primary) 75%,black);
   --font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --font-tile:Geist,var(--font);
   /* Synced from Figma text styles Desktop/*, Phone/*, Tile/* and Weather/* (2026-10-19) */
   --w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;
   --t-display:52px;   /* move names, big numbers, page title */
-  --t-title:22px;     /* card + popup titles (Medium Italic) */
+  --t-title:22px;     /* popup and sheet titles (Medium Italic) */
+  --t-card-title:18px; /* card header titles (Card/Title, Medium Italic, same on phone) */
   --t-value:16px;     /* readings */
   --t-section:18px;   /* labels above cards */
   --t-strong:14px;    /* row/item names, buttons (Semi Bold) */
@@ -1662,21 +1442,22 @@ button,input{font:inherit}
 
 #app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}
 #app button,#app input,#app select,#app textarea{font-family:inherit}
-#app strong,#app b{font-weight:var(--w-bold)}
+:where(#app) strong,:where(#app) b{font-weight:var(--w-bold)}
 
 /* Display */
-.title,.workoutName,.exerciseTitle,.insightBig,.feelHeadline,.settingsTitle,.weekMetric{
+.title,.workoutName,.exerciseTitle,.feelHeadline,.settingsTitle{
   font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}
 
 /* Title */
-.activityTitle,.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{
+.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{
   font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}
+/* Card/Title: card header titles, trimmed to the letters so spacing is measured to what you see */
+.activityTitle{font-size:var(--t-card-title);font-weight:var(--w-medium);font-style:italic;line-height:1.1;letter-spacing:-.02em;text-box:trim-both cap alphabetic}
 .paneTitle{margin:0 0 10px}
 
 /* Value */
 .activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{
   font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}
-.insightLine strong{font-weight:var(--w-bold)}
 
 /* Section */
 .sectionLabel,.nextLabel{
@@ -1688,29 +1469,19 @@ button,input{font:inherit}
   font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
 
 /* Tile detail: the second line inside a tile or row (Geist) */
-.moveMeta,.timeValue,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{
+.moveMeta,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{
   font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
 
 /* Strong */
-.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.weekChipTime,
-.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,
-.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,
-.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.energyBtn,
-.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
+.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
   font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}
 
 /* Body */
-.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.checkinStatus,.routineSummary,
-.helpSteps li,.helpNote,.createStepSummary,.insightLine{
+.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.routineSummary,.helpSteps li,.helpNote,.createStepSummary{
   font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}
 
 /* Caption */
-.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,
-.dayLabel,.scaleEnds,.peekAt,.upcomingMeta,.energyLog,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,
-.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,
-.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,
-.autoRestSummary,.fieldError,.movementTimingHead,.globalTimingValue,.createStepNumber,.weekChipMeta,.feelMeterTop,.feelCount,
-.chartLegend,#app code{
+.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.scaleEnds,.peekAt,.upcomingMeta,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.fieldError,.globalTimingValue,.createStepNumber,.feelMeterTop,#app code{
   font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}
 .eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}
 .globalTimingToggle{font-size:var(--t-caption)!important}
@@ -1726,7 +1497,7 @@ button,input{font:inherit}
 /* ---- phones: cards run edge to edge (rounded corners kept), tighter spacing ---- */
 @media(max-width:620px){
   .view{padding-left:0;padding-right:0}
-  .topbar,.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}
+  .settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}
   .tabs.rubberTabs{margin-left:16px}
   .sectionLabel,.rowLabel{margin-left:16px}
 
@@ -1746,7 +1517,7 @@ button,input{font:inherit}
   .activityRows,.insightCard,.feelCard{gap:8px}
   .activityRow{padding:10px 12px}
   .weekChip{padding:10px 12px}
-  .insightStats,.feelDays{gap:8px}
+  .feelDays{gap:8px}
   .workGrid{gap:8px;margin-top:8px}
   .nextWrap,.sessionControlRow{margin-top:8px}
   .upcomingList{gap:8px}
@@ -1795,10 +1566,6 @@ button,input{font:inherit}
 
 /* ---- edit move v0.14: grouped timing, warm-up switch, delete above editor ---- */
 .timeTiles{align-items:start}
-.timingGroup{min-height:0;padding:0;justify-content:flex-start;gap:0}
-.timingGroup .timeRow{display:grid;gap:12.8px;padding:16px}
-.timingGroup .timeRow+.timeRow{border-top:0.32px solid var(--divider)}
-.timingGroup .timeTotal{padding-bottom:14px}
 .removeLabel{position:relative;z-index:1}
 .removeBtn.holding{border-color:var(--danger-fill)}
 #deleteMoveConfirm{z-index:200}
@@ -1975,6 +1742,8 @@ button,input{font:inherit}
 .workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}
 .workoutPanel.active{border-radius:var(--r-card)}
 .workoutPanel.addPanel{padding:var(--inset)}
+/* Figma Move card: only the chosen move is a card; collapsed moves and Add move are tiles */
+.workoutPanel:not(.active),.workoutPanel.addPanel{background:var(--tile)}
 
 /* tiles */
 .activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}
@@ -1986,14 +1755,14 @@ button,input{font:inherit}
 .createPresetBtn,.createExtraToggle{padding:var(--inset)}
 
 /* the second line in a tile is full-strength text, like the name */
-.moveMeta,.timeValue,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
+.moveMeta,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}
 .createPresetBtn.active span{color:var(--on-bright)}
-.moveMeta,.timeValue{margin-top:0}
+.moveMeta{margin-top:0}
 .activityRowMeta{margin-top:0}
 
 /* icon chips: 46, rounded 16 */
 .activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);font-size:20px}
-.navBtn{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}
+.navBtn,.back{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);min-height:0;padding:0;border-radius:var(--r-inner)}
 
 
 /* move rows */
@@ -2057,7 +1826,7 @@ button,input{font:inherit}
    group of rows split by hairlines. One level of rounding,
    Inter text, no icon chips.
    ========================================================= */
-:host{--group-bg:var(--card)}
+#app{--group-bg:var(--card)}
 .modal,.sheet{--group-bg:var(--tile)}
 .view{padding-left:var(--gutter);padding-right:var(--gutter)}
 .grid{gap:var(--grid-gap)}
@@ -2084,11 +1853,11 @@ button,input{font:inherit}
 .stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}
 .stepBtn:hover:not(:disabled){background:var(--hover)}
 .stepBtn:disabled{opacity:.35;cursor:default}
-.stepCount{min-width:24px;text-align:center;font:600 16px/1 var(--font);font-variant-numeric:tabular-nums}
+.stepCount{min-width:24px;text-align:center;font:600 var(--t-strong)/1 var(--font);font-variant-numeric:tabular-nums}
 
 /* the move's setup column */
 .timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}
-.editNameLabel{text-transform:uppercase;letter-spacing:.1em;padding:0 4px}
+.editNameLabel{padding:0 4px}
 .routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}
 
 /* Settings: plain sections — a heading, a sentence, then one group */
@@ -2120,7 +1889,7 @@ button,input{font:inherit}
 @media(max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}
 
 /* Joint data: readings that belong to one dataset share one tile (Figma "Movement summary 2") */
-.jointRows{gap:0;border-radius:var(--r-tile);background:var(--tile)}
+.jointRows{gap:0;padding:4px 0;border-radius:var(--r-tile);background:var(--tile)}
 .jointRows>.activityRow{background:transparent}
 .insightCard .jointRows{flex:1;align-content:space-evenly}
 
@@ -2131,12 +1900,12 @@ button,input{font:inherit}
 .wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}
 .wxTempBlock{display:grid;gap:4px;min-width:0}
 .wxTemp{display:flex;align-items:flex-start;gap:2px}
-.wxPlace{color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wxPlace{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}
 /* the forecast stretches to fill the card, so the row of cards stays even */
-.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 8px;border-radius:var(--r-tile);background:var(--tile)}
-.wxTemps{display:grid;justify-items:center;gap:2px}
+.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
+.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);background:var(--tile)}
+.wxTemps{display:grid;justify-items:center;gap:8px}
 .wxLow{color:var(--muted)}
 .wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}
 .wxCompact{display:none}
@@ -2145,6 +1914,17 @@ button,input{font:inherit}
   .wxCompact{display:grid;gap:var(--inset)}
 }
 .wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}
+/* Figma "Weather icon": Small 54 (forecast days, compact rows), Large 90; artwork fills the box, background per condition */
+.wxIcon.clear,.wxIcon.partly,.wxIcon.cloudy,.wxIcon.rain{width:54px;height:54px}
+.wxIcon>svg:only-child{display:block;width:100%;height:100%}
+.wxIcon.clear,.wxIcon.partly{background:var(--wx-clear)}
+.wxIcon.cloudy{background:var(--wx-cloudy)}
+.wxIcon.rain{background:var(--muted)}
+.wxIcon.large.cloudy,.wxIcon.large.rain{background:var(--color-bg-ground)}
+.wxIcon .wxBright{fill:var(--color-fill-bright)}
+.wxIcon .wxMuted{fill:var(--color-text-muted)}
+.wxIcon .wxCloudLight{fill:var(--wx-cloudy)}
+.wxIcon .wxAccent{fill:var(--color-accent-primary)}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
 .wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:var(--muted)}
 .wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--muted)}
@@ -2154,8 +1934,6 @@ button,input{font:inherit}
 .wxDrops{position:absolute;left:30%;right:30%;bottom:16%;display:flex;justify-content:space-between}
 .wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--muted);transform:rotate(12deg)}
 .wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:var(--muted)}
-.weatherCard .activityRow>.wxIcon{width:var(--chip-size)}
-.activityHeader>.wxIcon{width:var(--chip-size);height:var(--chip-size)}
 
 /* Weather type: temperature + range (Geist), names and days use the tile styles */
 .wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}
@@ -2192,7 +1970,8 @@ button,input{font:inherit}
 .moveActions .removeFill{background:var(--danger-fill)}
 
 /* Icons are generic greys for now (Figma: every icon uses color/text/muted) */
-.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--muted)}
+.activityIcon{color:var(--muted)}
+.activityRowIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--text)}
 
 /* the big weather icon sits exactly one inset from the card corner, so its corners are concentric (card − inset = tile) */
 .wxTempBlock{padding-top:6px}

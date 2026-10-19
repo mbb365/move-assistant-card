@@ -9,7 +9,7 @@
       <section class="workoutGallery" id="workoutGallery" aria-label="Move choices">
       <article class="workoutPanel addPanel" id="addWorkoutPanel" tabindex="0" role="button" aria-label="Add move">
         <span class="edgeLight" aria-hidden="true"></span>
-        <div class="addPanelPlus">＋</div>
+        <div class="addPanelPlus" data-icon="add"></div>
         <div class="addPanelLabel">Add move</div>
       </article>
     </section>
@@ -17,20 +17,20 @@
     <div class="sectionLabel rowLabel" id="movementLabel">Movement &amp; you</div>
     <section class="card activityCard">
       <div class="activityHeader">
-        <div class="activityIcon">⌁</div>
+        <div class="activityIcon" aria-hidden="true" data-icon="activity"></div>
         <div class="activityTitle">Activity</div>
       </div>
       <div class="activityRows">
         <div class="activityRow" id="stepsRow">
-          <div class="activityRowIcon">↟</div>
+          <div class="activityRowIcon" aria-hidden="true" data-icon="steps"></div>
           <div><div class="activityRowName">Steps</div><div class="activityRowMeta" id="stepsMeta">Set up in Settings</div></div>
         </div>
         <div class="activityRow" id="moodRow">
-          <div class="activityRowIcon">☺</div>
+          <div class="activityRowIcon" aria-hidden="true" data-icon="mood"></div>
           <div><div class="activityRowName">Mood</div><div class="activityRowMeta" id="moodMeta">—</div></div>
         </div>
         <div class="activityRow" id="energyLevelRow">
-          <div class="activityRowIcon">ϟ</div>
+          <div class="activityRowIcon" aria-hidden="true" data-icon="energy"></div>
           <div><div class="activityRowName">Energy</div><div class="activityRowMeta" id="energyLevelMeta">—</div></div>
         </div>
       </div>
@@ -71,7 +71,7 @@
     <div class="nextLabel">Up next</div>
     <section class="nextCard">
       <div class="nextMain">
-        <div class="nextIcon" id="nextIcon" aria-hidden="true">↗</div>
+        <div class="nextIcon" id="nextIcon" aria-hidden="true" data-icon="clock"></div>
         <div>
           <div class="nextName" id="nextName">Arm circles</div>
           <div class="sub" id="nextMeta">Warm-up</div>
@@ -85,7 +85,7 @@
 
 <!-- SETTINGS -->
 <section class="view" id="settingsView">
-  <div class="settingsHeader"><button class="back" id="settingsBack">‹</button><div class="settingsTitle">Move Assistant</div></div>
+  <div class="settingsHeader"><button class="back" id="settingsBack" aria-label="Back" data-icon="back"></button><div class="settingsTitle">Move Assistant</div></div>
   <div class="tabs rubberTabs">
     <div class="rubberIndicator" id="rubberIndicator" aria-hidden="true"></div>
     <button class="tab segBtn active" data-pane="integrationsPane">Integrations</button>
@@ -268,13 +268,12 @@
 
 <div class="confirmBackdrop checkinBackdrop" id="checkinModal" aria-hidden="true">
   <section class="confirmCard checkinCard" role="dialog" aria-modal="true" aria-labelledby="checkinTitle">
-    <div class="eyebrow" id="checkinEyebrow">Morning</div>
     <div class="confirmTitle" id="checkinTitle">Morning check-in</div>
     <div class="sub">How are you right now?</div>
     <div class="checkinSliders">
         <section class="tile timeTile checkinTile">
           <div class="timeHeader">
-            <div class="timeIcon" aria-hidden="true">☺</div>
+            <div class="timeIcon" aria-hidden="true" data-icon="mood"></div>
             <div class="timeCopy">
               <div class="timeLabel">Mood</div>
             </div>
@@ -289,7 +288,7 @@
         </section>
         <section class="tile timeTile checkinTile">
           <div class="timeHeader">
-            <div class="timeIcon" aria-hidden="true">ϟ</div>
+            <div class="timeIcon" aria-hidden="true" data-icon="energy"></div>
             <div class="timeCopy">
               <div class="timeLabel">Energy</div>
             </div>
@@ -316,7 +315,7 @@
     <span class="peekAt" id="peekAt">Available at 19:00</span>
   </span>
   <span class="checkinTabMain">
-    <span class="checkinTabIcon" aria-hidden="true">☺</span>
+    <span class="checkinTabIcon" aria-hidden="true" data-icon="mood"></span>
     <span class="checkinTabLabel">Check-in</span>
   </span>
   <span class="checkinBadge" id="checkinBadge" hidden></span>
@@ -340,9 +339,9 @@
 
 <!-- NAV -->
 <nav class="bottomNav">
-  <button class="navBtn active" id="homeNav" title="Home">⌂</button>
-  <button class="navBtn" id="settingsNav" title="Settings">⚙</button>
-  <button class="navBtn" id="tvNav" title="TV mode (full screen)">⛶</button>
+  <button class="navBtn active" id="homeNav" title="Home" aria-label="Home" data-icon="home"></button>
+  <button class="navBtn" id="settingsNav" title="Settings" aria-label="Settings" data-icon="settings"></button>
+  <button class="navBtn" id="tvNav" title="TV mode (full screen)" aria-label="TV mode (full screen)" data-icon="fullscreen"></button>
 </nav>
 
 <!-- CONTROL CENTER MODAL -->
@@ -648,7 +647,7 @@
     </div>
 
     <!-- phones: add button, and the bottom sheet that edits a step or the setup -->
-    <button class="addFab" id="addFab" type="button" aria-label="Add a step">+</button>
+    <button class="addFab" id="addFab" type="button" aria-label="Add a step" data-icon="add"></button>
     <div class="sheetScrim" id="sheetScrim"></div>
     <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true">
       <div class="sheetGrab" aria-hidden="true"></div>
