@@ -917,7 +917,7 @@ button,input{font:inherit}
 
 /* buttons and fields share the control radius; segmented buttons and switches have their own shape */
 :is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-inner)!important}
-.card,.panel,.tile,.workoutPanel,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
+.card,.panel,.tile,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
 
 
 .movementCreatorLaunch{
@@ -1740,7 +1740,7 @@ button,input{font:inherit}
 
 /* move cards: the chosen one is a card, the others are tiles */
 .workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}
-.workoutPanel.active{border-radius:var(--r-card)}
+.workoutPanel.active{border-radius:var(--r-tile)}
 .workoutPanel.addPanel{padding:var(--inset)}
 /* Figma Move card: only the chosen move is a card; collapsed moves and Add move are tiles */
 .workoutPanel:not(.active),.workoutPanel.addPanel{background:var(--tile)}
@@ -1804,7 +1804,7 @@ button,input{font:inherit}
 
 /* tablets and phones: move cards are a swipeable row of full cards */
 @media(max-width:900px){
-  .workoutPanel:not(.addPanel){border-radius:var(--r-card);padding:var(--inset)}
+  .workoutPanel:not(.addPanel){border-radius:var(--r-tile);padding:var(--inset)}
 }
 /* phones: cards go edge to edge with 8 between them; spacing and corners stay the same */
 @media(max-width:620px){:host{--gutter:0px;--grid-gap:8px}}
@@ -1903,8 +1903,8 @@ button,input{font:inherit}
 .wxPlace{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}
 /* the forecast stretches to fill the card, so the row of cards stays even */
-.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
-.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);background:var(--tile)}
+.wxDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border-radius:var(--r-tile);background:var(--tile);overflow:hidden}
+.wxDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0}
 .wxTemps{display:grid;justify-items:center;gap:8px}
 .wxLow{color:var(--muted)}
 .wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}
