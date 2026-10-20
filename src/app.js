@@ -3182,28 +3182,39 @@ const WX_NAMES={'sunny':'Sunny','clear-night':'Clear','partlycloudy':'Partly clo
   'rainy':'Rain','pouring':'Heavy rain','lightning':'Thunder','lightning-rainy':'Thunderstorms','hail':'Hail','snowy':'Snow','snowy-rainy':'Sleet'};
 const wxKind=c=>c==='sunny'?'clear':c==='clear-night'?'night':c==='partlycloudy'?'partly':
   ['rainy','pouring','lightning','lightning-rainy','hail'].includes(c)?'rain':['snowy','snowy-rainy'].includes(c)?'snow':'cloudy';
-const WX_CLOUD='<svg class="wxCloud" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19h10.5a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.6 8.6 5.2 5.2 0 0 0 7 19z"/></svg>';
-// Weather icons: artwork from the Figma "Weather icon" component, [Small 54, Large 90]; the background colour is in CSS.
-// Night and snow aren't designed in Figma yet, so they keep the placeholder drawing below.
-let wxGrad=0;
-const WX_ART={
- clear:[g=>'<circle cx="23" cy="23" r="17" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>',
-        g=>'<circle cx="45" cy="45" r="33.26" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>'],
- partly:[()=>'<circle cx="18" cy="17" r="12" fill="#FFE100"/><path class="wxBright" d="M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z"/>',
-         ()=>'<circle cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/><path class="wxBright" d="M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z"/>'],
- cloudy:[()=>'<path class="wxBright" d="M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z"/>',
-         ()=>'<path class="wxMuted" d="M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z"/>'],
- rain:[()=>'<path class="wxCloudLight" d="M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z"/><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 19 38)"/><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 26 38)"/><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 33 38)"/>',
-       ()=>'<path class="wxMuted" d="M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z"/><rect class="wxMuted" x="29.35" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 29.35 60.65)"/><rect class="wxMuted" x="43.04" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 43.04 60.65)"/><rect class="wxMuted" x="56.74" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 56.74 60.65)"/>']
+// Weather icons: artwork from the Figma "Weather icon" component, Condition × Time (day, night) × Size [Small 54, Large 90].
+// The sky is the .wxIcon background (CSS); clouds, drops and stars use classes or fixed colours from Figma.
+const WX_CLOUD={s:'M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z',sp:'M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z',lp:'M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z',lc:'M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z',lr:'M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z'};
+const WX_MOON={
+ s:['M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z',6.11,40],
+ l:['M41.1747 11.959C37.7298 16.5251 35.6875 22.2086 35.6874 28.3691C35.6874 43.4321 47.8979 55.6435 62.9608 55.6436C68.3701 55.6436 73.411 54.0676 77.6512 51.3516C74.6865 66.6826 61.197 78.2607 44.9999 78.2607C26.6305 78.2607 11.7391 63.3694 11.7391 45C11.7392 27.9244 24.6071 13.8562 41.1747 11.959Z',11.96,78.26],
+ sp:['M16.6201 5.0791C15.3771 6.72655 14.6397 8.7772 14.6396 11C14.6396 16.4345 19.046 20.8398 24.4805 20.8398C26.4326 20.8398 28.2502 20.2686 29.7803 19.2881C28.7119 24.821 23.8449 29 18 29C11.3726 29 6 23.6274 6 17C6 10.8393 10.6426 5.76349 16.6201 5.0791Z',5.08,29],
+ lp:['M32.5175 9.93848C30.0859 13.1616 28.6435 17.1729 28.6434 21.5215C28.6434 32.1541 37.2628 40.7733 47.8954 40.7734C51.7136 40.7734 55.2724 39.6622 58.2655 37.7451C56.1724 48.5666 46.6506 56.7391 35.2177 56.7393C22.251 56.7393 11.7391 46.2274 11.7391 33.2607C11.7393 21.2073 20.8226 11.2776 32.5175 9.93848Z',9.94,56.74]
 };
-function wxIcon(condition,large){
-  const k=wxKind(condition);
-  if(WX_ART[k]){const n=large?90:54;return '<span class="wxIcon '+k+(large?' large':'')+'" aria-hidden="true"><svg viewBox="0 0 '+n+' '+n+'">'+WX_ART[k][large?1:0]('wxg'+(++wxGrad))+'</svg></span>'}
-  const inner=k==='clear'?'<span class="wxSun"></span>':
-    k==='night'?'<svg class="wxMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.2A9 9 0 1 0 20.8 17 7.4 7.4 0 0 1 15.5 3.2z"/></svg>':
-    k==='partly'?'<span class="wxSun"></span>'+WX_CLOUD:
-    k==='rain'||k==='snow'?WX_CLOUD+'<span class="wxDrops '+k+'"><i></i><i></i><i></i></span>':WX_CLOUD;
-  return '<span class="wxIcon '+k+(large?' large':'')+'" aria-hidden="true">'+inner+'</span>';
+let wxGrad=0;
+const wxCloud=(d,cls)=>'<path class="'+cls+'" d="'+d+'"/>';
+// Figma's 4-point star: inner radius 0.38
+const wxStar=(x,y,r,o)=>{const k=r*.2687;return '<path fill="#fff"'+(o<1?' opacity="'+o+'"':'')+' d="M'+x+' '+(y-r)+'L'+(x+k)+' '+(y-k)+'L'+(x+r)+' '+y+'L'+(x+k)+' '+(y+k)+'L'+x+' '+(y+r)+'L'+(x-k)+' '+(y+k)+'L'+(x-r)+' '+y+'L'+(x-k)+' '+(y-k)+'Z"/>'};
+const wxMoon=([d,y1,y2],g)=>'<path d="'+d+'" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="0" y1="'+y1+'" x2="0" y2="'+y2+'" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>';
+const wxSun=(g,L)=>L?'<circle cx="45" cy="45" r="33.26" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>'
+  :'<circle cx="23" cy="23" r="17" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>';
+const wxDrops=L=>(L?['29.35','43.04','56.74'].map(x=>'<rect class="wxAccent" x="'+x+'" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 '+x+' 60.65)"/>')
+  :[19,26,33].map(x=>'<rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 '+x+' 38)"/>')).join('');
+const wxFlakes=L=>(L?[[33.67,67.67],[47.67,64.67],[61.67,67.67],[40.67,77.67],[54.67,77.67]]:[[21.2,42.2],[29.2,40.2],[37.2,42.2],[25.2,48.2],[33.2,48.2]])
+  .map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="'+(L?3.67:2.2)+'" fill="#fff"/>').join('');
+function wxArt(k,night,L,g){
+  if(k==='clear')return night?wxMoon(L?WX_MOON.l:WX_MOON.s,g)+(L?wxStar(70,20,5.83,1)+wxStar(78.33,41.67,3.75,.8)+wxStar(60,71.67,3.33,.6):wxStar(42,12,3.5,1)+wxStar(47,25,2.25,.8)+wxStar(36,43,2,.6)):wxSun(g,L);
+  if(k==='partly')return (night?wxMoon(L?WX_MOON.lp:WX_MOON.sp,g):(L?'<circle cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>':'<circle cx="18" cy="17" r="12" fill="#FFE100"/>'))
+    +wxCloud(L?WX_CLOUD.lp:WX_CLOUD.sp,night?'wxCloudLight':'wxBright')+(night?(L?wxStar(73.33,16.67,4.17,.9):wxStar(44,10,2.5,.9)):'');
+  if(k==='cloudy')return wxCloud(L?WX_CLOUD.lc:WX_CLOUD.s,night?'wxCloudLight':'wxBright')+(night?(L?wxStar(15,15,3.75,.8)+wxStar(76.67,13.33,2.92,.6):wxStar(9,9,2.25,.8)+wxStar(46,8,1.75,.6)):'');
+  return wxCloud(L?WX_CLOUD.lr:WX_CLOUD.s,'wxCloudLight')+(k==='rain'?wxDrops(L):wxFlakes(L));
+}
+// HA only sends "clear-night"; for every other condition the sun entity says whether it is night now.
+const isNightNow=()=>lastStates?.['sun.sun']?.state==='below_horizon';
+function wxIcon(condition,large,now){
+  let k=wxKind(condition);const night=k==='night'||(!!now&&isNightNow());if(k==='night')k='clear';
+  const n=large?90:54;
+  return '<span class="wxIcon '+k+(night?' night':'')+(large?' large':'')+'" aria-hidden="true"><svg viewBox="0 0 '+n+' '+n+'">'+wxArt(k,night,large,'wxg'+(++wxGrad))+'</svg></span>';
 }
 let wxForecast=[],wxFor=undefined,wxUnsub=null,wxNoForecast=false;
 function weatherChoices(states){
@@ -3266,7 +3277,7 @@ function renderWeather(){
   card.innerHTML=
     '<div class="wxWide">'+
       '<div class="wxNow">'+
-        '<div class="wxCurrent">'+wxIcon(st.state,true)+
+        '<div class="wxCurrent">'+wxIcon(st.state,true,true)+
           '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">'+esc(String(temp))+'</span><span class="wxUnit">'+esc(unit)+'</span></div>'+
           '<div class="wxPlace">'+esc(place)+'</div></div></div>'+
         '<div class="wxCondition"><div class="wxCondName">'+esc(condition)+'</div>'+(range?'<div class="wxRange">'+range+'</div>':'')+'</div>'+
@@ -3278,7 +3289,7 @@ function renderWeather(){
     '</div>'+
     '<div class="wxCompact">'+
       '<div class="activityRows">'+
-        row(wxIcon(st.state),'Now · '+place,esc(temp+'° '+condition))+
+        row(wxIcon(st.state,false,true),'Now · '+place,esc(temp+'° '+condition))+
         (today?row(wxIcon(today.condition),'Today',deg(today.temperature)+' / '+deg(today.templow)):'')+
         (tomorrow?row(wxIcon(tomorrow.condition),'Tomorrow',deg(tomorrow.temperature)+' / '+deg(tomorrow.templow)):'')+
       '</div></div>';
@@ -3421,7 +3432,8 @@ function renderInsightsSoon(){
 
 return {
   updateStates(states){
-    const weatherChanged=!lastStates||lastStates[sensorEntities.weather]!==states[sensorEntities.weather];
+    const weatherChanged=!lastStates||lastStates[sensorEntities.weather]!==states[sensorEntities.weather]
+      ||lastStates['sun.sun']?.state!==states['sun.sun']?.state;
     lastStates=states;
     renderSensorPickers(states);
     renderWeatherPicker(states);

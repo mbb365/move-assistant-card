@@ -13,7 +13,7 @@
   --color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;
   --color-state-hover:rgba(255,255,255,.08);
   /* Weather · to design (same in light and dark) */
-  --wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;
+  --wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;
   --color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);
   --scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}
 *{box-sizing:border-box}
@@ -837,9 +837,10 @@ button,input{font:inherit}
 .integrationList,.toggleList{display:grid;gap:9.6px}
 .integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}
 /* Figma Switch: rounded-square track, a knob that is flat on the side facing the middle */
-.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--track);border:0.4px solid var(--line);opacity:.6;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}
-.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}
-.switch.on{background:var(--bright);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
+.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--line);border:0.4px solid var(--line);opacity:1;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}
+.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}
+/* Figma Switch: off = line track + text knob; on = accent track + on-accent knob */
+.switch.on{background:var(--color-accent-primary);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}
 
 .themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}
 .themeBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
@@ -1790,17 +1791,17 @@ button,input{font:inherit}
 .moveActions .removeBtn.holding{color:#fff}
 @media(max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}
 
-.tabs.rubberTabs{padding:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}
+.tabs.rubberTabs{padding:4px;gap:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}
 .rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-fine);background:var(--seg-on)}
 .tabs.rubberTabs .tab{min-height:38px;padding:0 20px}
 .tabs.rubberTabs .tab.active{color:var(--text)}
 #app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}
 
 /* switch with a label (Use global timing): same shape as the Switch */
-.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--track);border:0.4px solid var(--line);opacity:.6;transition:background .16s ease,opacity .16s ease}
-.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--muted);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}
-.globalTimingToggle input:checked + .toggleTrack{background:var(--bright);opacity:1}
-.globalTimingToggle input:checked + .toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--on-bright)}
+.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--line);border:0.4px solid var(--line);opacity:1;transition:background .16s ease,opacity .16s ease}
+.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}
+.globalTimingToggle input:checked + .toggleTrack{background:var(--color-accent-primary);opacity:1}
+.globalTimingToggle input:checked + .toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}
 
 /* tablets and phones: move cards are a swipeable row of full cards */
 @media(max-width:900px){
@@ -1913,27 +1914,17 @@ button,input{font:inherit}
   .wxWide{display:none}
   .wxCompact{display:grid;gap:var(--inset)}
 }
-.wxIcon{position:relative;display:block;flex:0 0 auto;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}
+.wxIcon{position:relative;display:block;flex:0 0 auto;width:54px;height:54px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}
 /* Figma "Weather icon": Small 54 (forecast days, compact rows), Large 90; artwork fills the box, background per condition */
-.wxIcon.clear,.wxIcon.partly,.wxIcon.cloudy,.wxIcon.rain{width:54px;height:54px}
 .wxIcon>svg:only-child{display:block;width:100%;height:100%}
 .wxIcon.clear,.wxIcon.partly{background:var(--wx-clear)}
 .wxIcon.cloudy{background:var(--wx-cloudy)}
-.wxIcon.rain{background:var(--muted)}
-.wxIcon.large.cloudy,.wxIcon.large.rain{background:var(--color-bg-ground)}
+.wxIcon.rain,.wxIcon.snow{background:var(--color-text-muted)}
+.wxIcon.night{background:var(--wx-night)}
 .wxIcon .wxBright{fill:var(--color-fill-bright)}
-.wxIcon .wxMuted{fill:var(--color-text-muted)}
 .wxIcon .wxCloudLight{fill:var(--wx-cloudy)}
 .wxIcon .wxAccent{fill:var(--color-accent-primary)}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
-.wxSun{position:absolute;left:13%;top:13%;width:74%;height:74%;border-radius:50%;background:var(--muted)}
-.wxCloud,.wxMoon{position:absolute;left:13%;top:13%;width:74%;height:74%;fill:var(--muted)}
-.wxIcon.partly .wxSun{left:12%;top:10%;width:52%;height:52%}
-.wxIcon.partly .wxCloud{left:26%;top:28%;width:66%;height:66%}
-.wxIcon.rain .wxCloud,.wxIcon.snow .wxCloud{top:2%}
-.wxDrops{position:absolute;left:30%;right:30%;bottom:16%;display:flex;justify-content:space-between}
-.wxDrops i{display:block;width:7%;min-width:3px;height:16%;min-height:7px;border-radius:2px;background:var(--muted);transform:rotate(12deg)}
-.wxDrops.snow i{height:auto;min-height:0;aspect-ratio:1;min-width:5px;border-radius:50%;transform:none;background:var(--muted)}
 
 /* Weather type: temperature + range (Geist), names and days use the tile styles */
 .wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}
@@ -1975,3 +1966,5 @@ button,input{font:inherit}
 
 /* the big weather icon sits exactly one inset from the card corner, so its corners are concentric (card − inset = tile) */
 .wxTempBlock{padding-top:6px}
+/* Figma Setup row slider: bright fill and knob on the native range inputs */
+.motionRangeWrap input[type=range]{accent-color:var(--bright)}
