@@ -12,9 +12,9 @@
   --color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;
   --color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;
   --color-state-hover:rgba(255,255,255,.08);
-  --color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;
+  --color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;--color-bg-segment-selected:#2b2b2b;
   /* Weather · to design (same in light and dark) */
-  --wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;
+  --wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;--wx-cloud-bright:#f1f1f1;
   --color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);
   --scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}
 *{box-sizing:border-box}
@@ -26,7 +26,7 @@ button,input{font:inherit}
 #app{
   --bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);
   --tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);
-  --segment:var(--color-bg-tile);--seg-on:var(--color-bg-tile);--scroll-thumb:var(--color-bg-tile);
+  --segment:var(--color-bg-tile);--seg-on:var(--color-bg-segment-selected);--scroll-thumb:var(--color-bg-tile);
   --control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-chip);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);
   --text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);
   --border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);
@@ -38,15 +38,15 @@ button,input{font:inherit}
 .shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}
 #app.resting .shell{background:var(--color-bg-resting)}
 #app.paused .shell{background:var(--primary)}
-#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}
+#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,var(--color-bg-card))}
 #app.light{
   /* Base palette — mirrors the Figma "Color" variables (Light): Warm paper, warm ink */
   --color-bg-ground:#eeebe8;--color-bg-card:#fbf9f6;--color-bg-tile:#f3efea;
   --color-fill-bright:#26221e;--color-text-primary:#26221e;--color-text-muted:#6a625a;--color-text-on-bright:#fbf9f6;--color-text-on-accent:#26221e;
-  --color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-bg-resting:#7dbb98;
-  --color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#c62f2f;
+  --color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-accent-secondary:#03a9f4;--color-bg-resting:#7dbb98;
+  --color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#b42a2a;
   --color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);
-  --color-bg-chip:#fbf9f6;--color-fill-selected:#fbf9f6;--color-text-on-selected:#26221e;
+  --color-bg-chip:#fbf9f6;--color-fill-selected:#fbf9f6;--color-text-on-selected:#26221e;--color-bg-segment-selected:#fbf9f6;
   --scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}
 
 :host(.lightBody){background:#EEEBE8;color-scheme:light}
@@ -250,7 +250,7 @@ button,input{font:inherit}
 
 .startWorkoutBtn{
   background:var(--primary)!important;
-  color:#090909!important}
+  color:var(--color-text-on-accent)!important}
 .startWorkoutBtn:hover{filter:brightness(1.04)}
 .addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}
 .addPanelLabel{
@@ -1245,7 +1245,7 @@ button,input{font:inherit}
 #app.resting .movementCard{
   background:rgba(255,255,255,.055)}
 #app.resting .movementRippleCanvas{opacity:1}
-#app.light.resting .movementCard{background:rgba(255,255,255,.22)}
+#app.light.resting .movementCard{background:rgba(251,249,246,.22)}
 
 .nextCard .skipSessionBtn{
   margin-left:auto}
@@ -1331,7 +1331,7 @@ button,input{font:inherit}
 @keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}
 @media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}
 .shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}
-#app.light .checkinBadge{background:var(--primary);box-shadow:0 0 0 2.4px #fff,0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}
+#app.light .checkinBadge{box-shadow:0 0 0 2.4px var(--color-bg-ground),0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}
 
 /* ---- how you've felt this week ---- */
 .feelSection{grid-column:span 12;margin-top:16px}
@@ -1588,12 +1588,11 @@ button,input{font:inherit}
 @media(max-width:620px){.moveEditFields{grid-template-columns:1fr}}
 
 /* ---- light theme: timer digits stay solid ink (the dark theme's inverted blend turns brown on blue) ---- */
-#app.light .digits{mix-blend-mode:normal;color:var(--text)}
 .integration .status code{color:var(--soft)}
 /* text that sits straight on the coloured rest (green) and pause (blue) screens */
 #app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}
 #app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}
-#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#222222;--muted:rgba(34,34,34,.85);--accent-text:#222222;--line:rgba(34,34,34,.25);color:var(--text)}
+#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#26221e;--muted:rgba(38,34,30,.85);--accent-text:#26221e;--line:rgba(38,34,30,.25);color:var(--text)}
 
 /* ---- drag Add movement / Add rest into the list ---- */
 .moveList{display:flex;flex-direction:column}
@@ -1921,7 +1920,7 @@ button,input{font:inherit}
 .wxIcon.cloudy{background:var(--wx-cloudy)}
 .wxIcon.rain,.wxIcon.snow{background:var(--color-text-muted)}
 .wxIcon.night{background:var(--wx-night)}
-.wxIcon .wxBright{fill:var(--color-fill-bright)}
+.wxIcon .wxBright{fill:var(--wx-cloud-bright)}
 .wxIcon .wxCloudLight{fill:var(--wx-cloudy)}
 .wxIcon .wxAccent{fill:var(--color-accent-primary)}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
@@ -1967,4 +1966,4 @@ button,input{font:inherit}
 /* the big weather icon sits exactly one inset from the card corner, so its corners are concentric (card − inset = tile) */
 .wxTempBlock{padding-top:6px}
 /* Figma Setup row slider: bright fill and knob on the native range inputs */
-.motionRangeWrap input[type=range]{accent-color:var(--bright)}
+.motionRangeWrap input[type=range]{accent-color:var(--bright);background:transparent}
