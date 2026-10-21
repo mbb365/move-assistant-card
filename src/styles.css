@@ -12,6 +12,7 @@
   --color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;
   --color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;
   --color-state-hover:rgba(255,255,255,.08);
+  --color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;
   /* Weather · to design (same in light and dark) */
   --wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;
   --color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);
@@ -26,7 +27,7 @@ button,input{font:inherit}
   --bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);
   --tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);
   --segment:var(--color-bg-tile);--seg-on:var(--color-bg-tile);--scroll-thumb:var(--color-bg-tile);
-  --control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-ground);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);
+  --control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-chip);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);
   --text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);
   --border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);
   --line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);
@@ -39,15 +40,16 @@ button,input{font:inherit}
 #app.paused .shell{background:var(--primary)}
 #app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,white)}
 #app.light{
-  /* Base palette — mirrors the Figma "Color" variables (Light) */
-  --color-bg-ground:#eeeded;--color-bg-card:#ffffff;--color-bg-tile:#f4f3f3;
-  --color-fill-bright:#222222;--color-text-primary:#222222;--color-text-muted:#3f3f3f;--color-text-on-bright:#ffffff;
-  --color-line:rgba(0,0,0,.12);--color-text-accent:#222222;--color-bg-resting:#7dbb98;
+  /* Base palette — mirrors the Figma "Color" variables (Light): Warm paper, warm ink */
+  --color-bg-ground:#eeebe8;--color-bg-card:#fbf9f6;--color-bg-tile:#f3efea;
+  --color-fill-bright:#26221e;--color-text-primary:#26221e;--color-text-muted:#6a625a;--color-text-on-bright:#fbf9f6;--color-text-on-accent:#26221e;
+  --color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-bg-resting:#7dbb98;
   --color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#c62f2f;
-  --color-state-hover:rgba(0,0,0,.06);--color-state-pressed:rgba(0,0,0,.12);
-  --scrim:rgba(20,20,20,.32);--lift:rgba(0,0,0,.16)}
+  --color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);
+  --color-bg-chip:#fbf9f6;--color-fill-selected:#fbf9f6;--color-text-on-selected:#26221e;
+  --scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}
 
-:host(.lightBody){background:#EEEDED;color-scheme:light}
+:host(.lightBody){background:#EEEBE8;color-scheme:light}
 
 .view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}
 .card,.panel,.tile{
@@ -904,7 +906,7 @@ button,input{font:inherit}
 /* NAV */
 .bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}
 .navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:0.32px solid var(--line);color:var(--text)}
-.navBtn.active{background:var(--bright);color:var(--on-bright)}
+.navBtn.active{background:var(--color-fill-selected);color:var(--color-text-on-selected)}
 
 @media(max-width:900px){.weekCopy{white-space:normal}
   .grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly{grid-column:auto}
@@ -1743,8 +1745,6 @@ button,input{font:inherit}
 .workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}
 .workoutPanel.active{border-radius:var(--r-tile)}
 .workoutPanel.addPanel{padding:var(--inset)}
-/* Figma Move card: only the chosen move is a card; collapsed moves and Add move are tiles */
-.workoutPanel:not(.active),.workoutPanel.addPanel{background:var(--tile)}
 
 /* tiles */
 .activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}
