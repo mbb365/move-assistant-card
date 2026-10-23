@@ -7,7 +7,7 @@ Runs as a full-page dashboard card.
 - **Check-in** twice a day at times you choose (Settings → Check-in). It pops up when due; afterwards it lives in a tab on the right edge that shows a dot when the next one is due. Mood and energy are sliders from Terrible to Great.
 - **How you've felt this week** shows your average mood and energy, plus each day's.
 - **Movement** shows what you've already done (this week, your streak, the last 30 days) as one set of numbers that belong together.
-- **Weather** shows the weather now and the next six days, beside Activity and Movement (a shorter version on phones). Pick any Home Assistant weather entity in Settings → Integrations; turn it off in Settings → Data. Settings → Appearance → **Weather style** draws the pictures as Bitmap (pixel art, the default), 1-bit (ink and paper) or Smooth; the rules for each are in [docs/weather-styles.md](docs/weather-styles.md).
+- **Weather** shows the weather now, then the next six days as tiles two to a row. On wide screens it sits under Activity and Movement, which share the row. Pick any Home Assistant weather entity in Settings → Integrations; turn it off in Settings → Data. Settings → Appearance → **Weather style** draws the pictures as Bitmap (pixel art, the default), 1-bit (ink and paper) or Smooth; the rules for each are in [docs/weather-styles.md](docs/weather-styles.md).
 - **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
 - **Apple Health**: Settings → Help explains turning on Apple Health sensors in the Home Assistant iPhone app (2026.9+), then picking the Health steps sensor.
 - **Rounds**: in Edit move, set how many times to repeat a move (1–10). Only the main section repeats, with a normal rest between rounds; the warm-up plays once at the start and the cooldown once at the end.
@@ -15,6 +15,7 @@ Runs as a full-page dashboard card.
 - **Second line on phones**: Settings → Appearance has a table of every step type (your Type / group values, plus Warm-up, Cooldown, Rest and Video). Filter it by kind or by typing, and switch off a type's second line to save space on phones; bigger screens always show it.
 - **Video steps**: in Edit move, drag in **Add video** and paste a YouTube link. It plays in theater mode, across the row where the timer and pulse sit, with the time left shown by the controls. A link with a start time (`?t=90`) plays from there; you can also set your own length. With rounds, choose whether it plays every round or only in the first or last. The video loads during the step before it, so it starts straight away. Some videos can't play outside YouTube (their owner turned off embedding), and videos with ads play the ad first.
 - **This week** counts minutes from the moves you actually do (30 seconds or more).
+- **Halves**: tiles in a card sit two side by side whenever each still has 140 px; narrower than that, one per row. The spacing follows HomeCore FINAL in the Figma file.
 - **TV mode** (⛶ button) goes full screen with no HA header or sidebar. Works with a keyboard, TV remote or game controller.
 
 ## Install (HACS)
@@ -31,6 +32,22 @@ views:
     cards:
       - type: custom:move-assistant-card
 ```
+
+## Test focus layout
+
+To try the layout with more of your Home Assistant entities, set `layout: test-focus` and list them. Readings go in a card (tap one to see its last 24 hours); lights are tiles with an on/off button and a brightness bar. Your normal Home never shows them.
+
+```yaml
+- type: custom:move-assistant-card
+  layout: test-focus
+  test_focus:
+    - title: Status
+      entities: [sensor.house_power, sensor.energy_today]
+    - type: lights
+      entities: [light.floor_lamp, light.kitchen]
+```
+
+Settings → Appearance → **Show density** outlines each card with its height and counts how many readings fit on the screen.
 
 ## Automations
 

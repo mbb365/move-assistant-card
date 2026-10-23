@@ -1,0 +1,110 @@
+/* =========================================================
+   HomeCore display family, final spacing: Figma Components → "HomeCore FINAL" (353:9153).
+   Cards on Home: 10 in from the edge (14 above a header), a 28 header with no icon, tiles that touch
+   and have no fill until you hover them, 12% ink hairlines. Values not in the shape tokens are written here.
+   ========================================================= */
+#app{--hc-on-accent:#f4f3f3;--hc-open-edge:rgba(255,255,255,.1);--hc-hair:inset 0 0 0 .2px var(--line),inset 0 -.2px 0 var(--line);--hc-hair-all:inset 0 0 0 .4px var(--line)}
+#app.light{--hc-open-edge:#e3e3e3}
+
+/* cards: hairline 0.4 all round on cards of tiles; 0.2 with 0.4 along the bottom on the others */
+#homeView .card{padding:var(--inset);border-radius:var(--r-card);box-shadow:var(--hc-hair)}
+#homeView .card:has(>.activityHeader){padding-top:14px;box-shadow:var(--hc-hair-all)}
+/* cards are as tall as their tiles (the prototype's 288 minimum is gone) */
+#homeView .activityCard{min-height:0}
+/* header: 28 tall, 18 in from the card's sides, title only, 10 above the tiles */
+#homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}
+#homeView .activityHeader .activityIcon{display:none}
+#homeView .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}
+
+/* tiles in a card: they touch, and the card shows through until you hover one */
+#homeView .card .activityRows{gap:0}
+#homeView .card .jointRows{padding:0;background:transparent}
+#homeView .card .activityRow{min-height:var(--tile-min);padding:var(--inset);gap:12px;border-radius:var(--r-tile);grid-template-columns:var(--chip-size) minmax(0,1fr);background:transparent}
+#homeView .activityRowIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent)}
+#homeView .activityRowName{font:600 14px/20px var(--font-tile)}
+#homeView .activityRowMeta{font:400 16px/1.15 var(--font);margin:0}
+/* hover: tile fill and a hairline (0.2, 0.4 along the bottom) */
+#homeView .card .activityRow.tap{cursor:pointer;transition:background .15s ease,box-shadow .15s ease}
+#homeView .card .activityRow.tap:hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}
+
+/* weather: the card is 20 in from its edge (10 on phones); under Now, the days are tiles side by side like every card of readings
+   (Matt, 23 Oct; Figma Components → "Weather in halves · proposal") */
+#homeView .weatherCard{padding:20px}
+#homeView .wxWide{gap:16px}
+#homeView .wxIcon.large{border-radius:28px}
+#homeView .wxCondition{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:10px 16px;border-radius:28px}
+#homeView .wxCondName{font:400 18px/1.2 var(--font)}
+#homeView .weatherCard .activityRow .wxIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}
+@media(max-width:620px){
+  #homeView .weatherCard{padding:var(--inset)}
+  #homeView .wxIcon.large{width:60px;height:60px;border-radius:20px}
+  #homeView .wxDeg{font-size:46px}
+  #homeView .wxRange{font-size:20px}
+}
+
+/* =========================================================
+   Test focus (layout: test-focus): more Home Assistant entities on Home, built from the same pieces.
+   ========================================================= */
+.tfLabel{grid-column:1/-1}
+.tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}
+.tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}
+:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--primary);color:var(--hc-on-accent)}
+.tfCard .activityRow{display:grid;align-items:center}
+/* opened: the tile fills its card (padding 10) with the graph space under it (Figma "HC FINAL - tile clicked") */
+#homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}
+.tfCard.open>.activityHeader{display:none}
+.tfOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}
+.tfOpenHead{display:flex;align-items:center;gap:12px}
+.tfOpenHead>div:nth-child(2){flex:1;min-width:0}
+.tfBack{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}
+.tfBack .icon{width:34px;height:34px}
+.tfGraph{display:block;width:100%;flex:1;min-height:80px}
+.tfGraph text{fill:var(--muted);font:400 11px var(--font)}
+/* lights: a tile on its own, 20 in from its edge, the brightness bar 14 under the name (Figma "HC FINAL ACTION TILE") */
+.tfAction{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
+.tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}
+.tfActionHead>div{min-width:0}
+.tfAction .tfIcon{border:0;padding:0;background:var(--tile);color:var(--text);cursor:pointer}
+.tfAction.on .tfIcon{background:#ffaa00;color:#ffffff}
+.tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:none}
+.tfBar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#ffc247,#ffaa00)}
+.tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+/* a group: its label, then its tiles; half the grid wide on desktop */
+.tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}
+.tfLights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@container (max-width:289px){.tfLights{grid-template-columns:1fr}}
+/* status: half tiles, two side by side and 10 apart, whenever a half is at least 140 wide (Matt, 23 Oct; Figma's halves are 145) */
+.tfPairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start}
+@container (max-width:289px){.tfPairs{grid-template-columns:1fr}}
+.tfPairs .tfOpen{grid-column:1/-1}
+.tfHalf.tap{cursor:pointer;transition:background .15s ease}
+.tfHalf.tap:hover{background:var(--tile)}
+.tfBar::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}
+.tfHalf{display:flex;align-items:center;gap:12px;min-width:0;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair)}
+.tfHalf .tfIcon{background:var(--tile);color:var(--text)}
+.tfHalf>div{min-width:0}
+:is(.tfAction,.tfHalf) :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfHeadIcon{--mdc-icon-size:28px}
+@media(max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}
+@media(max-width:900px){.tfCard,.tfBlock{grid-column:auto}}
+
+/* density overlay (Settings → Appearance → Show density): every display card's height, and how many readings fit on the screen */
+#app.showDensity #homeView :is(.card,.tfAction,.tfHalf){position:relative;outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}
+#app.showDensity #homeView :is(.card,.tfAction)::after{content:attr(data-h);position:absolute;top:6px;right:12px;z-index:5;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;font:600 11px/16px var(--font);pointer-events:none}
+.densityBadge{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:8px 16px;border-radius:99px;background:var(--bright);color:var(--on-bright);font:600 13px/18px var(--font);box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:none;white-space:nowrap}
+.densityBadge[hidden]{display:none}
+.densityBadge b{font-variant-numeric:tabular-nums}
+.densityBadge small{font-weight:400;opacity:.75}
+
+/* =========================================================
+   Halves (Matt, 23 Oct): inside a card, its tiles sit two side by side (touching, like stacked tiles)
+   whenever a half is at least 140 wide; narrower than that, one per row. Cards keep their header and hairline.
+   ========================================================= */
+#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard){container-type:inline-size}
+#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard) .activityRows{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+@container (max-width:279px){#homeView .card .activityRows{grid-template-columns:1fr}}
+/* desktop: Activity and Movement take half the row each so their readings fit in pairs; the weather card goes below (Matt, 23 Oct) */
+@media(min-width:1200px){
+  #homeView .grid>.card:is(.activityCard,.insightCard){grid-column:span 6}
+  #homeView .grid>.weatherCard{grid-column:span 6}
+}

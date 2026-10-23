@@ -20,11 +20,36 @@ const states = {
   "sensor.living_room_temperature": { entity_id: "sensor.living_room_temperature", state: "21.4", attributes: { friendly_name: "Living room temperature", unit_of_measurement: "°C" } },
   "weather.forecast_home": { entity_id: "weather.forecast_home", state: "sunny", attributes: { friendly_name: "Forecast Amsterdam", temperature: 26, temperature_unit: "°C" } },
 };
+// ?test=1: the Test focus layout with ten made-up entities (lights you can press and drag, readings with 24 hours of history)
+const TEST_ENTITIES = {
+  "light.floor_lamp": { state: "on", attributes: { friendly_name: "Floor lamp", brightness: 179, supported_color_modes: ["color_temp", "xy"], color_mode: "color_temp", color_temp_kelvin: 2400 } },
+  "light.ceiling": { state: "off", attributes: { friendly_name: "Ceiling", supported_color_modes: ["brightness"] } },
+  "light.kitchen_spots": { state: "on", attributes: { friendly_name: "Kitchen spots", brightness: 255, supported_color_modes: ["brightness"] } },
+  "sensor.house_power": { state: "2410", attributes: { friendly_name: "House power", unit_of_measurement: "W", device_class: "power", state_class: "measurement" } },
+  "sensor.energy_today": { state: "11.2", attributes: { friendly_name: "Energy today", unit_of_measurement: "kWh", device_class: "energy", state_class: "total_increasing" } },
+  "sensor.solar_power": { state: "1.6", attributes: { friendly_name: "Solar", unit_of_measurement: "kW", device_class: "power", state_class: "measurement" } },
+  "sensor.grid_import": { state: "0.8", attributes: { friendly_name: "From the grid", unit_of_measurement: "kW", device_class: "power", state_class: "measurement" } },
+  "sensor.living_room_humidity": { state: "46", attributes: { friendly_name: "Living room humidity", unit_of_measurement: "%", device_class: "humidity", state_class: "measurement" } },
+  "sensor.internet_usage": { state: "38.4", attributes: { friendly_name: "Internet today", unit_of_measurement: "GB", state_class: "total_increasing" } },
+};
 // A week of fake daily forecast, starting today
 const fakeForecast = () => {
   const now = new Date();
   const days = [["sunny", 26, 15], ["cloudy", 22, 10], ["rainy", 19, 8], ["partlycloudy", 20, 13], ["sunny", 21, 17], ["partlycloudy", 21, 16], ["snowy", 3, -2]];
   return days.map(([condition, temperature, templow], i) => ({ datetime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + i, 12).toISOString(), condition, temperature, templow }));
+};
+const params = new URLSearchParams(location.search);
+const testMode = params.get("test") === "1";
+if (testMode) {
+  Object.entries(TEST_ENTITIES).forEach(([id, st]) => { states[id] = { entity_id: id, ...st }; });
+  states["sensor.living_room_temperature"].attributes.device_class = "temperature";
+  states["sensor.living_room_temperature"].attributes.state_class = "measurement";
+}
+const fakeHistory = (id) => {
+  const st = states[id]; const now = Date.now(); const v = Number(st.state); const growing = st.attributes.state_class === "total_increasing";
+  return [...Array(48)].map((_, i) => { const t = now - (48 - i) * 30 * 60 * 1000; const k = i / 47;
+    const val = growing ? v * k : v * (0.7 + 0.3 * Math.sin(i / 5) + 0.12 * Math.sin(i * 1.7));
+    return { s: String(Math.round(val * 100) / 100), lu: t / 1000 }; });
 };
 const hass = {
   states,
@@ -43,6 +68,17 @@ const hass = {
       return { [id]: rows };
     }
     if (msg.type === "fire_event") { console.log("event", msg.event_data); return null; }
+    if (msg.type === "history/history_during_period") return { [msg.entity_ids[0]]: fakeHistory(msg.entity_ids[0]) };
+    if (msg.type === "call_service" && msg.domain === "light") {
+      const id = msg.service_data.entity_id, old = hass.states[id];
+      const on = msg.service === "turn_on" || (msg.service === "toggle" && old.state !== "on");
+      const attrs = { ...old.attributes };
+      if (on && msg.service_data.brightness_pct != null) attrs.brightness = Math.round(msg.service_data.brightness_pct * 2.55);
+      if (on && attrs.brightness == null) attrs.brightness = 255;
+      if (!on) delete attrs.brightness;
+      setTimeout(() => { hass.states = { ...hass.states, [id]: { ...old, state: on ? "on" : "off", attributes: attrs } }; card.hass = { ...hass }; }, 120);
+      return null;
+    }
     throw new Error("unknown " + msg.type);
   },
   services: { notify: { mobile_app_matts_iphone: {}, persistent_notification: {} } },
@@ -55,12 +91,16 @@ const hass = {
   },
 };
 const card = document.querySelector("move-assistant-card");
-card.setConfig({});
+card.setConfig(testMode
+  ? { layout: "test-focus", spacing: params.get("spacing") || undefined, test_focus: [
+      { title: "Status", entities: ["sensor.house_power", "sensor.energy_today", "sensor.solar_power", "sensor.grid_import", "sensor.living_room_temperature", "sensor.living_room_humidity", "sensor.internet_usage"] },
+      { type: "lights", entities: ["light.floor_lamp", "light.ceiling", "light.kitchen_spots", "light.ceiling"] },
+    ] }
+  : {});
 card.hass = hass;
 window.__fakeHass = hass;
 
 // Preview helpers for dev/compare.html: ?edge=1 tries the full-width phone layout, ?nopop=1 skips the check-in popup.
-const params = new URLSearchParams(location.search);
 const waitForApp = () => new Promise((resolve) => {
   const tick = () => card.shadowRoot?.getElementById("app")?.style.opacity === "" ? resolve() : setTimeout(tick, 50);
   tick();

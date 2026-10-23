@@ -3294,9 +3294,9 @@ function renderWeather(){
   const days=wxForecast.slice(0,7);
   const today=days.find(d=>dayKey(new Date(d.datetime))===todayKey)||null;
   const upcoming=days.filter(d=>dayKey(new Date(d.datetime))>=todayKey).slice(0,6);
-  const tomorrow=upcoming.find(d=>dayKey(new Date(d.datetime))>todayKey);
+  const now=new Date(),tomorrowKey=dayKey(new Date(now.getFullYear(),now.getMonth(),now.getDate()+1));
   const range=today?'H '+deg(today.temperature)+'&ensp; L '+deg(today.templow):'';
-  const dayName=d=>new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(d.datetime));
+  const dayName=d=>{const k=dayKey(new Date(d.datetime));return k===todayKey?'Today':k===tomorrowKey?'Tomorrow':new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(d.datetime))};
   const temp=Number.isFinite(Number(a.temperature))?Math.round(Number(a.temperature)):'—';
   const row=(icon,name,value)=>'<div class="activityRow">'+icon+'<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+value+'</div></div></div>';
   card.innerHTML=
@@ -3307,17 +3307,10 @@ function renderWeather(){
           '<div class="wxPlace">'+esc(place)+'</div></div></div>'+
         '<div class="wxCondition"><div class="wxCondName">'+esc(condition)+'</div>'+(range?'<div class="wxRange">'+range+'</div>':'')+'</div>'+
       '</div>'+
-      (upcoming.length?'<div class="wxDays">'+upcoming.map(d=>
-        '<div class="wxDay"><div class="wxDayName">'+esc(dayName(d))+'</div>'+wxIcon(d.condition)+
-        '<div class="wxTemps"><div class="wxHigh">'+deg(d.temperature)+'</div><div class="wxLow">'+deg(d.templow)+'</div></div></div>').join('')+'</div>'
+      // the days are tiles under Now, like every card of readings (Figma "Weather in halves · proposal")
+      (upcoming.length?'<div class="activityRows wxDays">'+upcoming.map(d=>row(wxIcon(d.condition),dayName(d),deg(d.temperature)+' / '+deg(d.templow))).join('')+'</div>'
         :'<div class="wxNoDays">'+(wxNoForecast?'This weather service has no daily forecast':'Loading the forecast…')+'</div>')+
-    '</div>'+
-    '<div class="wxCompact">'+
-      '<div class="activityRows">'+
-        row(wxIcon(st.state,false,true),'Now · '+place,esc(temp+'° '+condition))+
-        (today?row(wxIcon(today.condition),'Today',deg(today.temperature)+' / '+deg(today.templow)):'')+
-        (tomorrow?row(wxIcon(tomorrow.condition),'Tomorrow',deg(tomorrow.temperature)+' / '+deg(tomorrow.templow)):'')+
-      '</div></div>';
+    '</div>';
   paintWx(card);
 }
 renderWeather();
