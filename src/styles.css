@@ -919,7 +919,7 @@ button,input{font:inherit}
 }
 
 /* buttons and fields share the control radius; segmented buttons and switches have their own shape */
-:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary){border-radius:var(--r-inner)!important}
+:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary,.wxStyleBtn){border-radius:var(--r-inner)!important}
 .card,.panel,.tile,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}
 
 
@@ -1924,6 +1924,15 @@ button,input{font:inherit}
 .wxIcon .wxCloudLight{fill:var(--wx-cloudy)}
 .wxIcon .wxAccent{fill:var(--color-accent-primary)}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
+/* Bitmap and 1-bit styles: a canvas at 2 px per pixel, drawn by weather-art.js; the sky is in the pixels */
+.wxIcon>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+
+/* Weather style picker (Settings → Appearance): one tile per style, each previewing four icons */
+#settingsView .toggleRow.wxStyleRow{flex-direction:column;align-items:stretch}
+.wxStyleChoice{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:8px}
+.wxStyleBtn{display:grid;justify-items:start;gap:var(--inset);padding:var(--inset);border:0.8px solid var(--field-line);border-radius:var(--r-tile);background:transparent;color:var(--text);text-align:left;cursor:pointer}
+.wxStyleBtn[aria-pressed="true"]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}
+.wxStylePreview{display:grid;grid-template-columns:repeat(2,54px);gap:8px}
 
 /* Weather type: temperature + range (Geist), names and days use the tile styles */
 .wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}

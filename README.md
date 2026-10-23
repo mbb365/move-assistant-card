@@ -7,7 +7,7 @@ Runs as a full-page dashboard card.
 - **Check-in** twice a day at times you choose (Settings → Check-in). It pops up when due; afterwards it lives in a tab on the right edge that shows a dot when the next one is due. Mood and energy are sliders from Terrible to Great.
 - **How you've felt this week** shows your average mood and energy, plus each day's.
 - **Movement** shows what you've already done (this week, your streak, the last 30 days) as one set of numbers that belong together.
-- **Weather** shows the weather now and the next six days, beside Activity and Movement (a shorter version on phones). Pick any Home Assistant weather entity in Settings → Integrations; turn it off in Settings → Data.
+- **Weather** shows the weather now and the next six days, beside Activity and Movement (a shorter version on phones). Pick any Home Assistant weather entity in Settings → Integrations; turn it off in Settings → Data. Settings → Appearance → **Weather style** draws the pictures as Bitmap (pixel art, the default), 1-bit (ink and paper) or Smooth; the rules for each are in [docs/weather-styles.md](docs/weather-styles.md).
 - **Activity** shows today's steps (pick your step sensor in Settings → Integrations), plus your latest mood and energy.
 - **Apple Health**: Settings → Help explains turning on Apple Health sensors in the Home Assistant iPhone app (2026.9+), then picking the Health steps sensor.
 - **Rounds**: in Edit move, set how many times to repeat a move (1–10). Only the main section repeats, with a normal rest between rounds; the warm-up plays once at the start and the cooldown once at the end.

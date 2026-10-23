@@ -1,5 +1,7 @@
 // Move Assistant app logic, ported from the v63 HTML prototype.
 // Runs inside the card's shadow root; `bridge` connects it to Home Assistant.
+import {wxKey,wxPose,wxBitmap} from './weather-art.js';
+
 export function mountMoveAssistant(root, bridge){
 const $=id=>root.getElementById(id);
 const workoutView=$('workoutView');
@@ -3034,6 +3036,7 @@ function applyTheme(theme){
   const isLight=theme==='light';
   $('app').classList.toggle('light',isLight);
   bridge.setLight(isLight);
+  paintWx(root);
 }
 applyTheme(settings().theme||'dark');
 root.querySelectorAll('.themeBtn').forEach(btn=>btn.addEventListener('click',()=>{
@@ -3211,10 +3214,31 @@ function wxArt(k,night,L,g){
 }
 // HA only sends "clear-night"; for every other condition the sun entity says whether it is night now.
 const isNightNow=()=>lastStates?.['sun.sun']?.state==='below_horizon';
-function wxIcon(condition,large,now){
+// Weather style, chosen in Settings → Appearance: bitmap (default), onebit or smooth (the Figma artwork above)
+let wxStyle=settings().weatherStyle||'bitmap';
+function wxIcon(condition,large,now,style=wxStyle){
   let k=wxKind(condition);const night=k==='night'||(!!now&&isNightNow());if(k==='night')k='clear';
   const n=large?90:54;
+  if(style!=='smooth')return '<span class="wxIcon pixels'+(large?' large':'')+'" aria-hidden="true"><canvas data-wx="'+wxKey(condition,night)+'" data-wx-style="'+style+'" data-wx-size="'+n+'"></canvas></span>';
   return '<span class="wxIcon '+k+(night?' night':'')+(large?' large':'')+'" aria-hidden="true"><svg viewBox="0 0 '+n+' '+n+'">'+wxArt(k,night,large,'wxg'+(++wxGrad))+'</svg></span>';
+}
+// Bitmap and 1-bit icons are canvases; their pixels are drawn once the markup is in place (and again when the theme changes)
+function wxColors(){
+  const app=$('app'),cs=getComputedStyle(app),v=n=>cs.getPropertyValue(n).trim();
+  const colors={};
+  [['skyClearDay','--wx-clear'],['skyClearNight','--wx-night'],['skyCloudyDay','--wx-cloudy'],['cloudDay','--wx-cloud-bright'],['cloudNight','--wx-cloudy'],['rain','--color-accent-primary']]
+    .forEach(([k,n])=>{if(v(n))colors[k]=v(n)});
+  const text=v('--color-text-primary')||'#f1f1f1',card=v('--color-bg-card')||'#222222',light=app.classList.contains('light');
+  return {colors,ink:light?text:card,paper:light?card:text};
+}
+function paintWx(scope){
+  const list=scope.querySelectorAll('canvas[data-wx]');if(!list.length)return;
+  const c=wxColors();
+  list.forEach(cv=>{
+    const img=wxBitmap(wxPose(cv.dataset.wx,c.colors),{size:Number(cv.dataset.wxSize)||54,px:2,oneBit:cv.dataset.wxStyle==='onebit',colors:c.colors,ink:c.ink,paper:c.paper});
+    cv.width=img.w;cv.height=img.h;
+    cv.getContext('2d')?.putImageData(new ImageData(img.data,img.w,img.h),0,0);
+  });
 }
 let wxForecast=[],wxFor=undefined,wxUnsub=null,wxNoForecast=false;
 function weatherChoices(states){
@@ -3258,6 +3282,7 @@ function renderWeather(){
   if(!st){
     card.innerHTML='<div class="activityHeader"><div class="activityTitle">Weather</div></div><div class="activityRows"><div class="activityRow">'+wxIcon('cloudy')+
       '<div><div class="activityRowName">Forecast</div><div class="activityRowMeta">'+(id?'Not available':'Set up in Settings')+'</div></div></div></div>';
+    paintWx(card);
     return;
   }
   const a=st.attributes||{};
@@ -3293,8 +3318,26 @@ function renderWeather(){
         (today?row(wxIcon(today.condition),'Today',deg(today.temperature)+' / '+deg(today.templow)):'')+
         (tomorrow?row(wxIcon(tomorrow.condition),'Tomorrow',deg(tomorrow.temperature)+' / '+deg(tomorrow.templow)):'')+
       '</div></div>';
+  paintWx(card);
 }
 renderWeather();
+
+/* Weather style picker: each choice previews four icons in its own style */
+const wxStyleChoice=$('wxStyleChoice');
+function renderWxStyleChoice(){
+  wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(btn=>{
+    btn.setAttribute('aria-pressed',String(btn.dataset.wxStyle===wxStyle));
+    btn.querySelector('.wxStylePreview').innerHTML=['sunny','partlycloudy','rainy','clear-night'].map(c=>wxIcon(c,false,false,btn.dataset.wxStyle)).join('');
+  });
+  paintWx(wxStyleChoice);
+}
+wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(btn=>btn.addEventListener('click',()=>{
+  wxStyle=btn.dataset.wxStyle;
+  saveSetting('weatherStyle',wxStyle);
+  wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+  renderWeather();
+}));
+renderWxStyleChoice();
 
 /* TV mode */
 const tvNav=$('tvNav');
