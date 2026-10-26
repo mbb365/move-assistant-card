@@ -847,6 +847,8 @@ button,input{font:inherit}
 .themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}
 .themeBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
 .themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}
+.wxLayoutBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
+.wxLayoutBtn[aria-pressed="true"]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}
 
 
 
@@ -1476,7 +1478,7 @@ button,input{font:inherit}
   font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
 
 /* Strong */
-.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
+.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.wxLayoutBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
   font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}
 
 /* Body */
@@ -1905,17 +1907,37 @@ button,input{font:inherit}
 .wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}
 .wxIcon{position:relative;display:block;flex:0 0 auto;width:54px;height:54px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}
 /* Figma "Weather icon": Small 54 (forecast days, compact rows), Large 90; artwork fills the box, background per condition */
-.wxIcon>svg:only-child{display:block;width:100%;height:100%}
-.wxIcon.clear,.wxIcon.partly{background:var(--wx-clear)}
-.wxIcon.cloudy{background:var(--wx-cloudy)}
-.wxIcon.rain,.wxIcon.snow{background:var(--color-text-muted)}
-.wxIcon.night{background:var(--wx-night)}
+.wxIcon>svg,.wxLayer>svg{display:block;width:100%;height:100%}
+:is(.wxIcon,.wxLayer).clear,:is(.wxIcon,.wxLayer).partly{background:var(--wx-clear)}
+:is(.wxIcon,.wxLayer).cloudy{background:var(--wx-cloudy)}
+:is(.wxIcon,.wxLayer).rain,:is(.wxIcon,.wxLayer).snow{background:var(--color-text-muted)}
+:is(.wxIcon,.wxLayer).night{background:var(--wx-night)}
 .wxIcon .wxBright{fill:var(--wx-cloud-bright)}
 .wxIcon .wxCloudLight{fill:var(--wx-cloudy)}
 .wxIcon .wxAccent{fill:var(--color-accent-primary)}
 .wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}
 /* Bitmap and 1-bit styles: a canvas at 2 px per pixel, drawn by weather-art.js; the sky is in the pixels */
 .wxIcon>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+
+/* Weather motion, Smooth style (Bitmap and 1-bit move in weather-art.js). #app gets .wxMotion when motion is on
+   and the device doesn't ask for reduced motion. Timings match docs/weather-styles.md. */
+.wxIcon :is(.wxSunDisc,.wxMoonPath,.wxBright,.wxCloudLight,.wxDrop,.wxFlake,.wxTwinkle){transform-box:fill-box;transform-origin:center}
+#app.wxMotion .wxIcon .wxSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}
+#app.wxMotion .wxIcon .wxMoonPath{animation:wxBob 5.2s ease-in-out infinite}
+#app.wxMotion .wxIcon :is(.wxBright,.wxCloudLight){animation:wxDrift 6.4s ease-in-out infinite}
+#app.wxMotion .wxIcon .wxDrop{animation:wxFall .95s linear infinite}
+#app.wxMotion .wxIcon .wxFlake{animation:wxSnow 3.2s linear infinite}
+#app.wxMotion .wxIcon .wxTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}
+@keyframes wxBreathe{50%{transform:scale(1.03)}}
+@keyframes wxBob{50%{transform:translateY(-1px)}}
+@keyframes wxDrift{0%,100%{transform:translateX(-1.5px)}50%{transform:translateX(1.5px)}}
+@keyframes wxFall{0%{transform:translateY(-5px);opacity:0}18%,72%{opacity:1}100%{transform:translateY(9px);opacity:0}}
+@keyframes wxSnow{0%{transform:translate(0,-6px);opacity:0}20%,75%{opacity:1}100%{transform:translate(1.5px,8px);opacity:0}}
+@keyframes wxTwinkle{50%{opacity:.35}}
+/* a change of condition: the old picture fades out over the new one */
+.wxLayer{position:absolute;inset:0;display:block}
+.wxLayer.wxOut{animation:wxFadeOut .7s cubic-bezier(.3,0,1,1) forwards}
+@keyframes wxFadeOut{to{opacity:0}}
 
 /* Weather style picker (Settings → Appearance): one tile per style, each previewing four icons */
 #settingsView .toggleRow.wxStyleRow{flex-direction:column;align-items:stretch}
@@ -1929,6 +1951,38 @@ button,input{font:inherit}
 .wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}
 .wxPlace,.wxCondName{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}
 .wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
+
+/* Now and the day tiles open the bigger view */
+.wxNow[role="button"],.wxDayTile{cursor:pointer;border-radius:var(--r-tile)}
+:is(.wxNow,.wxDayTile,.wxStripDay):focus-visible{outline:2px solid var(--color-border-focus);outline-offset:2px}
+
+/* 12-hour sky strip on Home (Settings → Appearance → Weather layout → Sky strip): six day columns, the sky across them.
+   The sky sits in the gap between each day's name and its high and low. */
+.wxStrip{position:relative;flex:1;display:flex}
+.wxStripDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.wxStripDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);cursor:pointer}
+@media (hover:hover){.wxStripDay:hover{background:var(--color-state-hover)}}
+.wxStripGap{align-self:stretch;height:90px}
+.wxStripDay .wxTemps{display:grid;justify-items:center;gap:8px}
+.wxStripSky{position:absolute;left:0;top:calc(var(--inset) * 2 + var(--lh-tile-detail));width:100%;height:90px;border-radius:var(--r-inner);pointer-events:none;image-rendering:pixelated}
+.wxStripDay .wxDayName,.wxStripDay .wxHigh,.wxGraphDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
+.wxStripDay .wxLow{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);color:var(--muted)}
+
+/* The bigger view: Now on top, then the sky with the temperature over it; drag along it to move through the days */
+.wxBackdrop{z-index:170}
+.wxDialogCard{width:min(860px,100%);display:grid;gap:var(--inset)}
+.wxDialogHead{display:flex;align-items:center;justify-content:space-between;gap:var(--inset);padding-left:var(--inset)}
+.wxDialogHead .activityTitle{margin:0}
+.wxDialogClose{background:transparent}
+.wxGraph{display:grid;gap:8px;touch-action:pan-y;cursor:ew-resize;border-radius:var(--r-tile);user-select:none;-webkit-user-select:none}
+.wxGraph:focus{outline:none}
+.wxGraph:focus-visible{outline:2px solid var(--color-border-focus);outline-offset:4px}
+.wxGraphDays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));text-align:center;color:var(--muted)}
+.wxGraphSky{position:relative;height:200px;border-radius:var(--r-tile);overflow:hidden;background:var(--tile)}
+.wxGraphSky>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+.wxGraphLine{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.wxLineLabel{font-family:var(--font-tile);font-size:14px;font-weight:var(--w-semibold);text-anchor:middle;paint-order:stroke;stroke-width:3px;stroke-linejoin:round}
+@media(max-width:620px){.wxGraphSky{height:160px}.wxDialogNow{flex-wrap:wrap}}
 
 /* =========================================================
    Segment states (Figma "Segment", 2026-10-19): plain at rest,

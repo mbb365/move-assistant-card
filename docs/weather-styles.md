@@ -55,9 +55,18 @@ Night comes from `clear-night`, or from `sun.sun` being below the horizon for th
 - Brightness snaps to five levels before dithering, so each area gets one clean pattern instead of noise.
 - Sun, moon, cloud and lightning get an ink outline. Rain and sun rays are ink. Snow is ink by day and paper at night. Stars are paper.
 
-## Motion (on the canvas, not built yet)
+## Motion
 
-When the motion is built it has to keep these rules in every style. In Bitmap and 1-bit, parts move in whole pixels and idle loops step at 10 frames a second. `wxMorph()` and the `clock` and `idle` options of `wxBitmap()` are already there for it.
+Idle loops and condition changes are in the card. Settings → Appearance → **Weather motion** turns them off; it is saved as `settings.weatherMotion`.
+
+How it works:
+
+- **One clock:** `wxTick()` in `src/app.js` steps 10 times a second for idle loops, and every frame while an icon changes shape. It only paints the icons on screen, and stops when nothing moves or the card is suspended.
+- **Slots:** the Now icon and each forecast day are slots (`now`, `day0`–`day5`). A slot remembers what it last showed, so a new condition changes from that picture.
+- **Bitmap and 1-bit:** `wxMorph()` makes the change, and `wxBitmap()` draws it with `clock` and `idle`. Parts move in whole pixels, and fades dissolve.
+- **Smooth:** CSS animations on the Figma artwork's parts (`.wxSunDisc`, `.wxDrop`, `.wxFlake`, `.wxTwinkle`, the clouds), switched on by `#app.wxMotion`. A change fades the old picture out over the new one (`.wxLayer.wxOut`).
+
+The rules below hold in every style.
 
 - **Changing condition:** the timings are fractions of a 700 ms change.
 
@@ -75,8 +84,30 @@ When the motion is built it has to keep these rules in every style. In Bitmap an
   - Rain falls, 0.95 s.
   - Snow falls, 3.2 s.
   - Lightning flashes, 3.4 s.
-- **The card:**
-  - Tapping a day dims the others, shows that day in the top of the card, and rolls the numbers.
-  - On entrance the sky paints in from left to right.
-  - A new forecast paints across the old one.
-- **Reduced motion:** nothing travels and there are no idle loops. Changes dissolve in place.
+- **The sky:**
+  - The first time a sky shows, it paints in from left to right (900 ms). Each time the bigger view opens, its sky paints in again.
+  - A new forecast paints across the old one (700 ms).
+- **Reduced motion:** nothing travels and there are no idle loops. Changes dissolve in place, and so does a sky painting in.
+
+## The 12-hour sky
+
+The sky shows the next six days as twelve halves: day (06:00–18:00) and night (18:00–06:00). It's on Home only when someone chooses it, in Settings → Appearance → **Weather layout** → Sky strip (`settings.weatherLayout`: `tiles`, the default, or `strip`). It's always in the bigger view.
+
+- **Shape:** six columns, one per day. Time runs across each column from 06:00 to 06:00 the next day, so the left half is the day and the right half the night. Day and night meet along a wave that is highest at noon, half way at dusk and dawn, and lowest at midnight. A warm glow sits under the wave at dusk and dawn, fainter under cloud.
+- **Data:** the most detailed forecast there is wins.
+  - **Hourly:** the most common condition in each half, with rain and snow counting double.
+  - **Twice daily:** used when the service has no hourly forecast.
+  - **Daily:** the day's own forecast, used for both halves (sunny becomes clear at night).
+
+  The card asks for hourly and falls back to twice daily. Code: `wxTimeline()` and `wxAt()` in `src/app.js`.
+- **Drawing:** `wxStripBitmap()` (Bitmap and 1-bit, 2 px pixels) and `wxStripSmooth()` (vector shapes on a canvas, soft edges made of stacked bands) in `src/weather-art.js`. The marks are placed with a seed from the date, so a week always looks the same.
+
+### The bigger view
+
+Tapping Now opens it at the current hour. Tapping a day, as a tile or a strip column, opens it at that day's midday.
+
+- **Layout:** Now at the top, then the sky with the temperature drawn across it as a graph, with the week's high and low labelled. In Bitmap and 1-bit the line snaps to the 2 px grid.
+- **Scrubbing:** drag along the sky, or use the arrow keys (an hour), Page Up and Page Down (a day), and Home and End.
+- **What updates:** the top shows the weather at the cursor. The icon changes shape as you cross into rain or night, and the temperature, the condition and the day and time ("Thu 14:00") follow. On the current hour it shows the live reading and says "Now".
+- **Accessibility:** the sky is a slider, and its value text reads out the time, the condition and the temperature.
+- **Closing:** Esc, the close button or a tap outside closes it and returns focus to what opened it.

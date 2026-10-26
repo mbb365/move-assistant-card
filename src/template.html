@@ -202,6 +202,25 @@
 
         <div class="toggleRow">
           <div>
+            <strong>Weather layout</strong>
+            <div class="status">The next six days on Home, as tiles or as a 12-hour sky.</div>
+          </div>
+          <div class="themeChoice" id="wxLayoutChoice" role="group" aria-label="Weather layout">
+            <button class="wxLayoutBtn" type="button" aria-pressed="true" data-wx-layout="tiles">Day tiles</button>
+            <button class="wxLayoutBtn" type="button" aria-pressed="false" data-wx-layout="strip">Sky strip</button>
+          </div>
+        </div>
+
+        <div class="toggleRow">
+          <div>
+            <strong>Weather motion</strong>
+            <div class="status">The weather pictures move, and change shape when the weather changes.</div>
+          </div>
+          <button class="switch on" id="wxMotionToggle" aria-label="Toggle weather motion"></button>
+        </div>
+
+        <div class="toggleRow">
+          <div>
             <strong>Pixel trail</strong>
             <div class="status">Pointer-reactive pixels across the movement background.</div>
           </div>
@@ -277,6 +296,23 @@
   </div>
 </section>
 
+<!-- WEATHER: the bigger view, opened from the weather card -->
+<div class="confirmBackdrop wxBackdrop" id="wxDialog" aria-hidden="true">
+  <section class="confirmCard wxDialogCard" role="dialog" aria-modal="true" aria-labelledby="wxDialogTitle">
+    <div class="wxDialogHead">
+      <h2 class="activityTitle" id="wxDialogTitle">Weather</h2>
+      <button class="back wxDialogClose" id="wxDialogClose" type="button" aria-label="Close" data-icon="close"></button>
+    </div>
+    <div class="wxNow wxDialogNow" id="wxDialogNow"></div>
+    <div class="wxGraph" id="wxGraph" tabindex="0" role="slider" aria-label="Time in the forecast" aria-valuemin="0" aria-valuemax="143" aria-valuenow="0">
+      <div class="wxGraphDays" id="wxGraphDays" aria-hidden="true"></div>
+      <div class="wxGraphSky" id="wxGraphWrap">
+        <canvas data-wx-strip="dialog" aria-hidden="true"></canvas>
+        <svg class="wxGraphLine" id="wxGraphLine" aria-hidden="true"></svg>
+      </div>
+    </div>
+  </section>
+</div>
 
 <div class="confirmBackdrop checkinBackdrop" id="checkinModal" aria-hidden="true">
   <section class="confirmCard checkinCard" role="dialog" aria-modal="true" aria-labelledby="checkinTitle">

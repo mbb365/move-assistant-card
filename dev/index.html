@@ -38,6 +38,21 @@ const fakeForecast = () => {
   const days = [["sunny", 26, 15], ["cloudy", 22, 10], ["rainy", 19, 8], ["partlycloudy", 20, 13], ["sunny", 21, 17], ["partlycloudy", 21, 16], ["snowy", 3, -2]];
   return days.map(([condition, temperature, templow], i) => ({ datetime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + i, 12).toISOString(), condition, temperature, templow }));
 };
+// Six days of fake hourly forecast from this hour, for the 12-hour sky and the bigger view
+const fakeHourly = () => {
+  const now = new Date(), start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours());
+  const days = fakeForecast();
+  const nights = ["clear-night", "cloudy", "rainy", "clear-night", "partlycloudy", "rainy", "snowy"];
+  return [...Array(144)].map((_, i) => {
+    const t = new Date(+start + i * 3600e3), h = t.getHours();
+    const di = Math.round((new Date(t.getFullYear(), t.getMonth(), t.getDate()) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
+    const day = days[Math.min(di, days.length - 1)], night = h < 6 || h >= 18;
+    let condition = night ? nights[Math.min(h < 6 ? Math.max(0, di - 1) : di, nights.length - 1)] : day.condition;
+    if (di === 3 && h >= 14 && h <= 16) condition = "rainy"; // an afternoon shower
+    const temperature = Math.round((day.templow + (day.temperature - day.templow) * (0.5 - 0.5 * Math.cos(Math.PI * Math.max(0, Math.min(1, (h - 5) / 10))) * (h > 15 ? Math.max(0, 1 - (h - 15) / 14) : 1))) * 10) / 10;
+    return { datetime: t.toISOString(), condition, temperature };
+  });
+};
 const params = new URLSearchParams(location.search);
 const testMode = params.get("test") === "1";
 if (testMode) {
@@ -85,7 +100,11 @@ const hass = {
   callApi: async (method, path, data) => { console.log("api", method, path, data); window.__api = { method, path, data }; return {}; },
   connection: {
     subscribeMessage: async (cb, msg) => {
-      if (msg?.type === "weather/subscribe_forecast") { setTimeout(() => cb({ type: "daily", forecast: fakeForecast() }), 150); return () => {}; }
+      if (msg?.type === "weather/subscribe_forecast") {
+        if (msg.forecast_type === "hourly") { setTimeout(() => cb({ type: "hourly", forecast: fakeHourly() }), 250); return () => {}; }
+        if (msg.forecast_type !== "daily") throw new Error("forecast type not supported");
+        setTimeout(() => cb({ type: "daily", forecast: fakeForecast() }), 150); return () => {};
+      }
       listeners.push(cb); return () => {};
     },
   },

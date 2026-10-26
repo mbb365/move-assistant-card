@@ -1,6 +1,6 @@
 // Move Assistant app logic, ported from the v63 HTML prototype.
 // Runs inside the card's shadow root; `bridge` connects it to Home Assistant.
-import {wxKey,wxPose,wxBitmap} from './weather-art.js';
+import {wxKey,wxPose,wxMorph,wxBitmap,wxStripBitmap,wxStripSmooth} from './weather-art.js';
 
 export function mountMoveAssistant(root, bridge){
 const $=id=>root.getElementById(id);
@@ -689,6 +689,7 @@ const ICONS={
   move:'<path d="M7 17L17 7"/><path d="M7 7H17V17"/>',
   check:'<path d="M20 6L9 17L4 12"/>',
   back:'<path d="M15 18L9 12L15 6"/>',
+  close:'<path d="M18 6L6 18"/><path d="M6 6L18 18"/>',
   add:'<path d="M5 12H19"/><path d="M12 5V19"/>',
   play:'<path d="M8 5.5V18.5L18.5 12L8 5.5Z"/>',
   pause:'<path d="M9 6V18"/><path d="M15 6V18"/>'
@@ -3196,18 +3197,19 @@ const WX_MOON={
 };
 let wxGrad=0;
 const wxCloud=(d,cls)=>'<path class="'+cls+'" d="'+d+'"/>';
-// Figma's 4-point star: inner radius 0.38
-const wxStar=(x,y,r,o)=>{const k=r*.2687;return '<path fill="#fff"'+(o<1?' opacity="'+o+'"':'')+' d="M'+x+' '+(y-r)+'L'+(x+k)+' '+(y-k)+'L'+(x+r)+' '+y+'L'+(x+k)+' '+(y+k)+'L'+x+' '+(y+r)+'L'+(x-k)+' '+(y+k)+'L'+(x-r)+' '+y+'L'+(x-k)+' '+(y-k)+'Z"/>'};
-const wxMoon=([d,y1,y2],g)=>'<path d="'+d+'" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="0" y1="'+y1+'" x2="0" y2="'+y2+'" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>';
-const wxSun=(g,L)=>L?'<circle cx="45" cy="45" r="33.26" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>'
-  :'<circle cx="23" cy="23" r="17" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>';
-const wxDrops=L=>(L?['29.35','43.04','56.74'].map(x=>'<rect class="wxAccent" x="'+x+'" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 '+x+' 60.65)"/>')
-  :[19,26,33].map(x=>'<rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 '+x+' 38)"/>')).join('');
+// Figma's 4-point star: inner radius 0.38. Classes and delays on the parts drive the Smooth idle loops (styles.css, .wxMotion).
+const wxDelay=(x,period)=>' style="animation-delay:-'+Math.round(x*137%period)+'ms"';
+const wxStar=(x,y,r,o)=>{const k=r*.2687;return '<path class="wxTwinkle" fill="#fff"'+(o<1?' opacity="'+o+'"':'')+wxDelay(x,2400)+' d="M'+x+' '+(y-r)+'L'+(x+k)+' '+(y-k)+'L'+(x+r)+' '+y+'L'+(x+k)+' '+(y+k)+'L'+x+' '+(y+r)+'L'+(x-k)+' '+(y+k)+'L'+(x-r)+' '+y+'L'+(x-k)+' '+(y-k)+'Z"/>'};
+const wxMoon=([d,y1,y2],g)=>'<path class="wxMoonPath" d="'+d+'" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="0" y1="'+y1+'" x2="0" y2="'+y2+'" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>';
+const wxSun=(g,L)=>L?'<circle class="wxSunDisc" cx="45" cy="45" r="33.26" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>'
+  :'<circle class="wxSunDisc" cx="23" cy="23" r="17" fill="url(#'+g+')"/><defs><linearGradient id="'+g+'" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>';
+const wxDrops=L=>(L?['29.35','43.04','56.74'].map((x,i)=>'<g class="wxDrop" style="animation-delay:-'+i*317+'ms"><rect class="wxAccent" x="'+x+'" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 '+x+' 60.65)"/></g>')
+  :[19,26,33].map((x,i)=>'<g class="wxDrop" style="animation-delay:-'+i*317+'ms"><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 '+x+' 38)"/></g>')).join('');
 const wxFlakes=L=>(L?[[33.67,67.67],[47.67,64.67],[61.67,67.67],[40.67,77.67],[54.67,77.67]]:[[21.2,42.2],[29.2,40.2],[37.2,42.2],[25.2,48.2],[33.2,48.2]])
-  .map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="'+(L?3.67:2.2)+'" fill="#fff"/>').join('');
+  .map(([x,y],i)=>'<circle class="wxFlake" style="animation-delay:-'+i*640+'ms" cx="'+x+'" cy="'+y+'" r="'+(L?3.67:2.2)+'" fill="#fff"/>').join('');
 function wxArt(k,night,L,g){
   if(k==='clear')return night?wxMoon(L?WX_MOON.l:WX_MOON.s,g)+(L?wxStar(70,20,5.83,1)+wxStar(78.33,41.67,3.75,.8)+wxStar(60,71.67,3.33,.6):wxStar(42,12,3.5,1)+wxStar(47,25,2.25,.8)+wxStar(36,43,2,.6)):wxSun(g,L);
-  if(k==='partly')return (night?wxMoon(L?WX_MOON.lp:WX_MOON.sp,g):(L?'<circle cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>':'<circle cx="18" cy="17" r="12" fill="#FFE100"/>'))
+  if(k==='partly')return (night?wxMoon(L?WX_MOON.lp:WX_MOON.sp,g):(L?'<circle class="wxSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>':'<circle class="wxSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>'))
     +wxCloud(L?WX_CLOUD.lp:WX_CLOUD.sp,night?'wxCloudLight':'wxBright')+(night?(L?wxStar(73.33,16.67,4.17,.9):wxStar(44,10,2.5,.9)):'');
   if(k==='cloudy')return wxCloud(L?WX_CLOUD.lc:WX_CLOUD.s,night?'wxCloudLight':'wxBright')+(night?(L?wxStar(15,15,3.75,.8)+wxStar(76.67,13.33,2.92,.6):wxStar(9,9,2.25,.8)+wxStar(46,8,1.75,.6)):'');
   return wxCloud(L?WX_CLOUD.lr:WX_CLOUD.s,'wxCloudLight')+(k==='rain'?wxDrops(L):wxFlakes(L));
@@ -3216,11 +3218,30 @@ function wxArt(k,night,L,g){
 const isNightNow=()=>lastStates?.['sun.sun']?.state==='below_horizon';
 // Weather style, chosen in Settings → Appearance: bitmap (default), onebit or smooth (the Figma artwork above)
 let wxStyle=settings().weatherStyle||'bitmap';
-function wxIcon(condition,large,now,style=wxStyle){
-  let k=wxKind(condition);const night=k==='night'||(!!now&&isNightNow());if(k==='night')k='clear';
-  const n=large?90:54;
-  if(style!=='smooth')return '<span class="wxIcon pixels'+(large?' large':'')+'" aria-hidden="true"><canvas data-wx="'+wxKey(condition,night)+'" data-wx-style="'+style+'" data-wx-size="'+n+'"></canvas></span>';
-  return '<span class="wxIcon '+k+(night?' night':'')+(large?' large':'')+'" aria-hidden="true"><svg viewBox="0 0 '+n+' '+n+'">'+wxArt(k,night,large,'wxg'+(++wxGrad))+'</svg></span>';
+// Weather layout: the six days as tiles (default) or as the 12-hour sky strip
+let wxLayout=settings().weatherLayout==='strip'?'strip':'tiles';
+// Weather motion (Settings → Appearance): idle loops and changes of shape. With reduced motion there are no loops
+// and a change dissolves in place.
+let wxMotion=settings().weatherMotion!==false;
+const wxMoving=()=>wxMotion&&!reduceMotion();
+// Icons that stay put between renders (Now, each forecast day) remember what they showed, so a new condition changes from it
+const wxSlots=new Map(),WX_CHANGE=700;
+const wxSmooth=key=>{const [k,t]=key.split('/');return {k:k==='fog'?'cloudy':k==='storm'?'rain':k,night:t==='night'}};
+// night: whether it is night, when the caller knows (the bigger view); otherwise "now" asks the sun
+function wxIcon(condition,large,now,style=wxStyle,slot,isNight){
+  let k=wxKind(condition);const night=k==='night'||(isNight!=null?!!isNight:(!!now&&isNightNow()));if(k==='night')k='clear';
+  const n=large?90:54,key=wxKey(condition,night),t=performance.now();
+  let s=slot?wxSlots.get(slot):null;
+  if(slot&&!s)wxSlots.set(slot,s={key,t0:-1e9});
+  else if(s&&s.key!==key){s.fromKey=s.key;s.from=s.last||null;s.key=key;s.t0=t}
+  if(style!=='smooth')return '<span class="wxIcon pixels'+(large?' large':'')+'" aria-hidden="true"><canvas data-wx="'+key+'"'+(slot?' data-wx-slot="'+slot+'"':'')+' data-wx-style="'+style+'" data-wx-size="'+n+'"></canvas></span>';
+  // Smooth changes by fading the old picture out over the new one
+  let old='';
+  if(s&&t-s.t0<WX_CHANGE&&(wxMoving()||reduceMotion())){
+    const o=wxSmooth(s.fromKey);
+    old='<span class="wxLayer wxOut '+o.k+(o.night?' night':'')+'" style="animation-delay:'+Math.round(s.t0-t)+'ms"><svg viewBox="0 0 '+n+' '+n+'">'+wxArt(o.k,o.night,large,'wxg'+(++wxGrad))+'</svg></span>';
+  }
+  return '<span class="wxIcon '+k+(night?' night':'')+(large?' large':'')+'" aria-hidden="true"><svg viewBox="0 0 '+n+' '+n+'">'+wxArt(k,night,large,'wxg'+(++wxGrad))+'</svg>'+old+'</span>';
 }
 // Bitmap and 1-bit icons are canvases; their pixels are drawn once the markup is in place (and again when the theme changes)
 function wxColors(){
@@ -3231,16 +3252,132 @@ function wxColors(){
   const text=v('--color-text-primary')||'#f1f1f1',card=v('--color-bg-card')||'#222222',light=app.classList.contains('light');
   return {colors,ink:light?text:card,paper:light?card:text};
 }
-function paintWx(scope){
+function paintWx(scope,t=performance.now()){
   const list=scope.querySelectorAll('canvas[data-wx]');if(!list.length)return;
-  const c=wxColors();
+  const c=wxColors(),moving=wxMoving(),reduce=reduceMotion();
   list.forEach(cv=>{
-    const img=wxBitmap(wxPose(cv.dataset.wx,c.colors),{size:Number(cv.dataset.wxSize)||54,px:2,oneBit:cv.dataset.wxStyle==='onebit',colors:c.colors,ink:c.ink,paper:c.paper});
-    cv.width=img.w;cv.height=img.h;
+    const key=cv.dataset.wx,s=cv.dataset.wxSlot?wxSlots.get(cv.dataset.wxSlot):null;
+    let pose=wxPose(key,c.colors);
+    if(s&&s.key===key){
+      const p=(t-s.t0)/WX_CHANGE;
+      if(p<1&&(moving||reduce))pose=wxMorph(s.from||wxPose(s.fromKey,c.colors),pose,Math.max(0,p),c.colors,reduce);
+      s.last=pose;
+    }
+    const img=wxBitmap(pose,{size:Number(cv.dataset.wxSize)||54,px:2,oneBit:cv.dataset.wxStyle==='onebit',colors:c.colors,ink:c.ink,paper:c.paper,clock:t,idle:moving});
+    if(cv.width!==img.w)cv.width=img.w;
+    if(cv.height!==img.h)cv.height=img.h;
     cv.getContext('2d')?.putImageData(new ImageData(img.data,img.w,img.h),0,0);
   });
 }
+// One clock for the weather pictures: 10 steps a second for idle loops, every frame while something changes or
+// the Smooth sky drifts. It paints only what is on screen and stops when nothing moves.
+let wxRAF=null,wxStep=-1;
+function wxTick(t){
+  wxRAF=null;
+  if(!alive)return;
+  const moving=wxMoving(),step=Math.floor(t/100);
+  const changing=[...wxSlots.values()].some(s=>t-s.t0<WX_CHANGE),stripping=[...wxStrips.values()].some(s=>t-s.t0<s.dur);
+  const homeOn=views.home.classList.contains('active'),dialogOn=wxDialog.classList.contains('open');
+  const smoothSky=moving&&wxStyle==='smooth'&&(dialogOn||(homeOn&&wxLayout==='strip'));
+  if(!document.hidden&&(changing||stripping||smoothSky||(moving&&step!==wxStep))){
+    wxStep=step;
+    if(homeOn){paintWx($('weatherCard'),t);paintStrips($('weatherCard'),t)}
+    if(views.settings.classList.contains('active'))paintWx(wxStyleChoice,t);
+    if(dialogOn){paintWx(wxDialog,t);paintStrips(wxDialog,t)}
+  }
+  if(moving||changing||stripping)wxRAF=requestAnimationFrame(wxTick);
+}
+function wxWake(){
+  $('app').classList.toggle('wxMotion',wxMoving());
+  if(!wxRAF&&alive)wxRAF=requestAnimationFrame(wxTick);
+}
 let wxForecast=[],wxFor=undefined,wxUnsub=null,wxNoForecast=false;
+
+/* The 12-hour sky (Weather layout → Sky strip, and the bigger view). Six days as twelve halves: day 06–18, night 18–06.
+   Conditions come from the most detailed forecast there is: hourly (the most common condition in each half, rain and
+   snow counting double), then twice daily, then the day's own forecast. */
+const HOUR=36e5,WX_WET=new Set(['rainy','pouring','lightning','lightning-rainy','hail','snowy','snowy-rainy']);
+let wxDetail=[],wxDetailType=null,wxDetailUnsub=null;
+function wxTimeline(){
+  const n=new Date(),at=(i,h)=>new Date(n.getFullYear(),n.getMonth(),n.getDate()+i,h);
+  const hours=wxDetailType==='hourly'?wxDetail.map(h=>({t:+new Date(h.datetime),c:h.condition,temp:Number(h.temperature)})).filter(h=>Number.isFinite(h.t)).sort((a,b)=>a.t-b.t):[];
+  const twice=wxDetailType==='twice_daily'?wxDetail:[];
+  const days=[...Array(6)].map((_,i)=>{
+    const ds=at(i,6),ns=at(i,18),ne=at(i+1,6),f=wxForecast.find(x=>dayKey(new Date(x.datetime))===dayKey(ds));
+    const half=(a,b,night)=>{
+      const inside=hours.filter(h=>h.t>=+a&&h.t<+b);
+      if(inside.length){const count={};inside.forEach(h=>{count[h.c]=(count[h.c]||0)+(WX_WET.has(h.c)?2:1)});return Object.entries(count).sort((p,q)=>q[1]-p[1])[0][0]}
+      const tw=twice.find(x=>{const t=+new Date(x.datetime);return t>=+a-3*HOUR&&t<+b&&(x.is_daytime==null||!!x.is_daytime===!night)});
+      if(tw)return tw.condition;
+      const c=f?.condition||'cloudy';return night&&c==='sunny'?'clear-night':c;
+    };
+    return {start:+ds,end:+ne,day:half(ds,ns,false),night:half(ns,ne,true),hi:Number(f?.temperature),lo:Number(f?.templow)};
+  });
+  return {days,hours,start:days[0].start,end:days[5].end};
+}
+// Where a moment sits along the strip (0–1 across the six columns), and back
+const wxPos=(tl,t)=>{const i=tl.days.findIndex(d=>t<d.end);if(i<0)return 1;const d=tl.days[i];return Math.max(0,(i+(t-d.start)/(d.end-d.start))/6)};
+const wxTime=(tl,f)=>{const x=Math.max(0,Math.min(.99999,f))*6,i=Math.floor(x),d=tl.days[i];return d.start+(x-i)*(d.end-d.start)};
+// The weather at a moment: the hourly forecast where there is one, otherwise the half it falls in,
+// with the temperature eased between the day's low (05:00) and high (15:00)
+function wxAt(tl,t){
+  const i=Math.max(0,tl.days.findIndex(d=>t<d.end)),d=tl.days[i],night=(t-d.start)/(d.end-d.start)>=.5;
+  let cond=night?d.night:d.day,temp=NaN;
+  const hs=tl.hours;
+  if(hs.length&&t>=hs[0].t-HOUR&&t<=hs[hs.length-1].t+HOUR){
+    let k=hs.findIndex(h=>h.t>t);if(k<0)k=hs.length;
+    const a=hs[Math.max(0,k-1)],b=hs[Math.min(hs.length-1,k)];
+    cond=a.c||cond;
+    temp=b.t>a.t?a.temp+(b.temp-a.temp)*Math.max(0,Math.min(1,(t-a.t)/(b.t-a.t))):a.temp;
+  }
+  if(!Number.isFinite(temp)){
+    const pts=[];
+    tl.days.forEach(x=>{if(Number.isFinite(x.lo))pts.push([x.start-HOUR,x.lo]);if(Number.isFinite(x.hi))pts.push([x.start+9*HOUR,x.hi])});
+    if(pts.length){
+      temp=t<=pts[0][0]?pts[0][1]:pts[pts.length-1][1];
+      for(let k=1;k<pts.length;k++)if(t<=pts[k][0]&&t>pts[k-1][0]){const [t0,v0]=pts[k-1],[t1,v1]=pts[k];temp=v0+(v1-v0)*(1-Math.cos(Math.PI*(t-t0)/(t1-t0)))/2;break}
+    }
+  }
+  return {cond:night&&cond==='sunny'?'clear-night':cond,temp,night,day:d};
+}
+// Day names in the strip's narrow columns: "Today", then short weekdays ("Tomorrow" doesn't fit on phones)
+const wxDayShort=t=>dayKey(new Date(t))===dayKey(new Date())?'Today':new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(t));
+// Each sky strip remembers its last week, so a new forecast paints over it; the first time it shows, it paints in from the left
+const wxStrips=new Map(),WX_ENTER=900,WX_UPDATE=700;
+let wxObserved=null;
+const wxStripObserver=typeof ResizeObserver==='function'?new ResizeObserver(entries=>entries.forEach(e=>{
+  paintStrips(e.target.parentElement);
+  if(e.target.closest('#wxDialog'))drawWxLine();
+})):null;
+function paintStrips(scope,t=performance.now()){
+  const list=scope.querySelectorAll('canvas[data-wx-strip]');if(!list.length)return;
+  const tl=wxTimeline(),segs=tl.days.flatMap(d=>[{cond:d.day,night:false},{cond:d.night,night:true}]),sig=segs.map(s=>s.cond).join();
+  const c=wxColors(),moving=wxMoving(),reduce=reduceMotion(),seed=Number(dayKey(new Date(tl.start)).replace(/\D/g,''))%9973;
+  let animating=false;
+  list.forEach(cv=>{
+    const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+    const name=cv.dataset.wxStrip;let s=wxStrips.get(name);
+    if(!s)wxStrips.set(name,s={sig,segs,prev:null,t0:t,dur:WX_ENTER});
+    else if(s.sig!==sig){s.prev=s.segs;s.sig=sig;s.segs=segs;s.t0=t;s.dur=WX_UPDATE}
+    const p=moving||reduce?Math.min(1,Math.max(0,(t-s.t0)/s.dur)):1;
+    if(p<1)animating=true;
+    const o={width:w,height:h,colors:c.colors,clock:t,ambient:moving,seed,reveal:reduce?p:1-Math.pow(1-p,3),prev:p<1?s.prev:null,reduce};
+    if(wxStyle==='smooth'){
+      const dpr=Math.min(2,window.devicePixelRatio||1),pw=Math.round(w*dpr),ph=Math.round(h*dpr);
+      if(cv.width!==pw)cv.width=pw;
+      if(cv.height!==ph)cv.height=ph;
+      const ctx=cv.getContext('2d');if(!ctx)return;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      wxStripSmooth(ctx,segs,o);
+    }else{
+      const img=wxStripBitmap(segs,{...o,px:2,oneBit:wxStyle==='onebit',ink:c.ink,paper:c.paper});
+      if(cv.width!==img.w)cv.width=img.w;
+      if(cv.height!==img.h)cv.height=img.h;
+      cv.getContext('2d')?.putImageData(new ImageData(img.data,img.w,img.h),0,0);
+    }
+  });
+  if(animating)wxWake();
+}
 function weatherChoices(states){
   return Object.values(states).filter(st=>st.entity_id.startsWith('weather.'))
     .sort((a,b)=>(a.attributes.friendly_name||a.entity_id).localeCompare(b.attributes.friendly_name||b.entity_id));
@@ -3257,9 +3394,9 @@ function renderWeatherPicker(states){
 function subscribeForecast(){
   const id=sensorEntities.weather||null;
   if(id===wxFor)return;
-  wxFor=id;wxForecast=[];wxNoForecast=false;
-  const old=wxUnsub;wxUnsub=null;
-  old?.then(u=>typeof u==='function'&&u()).catch(()=>{});
+  wxFor=id;wxForecast=[];wxNoForecast=false;wxDetail=[];wxDetailType=null;
+  [wxUnsub,wxDetailUnsub].forEach(old=>old?.then(u=>typeof u==='function'&&u()).catch(()=>{}));
+  wxUnsub=null;wxDetailUnsub=null;
   if(!id||!bridge.subscribe){renderWeather();return}
   wxUnsub=bridge.subscribe({type:'weather/subscribe_forecast',forecast_type:'daily',entity_id:id},msg=>{
     if(wxFor!==id)return;
@@ -3267,6 +3404,17 @@ function subscribeForecast(){
     renderWeather();
   });
   wxUnsub.catch(()=>{if(wxFor===id){wxNoForecast=true;renderWeather()}});
+  // the 12-hour sky and the bigger view want hours; services without them may still have day and night
+  const detail=type=>{
+    const u=bridge.subscribe({type:'weather/subscribe_forecast',forecast_type:type,entity_id:id},msg=>{
+      if(wxFor!==id)return;
+      wxDetail=Array.isArray(msg?.forecast)?msg.forecast:[];wxDetailType=type;
+      renderWeather();
+    });
+    u.catch(()=>{if(wxFor===id&&type==='hourly')wxDetailUnsub=detail('twice_daily')});
+    return u;
+  };
+  wxDetailUnsub=detail('hourly');
   renderWeather();
 }
 $('weatherEntity').addEventListener('change',()=>{
@@ -3298,21 +3446,139 @@ function renderWeather(){
   const range=today?'H '+deg(today.temperature)+'&ensp; L '+deg(today.templow):'';
   const dayName=d=>{const k=dayKey(new Date(d.datetime));return k===todayKey?'Today':k===tomorrowKey?'Tomorrow':new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(d.datetime))};
   const temp=Number.isFinite(Number(a.temperature))?Math.round(Number(a.temperature)):'—';
-  const row=(icon,name,value)=>'<div class="activityRow">'+icon+'<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+value+'</div></div></div>';
+  // tapping Now or a day opens the bigger view, at now or at that day's midday
+  const dayIndex=d=>{const a=new Date(d.datetime);return Math.round((new Date(a.getFullYear(),a.getMonth(),a.getDate())-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5)};
+  const lower=c=>(WX_NAMES[c]||c||'').toLowerCase();
+  const dayTile=(d,i)=>'<div class="activityRow wxDayTile" role="button" tabindex="0" data-wx-day="'+dayIndex(d)+'" aria-label="'+esc(dayName(d)+': '+lower(d.condition)+', '+deg(d.temperature)+' / '+deg(d.templow)+'. Open the forecast')+'">'+
+    wxIcon(d.condition,false,false,wxStyle,'day'+i)+'<div><div class="activityRowName">'+esc(dayName(d))+'</div><div class="activityRowMeta">'+deg(d.temperature)+' / '+deg(d.templow)+'</div></div></div>';
+  // Sky strip: six day columns, the 12-hour sky running across them
+  const strip=()=>{
+    const tl=wxTimeline();
+    return '<div class="wxStrip"><div class="wxStripDays">'+tl.days.map((d,i)=>{
+      const long=new Intl.DateTimeFormat(undefined,{weekday:'long'}).format(new Date(d.start));
+      const label=long+': '+lower(d.day)+(lower(d.day)===lower(d.night)?' all day and night':', then '+lower(d.night)+' overnight')+(Number.isFinite(d.hi)?'. High '+deg(d.hi):'')+(Number.isFinite(d.lo)?', low '+deg(d.lo):'')+'. Open the forecast';
+      return '<div class="wxStripDay" role="button" tabindex="0" data-wx-day="'+i+'" aria-label="'+esc(label)+'"><span class="wxDayName">'+esc(wxDayShort(d.start))+'</span><span class="wxStripGap" aria-hidden="true"></span>'+
+        '<span class="wxTemps" aria-hidden="true"><span class="wxHigh">'+deg(d.hi)+'</span><span class="wxLow">'+deg(d.lo)+'</span></span></div>';
+    }).join('')+'</div><canvas class="wxStripSky" data-wx-strip="inline" aria-hidden="true"></canvas></div>';
+  };
   card.innerHTML=
     '<div class="wxWide">'+
-      '<div class="wxNow">'+
-        '<div class="wxCurrent">'+wxIcon(st.state,true,true)+
+      '<div class="wxNow" role="button" tabindex="0" data-wx-open="now" aria-label="'+esc('Now in '+place+': '+temp+'°, '+lower(st.state)+'. Open the forecast')+'">'+
+        '<div class="wxCurrent">'+wxIcon(st.state,true,true,wxStyle,'now')+
           '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">'+esc(String(temp))+'</span><span class="wxUnit">'+esc(unit)+'</span></div>'+
           '<div class="wxPlace">'+esc(place)+'</div></div></div>'+
         '<div class="wxCondition"><div class="wxCondName">'+esc(condition)+'</div>'+(range?'<div class="wxRange">'+range+'</div>':'')+'</div>'+
       '</div>'+
-      // the days are tiles under Now, like every card of readings (Figma "Weather in halves · proposal")
-      (upcoming.length?'<div class="activityRows wxDays">'+upcoming.map(d=>row(wxIcon(d.condition),dayName(d),deg(d.temperature)+' / '+deg(d.templow))).join('')+'</div>'
-        :'<div class="wxNoDays">'+(wxNoForecast?'This weather service has no daily forecast':'Loading the forecast…')+'</div>')+
+      // the days are tiles under Now, like every card of readings (Figma "Weather in halves · proposal"), or the sky strip
+      (!upcoming.length?'<div class="wxNoDays">'+(wxNoForecast?'This weather service has no daily forecast':'Loading the forecast…')+'</div>'
+        :wxLayout==='strip'?strip()
+        :'<div class="activityRows wxDays">'+upcoming.map(dayTile).join('')+'</div>')+
     '</div>';
   paintWx(card);
+  const sky=card.querySelector('canvas[data-wx-strip]');
+  if(wxObserved&&wxObserved!==sky)wxStripObserver?.unobserve(wxObserved);
+  wxObserved=sky;
+  if(sky){wxStripObserver?.observe(sky);paintStrips(card)}
+  wxWake();
+  renderWxDialog();
 }
+const wxCard=$('weatherCard');
+const wxOpenFrom=el=>{
+  const day=el.closest('[data-wx-day]');
+  if(day){const n=new Date();openWxDialog(+new Date(n.getFullYear(),n.getMonth(),n.getDate()+Number(day.dataset.wxDay),12),day);return}
+  const now=el.closest('[data-wx-open]');
+  if(now)openWxDialog(Date.now(),now);
+};
+wxCard.addEventListener('click',e=>wxOpenFrom(e.target));
+wxCard.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-wx-day],[data-wx-open]')){e.preventDefault();wxOpenFrom(e.target)}});
+
+/* The bigger view: Now at the top, the sky across six days with the temperature drawn over it. Drag along it (or use
+   the arrow keys) to see the weather at any hour; the picture changes shape as you cross into rain or night. */
+const wxDialog=$('wxDialog'),wxGraph=$('wxGraph'),wxGraphWrap=$('wxGraphWrap');
+let wxCursor=Date.now(),wxOpener=null,wxScrubbing=false,wxLineY=null;
+function openWxDialog(t,opener){
+  const tl=wxTimeline();
+  wxOpener=opener||null;
+  wxCursor=Math.max(tl.start,Math.min(tl.end-HOUR,t));
+  wxStrips.delete('dialog');wxSlots.delete('scrub');
+  wxDialog.classList.add('open');wxDialog.setAttribute('aria-hidden','false');
+  renderWxDialog();
+  wxStripObserver?.observe(wxDialog.querySelector('canvas[data-wx-strip]'));
+  wxGraph.focus({preventScroll:true});
+  wxWake();
+}
+function closeWxDialog(){
+  wxDialog.classList.remove('open');wxDialog.setAttribute('aria-hidden','true');
+  wxStripObserver?.unobserve(wxDialog.querySelector('canvas[data-wx-strip]'));
+  wxOpener?.focus?.({preventScroll:true});wxOpener=null;
+}
+function renderWxDialog(){
+  if(!wxDialog.classList.contains('open'))return;
+  const tl=wxTimeline();
+  $('wxGraphDays').innerHTML=tl.days.map(d=>'<span>'+esc(wxDayShort(d.start))+'</span>').join('');
+  drawWxLine(tl);
+  renderWxScrub(tl);
+  paintStrips(wxDialog);
+}
+// The top of the view: the weather at the cursor ("Now" while the cursor is on the current hour)
+function renderWxScrub(tl=wxTimeline()){
+  const w=wxAt(tl,wxCursor),st=lastStates?.[sensorEntities.weather],a=st?.attributes||{},unit=a.temperature_unit||'°';
+  const now=Math.abs(wxCursor-Date.now())<HOUR/2;
+  const cond=now&&st?st.state:w.cond;
+  const temp=now&&Number.isFinite(Number(a.temperature))?Math.round(Number(a.temperature)):Number.isFinite(w.temp)?Math.round(w.temp):'—';
+  const name=WX_NAMES[cond]||(cond?cond.charAt(0).toUpperCase()+cond.slice(1):'—');
+  const when=now?'Now':new Intl.DateTimeFormat(undefined,{weekday:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(Math.round(wxCursor/HOUR)*HOUR));
+  const d=w.day,range=(Number.isFinite(d.hi)?'H '+Math.round(d.hi)+'°':'')+(Number.isFinite(d.lo)?'&ensp; L '+Math.round(d.lo)+'°':'');
+  $('wxDialogNow').innerHTML=
+    '<div class="wxCurrent">'+wxIcon(cond,true,now,wxStyle,'scrub',now?undefined:w.night)+
+      '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">'+esc(String(temp))+'</span><span class="wxUnit">'+esc(unit)+'</span></div>'+
+      '<div class="wxPlace">'+esc(when)+'</div></div></div>'+
+    '<div class="wxCondition"><div class="wxCondName">'+esc(name)+'</div>'+(range?'<div class="wxRange">'+range+'</div>':'')+'</div>';
+  paintWx($('wxDialogNow'));
+  wxGraph.setAttribute('aria-valuenow',String(Math.round((wxCursor-tl.start)/HOUR)));
+  wxGraph.setAttribute('aria-valuetext',when+', '+name.toLowerCase()+', '+temp+'°');
+  moveWxCursor(tl);
+  wxWake();
+}
+// The temperature across the six days, hour by hour; in Bitmap and 1-bit it snaps to the 2 px grid
+function drawWxLine(tl=wxTimeline()){
+  const svg=$('wxGraphLine'),w=wxGraphWrap.clientWidth,h=wxGraphWrap.clientHeight;if(!w||!h)return;
+  const pts=[];
+  for(let t=tl.start;t<=tl.end;t+=HOUR){const v=wxAt(tl,t).temp;if(Number.isFinite(v))pts.push([wxPos(tl,t)*w,v])}
+  svg.setAttribute('viewBox','0 0 '+w+' '+h);
+  if(pts.length<2){svg.innerHTML='<g id="wxCursorMark"></g>';wxLineY=null;moveWxCursor(tl);return}
+  const vals=pts.map(p=>p[1]),lo=Math.min(...vals),hi=Math.max(...vals),span=Math.max(4,hi-lo);
+  const pixel=wxStyle!=='smooth',q=n=>pixel?Math.round(n/2)*2:Math.round(n*10)/10;
+  wxLineY=v=>h*.84-(v-lo)/span*h*.62;
+  const c=wxColors(),main=wxStyle==='onebit'?c.paper:'#ffffff',shade=wxStyle==='onebit'?c.ink:'rgba(0,0,0,.28)';
+  const d='M'+pts.map(p=>q(p[0])+' '+q(wxLineY(p[1]))).join(' L');
+  const label=(v,below)=>{const p=pts.find(x=>x[1]===v);return '<text class="wxLineLabel" x="'+q(Math.min(w-14,Math.max(14,p[0])))+'" y="'+q(wxLineY(v)+(below?18:-10))+'" fill="'+main+'" stroke="'+shade+'">'+Math.round(v)+'°</text>'};
+  svg.setAttribute('shape-rendering',pixel?'crispEdges':'auto');
+  svg.innerHTML='<path d="'+d+'" fill="none" stroke="'+shade+'" stroke-width="'+(pixel?4:5)+'" stroke-linejoin="round"/>'+
+    '<path d="'+d+'" fill="none" stroke="'+main+'" stroke-width="2" stroke-linejoin="round"/>'+label(hi,false)+label(lo,true)+'<g id="wxCursorMark"></g>';
+  moveWxCursor(tl);
+}
+function moveWxCursor(tl=wxTimeline()){
+  const g=$('wxGraphLine').querySelector('#wxCursorMark');if(!g)return;
+  const w=wxGraphWrap.clientWidth,h=wxGraphWrap.clientHeight,pixel=wxStyle!=='smooth',q=n=>pixel?Math.round(n/2)*2:n;
+  const x=q(wxPos(tl,wxCursor)*w),v=wxAt(tl,wxCursor).temp,c=wxColors(),main=wxStyle==='onebit'?c.paper:'#ffffff',shade=wxStyle==='onebit'?c.ink:'rgba(0,0,0,.28)';
+  const y=wxLineY&&Number.isFinite(v)?q(wxLineY(v)):null;
+  g.innerHTML='<rect x="'+(x-2)+'" y="0" width="4" height="'+h+'" fill="'+shade+'"/><rect x="'+(x-1)+'" y="0" width="2" height="'+h+'" fill="'+main+'"/>'+
+    (y==null?'':pixel?'<rect x="'+(x-5)+'" y="'+(y-5)+'" width="10" height="10" fill="'+main+'" stroke="'+shade+'" stroke-width="2"/>'
+      :'<circle cx="'+x+'" cy="'+y+'" r="6" fill="'+main+'" stroke="'+shade+'" stroke-width="2"/>');
+}
+const wxScrubAt=x=>{const r=wxGraphWrap.getBoundingClientRect();if(!r.width)return;wxCursor=wxTime(wxTimeline(),(x-r.left)/r.width);renderWxScrub()};
+wxGraph.addEventListener('pointerdown',e=>{if(e.button!==0)return;wxScrubbing=true;try{wxGraph.setPointerCapture(e.pointerId)}catch{}wxScrubAt(e.clientX)});
+wxGraph.addEventListener('pointermove',e=>{if(wxScrubbing)wxScrubAt(e.clientX)});
+['pointerup','pointercancel','lostpointercapture'].forEach(n=>wxGraph.addEventListener(n,()=>{wxScrubbing=false}));
+wxGraph.addEventListener('keydown',e=>{
+  const tl=wxTimeline(),step={ArrowLeft:-HOUR,ArrowRight:HOUR,ArrowDown:-HOUR,ArrowUp:HOUR,PageUp:-24*HOUR,PageDown:24*HOUR}[e.key];
+  if(step){e.preventDefault();wxCursor=Math.max(tl.start,Math.min(tl.end-HOUR,Math.round(wxCursor/HOUR)*HOUR+step));renderWxScrub(tl)}
+  else if(e.key==='Home'||e.key==='End'){e.preventDefault();wxCursor=e.key==='Home'?tl.start:tl.end-HOUR;renderWxScrub(tl)}
+});
+$('wxDialogClose').addEventListener('click',closeWxDialog);
+wxDialog.addEventListener('click',e=>{if(e.target===wxDialog)closeWxDialog()});
+wxDialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeWxDialog()}});
 renderWeather();
 
 /* Weather style picker: each choice previews four icons in its own style */
@@ -3331,6 +3597,27 @@ wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(btn=>btn.addEventListener(
   renderWeather();
 }));
 renderWxStyleChoice();
+const wxLayoutChoice=$('wxLayoutChoice');
+const syncWxLayout=()=>wxLayoutChoice.querySelectorAll('.wxLayoutBtn').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.wxLayout===wxLayout)));
+wxLayoutChoice.querySelectorAll('.wxLayoutBtn').forEach(btn=>btn.addEventListener('click',()=>{
+  wxLayout=btn.dataset.wxLayout;
+  saveSetting('weatherLayout',wxLayout);
+  wxStrips.delete('inline');
+  syncWxLayout();
+  renderWeather();
+}));
+syncWxLayout();
+const wxMotionToggle=$('wxMotionToggle');
+wxMotionToggle.classList.toggle('on',wxMotion);
+wxMotionToggle.addEventListener('click',()=>{
+  wxMotion=!wxMotion;
+  wxMotionToggle.classList.toggle('on',wxMotion);
+  saveSetting('weatherMotion',wxMotion);
+  wxWake();
+  paintWx(root);
+});
+window.matchMedia?.('(prefers-reduced-motion: reduce)').addEventListener?.('change',()=>{wxWake();paintWx(root)});
+wxWake();
 
 /* TV mode */
 const tvNav=$('tvNav');
@@ -3501,6 +3788,7 @@ return {
     alive=true;
     if(!trailRAF)trailRAF=requestAnimationFrame(drawTrail);
     if(!rippleRAF)rippleRAF=requestAnimationFrame(drawRipple);
+    wxWake();
     positionRubberIndicator(root.querySelector('.tab.active'),false);
   },
 };
