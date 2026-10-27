@@ -413,9 +413,10 @@
 #app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}
 #app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}
 /* the tiles: each its own item among the cards, so it can sit where the board has it; on a phone two to a row, as far
-   apart as the cards */
+   apart as the cards. Tiles side by side are one height (on the board placeCards gives them the same rows); a taller
+   light tile keeps its name at the top and its slider pinned to the bottom (Matt, 27 Oct) */
 #app.tfDash .tfDashTiles{display:contents}
-.tfDashTiles>:is(.tfAction,.tfDac){flex:none;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}
+.tfDashTiles>:is(.tfAction,.tfDac){flex:none;align-self:stretch;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}
 .tfDashTiles>.tfAction{justify-content:space-between}
 /* =========================================================
    The peg board (Matt, 27 Oct; edit mode drawn in Figma "Dashboard edit mode" for him to change): on a tablet and up

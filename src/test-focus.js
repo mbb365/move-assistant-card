@@ -1139,13 +1139,13 @@ export function mountTestFocus(root, { config, getHass }) {
   };
   const dashPrefs = () => ({ cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) });
   function saveDash(next) { prefs = { ...prefs, dash: next }; savePrefs(); }
-  // what's on the board: each card's key, its element and its width in pegs ('full' the whole width)
+  // what's on the board: each card's key, its element, its width in pegs ('full' the whole width) and whether it's a tile
   function boardItems() {
     const q = (sel) => grid.querySelector(sel);
     return [['title', q('.tfDashTitle'), 'full'], ['sums', q('.tfDashBarRow'), 'full'], ['wx', dashBoxes.wx, 2], ['areas', q('.tfAreas'), 'areas'],
       ['favs', q('.tfDash-favs'), 2], ['act', q('.tfDash-act'), 2], ['energy', q('.tfDash-energy'), 2], ['avg', dashBoxes.avg, 2],
-      ...[...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => [el.dataset.k, el, 1])]
-      .filter(([, el]) => el?.isConnected).map(([key, el, span]) => ({ key, el, span }));
+      ...[...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => [el.dataset.k, el, 1, true])]
+      .filter(([, el]) => el?.isConnected).map(([key, el, span, tile = false]) => ({ key, el, span, tile }));
   }
   // a card's width in pegs on a board n pegs wide, each w: 'full' the whole width, the areas as wide as they're drawn
   const colsOf = (it, n, w) => {
@@ -1157,21 +1157,44 @@ export function mountTestFocus(root, { config, getHass }) {
   const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (dacOpen.has(it.key) ? LARGE_ROWS : DAC_ROWS) : null);
   // each card's cell on a board n pegs wide (the cards know their cols and rows): a dragged card where it would land;
   // then the cards with a saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in
-  // the page's order, each in the first cell from the top left it fits
+  // the page's order, each in the first cell from the top left it fits.
+  // Cells saved on a wider board that don't fit this one would crowd its right edge, so then the cards keep the saved
+  // order instead (the top row first, each row left to right), each in the first cell from the top left it fits.
+  // Tiles side by side are one height, the tallest's (Matt, 27 Oct: a light beside a Dual Axis Controller grows to its
+  // 3 rows, not stacked at different heights); an open pad doesn't count
   function placeCards(cards, n, dragged = null) {
-    const cells = dashPrefs().cells, taken = new Set(), placed = new Map();
-    const free = (c, r, cs, rs) => { for (let y = r; y < r + rs; y++) for (let x = c; x < c + cs; x++) if (taken.has(x + ',' + y)) return false; return true; };
-    const put = (it, c, r) => {
-      for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) taken.add(x + ',' + y);
-      placed.set(it.key, { col: c, row: r, cols: it.cols, rows: it.rows });
+    const cells = dashPrefs().cells, fits = cards.every((it) => !cells[it.key] || cells[it.key].col + it.cols <= n);
+    const at = (it) => cells[it.key] || { row: 1e9, col: 0 };
+    const place = () => {
+      const taken = new Set(), placed = new Map();
+      const free = (c, r, cs, rs) => { for (let y = r; y < r + rs; y++) for (let x = c; x < c + cs; x++) if (taken.has(x + ',' + y)) return false; return true; };
+      const put = (it, c, r) => {
+        for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) taken.add(x + ',' + y);
+        placed.set(it.key, { col: c, row: r, cols: it.cols, rows: it.rows });
+      };
+      const near = (it, c, r) => { c = Math.max(0, Math.min(n - it.cols, c)); r = Math.max(0, r); while (!free(c, r, it.cols, it.rows)) r++; put(it, c, r); };
+      const first = (it) => { for (let r = 0; ; r++) for (let c = 0; c <= n - it.cols; c++) if (free(c, r, it.cols, it.rows)) { put(it, c, r); return; } };
+      if (dragged) near(dragged, drag.col, drag.row);
+      const rest = cards.filter((it) => it !== dragged), inOrder = (a, b) => at(a).row - at(b).row || at(a).col - at(b).col;
+      if (!fits) { [...rest].sort(inOrder).forEach(first); return placed; }
+      rest.filter((it) => cells[it.key]).sort(inOrder).forEach((it) => near(it, cells[it.key].col, cells[it.key].row));
+      rest.filter((it) => !cells[it.key]).forEach(first);
+      return placed;
     };
-    const near = (it, c, r) => { c = Math.max(0, Math.min(n - it.cols, c)); r = Math.max(0, r); while (!free(c, r, it.cols, it.rows)) r++; put(it, c, r); };
-    const first = (it) => { for (let r = 0; ; r++) for (let c = 0; c <= n - it.cols; c++) if (free(c, r, it.cols, it.rows)) { put(it, c, r); return; } };
-    if (dragged) near(dragged, drag.col, drag.row);
-    const rest = cards.filter((it) => it !== dragged);
-    rest.filter((it) => cells[it.key]).sort((a, b) => cells[a.key].row - cells[b.key].row || cells[a.key].col - cells[b.key].col).forEach((it) => near(it, cells[it.key].col, cells[it.key].row));
-    rest.filter((it) => !cells[it.key]).forEach(first);
-    return placed;
+    // tiles starting on the same row and touching take the tallest one's rows; once they have, lay out again
+    for (let pass = 0; ; pass++) {
+      const placed = place();
+      if (pass === 3) return placed;
+      const tiles = cards.filter((it) => it.tile && !dacOpen.has(it.key)).map((it) => ({ it, p: placed.get(it.key) }))
+        .sort((a, b) => a.p.row - b.p.row || a.p.col - b.p.col);
+      let grew = false;
+      for (let i = 0, j; i < tiles.length; i = j) {
+        for (j = i + 1; j < tiles.length && tiles[j].p.row === tiles[i].p.row && tiles[j].p.col === tiles[j - 1].p.col + 1; j++);
+        const run = tiles.slice(i, j), rows = Math.max(...run.map((t) => t.it.rows));
+        run.forEach((t) => { if (t.it.rows < rows) { t.it.rows = rows; grew = true; } });
+      }
+      if (!grew) return placed;
+    }
   }
   // a phone has no board: its cards run down one column in the board's reading order, the top row first and each row
   // left to right (Matt, 27 Oct). The board is the one last on screen, else the one the cells were saved on (four pegs
