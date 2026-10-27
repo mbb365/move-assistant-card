@@ -292,9 +292,10 @@
    devices; the weather steps aside */
 .tfAreaHead{grid-column:1/-1;margin-bottom:0}
 #app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}
-/* the first card sits as far under a page's title as on the dashboard (the grid's gap; Matt, 27 Oct: the dashboard's
-   title to first card is the rule), so the Weather page's bento has no padding of its own above it */
-#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{padding-top:0}
+/* the Weather page is built like the dashboard (Matt, 27 Oct): its first card as far under the title as the dashboard's
+   (the grid's gap; the dashboard's title to first card is the rule) and its cards from the left edge, under the back
+   arrow, each row filling from the left. So its bento has no padding or centring of its own */
+#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{margin:0;padding:0;justify-content:flex-start}
 /* the main: it opens its more-info */
 .tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}
 .tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}
