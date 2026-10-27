@@ -48,7 +48,12 @@
 .tfLabel{grid-column:1/-1}
 .tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}
 .tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}
-:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--primary);color:var(--hc-on-accent)}
+/* icons on the house page (Matt, 27 Oct): one neutral grey, on or off. A light that's on shows its own colour (--light,
+   set on its tile with data-light); alerts and a triggered alarm stay red */
+#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--text)}
+#app.house.light{--hc-icon:#e6e6e6}
+#app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfCard .activityRow{display:grid;align-items:center}
 /* opened: the tile fills its card (padding 10) with the graph space under it (Figma "HC FINAL - tile clicked") */
 #homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}
@@ -64,20 +69,18 @@
 .tfAction{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
 .tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}
 .tfActionHead>:is(div,.tfName){min-width:0}
-.tfAction .tfIcon{border:0;padding:0;background:var(--tile);color:var(--text);cursor:pointer}
-.tfAction.on .tfIcon{background:#ffaa00;color:#ffffff}
+.tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
+.tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
 .tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:none}
 .tfBar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#ffc247,#ffaa00)}
+/* a light that's off keeps a faint line where its brightness was (Matt, 27 Oct) */
+.tfBar .was{position:absolute;top:12px;bottom:12px;width:2px;margin-left:-1px;border-radius:1px;background:var(--text);opacity:.22}
 .tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 /* a block of action tiles; half the grid wide on desktop */
 .tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}
 .tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start}
-/* sizes (edit mode): half is two to a row, as before; small is a quarter, the icon over the name; full is the row */
 .tfAction{grid-column:span 2}
-.tfAction.small{grid-column:span 1}
-.tfAction.small .tfActionHead{flex-direction:column;align-items:flex-start;gap:10px}
-.tfAction.full{grid-column:1/-1}
-@container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction,.tfAction.small{grid-column:auto}}
+@container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction{grid-column:auto}}
 .tfBar::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}
 .tfAction :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
@@ -86,15 +89,34 @@
    14 apart, each 46 tall with corner 16 like the brightness bar.
    ========================================================= */
 #app.house .moveSection{display:none}
-#app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard){order:900}
-#app.house #homeView .grid>.feelSection{order:950}
+/* the Spacing test is the house only (Matt, 27 Oct): no movement cards and no check-in; Settings is "HomeCore test"
+   with only the house's own settings */
+#app.house #settingsView :is(.rubberTabs:not(.houseTabs),.settingsPane:not(#housePane)){display:none}
+#app.house #housePane{display:block}
+/* its own tabs: Appearance, Lights, Sources, Summaries (Matt, 27 Oct) */
+#housePane .houseTab{display:none}
+#housePane .houseTab.active{display:block}
+/* a switch sits left of its name and line, so it's plain what it turns on (Matt, 27 Oct); choices (Dark | Light, a
+   list) stay on the right */
+#housePane .toggleRow:has(>.switch){flex-direction:row-reverse;justify-content:flex-end}
+#housePane .toggleRow:has(>.switch)>div:first-child{flex:1}
+#housePane .settingsSelect{flex:none;width:220px}
+@media(max-width:620px){#housePane .settingsSelect{width:150px}}
+#housePane .wxLayoutBtn:disabled{opacity:.4;cursor:default}
+/* the lights table: an example of a table (Matt, 27 Oct), said so above it */
+.tfTableNote{margin:0 0 12px;padding:10px 14px;border-radius:var(--r-inner);background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--text)}
+.tfLightTable td{white-space:nowrap}
+.tfLightTable td strong{font:600 14px/20px var(--font-tile)}
+.tfLightTable .settingsSelect{min-width:150px}
+.tfLightTable .settingsSelect:disabled{opacity:.4}
+/* a light as the Dual Axis Controller: its card sets its own size (up to 280 wide), in a tile's place */
+.tfDac{grid-column:span 2;min-width:0}
+.tfMoreActions .tfDac{grid-column:auto}
+#app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}
+#app.house .checkinTab{display:none}
 /* Home's weather: the bento takes the weather card's place */
 #app.houseBento #weatherCard{display:none}
 .tfBento{grid-column:1/-1;min-width:0}
-/* the icon is the button: lit when the device is on, in its own colour */
-.tfAction.on[data-tone="blue"] .tfIcon{background:var(--primary);color:#ffffff}
-.tfAction.on[data-tone="heat"] .tfIcon{background:#ff8100;color:#ffffff}
-.tfAction.on[data-tone="cool"] .tfIcon{background:#2196f3;color:#ffffff}
 .tfIcon.art{background-size:cover;background-position:center}
 /* warm to cool, and colour: a marker on a full strip */
 .tfBar.ct{background:linear-gradient(90deg,#ff9e45,#ffd3a3 32%,#fff7ee 55%,#d7e7ff)}
@@ -119,7 +141,6 @@
 .tfChips button[aria-pressed="true"]{background:var(--bright);color:var(--on-bright)}
 /* a plug in a readings card: its icon is the button */
 .tfCard .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}
-.tfCard .tfPlug:not(.on) .tfIcon{background:var(--tile);color:var(--text)}
 /* the balcony's solar graph, lined up with the tiles' text */
 .tfCardGraph{height:120px;padding:0 var(--inset)}
 .tfCardGraph .tfGraph{height:100%}
@@ -168,14 +189,12 @@
 .tfSideLabel{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-right:22.4px}
 #homeView .tfSide.tfSums .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(150px,calc(50% - 10px)),1fr))}
 #homeView .tfSide.tfFavs .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(240px,calc(50% - 10px)),1fr))}
-#homeView .tfSum .tfIcon{background:var(--sum,var(--primary));color:#ffffff}
+#homeView .tfSum .tfIcon{background:var(--sum,var(--hc-icon));color:var(--sum-ink,var(--hc-icon-ink))}
 /* one line each, cut with "…" like Home Assistant's tiles, so every tile stays 60 tall */
 .tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfSide .activityRow>div{min-width:0}
-/* a favourite's icon is its button, lit in the device's colour while it's on */
-:is(.tfCard,.tfMoreList) .tfPlug.on[data-tone="light"] .tfIcon{background:#ffaa00;color:#ffffff}
-:is(.tfCard,.tfMoreList) .tfPlug.on[data-tone="heat"] .tfIcon{background:#ff8100;color:#ffffff}
-:is(.tfCard,.tfMoreList) .tfPlug.on[data-tone="cool"] .tfIcon{background:#2196f3;color:#ffffff}
+/* a favourite's icon is its button: a light that's on in its own colour, a triggered alarm red */
+:is(.tfCard,.tfMoreList) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
 :is(.tfCard,.tfMoreList) .tfPlug.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
 /* a summary's devices, and the favourites list, in the dialog: tiles by room, two to a row (one with stars) */
 .tfMoreList{display:flex;flex-direction:column;gap:14px}
@@ -184,9 +203,8 @@
 .tfMoreTiles.single{grid-template-columns:1fr}
 .tfMoreList .activityRow{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile);transition:background .15s ease}
 .tfMoreList .activityRow:hover{background:var(--tile)}
-.tfMoreList .activityRow .tfIcon{background:var(--primary);color:var(--hc-on-accent)}
+.tfMoreList .activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfMoreList .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}
-.tfMoreList .tfPlug:not(.on) .tfIcon{background:var(--tile);color:var(--text)}
 .tfMoreList .tfPick{grid-template-columns:var(--chip-size) minmax(0,1fr) auto}
 .tfMoreList :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfStar{display:grid;place-items:center;width:34px;height:34px;min-height:0;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}
@@ -235,7 +253,7 @@
    More info (Matt, 27 Oct): a popup in the middle or a sheet from the bottom, 640 wide (Settings → Appearance →
    More info sets #app[data-more]); both rise from the bottom on phones. A device's details sit behind a Details
    button at the bottom and roll out beside the dialog like a scroll, 300 wide and 12 from it, as tall as the dialog
-   and scrolling inside. Where there's no room beside it (.over: under 800 wide for the popup, 1000 for the sheet)
+   and scrolling inside; the dialog stays where it is. Where there's no room beside it (.over, set by fitDetails)
    they slide in over the top of it.
    ========================================================= */
 .tfMorePair{position:relative;display:flex;align-items:stretch;max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}
@@ -247,7 +265,7 @@
 .tfDetailsBtn{display:flex;flex:none;align-items:center;justify-content:space-between;gap:12px;width:100%;height:46px;min-height:0;padding:0 12px 0 16px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer}
 .tfDetailsBtn svg{width:20px;height:20px;transition:transform .2s ease}
 .tfDetailsBtn[aria-expanded="true"] svg{transform:rotate(180deg)}
-.tfMoreSide{flex:none;width:0;overflow:hidden;visibility:hidden;transition:width .28s cubic-bezier(.2,.7,.3,1),visibility 0s linear .28s}
+.tfMoreSide{position:absolute;top:0;bottom:0;left:100%;width:0;overflow:hidden;visibility:hidden;transition:width .28s cubic-bezier(.2,.7,.3,1),visibility 0s linear .28s}
 .tfMorePair.details .tfMoreSide{width:312px;visibility:visible;transition:width .28s cubic-bezier(.2,.7,.3,1)}
 .tfMoreSideInner{box-sizing:border-box;display:flex;flex-direction:column;gap:14px;width:300px;height:100%;margin-left:12px;padding:20px;overflow:auto;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}
 .tfMoreSideInner .tfMoreHead{justify-content:flex-start}
@@ -258,77 +276,188 @@
 @media(prefers-reduced-motion:reduce){.tfMorePair,.tfMoreSide{animation:none!important;transition:none!important}}
 
 /* =========================================================
-   Edit mode (Matt, 27 Oct): the pencil in the bottom bar. A dashed bar at the top (Add section, Done); each tile has a
-   bar of tools (drag, earlier, later, options) over its resting controls; each section label has up, down and options.
-   Choices are saved in Home Assistant user data (move_assistant_house); its areas are never changed.
+   Area cards, as Matt drew them in Figma ("Area card accordions" 490:9283, 27 Oct): 18 in (10 at the bottom), the name
+   Geist 700 24 a further 10 in, the main 64 with a 16 line under it, then up to four controls as tiles inside the
+   padding; the lights' icon shows the colour of a light that's on. Folded: the main 32 light, the name, the room's
+   control icons two by two.
    ========================================================= */
-.tfEditTop{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 20px;border-radius:var(--r-card);outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}
-.tfEditTitle{font:500 18px/1.2 var(--font-tile)}
-.tfEditActions{display:flex;align-items:center;gap:16px}
-.tfEditBar{display:flex;align-items:center;gap:4px;margin:-8px -8px 0}
-.tfSpacer{flex:1}
-.tfTool{display:grid;place-items:center;flex:none;width:34px;height:34px;min-height:0;padding:0;border:0;border-radius:12px;background:var(--tile);color:var(--text);cursor:pointer}
-.tfTool:disabled{opacity:.35;cursor:default}
-.tfTool svg{width:20px;height:20px}
-.tfGrip{background:none;cursor:grab;touch-action:none}
-.tfHiddenTag{align-self:flex-start;padding:2px 8px;border-radius:99px;background:var(--tile);color:var(--muted);font:500 12px/16px var(--font)}
-.tfEditBody{display:contents}
-#app.editing .tfEditBody>*{opacity:.55}
-#app.editing .tfAction.isHidden .tfEditBody>*{opacity:.25}
-#app.editing .tfAction.isHidden{box-shadow:inset 0 0 0 1px var(--line)}
-.tfAreaPanel.isHidden{opacity:.45}
-/* a section label in edit mode: its name, then its tools */
-.tfEditLabel{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-right:22.4px}
-.tfEditLabel small{margin-left:10px;color:var(--muted);font:400 13px/18px var(--font)}
-.tfTools{display:flex;gap:4px}
-/* dragging: the tile follows the pointer, its place in the page stays faded */
-.tfGhost{position:fixed;z-index:300;margin:0;pointer-events:none;opacity:.95;transform:scale(1.02);box-shadow:0 14px 40px rgba(0,0,0,.4)}
-.tfDragging{opacity:.3}
-.tfDropHint{grid-column:1/-1;display:grid;place-items:center;min-height:92px;border-radius:28px;outline:1px dashed color-mix(in srgb,var(--primary) 60%,transparent);outline-offset:-1px;color:var(--muted);font:500 14px/20px var(--font)}
-.tfActions:has(.tfAction) .tfDropHint{display:none}
-/* a cover's drawing on its tile */
-.tfAction .tfCoverArt{width:min(294px,100%)}
-/* a reading that shows its last 24 hours: the whole row, the graph under the value; its options in edit mode */
-#homeView .card .activityRow.tfGraphRow{grid-column:1/-1}
-.tfSpark{grid-column:1/-1;display:block;width:100%;height:64px}
-.tfSpark text{fill:var(--muted);font:400 11px var(--font)}
-#app.editing #homeView .card .activityRow:has(>.tfTool){grid-template-columns:var(--chip-size) minmax(0,1fr) auto}
-/* the options dialogs: segments, switches, a section, a name */
-.tfOptGroup{display:flex;flex-direction:column;gap:6px}
-.tfOptRow{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;padding:0 4px 0 10px;font:500 15px/20px var(--font)}
-.tfOptField{width:100%}
-.tfOptDelete{align-self:flex-start;color:#e53935}
-
-/* =========================================================
-   Area cards (Matt, 27 Oct: Big's headline with Tiles): the room's name, its main thing big (the temperature unless
-   Matt picks another in edit mode) and up to four controls as tiles, lit in their tile colours (lights amber, heat
-   orange, cool blue, the rest the accent). Folded: the main, the name and what's on.
-   ========================================================= */
-.tfAreaPanel [data-tone]{--on:var(--primary)}
-.tfAreaPanel [data-tone="light"]{--on:#ffaa00}
-.tfAreaPanel [data-tone="heat"]{--on:#ff8100}
-.tfAreaPanel [data-tone="cool"]{--on:#2196f3}
+#homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}
+.tfAreaPanel .workoutPanelTop{padding:0 10px}
 .tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}
 .tfAreaPanel .icon{width:22px;height:22px}
-.tfAName{font:500 24px/1.2 var(--font-tile);letter-spacing:-.01em}
-.tfAreaPanel .workoutPanelTop>.tfATools{display:flex;flex:none;align-items:center;gap:8px}
+.tfAName{font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em}
+/* a section's own page (an area's Go, the Security summary): Move Assistant's page header (40 back, 52 title) over its
+   devices; the weather steps aside */
+.tfAreaHead{grid-column:1/-1;margin-bottom:0}
+#app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}
 /* the main: it opens its more-info */
 .tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}
 .tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}
 .tfABigMain.long{font-size:40px}
 .tfABigUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}
 .tfABigSub{color:var(--muted);font:400 16px/1.2 var(--font)}
-/* the controls: two to a row; the icon is the button, its edge on the name's and the headline's */
-.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0 calc(-1 * var(--inset)) calc(-1 * var(--inset))}
+/* the controls: two to a row inside the padding, so their icons line up with the name; the icon is the button */
+.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}
-.tfATile>div:last-child{min-width:0}
-.tfATile .tfIcon{border:0;padding:0;background:var(--tile);color:var(--text);cursor:pointer}
-.tfATile.on .tfIcon{background:var(--on);color:#ffffff}
+.tfATile>:is(div,.tfName):last-child{min-width:0}
+.tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
+.tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
 .tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* folded */
-.tfACollapsed{flex-direction:column;justify-content:space-between;padding:20px 0}
-.tfACMain{max-width:calc(100% - 12px);font:600 14px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tfACOn{display:flex;flex-direction:column;align-items:center;gap:6px;min-height:30px}
-.tfACDot{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--on);color:#ffffff}
-.tfACDot .icon{width:16px;height:16px}
-.tfACDot.alert{background:#e53935}
+/* folded (Matt's Figma "Area card accordions" 490:9283): 10 in at the top and bottom; at the top the main (Geist 200 32)
+   with the name under it (Inter 600 16), 8 apart, level and cut with "…" when it doesn't fit; at the bottom the room's
+   icons two by two as 60 tiles (icon 40, corner 16, glyph 22), one column of two when the card is narrower than two */
+.tfACollapsed{flex-direction:column;justify-content:space-between;padding:10px 0;container-type:inline-size}
+.tfACTop{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:calc(100% - 20px)}
+.tfACMain{max-width:100%;font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfACTiles{display:grid;grid-template-columns:repeat(2,60px)}
+.tfACTile{display:grid;place-items:center;width:60px;height:60px}
+.tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}
+.tfACTile .tfIcon.alert{background:#e53935;color:#ffffff}
+@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}}
+
+/* =========================================================
+   A summary's popup (Matt, 27 Oct: "double all the spacing", "native to the size of screen", more control than
+   opening tiles): up to 1040 wide on the page's ground, 40 in with 28 between parts; its devices are their tiles with
+   all their controls, 20 apart, as many to a row as fit at 260; readings sit as rows in a card. Lights get all on or
+   off beside the line.
+   ========================================================= */
+.tfMore.wide{width:min(1040px,100vw - 32px);padding:40px;gap:28px;background:var(--bg)}
+#app[data-more="sheet"] .tfMore.wide{width:min(1040px,100vw)}
+.tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}
+.tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}
+.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px;align-items:start}
+.tfMoreActions .tfAction{grid-column:auto}
+.tfMore.wide .tfMoreTiles{grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));padding:var(--inset);border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}
+@media(max-width:620px){.tfMore.wide{width:100%;padding:20px 16px;gap:20px}}
+
+/* =========================================================
+   The dashboard (Matt, 27 Oct): the HomeCore concept's order (Figma "Visual Design Language" 1851:906) with this
+   page's parts at their drawn sizes (Figma "Spacing rules"). Its rules (Matt, second pass):
+   - a card keeps its drawn size: the weather card, Favourites, Activity, Energy today and Compared to average 520
+     wide (giving up to 12% so two fit side by side); light and thermostat tiles 252; the areas as drawn (the open room
+     409, folded ones 128); a summary as wide as its words
+   - a wider screen gets more cards in a row, never wider cards; the page is built from the top left outwards, so
+     what's left over stays on the right
+   - a card may grow up to a quarter taller to match its row, its tiles spreading out; past that it keeps its own
+     height (fitDash in test-focus.js)
+   - a card never squeezes what it holds: the areas scroll sideways when their row is narrower than they are
+   - no labels above anything; a card has its title inside where the concept has one
+   ========================================================= */
+#app.tfDash #homeView{max-width:none;container:tfdash/inline-size}
+#app.tfDash #homeView .grid{display:flex;flex-wrap:wrap;align-items:flex-start;align-content:flex-start}
+/* the order: the name, the summaries, the weather and the areas (Favourites beside the weather when the areas don't
+   fit there), Favourites, Activity, Energy today, Compared to average, the tiles */
+#app.tfDash .tfDashTitle{order:1!important;flex:0 0 100%;margin:0}
+#app.tfDash .tfDashBarRow{order:2!important;flex:0 0 100%;display:flex;min-width:0}
+#app.tfDash .tfDash-wx{order:3!important}
+#app.tfDash .tfAreas{order:4!important}
+#app.tfDash .tfDash-favs{order:5!important}
+#app.tfDash .tfDash-act{order:6!important}
+#app.tfDash .tfDash-energy{order:7!important}
+#app.tfDash .tfDash-avg{order:8!important}
+#app.tfDash .tfDashTiles{order:9!important}
+/* drawn sizes: never wider than drawn; a card may give up to 12% (520 down to 460) so two sit side by side on a
+   tablet, and takes the whole width only on a phone */
+#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}
+@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}
+#app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}
+@media(min-width:901px){
+  #app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}
+  #app.tfDash .tfAreaGallery::-webkit-scrollbar{display:none}
+  #app.tfDash .tfAreaPanel.active{flex:1 0 409px}
+  #app.tfDash .tfAreaPanel:not(.active){flex:0 0 128px}
+}
+/* the summaries: each as wide as its words (at least 200), in even rows (the board picks how many to a row), the bar as
+   wide as they are; two to a row on phones */
+#app.tfDash .tfDash-bar{flex:none;max-width:100%}
+/* cards are size containers for the halves rule; the bar sizes to its tiles, so it can't be one */
+#app.tfDash #homeView .card.tfDash-bar{container-type:normal}
+#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(var(--bar-cols,6),auto)}
+#homeView .card.tfDash-bar .activityRow{min-width:200px}
+#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:visible;text-overflow:clip}
+@container tfdash (width < 640px){
+  #app.tfDash .tfDash-bar{width:100%}
+  #homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  #homeView .card.tfDash-bar .activityRow{min-width:0}
+  #app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:hidden;text-overflow:ellipsis}
+  #app.tfDash .tfDashTitle{padding:0 16px;box-sizing:border-box}
+}
+/* cards of tiles: Favourites two to a row, Activity one; Energy today's few sources side by side in one row (Matt,
+   27 Oct: it was taking too much space as halves), each at least 140 like a half; one line each, cut with "…" */
+#app.tfDash .tfDashCard:not(.tfDash-bar){container-type:inline-size}
+#homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}
+/* Activity: as many changes as its card fits, whole tiles only (five, 300, until the board says); the rest scroll, a thin
+   bar at the side, and each scroll settles smoothly on the next tile (Matt, 27 Oct) */
+#homeView .card.tfDash-act>.activityRows{flex:none;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}
+#homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}
+#homeView .card.tfDash-energy .activityRows{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.tfDashCard :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfDashCard .activityRow>*{min-width:0}
+.tfDashNone{margin:0;padding:var(--inset) 18px;color:var(--muted)}
+/* the weather card and Compared to average: the bento's own cards at their sizes */
+.tfDashBento{display:flex;flex-direction:column;min-width:0}
+#app:not(.tfDash) .tfDashBento{display:none}
+.tfDashBento:not(:has(.wbItem:not([hidden]))){display:none}
+.tfDashBento .wb{flex:1;display:flex;flex-direction:column;min-width:0}
+.tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}
+#app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}
+#app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}
+/* the tiles: a row of their own, each a light tile's size, 10 apart; two to a row on phones */
+#app.tfDash .tfDashTiles{flex:0 0 100%;display:flex;flex-wrap:wrap;gap:10px;min-width:0}
+.tfDashTiles>:is(.tfAction,.tfDac){flex:none;width:252px;min-width:0;grid-column:auto}
+.tfDashTiles>.tfAction{justify-content:space-between}
+@container tfdash (width < 640px){.tfDashTiles>:is(.tfAction,.tfDac){width:calc(50% - 5px)}}
+/* =========================================================
+   The peg board (Matt, 27 Oct; edit mode drawn in Figma "Dashboard edit mode" for him to change): on a tablet and up
+   the dashboard is a solid grid of cells, columns --peg-w (252) and rows 60, 16 apart, and every card fills whole cells
+   (test-focus.js layoutBoard), under the name and the summaries, which keep their own sizes above it. Large cards (the weather, the areas, Favourites, Activity) are 5 rows, 364. In edit mode
+   cards slide to their new places (never on their own as the page loads). Phones keep the column above
+   ========================================================= */
+#app.tfBoard #homeView .grid{display:block;position:relative}
+#app.tfBoard .tfDashTiles{display:contents}
+#app.tfBoard .tfBoardItem{position:absolute;z-index:1;margin:0;max-width:none;min-height:0;box-sizing:border-box}
+#app.tfEditing.tfBoardReady .tfBoardItem{transition:left .25s cubic-bezier(.2,.7,.3,1),top .25s cubic-bezier(.2,.7,.3,1),height .25s cubic-bezier(.2,.7,.3,1)}
+#app.tfBoard .tfBoardHidden{display:none!important}
+/* filling their cells (the name and the summaries sit above the grid at their own sizes): the weather card's Now at the
+   top and days at the bottom, Compared to average's drawing taking the height, the areas' panels the full height, a
+   light tile 18 in at the top and bottom so it fits two rows (136) */
+#app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}
+#app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}
+#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%}
+#app.tfBoard .tfDashTiles>.tfAction{padding-block:18px}
+/* edit mode: the cells as a solid grid under the cards, each card outlined in the accent with its grip (top middle,
+   80 × 40, across the card's top edge so it covers nothing in it) and ⋯ (top right); its own controls rest. Nothing
+   shakes */
+.tfBoardCells{position:absolute;top:0;left:0;z-index:0;display:grid;grid-auto-rows:60px;gap:16px;pointer-events:none}
+.tfBoardCells i{border-radius:var(--r-inner);background:color-mix(in srgb,var(--text) 7%,transparent)}
+#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfDashBento){outline:1.5px solid var(--primary);outline-offset:-1.5px;border-radius:var(--r-card)}
+#app.tfEditing .tfBoardItem:is(.tfAction,.tfDac){border-radius:28px}
+#app.tfEditing .tfAreas{border-radius:24px}
+#app.tfEditing .tfDashBento .wbCard{outline:1.5px solid var(--primary);outline-offset:-1.5px}
+#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;overflow:visible;user-select:none;touch-action:none}
+.tfEditChips{position:absolute;inset:-8px -8px auto -8px;z-index:5;height:40px;display:flex;justify-content:flex-end;pointer-events:none}
+.tfEditGrip{position:absolute;top:-10px;left:50%;display:grid;place-items:center;width:80px;height:40px;border-radius:var(--r-inner);background:var(--text);color:var(--card);transform:translateX(-50%);pointer-events:auto;cursor:grab}
+.tfEditGrip svg{width:24px;height:24px;fill:currentColor}
+.tfEditChip{display:grid;place-items:center;width:28px;height:28px;min-height:0;padding:0;border:0;border-radius:50%;background:var(--text);color:var(--card);pointer-events:auto;cursor:pointer}
+.tfEditChip svg{width:18px;height:18px;fill:currentColor}
+.tfEditChip:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+/* dragging: the card lifts (2% bigger, a shadow) and follows the pointer; where it will land is a dashed outline */
+#app.tfEditing .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
+.tfBoardLand{position:absolute;z-index:1;box-sizing:border-box;border:1.5px dashed var(--primary);border-radius:28px;background:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;transition:left .2s,top .2s,width .2s,height .2s}
+/* a card's ⋯: its size, Energy today's graph, a cell left, right, up or down, hide */
+.tfBoardMenu{position:absolute;z-index:30;display:grid;gap:2px;min-width:200px;padding:6px;border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px rgba(0,0,0,.35)}
+.tfBoardMenu button{display:flex;align-items:center;min-height:40px;padding:0 12px;border:0;border-radius:var(--r-inner);background:transparent;color:var(--text);font:500 14px/20px var(--font);text-align:start;cursor:pointer}
+.tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}
+.tfBoardMenu button:disabled{opacity:.4;cursor:default}
+/* hidden cards wait under the board */
+.tfBoardTray{position:absolute;z-index:1;display:flex;flex-wrap:wrap;gap:8px}
+#app.tfEditing .tfBoardTray .pill{cursor:pointer}
+/* Energy today: the first source's day as a graph, above its glance (or below, from its ⋯) */
+.tfDash-energy .tfDashGraph{flex:1;min-height:80px;height:auto;margin:var(--inset) 0 0}
+.tfDash-energy.graphAbove>.activityHeader{order:-2}
+.tfDash-energy.graphAbove>.tfDashGraph{order:-1;margin:0 0 var(--inset)}
+/* the source in the graph keeps the tile's hover look */
+#homeView .card.tfDash-energy .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}

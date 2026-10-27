@@ -7,11 +7,39 @@
 </head>
 <body>
 <move-assistant-card></move-assistant-card>
+<!-- ?test=1: the Dual Axis Controller as released (v9.0.0), for Settings → Lights; on Home Assistant it comes from HACS -->
+<script src="https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.0/dist/dual-axis-controller-v4.js"></script>
 <script type="module">
 // Fake Home Assistant so the card can be previewed without a real instance.
 // Saved data lives in this browser's localStorage under "ma-dev".
 import "../src/move-assistant-card.js";
 import { HOUSE, houseService } from "./house-data.js";
+import { ICONS } from "./icons.js";
+// Home Assistant's ha-icon and ha-state-icon, stood in for the preview: the icon at --mdc-icon-size (the page's
+// glyph-size, 34 in a 40 room, as the guide draws it), from the icon's name or, for a device, its kind and state
+const svgFor = (name) => '<svg viewBox="0 0 24 24" aria-hidden="true" style="display:block;width:var(--mdc-icon-size,24px);height:var(--mdc-icon-size,24px)"><path fill="currentColor" d="' + (ICONS[name] || ICONS["mdi:circle-medium"]) + '"/></svg>';
+function stateIconName(st) {
+  if (!st) return "mdi:circle-medium";
+  if (st.attributes?.icon) return st.attributes.icon;
+  const d = st.entity_id.split(".")[0], s = st.state, dc = st.attributes?.device_class, on = s === "on";
+  const byClass = { temperature: "mdi:thermometer", humidity: "mdi:water-percent", power: "mdi:flash", energy: "mdi:lightning-bolt", battery: "mdi:battery", moisture: on ? "mdi:water" : "mdi:water-off",
+    door: on ? "mdi:door-open" : "mdi:door-closed", window: on ? "mdi:window-open" : "mdi:window-closed", motion: on ? "mdi:motion-sensor" : "mdi:motion-sensor-off", smoke: on ? "mdi:smoke-detector-variant-alert" : "mdi:smoke-detector",
+    illuminance: "mdi:brightness-5", outlet: on ? "mdi:power-plug" : "mdi:power-plug-off", tv: s === "off" ? "mdi:television-off" : "mdi:television", speaker: s === "off" ? "mdi:speaker-off" : "mdi:speaker" };
+  if (byClass[dc]) return byClass[dc];
+  return ({ light: on ? "mdi:lightbulb" : "mdi:lightbulb-off", switch: on ? "mdi:toggle-switch-variant" : "mdi:toggle-switch-variant-off", media_player: s === "off" ? "mdi:cast-off" : "mdi:cast",
+    lock: s === "locked" ? "mdi:lock" : s === "jammed" ? "mdi:lock-alert" : "mdi:lock-open-variant", climate: "mdi:thermostat", vacuum: "mdi:robot-vacuum", humidifier: on ? "mdi:air-humidifier" : "mdi:air-humidifier-off",
+    alarm_control_panel: s === "disarmed" ? "mdi:shield-off" : s === "triggered" ? "mdi:shield-alert" : "mdi:shield-home", valve: "mdi:valve", plant: "mdi:flower", person: "mdi:account", weather: "mdi:weather-partly-cloudy",
+    sensor: "mdi:gauge", binary_sensor: on ? "mdi:alert-circle" : "mdi:home" })[d] || "mdi:circle-medium";
+}
+customElements.define("ha-icon", class extends HTMLElement {
+  set icon(v) { this._icon = v; this.innerHTML = svgFor(v); }
+  get icon() { return this._icon; }
+});
+customElements.define("ha-state-icon", class extends HTMLElement {
+  set stateObj(st) { this._st = st; this.innerHTML = svgFor(stateIconName(st)); }
+  get stateObj() { return this._st; }
+  set hass(_h) { /* not needed here */ }
+});
 
 const listeners = [];
 // Move Assistant's data is "ma-dev"; anything else the card saves (the house page's favourites) gets its own key
@@ -63,6 +91,7 @@ if (testMode) {
   states["sensor.living_room_temperature"].attributes.device_class = "temperature";
   states["sensor.living_room_temperature"].attributes.state_class = "measurement";
   Object.assign(states, HOUSE.states);
+  states["person.matt"] = { entity_id: "person.matt", state: "home", attributes: { friendly_name: "Matt", user_id: "dev-matt" } };
 }
 const fakeHistory = (id) => {
   const st = states[id]; const now = Date.now(); const v = Number(st.state); const growing = st.attributes.state_class === "total_increasing";
@@ -93,7 +122,33 @@ const hass = {
       return { [id]: rows };
     }
     if (msg.type === "fire_event") { console.log("event", msg.event_data); return null; }
+    // a week of the forecast's readings every 3 hours, for the bento's Compared to average and pressure
+    if (msg.type === "history/history_during_period" && msg.entity_ids[0].startsWith("weather.")) {
+      const out = [];
+      for (let t = Date.parse(msg.start_time); t < Date.now(); t += 3 * 3600 * 1000) {
+        const d = new Date(t);
+        out.push({ s: "cloudy", lu: t / 1000, lc: t / 1000, a: { temperature: Math.round((17 + 5 * Math.sin(((d.getHours() - 9) / 24) * 2 * Math.PI) + (d.getDate() % 4)) * 10) / 10, humidity: 62, pressure: 1012 } });
+      }
+      return { [msg.entity_ids[0]]: out };
+    }
     if (msg.type === "history/history_during_period") return { [msg.entity_ids[0]]: fakeHistory(msg.entity_ids[0]) };
+    // the dashboard's activity: a few changes over the last two hours, by Matt (person.matt) or an automation
+    if (msg.type === "logbook/get_events") {
+      const at = (min) => (Date.now() - min * 60000) / 1000;
+      return [
+        { when: at(4), entity_id: "lock.openable_lock", state: "unlocked", context_user_id: "dev-matt" },
+        { when: at(23), entity_id: "light.kitchen", state: "on", context_domain: "automation", context_event_type: "automation_triggered", context_name: "Morning lights" },
+        { when: at(51), entity_id: "media_player.telly", state: "off", context_user_id: "dev-matt" },
+        { when: at(96), entity_id: "light.office_ceiling", state: "off" },
+        { when: at(131), entity_id: "switch.clothes_washer", state: "on", context_user_id: "dev-matt" },
+        { when: at(164), entity_id: "light.small_sphere_chappy", state: "on", context_domain: "automation", context_event_type: "automation_triggered", context_name: "Office at dusk" },
+        { when: at(205), entity_id: "media_player.jeremy_clarkson", state: "playing", context_user_id: "dev-matt" },
+        { when: at(248), entity_id: "lock.basic_lock", state: "locked", context_user_id: "dev-matt" },
+        { when: at(296), entity_id: "switch.dish_washer", state: "on" },
+        { when: at(340), entity_id: "light.big_sphere", state: "off", context_user_id: "dev-matt" },
+        { when: at(395), entity_id: "switch.tv_stuff", state: "off" },
+      ].filter((e) => !msg.entity_ids || msg.entity_ids.includes(e.entity_id));
+    }
     if (msg.type === "call_service" && (msg.domain === "switch" || msg.domain === "media_player" || msg.domain === "lock")) {
       const next = houseService(hass.states, msg);
       if (next) setTimeout(() => { hass.states = { ...hass.states, [next.entity_id]: next }; card.hass = { ...hass }; }, 120);
@@ -104,6 +159,7 @@ const hass = {
       const on = msg.service === "turn_on" || (msg.service === "toggle" && old.state !== "on");
       const attrs = { ...old.attributes };
       if (on && msg.service_data.brightness_pct != null) attrs.brightness = Math.round(msg.service_data.brightness_pct * 2.55);
+      if (on && msg.service_data.brightness != null) attrs.brightness = Math.round(msg.service_data.brightness);
       if (on && attrs.brightness == null) attrs.brightness = 255;
       if (on && msg.service_data.color_temp_kelvin != null) Object.assign(attrs, { color_mode: "color_temp", color_temp_kelvin: msg.service_data.color_temp_kelvin });
       if (on && msg.service_data.hs_color) Object.assign(attrs, { color_mode: "hs", hs_color: msg.service_data.hs_color });
@@ -112,8 +168,11 @@ const hass = {
       setTimeout(() => { hass.states = { ...hass.states, [id]: { ...old, state: on ? "on" : "off", attributes: attrs } }; card.hass = { ...hass }; }, 120);
       return null;
     }
+    if (msg.type === "call_service") return null; // scenes and the rest: nothing to fake
     throw new Error("unknown " + msg.type);
   },
+  // the Dual Axis Controller calls services this way
+  callService: (domain, service, data) => hass.callWS({ type: "call_service", domain, service, service_data: data }),
   services: { notify: { mobile_app_matts_iphone: {}, persistent_notification: {} } },
   callApi: async (method, path, data) => { console.log("api", method, path, data); window.__api = { method, path, data }; return {}; },
   connection: {

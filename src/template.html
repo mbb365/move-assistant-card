@@ -101,7 +101,6 @@
       <p class="note">Move Assistant can work on its own. Pick your step sensor so general movement counts alongside your moves.</p>
       <div class="integrationList">
         <div class="integration"><div><strong>Steps</strong><div class="status" id="stepsStatus" data-empty="Your phone's step sensor from the Companion app">Your phone's step sensor from the Companion app</div></div><select class="settingsSelect entitySelect" id="stepsEntity" data-kind="steps" aria-label="Steps sensor"></select></div>
-        <div class="integration"><div><strong>Weather</strong><div class="status" id="weatherStatus" data-empty="The forecast on Home, from a Home Assistant weather entity">The forecast on Home, from a Home Assistant weather entity</div></div><select class="settingsSelect entitySelect" id="weatherEntity" aria-label="Weather entity"></select></div>
         <div class="integration"><div><strong>Apple Health</strong><div class="status">Use the Home Assistant iPhone app to send your steps</div></div><button class="pill" id="healthHelpOpen" type="button">Help</button></div>
         <div class="integration"><div><strong>Home Assistant</strong><div class="status">Moves send a <code>move_assistant</code> event on start, each step, rest, pause and finish — use it in automations for lights, sound and displays</div></div><button class="pill" type="button" disabled>Connected</button></div>
       </div>
@@ -116,7 +115,6 @@
         <div class="toggleRow"><div><strong>Steps</strong><div class="status">Daily step count</div></div><button class="switch on" data-toggle="steps"></button></div>
         <div class="toggleRow"><div><strong>Mood</strong><div class="status">Latest mood in the Activity card</div></div><button class="switch on" data-toggle="mood"></button></div>
         <div class="toggleRow"><div><strong>Energy</strong><div class="status">Latest energy in the Activity card</div></div><button class="switch on" data-toggle="energyLevel"></button></div>
-        <div class="toggleRow"><div><strong>Weather</strong><div class="status">Today and the next days, beside Movement</div></div><button class="switch on" data-toggle="weather"></button></div>
         <div class="toggleRow"><div><strong>Reset stats</strong><div class="status">Clears moves done and check-ins. Your moves and settings stay.</div></div><button class="holdDelete" id="resetStats" type="button" aria-label="Hold to reset stats"><span class="holdDeleteFill" id="resetStatsFill"></span><span class="holdDeleteLabel">Hold to reset</span></button></div>
       </div>
     </section>
@@ -186,37 +184,6 @@
             <button class="themeBtn active" data-theme="dark">Dark</button>
             <button class="themeBtn" data-theme="light">Light</button>
           </div>
-        </div>
-
-        <div class="toggleRow wxStyleRow">
-          <div>
-            <strong>Weather style</strong>
-            <div class="status">How the weather pictures on Home are drawn.</div>
-          </div>
-          <div class="wxStyleChoice" id="wxStyleChoice" role="group" aria-label="Weather style">
-            <button class="wxStyleBtn" type="button" aria-pressed="false" data-wx-style="bitmap"><span class="wxStylePreview"></span><strong>Bitmap</strong></button>
-            <button class="wxStyleBtn" type="button" aria-pressed="false" data-wx-style="onebit"><span class="wxStylePreview"></span><strong>1-bit</strong></button>
-            <button class="wxStyleBtn" type="button" aria-pressed="false" data-wx-style="smooth"><span class="wxStylePreview"></span><strong>Smooth</strong></button>
-          </div>
-        </div>
-
-        <div class="toggleRow">
-          <div>
-            <strong>Weather layout</strong>
-            <div class="status">The next six days on Home, as tiles or as a 12-hour sky.</div>
-          </div>
-          <div class="themeChoice" id="wxLayoutChoice" role="group" aria-label="Weather layout">
-            <button class="wxLayoutBtn" type="button" aria-pressed="true" data-wx-layout="tiles">Day tiles</button>
-            <button class="wxLayoutBtn" type="button" aria-pressed="false" data-wx-layout="strip">Sky strip</button>
-          </div>
-        </div>
-
-        <div class="toggleRow">
-          <div>
-            <strong>Weather motion</strong>
-            <div class="status">The weather pictures move, and change shape when the weather changes.</div>
-          </div>
-          <button class="switch on" id="wxMotionToggle" aria-label="Toggle weather motion"></button>
         </div>
 
         <div class="toggleRow">

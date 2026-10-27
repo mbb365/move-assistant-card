@@ -19,6 +19,8 @@ const local = {
 };
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const ARROW = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19L5 12L12 5"/></svg>';
+// Move Assistant's back chevron (its pages' header)
+const BACK = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18L9 12L15 6"/></svg>';
 const CLOSE = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18"/><path d="M18 6L6 18"/></svg>';
 const MEDIA = {
   prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h2v12H6zM9.5 12L18 18V6z"/></svg>',
@@ -46,10 +48,8 @@ const SUMMARIES = {
   security: { name: 'Security', icon: 'mdi:security', colour: '#607d8b' },
   media_players: { name: 'Media players', icon: 'mdi:multimedia', colour: '#2196f3' },
   maintenance: { name: 'Maintenance', icon: 'mdi:wrench', colour: '#9e9e9e' },
-  weather: { name: 'Weather', icon: '', colour: '' },
   energy: { name: 'Energy', icon: 'mdi:lightning-bolt', colour: '#ffc107' },
 };
-const WEATHER_NAMES = { 'clear-night': 'Clear, night', partlycloudy: 'Partly cloudy', 'lightning-rainy': 'Lightning, rainy', 'snowy-rainy': 'Snowy, rainy', 'windy-variant': 'Windy, cloudy' };
 const HOUSE_KEY = 'move_assistant_house'; // the house page's own saved data (its favourites), apart from the moves
 const USED_KEY = 'move-assistant-house-used'; // how often each device is used here, for suggested favourites
 const TOGGLES = ['switch', 'fan', 'input_boolean', 'automation'];
@@ -58,20 +58,14 @@ const TOGGLES = ['switch', 'fan', 'input_boolean', 'automation'];
 // bottom on phones.
 const LOOK_KEY = 'move-assistant-house-look';
 const MORE_STYLES = [['popup', 'Popup'], ['sheet', 'Sheet']];
+// the dashboard's edit mode: the pencil and Done in the bottom bar, and each card's grip and options
+const GRIP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>';
+const DOTS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>';
 const CHEVRON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-// Edit mode (Matt, 27 Oct): the pencil in the bottom bar. What each kind of tile can show, by its sections' names; its
-// sizes; and the tools' icons
-const PART_NAMES = { art: 'Drawing', bright: 'Brightness', ct: 'Warm to cool', hue: 'Colour', blocks: 'Position', tilt: 'Tilt', buttons: 'Open, stop and close', step: 'Target', modes: 'Modes', playback: 'Playback', volume: 'Volume', controls: 'Buttons', rooms: 'Rooms to clean' };
-const SIZES = [['small', 'Small'], ['half', 'Half'], ['full', 'Full']];
+// a stroke icon on the 24 grid
 const svgIcon = (paths) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + paths.map((d) => '<path d="' + d + '"/>').join('') + '</svg>';
 const PENCIL = svgIcon(['M12 20H21', 'M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z']);
 const TICK = svgIcon(['M20 6L9 17L4 12']);
-const UP = svgIcon(['M12 19V5', 'M5 12L12 5L19 12']);
-const DOWN = svgIcon(['M12 5V19', 'M19 12L12 19L5 12']);
-const EARLIER = svgIcon(['M15 18L9 12L15 6']);
-const LATER = svgIcon(['M9 18L15 12L9 6']);
-const GEAR = svgIcon(['M21 4H14', 'M10 4H3', 'M21 12H12', 'M8 12H3', 'M21 20H16', 'M12 20H3', 'M14 2V6', 'M8 10V14', 'M16 18V22']);
-const GRIP = '<svg viewBox="0 0 24 24" aria-hidden="true">' + [[9, 6], [15, 6], [9, 12], [15, 12], [9, 18], [15, 18]].map(([x, y]) => '<circle cx="' + x + '" cy="' + y + '" r="1.6" fill="currentColor"/>').join('') + '</svg>';
 // Area cards: the room's main thing big, then its controls as tiles (Matt, 27 Oct: Big's headline with Tiles)
 const AREA_ICON = {
   temp: svgIcon(['M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0Z']),
@@ -83,6 +77,7 @@ const AREA_ICON = {
   media: svgIcon(['M3 6h18v12H3Z', 'M8 21h8']),
   plugs: svgIcon(['M9 2v6', 'M15 2v6', 'M6 8h12v4a6 6 0 0 1-12 0Z', 'M12 18v4']),
   alert: svgIcon(['M12 9v4', 'M12 17h.01', 'M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z']),
+  door: svgIcon(['M13 4h5v16h-5', 'M3 20h18', 'M13 4L6 6v14l7 0Z', 'M10.5 12h.01']),
 };
 const STAR = (on) => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 6 6.6.6-5 4.4 1.5 6.5L12 17l-5.9 3.3 1.5-6.5-5-4.4 6.6-.6z" fill="' + (on ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
 // lock: can open the door; alarm: arm home, away, night
@@ -92,6 +87,17 @@ const ALARM_STATE = { disarmed: 'Disarmed', armed_home: 'Armed home', armed_away
 const COLOUR_MODES = ['hs', 'xy', 'rgb', 'rgbw', 'rgbww'];
 const OPEN_CLASSES = ['door', 'window', 'garage_door', 'opening'];
 const ACTION_DOMAINS = ['light', 'climate', 'cover', 'humidifier', 'media_player', 'vacuum', 'lock', 'alarm_control_panel', 'valve'];
+// The dashboard (Matt, 27 Oct): what its activity card follows, how many changes and favourites it shows, and its
+// energy's icons
+const ACTIVITY_DOMAINS = ['light', 'switch', 'fan', 'lock', 'cover', 'climate', 'humidifier', 'media_player', 'alarm_control_panel', 'vacuum', 'valve', 'binary_sensor'];
+// Favourites: five rows, so beside Activity their tiles line up. Activity: the latest changes, as many as its card fits
+// (five in a large card); the rest scroll (Matt, 27 Oct)
+const DASH_FAVOURITES = 10, ACTIVITY_MOST = 20;
+const ENERGY_ICON = { electricity: 'mdi:lightning-bolt', solar: 'mdi:solar-power-variant', gas: 'mdi:fire', water: 'mdi:water' };
+// the bottom row's tiles: a light tile's size, 10 apart (light tiles' rule)
+const DASH_TILE_W = 252, DASH_TILE_GAP = 10;
+// the rooms whose lights the dashboard shows, in Favourites, Activity and the tiles (Matt, 27 Oct)
+const DASH_LIGHT_ROOMS = ['living room', 'bedroom', 'office'];
 
 export function mountTestFocus(root, { config, getHass }) {
   const $ = (id) => root.getElementById(id);
@@ -110,6 +116,123 @@ export function mountTestFocus(root, { config, getHass }) {
       '<div class="toggleRow"><div><strong>Show density</strong><div class="status">Each card’s height, and how many readings fit on the screen.</div></div>' +
       '<button class="switch" id="densityToggle" type="button" aria-label="Show density"></button></div>');
     $('densityToggle').addEventListener('click', () => { densityOn = !densityOn; local.set(DENSITY_KEY, densityOn ? '1' : '0'); applyDensity(); });
+  }
+
+  /* Settings on the house (Matt, 27 Oct): it's "HomeCore test", with only what the house uses. Appearance: theme, Show
+     density, More info and the lights (this page's tiles or the Dual Axis Controller); Sources: which entities feed the
+     weather, energy and alarm; Summaries: which show. A table of the lights (Matt, 27 Oct: an example of a table) sets
+     each one's favourite, tile and pad. Move Assistant's own settings stay on its page */
+  const SOURCES = [
+    ['weather', 'Weather', 'The forecast under Home.', (id) => id.startsWith('weather.')],
+    ['grid', 'Energy', 'Power from the grid, for Energy.', (id) => id.startsWith('sensor.') && attr(id).device_class === 'power' && /^(W|kW)$/.test(attr(id).unit_of_measurement || '')],
+    ['alarm', 'Alarm', 'The alarm on the Security page.', (id) => id.startsWith('alarm_control_panel.')],
+  ];
+  const seg = (id, label, attrName, opts) => '<div class="themeChoice" id="' + id + '" role="group" aria-label="' + label + '">' +
+    opts.map(([v, t]) => '<button class="wxLayoutBtn" type="button" aria-pressed="false" ' + attrName + '="' + v + '">' + t + '</button>').join('') + '</div>';
+  const settingRow = (title, status, control, id) => '<div class="toggleRow"' + (id ? ' id="' + id + '"' : '') + '><div><strong>' + title + '</strong>' + (status ? '<div class="status">' + status + '</div>' : '') + '</div>' + control + '</div>';
+  function houseSettings() {
+    if (!testFocus || $('housePane')) return;
+    const view = $('settingsView');
+    view.querySelector('.settingsTitle').textContent = 'HomeCore test';
+    // one tab each (Matt, 27 Oct); the tab names the section, so the sections have no heading of their own
+    const tabs = [['look', 'Appearance'], ['lights', 'Lights'], ['sources', 'Sources'], ['sums', 'Summaries']];
+    const tabPane = (k, html) => '<div class="houseTab' + (k === 'look' ? ' active' : '') + '" data-house-pane="' + k + '"><section class="card">' + html + '</section></div>';
+    view.querySelector('.rubberTabs').insertAdjacentHTML('afterend', '<div class="settingsPane active" id="housePane">' +
+      '<div class="tabs rubberTabs houseTabs"><div class="rubberIndicator" aria-hidden="true"></div>' +
+        tabs.map(([k, t]) => '<button class="tab segBtn' + (k === 'look' ? ' active' : '') + '" type="button" data-house-tab="' + k + '">' + t + '</button>').join('') + '</div>' +
+      tabPane('look', '<div class="toggleList" id="houseLook"></div>') +
+      tabPane('lights', '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p>' +
+        '<div class="metaTableWrap"><table class="metaTable tfLightTable"><thead><tr><th>Light</th><th>Room</th><th>Now</th><th class="metaSwitchCol">Favourite</th><th>Tile</th><th>Pad</th></tr></thead>' +
+        '<tbody id="lightRows"></tbody></table></div>') +
+      tabPane('sources', '<div class="toggleList">' +
+        SOURCES.map(([k, t, s]) => settingRow(t, s, '<select class="settingsSelect" data-source="' + k + '" aria-label="' + t + '"></select>')).join('') + '</div>') +
+      tabPane('sums', '<div class="toggleList">' +
+        Object.entries(SUMMARIES).map(([k, s]) => settingRow(s.name, '', '<button class="switch" type="button" role="switch" data-sum-toggle="' + k + '" aria-label="' + s.name + ' summary"></button>')).join('') + '</div>') + '</div>');
+    const rows = $('houseLook');
+    [view.querySelector('.themeBtn')?.closest('.toggleRow'), $('densityToggle')?.closest('.toggleRow'), $('moreInfoChoice')?.closest('.toggleRow')].forEach((row) => row && rows.appendChild(row));
+    rows.insertAdjacentHTML('beforeend', settingRow('Lights', 'How lights show on the house page.', seg('lightsChoice', 'Lights', 'data-lights', [['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']]), 'lightsRow') +
+      settingRow('Pad', 'What the Dual Axis Controller’s pad sets on its tile.', seg('dacPadChoice', 'Pad', 'data-dac-pad', [['temperature', 'Temperature'], ['colour', 'Colour']]), 'dacPadRow'));
+    const pane = $('housePane'), bar = pane.querySelector('.houseTabs'), mark = bar.querySelector('.rubberIndicator');
+    // the sliding mark under the open tab, as on Move Assistant's settings; placed again whenever the bar shows or resizes
+    const placeMark = (animate) => {
+      const on = bar.querySelector('.tab.active');
+      mark.style.transition = animate ? '' : 'none';
+      mark.style.left = on.offsetLeft + 'px';
+      mark.style.width = on.offsetWidth + 'px';
+      if (animate) { mark.style.transform = 'scaleX(1.08)'; setTimeout(() => (mark.style.transform = ''), 180); }
+    };
+    new ResizeObserver(() => placeMark(false)).observe(bar);
+    pane.addEventListener('click', (ev) => {
+      const tab = ev.target.closest('[data-house-tab]');
+      if (tab) {
+        bar.querySelectorAll('.tab').forEach((t) => t.classList.toggle('active', t === tab));
+        pane.querySelectorAll('.houseTab').forEach((p) => p.classList.toggle('active', p.dataset.housePane === tab.dataset.houseTab));
+        tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+        placeMark(true);
+        return;
+      }
+      const fav = ev.target.closest('[data-light-fav]');
+      if (fav) { toggleStar(fav.dataset.lightFav); return; }
+      const b = ev.target.closest('[data-lights],[data-dac-pad],[data-sum-toggle]');
+      if (!b || b.disabled) return;
+      if (b.dataset.lights) look.lights = b.dataset.lights;
+      if (b.dataset.dacPad) look.dacPad = b.dataset.dacPad;
+      if (b.dataset.lights || b.dataset.dacPad) { saveLook(); dacs.clear(); }
+      if (b.dataset.sumToggle) {
+        const k = b.dataset.sumToggle, hidden = new Set(prefs.hiddenSums || []);
+        if (hidden.has(k)) hidden.delete(k); else hidden.add(k);
+        prefs = { ...prefs, hiddenSums: [...hidden] };
+        savePrefs();
+      }
+      render();
+    });
+    pane.addEventListener('change', (ev) => {
+      const t = ev.target;
+      if (t.dataset.source) {
+        prefs = { ...prefs, sources: { ...(prefs.sources || {}), [t.dataset.source]: t.value || undefined } };
+        savePrefs();
+      }
+      // a light's own tile or pad (Default follows Appearance); its controllers are made again
+      const id = t.dataset.lightStyle || t.dataset.lightPad;
+      if (id) {
+        const field = t.dataset.lightStyle ? 'lightStyles' : 'lightPads', next = { ...look[field] };
+        if (t.value) next[id] = t.value; else delete next[id];
+        look[field] = next;
+        saveLook();
+        [...dacs.keys()].filter((k) => k.endsWith(':' + id)).forEach((k) => dacs.delete(k));
+      }
+      render();
+    });
+  }
+  // the settings as they are now: each choice pressed, the sources' lists, the summaries' switches
+  function syncSettings() {
+    const pane = $('housePane');
+    if (!pane) return;
+    const have = Boolean(customElements.get(DAC_TAG)), lights = have ? look.lights : 'tile';
+    pane.querySelectorAll('[data-lights]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.lights === lights)); if (b.dataset.lights === 'dac') b.disabled = !have; });
+    $('lightsRow').querySelector('.status').textContent = have ? 'How lights show on the house page.' : 'Install the Dual Axis Controller from HACS to use it.';
+    pane.querySelectorAll('[data-dac-pad]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.dacPad === look.dacPad)));
+    $('dacPadRow').hidden = !have || !(look.lights === 'dac' || Object.values(look.lightStyles).includes('dac'));
+    for (const sel of pane.querySelectorAll('[data-source]')) {
+      if (sel === root.activeElement) continue;
+      const [kind] = SOURCES.find(([k]) => k === sel.dataset.source), ids = Object.keys(states).filter(SOURCES.find(([k]) => k === kind)[3]).sort((a, b) => nameOf(a).localeCompare(nameOf(b)));
+      if (sel.dataset.sig !== ids.join(',')) { sel.innerHTML = '<option value="">Automatic</option>' + ids.map((x) => '<option value="' + esc(x) + '">' + esc(nameOf(x)) + '</option>').join(''); sel.dataset.sig = ids.join(','); }
+      sel.value = ids.includes(prefs.sources?.[kind]) ? prefs.sources[kind] : '';
+    }
+    pane.querySelectorAll('[data-sum-toggle]').forEach((b) => { const on = !(prefs.hiddenSums || []).includes(b.dataset.sumToggle); b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); });
+    // the lights table, by room, redrawn when something in it changed (not while one of its lists is open)
+    const body = $('lightRows');
+    if (!body || body.contains(root.activeElement)) return;
+    const stars = new Set(starred()), opt = (v, t, cur, off) => '<option value="' + v + '"' + (v === cur ? ' selected' : '') + (off ? ' disabled' : '') + '>' + t + '</option>';
+    const html = Object.keys(states).filter((id) => id.startsWith('light.'))
+      .sort((a, b) => !whereIs.get(a) - !whereIs.get(b) || (whereIs.get(a) || '').localeCompare(whereIs.get(b) || '') || nameOf(a).localeCompare(nameOf(b))).map((id) => {
+        const style = look.lightStyles[id] || '', pad = look.lightPads[id] || '', fav = stars.has(id), name = esc(nameOf(id));
+        return '<tr><td><strong>' + name + '</strong></td><td>' + esc(whereIs.get(id) || '—') + '</td><td>' + esc(valueOf(id)) + '</td>' +
+          '<td class="metaSwitchCol"><button class="switch' + (fav ? ' on' : '') + '" type="button" role="switch" aria-checked="' + fav + '" data-light-fav="' + esc(id) + '" aria-label="' + name + ' is a favourite"></button></td>' +
+          '<td><select class="settingsSelect" data-light-style="' + esc(id) + '" aria-label="' + name + ' tile">' + opt('', 'Default', style) + opt('tile', 'HomeCore tile', style) + opt('dac', 'Dual Axis Controller', style, !have) + '</select></td>' +
+          '<td><select class="settingsSelect" data-light-pad="' + esc(id) + '" aria-label="' + name + ' pad"' + (dacFor(id) ? '' : ' disabled') + '>' + opt('', 'Default', pad) + opt('temperature', 'Temperature', pad) + opt('colour', 'Colour', pad) + '</select></td></tr>';
+      }).join('');
+    if (body.dataset.html !== html) { body.innerHTML = html; body.dataset.html = html; }
   }
 
   /* ---------- density overlay ---------- */
@@ -145,8 +268,10 @@ export function mountTestFocus(root, { config, getHass }) {
   const grid = root.querySelector('#homeView .grid');
   let open = null; // { key of its card, entity id, card height before it opened }
   let activeArea = null; // the area card that's open in the accordion
+  let areaPage = null; // the section whose own page is open (a room's, from its card's Go; Security's, from its summary), or null for the house
   let more = null; // { id, opener } while the stand-in more-info is open
   const history = new Map(); // entity id → { at, points }
+  const energyText = new Map(); // the dashboard's energy: statistic id → { name, text, icon } its tile shows
   const dragging = new Map(); // "kind|entity id" → value while a bar is held
   const goals = new Map(); // cover id → { pos, tilt, at }: where it was sent, until it gets there
   const arts = new Map(); // cover id → its drawing in more-info, kept across redraws
@@ -159,20 +284,23 @@ export function mountTestFocus(root, { config, getHass }) {
   let suggested = null; // the suggestions, worked out once a visit so tiles don't move while you use them
   const used = (() => { try { return JSON.parse(local.get(USED_KEY)) || {}; } catch (_e) { return {}; } })();
   let whereIs = new Map(); // entity id → its room's name
-  // Edit mode's choices, saved with the favourites (prefs, HOUSE_KEY): sections (Matt's own: { id, name }), order
-  // ({ sections: [section keys], blocks: { section key: [entity ids] } }), place (entity id → the section it was moved
-  // to), hidden (entity ids), hiddenAreas (area ids whose card is hidden), main (area id → the entity its card shows
-  // big), show (entity id → { size, hide: [parts], art, graph }). Home Assistant's areas are never changed.
-  let editing = false, saveTimer = 0;
-  const homeOf = new Map(); // entity id → the section it belongs to before it's moved
-  const showOf = (id) => prefs.show?.[id] || {};
-  const isHidden = (id) => (prefs.hidden || []).includes(id);
-  const hiddenArea = (areaId) => (prefs.hiddenAreas || []).includes(areaId);
+  // saved to Home Assistant (prefs, HOUSE_KEY): the favourites, Settings → Sources (sources: { weather, grid, alarm })
+  // and the summaries switched off there (hiddenSums). Home Assistant's areas are never changed
+  let saveTimer = 0;
   function savePrefs() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => Promise.resolve(callWS({ type: 'frontend/set_user_data', key: HOUSE_KEY, value: prefs })).catch(() => {}), 400);
   }
-  const look = (() => { try { return { more: JSON.parse(local.get(LOOK_KEY))?.more === 'sheet' ? 'sheet' : 'popup' }; } catch (_e) { return { more: 'popup' }; } })();
+  // this browser's look for the house: More info as a popup or a sheet, and the lights as this page's tiles or as the
+  // Dual Axis Controller (with its pad on temperature or colour), each light able to differ (the lights table)
+  const look = (() => {
+    let v = {};
+    try { v = JSON.parse(local.get(LOOK_KEY)) || {}; } catch (_e) { /* the defaults */ }
+    const only = (o, ok) => Object.fromEntries(Object.entries(o || {}).filter(([, x]) => ok.includes(x)));
+    return { more: v.more === 'sheet' ? 'sheet' : 'popup', lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
+      lightStyles: only(v.lightStyles, ['tile', 'dac']), lightPads: only(v.lightPads, ['temperature', 'colour']) };
+  })();
+  const saveLook = () => local.set(LOOK_KEY, JSON.stringify(look));
   const applyLook = () => { app.dataset.more = look.more; fitDetails(); };
   /* Settings → Appearance → More info (the house page): a popup or a sheet */
   if (testFocus && list && !$('moreInfoChoice')) {
@@ -184,26 +312,43 @@ export function mountTestFocus(root, { config, getHass }) {
       const b = ev.target.closest('[data-more-style]');
       if (!b) return;
       look.more = b.dataset.moreStyle;
-      local.set(LOOK_KEY, JSON.stringify(look));
+      saveLook();
       applyLook();
       $('moreInfoChoice').querySelectorAll('[data-more-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     });
   }
-  let model = { rooms: [], vacuums: [], grid: null, security: { alarms: [], locks: [], openings: [] } };
+  houseSettings();
+  let model = { rooms: [], vacuums: [], homeVacuums: [], grid: null, security: { alarms: [], locks: [], openings: [] } };
   const units = new Map(); // card or tile key → the html last drawn
   let signature = '';
   const house = testFocus ? createHouse({ onChange: () => refresh() }) : null;
   if (testFocus) app.classList.add('house');
   // Home's weather is the bento (Figma "Weather bento"), at its drawn sizes; it stays mounted across redraws
   const bentoBox = Object.assign(document.createElement('div'), { className: 'tfBento' });
-  let bento = null, suspended = false;
+  let bento = null, bentoId = null, suspended = false;
   function placeBento(order) {
     const id = weatherId();
     app.classList.toggle('houseBento', Boolean(id));
-    if (!id) return;
+    // a different forecast was picked in Settings → Sources; the dashboard shows it only on its Weather page
+    if (bento && (bentoId !== id || order == null)) { bento.destroy(); bento = null; }
+    if (!id || order == null) { bentoBox.remove(); return; }
     if (!bentoBox.isConnected) grid.append(bentoBox);
     bentoBox.style.order = order;
-    if (!bento && !suspended) bento = mountWeatherBento(bentoBox, { getHass, entityId: id, style: 'bitmap' });
+    if (!bento && !suspended) { bento = mountWeatherBento(bentoBox, { getHass, entityId: id, style: 'bitmap' }); bentoId = id; }
+  }
+  // the dashboard's own weather cards (Matt, 27 Oct): the weather card, whose Now opens the Weather page, and Compared
+  // to average in the place of the concept's to-do list; each kept mounted across redraws
+  const DASH_WEATHER = [['wx', ['current']], ['avg', ['compared_to_average']]];
+  const dashBoxes = Object.fromEntries(DASH_WEATHER.map(([k]) => [k, Object.assign(document.createElement('div'), { className: 'tfDashBento tfDash-' + k })]));
+  let dashBentos = null, dashBentoId = null;
+  function placeDash(on) {
+    const id = on ? weatherId() : null;
+    if (dashBentos && dashBentoId !== id) { dashBentos.forEach((b) => b.destroy()); dashBentos = null; }
+    Object.values(dashBoxes).forEach((box) => (id ? !box.isConnected && grid.append(box) : box.remove()));
+    if (id && !dashBentos && !suspended) {
+      dashBentos = DASH_WEATHER.map(([k, cards]) => mountWeatherBento(dashBoxes[k], { getHass, entityId: id, style: 'bitmap', cards, onOpen: k === 'wx' ? () => openArea('weather') : undefined }));
+      dashBentoId = id;
+    }
   }
 
   const attr = (id) => states[id]?.attributes || {};
@@ -213,6 +358,20 @@ export function mountTestFocus(root, { config, getHass }) {
   const num = (v, d = 1) => Number(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
   const brightnessOf = (st) => (st?.state === 'on' ? (st.attributes.brightness != null ? Math.max(1, Math.round(st.attributes.brightness / 2.55)) : 100) : 0);
   const modesOf = (id) => attr(id).supported_color_modes || [];
+  // a light's colour while it's on, as Home Assistant's tiles show it: its rgb, else its hue, else its warm to cool,
+  // else amber; the glyph goes dark on pale colours
+  const kelvinRgb = (k) => {
+    const t = k / 100;
+    return [t <= 66 ? 255 : 329.7 * Math.pow(t - 60, -0.1332), t <= 66 ? 99.47 * Math.log(t) - 161.12 : 288.12 * Math.pow(t - 60, -0.0755), t >= 66 ? 255 : t <= 19 ? 0 : 138.52 * Math.log(t - 10) - 305.04];
+  };
+  const hueRgb = (h, sat) => [5, 3, 1].map((n) => { const k = (n + h / 60) % 6; return 255 * (1 - (sat / 100) * Math.max(0, Math.min(k, 4 - k, 1))); });
+  function lightVars(id) {
+    const a = attr(id);
+    const rgb = (a.rgb_color || (a.hs_color && a.color_mode !== 'color_temp' ? hueRgb(...a.hs_color) : a.color_temp_kelvin ? kelvinRgb(a.color_temp_kelvin) : [255, 170, 0])).map((v) => Math.round(Math.max(0, Math.min(255, v))));
+    const pale = (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255 > 0.8;
+    return '--light:rgb(' + rgb.join(',') + ');--light-ink:' + (pale ? '#26221e' : '#ffffff');
+  }
+  const lightAttrs = (id) => (id.startsWith('light.') && states[id]?.state === 'on' ? ' data-light style="' + lightVars(id) + '"' : '');
   const dimmable = (id) => { const m = modesOf(id); return m.length ? m.some((x) => x !== 'onoff') : attr(id).brightness != null; };
   const kelvinRange = (id) => [attr(id).min_color_temp_kelvin || 2000, attr(id).max_color_temp_kelvin || 6500];
   const clock = (t) => new Date(t).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
@@ -303,12 +462,9 @@ export function mountTestFocus(root, { config, getHass }) {
   function readingRow(cardKey, id) {
     const label = esc(nameOf(id) + ', ' + valueOf(id));
     const graph = Number.isFinite(Number(states[id]?.state)) && states[id]?.state !== '';
-    const tap = graph && !editing, spark = graph && showOf(id).graph;
-    return '<div class="activityRow' + (spark ? ' tfGraphRow' : '') + (tap ? ' tap" role="button" tabindex="0" data-open="' + esc(cardKey + '|' + id) + '" aria-label="' + label + '. Show the last 24 hours"' : '" aria-label="' + label + '"') + '>' +
+    return '<div class="activityRow' + (graph ? ' tap" role="button" tabindex="0" data-open="' + esc(cardKey + '|' + id) + '" aria-label="' + label + '. Show the last 24 hours"' : '" aria-label="' + label + '"') + '>' +
       '<div class="tfIcon" aria-hidden="true"' + iconSlot(id, iconFor(id)) + '></div>' +
-      '<div><div class="activityRowName">' + esc(nameOf(id)) + '</div><div class="activityRowMeta">' + esc(valueOf(id)) + '</div></div>' +
-      (editing && graph ? tool('data-tile-opts="' + esc(id) + '"', nameOf(id) + ' options', GEAR) : '') +
-      (spark ? '<svg class="tfSpark" data-spark="' + esc(id) + '" role="img" aria-label="' + esc(nameOf(id)) + ', last 24 hours"></svg>' : '') + '</div>';
+      '<div><div class="activityRowName">' + esc(nameOf(id)) + '</div><div class="activityRowMeta">' + esc(valueOf(id)) + '</div></div></div>';
   }
   const sumRow = (name, value, icon) => '<div class="activityRow" aria-label="' + esc(name + ', ' + value) + '"><div class="tfIcon" aria-hidden="true"' + iconSlot('', icon, name) + '></div>' +
     '<div><div class="activityRowName">' + esc(name) + '</div><div class="activityRowMeta">' + esc(value) + '</div></div></div>';
@@ -318,16 +474,20 @@ export function mountTestFocus(root, { config, getHass }) {
     return '<div class="activityRow tfPlug' + (on ? ' on' : '') + '"><button class="tfIcon" type="button" data-act="' + act('switch', 'toggle', id) + '" aria-label="Turn ' + esc(nameOf(id)) + (on ? ' off' : ' on') + '"' + iconSlot(id) + '></button>' +
       '<div><div class="activityRowName">' + esc(nameOf(id)) + '</div><div class="activityRowMeta">' + esc(valueOf(id)) + '</div></div></div>';
   }
+  // an opened tile shows its reading, or what its card says instead (the dashboard's energy: today's use, by source)
+  const openName = (id) => energyText.get(id)?.name ?? nameOf(id);
+  const openValue = (id) => energyText.get(id)?.text ?? valueOf(id);
   function openTile(id) {
-    return '<div class="tfOpen"><div class="tfOpenHead"><div class="tfIcon" aria-hidden="true"' + iconSlot(id, iconFor(id)) + '></div>' +
-      '<div><div class="activityRowName">' + esc(nameOf(id)) + '</div><div class="activityRowMeta">' + esc(valueOf(id)) + '</div></div>' +
-      '<button class="tfBack" type="button" data-close aria-label="Close ' + esc(nameOf(id)) + '’s last 24 hours">' + ARROW + '</button></div>' +
-      '<svg class="tfGraph" data-graph="' + esc(id) + '" role="img" aria-label="' + esc(nameOf(id)) + ', last 24 hours"></svg></div>';
+    const icon = energyText.get(id)?.icon;
+    return '<div class="tfOpen"><div class="tfOpenHead"><div class="tfIcon" aria-hidden="true"' + (icon ? iconSlot('', icon, openName(id)) : iconSlot(id, iconFor(id))) + '></div>' +
+      '<div><div class="activityRowName">' + esc(openName(id)) + '</div><div class="activityRowMeta">' + esc(openValue(id)) + '</div></div>' +
+      '<button class="tfBack" type="button" data-close aria-label="Close ' + esc(openName(id)) + '’s last 24 hours">' + ARROW + '</button></div>' +
+      '<svg class="tfGraph" data-graph="' + esc(id) + '" role="img" aria-label="' + esc(openName(id)) + ', last 24 hours"></svg></div>';
   }
   // a card of readings; its title can open more-info (a plant)
-  function card(key, order, title, rows, extra = '', moreId = null) {
+  function card(key, order, title, rows, extra = '', moreId = null, cls = '') {
     const isOpen = open && open.key === key;
-    return '<section class="card tfCard' + (isOpen ? ' open' : '') + '" data-tf data-k="' + esc(key) + '" style="order:' + order + (isOpen && open.h ? ';min-height:' + open.h + 'px' : '') + '" aria-label="' + esc(title) + '">' +
+    return '<section class="card tfCard' + (cls ? ' ' + cls : '') + (isOpen ? ' open' : '') + '" data-tf data-k="' + esc(key) + '" style="order:' + order + (isOpen && open.h ? ';min-height:' + open.h + 'px' : '') + '" aria-label="' + esc(title) + '">' +
       '<div class="activityHeader">' + (moreId ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + esc(moreId) + '" aria-label="' + esc(title + ', ' + valueOf(moreId) + '. More info') + '">' + esc(title) + '</button>' : '<div class="activityTitle">' + esc(title) + '</div>') + '</div>' +
       (isOpen ? openTile(open.id) : '<div class="activityRows">' + rows.join('') + '</div>' + extra) + '</section>';
   }
@@ -352,11 +512,23 @@ export function mountTestFocus(root, { config, getHass }) {
   const openingsCard = (order) => card('openings', order, 'Doors and windows', model.security.openings.map((id) => readingRow('openings', id)));
 
   /* action tiles: a name row, then sections stacked under it */
-  function bar(kind, id, frac, label, valueText, marker) {
+  // was: where a light's brightness was before it went off, a faint line on its bar
+  function bar(kind, id, frac, label, valueText, marker, was = null) {
     const f = frac == null ? null : Math.max(0, Math.min(1, frac)), pct = f == null ? 0 : Math.round(f * 100);
     return '<div class="tfBar ' + kind + '" role="slider" tabindex="0" aria-label="' + esc(label) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"' + (valueText ? ' aria-valuetext="' + esc(valueText) + '"' : '') + ' data-drag="' + esc(kind + '|' + id) + '">' +
+      (was != null ? '<span class="was" aria-hidden="true" style="left:' + was + '%"></span>' : '') +
       (marker ? (f == null ? '' : '<b style="left:' + pct + '%"></b>') : '<i style="width:' + pct + '%"></i>') + '</div>';
   }
+  // each light's brightness while it was last on, remembered in this browser, for its off line
+  const LAST_BRIGHT_KEY = 'move-assistant-house-last-bright';
+  const lastBright = (() => { try { return JSON.parse(local.get(LAST_BRIGHT_KEY)) || {}; } catch (_e) { return {}; } })();
+  let lastBrightTimer = 0;
+  const noteBright = (id, v) => {
+    if (!v || lastBright[id] === v) return;
+    lastBright[id] = v;
+    clearTimeout(lastBrightTimer);
+    lastBrightTimer = setTimeout(() => local.set(LAST_BRIGHT_KEY, JSON.stringify(lastBright)), 500);
+  };
   const stepper = (label, valueText, down, up) => '<div class="tfStep" role="group" aria-label="' + esc(label) + '">' +
     '<button type="button" data-act="' + down + '" aria-label="Lower ' + esc(label.toLowerCase()) + '">−</button><output>' + esc(valueText) + '</output>' +
     '<button type="button" data-act="' + up + '" aria-label="Raise ' + esc(label.toLowerCase()) + '">+</button></div>';
@@ -390,23 +562,41 @@ export function mountTestFocus(root, { config, getHass }) {
   const nameButton = (id) => '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(nameOf(id) + ', ' + valueOf(id) + '. More info') + '"><span class="activityRowName">' + esc(nameOf(id)) + '</span><span class="activityRowMeta">' + esc(valueOf(id)) + '</span></button>';
   // a tile shows the sections Matt kept (all but a cover's drawing to start with), at its size; small is the icon and
   // name only. In edit mode its controls rest under a bar of tools
-  function actionTile(id) {
-    const s = specFor(id), show = showOf(id), size = show.size || 'half', hide = show.hide || [];
-    const sections = size === 'small' ? [] : s.sections.map((sec, i) => (sec && !hide.includes((s.parts || [])[i]) ? sec : '')).filter(Boolean);
-    const art = size !== 'small' && show.art && id.startsWith('cover.') ? '<div data-cover-art="' + esc(id) + '" data-art-key="tile:' + esc(id) + '"></div>' : '';
-    const body = '<div class="tfActionHead">' + iconButton(id, s) + nameButton(id) + '</div>' + art + sections.join('');
-    return '<div class="tfAction' + (s.on ? ' on' : '') + (size !== 'half' ? ' ' + size : '') + (isHidden(id) ? ' isHidden' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + '>' +
-      (editing ? editBar(id) + '<div class="tfEditBody" inert>' + body + '</div>' : body) + '</div>';
+  // in a summary's popup a tile keeps all its controls, except a light, which keeps only its brightness (Matt, 27 Oct:
+  // not a barrage of colour; warmth and colour are on the light's own popup)
+  // on the dashboard's bottom row (only) a tile keeps just its first control: a light its brightness, a thermostat its target
+  function actionTile(id, inDialog = false, only = null) {
+    if (id.startsWith('light.') && dacFor(id)) return '<div class="tfDac" data-k="' + esc(id) + '" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"></div>';
+    const s = specFor(id), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
+    const sections = s.sections.map((sec, i) => (sec && (!keep || keep.includes((s.parts || [])[i])) ? sec : '')).filter(Boolean);
+    return '<div class="tfAction' + (s.on ? ' on' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
+      '<div class="tfActionHead">' + iconButton(id, s) + nameButton(id) + '</div>' + sections.join('') + '</div>';
   }
-  const tool = (attrs, label, svg, off) => '<button class="tfTool" type="button" ' + attrs + ' aria-label="' + esc(label) + '"' + (off ? ' disabled' : '') + '>' + svg + '</button>';
-  const editBar = (id) => '<div class="tfEditBar"><span class="tfTool tfGrip" data-drag-tile="' + esc(id) + '" aria-hidden="true">' + GRIP + '</span><span class="tfSpacer"></span>' +
-    tool('data-tile-move="' + esc(id) + '|-1"', 'Move ' + nameOf(id) + ' earlier', EARLIER) + tool('data-tile-move="' + esc(id) + '|1"', 'Move ' + nameOf(id) + ' later', LATER) +
-    tool('data-tile-opts="' + esc(id) + '"', nameOf(id) + ' options', GEAR) + '</div>' + (isHidden(id) ? '<span class="tfHiddenTag">Hidden</span>' : '');
-  // what a tile can show: its sections that this device has, and a cover's drawing
-  function partsFor(id) {
-    const s = specFor(id), list = (s.parts || []).filter((p, i) => s.sections[i]);
-    return id.startsWith('cover.') ? ['art', ...list] : list;
+  /* the Dual Axis Controller (Matt's HACS card, custom:dual-controller-v3): when Settings picks it, every light is its
+     tile, with its own pad and controller */
+  const DAC_TAG = 'dual-controller-v3';
+  const dacs = new Map(); // place:light id → its card, kept across redraws
+  // a light's tile and pad: its own choice in the lights table, else Appearance's
+  function dacFor(id) { return (look.lightStyles[id] || look.lights) === 'dac' && Boolean(customElements.get(DAC_TAG)); }
+  const padOf = (id) => look.lightPads[id] || look.dacPad;
+  // the card follows this page's theme rather than Home Assistant's
+  const dacHass = () => { const h = getHass(); return h && { ...h, themes: { ...(h.themes || {}), darkMode: !app.classList.contains('light') } }; };
+  // on the dashboard its name opens its pad in place (a tap action the page catches, below) rather than the card's own
+  // controller, and its pad takes the height its cells leave (--tf-dac-pad, through the card's open shadow root)
+  const DAC_FIT = '.halo.is-size-tile .halo__pad-shell{height:var(--tf-dac-pad,158px)!important;transition:height .25s cubic-bezier(.2,.7,.3,1)}';
+  function mountDacs(scope) {
+    scope.querySelectorAll('[data-dac]').forEach((slot) => {
+      const key = slot.dataset.dac, onBoard = key.startsWith('dash:');
+      let el = dacs.get(key);
+      if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), ...(onBoard ? { tap_action: { action: 'none' } } : {}) }); dacs.set(key, el); }
+      el.hass = dacHass();
+      if (onBoard && el.shadowRoot && !el.shadowRoot.querySelector('style[data-tf-fit]')) el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_FIT })).dataset.tfFit = '';
+      if (el.parentNode !== slot) slot.replaceChildren(el);
+    });
   }
+  function syncDacs() { const h = dacHass(); dacs.forEach((el, key) => { if (el.isConnected) el.hass = h; else dacs.delete(key); }); }
+  // the card can load after this one: draw again once it's there
+  customElements.whenDefined(DAC_TAG).then(() => { if (testFocus && grid?.querySelector('[data-tf]')) render(); });
   const held = (kind, id, fallback) => (dragging.has(kind + '|' + id) ? dragging.get(kind + '|' + id) : fallback);
 
   // each kind of device: whether it's on, its button, and its sections in order
@@ -416,10 +606,11 @@ export function mountTestFocus(root, { config, getHass }) {
     if (d === 'light') {
       // brightness, then warm to cool, then colour, each only if the light can do it
       const on = st.state === 'on', modes = modesOf(id), [kMin, kMax] = kelvinRange(id), b = held('bright', id, brightnessOf(st));
+      if (on) noteBright(id, brightnessOf(st));
       const k = held('ct', id, on && a.color_mode === 'color_temp' ? a.color_temp_kelvin : null);
       const hue = held('hue', id, on && COLOUR_MODES.includes(a.color_mode) && a.hs_color ? a.hs_color[0] : null);
       return { on, button: toggle('light', 'Turn ' + nameOf(id) + (on ? ' off' : ' on')), parts: ['bright', 'ct', 'hue'], sections: [
-        dimmable(id) && bar('bright', id, b / 100, nameOf(id) + ' brightness', b + '%'),
+        dimmable(id) && bar('bright', id, b / 100, nameOf(id) + ' brightness', b + '%', false, on ? null : lastBright[id] ?? null),
         modes.includes('color_temp') && bar('ct', id, k == null ? null : (k - kMin) / (kMax - kMin), nameOf(id) + ' warm to cool', k == null ? '' : Math.round(k) + ' kelvin', true),
         modes.some((m) => COLOUR_MODES.includes(m)) && bar('hue', id, hue == null ? null : hue / 360, nameOf(id) + ' colour', '', true),
       ] };
@@ -508,7 +699,7 @@ export function mountTestFocus(root, { config, getHass }) {
     return { on: false, button: { act: '', label: nameOf(id) }, sections: [] };
   }
 
-  /* area cards: one open, the others folded, like the move panels; Go takes you to the room. Open, a card shows the
+  /* area cards: one open, the others folded, like the move panels; Go opens the area's own page. Open, a card shows the
      room's main thing big (its temperature, unless Matt picks another in edit mode), then its controls as tiles */
   const deg = (v) => (Number.isInteger(Number(v)) ? String(Number(v)) : num(v)) + '°';
   // a room's key information, each a reading, a control (with what tapping it does) or an alert
@@ -525,7 +716,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const keys = [];
     if (temp && Number.isFinite(num1(temp))) keys.push({ key: 'temp', id: temp, kind: 'reading', icon: AREA_ICON.temp, label: 'Temperature', value: num(num1(temp)) + '°' });
     if (hum && Number.isFinite(num1(hum))) keys.push({ key: 'hum', id: hum, kind: 'reading', icon: AREA_ICON.hum, label: 'Humidity', value: Math.round(num1(hum)) + '%' });
-    if (r.lights.length) keys.push({ key: 'lights', kind: 'control', tone: 'light', icon: AREA_ICON.lights, label: 'Lights', value: lit.length ? lit.length + ' of ' + r.lights.length + ' on' : 'All off', short: lit.length ? lit.length + ' on' : 'Off', on: lit.length > 0,
+    if (r.lights.length) keys.push({ key: 'lights', kind: 'control', tone: 'light', icon: AREA_ICON.lights, label: 'Lights', value: lit.length ? lit.length + ' of ' + r.lights.length + ' on' : 'All off', short: lit.length ? lit.length + ' on' : 'Off', on: lit.length > 0, light: lit.length ? lightVars(lit[0]) : '',
       acts: r.lights.map((id) => ['light', lit.length ? 'turn_off' : 'turn_on', id]), aria: (lit.length ? 'Turn off' : 'Turn on') + ' the lights in ' + r.name });
     if (covers.length) {
       const noun = kinds.length === 1 ? COVER_NOUN[kinds[0]] : 'covers', avg = Math.round(covers.reduce((t, id) => t + posOf(id), 0) / covers.length);
@@ -549,18 +740,22 @@ export function mountTestFocus(root, { config, getHass }) {
     }
     if (r.plugs.length) keys.push({ key: 'plugs', kind: 'control', tone: 'blue', icon: AREA_ICON.plugs, label: 'Plugs', value: plugsOn.length ? plugsOn.length + ' of ' + r.plugs.length + ' on' : 'All off', short: plugsOn.length ? plugsOn.length + ' on' : 'Off', on: plugsOn.length > 0,
       acts: r.plugs.map((id) => ['switch', plugsOn.length ? 'turn_off' : 'turn_on', id]), aria: (plugsOn.length ? 'Turn off' : 'Turn on') + ' the plugs in ' + r.name });
-    r.alerts.forEach((id) => keys.push({ key: 'alert:' + id, kind: 'alert', icon: AREA_ICON.alert, label: attr(id).device_class === 'moisture' ? 'Water leak' : nameOf(id) + ' ' + valueOf(id).toLowerCase() }));
+    // a leak is an alert, in red; an open door or window is only worth a note, never red (Matt, 27 Oct: the balcony door)
+    r.alerts.forEach((id) => keys.push(attr(id).device_class === 'moisture' ? { key: 'alert:' + id, kind: 'alert', icon: AREA_ICON.alert, label: 'Water leak' }
+      : { key: 'note:' + id, kind: 'note', icon: AREA_ICON.door, label: nameOf(id) + ' ' + valueOf(id).toLowerCase() }));
     return keys;
   }
+  // the devices a room's key stands for
+  const groupIds = (r, key) => {
+    const of = (re) => r.actions.filter((id) => re.test(id));
+    return ({ lights: r.lights, covers: of(/^cover\./), climate: of(/^climate\./).slice(0, 1), humidifier: of(/^humidifier\./).slice(0, 1), plugs: r.plugs,
+      media: (() => { const players = of(/^media_player\./); return [players.find((id) => states[id]?.state === 'playing') || players.find((id) => states[id]?.state === 'paused') || players[0]].filter(Boolean); })() })[key] || [];
+  };
   const keyButton = (k, cls, inner) => '<button class="' + cls + (k.on ? ' on' : '') + '" type="button" data-tone="' + k.tone + '" data-acts="' + acts(k.acts) + '" aria-label="' + esc(k.aria) + '" aria-pressed="' + k.on + '">' + inner + '</button>';
   const goButton = (r) => '<button class="pill" type="button" data-go="' + esc(r.id) + '" aria-label="Go to ' + esc(r.name) + '">Go</button>';
-  const alertTags = (keys) => keys.filter((k) => k.kind === 'alert').map((k) => '<span class="sourceTag">' + esc(k.label) + '</span>').join(' ');
-  // what a room's main can be: its readings, then its devices. Its temperature unless Matt picked another (prefs.main)
-  const mainChoices = (r) => [...new Set([...r.readings, ...r.solar, ...r.openings, ...r.actions, ...r.plugs])].filter((id) => states[id]);
-  function mainOf(r) {
-    const ids = mainChoices(r), picked = prefs.main?.[r.id];
-    return ids.includes(picked) ? picked : r.readings.find((id) => attr(id).device_class === 'temperature') || ids[0] || null;
-  }
+  const alertTags = (keys) => keys.filter((k) => k.kind === 'alert' || k.kind === 'note').map((k) => '<span class="sourceTag">' + esc(k.label) + '</span>').join(' ');
+  // a room's main: its temperature, else its first reading, else its first device
+  const mainOf = (r) => r.readings.find((id) => attr(id).device_class === 'temperature') || [...r.readings, ...r.solar, ...r.openings, ...r.actions, ...r.plugs].find((id) => states[id]) || null;
   // a name without its room's ("Living room humidity" in the living room is "Humidity")
   const inRoom = (r, id) => { const n = nameOf(id); return n.toLowerCase().startsWith(r.name.toLowerCase() + ' ') ? cap(n.slice(r.name.length + 1)) : n; };
   // the main as a headline: a number and its unit, or a word
@@ -586,14 +781,16 @@ export function mountTestFocus(root, { config, getHass }) {
     if (id.startsWith('climate.')) return [inRoom(r, id), off ? 'Off' : cap(a.hvac_action || states[id].state) + (a.temperature != null ? ' · ' + deg(a.temperature) : ''), h && h.value + ' humidity'].filter(Boolean).join(' · ');
     return [!(t && t.id === id) && inRoom(r, id), t && t.id !== id && t.value, h && h.id !== id && h.value + ' humidity'].filter(Boolean).join(' · ');
   };
-  // the open card: name, alerts and Go (and in edit mode its options); the main, which opens its more-info; up to four
+  // the open card: name, alerts and Go; the main, which opens its more-info; up to four
   // controls as tiles, the icon the button
   function areaBody(r, keys, main) {
     const h = main && headline(main), sub = main ? mainSub(r, main, keys) : '';
-    const tiles = keys.filter((k) => k.kind === 'control').slice(0, 4).map((k) => '<div class="tfATile' + (k.on ? ' on' : '') + '" data-tone="' + k.tone + '">' + keyButton(k, 'tfIcon', k.icon) +
-      '<div><div class="activityRowName">' + esc(k.label) + '</div><div class="activityRowMeta">' + esc(k.value) + '</div></div></div>');
-    return '<div class="workoutPanelTop"><div><div class="tfAName">' + esc(r.name) + '</div>' + alertTags(keys) + '</div><div class="tfATools">' +
-      (editing ? tool('data-sec-opts="' + esc('room:' + r.id) + '"', r.name + ' options', GEAR) : '') + goButton(r) + '</div></div>' +
+    // the icon is the button; the name and value open what the tile stands for: a room's lights, covers or plugs as a
+    // group, one device as its own more-info (Matt, 27 Oct)
+    const opens = (k) => { const ids = groupIds(r, k.key); return ids.length === 1 ? ids[0] : 'group:' + r.id + ':' + k.key; };
+    const tiles = keys.filter((k) => k.kind === 'control').slice(0, 4).map((k) => '<div class="tfATile' + (k.on ? ' on' : '') + '" data-tone="' + k.tone + '"' + (k.light ? ' data-light style="' + k.light + '"' : '') + '>' + keyButton(k, 'tfIcon', k.icon) +
+      '<button class="tfName" type="button" data-more="' + esc(opens(k)) + '" aria-label="' + esc(r.name + ' ' + k.label.toLowerCase() + ', ' + k.value + '. Open') + '"><span class="activityRowName">' + esc(k.label) + '</span><span class="activityRowMeta">' + esc(k.value) + '</span></button></div>');
+    return '<div class="workoutPanelTop"><div><div class="tfAName">' + esc(r.name) + '</div>' + alertTags(keys) + '</div>' + goButton(r) + '</div>' +
       (main ? '<button class="tfABig" type="button" data-more="' + esc(main) + '" aria-label="' + esc(nameOf(main) + ', ' + valueOf(main) + '. More info') + '">' +
         '<span class="tfABigMain' + (h.text.length > 7 ? ' long' : '') + '">' + esc(h.text) + (h.unit ? '<span class="tfABigUnit">' + esc(h.unit) + '</span>' : '') + '</span>' +
         (sub ? '<span class="tfABigSub">' + esc(sub) + '</span>' : '') + '</button>' : '') +
@@ -601,49 +798,31 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function areaPanel(r) {
     const isActive = r.id === activeArea, keys = roomKeys(r), main = mainOf(r), h = main && headline(main);
-    // a folded card's content can't be reached until it's open; folded, it shows the main, the name and what's on
-    return '<article class="workoutPanel tfAreaPanel' + (isActive ? ' active' : '') + (hiddenArea(r.id) ? ' isHidden' : '') + '" data-area="' + esc(r.id) + '" tabindex="0" aria-expanded="' + isActive + '" aria-label="' + esc(r.name) + '">' +
+    // a folded card's content can't be reached until it's open. Folded (Matt's Figma "Area card accordions" 490:9283, 27
+    // Oct): the main with the name under it, level and cut with "…" when it doesn't fit, then the room's control icons
+    // two by two (an alert after them, in red; an open door or window plain); tapping anywhere opens it
+    const chips = [...keys.filter((k) => k.kind === 'control'), ...keys.filter((k) => k.kind !== 'control' && k.kind !== 'reading')].slice(0, 4);
+    return '<article class="workoutPanel tfAreaPanel' + (isActive ? ' active' : '') + '" data-area="' + esc(r.id) + '" tabindex="0" aria-expanded="' + isActive + '" aria-label="' + esc(r.name) + '">' +
       '<div class="panelExpanded"' + (isActive ? '' : ' inert') + '>' + areaBody(r, keys, main) + '</div>' +
-      '<div class="panelCollapsed tfACollapsed"><span class="tfACMain">' + (h ? esc(h.text + (h.unit ? ' ' + h.unit : '')) : '') + '</span><div class="panelCollapsedText">' + esc(r.name) + '</div>' +
-      '<span class="tfACOn">' + keys.filter((k) => k.on || k.kind === 'alert').map((k) => '<span class="tfACDot' + (k.kind === 'alert' ? ' alert' : '') + '" data-tone="' + (k.tone || '') + '">' + k.icon + '</span>').join('') + '</span></div></article>';
+      '<div class="panelCollapsed tfACollapsed"><div class="tfACTop"><span class="tfACMain">' + (h ? esc(h.text + (h.unit ? ' ' + h.unit : '')) : '') + '</span><span class="tfACName">' + esc(r.name) + '</span></div>' +
+      '<span class="tfACTiles" aria-hidden="true">' + chips.map((k) => '<span class="tfACTile"><span class="tfIcon' + (k.kind === 'alert' ? ' alert' : '') + '"' + (k.on && k.light ? ' data-light style="' + k.light + '"' : '') + '>' + k.icon + '</span></span>').join('') + '</span></div></article>';
   }
   let areaRooms = []; // the rooms with area cards, in Matt's order
-  const areasHtml = (order) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + order + '"><div class="sectionLabel tfSideLabel">Areas</div>' +
+  const areasHtml = (order) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + order + '">' +
     '<section class="workoutGallery tfAreaGallery" aria-label="Areas">' + areaRooms.map(areaPanel).join('') + '</section></div>';
 
-  /* sections: Home, Security, each room and Matt's own, in his order, each with its devices in his order */
-  function sectionsOf() {
-    const natural = [
-      { key: 'home', name: 'Home', ids: model.vacuums },
-      { key: 'security', name: 'Security', ids: [...model.security.alarms, ...model.security.locks] },
-      ...model.rooms.map((r) => ({ key: 'room:' + r.id, name: r.name, room: r, ids: r.actions })),
-      ...(prefs.sections || []).map((c) => ({ key: 'sec:' + c.id, name: c.name, custom: c, ids: [] })),
-    ];
-    const byKey = new Map(natural.map((x) => [x.key, { ...x, ids: [] }]));
-    homeOf.clear();
-    natural.forEach((x) => x.ids.forEach((id) => {
-      homeOf.set(id, x.key);
-      byKey.get(byKey.has(prefs.place?.[id]) ? prefs.place[id] : x.key).ids.push(id);
-    }));
-    byKey.forEach((x) => { const saved = (prefs.order?.blocks?.[x.key] || []).filter((id) => x.ids.includes(id)); x.ids = [...saved, ...x.ids.filter((id) => !saved.includes(id))]; });
-    const saved = (prefs.order?.sections || []).filter((k) => byKey.has(k));
-    return [...saved, ...[...byKey.keys()].filter((k) => !saved.includes(k))].map((k) => byKey.get(k));
-  }
-  // a section's label; in edit mode with up, down and (for rooms and Matt's own) options
-  function sectionLabel(key, x, i, n, order) {
-    const tools = '<div class="tfTools">' + tool('data-sec-move="' + esc(x.key) + '|-1"', 'Move ' + x.name + ' up', UP, i === 0) + tool('data-sec-move="' + esc(x.key) + '|1"', 'Move ' + x.name + ' down', DOWN, i === n - 1) +
-      (x.room || x.custom ? tool('data-sec-opts="' + esc(x.key) + '"', x.name + ' options', GEAR) : '') + '</div>';
-    return '<div class="sectionLabel rowLabel tfLabel' + (editing ? ' tfEditLabel' : '') + '" data-tf data-k="' + esc(key) + '" tabindex="-1" style="order:' + order + '">' +
-      (editing ? '<span>' + esc(x.name) + (x.room && hiddenArea(x.room.id) ? '<small>Area card hidden</small>' : '') + '</span>' + tools : esc(x.name)) + '</div>';
-  }
-  const editTopHtml = (order) => '<div class="tfEditTop" data-tf data-k="edit" style="order:' + order + '" role="region" aria-label="Editing the page">' +
-    '<div class="tfEditTitle">Editing</div><div class="tfEditActions"><button class="pill" type="button" data-add-section>Add section</button><button class="primary" type="button" data-edit-done>Done</button></div></div>';
+  /* sections: Home, Security and each room, with their devices as Home Assistant has them */
+  const sectionsOf = () => [
+    { key: 'home', name: 'Home', ids: model.homeVacuums },
+    { key: 'security', name: 'Security', ids: [...model.security.alarms, ...model.security.locks] },
+    ...model.rooms.map((r) => ({ key: 'room:' + r.id, name: r.name, room: r, ids: r.actions })),
+  ];
 
   /* favourites and summaries, as on Home Assistant's home view */
   const count = (n, one, many) => n + ' ' + (n === 1 ? one : many);
   const starred = () => (prefs.favourites ?? haHome.favorite_entities ?? []).filter((id) => states[id]);
   // starred first, then suggestions up to 8: Home Assistant's, then what's used most here, then what's on
-  function favouriteIds() {
+  function favouriteIds(most = 8) {
     const stars = starred();
     if (haHome.hide_suggested_entities) return stars;
     if (!suggested) {
@@ -652,7 +831,7 @@ export function mountTestFocus(root, { config, getHass }) {
       suggested = [...new Set([...predicted, ...most, ...actions.filter((id) => specFor(id).on), ...actions])];
     }
     const ok = (id) => states[id] && states[id].state !== 'unavailable' && !stars.includes(id);
-    return [...stars, ...suggested.filter(ok)].slice(0, Math.max(8, stars.length));
+    return [...stars, ...suggested.filter(ok)].slice(0, Math.max(most, stars.length));
   }
   const starButton = (id) => {
     const on = starred().includes(id);
@@ -668,18 +847,12 @@ export function mountTestFocus(root, { config, getHass }) {
         : d === 'scene' || d === 'script' ? { act: act(d, 'turn_on', id), label: 'Run ' + nameOf(id) } : null;
     const meta = valueOf(id) + (area && whereIs.get(id) ? ' · ' + whereIs.get(id) : '');
     const icon = spec?.icon || iconFor(id);
-    return '<div class="activityRow' + (button ? ' tfPlug' : '') + (on ? ' on' : '') + (star ? ' tfPick' : '') + '" data-k="' + esc((area ? 'fav:' : 'row:') + id) + '" data-tone="' + (d === 'light' ? 'light' : spec?.tone || 'blue') + '">' +
+    return '<div class="activityRow' + (button ? ' tfPlug' : '') + (on ? ' on' : '') + (star ? ' tfPick' : '') + '" data-k="' + esc((area ? 'fav:' : 'row:') + id) + '" data-tone="' + (d === 'light' ? 'light' : spec?.tone || 'blue') + '"' + lightAttrs(id) + '>' +
       (button && !star ? '<button class="tfIcon" type="button" data-act="' + button.act + '" aria-label="' + esc(button.label) + '"' + iconSlot(id, icon) + '></button>' : '<div class="tfIcon" aria-hidden="true"' + iconSlot(id, icon) + '></div>') +
       '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(nameOf(id) + ', ' + meta + '. More info') + '"><span class="activityRowName">' + esc(nameOf(id)) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></button>' +
       (star ? starButton(id) : '') + '</div>';
   }
-  const weatherId = () => (states['weather.forecast_home'] ? 'weather.forecast_home' : Object.keys(states).find((x) => x.startsWith('weather.')));
-  function weatherText(id) {
-    const st = states[id], a = st.attributes, hass = getHass();
-    let cond = WEATHER_NAMES[st.state] || cap(st.state);
-    if (hass?.formatEntityState) { try { cond = hass.formatEntityState(st); } catch (_e) { /* keep ours */ } }
-    return [a.temperature != null ? Math.round(a.temperature) + ' ' + (a.temperature_unit || '°C') : null, cond].filter(Boolean).join(' · ');
-  }
+  const weatherId = () => (states[prefs.sources?.weather] ? prefs.sources.weather : states['weather.forecast_home'] ? 'weather.forecast_home' : Object.keys(states).find((x) => x.startsWith('weather.')));
   // the security summary's alerts: Home Assistant's alert sensors, or this page's (leaks and smoke alert; doors and
   // windows warn)
   function alertList() {
@@ -715,7 +888,6 @@ export function mountTestFocus(root, { config, getHass }) {
     const low = [...batteries.filter((id) => Number(states[id].state) < 20), ...model.vacuums.filter((id) => attr(id).battery_level < 20)];
     const plants = rooms.flatMap((r) => r.plants.map((p) => p.id)).sort((a, b) => (states[b]?.state === 'problem') - (states[a]?.state === 'problem'));
     const care = plants.filter((id) => states[id]?.state === 'problem');
-    const weather = weatherId();
     const solar = rooms.flatMap((r) => r.solar), solarNow = solar.find((id) => id.endsWith('_power'));
     const all = {
       light: lights.length && { value: lit ? lit + ' on' : 'All off', groups: groups((r) => r.lights) },
@@ -723,7 +895,6 @@ export function mountTestFocus(root, { config, getHass }) {
       security: (sec.alarms.length || sec.locks.length) && { value: [warnText, secText].filter(Boolean).join(', '), groups: [{ name: 'Alarm and locks', ids: [...sec.alarms, ...sec.locks] }, { name: 'Doors and windows', ids: sec.openings }].filter((g) => g.ids.length) },
       media_players: players.length && { value: playing ? playing + ' playing' : 'No media playing', groups: groups((r) => of(r, /^media_player\./)) },
       maintenance: (batteries.length || plants.length) && { value: [low.length && count(low.length, 'low battery', 'low batteries'), care.length && count(care.length, 'problem', 'problems')].filter(Boolean).join(', ') || 'All good', groups: [{ name: 'Plants', ids: plants }, { name: 'Batteries', ids: [...model.vacuums, ...batteries] }].filter((g) => g.ids.length) },
-      weather: weather && { value: weatherText(weather), id: weather },
       energy: model.grid && { value: watts(Number(states[solarNow]?.state || 0) * 1000 + Number(states[model.grid].state)) + ' now', groups: [{ name: 'Energy', ids: [...solar, model.grid] }] },
     };
     const out = [];
@@ -731,16 +902,13 @@ export function mountTestFocus(root, { config, getHass }) {
     if (active.length) out.push({ key: 'alerts', name: 'Alerts', icon: 'mdi:alarm-plus', colour: '#f44336', value: count(active.length, 'active alert', 'active alerts'), groups: [{ name: 'Active', ids: active.map((x) => x.entity) }] });
     shortcutItems().forEach((it) => {
       if (it.type !== 'summary') out.push({ key: 'path:' + it.path, name: it.label || it.path, icon: it.icon || 'mdi:link-variant', colour: '', value: '' });
-      else if (!it.hidden && all[it.key]) out.push({ key: it.key, ...SUMMARIES[it.key], ...all[it.key] });
+      else if (!it.hidden && all[it.key] && !(prefs.hiddenSums || []).includes(it.key)) out.push({ key: it.key, ...SUMMARIES[it.key], ...all[it.key] });
     });
     return out;
   }
-  const summaryRow = (s) => '<div class="activityRow tap tfSum" role="button" tabindex="0" data-summary="' + esc(s.key) + '" data-k="sum:' + esc(s.key) + '" aria-label="' + esc(s.name + (s.value ? ', ' + s.value : '')) + '"' + (s.colour ? ' style="--sum:' + s.colour + '"' : '') + '>' +
+  const summaryRow = (s) => '<div class="activityRow tap tfSum" role="button" tabindex="0" data-summary="' + esc(s.key) + '" data-k="sum:' + esc(s.key) + '" aria-label="' + esc(s.name + (s.value ? ', ' + s.value : '')) + '"' + (s.key === 'alerts' ? ' style="--sum:' + s.colour + ';--sum-ink:#ffffff"' : '') + '>' +
     '<div class="tfIcon" aria-hidden="true"' + iconSlot(s.id || '', s.icon, s.name) + '></div>' +
     '<div><div class="activityRowName">' + esc(s.name) + '</div>' + (s.value ? '<div class="activityRowMeta">' + esc(s.value) + '</div>' : '') + '</div></div>';
-  // favourites lead the page; summaries sit beside them on wide screens and under them on phones
-  const sideHtml = (cls, key, label, extra) => (inner, n) => '<div class="tfSide ' + cls + '" data-tf data-k="' + key + '" style="order:' + n.order + '">' +
-    '<div class="sectionLabel tfSideLabel">' + label + (extra || '') + '</div><section class="card tfCard" aria-label="' + label + '"><div class="activityRows">' + inner + '</div></section></div>';
   function toggleStar(id) {
     const list = starred();
     prefs = { ...prefs, favourites: list.includes(id) ? list.filter((x) => x !== id) : [...list, id] };
@@ -755,7 +923,7 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function openSummary(key, opener) {
     if (key.startsWith('path:')) { go(key.slice(5)); return; }
-    if (key === 'weather') { const w = weatherId(); if (w) openMore(w, opener); return; }
+    if (key === 'security') { openArea('security'); return; }
     openMore('summary:' + key, opener);
   }
   // saved favourites, Home Assistant's home view and security settings, and its suggested devices
@@ -767,7 +935,9 @@ export function mountTestFocus(root, { config, getHass }) {
       get({ type: 'frontend/get_system_data', key: 'security' }),
       get({ type: 'usage_prediction/common_control' }),
     ]);
-    prefs = { favourites: null, ...(mine?.value || {}) };
+    // edit mode's old choices (sections, order, sizes…) are left behind: the page is laid out as Home Assistant has it
+    const v = mine?.value || {};
+    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, dash: v.dash };
     haHome = home?.value || {};
     haSecurity = security?.value || {};
     predicted = Array.isArray(usage?.entities) ? usage.entities : [];
@@ -775,10 +945,443 @@ export function mountTestFocus(root, { config, getHass }) {
     if (Object.keys(states).length) refresh();
   }
 
+  /* ---------- the dashboard (Matt, 27 Oct) ----------
+     After the HomeCore concept (Figma "Visual Design Language" 1851:906), with this page's parts at their drawn sizes
+     (Figma "Spacing rules"), never the concept's spacing: the home's name, the summaries, the weather card and the areas,
+     then Favourites, Activity, Energy today and Compared to average, then lights and thermostats. No labels above
+     anything; a card has its title inside where the concept has one. Settings → Appearance → Home picks it or the
+     house page */
+  // Activity: the latest change to each of the house's devices, from Home Assistant's logbook (who did it and when);
+  // what changed since then comes from the devices themselves, and without a logbook (the dev preview) everything does
+  let logbook = null, logbookAt = 0, logbookBusy = false;
+  const followed = (id) => { const d = id.split('.')[0]; return ACTIVITY_DOMAINS.includes(d) && (d !== 'binary_sensor' || OPEN_CLASSES.includes(attr(id).device_class)); };
+  async function loadActivity() {
+    if (logbookBusy || Date.now() - logbookAt < 30 * 1000) return;
+    logbookBusy = true;
+    logbookAt = Date.now();
+    try {
+      const ids = Object.keys(getHass()?.states || {}).filter(followed);
+      const res = ids.length ? await callWS({ type: 'logbook/get_events', start_time: new Date(Date.now() - 24 * 3600 * 1000).toISOString(), end_time: new Date().toISOString(), entity_ids: ids }) : null;
+      logbook = Array.isArray(res) ? res.filter((e) => e.entity_id && e.state != null && e.when) : null;
+    } catch (_e) { logbook = null; }
+    logbookBusy = false;
+    refresh();
+  }
+  function activityItems() {
+    const latest = new Map();
+    const note = (e) => {
+      if (!states[e.entity_id] || !followed(e.entity_id) || !dashLight(e.entity_id) || ['unavailable', 'unknown'].includes(e.state)) return;
+      const was = latest.get(e.entity_id);
+      if (!was || e.when > was.when + 1) latest.set(e.entity_id, e);
+    };
+    (logbook || []).forEach(note);
+    const since = logbook ? logbookAt / 1000 - 5 : 0;
+    Object.keys(states).forEach((id) => {
+      const st = states[id], when = st.last_changed ? Date.parse(st.last_changed) / 1000 : 0;
+      if (when > since) note({ entity_id: id, state: st.state, when, context_user_id: st.context?.user_id });
+    });
+    return [...latest.values()].sort((a, b) => b.when - a.when).slice(0, ACTIVITY_MOST);
+  }
+  // who: the person with that user, else the automation or script that did it
+  function whoDid(e) {
+    const person = e.context_user_id && Object.keys(states).find((id) => id.startsWith('person.') && attr(id).user_id === e.context_user_id);
+    if (person) return nameOf(person);
+    const user = getHass()?.user;
+    if (user && e.context_user_id === user.id) return user.name;
+    if (['automation', 'script'].includes(e.context_domain) || e.context_event_type === 'automation_triggered') return e.context_name || 'Home Assistant';
+    return '';
+  }
+  function didWhat(e) {
+    const d = e.entity_id.split('.')[0], s = String(e.state);
+    if (d === 'lock') return { locked: 'locked', unlocked: 'unlocked', open: 'opened', jammed: 'jammed', locking: 'locking', unlocking: 'unlocking' }[s] || cap(s).toLowerCase();
+    if (d === 'cover' || d === 'valve') return { open: 'opened', closed: 'closed', opening: 'opening', closing: 'closing' }[s] || cap(s).toLowerCase();
+    if (d === 'binary_sensor') return s === 'on' ? 'opened' : 'closed';
+    if (d === 'climate') return s === 'off' ? 'turned off' : 'set to ' + cap(s).toLowerCase();
+    if (d === 'media_player') return { playing: 'started playing', paused: 'paused', idle: 'stopped', off: 'turned off', standby: 'turned off', on: 'turned on' }[s] || cap(s).toLowerCase();
+    if (d === 'alarm_control_panel') return (ALARM_STATE[s] || cap(s)).toLowerCase();
+    if (d === 'vacuum') return { cleaning: 'started cleaning', docked: 'docked', returning: 'went home', paused: 'paused', idle: 'stopped' }[s] || cap(s).toLowerCase();
+    return s === 'on' ? 'turned on' : s === 'off' ? 'turned off' : cap(s).toLowerCase();
+  }
+  function activityRow(e) {
+    const id = e.entity_id, what = nameOf(id) + ' ' + didWhat(e), meta = [whoDid(e), clock(e.when * 1000)].filter(Boolean).join(' · ');
+    return '<div class="activityRow"><div class="tfIcon" aria-hidden="true"' + iconSlot(id, iconFor(id)) + '></div>' +
+      '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(what + ', ' + meta + '. More info') + '"><span class="activityRowName">' + esc(what) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></button></div>';
+  }
+  // Energy today: Home Assistant's energy dashboard where it's set up (each source's use since midnight); otherwise
+  // made up, as the house makes up what it doesn't have. A tile opens to its graph, like a reading
+  let energy = null, energyAt = 0;
+  const MADE_UP_ENERGY = [['electricity', 'Electricity', 4.3, 'kWh'], ['gas', 'Gas', 0.21, 'm³'], ['water', 'Water', 0.2, 'm³']];
+  async function loadEnergy() {
+    if (Date.now() - energyAt < 5 * 60 * 1000) return;
+    energyAt = Date.now();
+    const list = [];
+    try {
+      const src = (await callWS({ type: 'energy/get_prefs' }))?.energy_sources || [];
+      const statsOf = (type) => src.filter((s) => s.type === type).flatMap((s) => (type === 'grid' ? (s.flow_from || []).map((f) => f.stat_energy_from) : [s.stat_energy_from])).filter(Boolean);
+      for (const [key, name, ids] of [['electricity', 'Electricity', statsOf('grid')], ['solar', 'Solar', statsOf('solar')], ['gas', 'Gas', statsOf('gas')], ['water', 'Water', statsOf('water')]]) {
+        if (!ids.length) continue;
+        const today = await Promise.all(ids.map((id) => Promise.resolve(callWS({ type: 'recorder/statistic_during_period', statistic_id: id, calendar: { period: 'day' }, types: ['change'] })).then((r) => Number(r?.change) || 0, () => 0)));
+        list.push({ key, name, id: ids[0], value: today.reduce((t, v) => t + v, 0), unit: attr(ids[0]).unit_of_measurement || (key === 'gas' || key === 'water' ? 'm³' : 'kWh') });
+      }
+    } catch (_e) { /* no energy dashboard: made up */ }
+    energy = list;
+    refresh();
+  }
+  // Energy today's sources are a glance, and tapping one shows its day in the graph, in place: the card never moves
+  // (Matt, 27 Oct, as in the HomeCore motion lab: the line draws in)
+  let energyPick = null;
+  function energyGlance() {
+    const tiles = energy?.length ? energy : MADE_UP_ENERGY.map(([key, name, value, unit]) => {
+      const id = 'sensor.made_up_energy_' + key;
+      states[id] = { entity_id: id, state: String(value), last_changed: new Date().toISOString(), attributes: { friendly_name: name + ' today', unit_of_measurement: unit, state_class: 'total_increasing' } };
+      return { key, name, id, value, unit };
+    });
+    energyText.clear();
+    if (!tiles.some((t) => t.id === energyPick)) energyPick = tiles[0].id;
+    const rows = tiles.map((t) => {
+      const text = Number(t.value).toLocaleString(undefined, { maximumFractionDigits: t.value < 10 ? 2 : 1 }) + ' ' + t.unit, icon = ENERGY_ICON[t.key], on = t.id === energyPick;
+      energyText.set(t.id, { name: t.name, text, icon });
+      return '<div class="activityRow tap' + (on ? ' picked' : '') + '" role="button" tabindex="0" data-energy-pick="' + esc(t.id) + '" aria-pressed="' + on + '" aria-label="' + esc(t.name + ', ' + text) + '. Show its day in the graph">' +
+        '<div class="tfIcon" aria-hidden="true"' + iconSlot('', icon, t.name) + '></div><div><div class="activityRowName">' + esc(t.name) + '</div><div class="activityRowMeta">' + esc(text) + '</div></div></div>';
+    });
+    // the picked source's day as a graph, above the glance or below it (its ⋯ in edit mode)
+    const pick = tiles.find((t) => t.id === energyPick), below = (dashPrefs().opts.energy?.graph || 'above') === 'below';
+    const graph = '<div class="tfCardGraph tfDashGraph"><svg class="tfGraph" data-graph="' + esc(pick.id) + '" role="img" aria-label="' + esc(pick.name) + ', last 24 hours"></svg></div>';
+    return card('dash:energy', 0, 'Energy today', rows, graph, null, 'tfDashCard tfDash-energy' + (below ? '' : ' graphAbove'));
+  }
+  // a source picked: its tile marked and its day drawn into the graph; nothing else on the page changes
+  function pickEnergy(id) {
+    const cardEl = grid.querySelector('.tfDash-energy'), svg = cardEl?.querySelector('.tfDashGraph svg');
+    if (!svg || id === energyPick) return;
+    energyPick = id;
+    cardEl.querySelectorAll('[data-energy-pick]').forEach((t) => { const on = t.dataset.energyPick === id; t.classList.toggle('picked', on); t.setAttribute('aria-pressed', String(on)); });
+    svg.dataset.graph = id;
+    svg.dataset.drawn = '';
+    units.set('dash:energy', energyGlance());
+    drawDashGraph(true);
+  }
+  // the line draws in over 700 and the area under it follows (the motion lab's graphs); not with Reduce motion
+  function drawIn(svg) {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const [area, line] = svg.querySelectorAll('path');
+    if (!line?.getTotalLength) return;
+    const len = line.getTotalLength();
+    line.animate([{ strokeDasharray: len, strokeDashoffset: len }, { strokeDasharray: len, strokeDashoffset: 0 }], { duration: 700, easing: 'cubic-bezier(.2,.7,.3,1)' });
+    area?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 200, easing: 'ease-out', fill: 'backwards' });
+  }
+  // the bottom row: the lights of the living room, bedroom and office (on first, then the most used) and up to two
+  // thermostats, each a light tile (252), as many as
+  // fit in one row (two rows of two on phones); worked out once a visit, so tiles don't move while you use them
+  let dashPicks = null, dashColsSeen = 0;
+  // the dashboard shows only these rooms' lights (anything else passes)
+  const dashLight = (id) => !id.startsWith('light.') || DASH_LIGHT_ROOMS.includes((whereIs.get(id) || '').toLowerCase());
+  const dashCols = () => Math.max(2, pegsFor(grid?.clientWidth || 0).n);
+  function dashTileIds(n) {
+    if (!dashPicks) {
+      const rank = (id) => (states[id]?.state === 'on' ? 1e6 : 0) + (used[id] || 0);
+      dashPicks = {
+        lights: model.rooms.flatMap((r) => r.lights).filter((id) => dashLight(id) && states[id]?.state !== 'unavailable').sort((a, b) => rank(b) - rank(a) || nameOf(a).localeCompare(nameOf(b))),
+        climates: model.rooms.flatMap((r) => r.actions.filter((id) => id.startsWith('climate.'))),
+      };
+    }
+    const climates = dashPicks.climates.filter((id) => states[id]).slice(0, n > 3 ? 2 : 1);
+    return [...dashPicks.lights.filter((id) => states[id]).slice(0, Math.max(0, n - climates.length)), ...climates];
+  }
+  const dashWrap = (cls, key, label, titled) => (inner) => '<section class="card tfCard tfDashCard ' + cls + '" data-tf data-k="' + key + '" aria-label="' + label + '">' +
+    (titled ? '<div class="activityHeader"><div class="activityTitle">' + label + '</div></div>' : '') + '<div class="activityRows">' + inner + '</div></section>';
+  function dashboard(out, sums) {
+    out.dash = true;
+    out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });
+    // the summaries: a row of their own, the bar only as wide as its tiles
+    if (sums.length) out.push({ key: 'sums', wrap: (inner) => '<div class="tfDashBarRow" data-tf data-k="sums">' + dashWrap('tfDash-bar', 'sums-bar', 'Summaries', false)(inner).replace(' data-tf', '') + '</div>', tiles: sums.map((s) => ({ key: 'sum:' + s.key, html: summaryRow(s) })) });
+    if (areaRooms.length) out.push({ key: 'areas', html: areasHtml(0) });
+    const favs = favouriteIds(DASH_FAVOURITES * 3).filter(dashLight).slice(0, DASH_FAVOURITES);
+    if (favs.length) out.push({ key: 'favs', wrap: dashWrap('tfDash-favs', 'favs', 'Favourites', true), tiles: favs.map((id) => ({ key: 'fav:' + id, html: deviceRow(id, { area: true }) })) });
+    const items = activityItems();
+    out.push({ key: 'dash:act', html: card('dash:act', 0, 'Activity', items.length ? items.map(activityRow) : ['<p class="tfDashNone">Nothing has changed in the last day.</p>'], '', null, 'tfDashCard tfDash-act') });
+    out.push({ key: 'dash:energy', html: energyGlance() });
+    const cols = dashCols();
+    dashColsSeen = cols;
+    out.push({ key: 'dash:tiles', wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tiles">' + inner + '</div>',
+      tiles: dashTileIds(cols >= 3 ? cols : cols * 2).map((id) => ({ key: id, html: actionTile(id, false, id.startsWith('climate.') ? ['step'] : ['bright']) })) });
+    loadActivity();
+    loadEnergy();
+    return out;
+  }
+  /* ---------- the peg board (Matt, 27 Oct) ----------
+     The dashboard is a solid grid of cells from the top left: columns 252 wide (on a tablet four narrower ones, down to
+     230, so two cards still fit side by side) and rows 60 tall, 16 apart both ways. Every card fills whole cells, so
+     everything lines up: a tile is 1 × 2, a card 2 wide; the large cards (the weather, the areas, Favourites and
+     Activity) are 5 rows (364, Favourites' and Activity's own height); the others as many rows as they need. A card
+     can sit in any free cell; one dropped where others are pushes them down. Edit mode (the pencil in the bottom bar)
+     draws the cells: drag a card by its grip (or anywhere on it), or use its ⋯ to size, move or hide it, and Energy
+     today's graph above or below. Where everything is goes with the page's settings in Home Assistant (prefs.dash:
+     cells, sizes, what's hidden, options). Phones keep one column */
+  const PEG = 252, PEG_GAP = 16, PEG_MIN = 230, ROW = 60, ROW_PITCH = ROW + PEG_GAP, LARGE_ROWS = 5, EXTRA_ROWS = 3;
+  const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average' };
+  const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
+  // each card's rows, matched to what it holds (Matt, 27 Oct): large ones 5 (364); Energy today 4 (288); Compared to
+  // average 4 (288: its number and words need about 257); a Dual Axis Controller 3 (212), 5 while its pad is open; a
+  // light or thermostat tile 2 (136)
+  const ROWS = { wx: LARGE_ROWS, areas: LARGE_ROWS, favs: LARGE_ROWS, act: LARGE_ROWS, energy: 4, avg: 4 };
+  const DAC_ROWS = 3, DAC_CHROME = 94; // a DAC tile's padding, name row and gap around its pad
+  const dacOpen = new Set(); // dashboard DACs whose pad is open
+  const boardName = (key) => BOARD_NAMES[key] || nameOf(key);
+  const AREA_OPEN = 409, AREA_FOLDED = 128;
+  let editing = false, drag = null, boardOpen = null, fitQueued = false, lastPlaced = new Map(), boardRows = 0, boardTop = 0;
+  // the page's header, above the grid at its own size (the cards' rules: padding 10, tiles 60, so a bar of summaries is
+  // 80 or 140 and never fits the grid's rows; Matt, 27 Oct: "we have rules to follow")
+  const HEAD = ['title', 'sums'];
+  const pegsFor = (W) => {
+    let n = Math.floor((W + PEG_GAP) / (PEG + PEG_GAP)), w = PEG;
+    if (n < 4 && W >= 4 * PEG_MIN + 3 * PEG_GAP) { n = 4; w = Math.floor((W - 3 * PEG_GAP) / 4); }
+    return { n: Math.max(1, n), w };
+  };
+  const dashPrefs = () => ({ cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) });
+  function saveDash(next) { prefs = { ...prefs, dash: next }; savePrefs(); }
+  // what's on the board: each card's key, its element and its width in pegs ('full' the whole width)
+  function boardItems() {
+    const q = (sel) => grid.querySelector(sel);
+    return [['title', q('.tfDashTitle'), 'full'], ['sums', q('.tfDashBarRow'), 'full'], ['wx', dashBoxes.wx, 2], ['areas', q('.tfAreas'), 'areas'],
+      ['favs', q('.tfDash-favs'), 2], ['act', q('.tfDash-act'), 2], ['energy', q('.tfDash-energy'), 2], ['avg', dashBoxes.avg, 2],
+      ...[...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => [el.dataset.k, el, 1])]
+      .filter(([, el]) => el?.isConnected).map(([key, el, span]) => ({ key, el, span }));
+  }
+  // lays the board out on its cells: the name first; then a dragged card where it would land; then the cards with a
+  // saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in the page's order, each
+  // in the first cell from the top left it fits
+  function layoutBoard() {
+    if (!testFocus || !grid) return;
+    const W = grid.clientWidth, { n, w } = pegsFor(W), board = app.classList.contains('tfDash') && n >= 2;
+    app.classList.toggle('tfBoard', board);
+    app.classList.toggle('tfEditing', board && editing);
+    const pen = $('dashEditNav');
+    if (pen) { pen.hidden = !board; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit the dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
+    const items = board ? boardItems() : [];
+    if (!board) {
+      grid.style.height = '';
+      grid.querySelectorAll('.tfBoardItem').forEach((el) => { el.classList.remove('tfBoardItem', 'tfBoardHidden'); el.style.left = el.style.top = el.style.width = el.style.height = ''; });
+      grid.querySelector('.tfDash-act > .activityRows')?.style.removeProperty('max-height');
+      editTools(false);
+      return;
+    }
+    grid.style.setProperty('--peg-w', w + 'px');
+    const dash = dashPrefs(), hidden = new Set(dash.hidden), pitch = w + PEG_GAP;
+    const colsOf = (it) => {
+      if (it.span === 'full') return n;
+      if (it.span === 'areas') return Math.min(n, Math.ceil((AREA_OPEN + Math.max(0, areaRooms.length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / pitch));
+      return Math.min(n, dash.spans[it.key] ?? it.span);
+    };
+    items.forEach((it) => it.el.classList.toggle('tfBoardHidden', hidden.has(it.key)));
+    const shown = items.filter((it) => !hidden.has(it.key) && getComputedStyle(it.el).display !== 'none');
+    // the header: the name and the summaries, the full width, each at its own height, 16 apart
+    let top = 0;
+    shown.filter((it) => HEAD.includes(it.key)).forEach((it) => {
+      it.el.classList.add('tfBoardItem');
+      Object.assign(it.el.style, { width: W + 'px', height: '', left: '0px', top: top + 'px' });
+      // the summaries in even rows: all in one if they fit, else halves, thirds…, each column as wide as its words
+      const bar = it.key === 'sums' && it.el.querySelector('.tfDash-bar'), count = bar ? bar.querySelectorAll('.activityRow').length : 0;
+      if (bar) bar.style.maxWidth = 'none';
+      for (let rows = 1; bar && rows <= count; rows++) { bar.style.setProperty('--bar-cols', String(Math.ceil(count / rows))); if (bar.offsetWidth <= W) break; }
+      if (bar) bar.style.maxWidth = '';
+      top += it.el.offsetHeight + PEG_GAP;
+    });
+    boardTop = top;
+    const cards = shown.filter((it) => !HEAD.includes(it.key));
+    // each card's cells: its width in pegs, and its rows
+    cards.forEach((it) => {
+      it.cols = colsOf(it);
+      it.el.classList.add('tfBoardItem');
+      it.el.style.width = (it.cols === n ? W : it.cols * w + (it.cols - 1) * PEG_GAP) + 'px';
+      it.el.style.height = '';
+      it.rows = ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (dacOpen.has(it.key) ? LARGE_ROWS : DAC_ROWS) : Math.max(1, Math.ceil((it.el.offsetHeight + PEG_GAP - 6) / ROW_PITCH)));
+    });
+    const taken = new Set(), free = (c, r, cs, rs) => { for (let y = r; y < r + rs; y++) for (let x = c; x < c + cs; x++) if (taken.has(x + ',' + y)) return false; return true; };
+    const placed = new Map();
+    const put = (it, c, r) => {
+      for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) taken.add(x + ',' + y);
+      placed.set(it.key, { col: c, row: r, cols: it.cols, rows: it.rows, x: it.cols === n ? 0 : c * pitch, y: boardTop + r * ROW_PITCH, w: it.cols === n ? W : it.cols * w + (it.cols - 1) * PEG_GAP, h: it.rows * ROW_PITCH - PEG_GAP });
+    };
+    const near = (it, c, r) => { c = Math.max(0, Math.min(n - it.cols, c)); r = Math.max(0, r); while (!free(c, r, it.cols, it.rows)) r++; put(it, c, r); };
+    const first = (it) => { for (let r = 0; ; r++) for (let c = 0; c <= n - it.cols; c++) if (free(c, r, it.cols, it.rows)) { put(it, c, r); return; } };
+    const dragged = drag && cards.find((it) => it.key === drag.key);
+    if (dragged) near(dragged, drag.col, drag.row);
+    const rest = cards.filter((it) => it !== dragged), saved = rest.filter((it) => dash.cells[it.key]);
+    saved.sort((a, b) => dash.cells[a.key].row - dash.cells[b.key].row || dash.cells[a.key].col - dash.cells[b.key].col).forEach((it) => near(it, dash.cells[it.key].col, dash.cells[it.key].row));
+    rest.filter((it) => !dash.cells[it.key]).forEach(first);
+    cards.forEach((it) => {
+      const p = placed.get(it.key);
+      it.el.style.height = p.h + 'px';
+      // a DAC's pad takes what its cells leave under its name
+      if (it.el.classList.contains('tfDac')) it.el.style.setProperty('--tf-dac-pad', (p.h - DAC_CHROME) + 'px');
+      if (it === dragged) return; // the dragged card follows the pointer; where it lands shows instead
+      it.el.style.left = p.x + 'px';
+      it.el.style.top = p.y + 'px';
+    });
+    lastPlaced = placed;
+    // Activity shows as many changes as its card fits (under its title, above its 10 of padding), whole tiles only;
+    // the rest scroll
+    const act = placed.get('act'), list = act && grid.querySelector('.tfDash-act > .activityRows');
+    if (list) list.style.maxHeight = Math.max(ROW, Math.floor((act.h - list.offsetTop - 10) / ROW) * ROW) + 'px';
+    boardRows = Math.max(0, ...[...placed.values()].map((p) => p.row + p.rows));
+    let height = boardTop + boardRows * ROW_PITCH - PEG_GAP;
+    height = editTools(editing, cards, placed, height, n, w);
+    grid.style.height = height + 'px';
+    // cards slide to new places from the second layout on (not as the page first draws)
+    requestAnimationFrame(() => app.classList.add('tfBoardReady'));
+    items.forEach((it) => itemSizes.observe(it.el));
+    drawDashGraph();
+  }
+  const queueFit = () => { if (fitQueued) return; fitQueued = true; requestAnimationFrame(() => { fitQueued = false; layoutBoard(); }); };
+  // a card whose content changes height (a forecast arriving, a reading opening) may need more rows
+  const itemSizes = new ResizeObserver(() => { if (!drag) queueFit(); });
+  // edit mode's tools: the grid of cells, each card's grip (top middle) and ⋯ (its own controls rest), where a dragged
+  // card will land, and the tray of hidden cards under the board; returns the board's height with them
+  function editTools(on, shown = [], placed = new Map(), height = 0, n = 1, w = PEG) {
+    grid.querySelectorAll('.tfEditChips').forEach((c) => { if (!on || !c.closest('.tfBoardItem')) c.remove(); });
+    grid.querySelectorAll('.tfBoardItem').forEach((el) => [...el.children].forEach((c) => { if (!c.classList.contains('tfEditChips')) c.toggleAttribute('inert', on); }));
+    let cells = grid.querySelector('.tfBoardCells'), land = grid.querySelector('.tfBoardLand'), tray = grid.querySelector('.tfBoardTray');
+    if (!on) { cells?.remove(); land?.remove(); tray?.remove(); closeBoardMenu(); return height; }
+    // the cells, with a few spare rows under the cards to drop into
+    const rows = boardRows + EXTRA_ROWS;
+    if (!cells) { cells = Object.assign(document.createElement('div'), { className: 'tfBoardCells' }); cells.setAttribute('aria-hidden', 'true'); grid.prepend(cells); }
+    cells.style.top = boardTop + 'px';
+    if (cells.dataset.size !== n + 'x' + rows + 'x' + w) {
+      cells.dataset.size = n + 'x' + rows + 'x' + w;
+      cells.style.gridTemplateColumns = 'repeat(' + n + ',' + w + 'px)';
+      cells.innerHTML = '<i></i>'.repeat(n * rows);
+    }
+    height = Math.max(height, boardTop + rows * ROW_PITCH - PEG_GAP);
+    shown.forEach((it) => {
+      const host = it.el;
+      if (!host || host.querySelector(':scope > .tfEditChips')) return;
+      host.insertAdjacentHTML('beforeend', '<div class="tfEditChips"><span class="tfEditGrip" aria-hidden="true">' + GRIP + '</span>' +
+        '<button class="tfEditChip" type="button" data-board-more="' + esc(it.key) + '" aria-label="' + esc(boardName(it.key)) + ' options" aria-haspopup="menu">' + DOTS + '</button></div>');
+    });
+    if (drag && placed.has(drag.key)) {
+      if (!land) { land = Object.assign(document.createElement('div'), { className: 'tfBoardLand' }); grid.appendChild(land); }
+      const p = placed.get(drag.key);
+      Object.assign(land.style, { left: p.x + 'px', top: p.y + 'px', width: p.w + 'px', height: p.h + 'px' });
+    } else land?.remove();
+    const hiddenKeys = dashPrefs().hidden.filter((k) => boardItems().some((it) => it.key === k));
+    if (!hiddenKeys.length) { tray?.remove(); return height; }
+    if (!tray) { tray = Object.assign(document.createElement('div'), { className: 'tfBoardTray' }); grid.appendChild(tray); }
+    tray.innerHTML = hiddenKeys.map((k) => '<button class="pill" type="button" data-board-show="' + esc(k) + '">Show ' + esc(boardName(k)) + '</button>').join('');
+    Object.assign(tray.style, { top: (height + PEG_GAP) + 'px', left: '0px', width: grid.clientWidth + 'px' });
+    return height + PEG_GAP + tray.offsetHeight;
+  }
+  function setEditing(on) {
+    editing = on;
+    if (!on) { drag = null; closeBoardMenu(); }
+    layoutBoard();
+  }
+  // a card's ⋯: its size (a tile or a card), a cell left, right, up or down, Energy today's graph, and hide
+  function openBoardMenu(key, opener) {
+    closeBoardMenu();
+    const p = lastPlaced.get(key), { n } = pegsFor(grid.clientWidth), dash = dashPrefs(), span = dash.spans[key] ?? 2;
+    if (!p) return;
+    const full = p.cols >= n, item = (act, label, off) => '<button type="button" role="menuitem" data-board-act="' + act + '"' + (off ? ' disabled' : '') + '>' + label + '</button>';
+    const menu = Object.assign(document.createElement('div'), { className: 'tfBoardMenu' });
+    menu.setAttribute('role', 'menu');
+    menu.setAttribute('aria-label', boardName(key) + ' options');
+    menu.innerHTML = (RESIZABLE.includes(key) ? item('size', span === 1 ? 'Card size' : 'Tile size') : '') +
+      (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
+      item('left', 'Move left', full || p.col === 0) + item('right', 'Move right', full || p.col + p.cols >= n) +
+      item('up', 'Move up', p.row <= 0) + item('down', 'Move down') + item('hide', 'Hide');
+    grid.appendChild(menu);
+    const left = Math.min(p.x + p.w - menu.offsetWidth, grid.clientWidth - menu.offsetWidth);
+    Object.assign(menu.style, { left: Math.max(0, left) + 'px', top: (p.y + 28) + 'px' });
+    boardOpen = { key, menu, opener };
+    menu.querySelector('button:not([disabled])')?.focus();
+  }
+  function closeBoardMenu(refocus) {
+    if (!boardOpen) return;
+    const { menu, opener } = boardOpen;
+    boardOpen = null;
+    menu.remove();
+    if (refocus) opener?.focus();
+  }
+  // every card's cell as it is now, so moving one leaves the rest where they are
+  const cellsNow = () => Object.fromEntries([...lastPlaced].map(([k, p]) => [k, { col: p.col, row: p.row }]));
+  function boardAct(key, act) {
+    const dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
+    if (act === 'size') dash.spans = { ...dash.spans, [key]: (dash.spans[key] ?? 2) === 1 ? 2 : 1 };
+    if (act === 'graph') dash.opts = { ...dash.opts, energy: { ...(dash.opts.energy || {}), graph: (dash.opts.energy?.graph || 'above') === 'above' ? 'below' : 'above' } };
+    if (act === 'left') cells[key] = { ...here, col: here.col - 1 };
+    if (act === 'right') cells[key] = { ...here, col: here.col + 1 };
+    if (act === 'up') cells[key] = { ...here, row: here.row - 1 };
+    if (act === 'down') cells[key] = { ...here, row: here.row + 1 };
+    if (act === 'hide') dash.hidden = [...new Set([...dash.hidden, key])];
+    // a card moved onto others goes first; they make room under it
+    if (['left', 'right', 'up', 'down'].includes(act)) drag = { key, col: cells[key].col, row: cells[key].row };
+    saveDash({ ...dash, cells });
+    if (drag) { layoutBoard(); drag = null; saveDash({ ...dashPrefs(), cells: cellsNow() }); }
+    closeBoardMenu();
+    if (act === 'graph') { units.delete('dash:energy'); refresh(); }
+    layoutBoard();
+    if (act !== 'hide') grid.querySelector('[data-board-more="' + CSS.escape(key) + '"]')?.focus();
+  }
+  function showCard(key) {
+    const dash = dashPrefs();
+    saveDash({ ...dash, hidden: dash.hidden.filter((k) => k !== key) });
+    layoutBoard();
+  }
+  // dragging: the card follows the pointer and lands on the nearest cell; cards in the way move down to make room
+  function boardDown(ev) {
+    if (!editing || ev.button !== 0 || ev.target.closest('[data-board-more],.tfBoardMenu,.tfBoardTray')) return;
+    const el = ev.target.closest('.tfBoardItem');
+    const it = el && boardItems().find((x) => x.el === el);
+    if (!it || HEAD.includes(it.key)) return;
+    const p = lastPlaced.get(it.key), { w } = pegsFor(grid.clientWidth);
+    if (!p) return;
+    ev.preventDefault();
+    closeBoardMenu();
+    const x0 = ev.clientX, y0 = ev.clientY;
+    let started = false, raf = 0;
+    const move = (e) => {
+      const dx = e.clientX - x0, dy = e.clientY - y0;
+      if (!started) { if (Math.hypot(dx, dy) < 4) return; started = true; drag = { key: it.key, col: p.col, row: p.row }; el.classList.add('tfDragging'); }
+      el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+      drag.col = Math.round((p.x + dx) / (w + PEG_GAP));
+      drag.row = Math.round((p.y + dy - boardTop) / ROW_PITCH);
+      if (!raf) raf = requestAnimationFrame(() => { raf = 0; layoutBoard(); });
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      if (!started) return;
+      cancelAnimationFrame(raf);
+      layoutBoard();
+      el.classList.remove('tfDragging');
+      el.style.transform = '';
+      drag = null;
+      saveDash({ ...dashPrefs(), cells: cellsNow() });
+      layoutBoard();
+      refresh();
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+  // Energy today's graph: the picked source's last 24 hours (made-up energy rises from midnight), drawn again only when
+  // the source or the graph's size changes; a new pick draws in
+  function drawDashGraph(animate = false) {
+    const svg = grid?.querySelector('.tfDashGraph svg[data-graph]');
+    if (!svg?.clientWidth) return;
+    const drawn = svg.dataset.graph + '@' + svg.clientWidth + 'x' + svg.clientHeight;
+    if (svg.dataset.drawn === drawn) return;
+    svg.dataset.drawn = drawn;
+    drawHistory(svg.dataset.graph, svg).then(() => { if (animate) drawIn(svg); });
+  }
+
   /* the page: areas, Home (weather, vacuum), Security, then each room: its label, readings, plants and action tiles */
   function layout() {
     model = house.model(getHass());
     states = model.states;
+    // Settings → Sources: the grid's power and the alarm, when picked
+    if (states[prefs.sources?.grid]) model.grid = prefs.sources.grid;
+    if (states[prefs.sources?.alarm]) model.security.alarms = [prefs.sources.alarm];
     // a cover's goal goes once it's there and still (or after two minutes, if it never says)
     goals.forEach((g, id) => {
       const st = states[id], a = st?.attributes || {};
@@ -790,34 +1393,52 @@ export function mountTestFocus(root, { config, getHass }) {
     const out = [];
     let order = 0;
     const secs = sectionsOf();
-    areaRooms = secs.filter((x) => x.room && (editing || !hiddenArea(x.room.id))).map((x) => x.room);
+    areaRooms = secs.filter((x) => x.room).map((x) => x.room);
     if (!areaRooms.some((r) => r.id === activeArea)) activeArea = areaRooms[0]?.id || null;
-    if (editing) out.push({ key: 'edit', html: editTopHtml(++order) });
+    // Home is the dashboard (Matt, 27 Oct: no house page any more). A section has its own page: a room's from its area
+    // card's Go, Security's from its summary; its header, then only that section. The weather card opens the Weather
+    // page: its header and the whole bento
+    const page = areaPage === 'weather' ? { key: 'weather', name: 'Weather' } : areaPage && secs.find((x) => x.key === areaPage);
+    if (!page) areaPage = null;
+    app.classList.toggle('tfAreaOpen', Boolean(page));
+    app.classList.toggle('tfWeatherOpen', page?.key === 'weather');
+    app.classList.toggle('tfDash', !page);
     whereIs = new Map();
     model.rooms.forEach((r) => [...r.actions, ...r.plugs, ...r.readings, ...r.openings, ...r.solar, ...r.plants.flatMap((p) => [p.id, ...p.readings])].forEach((id) => whereIs.set(id, r.name)));
-    const favs = favouriteIds(), sums = summaryData();
-    if (sums.length) out.push({ key: 'sums', order: ++order, wrap: sideHtml('tfSums', 'sums', 'Summaries'), tiles: sums.map((s) => ({ key: 'sum:' + s.key, html: summaryRow(s) })) });
-    if (favs.length) out.push({ key: 'favs', order: ++order, wrap: sideHtml('tfFavs', 'favs', 'Favourites', '<button class="pill" type="button" data-favs-edit>Edit</button>'), tiles: favs.map((id) => ({ key: 'fav:' + id, html: deviceRow(id, { area: true }) })) });
-    if (areaRooms.length) out.push({ key: 'areas', html: areasHtml(++order) });
-    // each section: its label, its cards (Home's weather; a room's energy, readings and plants), then its tiles
-    // (in edit mode, hidden ones too, and empty blocks to drop into); Security's doors and windows come last
-    secs.forEach((x, i) => {
-      const ids = editing ? x.ids : x.ids.filter((id) => !isHidden(id));
-      if (x.custom && !ids.length && !editing) return;
-      const name = x.room ? x.room.id : x.key, r = x.room;
-      out.push({ key: 'label:' + name, html: sectionLabel('label:' + name, x, i, secs.length, ++order) });
-      if (x.key === 'home') out.weather = ++order;
-      if (r?.solar.length) out.push({ key: 'energy:' + r.id, html: energyCard(r, ++order) });
-      if (r && (r.readings.length || r.plugs.length || r.power != null)) out.push({ key: 'readings:' + r.id, html: roomCard(r, ++order) });
-      r?.plants.forEach((p) => out.push({ key: 'plant:' + p.id, html: plantCard(p, ++order) }));
-      if (ids.length || editing) out.push({ key: 'block:' + name, order: ++order, section: x.key, tiles: ids.map((id) => ({ key: id, html: actionTile(id) })) });
-      if (x.key === 'security') out.push({ key: 'openings', html: openingsCard(++order) });
-    });
+    if (!page) return dashboard(out, summaryData());
+    out.push({ key: 'areahead', html: areaHead(page, ++order) });
+    if (page.key === 'weather') { out.weather = ++order; return out; }
+    // the section: a room's energy, readings and plants, then its tiles; Security's doors and windows come last
+    const ids = page.ids, name = page.room ? page.room.id : page.key, r = page.room;
+    if (r?.solar.length) out.push({ key: 'energy:' + r.id, html: energyCard(r, ++order) });
+    if (r && (r.readings.length || r.plugs.length || r.power != null)) out.push({ key: 'readings:' + r.id, html: roomCard(r, ++order) });
+    r?.plants.forEach((p) => out.push({ key: 'plant:' + p.id, html: plantCard(p, ++order) }));
+    if (ids.length) out.push({ key: 'block:' + name, order: ++order, tiles: ids.map((id) => ({ key: id, html: actionTile(id) })) });
+    if (page.key === 'security') out.push({ key: 'openings', html: openingsCard(++order) });
     return out;
   }
+  // a section's page header, as Move Assistant's pages have: a big back arrow and the section's name
+  const areaHead = (x, order) => '<div class="settingsHeader tfAreaHead" data-tf data-k="areahead" style="order:' + order + '">' +
+    '<button class="back" type="button" data-area-back aria-label="Back to the house">' + BACK + '</button><div class="settingsTitle">' + esc(x.name) + '</div></div>';
+  // a room's Go, or the Security summary, opens its section's page; back returns to the house where you were
+  function openArea(key) {
+    areaPage = key;
+    if (key.startsWith('room:')) activeArea = key.slice(5);
+    render();
+    root.getElementById('homeView')?.scrollIntoView({ block: 'start' });
+    grid.querySelector('[data-area-back]')?.focus({ preventScroll: true });
+  }
+  function closeArea() {
+    const key = areaPage;
+    areaPage = null;
+    render();
+    const panel = key.startsWith('room:') ? grid.querySelector('.tfAreaPanel[data-area="' + CSS.escape(key.slice(5)) + '"]')
+      : key === 'weather' ? dashBoxes.wx.querySelector('.wbOpenPage') : grid.querySelector('[data-k="sum:' + CSS.escape(key) + '"]');
+    panel?.scrollIntoView({ block: 'center' });
+    (panel?.querySelector('[data-go]') || panel)?.focus({ preventScroll: true });
+  }
   const blockHtml = (n) => (n.wrap ? n.wrap(n.tiles.map((t) => t.html).join(''), n)
-    : '<div class="tfBlock" data-tf data-k="' + esc(n.key) + '"' + (n.section ? ' data-block="' + esc(n.section) + '"' : '') + ' style="order:' + n.order + '"><div class="tfActions">' + n.tiles.map((t) => t.html).join('') +
-      (editing && n.section ? '<div class="tfDropHint">Drag devices here</div>' : '') + '</div></div>');
+    : '<div class="tfBlock" data-tf data-k="' + esc(n.key) + '" style="order:' + n.order + '"><div class="tfActions">' + n.tiles.map((t) => t.html).join('') + '</div></div>');
   const signOf = (out) => out.map((n) => n.key + (n.tiles ? '(' + n.tiles.map((t) => t.key).join(',') + ')' : '')).join(';');
 
   function render() {
@@ -831,9 +1452,13 @@ export function mountTestFocus(root, { config, getHass }) {
     signature = signOf(out);
     grid.append(...wrap.children);
     placeBento(out.weather);
+    placeDash(true);
+    itemSizes.disconnect();
+    layoutBoard();
     fillIcons(grid);
     mountArt(grid);
-    drawSparks(grid);
+    mountDacs(grid);
+    syncSettings();
     if (open) drawHistory(open.id);
     drawSolar();
     renderMore();
@@ -853,11 +1478,11 @@ export function mountTestFocus(root, { config, getHass }) {
     el.replaceWith(next);
     fillIcons(next);
     mountArt(next);
-    drawSparks(next);
+    mountDacs(next);
     refocus(next, was);
   }
   function refresh() {
-    if (!testFocus || !grid) return;
+    if (!testFocus || !grid || drag) return;
     if (!grid.querySelector('[data-tf]')) { render(); return; }
     const out = layout();
     if (signOf(out) !== signature) { render(); return; }
@@ -872,14 +1497,18 @@ export function mountTestFocus(root, { config, getHass }) {
       if (!el) return;
       units.set(u.key, u.html);
       // an open reading keeps its graph; only its value changes
-      if (open && open.key === u.key && el.querySelector('.tfOpen')) { el.querySelector('.tfOpen .activityRowMeta').textContent = valueOf(open.id); return; }
+      if (open && open.key === u.key && el.querySelector('.tfOpen')) { el.querySelector('.tfOpen .activityRowMeta').textContent = openValue(open.id); return; }
       replace(el, u.html);
       if (open && open.key === u.key) drawHistory(open.id);
       if (u.key.startsWith('energy:')) drawSolar();
     }));
     renderMore();
     tidyArts();
+    syncDacs();
+    syncSettings();
     bento?.update();
+    dashBentos?.forEach((b) => b.update());
+    if (app.classList.contains('tfDash')) queueFit();
     requestAnimationFrame(measureDensity);
   }
 
@@ -911,62 +1540,54 @@ export function mountTestFocus(root, { config, getHass }) {
   sheet.className = 'tfMoreBackdrop';
   sheet.hidden = true;
   app.appendChild(sheet);
-  // a device's details sit behind a Details button and roll out beside the dialog; where there's no room beside it
-  // (under 800 wide for the popup, 1000 for the sheet, so always on phones) they open over the top of it
-  function fitDetails() { sheet.querySelector('.tfMorePair')?.classList.toggle('over', window.innerWidth < (look.more === 'sheet' ? 1000 : 800)); }
+  // a device's details sit behind a Details button and roll out beside the dialog, which stays where it is (Matt,
+  // 27 Oct); where there's no room beside it (always on phones) they open over the top of it
+  function fitDetails() {
+    const pair = sheet.querySelector('.tfMorePair'), box = sheet.querySelector('.tfMore');
+    pair?.classList.toggle('over', window.innerWidth <= 620 || (window.innerWidth - box.offsetWidth) / 2 < 312 + 16);
+  }
   window.addEventListener('resize', fitDetails, { passive: true });
   if (testFocus) applyLook();
   // the dialog's parts, one element each. A device: name, state and when it changed, a cover's drawing, the tile's
   // sections, and a Details button (its details and the made-up note open beside it). A summary: its line, then its
   // devices by room. The favourites list (the only place to star, Matt 27 Oct): every device with a star, starred first
   let moreParts = [];
-  const special = (id) => id === 'favourites' || /^(summary|opts|sopts):/.test(id);
+  const special = (id) => id === 'favourites' || id.startsWith('summary:') || id.startsWith('group:');
   function partsOf(id) {
     const head = (title, extra = '') => '<div class="tfMoreHead">' + (more?.back ? '<button class="tfBack" type="button" data-more-back aria-label="Back">' + ARROW + '</button>' : '') +
       '<div class="activityTitle" id="tfMoreTitle">' + esc(title) + '</div>' + extra + '<button class="tfBack" type="button" data-more-close aria-label="Close">' + CLOSE + '</button></div>';
     const now = (text, sub) => '<div class="tfMoreNow"><div class="tfMoreState">' + esc(text) + '</div>' + (sub ? '<div class="tfMoreSub">' + esc(sub) + '</div>' : '') + '</div>';
     const list = listHtml;
-    const seg = (label, kind, opts, cur) => '<div class="tfOptGroup"><div class="tfMoreGroupName">' + label + '</div><div class="tfSeg" role="group" aria-label="' + label + '">' +
-      opts.map(([v, t]) => '<button type="button" data-opt="' + kind + '|' + v + '" aria-pressed="' + (cur === v) + '" aria-label="' + label + ': ' + t + '">' + t + '</button>').join('') + '</div></div>';
-    const sw = (label, kind, value, on) => '<div class="tfOptRow"><span>' + esc(label) + '</span><button class="switch' + (on ? ' on' : '') + '" type="button" role="switch" aria-checked="' + on + '" aria-label="' + esc(label) + '" data-opt="' + kind + '|' + esc(value) + '"></button></div>';
-    // edit mode: a tile's options (size, what it shows, its section, hidden) or a reading's (its value or its 24 hours)
-    if (id.startsWith('opts:')) {
-      const e = id.slice(5), show = showOf(e);
-      if (!states[e]) return null;
-      if (!ACTION_DOMAINS.includes(e.split('.')[0])) return [head(nameOf(e)), seg('Shows', 'graph', [['0', 'Value'], ['1', '24-hour graph']], show.graph ? '1' : '0')];
-      const secs = sectionsOf(), here = secs.find((x) => x.ids.includes(e)), parts = partsFor(e);
-      return [
-        head(nameOf(e)),
-        seg('Size', 'size', SIZES, show.size || 'half'),
-        parts.length && '<div class="tfOptGroup"><div class="tfMoreGroupName">Shows</div>' + parts.map((pt) => sw(PART_NAMES[pt], 'part', pt, pt === 'art' ? Boolean(show.art) : !(show.hide || []).includes(pt))).join('') + '</div>',
-        '<div class="tfOptGroup"><label class="tfMoreGroupName" for="tfOptPlace">Section</label><select class="settingsSelect tfOptField" id="tfOptPlace" data-opt-place>' +
-          secs.map((x) => '<option value="' + esc(x.key) + '"' + (x === here ? ' selected' : '') + '>' + esc(x.name) + '</option>').join('') + '</select></div>',
-        sw('Hide on this page', 'hide', '1', isHidden(e)),
-      ].filter(Boolean);
-    }
-    // a section's options: Matt's own can be renamed or deleted; a room's area card can be hidden
-    if (id.startsWith('sopts:')) {
-      const x = sectionsOf().find((y) => y.key === id.slice(6));
-      if (!x) return null;
-      if (x.custom) return [head(x.name), '<div class="tfOptGroup"><label class="tfMoreGroupName" for="tfOptName">Name</label><input class="settingsSelect tfOptField" id="tfOptName" type="text" maxlength="40" value="' + esc(x.name) + '" data-opt-name></div>',
-        '<button class="pill tfOptDelete" type="button" data-opt="delete|1">Delete section</button>'];
-      // a room's: its area card, and what the card shows big
-      const ids = mainChoices(x.room), main = mainOf(x.room), devices = ids.filter((e) => ACTION_DOMAINS.includes(e.split('.')[0]) || e.startsWith('switch.'));
-      const opt = (e) => '<option value="' + esc(e) + '"' + (e === main ? ' selected' : '') + '>' + esc(inRoom(x.room, e)) + '</option>';
-      return [head(x.name), sw('Area card', 'area', x.room.id, !hiddenArea(x.room.id)),
-        ids.length && '<div class="tfOptGroup"><label class="tfMoreGroupName" for="tfOptMain">Main</label><select class="settingsSelect tfOptField" id="tfOptMain" data-opt-main="' + esc(x.room.id) + '">' +
-          [['Readings', ids.filter((e) => !devices.includes(e))], ['Devices', devices]].filter(([, l]) => l.length).map(([g, l]) => '<optgroup label="' + g + '">' + l.map(opt).join('') + '</optgroup>').join('') + '</select></div>',
-      ].filter(Boolean);
-    }
     if (id === 'favourites') {
       const stars = starred(), inStars = new Set(stars);
-      const groups = [{ name: 'Starred', ids: stars }, { name: 'Home', ids: model.vacuums }, { name: 'Security', ids: [...model.security.alarms, ...model.security.locks] }, ...model.rooms.map((r) => ({ name: r.name, ids: [...r.actions, ...r.plugs] }))]
+      const groups = [{ name: 'Starred', ids: stars }, { name: 'Home', ids: model.homeVacuums }, { name: 'Security', ids: [...model.security.alarms, ...model.security.locks] }, ...model.rooms.map((r) => ({ name: r.name, ids: [...r.actions, ...r.plugs] }))]
         .map((g, i) => (i ? { ...g, ids: g.ids.filter((x) => !inStars.has(x)) } : g)).filter((g) => g.ids.length);
       return [head('Favourites'), now(stars.length ? stars.length + ' starred' : 'None starred'), list(groups, { star: true }, true)];
     }
+    // a summary (Matt, 27 Oct: room to breathe, and more control than opening tiles): its line, with all on or off for
+    // the lights, then its devices by room, each as its tile with all its controls; readings stay rows in a card
     if (id.startsWith('summary:')) {
       const s = summaryData().find((x) => x.key === id.slice(8));
-      return s ? [head(s.name), now(s.value), s.groups?.length && list(s.groups, {})].filter(Boolean) : null;
+      if (!s) return null;
+      const lights = s.key === 'light' ? (s.groups || []).flatMap((g) => g.ids) : [], anyOn = lights.some((x) => states[x]?.state === 'on');
+      const all = lights.length ? '<button class="primary" type="button" data-acts="' + acts(lights.map((x) => ['light', anyOn ? 'turn_off' : 'turn_on', x])) + '">' + (anyOn ? 'Turn all off' : 'Turn all on') + '</button>' : '';
+      return [head(s.name), '<div class="tfMoreNowRow">' + now(s.value) + all + '</div>', ...(s.groups || []).map((g) => {
+        const tiles = g.ids.filter((x) => ACTION_DOMAINS.includes(x.split('.')[0])), rows = g.ids.filter((x) => !tiles.includes(x));
+        return '<div class="tfMoreGroup"><div class="tfMoreGroupName">' + esc(g.name) + '</div>' +
+          (tiles.length ? '<div class="tfMoreActions">' + tiles.map((x) => actionTile(x, true)).join('') + '</div>' : '') +
+          (rows.length ? '<div class="tfMoreTiles">' + rows.map((x) => deviceRow(x, {})).join('') + '</div>' : '') + '</div>';
+      })];
+    }
+    // a room's lights, covers or plugs, opened from its area card's tile (Matt, 27 Oct): laid out as a summary, all on or
+    // off beside its line
+    if (id.startsWith('group:')) {
+      const [, roomId, key] = id.split(':'), r = model.rooms.find((x) => x.id === roomId), k = r && roomKeys(r).find((x) => x.key === key);
+      if (!k) return null;
+      const ids = groupIds(r, key), tiles = ids.filter((x) => ACTION_DOMAINS.includes(x.split('.')[0])), rows = ids.filter((x) => !tiles.includes(x));
+      const all = k.acts ? '<button class="primary" type="button" data-acts="' + acts(k.acts) + '">' + (k.on ? 'Turn all off' : 'Turn all on') + '</button>' : '';
+      return [head(r.name + ' ' + k.label.toLowerCase()), '<div class="tfMoreNowRow">' + now(k.value) + all + '</div>', '<div class="tfMoreGroup">' +
+        (tiles.length ? '<div class="tfMoreActions">' + tiles.map((x) => actionTile(x, true)).join('') + '</div>' : '') +
+        (rows.length ? '<div class="tfMoreTiles">' + rows.map((x) => deviceRow(x, {})).join('') + '</div>' : '') + '</div>'];
     }
     const d = id.split('.')[0], st = states[id];
     const s = ACTION_DOMAINS.includes(d) ? specFor(id) : { sections: [] };
@@ -1011,15 +1632,17 @@ export function mountTestFocus(root, { config, getHass }) {
     const parts = partsOf(more.id), box = sheet.querySelector('.tfMore');
     if (!parts) { closeMore(); return; }
     const was = focusOf(sheet), side = detailsOf(more.id);
-    if (sheet.hidden || !box || parts.length !== moreParts.length) {
+    const wide = more.id.startsWith('summary:') || more.id.startsWith('group:');
+    if (sheet.hidden || !box || parts.length !== moreParts.length || box.classList.contains('wide') !== wide) {
       // the dialog and, beside it, its details: one dialog for screen readers
-      sheet.innerHTML = '<div class="tfMorePair" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore">' + parts.join('') + '</section>' +
+      sheet.innerHTML = '<div class="tfMorePair" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (wide ? ' wide' : '') + '">' + parts.join('') + '</section>' +
         (side ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + ARROW + '</button>' +
           '<div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + side + '</div></div></aside>' : '') + '</div>';
       moreSide = side;
       sheet.hidden = false;
       fitDetails();
       mountArt(sheet);
+      mountDacs(sheet);
       fillIcons(sheet);
       refocus(sheet, was);
       if (!sheet.contains(root.activeElement)) sheet.querySelector('[data-more-close]')?.focus();
@@ -1027,11 +1650,13 @@ export function mountTestFocus(root, { config, getHass }) {
       // only the parts that changed, so the drawing and a focused button stay
       parts.forEach((p, i) => {
         if (p === moreParts[i] || p.includes('data-cover-art') || box.children[i].contains(root.activeElement?.matches?.('input,select') ? root.activeElement : null)) return;
+        if ([...dragging.keys()].some((k) => box.children[i].querySelector('[data-drag="' + CSS.escape(k) + '"]'))) return;
         const t = document.createElement('div');
         t.innerHTML = p;
         const next = t.firstElementChild;
         box.children[i].replaceWith(next);
         fillIcons(next);
+        mountDacs(next);
       });
       if (side !== moreSide) { const body = sheet.querySelector('.tfMoreSideBody'); if (body) body.innerHTML = side; moreSide = side; }
       if (!sheet.contains(root.activeElement)) refocus(sheet, was);
@@ -1058,12 +1683,11 @@ export function mountTestFocus(root, { config, getHass }) {
     const opener = more?.opener;
     more = null;
     arts.forEach((art, k) => { if (sheet.contains(art.el)) { art.destroy(); arts.delete(k); } });
+    dacs.forEach((el, k) => { if (k.startsWith('more:')) dacs.delete(k); });
     sheet.hidden = true;
     sheet.innerHTML = '';
     if (opener?.isConnected) opener.focus();
     else if (opener?.dataset?.more) grid.querySelector('[data-more="' + CSS.escape(opener.dataset.more) + '"]')?.focus();
-    // an area card's options button or its section's, whichever opened it
-    else if (opener?.dataset?.secOpts) grid.querySelector((opener.closest('.tfAreaPanel') ? '.tfAreaPanel' : '.tfLabel') + ' [data-sec-opts="' + CSS.escape(opener.dataset.secOpts) + '"]')?.focus();
     else if (opener?.dataset?.summary) grid.querySelector('[data-summary="' + CSS.escape(opener.dataset.summary) + '"]')?.focus();
     else if (opener?.hasAttribute?.('data-favs-edit')) grid.querySelector('[data-favs-edit]')?.focus();
   }
@@ -1085,9 +1709,13 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function madeUpHistory(id) {
     const v = Number(states[id]?.state), now = Date.now();
+    // a meter that counts up through the day (the made-up energy): from nothing at midnight to now's value
+    if (attr(id).state_class === 'total_increasing') {
+      const midnight = new Date().setHours(0, 0, 0, 0), span = Math.max(1, now - midnight);
+      return [...Array(49)].map((_, i) => midnight + (span * i) / 48).map((t) => [t, Math.round(v * Math.pow((t - midnight) / span, 1.3) * 100) / 100]);
+    }
     return [...Array(48)].map((_, i) => [now - (48 - i) * 30 * 60 * 1000, Math.round(v * (0.96 + 0.04 * Math.sin(i / 6)) * 10) / 10]);
   }
-  const drawSparks = (scope) => scope.querySelectorAll('[data-spark]').forEach((svg) => drawHistory(svg.dataset.spark, svg));
   async function drawHistory(id, into) {
     let h = history.get(id);
     if (id.endsWith('_solar_power')) h = { at: Date.now(), points: solarHistory() };
@@ -1144,149 +1772,6 @@ export function mountTestFocus(root, { config, getHass }) {
   function run(spec) {
     const [domain, service, id, json] = spec.split('|');
     send(domain, service, id, json ? JSON.parse(json) : null).catch(() => {});
-  }
-  /* edit mode: Matt's layout. Each change is saved, and the page redrawn */
-  function setBlock(key, ids) { prefs = { ...prefs, order: { ...(prefs.order || {}), blocks: { ...(prefs.order?.blocks || {}), [key]: ids } } }; }
-  function placeTo(id, key) {
-    const place = { ...(prefs.place || {}) };
-    if (key === homeOf.get(id)) delete place[id]; else place[id] = key;
-    prefs = { ...prefs, place };
-  }
-  function changed(focusSel) {
-    savePrefs();
-    render();
-    if (focusSel) grid.querySelector(focusSel)?.focus();
-  }
-  // a tile one place earlier or later; past either end of its section it goes to the next section
-  function moveTile(id, dir) {
-    const secs = sectionsOf(), si = secs.findIndex((x) => x.ids.includes(id));
-    if (si < 0) return;
-    const x = secs[si], i = x.ids.indexOf(id), j = i + dir;
-    if (j >= 0 && j < x.ids.length) { const ids = x.ids.filter((y) => y !== id); ids.splice(j, 0, id); setBlock(x.key, ids); }
-    else {
-      const to = secs[si + dir];
-      if (!to) return;
-      setBlock(x.key, x.ids.filter((y) => y !== id));
-      setBlock(to.key, dir < 0 ? [...to.ids, id] : [id, ...to.ids]);
-      placeTo(id, to.key);
-    }
-    changed('[data-tile-move="' + CSS.escape(id + '|' + dir) + '"]');
-  }
-  function moveToSection(id, key) {
-    const secs = sectionsOf(), from = secs.find((x) => x.ids.includes(id)), to = secs.find((x) => x.key === key);
-    if (!to || from === to) return;
-    if (from) setBlock(from.key, from.ids.filter((y) => y !== id));
-    setBlock(key, [...to.ids, id]);
-    placeTo(id, key);
-    changed();
-  }
-  function moveSection(key, dir) {
-    const keys = sectionsOf().map((x) => x.key), i = keys.indexOf(key), j = i + dir;
-    if (i < 0 || j < 0 || j >= keys.length) return;
-    keys.splice(i, 1);
-    keys.splice(j, 0, key);
-    prefs = { ...prefs, order: { ...(prefs.order || {}), sections: keys } };
-    changed();
-    // the same arrow, or the other one if this section is now at the end
-    (grid.querySelector('[data-sec-move="' + CSS.escape(key + '|' + dir) + '"]:not(:disabled)') || grid.querySelector('[data-sec-move="' + CSS.escape(key + '|' + -dir) + '"]'))?.focus();
-  }
-  function addSection(opener) {
-    const id = 's' + Date.now().toString(36);
-    prefs = { ...prefs, sections: [...(prefs.sections || []), { id, name: 'New section' }] };
-    changed();
-    openMore('sopts:sec:' + id, opener);
-    const field = sheet.querySelector('[data-opt-name]');
-    field?.focus();
-    field?.select();
-  }
-  // a deleted section's devices go back to their rooms
-  function deleteSection(key) {
-    const place = Object.fromEntries(Object.entries(prefs.place || {}).filter(([, k]) => k !== key));
-    const blocks = { ...(prefs.order?.blocks || {}) };
-    delete blocks[key];
-    prefs = { ...prefs, place, sections: (prefs.sections || []).filter((c) => 'sec:' + c.id !== key), order: { ...(prefs.order || {}), blocks, sections: (prefs.order?.sections || []).filter((k) => k !== key) } };
-  }
-  // an option in a tile's or section's dialog
-  function applyOpt(kind, value) {
-    const target = more?.id || '';
-    if (target.startsWith('opts:')) {
-      const id = target.slice(5), show = { ...showOf(id) };
-      if (kind === 'size') show.size = value;
-      if (kind === 'graph') show.graph = value === '1';
-      if (kind === 'part' && value === 'art') show.art = !show.art;
-      else if (kind === 'part') { const hide = new Set(show.hide || []); if (hide.has(value)) hide.delete(value); else hide.add(value); show.hide = [...hide]; }
-      prefs = { ...prefs, show: { ...(prefs.show || {}), [id]: show } };
-      if (kind === 'hide') prefs = { ...prefs, hidden: isHidden(id) ? prefs.hidden.filter((x) => x !== id) : [...(prefs.hidden || []), id] };
-    } else if (target.startsWith('sopts:')) {
-      if (kind === 'area') prefs = { ...prefs, hiddenAreas: hiddenArea(value) ? prefs.hiddenAreas.filter((x) => x !== value) : [...(prefs.hiddenAreas || []), value] };
-      if (kind === 'delete') { deleteSection(target.slice(6)); closeMore(); }
-    }
-    changed();
-  }
-  // drag a tile by its grip: it moves through the page as you go (into other sections too, and empty ones), the page
-  // scrolls near the top and bottom, and letting go saves the order
-  function dragTile(grip, ev) {
-    const tile = grip.closest('.tfAction'), id = tile.dataset.k, r = tile.getBoundingClientRect();
-    const ghost = tile.cloneNode(true);
-    ghost.classList.add('tfGhost');
-    Object.assign(ghost.style, { width: r.width + 'px', height: r.height + 'px', left: r.left + 'px', top: r.top + 'px' });
-    app.appendChild(ghost);
-    tile.classList.add('tfDragging');
-    const dx = ev.clientX - r.left, dy = ev.clientY - r.top;
-    let last = ev, raf = 0, spot = '';
-    const place = () => {
-      ghost.style.left = last.clientX - dx + 'px';
-      ghost.style.top = last.clientY - dy + 'px';
-      const under = root.elementFromPoint(last.clientX, last.clientY);
-      const other = under?.closest('.tfActions > .tfAction');
-      if (other && other !== tile) {
-        const rr = other.getBoundingClientRect(), wide = rr.width > other.parentElement.clientWidth * 0.75;
-        const after = wide ? last.clientY > rr.top + rr.height / 2 : last.clientX > rr.left + rr.width / 2;
-        const key = other.dataset.k + (after ? '>' : '<');
-        if (key !== spot) { spot = key; other.parentElement.insertBefore(tile, after ? other.nextSibling : other); }
-      } else if (!other) {
-        const list = under?.closest('.tfBlock[data-block]')?.querySelector('.tfActions');
-        if (list && tile.parentElement !== list && !list.querySelector('.tfAction')) { spot = list.parentElement.dataset.block; list.prepend(tile); }
-      }
-    };
-    // near the top or bottom the page scrolls under it, and the place is found again
-    const tick = () => {
-      const by = last.clientY < 70 ? -14 : last.clientY > window.innerHeight - 70 ? 14 : 0;
-      if (by) { window.scrollBy(0, by); place(); }
-      raf = requestAnimationFrame(tick);
-    };
-    const move = (e) => { last = e; place(); };
-    const up = (e) => {
-      if (e?.type === 'pointerup') { last = e; place(); }
-      cancelAnimationFrame(raf);
-      window.removeEventListener('pointermove', move);
-      window.removeEventListener('pointerup', up);
-      window.removeEventListener('pointercancel', up);
-      ghost.remove();
-      tile.classList.remove('tfDragging');
-      // the order as it now stands on the page, and where the tile ended up
-      grid.querySelectorAll('.tfBlock[data-block]').forEach((b) => {
-        const ids = [...b.querySelectorAll('.tfAction[data-k]')].map((t) => t.dataset.k);
-        setBlock(b.dataset.block, ids);
-        if (ids.includes(id)) placeTo(id, b.dataset.block);
-      });
-      changed();
-    };
-    window.addEventListener('pointermove', move);
-    window.addEventListener('pointerup', up);
-    window.addEventListener('pointercancel', up);
-    raf = requestAnimationFrame(tick);
-  }
-  // the pencil in the bottom bar turns edit mode on and off (on Home)
-  function setEditing(on) {
-    editing = on;
-    app.classList.toggle('editing', on);
-    const pen = $('editNav');
-    if (pen) { pen.classList.toggle('active', on); pen.setAttribute('aria-pressed', String(on)); pen.setAttribute('aria-label', on ? 'Done editing' : 'Edit the page'); pen.title = on ? 'Done' : 'Edit'; pen.innerHTML = on ? TICK : PENCIL; }
-    if (more) closeMore();
-    if (on && !$('homeView').classList.contains('active')) $('homeNav')?.click();
-    render();
-    if (on) grid.querySelector('[data-k="edit"] [data-edit-done]')?.focus();
   }
   // a cover's target while it's held (its drawing, its blocks or the keys): every view of it follows
   function holdCover(id, v) {
@@ -1386,16 +1871,14 @@ export function mountTestFocus(root, { config, getHass }) {
   // the same controls work on the page and in the stand-in more-info
   function bindControls(el) {
     el.addEventListener('click', (ev) => {
-      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-tile-move],[data-tile-opts],[data-sec-move],[data-sec-opts],[data-opt],[data-add-section],[data-edit-done],.tfAreaPanel');
+      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-energy-pick],.tfAreaPanel');
+      if (boardOpen && !ev.target.closest('.tfBoardMenu,[data-board-more]')) closeBoardMenu();
       if (!t || !el.contains(t) || t.disabled) return;
-      if (t.dataset.act) run(t.dataset.act);
-      else if (t.dataset.tileMove) { const [id, dir] = t.dataset.tileMove.split('|'); moveTile(id, Number(dir)); }
-      else if (t.dataset.tileOpts) openMore('opts:' + t.dataset.tileOpts, t);
-      else if (t.dataset.secMove) { const [key, dir] = t.dataset.secMove.split('|'); moveSection(key, Number(dir)); }
-      else if (t.dataset.secOpts) openMore('sopts:' + t.dataset.secOpts, t);
-      else if (t.dataset.opt) { const [kind, value] = t.dataset.opt.split('|'); applyOpt(kind, value); }
-      else if (t.hasAttribute('data-add-section')) addSection(t);
-      else if (t.hasAttribute('data-edit-done')) setEditing(false);
+      if (t.dataset.boardMore) { if (boardOpen?.key === t.dataset.boardMore) closeBoardMenu(true); else openBoardMenu(t.dataset.boardMore, t); }
+      else if (t.dataset.boardAct) boardAct(boardOpen.key, t.dataset.boardAct);
+      else if (t.dataset.boardShow) showCard(t.dataset.boardShow);
+      else if (t.dataset.energyPick) pickEnergy(t.dataset.energyPick);
+      else if (t.dataset.act) run(t.dataset.act);
       else if (t.hasAttribute('data-details')) toggleDetails(!more?.details);
       else if (t.hasAttribute('data-details-close')) toggleDetails(false);
       else if (t.dataset.summary) openSummary(t.dataset.summary, t);
@@ -1405,7 +1888,8 @@ export function mountTestFocus(root, { config, getHass }) {
       else if (t.dataset.acts) JSON.parse(t.dataset.acts).forEach(([domain, service, id, data]) => send(domain, service, id, data).catch(() => {}));
       else if (t.dataset.more) openMore(t.dataset.more, t);
       else if (t.hasAttribute('data-more-close')) closeMore();
-      else if (t.dataset.go) { const l = grid.querySelector('[data-k="label:' + CSS.escape(t.dataset.go) + '"]'); l?.scrollIntoView({ behavior: 'smooth', block: 'start' }); l?.focus({ preventScroll: true }); }
+      else if (t.dataset.go) openArea('room:' + t.dataset.go);
+      else if (t.hasAttribute('data-area-back')) closeArea();
       else if (t.dataset.open) openReading(t);
       else if (t.hasAttribute('data-close')) { const was = open; open = null; units.delete(was.key); refresh(); grid.querySelector('[data-open="' + CSS.escape(was.key + '|' + was.id) + '"]')?.focus(); }
       else if (t.classList.contains('tfAreaPanel') && !t.classList.contains('active')) pickArea(t);
@@ -1413,8 +1897,12 @@ export function mountTestFocus(root, { config, getHass }) {
     el.addEventListener('keydown', (ev) => {
       const t = ev.target;
       if (t.dataset?.open && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); openReading(t); }
+      if (t.dataset?.energyPick && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); pickEnergy(t.dataset.energyPick); }
       if (t.classList?.contains('tfAreaPanel') && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); pickArea(t); }
       if (t.dataset?.summary && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); openSummary(t.dataset.summary, t); }
+      if (ev.key === 'Escape' && boardOpen && el === grid) { ev.preventDefault(); closeBoardMenu(true); return; }
+      if (ev.key === 'Escape' && editing && el === grid) { ev.preventDefault(); setEditing(false); $('dashEditNav')?.focus(); return; }
+      if (ev.key === 'Escape' && areaPage && el === grid) { ev.preventDefault(); closeArea(); }
       // a cover's blocks: arrows 1 (10 with Shift), Page Up and Down 25, Home closed, End open; sent after a pause
       if (t.dataset?.blocks) {
         const id = t.dataset.blocks, n = keyStep(ev, Math.round(coverValue(id)));
@@ -1436,8 +1924,6 @@ export function mountTestFocus(root, { config, getHass }) {
     });
     // bars: press and drag along, set on release
     el.addEventListener('pointerdown', (ev) => {
-      const grip = editing && ev.button === 0 && ev.target.closest('[data-drag-tile]');
-      if (grip) { ev.preventDefault(); dragTile(grip, ev); return; }
       const blocksEl = ev.target.closest('[data-blocks]');
       if (blocksEl && ev.button === 0) { ev.preventDefault(); holdBlocks(blocksEl, ev); return; }
       const bar = ev.target.closest('[data-drag]');
@@ -1461,23 +1947,23 @@ export function mountTestFocus(root, { config, getHass }) {
     bindControls(grid);
     bindControls(sheet);
     sheet.addEventListener('click', (ev) => { if (ev.target === sheet) closeMore(); });
-    // a tile's section, an area card's main, and a section's name (saved as it's typed; the page catches up when the field is left)
-    sheet.addEventListener('change', (ev) => {
-      const t = ev.target;
-      if (t.matches('[data-opt-place]') && more?.id.startsWith('opts:')) moveToSection(more.id.slice(5), t.value);
-      if (t.matches('[data-opt-name]')) render();
-      if (t.matches('[data-opt-main]')) { prefs = { ...prefs, main: { ...(prefs.main || {}), [t.dataset.optMain]: t.value } }; changed(); }
+    // Home, from an area's page, goes back to the house
+    root.getElementById('homeNav')?.addEventListener('click', () => { if (areaPage) closeArea(); });
+    // the dashboard's edit mode: the pencil in the bottom bar, and dragging on the board
+    root.querySelector('.bottomNav')?.insertAdjacentHTML('beforeend', '<button class="navBtn" id="dashEditNav" type="button" title="Edit" aria-label="Edit the dashboard" aria-pressed="false" hidden>' + PENCIL + '</button>');
+    $('dashEditNav')?.addEventListener('click', () => setEditing(!editing));
+    grid.addEventListener('pointerdown', boardDown);
+    // a dashboard DAC's name opens its pad (5 rows) or closes it (3), as a reading opens to its graph
+    grid.addEventListener('hass-action', (ev) => {
+      const slot = ev.target.closest?.('.tfDac'), key = slot?.dataset.k;
+      if (!key || !slot.dataset.dac.startsWith('dash:') || editing) return;
+      ev.stopPropagation();
+      if (dacOpen.has(key)) dacOpen.delete(key); else dacOpen.add(key);
+      layoutBoard();
     });
-    sheet.addEventListener('input', (ev) => {
-      const t = ev.target;
-      if (!t.matches('[data-opt-name]') || !more?.id.startsWith('sopts:sec:')) return;
-      const id = more.id.slice(10), name = t.value.trim() || 'New section';
-      prefs = { ...prefs, sections: (prefs.sections || []).map((c) => (c.id === id ? { ...c, name } : c)) };
-      savePrefs();
-    });
-    // the pencil, beside Home, Settings and Full screen
-    root.querySelector('.bottomNav')?.insertAdjacentHTML('beforeend', '<button class="navBtn" id="editNav" type="button" title="Edit" aria-label="Edit the page" aria-pressed="false">' + PENCIL + '</button>');
-    $('editNav')?.addEventListener('click', () => setEditing(!editing));
+    // the dashboard's bottom row holds as many tiles as fit, and its rows are measured again as the page changes size
+    new ResizeObserver(() => { if (app.classList.contains('tfDash') && dashCols() !== dashColsSeen) refresh(); else queueFit(); }).observe(grid);
+    window.addEventListener('resize', queueFit, { passive: true });
     // Escape folds the details away first, then closes
     sheet.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { ev.stopPropagation(); if (more?.details) toggleDetails(false); else closeMore(); } });
   }
@@ -1491,7 +1977,12 @@ export function mountTestFocus(root, { config, getHass }) {
       if (first) render(); else refresh();
     },
     // the bento's animation runs while it's mounted, so it goes while the card is away
-    suspend() { suspended = true; bento?.destroy(); bento = null; },
-    resume() { suspended = false; if (testFocus && grid?.querySelector('[data-tf]')) placeBento(bentoBox.style.order); },
+    suspend() { suspended = true; bento?.destroy(); bento = null; dashBentos?.forEach((b) => b.destroy()); dashBentos = null; },
+    resume() {
+      suspended = false;
+      if (!testFocus || !grid?.querySelector('[data-tf]')) return;
+      if (bentoBox.isConnected) placeBento(bentoBox.style.order);
+      placeDash(true);
+    },
   };
 }

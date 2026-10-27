@@ -149,6 +149,9 @@
 .wbDayTabs{display:flex}
 .wbNow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .wbCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}
+/* the dashboard's weather card: Now is a button that opens the Weather page */
+.wb button.wbOpenPage{padding:0;border:0;border-radius:var(--r-tile)!important;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}
+.wb button.wbOpenPage:focus-visible{outline:2px solid var(--primary)!important;outline-offset:4px!important}
 .wbTempBlock{display:flex;flex-direction:column;gap:4px;min-width:0}
 .wbTemp{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}
 .wbDeg{font:500 64px/1 var(--font-tile);letter-spacing:-1.28px}
@@ -288,7 +291,7 @@
 .wbTapeMarker{stroke:#e0574d;stroke-width:4;stroke-linecap:round}
 
 /* ---- Compared to average: the number and words, the highs as bars ---- */
-.wbCompare{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) calc(50% - 28px * var(--wb-k));gap:16px;align-items:stretch}
+.wbCompare{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) calc(50% - 28px * var(--wb-k));grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch}
 .wbCompareText{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0}
 .wbCompareNumber{font:500 calc(26.4cqw * var(--wb-k)) / 1 var(--font-tile);letter-spacing:-.02em;white-space:nowrap}
 .wbCompareWords{color:var(--muted);font:300 clamp(14px,calc(7.1cqw * var(--wb-k)),18px) / 1.25 var(--font-tile)}
@@ -312,3 +315,14 @@
 /* a level as a track with a marker */
 .wbScale{position:relative;height:4px;border-radius:9999px}
 .wbScale i{position:absolute;top:50%;box-sizing:content-box;width:10px;height:10px;border-radius:50%;background-color:var(--text);border:2px solid var(--wb-scale-edge);transform:translate(-50%,-50%)}
+
+/* on the dashboard's grid (Matt, 27 Oct: the peg board's cells are the sizes): a square 252 × 212 (1 × 3 cells),
+   Compared to average 520 × 288 (2 × 4: its number and words need about 257), the weather card and the hours
+   520 × 364 (large, 2 × 5); a grown weather card keeps Now at the top and its days at the bottom. Phones keep their
+   squares (last in this file, so these sizes win over the squares' own) */
+@container wb-bento (width >= 652px){
+  .wbCard.wbSquare{aspect-ratio:auto;height:212px}
+  .wbCard.wbSquare.wbDouble{aspect-ratio:auto;height:288px}
+  .wbItem[data-size="wide"]>.wbCard{min-height:364px}
+  .wbWeather .wbNow{margin-bottom:auto}
+}

@@ -13,7 +13,7 @@ const MADE_UP = {
   kitchen: { temperature: 21.2, humidity: 48, door: 'Back door', plant: ['Basil', 55, 900, 22.1, 910] },
   balcony: { solar: true, door: 'Balcony door', doorOpen: true, valve: 'Watering', plant: ['Tomatoes', 61, 18500, 14.2, 1240] },
   bedroom: { cover: ['Roller blind', 'shade', 0], humidifier: true, temperature: 18.9, humidity: 38, window: 'Bedroom window' },
-  office: { cover: ['Blinds', 'blind', 60, 45], temperature: 21.8, humidity: 41, plant: ['Pothos', 47, 2600, 21.6, 640] },
+  office: { cover: ['Blinds', 'blind', 60, 45], vacuum: true, temperature: 21.8, humidity: 41, plant: ['Pothos', 47, 2600, 21.6, 640] },
   bathroom: { temperature: 22.4, humidity: 62 },
 };
 // What a plant wants (as Home Assistant's plant integration checks it)
@@ -54,6 +54,7 @@ export function createHouse({ onChange }) {
   Object.entries(MADE_UP).forEach(([a, m]) => {
     if (m.temperature != null) add('sensor.' + PREFIX + a + '_temperature', a, String(m.temperature), { friendly_name: 'Temperature', device_class: 'temperature', state_class: 'measurement', unit_of_measurement: '°C' });
     if (m.humidity != null) add('sensor.' + PREFIX + a + '_humidity', a, String(m.humidity), { friendly_name: 'Humidity', device_class: 'humidity', state_class: 'measurement', unit_of_measurement: '%' });
+    if (m.vacuum) add('vacuum.' + PREFIX + 'robot', a, 'docked', { friendly_name: 'Robot vacuum', battery_level: 100, fan_speed: 'standard', rooms: [] });
     if (m.climate) add('climate.' + PREFIX + a, a, 'heat', { friendly_name: 'Thermostat', hvac_modes: ['off', 'heat', 'cool', 'auto'], hvac_action: 'heating', current_temperature: m.temperature, temperature: 21, min_temp: 7, max_temp: 30, target_temp_step: 0.5 });
     if (m.cover) {
       const [name, cls, position, tilt] = m.cover;
@@ -80,7 +81,6 @@ export function createHouse({ onChange }) {
     }
   });
   // the whole house
-  add('vacuum.' + PREFIX + 'robot', null, 'docked', { friendly_name: 'Robot vacuum', battery_level: 100, fan_speed: 'standard', rooms: [] });
   add('alarm_control_panel.' + PREFIX + 'house', null, 'disarmed', { friendly_name: 'Alarm', supported_features: 1 | 2 | 4, code_format: null, changed_by: 'Matt' });
   opening(null, 'Front door', 'door', false);
   opening(null, 'Smoke alarm', 'smoke', false);
@@ -204,6 +204,8 @@ export function createHouse({ onChange }) {
     const states = { ...real, ...fake };
     const dc = (id) => states[id]?.attributes?.device_class;
     const OPENINGS = ['door', 'window', 'garage_door', 'opening', 'motion', 'occupancy', 'smoke', 'gas'];
+    // a vacuum belongs to its room (the made-up one to the office, when the house has no vacuum of its own)
+    const realVacuums = Object.keys(real).filter((id) => id.startsWith('vacuum.') && usable(id));
     const rooms = Object.values(hass?.areas || {}).filter((ar) => !SKIP_AREAS.has(ar.area_id)).map((ar) => {
       const a = ar.area_id, ids = byArea[a] || [];
       const of = (domain) => ids.filter((id) => id.startsWith(domain + '.'));
@@ -222,7 +224,7 @@ export function createHouse({ onChange }) {
         power: power.length ? power.reduce((sum, id) => sum + Number(states[id].state) * (states[id].attributes.unit_of_measurement === 'kW' ? 1000 : 1), 0) : null,
         plugs: of('switch'),
         lights: of('light'),
-        actions: [...of('light'), ...pick(of('climate'), (id) => id.startsWith('climate.')), ...pick(of('cover'), (id) => id.startsWith('cover.')), ...pick(of('humidifier'), (id) => id.startsWith('humidifier.')), ...pick(of('valve'), (id) => id.startsWith('valve.')), ...of('media_player')],
+        actions: [...of('light'), ...pick(of('climate'), (id) => id.startsWith('climate.')), ...pick(of('cover'), (id) => id.startsWith('cover.')), ...pick(of('humidifier'), (id) => id.startsWith('humidifier.')), ...pick(of('valve'), (id) => id.startsWith('valve.')), ...of('media_player'), ...of('vacuum'), ...(realVacuums.length ? [] : mine((id) => id.startsWith('vacuum.')))],
         solar: mine((id) => id.includes('_solar_')),
         plants,
         openings,
@@ -231,10 +233,11 @@ export function createHouse({ onChange }) {
     }).filter((r) => r.readings.length || r.plugs.length || r.actions.length || r.solar.length || r.plants.length);
     const grid = Object.keys(real).find((id) => /^sensor\..*(p1_meter_power|grid_power)$/.test(id) && real[id].state !== 'unavailable') || null;
     const all = (domain) => Object.keys(real).filter((id) => id.startsWith(domain + '.') && usable(id));
-    const vacuums = all('vacuum'), alarms = all('alarm_control_panel');
+    const alarms = all('alarm_control_panel'), vacuums = realVacuums.length ? realVacuums : ['vacuum.' + PREFIX + 'robot'];
     return {
       states, rooms, grid,
-      vacuums: vacuums.length ? vacuums : ['vacuum.' + PREFIX + 'robot'],
+      vacuums,
+      homeVacuums: vacuums.filter((id) => !rooms.some((r) => r.actions.includes(id))),
       security: {
         alarms: alarms.length ? alarms : ['alarm_control_panel.' + PREFIX + 'house'],
         locks: all('lock'),

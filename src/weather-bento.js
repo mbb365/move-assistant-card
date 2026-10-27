@@ -6,8 +6,9 @@
 //   bento.setStyle(s);   // the weather style changed in Settings
 //   bento.destroy();     // unsubscribes, stops the timers and the paint clock, empties the container
 //
-// Cards, order and widths are the patch's: the weather card and Next hours (520), then square data tiles (252), with
-// Compared to average two squares wide; they wrap with the container, 16 apart, and go to the phone layout under 652.
+// Cards, order and widths are the patch's (without its Visibility, which Matt never asked for): the weather card and
+// Next hours (520), then data tiles (252), with Compared to average two wide; they wrap with the container, 16 apart, and
+// go to the phone layout under 652. Heights follow the dashboard's grid on desktop (weather-bento.css).
 // A card without data hides, as in the patch. Rules are in weather-bento.css; the container must sit inside #app so
 // the card's tokens (and light mode) reach it. Weather art: weather-art.js, plus weather-bento-art.js for the three-day sky.
 import {WX_PALETTE,wxKey,wxPose,wxBitmap} from './weather-art.js';
@@ -29,7 +30,6 @@ const I={
   sunsetUp:'M3,12H7A5,5 0 0,1 12,7A5,5 0 0,1 17,12H21A1,1 0 0,1 22,13A1,1 0 0,1 21,14H3A1,1 0 0,1 2,13A1,1 0 0,1 3,12M15,12A3,3 0 0,0 12,9A3,3 0 0,0 9,12H15M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M12.71,16.3L15.82,19.41C16.21,19.8 16.21,20.43 15.82,20.82C15.43,21.21 14.8,21.21 14.41,20.82L12,18.41L9.59,20.82C9.2,21.21 8.57,21.21 8.18,20.82C7.79,20.43 7.79,19.8 8.18,19.41L11.29,16.3C11.5,16.1 11.74,16 12,16C12.26,16 12.5,16.1 12.71,16.3Z',
   sunsetDown:'M3,12H7A5,5 0 0,1 12,7A5,5 0 0,1 17,12H21A1,1 0 0,1 22,13A1,1 0 0,1 21,14H3A1,1 0 0,1 2,13A1,1 0 0,1 3,12M15,12A3,3 0 0,0 12,9A3,3 0 0,0 9,12H15M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M12.71,20.71L15.82,17.6C16.21,17.21 16.21,16.57 15.82,16.18C15.43,15.79 14.8,15.79 14.41,16.18L12,18.59L9.59,16.18C9.2,15.79 8.57,15.79 8.18,16.18C7.79,16.57 7.79,17.21 8.18,17.6L11.29,20.71C11.5,20.9 11.74,21 12,21C12.26,21 12.5,20.9 12.71,20.71Z',
   chartLine:'M16,11.78L20.24,4.45L21.97,5.45L16.74,14.5L10.23,10.75L5.46,19H22V21H2V3H4V17.54L9.5,8L16,11.78Z',
-  eye:'M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z',
   gauge:'M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12C20,14.4 19,16.5 17.3,18C15.9,16.7 14,16 12,16C10,16 8.2,16.7 6.7,18C5,16.5 4,14.4 4,12A8,8 0 0,1 12,4M14,5.89C13.62,5.9 13.26,6.15 13.1,6.54L11.81,9.77L11.71,10C11,10.13 10.41,10.6 10.14,11.26C9.73,12.29 10.23,13.45 11.26,13.86C12.29,14.27 13.45,13.77 13.86,12.74C14.12,12.08 14,11.32 13.57,10.76L13.67,10.5L14.96,7.29L14.97,7.26C15.17,6.75 14.92,6.17 14.41,5.96C14.28,5.91 14.15,5.89 14,5.89M10,6A1,1 0 0,0 9,7A1,1 0 0,0 10,8A1,1 0 0,0 11,7A1,1 0 0,0 10,6M7,9A1,1 0 0,0 6,10A1,1 0 0,0 7,11A1,1 0 0,0 8,10A1,1 0 0,0 7,9M17,9A1,1 0 0,0 16,10A1,1 0 0,0 17,11A1,1 0 0,0 18,10A1,1 0 0,0 17,9Z',
   waterPercent:'M12,3.25C12,3.25 6,10 6,14C6,17.32 8.69,20 12,20A6,6 0 0,0 18,14C18,10 12,3.25 12,3.25M14.47,9.97L15.53,11.03L9.53,17.03L8.47,15.97M9.75,10A1.25,1.25 0 0,1 11,11.25A1.25,1.25 0 0,1 9.75,12.5A1.25,1.25 0 0,1 8.5,11.25A1.25,1.25 0 0,1 9.75,10M14.25,14.5A1.25,1.25 0 0,1 15.5,15.75A1.25,1.25 0 0,1 14.25,17A1.25,1.25 0 0,1 13,15.75A1.25,1.25 0 0,1 14.25,14.5Z',
   rainy:'M6,14.03A1,1 0 0,1 7,15.03C7,15.58 6.55,16.03 6,16.03C3.24,16.03 1,13.79 1,11.03C1,8.27 3.24,6.03 6,6.03C7,3.68 9.3,2.03 12,2.03C15.43,2.03 18.24,4.69 18.5,8.06L19,8.03A4,4 0 0,1 23,12.03C23,14.23 21.21,16.03 19,16.03H18C17.45,16.03 17,15.58 17,15.03C17,14.47 17.45,14.03 18,14.03H19A2,2 0 0,0 21,12.03A2,2 0 0,0 19,10.03H17V9.03C17,6.27 14.76,4.03 12,4.03C9.5,4.03 7.45,5.84 7.06,8.21C6.73,8.09 6.37,8.03 6,8.03A3,3 0 0,0 3,11.03A3,3 0 0,0 6,14.03M12,14.15C12.18,14.39 12.37,14.66 12.56,14.94C13,15.56 14,17.03 14,18C14,19.11 13.1,20 12,20A2,2 0 0,1 10,18C10,17.03 11,15.56 11.44,14.94C11.63,14.66 11.82,14.4 12,14.15M12,11.03L11.5,11.59C11.5,11.59 10.65,12.55 9.79,13.81C8.93,15.06 8,16.56 8,18A4,4 0 0,0 12,22A4,4 0 0,0 16,18C16,16.56 15.07,15.06 14.21,13.81C13.35,12.55 12.5,11.59 12.5,11.59',
@@ -51,13 +51,13 @@ const T={
   phases:{new_moon:'New moon',waxing_crescent:'Waxing crescent',first_quarter:'First quarter',waxing_gibbous:'Waxing gibbous',full_moon:'Full moon',waning_gibbous:'Waning gibbous',last_quarter:'Last quarter',waning_crescent:'Waning crescent'},
   wind:'Wind',windFrom:'From {direction}',beaufort:'Bft',
   cardinal:{n:'N',nne:'NNE',ne:'NE',ene:'ENE',e:'E',ese:'ESE',se:'SE',sse:'SSE',s:'S',ssw:'SSW',sw:'SW',wsw:'WSW',w:'W',wnw:'WNW',nw:'NW',nnw:'NNW'},
-  metrics:{humidity:'Humidity',pressure:'Pressure',visibility:'Visibility',uv_index:'UV index',precipitation:'Precipitation',compared_to_average:'Compared to average'},
+  metrics:{humidity:'Humidity',pressure:'Pressure',uv_index:'UV index',precipitation:'Precipitation',compared_to_average:'Compared to average'},
   dewPoint:'Dew point {dew_point}',
   pressure:{rising:'Rising over 3 hours',falling:'Falling over 3 hours',steady:'Steady over 3 hours'},
   uvLevel:{low:'Low',moderate:'Moderate',high:'High',very_high:'Very high',extreme:'Extreme'},uvPeak:'{level} · up to {uv_index} at {time}',
   rainExpected:'{amount} in the next 24 hours',rainLast24h:'Last 24 hours',
   average:{above:'above the average high',below:'below the average high',same:'same as the average high'},
-  highsLastDays:'Highs of the last {days} days',todayVsAverage:'Today {today} · average {average}',
+  highsLastDays:'Highs of the last {days} days',openPage:'Open the weather page',todayVsAverage:'Today {today} · average {average}',
   airQuality:'Air quality',fineParticles:'fine particles',
   aqLevel:{good:'Good',fair:'Fair',moderate:'Moderate',poor:'Poor',very_poor:'Very poor',extremely_poor:'Extremely poor'}
 };
@@ -191,7 +191,6 @@ const forecastSource=(h,src,type)=>src.map(id=>h.states?.[id]).find(s=>available
 function weatherUnit(h,s,measure){
   const length=h.config?.unit_system?.length||'',a=s?.attributes||{};
   switch(measure){
-    case 'visibility':return a.visibility_unit||length;
     case 'precipitation':return a.precipitation_unit||(length==='km'?'mm':'in');
     case 'pressure':return a.pressure_unit||(length==='km'?'hPa':'inHg');
     case 'wind_speed':case 'wind_gust_speed':return a.wind_speed_unit||length+'/h';
@@ -326,7 +325,9 @@ const TYCHO_RAYS=[[30,62],[48,48],[72,60],[96,82],[86,112],[30,108],[16,86]];
 
 let mounts=0;
 
-export function mountWeatherBento(container,{getHass,entityId,style='bitmap',motion=true}={}){
+// cards: only these cards (the dashboard places the weather card, Compared to average and Humidity on their own);
+// onOpen: the weather card's Now becomes a button that calls it (the dashboard opens its Weather page)
+export function mountWeatherBento(container,{getHass,entityId,style='bitmap',motion=true,cards,onOpen}={}){
   const P='wb'+(++mounts)+'-';   // SVG ids, unique in the shadow root
   const root=document.createElement('div');
   root.className='wb';
@@ -336,7 +337,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   container.replaceChildren(root);
 
   // The patch's strategy order; sizes from hui-weather-bento-card
-  const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','visibility','air_quality'];
+  const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','air_quality'].filter(name=>!cards||cards.includes(name));
   const SIZES={current:'wide',hourly:'wide',compared_to_average:'double'};
   const items={};
   CARDS.forEach(name=>{
@@ -471,9 +472,10 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const temperature=value(h,src,'temperature'),today=list[0],hasToday=today&&sameDay(new Date(today.datetime),new Date());
     const unit=h.config?.unit_system?.temperature||primary.attributes?.temperature_unit||'';
     let s='<div class="wbCard wbWeather'+(open?' wbIsOpen':'')+'"><div class="wbClosed"'+(open?' inert':'')+'>'+
-      '<div class="wbNow"><div class="wbCurrent">'+wxIcon(primary.state,90,isNight(h),'now')+'<div class="wbTempBlock">'+
+      '<div class="wbNow">'+(onOpen?'<button class="wbCurrent wbOpenPage" data-wb="open-page" data-wb-focus="open-page" aria-label="'+esc(T.openPage)+'">':'<div class="wbCurrent">')+
+      wxIcon(primary.state,90,isNight(h),'now')+'<div class="wbTempBlock">'+
       (temperature&&num(temperature.value)?'<div class="wbTemp"><span class="wbDeg">'+esc(fmtNum(Math.round(Number(temperature.value)),h.locale))+'</span><span class="wbUnit">'+esc(unit)+'</span></div>':'')+
-      '<div class="wbPlace">'+esc(h.config?.location_name??'')+'</div></div></div>'+
+      '<div class="wbPlace">'+esc(h.config?.location_name??'')+'</div></div>'+(onOpen?'</button>':'</div>')+
       '<div class="wbCondition"><div class="wbCondName">'+esc(stateText(h,primary))+'</div>'+
       (hasToday&&today.templow!=null?'<div class="wbRange">'+esc(fill(T.range,{high:deg(h,today.temperature),low:deg(h,today.templow)}))+'</div>':'')+'</div></div>';
     if(list.length){
@@ -776,11 +778,6 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       sub:hourlyState&&expected.length?fill(T.rainExpected,{amount:fmtNum(total,h.locale,{maximumFractionDigits:1})+' '+weatherUnit(h,hourlyState,'precipitation')}):T.rainLast24h,
       visual:valueHtml(fmtNum(data.rain.change,h.locale,{maximumFractionDigits:1}),unit)+(expected.length>1?barsHtml(expected.map(e=>({label:'',value:Number(e.precipitation)}))):'')});
   }
-  function renderVisibility(h,src){
-    const v=value(h,src,'visibility');if(!v)return '';
-    const parts=attrParts(h,v.stateObj,'visibility',v.value);
-    return tile({icon:I.eye,name:T.metrics.visibility,visual:valueHtml(parts.number,parts.unit)});
-  }
 
   /* ---- Air quality and pollen: tiles in halves; a tapped tile opens inside the card ---- */
   function renderAirQuality(h){
@@ -814,7 +811,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   }
 
   const RENDER={current:renderCurrent,hourly:renderHourly,sun:renderSun,moon:renderMoon,wind:renderWind,uv_index:renderUv,
-    compared_to_average:renderCompared,humidity:renderHumidity,pressure:renderPressure,precipitation:renderPrecipitation,visibility:renderVisibility,air_quality:renderAirQuality};
+    compared_to_average:renderCompared,humidity:renderHumidity,pressure:renderPressure,precipitation:renderPrecipitation,air_quality:renderAirQuality};
 
   /* ---- Drawing: each card is redrawn only when its markup changes; focus and the strip's scroll stay put ---- */
   function render(force){
@@ -916,6 +913,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
         break;
       }
       case 'close-day':ui.openDay=undefined;focusAfter=ui.opener;ui.opener=undefined;break;
+      case 'open-page':onOpen?.();return;
       case 'day-mode':ui.dayMode=el.dataset.mode;break;
       case 'hourly-mode':ui.hourlyMode=el.dataset.mode;break;
       case 'aq-open':ui.aq=el.dataset.entity;fetchAqHistory(ui.aq);break;

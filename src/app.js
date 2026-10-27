@@ -1687,6 +1687,7 @@ function checkCheckinDue(){
   const due=dueSlot();
   if(!due||checkinModal.classList.contains('open'))return;
   if(settings().checkinAutoOpen===false)return;
+  if($('app').classList.contains('house'))return; // the Spacing test is the house only
   if(!views.home.classList.contains('active')||modal.classList.contains('open'))return;
   if(dismissedKey===dayKey(new Date())+'-'+due)return;
   openCheckin();
@@ -2981,10 +2982,11 @@ function applyDataToggles(){
   [['steps','stepsRow'],['mood','moodRow'],['energyLevel','energyLevelRow']].forEach(([k,id])=>{$(id).hidden=dataToggles[k]===false});
   const anyActivity=['steps','mood','energyLevel'].some(k=>dataToggles[k]!==false);
   root.querySelector('.activityCard').hidden=!anyActivity;
-  $('weatherCard').hidden=dataToggles.weather===false;
+  // the weather moved to the house page's bento (Matt, 27 Oct): the Move page has no weather card
+  $('weatherCard').hidden=true;
   const grid=root.querySelector('#homeView .grid');
   grid.classList.toggle('noActivity',!anyActivity);
-  grid.classList.toggle('noWeather',dataToggles.weather===false);
+  grid.classList.toggle('noWeather',true);
 }
 root.querySelectorAll('[data-toggle]').forEach(sw=>sw.addEventListener('click',()=>{
   dataToggles[sw.dataset.toggle]=!(dataToggles[sw.dataset.toggle]!==false);
@@ -3282,7 +3284,6 @@ function wxTick(t){
   if(!document.hidden&&(changing||stripping||smoothSky||(moving&&step!==wxStep))){
     wxStep=step;
     if(homeOn){paintWx($('weatherCard'),t);paintStrips($('weatherCard'),t)}
-    if(views.settings.classList.contains('active'))paintWx(wxStyleChoice,t);
     if(dialogOn){paintWx(wxDialog,t);paintStrips(wxDialog,t)}
   }
   if(moving||changing||stripping)wxRAF=requestAnimationFrame(wxTick);
@@ -3378,53 +3379,8 @@ function paintStrips(scope,t=performance.now()){
   });
   if(animating)wxWake();
 }
-function weatherChoices(states){
-  return Object.values(states).filter(st=>st.entity_id.startsWith('weather.'))
-    .sort((a,b)=>(a.attributes.friendly_name||a.entity_id).localeCompare(b.attributes.friendly_name||b.entity_id));
-}
-function renderWeatherPicker(states){
-  const select=$('weatherEntity');
-  if(!select||select.matches(':focus'))return;
-  const list=weatherChoices(states);
-  select.innerHTML='<option value="">Not connected</option>'+list.map(st=>'<option value="'+esc(st.entity_id)+'">'+esc(st.attributes.friendly_name||st.entity_id)+'</option>').join('');
-  select.value=sensorEntities.weather||'';
-  const st=sensorEntities.weather&&states[sensorEntities.weather];
-  $('weatherStatus').textContent=st?'Connected · '+(st.attributes.friendly_name||st.entity_id):$('weatherStatus').dataset.empty;
-}
-function subscribeForecast(){
-  const id=sensorEntities.weather||null;
-  if(id===wxFor)return;
-  wxFor=id;wxForecast=[];wxNoForecast=false;wxDetail=[];wxDetailType=null;
-  [wxUnsub,wxDetailUnsub].forEach(old=>old?.then(u=>typeof u==='function'&&u()).catch(()=>{}));
-  wxUnsub=null;wxDetailUnsub=null;
-  if(!id||!bridge.subscribe){renderWeather();return}
-  wxUnsub=bridge.subscribe({type:'weather/subscribe_forecast',forecast_type:'daily',entity_id:id},msg=>{
-    if(wxFor!==id)return;
-    wxForecast=Array.isArray(msg?.forecast)?msg.forecast:[];
-    renderWeather();
-  });
-  wxUnsub.catch(()=>{if(wxFor===id){wxNoForecast=true;renderWeather()}});
-  // the 12-hour sky and the bigger view want hours; services without them may still have day and night
-  const detail=type=>{
-    const u=bridge.subscribe({type:'weather/subscribe_forecast',forecast_type:type,entity_id:id},msg=>{
-      if(wxFor!==id)return;
-      wxDetail=Array.isArray(msg?.forecast)?msg.forecast:[];wxDetailType=type;
-      renderWeather();
-    });
-    u.catch(()=>{if(wxFor===id&&type==='hourly')wxDetailUnsub=detail('twice_daily')});
-    return u;
-  };
-  wxDetailUnsub=detail('hourly');
-  renderWeather();
-}
-$('weatherEntity').addEventListener('change',()=>{
-  sensorEntities.weather=$('weatherEntity').value||null;
-  saveSetting('entities',{...sensorEntities});
-  if(lastStates)renderWeatherPicker(lastStates);
-  subscribeForecast();
-});
 function renderWeather(){
-  const card=$('weatherCard');if(!card)return;
+  const card=$('weatherCard');if(!card||card.hidden)return;
   const id=sensorEntities.weather,st=id&&lastStates?.[id];
   const header=(icon)=>'<div class="activityHeader">'+icon+'<div class="activityTitle">Weather</div></div>';
   if(!st){
@@ -3581,41 +3537,6 @@ wxDialog.addEventListener('click',e=>{if(e.target===wxDialog)closeWxDialog()});
 wxDialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeWxDialog()}});
 renderWeather();
 
-/* Weather style picker: each choice previews four icons in its own style */
-const wxStyleChoice=$('wxStyleChoice');
-function renderWxStyleChoice(){
-  wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(btn=>{
-    btn.setAttribute('aria-pressed',String(btn.dataset.wxStyle===wxStyle));
-    btn.querySelector('.wxStylePreview').innerHTML=['sunny','partlycloudy','rainy','clear-night'].map(c=>wxIcon(c,false,false,btn.dataset.wxStyle)).join('');
-  });
-  paintWx(wxStyleChoice);
-}
-wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(btn=>btn.addEventListener('click',()=>{
-  wxStyle=btn.dataset.wxStyle;
-  saveSetting('weatherStyle',wxStyle);
-  wxStyleChoice.querySelectorAll('.wxStyleBtn').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
-  renderWeather();
-}));
-renderWxStyleChoice();
-const wxLayoutChoice=$('wxLayoutChoice');
-const syncWxLayout=()=>wxLayoutChoice.querySelectorAll('.wxLayoutBtn').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.wxLayout===wxLayout)));
-wxLayoutChoice.querySelectorAll('.wxLayoutBtn').forEach(btn=>btn.addEventListener('click',()=>{
-  wxLayout=btn.dataset.wxLayout;
-  saveSetting('weatherLayout',wxLayout);
-  wxStrips.delete('inline');
-  syncWxLayout();
-  renderWeather();
-}));
-syncWxLayout();
-const wxMotionToggle=$('wxMotionToggle');
-wxMotionToggle.classList.toggle('on',wxMotion);
-wxMotionToggle.addEventListener('click',()=>{
-  wxMotion=!wxMotion;
-  wxMotionToggle.classList.toggle('on',wxMotion);
-  saveSetting('weatherMotion',wxMotion);
-  wxWake();
-  paintWx(root);
-});
 window.matchMedia?.('(prefers-reduced-motion: reduce)').addEventListener?.('change',()=>{wxWake();paintWx(root)});
 wxWake();
 
@@ -3759,9 +3680,7 @@ return {
       ||lastStates['sun.sun']?.state!==states['sun.sun']?.state;
     lastStates=states;
     renderSensorPickers(states);
-    renderWeatherPicker(states);
     renderActivity(states);
-    subscribeForecast();
     if(weatherChanged)renderWeather();
     if(Date.now()-stepHistoryLoadedAt>60*60*1000)loadStepHistory();
     renderInsightsSoon();
