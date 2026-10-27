@@ -23,9 +23,11 @@
 #homeView .activityRowIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent)}
 #homeView .activityRowName{font:600 14px/20px var(--font-tile)}
 #homeView .activityRowMeta{font:400 16px/1.15 var(--font);margin:0}
-/* hover: tile fill and a hairline (0.2, 0.4 along the bottom) */
-#homeView .card .activityRow.tap{cursor:pointer;transition:background .15s ease,box-shadow .15s ease}
-#homeView .card .activityRow.tap:hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}
+/* hover: tile fill and a hairline (0.2, 0.4 along the bottom), on a tile that's tapped whole and on a device's tile,
+   whose icon and name are its buttons (Favourites, Activity) */
+#homeView .card .activityRow.tap{cursor:pointer}
+#homeView .card .activityRow:is(.tap,:has(.tfName)){transition:background .15s ease,box-shadow .15s ease}
+#homeView .card .activityRow:is(.tap,:has(.tfName)):hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}
 
 /* weather: the card is 20 in from its edge (10 on phones); under Now, the days are tiles side by side like every card of readings
    (Matt, 23 Oct; Figma Components → "Weather in halves · proposal") */
@@ -290,6 +292,9 @@
    devices; the weather steps aside */
 .tfAreaHead{grid-column:1/-1;margin-bottom:0}
 #app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}
+/* the first card sits as far under a page's title as on the dashboard (the grid's gap; Matt, 27 Oct: the dashboard's
+   title to first card is the rule), so the Weather page's bento has no padding of its own above it */
+#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{padding-top:0}
 /* the main: it opens its more-info */
 .tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}
 .tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}
@@ -348,17 +353,18 @@
    ========================================================= */
 #app.tfDash #homeView{max-width:none;container:tfdash/inline-size}
 #app.tfDash #homeView .grid{display:flex;flex-wrap:wrap;align-items:flex-start;align-content:flex-start}
-/* the order: the name, the summaries, the weather and the areas (Favourites beside the weather when the areas don't
-   fit there), Favourites, Activity, Energy today, Compared to average, the tiles */
+/* the order on a phone: the name, the summaries, then the board's cards and tiles as it reads, the top row first, each
+   row left to right (--o, from phoneOrder in test-focus.js; Matt, 27 Oct). Until that's known: the weather, the areas,
+   Favourites, Activity, Energy today, Compared to average, the tiles */
 #app.tfDash .tfDashTitle{order:1!important;flex:0 0 100%;margin:0}
 #app.tfDash .tfDashBarRow{order:2!important;flex:0 0 100%;display:flex;min-width:0}
-#app.tfDash .tfDash-wx{order:3!important}
-#app.tfDash .tfAreas{order:4!important}
-#app.tfDash .tfDash-favs{order:5!important}
-#app.tfDash .tfDash-act{order:6!important}
-#app.tfDash .tfDash-energy{order:7!important}
-#app.tfDash .tfDash-avg{order:8!important}
-#app.tfDash .tfDashTiles{order:9!important}
+#app.tfDash .tfDash-wx{order:var(--o,3)!important}
+#app.tfDash .tfAreas{order:var(--o,4)!important}
+#app.tfDash .tfDash-favs{order:var(--o,5)!important}
+#app.tfDash .tfDash-act{order:var(--o,6)!important}
+#app.tfDash .tfDash-energy{order:var(--o,7)!important}
+#app.tfDash .tfDash-avg{order:var(--o,8)!important}
+#app.tfDash .tfDashTiles>*{order:var(--o,9)}
 /* drawn sizes: never wider than drawn; a card may give up to 12% (520 down to 460) so two sit side by side on a
    tablet, and takes the whole width only on a phone */
 #app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}
@@ -405,19 +411,19 @@
 .tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}
 #app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}
 #app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}
-/* the tiles: a row of their own, each a light tile's size, 10 apart; two to a row on phones */
-#app.tfDash .tfDashTiles{flex:0 0 100%;display:flex;flex-wrap:wrap;gap:10px;min-width:0}
-.tfDashTiles>:is(.tfAction,.tfDac){flex:none;width:252px;min-width:0;grid-column:auto}
+/* the tiles: each its own item among the cards, so it can sit where the board has it; on a phone two to a row, as far
+   apart as the cards */
+#app.tfDash .tfDashTiles{display:contents}
+.tfDashTiles>:is(.tfAction,.tfDac){flex:none;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}
 .tfDashTiles>.tfAction{justify-content:space-between}
-@container tfdash (width < 640px){.tfDashTiles>:is(.tfAction,.tfDac){width:calc(50% - 5px)}}
 /* =========================================================
    The peg board (Matt, 27 Oct; edit mode drawn in Figma "Dashboard edit mode" for him to change): on a tablet and up
    the dashboard is a solid grid of cells, columns --peg-w (252) and rows 60, 16 apart, and every card fills whole cells
    (test-focus.js layoutBoard), under the name and the summaries, which keep their own sizes above it. Large cards (the weather, the areas, Favourites, Activity) are 5 rows, 364. In edit mode
-   cards slide to their new places (never on their own as the page loads). Phones keep the column above
+   cards slide to their new places (never on their own as the page loads). Phones keep the column above, in the board's
+   order
    ========================================================= */
 #app.tfBoard #homeView .grid{display:block;position:relative}
-#app.tfBoard .tfDashTiles{display:contents}
 #app.tfBoard .tfBoardItem{position:absolute;z-index:1;margin:0;max-width:none;min-height:0;box-sizing:border-box}
 #app.tfEditing.tfBoardReady .tfBoardItem{transition:left .25s cubic-bezier(.2,.7,.3,1),top .25s cubic-bezier(.2,.7,.3,1),height .25s cubic-bezier(.2,.7,.3,1)}
 #app.tfBoard .tfBoardHidden{display:none!important}

@@ -1147,9 +1147,49 @@ export function mountTestFocus(root, { config, getHass }) {
       ...[...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => [el.dataset.k, el, 1])]
       .filter(([, el]) => el?.isConnected).map(([key, el, span]) => ({ key, el, span }));
   }
-  // lays the board out on its cells: the name first; then a dragged card where it would land; then the cards with a
-  // saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in the page's order, each
-  // in the first cell from the top left it fits
+  // a card's width in pegs on a board n pegs wide, each w: 'full' the whole width, the areas as wide as they're drawn
+  const colsOf = (it, n, w) => {
+    if (it.span === 'full') return n;
+    if (it.span === 'areas') return Math.min(n, Math.ceil((AREA_OPEN + Math.max(0, areaRooms.length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / (w + PEG_GAP)));
+    return Math.min(n, dashPrefs().spans[it.key] ?? it.span);
+  };
+  // a card's rows, unless they come from its own height (a tile's do)
+  const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (dacOpen.has(it.key) ? LARGE_ROWS : DAC_ROWS) : null);
+  // each card's cell on a board n pegs wide (the cards know their cols and rows): a dragged card where it would land;
+  // then the cards with a saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in
+  // the page's order, each in the first cell from the top left it fits
+  function placeCards(cards, n, dragged = null) {
+    const cells = dashPrefs().cells, taken = new Set(), placed = new Map();
+    const free = (c, r, cs, rs) => { for (let y = r; y < r + rs; y++) for (let x = c; x < c + cs; x++) if (taken.has(x + ',' + y)) return false; return true; };
+    const put = (it, c, r) => {
+      for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) taken.add(x + ',' + y);
+      placed.set(it.key, { col: c, row: r, cols: it.cols, rows: it.rows });
+    };
+    const near = (it, c, r) => { c = Math.max(0, Math.min(n - it.cols, c)); r = Math.max(0, r); while (!free(c, r, it.cols, it.rows)) r++; put(it, c, r); };
+    const first = (it) => { for (let r = 0; ; r++) for (let c = 0; c <= n - it.cols; c++) if (free(c, r, it.cols, it.rows)) { put(it, c, r); return; } };
+    if (dragged) near(dragged, drag.col, drag.row);
+    const rest = cards.filter((it) => it !== dragged);
+    rest.filter((it) => cells[it.key]).sort((a, b) => cells[a.key].row - cells[b.key].row || cells[a.key].col - cells[b.key].col).forEach((it) => near(it, cells[it.key].col, cells[it.key].row));
+    rest.filter((it) => !cells[it.key]).forEach(first);
+    return placed;
+  }
+  // a phone has no board: its cards run down one column in the board's reading order, the top row first and each row
+  // left to right (Matt, 27 Oct). The board is the one last on screen, else the one the cells were saved on (four pegs
+  // wide if they never were); hidden cards come last
+  function phoneOrder() {
+    const dash = dashPrefs(), hidden = new Set(dash.hidden), cards = boardItems().filter((it) => !HEAD.includes(it.key));
+    let placed = lastPlaced;
+    if (!placed.size) {
+      const n = dash.pegs || 4, shown = cards.filter((it) => !hidden.has(it.key));
+      shown.forEach((it) => { it.cols = colsOf(it, n, PEG); it.rows = rowsOf(it) ?? 2; });
+      placed = placeCards(shown, n);
+    }
+    const at = (it) => (!hidden.has(it.key) && placed.get(it.key)) || { row: 1e9, col: 0 };
+    cards.sort((a, b) => at(a).row - at(b).row || at(a).col - at(b).col).forEach((it, i) => it.el.style.setProperty('--o', String(3 + i)));
+  }
+  // saves where every card is, with the board's width in pegs so a phone can read them in the same order
+  const saveCells = (dash, cells) => saveDash({ ...dash, cells, pegs: pegsFor(grid.clientWidth).n });
+  // lays the board out on its cells: the name and the summaries first, then the cards (placeCards)
   function layoutBoard() {
     if (!testFocus || !grid) return;
     const W = grid.clientWidth, { n, w } = pegsFor(W), board = app.classList.contains('tfDash') && n >= 2;
@@ -1163,15 +1203,11 @@ export function mountTestFocus(root, { config, getHass }) {
       grid.querySelectorAll('.tfBoardItem').forEach((el) => { el.classList.remove('tfBoardItem', 'tfBoardHidden'); el.style.left = el.style.top = el.style.width = el.style.height = ''; });
       grid.querySelector('.tfDash-act > .activityRows')?.style.removeProperty('max-height');
       editTools(false);
+      if (app.classList.contains('tfDash')) phoneOrder();
       return;
     }
     grid.style.setProperty('--peg-w', w + 'px');
-    const dash = dashPrefs(), hidden = new Set(dash.hidden), pitch = w + PEG_GAP;
-    const colsOf = (it) => {
-      if (it.span === 'full') return n;
-      if (it.span === 'areas') return Math.min(n, Math.ceil((AREA_OPEN + Math.max(0, areaRooms.length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / pitch));
-      return Math.min(n, dash.spans[it.key] ?? it.span);
-    };
+    const hidden = new Set(dashPrefs().hidden), pitch = w + PEG_GAP;
     items.forEach((it) => it.el.classList.toggle('tfBoardHidden', hidden.has(it.key)));
     const shown = items.filter((it) => !hidden.has(it.key) && getComputedStyle(it.el).display !== 'none');
     // the header: the name and the summaries, the full width, each at its own height, 16 apart
@@ -1190,25 +1226,15 @@ export function mountTestFocus(root, { config, getHass }) {
     const cards = shown.filter((it) => !HEAD.includes(it.key));
     // each card's cells: its width in pegs, and its rows
     cards.forEach((it) => {
-      it.cols = colsOf(it);
+      it.cols = colsOf(it, n, w);
       it.el.classList.add('tfBoardItem');
       it.el.style.width = (it.cols === n ? W : it.cols * w + (it.cols - 1) * PEG_GAP) + 'px';
       it.el.style.height = '';
-      it.rows = ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (dacOpen.has(it.key) ? LARGE_ROWS : DAC_ROWS) : Math.max(1, Math.ceil((it.el.offsetHeight + PEG_GAP - 6) / ROW_PITCH)));
+      it.rows = rowsOf(it) ?? Math.max(1, Math.ceil((it.el.offsetHeight + PEG_GAP - 6) / ROW_PITCH));
     });
-    const taken = new Set(), free = (c, r, cs, rs) => { for (let y = r; y < r + rs; y++) for (let x = c; x < c + cs; x++) if (taken.has(x + ',' + y)) return false; return true; };
-    const placed = new Map();
-    const put = (it, c, r) => {
-      for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) taken.add(x + ',' + y);
-      placed.set(it.key, { col: c, row: r, cols: it.cols, rows: it.rows, x: it.cols === n ? 0 : c * pitch, y: boardTop + r * ROW_PITCH, w: it.cols === n ? W : it.cols * w + (it.cols - 1) * PEG_GAP, h: it.rows * ROW_PITCH - PEG_GAP });
-    };
-    const near = (it, c, r) => { c = Math.max(0, Math.min(n - it.cols, c)); r = Math.max(0, r); while (!free(c, r, it.cols, it.rows)) r++; put(it, c, r); };
-    const first = (it) => { for (let r = 0; ; r++) for (let c = 0; c <= n - it.cols; c++) if (free(c, r, it.cols, it.rows)) { put(it, c, r); return; } };
     const dragged = drag && cards.find((it) => it.key === drag.key);
-    if (dragged) near(dragged, drag.col, drag.row);
-    const rest = cards.filter((it) => it !== dragged), saved = rest.filter((it) => dash.cells[it.key]);
-    saved.sort((a, b) => dash.cells[a.key].row - dash.cells[b.key].row || dash.cells[a.key].col - dash.cells[b.key].col).forEach((it) => near(it, dash.cells[it.key].col, dash.cells[it.key].row));
-    rest.filter((it) => !dash.cells[it.key]).forEach(first);
+    const placed = placeCards(cards, n, dragged);
+    placed.forEach((p) => Object.assign(p, { x: p.cols === n ? 0 : p.col * pitch, y: boardTop + p.row * ROW_PITCH, w: p.cols === n ? W : p.cols * w + (p.cols - 1) * PEG_GAP, h: p.rows * ROW_PITCH - PEG_GAP }));
     cards.forEach((it) => {
       const p = placed.get(it.key);
       it.el.style.height = p.h + 'px';
@@ -1314,8 +1340,8 @@ export function mountTestFocus(root, { config, getHass }) {
     if (act === 'hide') dash.hidden = [...new Set([...dash.hidden, key])];
     // a card moved onto others goes first; they make room under it
     if (['left', 'right', 'up', 'down'].includes(act)) drag = { key, col: cells[key].col, row: cells[key].row };
-    saveDash({ ...dash, cells });
-    if (drag) { layoutBoard(); drag = null; saveDash({ ...dashPrefs(), cells: cellsNow() }); }
+    saveCells(dash, cells);
+    if (drag) { layoutBoard(); drag = null; saveCells(dashPrefs(), cellsNow()); }
     closeBoardMenu();
     if (act === 'graph') { units.delete('dash:energy'); refresh(); }
     layoutBoard();
@@ -1356,7 +1382,7 @@ export function mountTestFocus(root, { config, getHass }) {
       el.classList.remove('tfDragging');
       el.style.transform = '';
       drag = null;
-      saveDash({ ...dashPrefs(), cells: cellsNow() });
+      saveCells(dashPrefs(), cellsNow());
       layoutBoard();
       refresh();
     };

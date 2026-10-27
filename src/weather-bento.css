@@ -315,14 +315,3 @@
 /* a level as a track with a marker */
 .wbScale{position:relative;height:4px;border-radius:9999px}
 .wbScale i{position:absolute;top:50%;box-sizing:content-box;width:10px;height:10px;border-radius:50%;background-color:var(--text);border:2px solid var(--wb-scale-edge);transform:translate(-50%,-50%)}
-
-/* on the dashboard's grid (Matt, 27 Oct: the peg board's cells are the sizes): a square 252 × 212 (1 × 3 cells),
-   Compared to average 520 × 288 (2 × 4: its number and words need about 257), the weather card and the hours
-   520 × 364 (large, 2 × 5); a grown weather card keeps Now at the top and its days at the bottom. Phones keep their
-   squares (last in this file, so these sizes win over the squares' own) */
-@container wb-bento (width >= 652px){
-  .wbCard.wbSquare{aspect-ratio:auto;height:212px}
-  .wbCard.wbSquare.wbDouble{aspect-ratio:auto;height:288px}
-  .wbItem[data-size="wide"]>.wbCard{min-height:364px}
-  .wbWeather .wbNow{margin-bottom:auto}
-}
