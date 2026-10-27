@@ -35,17 +35,21 @@ views:
 
 ## Test focus layout
 
-To try the layout with more of your Home Assistant entities, set `layout: test-focus` and list them. Readings go in a card (tap one to see its last 24 hours); lights are tiles with an on/off button and a brightness bar. Your normal Home never shows them.
+`layout: test-focus` turns Home into a page for your house, to try HomeCore with real devices. Your normal Home never shows it.
 
 ```yaml
 - type: custom:move-assistant-card
   layout: test-focus
-  test_focus:
-    - title: Status
-      entities: [sensor.house_power, sensor.energy_today]
-    - type: lights
-      entities: [light.floor_lamp, light.kitchen]
 ```
+
+- **Rooms** come from your Home Assistant areas. Each has a readings card (tap a reading to see its last 24 hours) and its devices as tiles: lights (brightness, warm to cool, colour), thermostat, humidifier, covers, media, robot vacuum, locks, alarm and watering. The icon turns a device on or off. Rooms with solar get an energy card, and each plant gets a card. Home (weather, vacuum) and Security (alarm, locks, doors and windows) are sections of their own.
+- **Made-up devices** fill in what the house doesn't have yet: thermostat, covers, humidifier, robot vacuum, balcony solar and watering, alarm, doors and windows, plants, and room temperature and humidity. Their ids contain `made_up_`. They work from the page but exist only in this card.
+- **Summaries and favourites** sit at the top, as on Home Assistant's home view. Favourites are your starred devices, then suggestions; star them in Favourites → Edit.
+- **Area cards** show one room open: its main reading big (the temperature, unless you pick another in edit mode) and up to four controls. Go takes you to the room.
+- **Weather** is a bento: now, the next hours, sun, moon, wind and UV.
+- **Covers** are drawn as curtains, a roller blind or venetian blinds. Drag the drawing, or tap the four blocks for 25, 50, 75 or 100%.
+- **More info** opens when you tap a device's name. Settings → Appearance → **More info** shows it as a popup or a sheet; Details rolls out beside it.
+- **Edit mode** (the pencil in the bottom bar): drag tiles or move them with the arrows, add and rename sections, hide tiles and area cards, set a tile's size and what it shows, show a reading as a 24-hour graph, and pick each area card's main. It's saved to your Home Assistant user.
 
 Settings → Appearance → **Show density** outlines each card with its height and counts how many readings fit on the screen.
 

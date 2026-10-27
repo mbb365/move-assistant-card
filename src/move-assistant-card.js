@@ -1,10 +1,11 @@
 import css from "./styles.css?inline";
 import displayCss from "./display.css?inline";
+import bentoCss from "./weather-bento.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 import { mountTestFocus } from "./test-focus.js";
 
-const VERSION = "0.41.0";
+const VERSION = "0.42.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
@@ -53,16 +54,18 @@ class MoveAssistantCard extends HTMLElement {
 
   connectedCallback() {
     this._app?.resume();
+    this._test?.resume();
   }
 
   disconnectedCallback() {
     this._app?.suspend();
+    this._test?.suspend();
   }
 
   async _init() {
     loadInter();
     const root = this.shadowRoot || this.attachShadow({ mode: "open" });
-    root.innerHTML = `<style>${css}${displayCss}</style>${template}`;
+    root.innerHTML = `<style>${css}${displayCss}${bentoCss}</style>${template}`;
     const app = root.getElementById("app");
     app.style.opacity = "0";
 
@@ -100,7 +103,7 @@ class MoveAssistantCard extends HTMLElement {
     // With `layout: test-focus`, more Home Assistant entities on Home; Settings → Appearance → Show density
     this._test = mountTestFocus(root, { config: this._config, getHass: () => this._hass });
     this._test.update(this._hass.states);
-    if (!this.isConnected) this._app.suspend();
+    if (!this.isConnected) { this._app.suspend(); this._test.suspend(); }
     app.style.transition = "opacity .2s ease";
     app.style.opacity = "";
 
