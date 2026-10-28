@@ -640,7 +640,7 @@ export function mountTestFocus(root, { config, getHass }) {
       let el = dacs.get(key);
       if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), ...(onBoard ? { tap_action: { action: 'none' } } : {}) }); dacs.set(key, el); }
       el.hass = dacHass();
-      if (el.parentNode !== slot) slot.replaceChildren(el);
+      if (el.parentNode !== slot) slot.replaceChildren(el, ...slot.querySelectorAll(':scope > .tfEditChips')); // edit mode's grip and ⋯ stay
       if (!el.offsetHeight && dacHeights.has(key)) slot.style.minHeight = dacHeights.get(key) + 'px';
       dacSizes.observe(el);
       dressDac(el, onBoard);
@@ -1229,11 +1229,11 @@ export function mountTestFocus(root, { config, getHass }) {
   const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average' };
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
   // each card's rows, matched to what it holds (Matt, 27 Oct): large ones 5 (364); Energy today 4 (288); Compared to
-  // average 4 (288: its number and words need about 257); a Dual Axis Controller 3 (212), 5 while its pad is open; a
-  // light or thermostat tile 2 (136)
+  // average 4 (288: its number and words need about 257); a Dual Axis Controller 3 (212), 5 when made taller in its ⋯
+  // menu (Matt, 28 Oct: it stays that way); a light or thermostat tile 2 (136)
   const ROWS = { wx: LARGE_ROWS, areas: LARGE_ROWS, favs: LARGE_ROWS, act: LARGE_ROWS, energy: 4, avg: 4 };
   const DAC_ROWS = 3, DAC_CHROME = 94; // a DAC tile's padding, name row and gap around its pad
-  const dacOpen = new Set(); // dashboard DACs whose pad is open
+  const tallDac = (key) => Boolean(dashPrefs().opts[key]?.tall); // a dashboard DAC made taller in its ⋯ menu
   const boardName = (key) => BOARD_NAMES[key] || nameOf(key);
   const AREA_OPEN = 409, AREA_FOLDED = 128;
   let editing = false, drag = null, boardOpen = null, fitQueued = false, lastPlaced = new Map(), boardRows = 0, boardTop = 0;
@@ -1262,14 +1262,14 @@ export function mountTestFocus(root, { config, getHass }) {
     return Math.min(n, dashPrefs().spans[it.key] ?? it.span);
   };
   // a card's rows, unless they come from its own height (a tile's do)
-  const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (dacOpen.has(it.key) ? LARGE_ROWS : DAC_ROWS) : null);
+  const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (tallDac(it.key) ? LARGE_ROWS : DAC_ROWS) : null);
   // each card's cell on a board n pegs wide (the cards know their cols and rows): a dragged card where it would land;
   // then the cards with a saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in
   // the page's order, each in the first cell from the top left it fits.
   // Cells saved on a wider board that don't fit this one would crowd its right edge, so then the cards keep the saved
   // order instead (the top row first, each row left to right), each in the first cell from the top left it fits.
   // Tiles side by side are one height, the tallest's (Matt, 27 Oct: a light beside a Dual Axis Controller grows to its
-  // 3 rows, not stacked at different heights); an open pad doesn't count
+  // 3 rows, not stacked at different heights); a taller DAC doesn't count
   function placeCards(cards, n, dragged = null) {
     const cells = dashPrefs().cells, fits = cards.every((it) => !cells[it.key] || cells[it.key].col + it.cols <= n);
     const at = (it) => cells[it.key] || { row: 1e9, col: 0 };
@@ -1293,7 +1293,7 @@ export function mountTestFocus(root, { config, getHass }) {
     for (let pass = 0; ; pass++) {
       const placed = place();
       if (pass === 3) return placed;
-      const tiles = cards.filter((it) => it.tile && !dacOpen.has(it.key)).map((it) => ({ it, p: placed.get(it.key) }))
+      const tiles = cards.filter((it) => it.tile && !tallDac(it.key)).map((it) => ({ it, p: placed.get(it.key) }))
         .sort((a, b) => a.p.row - b.p.row || a.p.col - b.p.col);
       let grew = false;
       for (let i = 0, j; i < tiles.length; i = j) {
@@ -1305,9 +1305,10 @@ export function mountTestFocus(root, { config, getHass }) {
     }
   }
   // a phone has no board: its cards run down one column in the board's reading order, the top row first and each row
-  // left to right (Matt, 27 Oct). The board is the one last on screen, else the one the cells were saved on (four pegs
-  // wide if they never were); hidden cards come last
-  function phoneOrder() {
+  // left to right (Matt, 27 Oct), unless the mini phone in the edit tray gave phones an order of their own (Matt, 28
+  // Oct; dash.phone): those cards first in that order, then any it doesn't know yet in the board's. The board is the
+  // one last on screen, else the one the cells were saved on (four pegs wide if they never were); hidden cards last
+  function phoneCards() {
     const dash = dashPrefs(), hidden = new Set(dash.hidden), cards = boardItems().filter((it) => !HEAD.includes(it.key));
     let placed = lastPlaced;
     if (!placed.size) {
@@ -1316,8 +1317,11 @@ export function mountTestFocus(root, { config, getHass }) {
       placed = placeCards(shown, n);
     }
     const at = (it) => (!hidden.has(it.key) && placed.get(it.key)) || { row: 1e9, col: 0 };
-    cards.sort((a, b) => at(a).row - at(b).row || at(a).col - at(b).col).forEach((it, i) => it.el.style.setProperty('--o', String(3 + i)));
+    cards.sort((a, b) => at(a).row - at(b).row || at(a).col - at(b).col);
+    const own = (dash.phone || []).map((k) => cards.find((it) => it.key === k && !hidden.has(k))).filter(Boolean);
+    return [...own, ...cards.filter((it) => !own.includes(it))];
   }
+  const phoneOrder = () => phoneCards().forEach((it, i) => it.el.style.setProperty('--o', String(3 + i)));
   // saves where every card is, with the board's width in pegs so a phone can read them in the same order
   const saveCells = (dash, cells) => saveDash({ ...dash, cells, pegs: pegsFor(grid.clientWidth).n });
   // lays the board out on its cells: the name and the summaries first, then the cards (placeCards)
@@ -1444,7 +1448,8 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!on) { drag = null; trayPicking = false; closeBoardMenu(); }
     layoutBoard();
   }
-  // a card's ⋯: its size (a tile or a card), a cell left, right, up or down, Energy today's graph, and hide
+  // a card's ⋯: its size (a tile or a card; a DAC taller or shorter), a cell left, right, up or down, Energy today's
+  // graph, and hide
   function openBoardMenu(key, opener) {
     closeBoardMenu();
     const p = lastPlaced.get(key), { n } = pegsFor(grid.clientWidth), dash = dashPrefs(), span = dash.spans[key] ?? 2;
@@ -1453,7 +1458,9 @@ export function mountTestFocus(root, { config, getHass }) {
     const menu = Object.assign(document.createElement('div'), { className: 'tfBoardMenu' });
     menu.setAttribute('role', 'menu');
     menu.setAttribute('aria-label', boardName(key) + ' options');
+    const dac = grid.querySelector('.tfDashTiles > .tfDac[data-k="' + CSS.escape(key) + '"]');
     menu.innerHTML = (RESIZABLE.includes(key) ? item('size', span === 1 ? 'Card size' : 'Tile size') : '') +
+      (dac ? item('tall', tallDac(key) ? 'Make shorter' : 'Make taller') : '') +
       (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
       item('left', 'Move left', full || p.col === 0) + item('right', 'Move right', full || p.col + p.cols >= n) +
       item('up', 'Move up', p.row <= 0) + item('down', 'Move down') + item('hide', 'Hide');
@@ -1475,6 +1482,7 @@ export function mountTestFocus(root, { config, getHass }) {
   function boardAct(key, act) {
     const dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
     if (act === 'size') dash.spans = { ...dash.spans, [key]: (dash.spans[key] ?? 2) === 1 ? 2 : 1 };
+    if (act === 'tall') dash.opts = { ...dash.opts, [key]: { ...(dash.opts[key] || {}), tall: !tallDac(key) } };
     if (act === 'graph') dash.opts = { ...dash.opts, energy: { ...(dash.opts.energy || {}), graph: (dash.opts.energy?.graph || 'above') === 'above' ? 'below' : 'above' } };
     if (act === 'left') cells[key] = { ...here, col: here.col - 1 };
     if (act === 'right') cells[key] = { ...here, col: here.col + 1 };
@@ -1507,13 +1515,13 @@ export function mountTestFocus(root, { config, getHass }) {
   tray.setAttribute('aria-label', 'Edit the dashboard');
   tray.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button>' +
     '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div>' +
-    '<section class="tfTraySection" data-tray="cards"></section>' +
+    '<section class="tfTraySection" data-tray="cards"></section><section class="tfTraySection" data-tray="phone"></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul>' +
     '<button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button>' +
     '<div class="tfTrayPick" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
     '<ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>';
   app.appendChild(tray);
-  let trayTucked = false, trayPicking = false, favAim = null;
+  let trayTucked = false, trayPicking = false, favAim = null, phoneShown = false;
   const trayHtml = {};
   const trayPut = (key, html) => {
     if (trayHtml[key] === html) return;
@@ -1541,6 +1549,8 @@ export function mountTestFocus(root, { config, getHass }) {
     tray.classList.toggle('open', show);
     tray.classList.toggle('tucked', show && trayTucked);
     tray.toggleAttribute('inert', !show);
+    if (!show) phoneShown = false;
+    renderPhone();
     if (!show) return;
     const tuck = tray.querySelector('[data-tray-tuck]');
     tuck.innerHTML = trayTucked ? BACK : CHEVRON;
@@ -1550,6 +1560,8 @@ export function mountTestFocus(root, { config, getHass }) {
     trayPut('cards', '<div class="sectionLabel">Hidden cards</div>' + (hiddenCards.length ? '<div class="tfTrayCards">' + hiddenCards.map((k) =>
       '<button class="tfTrayCard" type="button" data-tray-card="' + esc(k) + '" aria-label="' + esc(boardName(k)) + ': drag it onto the board, or press to put it back">' +
       '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>').join('') + '</div>' : '<p class="tfTrayNote">Cards you hide wait here.</p>'));
+    trayPut('phone', '<div class="sectionLabel">Phone</div><p class="tfTrayNote">' + (dashPrefs().phone ? 'Phones have an order of their own.' : 'Phones follow the board\'s order.') + '</p>' +
+      '<button class="pill tfTrayAdd" type="button" data-phone-toggle aria-pressed="' + phoneShown + '">' + (phoneShown ? 'Hide the phone' : 'Show the phone') + '</button>');
     const hidden = new Set(prefs.favHidden || []), stars = starred();
     const ids = [...stars, ...[...hidden].filter((id) => !stars.includes(id) && states[id])];
     trayPut('favs', ids.map((id) => favRow(id, hidden.has(id), stars.includes(id))).join('') || '<li class="tfTrayNote">No favourites yet.</li>');
@@ -1572,6 +1584,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!t) return;
     if (t.hasAttribute('data-tray-done')) setEditing(false);
     else if (t.hasAttribute('data-tray-tuck')) { trayTucked = !trayTucked; renderTray(); }
+    else if (t.hasAttribute('data-phone-toggle')) { phoneShown = !phoneShown; renderTray(); if (phoneShown) phone.querySelector('[data-phone-key]')?.focus({ preventScroll: true }); }
     else if (t.dataset.trayCard) { if (ev.detail === 0) { showCard(t.dataset.trayCard); renderTray(); } } // a press from the keyboard; a pointer's is its drag
     else if (t.dataset.favEye) setFavShown(t.dataset.favEye, t.getAttribute('aria-pressed') !== 'true');
     else if (t.dataset.favRemove) removeFav(t.dataset.favRemove);
@@ -1661,6 +1674,93 @@ export function mountTestFocus(root, { config, getHass }) {
     window.addEventListener('pointerup', up);
     window.addEventListener('pointercancel', up);
   }
+  /* the mini phone (Matt, 28 Oct): opened from the edit tray's Phone section, beside the tray, only when asked. It shows
+     the phone's cards as simple blocks at 80% of their phone size (about: heights measured on a 375 phone), in the
+     order phones show them; drag a block, or move it with the arrow keys, to give phones their own order. Follow the
+     board drops it again */
+  const PHONE_H = { sums: 201, wx: 286, favs: 363, areas: 323, act: 363, energy: 301, avg: 182 }, PHONE_TILE = 140, PHONE_DAC = 252, PHONE_SCALE = 0.8;
+  const CARD_ICON = { wx: 'mdi:weather-partly-cloudy', areas: 'mdi:home', favs: 'mdi:star', act: 'mdi:history', energy: 'mdi:lightning-bolt', avg: 'mdi:chart-line' };
+  const phone = Object.assign(document.createElement('aside'), { className: 'tfMiniPhone' });
+  phone.setAttribute('aria-label', 'Phone order');
+  phone.innerHTML = '<div class="tfPhoneHead"><div class="activityTitle">Phone</div><button class="tfTrayBtn" type="button" data-phone-close aria-label="Close the phone">' + CROSS + '</button></div>' +
+    '<p class="tfTrayNote" data-phone="note"></p><div class="tfPhoneScreen"><div class="tfPhoneList" data-phone="list"></div></div>';
+  app.appendChild(phone);
+  let phoneHtml = '';
+  function renderPhone() {
+    const show = phoneShown && editing && app.classList.contains('tfBoard') && !trayTucked;
+    phone.classList.toggle('open', show);
+    phone.toggleAttribute('inert', !show);
+    if (!show) return;
+    const cards = phoneCards().filter((it) => !dashPrefs().hidden.includes(it.key)), last = cards.length;
+    const px = (h) => Math.round(h * PHONE_SCALE * 10) / 10 + 'px';
+    const block = (it, i) => {
+      const dac = it.el.classList.contains('tfDac'), h = it.tile ? (dac ? PHONE_DAC : PHONE_TILE) : PHONE_H[it.key] || PHONE_TILE;
+      return '<button class="tfPhoneBlock' + (it.tile ? ' tile' : '') + '" type="button" data-phone-key="' + esc(it.key) + '" style="min-height:' + px(h) + '" aria-label="' +
+        esc(boardName(it.key) + ', ' + (i + 1) + ' of ' + last + '. Drag, or use the arrow keys, to move it') + '">' +
+        '<span class="tfIcon"' + (it.tile ? iconSlot(it.key, iconFor(it.key)) : iconSlot(it.key, CARD_ICON[it.key])) + '></span><span class="tfPhoneName">' + esc(boardName(it.key)) + '</span></button>';
+    };
+    const html = '<div class="tfPhoneTitle">' + esc(grid.querySelector('.tfDashTitle')?.textContent || '') + '</div>' +
+      '<div class="tfPhoneBlock fixed" style="min-height:' + px(PHONE_H.sums) + '"><span class="tfPhoneName">' + esc(boardName('sums')) + '</span></div>' + cards.map(block).join('');
+    phone.querySelector('[data-phone="note"]').innerHTML = dashPrefs().phone
+      ? 'Phones use this order. <button class="tfLinkBtn" type="button" data-phone-reset>Follow the board</button>'
+      : 'Phones follow the board. Drag a card to give them an order of their own.';
+    if (html === phoneHtml) return;
+    phoneHtml = html;
+    const list = phone.querySelector('[data-phone="list"]');
+    list.innerHTML = html;
+    fillIcons(list);
+  }
+  function savePhone(keys, focusKey) {
+    saveDash({ ...dashPrefs(), phone: keys });
+    renderTray();
+    if (focusKey) phone.querySelector('[data-phone-key="' + CSS.escape(focusKey) + '"]')?.focus({ preventScroll: true });
+  }
+  const phoneKeysNow = () => [...phone.querySelectorAll('[data-phone-key]')].map((b) => b.dataset.phoneKey);
+  // a block dragged among the others: before or after the one under the pointer (tiles sit two to a row, so by x)
+  function phoneDrag(ev, el) {
+    ev.preventDefault();
+    const list = el.parentElement, screen = phone.querySelector('.tfPhoneScreen'), was = phoneKeysNow().join();
+    el.classList.add('moving');
+    const move = (e) => {
+      const s = screen.getBoundingClientRect();
+      if (e.clientY > s.bottom - 40) screen.scrollTop += 12; else if (e.clientY < s.top + 40) screen.scrollTop -= 12;
+      const over = [...list.querySelectorAll('[data-phone-key]')].find((x) => { const r = x.getBoundingClientRect(); return x !== el && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; });
+      if (!over) return;
+      const r = over.getBoundingClientRect(), before = over.classList.contains('tile') ? e.clientX < r.left + r.width / 2 : e.clientY < r.top + r.height / 2;
+      list.insertBefore(el, before ? over : over.nextSibling);
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      el.classList.remove('moving');
+      const keys = phoneKeysNow();
+      phoneHtml = '';
+      if (keys.join() !== was) savePhone(keys); else renderPhone();
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+  phone.addEventListener('pointerdown', (ev) => {
+    const b = ev.target.closest('[data-phone-key]');
+    if (b && ev.button <= 0) phoneDrag(ev, b);
+  });
+  phone.addEventListener('click', (ev) => {
+    const t = ev.target.closest('button');
+    if (t?.hasAttribute('data-phone-close')) { phoneShown = false; renderTray(); tray.querySelector('[data-phone-toggle]')?.focus({ preventScroll: true }); }
+    else if (t?.hasAttribute('data-phone-reset')) { const { phone: _, ...rest } = dashPrefs(); saveDash(rest); renderTray(); }
+  });
+  phone.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') { ev.stopPropagation(); phoneShown = false; renderTray(); tray.querySelector('[data-phone-toggle]')?.focus({ preventScroll: true }); return; }
+    const key = ev.target.closest?.('[data-phone-key]')?.dataset.phoneKey, step = { ArrowUp: -1, ArrowLeft: -1, ArrowDown: 1, ArrowRight: 1 }[ev.key];
+    if (!key || !step) return;
+    ev.preventDefault();
+    const keys = phoneKeysNow(), i = keys.indexOf(key), j = i + step;
+    if (j < 0 || j >= keys.length) return;
+    [keys[i], keys[j]] = [keys[j], keys[i]];
+    savePhone(keys, key);
+  });
   // the favourites' order, by their grips
   function reorderFav(ev, li) {
     ev.preventDefault();
@@ -2433,13 +2533,12 @@ export function mountTestFocus(root, { config, getHass }) {
     root.querySelector('.bottomNav')?.insertAdjacentHTML('beforeend', '<button class="navBtn" id="dashEditNav" type="button" title="Edit" aria-label="Edit the dashboard" aria-pressed="false" hidden>' + PENCIL + '</button>');
     $('dashEditNav')?.addEventListener('click', () => setEditing(!editing));
     grid.addEventListener('pointerdown', boardDown);
-    // a dashboard DAC's name opens its pad (5 rows) or closes it (3), as a reading opens to its graph
+    // a dashboard DAC's name opens its more info, as on every other tile (its height is in its ⋯ menu)
     grid.addEventListener('hass-action', (ev) => {
       const slot = ev.target.closest?.('.tfDac'), key = slot?.dataset.k;
       if (!key || !slot.dataset.dac.startsWith('dash:') || editing) return;
       ev.stopPropagation();
-      if (dacOpen.has(key)) dacOpen.delete(key); else dacOpen.add(key);
-      layoutBoard();
+      openMore(key, slot);
     });
     // the dashboard's bottom row holds as many tiles as fit, and its rows are measured again as the page changes size
     new ResizeObserver(() => { if (app.classList.contains('tfDash') && dashCols() !== dashColsSeen) refresh(); else queueFit(); }).observe(grid);

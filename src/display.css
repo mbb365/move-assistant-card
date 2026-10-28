@@ -14,7 +14,7 @@
 /* header: 28 tall, 18 in from the card's sides, title only, 10 above the tiles */
 #homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}
 #homeView .activityHeader .activityIcon{display:none}
-:is(#homeView,.tfMoreBackdrop,.tfEditTray) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}
+:is(#homeView,.tfMoreBackdrop,.tfEditTray,.tfMiniPhone) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}
 
 /* tiles in a card: they touch, and the card shows through until you hover one */
 #homeView .card .activityRows{gap:0}
@@ -132,6 +132,8 @@
 .tfLightTable .settingsSelect:disabled{opacity:.4}
 /* a light as the Dual Axis Controller: its card sets its own size (up to 280 wide), in a tile's place */
 .tfDac{grid-column:span 2;min-width:0}
+/* a block, so the height hold's ResizeObserver sees its real size (an inline element always measures 0 × 0) */
+.tfDac>dual-controller-v3{display:block}
 .tfMoreActions .tfDac{grid-column:auto}
 #app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}
 #app.house .checkinTab{display:none}
@@ -526,6 +528,24 @@ button.tfAreaIcon{cursor:pointer}
 .tfTrayPickItem:hover{background:var(--tile)}
 .tfTraySuggest{margin-top:8px}
 /* dragging out of the tray: the item under the pointer, and where a favourite would go in the card */
+/* the mini phone (Matt, 28 Oct): beside the edit tray (and its tab), opened from the tray's Phone section only when
+   asked. A phone frame in the card colour; inside, the phone's cards as simple blocks at 80% of their phone size, 16 × .8
+   apart, edge to edge like a phone's; drag a block (or the arrow keys) to set the phone's order */
+.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(360px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px rgba(0,0,0,.3);opacity:0;transform:translateX(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.tfMiniPhone.open{opacity:1;transform:none;pointer-events:auto}
+.tfPhoneHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px 0 12px}
+.tfMiniPhone>.tfTrayNote{padding:0 12px 4px}
+.tfLinkBtn{min-height:0;padding:0;border:0;background:none;color:var(--primary);font:inherit;text-decoration:underline;cursor:pointer}
+.tfPhoneScreen{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border-radius:34px;background:var(--bg);box-shadow:var(--hc-hair-all);padding:14px 0 24px}
+.tfPhoneList{display:flex;flex-wrap:wrap;gap:12.8px}
+.tfPhoneTitle{width:100%;padding:0 12.8px;color:var(--text);font:800 25.6px/1 var(--font);letter-spacing:-.055em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfPhoneBlock{display:flex;align-items:flex-start;gap:10px;width:100%;min-height:0;padding:12px;border:0;border-radius:27px;background:var(--card);box-shadow:var(--hc-hair);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none;user-select:none}
+.tfPhoneBlock.tile{width:calc((100% - 12.8px) / 2);border-radius:22.4px}
+.tfPhoneBlock.fixed{align-items:center;color:var(--muted);cursor:default}
+.tfPhoneBlock.moving{box-shadow:var(--hc-hair),0 0 0 2px var(--primary);cursor:grabbing}
+.tfPhoneBlock:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.tfPhoneBlock .tfIcon{width:32px;height:32px;border-radius:13px;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}
+.tfPhoneName{min-width:0;padding-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .tfTrayGhost{position:fixed;top:0;left:0;z-index:200;margin:0;pointer-events:none;opacity:.9;background:var(--tile);border-radius:var(--r-tile);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .tfFavDrop{position:fixed;z-index:200;width:4px;border-radius:2px;background:var(--primary);pointer-events:none}
 /* the Favourites card's hide buttons in edit mode, over each favourite's row */
