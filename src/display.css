@@ -489,8 +489,50 @@ button.tfAreaIcon{cursor:pointer}
 .tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}
 .tfBoardMenu button:disabled{opacity:.4;cursor:default}
 /* hidden cards wait under the board */
-.tfBoardTray{position:absolute;z-index:1;display:flex;flex-wrap:wrap;gap:8px}
-#app.tfEditing .tfBoardTray .pill{cursor:pointer}
+/* the edit tray (Matt, 28 Oct): edit mode's side panel from the right, over the board (the board isn't squeezed, so the
+   board edited is the board shown); its tab tucks it away. It holds the hidden cards (drag one onto the board) and the
+   favourites, edited as on Home Assistant's home view. Its look follows the cards: card colour, corner 34, padding 20 */
+.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:360px;max-width:calc(100vw - 56px);transform:translateX(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.tfEditTray.open{transform:none}
+.tfEditTray.open.tucked{transform:translateX(100%)}
+.tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}
+.tfTrayTuck{position:absolute;top:20px;left:-40px;display:grid;place-items:center;width:40px;height:56px;min-height:0;padding:0;border:0;border-radius:16px 0 0 16px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}
+.tfTrayTuck svg{width:22px;height:22px}
+.tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}
+.tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px rgba(0,0,0,.3)}
+.tfTrayHead{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tfEditTray .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;color:var(--text)}
+.tfTraySection{display:flex;flex-direction:column;gap:8px}
+.tfTraySection .sectionLabel{margin:0}
+.tfTrayNote{margin:0;color:var(--muted);font:400 14px/1.3 var(--font)}
+.tfTrayCards{display:flex;flex-direction:column;gap:6px}
+.tfTrayCard{display:flex;align-items:center;gap:10px;min-height:var(--tile-min);padding:0 14px 0 10px;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none}
+.tfTrayList{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}
+.tfTrayFav{display:grid;grid-template-columns:22px var(--chip-size) minmax(0,1fr) 36px 36px;align-items:center;gap:8px;min-height:var(--tile-min);padding:0 4px 0 6px;border-radius:var(--r-tile)}
+.tfTrayFav.off{cursor:grab;touch-action:none}
+.tfTrayFav.off :is(.tfIcon,.tfTrayName){opacity:.5}
+.tfTrayFav.moving{background:var(--tile)}
+.tfTrayGrip{display:grid;place-items:center;color:var(--muted);cursor:grab;touch-action:none}
+.tfTrayGrip svg{width:20px;height:20px;fill:currentColor}
+:is(.tfTrayFav,.tfTrayPickItem) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.tfTrayName{display:flex;flex-direction:column;min-width:0}
+.tfTrayName>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfTrayBtn{display:grid;place-items:center;width:36px;height:36px;min-height:0;padding:0;border:0;border-radius:12px;background:none;color:var(--text);cursor:pointer}
+.tfTrayBtn svg{width:20px;height:20px;fill:currentColor}
+.tfTrayBtn:hover{background:var(--tile)}
+.tfTrayAdd{align-self:flex-start}
+.tfTrayPick{display:flex;flex-direction:column;gap:6px}
+.tfTrayPick[hidden]{display:none}
+.tfTrayPickItem{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;width:100%;min-height:var(--tile-min);padding:0 10px;border:0;border-radius:var(--r-tile);background:none;color:var(--text);text-align:start;cursor:pointer}
+.tfTrayPickItem:hover{background:var(--tile)}
+.tfTraySuggest{margin-top:8px}
+/* dragging out of the tray: the item under the pointer, and where a favourite would go in the card */
+.tfTrayGhost{position:fixed;top:0;left:0;z-index:200;margin:0;pointer-events:none;opacity:.9;background:var(--tile);border-radius:var(--r-tile);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.tfFavDrop{position:fixed;z-index:200;width:4px;border-radius:2px;background:var(--primary);pointer-events:none}
+/* the Favourites card's hide buttons in edit mode, over each favourite's row */
+.tfFavHides{position:absolute;inset:0;z-index:4;pointer-events:none}
+.tfFavHide{position:absolute;display:grid;place-items:center;width:32px;height:32px;min-height:0;padding:0;border:0;border-radius:12px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;pointer-events:auto}
+.tfFavHide svg{width:18px;height:18px;fill:currentColor}
 /* Energy today: the first source's day as a graph, above its glance (or below, from its ⋯) */
 .tfDash-energy .tfDashGraph{flex:1;min-height:80px;height:auto;margin:var(--inset) 0 0}
 .tfDash-energy.graphAbove>.activityHeader{order:-2}

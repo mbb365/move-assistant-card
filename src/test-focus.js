@@ -61,6 +61,10 @@ const MORE_STYLES = [['popup', 'Popup'], ['sheet', 'Sheet']];
 // the dashboard's edit mode: the pencil and Done in the bottom bar, and each card's grip and options
 const GRIP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>';
 const DOTS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>';
+// the edit tray's: show, hide and remove
+const EYE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>';
+const EYE_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/></svg>';
+const CROSS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>';
 const CHEVRON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // a stroke icon on the 24 grid
 const svgIcon = (paths) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + paths.map((d) => '<path d="' + d + '"/>').join('') + '</svg>';
@@ -222,9 +226,10 @@ export function mountTestFocus(root, { config, getHass }) {
       sel.value = ids.includes(prefs.sources?.[kind]) ? prefs.sources[kind] : '';
     }
     pane.querySelectorAll('[data-sum-toggle]').forEach((b) => { const on = !(prefs.hiddenSums || []).includes(b.dataset.sumToggle); b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); });
-    // the lights table, by room, redrawn when something in it changed (not while one of its lists is open)
-    const body = $('lightRows');
-    if (!body || body.contains(root.activeElement)) return;
+    // the lights table, by room, redrawn when something in it changed, but not while one of its lists is open. A switch
+    // just pressed keeps its focus through the redraw (it used to stop the redraw, so a favourite never showed as set)
+    const body = $('lightRows'), inside = body?.contains(root.activeElement) ? root.activeElement : null;
+    if (!body || inside?.matches('select')) return;
     const stars = new Set(starred()), opt = (v, t, cur, off) => '<option value="' + v + '"' + (v === cur ? ' selected' : '') + (off ? ' disabled' : '') + '>' + t + '</option>';
     const html = Object.keys(states).filter((id) => id.startsWith('light.'))
       .sort((a, b) => !whereIs.get(a) - !whereIs.get(b) || (whereIs.get(a) || '').localeCompare(whereIs.get(b) || '') || nameOf(a).localeCompare(nameOf(b))).map((id) => {
@@ -234,7 +239,10 @@ export function mountTestFocus(root, { config, getHass }) {
           '<td><select class="settingsSelect" data-light-style="' + esc(id) + '" aria-label="' + name + ' tile">' + opt('', 'Default', style) + opt('tile', 'HomeCore tile', style) + opt('dac', 'Dual Axis Controller', style) + '</select></td>' +
           '<td><select class="settingsSelect" data-light-pad="' + esc(id) + '" aria-label="' + name + ' pad"' + (wantsDac(id) ? '' : ' disabled') + '>' + opt('', 'Default', pad) + opt('temperature', 'Temperature', pad) + opt('colour', 'Colour', pad) + '</select></td></tr>';
       }).join('');
-    if (body.dataset.html !== html) { body.innerHTML = html; body.dataset.html = html; }
+    if (body.dataset.html === html) return;
+    body.innerHTML = html;
+    body.dataset.html = html;
+    if (inside?.dataset.lightFav) body.querySelector('[data-light-fav="' + CSS.escape(inside.dataset.lightFav) + '"]')?.focus({ preventScroll: true });
   }
 
   /* ---------- density overlay ---------- */
@@ -876,17 +884,39 @@ export function mountTestFocus(root, { config, getHass }) {
   /* favourites and summaries, as on Home Assistant's home view */
   const count = (n, one, many) => n + ' ' + (n === 1 ? one : many);
   const starred = () => (prefs.favourites ?? haHome.favorite_entities ?? []).filter((id) => states[id]);
-  // starred first, then suggestions up to 8: Home Assistant's, then what's used most here, then what's on
-  function favouriteIds(most = 8) {
-    const stars = starred();
-    if (haHome.hide_suggested_entities) return stars;
+  // suggestions: Home Assistant's, then what's used most here, then what's on, then the rest of the rooms' devices
+  function suggestionIds() {
     if (!suggested) {
       const most = Object.entries(used).sort((a, b) => b[1] - a[1]).map(([id]) => id);
       const actions = model.rooms.flatMap((r) => r.actions);
       suggested = [...new Set([...predicted, ...most, ...actions.filter((id) => specFor(id).on), ...actions])];
     }
-    const ok = (id) => states[id] && states[id].state !== 'unavailable' && !stars.includes(id);
-    return [...stars, ...suggested.filter(ok)].slice(0, Math.max(most, stars.length));
+    const stars = starred();
+    return suggested.filter((id) => states[id] && states[id].state !== 'unavailable' && !stars.includes(id));
+  }
+  // the favourites start, once, with Home Assistant's home ones, then the made-up thermostat, curtains and watering, and
+  // a lock (Matt, 28 Oct); after that the list is his, edited in the dashboard's edit tray like Home Assistant's
+  let prefsReady = false;
+  function seedFavourites() {
+    if (!prefsReady || prefs.favSeeded || !model.rooms.length) return;
+    const first = (test) => Object.keys(states).find((id) => isMadeUp(id) && test(id));
+    const made = [first((id) => id.startsWith('climate.')), first((id) => id.startsWith('cover.') && /curtain/.test(id)), first((id) => id.startsWith('valve.')), model.security.locks[0]];
+    prefs = { ...prefs, favourites: [...new Set([...(prefs.favourites ?? haHome.favorite_entities ?? []), ...made.filter(Boolean)])], favSeeded: true };
+    savePrefs();
+  }
+  // the dashboard's Favourites: the favourites in their order, less those hidden to the edit tray; then, with Show
+  // suggestions on, suggestions from the dashboard's rooms to fill the card
+  const suggestOn = () => prefs.suggest ?? !haHome.hide_suggested_entities;
+  function dashFavourites() {
+    const hidden = new Set(prefs.favHidden || []), stars = starred().filter((id) => !hidden.has(id));
+    const fill = suggestOn() ? suggestionIds().filter((id) => !hidden.has(id) && dashLight(id)) : [];
+    return [...stars, ...fill].slice(0, DASH_FAVOURITES);
+  }
+  // starred first, then suggestions up to 8
+  function favouriteIds(most = 8) {
+    const stars = starred();
+    if (haHome.hide_suggested_entities) return stars;
+    return [...stars, ...suggestionIds()].slice(0, Math.max(most, stars.length));
   }
   const starButton = (id) => {
     const on = starred().includes(id);
@@ -966,7 +996,7 @@ export function mountTestFocus(root, { config, getHass }) {
     '<div><div class="activityRowName">' + esc(s.name) + '</div>' + (s.value ? '<div class="activityRowMeta">' + esc(s.value) + '</div>' : '') + '</div></div>';
   function toggleStar(id) {
     const list = starred();
-    prefs = { ...prefs, favourites: list.includes(id) ? list.filter((x) => x !== id) : [...list, id] };
+    prefs = { ...prefs, favourites: list.includes(id) ? list.filter((x) => x !== id) : [...list, id], favHidden: (prefs.favHidden || []).filter((x) => x !== id) };
     savePrefs();
     refresh();
   }
@@ -992,13 +1022,15 @@ export function mountTestFocus(root, { config, getHass }) {
     ]);
     // edit mode's old choices (sections, order, sizes…) are left behind: the page is laid out as Home Assistant has it
     const v = mine?.value || {};
-    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, dash: v.dash, named: v.named };
+    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, dash: v.dash, named: v.named, favHidden: v.favHidden, suggest: v.suggest, favSeeded: v.favSeeded };
     haHome = home?.value || {};
     haSecurity = security?.value || {};
     predicted = Array.isArray(usage?.entities) ? usage.entities : [];
     suggested = null;
     if (Object.keys(states).length) refresh();
     nameDashboard();
+    prefsReady = true;
+    seedFavourites();
   }
   // the sidebar calls this page HomeCore (Matt, 28 Oct). A sidebar entry's name is its dashboard's title, kept in Home
   // Assistant rather than in the card, so the card names its own dashboard: once (a dashboard renamed afterwards is left
@@ -1170,7 +1202,8 @@ export function mountTestFocus(root, { config, getHass }) {
     // the summaries: a row of their own, the bar only as wide as its tiles
     if (sums.length) out.push({ key: 'sums', wrap: (inner) => '<div class="tfDashBarRow" data-tf data-k="sums">' + dashWrap('tfDash-bar', 'sums-bar', 'Summaries', false)(inner).replace(' data-tf', '') + '</div>', tiles: sums.map((s) => ({ key: 'sum:' + s.key, html: summaryRow(s) })) });
     if (areaRooms.length) out.push({ key: 'areas', html: areasHtml(0) });
-    const favs = favouriteIds(DASH_FAVOURITES * 3).filter(dashLight).slice(0, DASH_FAVOURITES);
+    // what you've starred always shows, from any room; only the suggestions that fill the card keep to the dashboard's rooms
+    const favs = dashFavourites();
     if (favs.length) out.push({ key: 'favs', wrap: dashWrap('tfDash-favs', 'favs', 'Favourites', true), tiles: favs.map((id) => ({ key: 'fav:' + id, html: deviceRow(id, { area: true }) })) });
     const items = activityItems();
     out.push({ key: 'dash:act', html: card('dash:act', 0, 'Activity', items.length ? items.map(activityRow) : ['<p class="tfDashNone">Nothing has changed in the last day.</p>'], '', null, 'tfDashCard tfDash-act') });
@@ -1302,10 +1335,13 @@ export function mountTestFocus(root, { config, getHass }) {
       grid.querySelector('.tfDash-act > .activityRows')?.style.removeProperty('max-height');
       editTools(false);
       if (app.classList.contains('tfDash')) phoneOrder();
+      renderTray();
       return;
     }
     grid.style.setProperty('--peg-w', w + 'px');
+    // a card being dragged out of the edit tray shows where it would land
     const hidden = new Set(dashPrefs().hidden), pitch = w + PEG_GAP;
+    if (drag?.fromTray) hidden.delete(drag.key);
     items.forEach((it) => it.el.classList.toggle('tfBoardHidden', hidden.has(it.key)));
     const shown = items.filter((it) => !hidden.has(it.key) && getComputedStyle(it.el).display !== 'none');
     // the header: the name and the summaries, the full width, each at its own height, 16 apart
@@ -1338,7 +1374,7 @@ export function mountTestFocus(root, { config, getHass }) {
       it.el.style.height = p.h + 'px';
       // a DAC's pad takes what its cells leave under its name
       if (it.el.classList.contains('tfDac')) it.el.style.setProperty('--tf-dac-pad', (p.h - DAC_CHROME) + 'px');
-      if (it === dragged) return; // the dragged card follows the pointer; where it lands shows instead
+      if (it === dragged && !drag.fromTray) return; // the dragged card follows the pointer; where it lands shows instead
       it.el.style.left = p.x + 'px';
       it.el.style.top = p.y + 'px';
     });
@@ -1355,17 +1391,20 @@ export function mountTestFocus(root, { config, getHass }) {
     requestAnimationFrame(() => app.classList.add('tfBoardReady'));
     items.forEach((it) => itemSizes.observe(it.el));
     drawDashGraph();
+    renderTray();
   }
   const queueFit = () => { if (fitQueued) return; fitQueued = true; requestAnimationFrame(() => { fitQueued = false; layoutBoard(); }); };
   // a card whose content changes height (a forecast arriving, a reading opening) may need more rows
   const itemSizes = new ResizeObserver(() => { if (!drag) queueFit(); });
   // edit mode's tools: the grid of cells, each card's grip (top middle) and ⋯ (its own controls rest), where a dragged
-  // card will land, and the tray of hidden cards under the board; returns the board's height with them
+  // card will land, and on the Favourites card a hide button for each favourite (hidden cards and favourites wait in the
+  // edit tray); returns the board's height with them
   function editTools(on, shown = [], placed = new Map(), height = 0, n = 1, w = PEG) {
     grid.querySelectorAll('.tfEditChips').forEach((c) => { if (!on || !c.closest('.tfBoardItem')) c.remove(); });
+    grid.querySelectorAll('.tfFavHides').forEach((c) => c.remove());
     grid.querySelectorAll('.tfBoardItem').forEach((el) => [...el.children].forEach((c) => { if (!c.classList.contains('tfEditChips')) c.toggleAttribute('inert', on); }));
-    let cells = grid.querySelector('.tfBoardCells'), land = grid.querySelector('.tfBoardLand'), tray = grid.querySelector('.tfBoardTray');
-    if (!on) { cells?.remove(); land?.remove(); tray?.remove(); closeBoardMenu(); return height; }
+    let cells = grid.querySelector('.tfBoardCells'), land = grid.querySelector('.tfBoardLand');
+    if (!on) { cells?.remove(); land?.remove(); closeBoardMenu(); return height; }
     // the cells, with a few spare rows under the cards to drop into
     const rows = boardRows + EXTRA_ROWS;
     if (!cells) { cells = Object.assign(document.createElement('div'), { className: 'tfBoardCells' }); cells.setAttribute('aria-hidden', 'true'); grid.prepend(cells); }
@@ -1387,16 +1426,22 @@ export function mountTestFocus(root, { config, getHass }) {
       const p = placed.get(drag.key);
       Object.assign(land.style, { left: p.x + 'px', top: p.y + 'px', width: p.w + 'px', height: p.h + 'px' });
     } else land?.remove();
-    const hiddenKeys = dashPrefs().hidden.filter((k) => boardItems().some((it) => it.key === k));
-    if (!hiddenKeys.length) { tray?.remove(); return height; }
-    if (!tray) { tray = Object.assign(document.createElement('div'), { className: 'tfBoardTray' }); grid.appendChild(tray); }
-    tray.innerHTML = hiddenKeys.map((k) => '<button class="pill" type="button" data-board-show="' + esc(k) + '">Show ' + esc(boardName(k)) + '</button>').join('');
-    Object.assign(tray.style, { top: (height + PEG_GAP) + 'px', left: '0px', width: grid.clientWidth + 'px' });
-    return height + PEG_GAP + tray.offsetHeight;
+    // each favourite on the Favourites card can be hidden to the tray: a button over its row, outside the card's inert
+    // content
+    const favCard = grid.querySelector('.tfDash-favs.tfBoardItem:not(.tfBoardHidden)');
+    if (favCard) {
+      const box = favCard.getBoundingClientRect();
+      favCard.insertAdjacentHTML('beforeend', '<div class="tfFavHides">' + [...favCard.querySelectorAll('[data-k^="fav:"]')].map((row) => {
+        const r = row.getBoundingClientRect(), id = row.dataset.k.slice(4);
+        return '<button class="tfFavHide" type="button" data-fav-hide="' + esc(id) + '" aria-label="Hide ' + esc(nameOf(id)) + ' from the dashboard" style="left:' +
+          Math.round(r.right - box.left - 42) + 'px;top:' + Math.round(r.top - box.top + (r.height - 32) / 2) + 'px">' + EYE_OFF + '</button>';
+      }).join('') + '</div>');
+    }
+    return height;
   }
   function setEditing(on) {
     editing = on;
-    if (!on) { drag = null; closeBoardMenu(); }
+    if (!on) { drag = null; trayPicking = false; closeBoardMenu(); }
     layoutBoard();
   }
   // a card's ⋯: its size (a tile or a card), a cell left, right, up or down, Energy today's graph, and hide
@@ -1450,9 +1495,204 @@ export function mountTestFocus(root, { config, getHass }) {
     saveDash({ ...dash, hidden: dash.hidden.filter((k) => k !== key) });
     layoutBoard();
   }
+  /* ---------- the edit tray (Matt, 28 Oct) ----------
+     Edit mode's side panel, sliding in from the right with the pencil (tablets and up). It holds the cards hidden from
+     the board (drag one onto the board where it should go, or tap it to put it back) and the favourites, edited as on
+     Home Assistant's home view: Add favourite (any device, made-up ones too), drag to reorder, the eye to show or hide
+     one on the dashboard, remove, and Show suggestions. A favourite hidden from the Favourites card waits here; drag it
+     back into the card where it should go. The tray lies over the board rather than squeezing it, so the board edited
+     is the board shown, and the tab on its edge tucks it away */
+  const PICK_DOMAINS = /^(light|switch|cover|climate|fan|lock|valve|media_player|humidifier|vacuum|scene|script|alarm_control_panel|water_heater|input_boolean)\./;
+  const tray = Object.assign(document.createElement('aside'), { className: 'tfEditTray' });
+  tray.setAttribute('aria-label', 'Edit the dashboard');
+  tray.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button>' +
+    '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div>' +
+    '<section class="tfTraySection" data-tray="cards"></section>' +
+    '<section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul>' +
+    '<button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button>' +
+    '<div class="tfTrayPick" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
+    '<ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>';
+  app.appendChild(tray);
+  let trayTucked = false, trayPicking = false, favAim = null;
+  const trayHtml = {};
+  const trayPut = (key, html) => {
+    if (trayHtml[key] === html) return;
+    trayHtml[key] = html;
+    const el = tray.querySelector('[data-tray="' + key + '"]');
+    el.innerHTML = html;
+    fillIcons(el);
+  };
+  const trayName = (id, meta) => '<span class="tfTrayName"><span class="activityRowName">' + esc(nameOf(id)) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></span>';
+  const favRow = (id, off, star) => '<li class="tfTrayFav' + (off ? ' off' : '') + '" data-tray-fav="' + esc(id) + '">' +
+    '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span><span class="tfIcon"' + iconSlot(id, iconFor(id)) + '></span>' +
+    trayName(id, off ? 'Hidden' + (whereIs.get(id) ? ' · ' + whereIs.get(id) : '') : whereIs.get(id) || valueOf(id)) +
+    '<button class="tfTrayBtn" type="button" data-fav-eye="' + esc(id) + '" aria-pressed="' + !off + '" aria-label="' + (off ? 'Show ' : 'Hide ') + esc(nameOf(id)) + ' on the dashboard">' + (off ? EYE_OFF : EYE) + '</button>' +
+    (star ? '<button class="tfTrayBtn" type="button" data-fav-remove="' + esc(id) + '" aria-label="Remove ' + esc(nameOf(id)) + ' from favourites">' + CROSS + '</button>' : '<span></span>') + '</li>';
+  function pickHtml(q) {
+    const stars = new Set(starred()), words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const ids = Object.keys(states).filter((id) => PICK_DOMAINS.test(id) && !stars.has(id) && states[id].state !== 'unavailable')
+      .filter((id) => { const hay = (nameOf(id) + ' ' + (whereIs.get(id) || '') + ' ' + id).toLowerCase(); return words.every((w) => hay.includes(w)); })
+      .sort((a, b) => (whereIs.get(a) || '~').localeCompare(whereIs.get(b) || '~') || nameOf(a).localeCompare(nameOf(b))).slice(0, 40);
+    return ids.map((id) => '<li><button class="tfTrayPickItem" type="button" data-fav-pick="' + esc(id) + '"><span class="tfIcon"' + iconSlot(id, iconFor(id)) + '></span>' +
+      trayName(id, whereIs.get(id) || '—') + '</button></li>').join('') || '<li class="tfTrayNote">Nothing matches.</li>';
+  }
+  function renderTray() {
+    const show = editing && app.classList.contains('tfBoard');
+    tray.classList.toggle('open', show);
+    tray.classList.toggle('tucked', show && trayTucked);
+    tray.toggleAttribute('inert', !show);
+    if (!show) return;
+    const tuck = tray.querySelector('[data-tray-tuck]');
+    tuck.innerHTML = trayTucked ? BACK : CHEVRON;
+    tuck.setAttribute('aria-expanded', String(!trayTucked));
+    tuck.setAttribute('aria-label', trayTucked ? 'Show the edit tray' : 'Tuck the edit tray away');
+    const hiddenCards = dashPrefs().hidden.filter((k) => boardItems().some((it) => it.key === k));
+    trayPut('cards', '<div class="sectionLabel">Hidden cards</div>' + (hiddenCards.length ? '<div class="tfTrayCards">' + hiddenCards.map((k) =>
+      '<button class="tfTrayCard" type="button" data-tray-card="' + esc(k) + '" aria-label="' + esc(boardName(k)) + ': drag it onto the board, or press to put it back">' +
+      '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>').join('') + '</div>' : '<p class="tfTrayNote">Cards you hide wait here.</p>'));
+    const hidden = new Set(prefs.favHidden || []), stars = starred();
+    const ids = [...stars, ...[...hidden].filter((id) => !stars.includes(id) && states[id])];
+    trayPut('favs', ids.map((id) => favRow(id, hidden.has(id), stars.includes(id))).join('') || '<li class="tfTrayNote">No favourites yet.</li>');
+    tray.querySelector('.tfTrayPick').hidden = !trayPicking;
+    tray.querySelector('[data-fav-add]').setAttribute('aria-expanded', String(trayPicking));
+    if (trayPicking) trayPut('pick', pickHtml(tray.querySelector('[data-fav-search]').value));
+    trayPut('suggest', '<div><strong>Show suggestions</strong><div class="status">Fills the card after your favourites.</div></div>' +
+      '<button class="switch' + (suggestOn() ? ' on' : '') + '" type="button" role="switch" aria-checked="' + suggestOn() + '" data-fav-suggest aria-label="Show suggestions"></button>');
+  }
+  const saveFavs = (next) => { prefs = { ...prefs, ...next }; savePrefs(); refresh(); renderTray(); };
+  function setFavShown(id, show) {
+    const hidden = new Set(prefs.favHidden || []);
+    if (show) hidden.delete(id); else hidden.add(id);
+    saveFavs({ favHidden: [...hidden] });
+  }
+  const removeFav = (id) => saveFavs({ favourites: starred().filter((x) => x !== id), favHidden: (prefs.favHidden || []).filter((x) => x !== id) });
+  const addFav = (id) => saveFavs({ favourites: [...starred().filter((x) => x !== id), id], favHidden: (prefs.favHidden || []).filter((x) => x !== id) });
+  tray.addEventListener('click', (ev) => {
+    const t = ev.target.closest('button');
+    if (!t) return;
+    if (t.hasAttribute('data-tray-done')) setEditing(false);
+    else if (t.hasAttribute('data-tray-tuck')) { trayTucked = !trayTucked; renderTray(); }
+    else if (t.dataset.trayCard) { if (ev.detail === 0) { showCard(t.dataset.trayCard); renderTray(); } } // a press from the keyboard; a pointer's is its drag
+    else if (t.dataset.favEye) setFavShown(t.dataset.favEye, t.getAttribute('aria-pressed') !== 'true');
+    else if (t.dataset.favRemove) removeFav(t.dataset.favRemove);
+    else if (t.hasAttribute('data-fav-add')) { trayPicking = !trayPicking; renderTray(); if (trayPicking) tray.querySelector('[data-fav-search]').focus({ preventScroll: true }); }
+    else if (t.dataset.favPick) addFav(t.dataset.favPick);
+    else if (t.hasAttribute('data-fav-suggest')) saveFavs({ suggest: !suggestOn() });
+  });
+  tray.addEventListener('input', (ev) => { if (ev.target.matches('[data-fav-search]')) renderTray(); });
+  tray.addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Escape' || !trayPicking) return;
+    ev.stopPropagation();
+    trayPicking = false;
+    renderTray();
+    tray.querySelector('[data-fav-add]').focus({ preventScroll: true });
+  });
+  // out of the tray: a hidden card onto the board, at the cell under the pointer (a press without a drag puts it back
+  // where there's room); a hidden favourite into the Favourites card, at the place under the pointer
+  function dragOut(ev, el, kind, key) {
+    ev.preventDefault();
+    const x0 = ev.clientX, y0 = ev.clientY;
+    let ghost = null, raf = 0;
+    const mark = Object.assign(document.createElement('div'), { className: 'tfFavDrop' });
+    const move = (e) => {
+      if (!ghost) {
+        if (Math.hypot(e.clientX - x0, e.clientY - y0) < 4) return;
+        ghost = el.cloneNode(true);
+        ghost.classList.add('tfTrayGhost');
+        ghost.style.width = el.offsetWidth + 'px';
+        app.appendChild(ghost);
+      }
+      ghost.style.transform = 'translate(' + (e.clientX - 24) + 'px,' + (e.clientY - 24) + 'px)';
+      const overTray = !trayTucked && e.clientX >= tray.getBoundingClientRect().left;
+      if (kind === 'card') {
+        const r = grid.getBoundingClientRect(), { w } = pegsFor(grid.clientWidth);
+        drag = !overTray && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top + boardTop
+          ? { key, col: Math.max(0, Math.floor((e.clientX - r.left) / (w + PEG_GAP))), row: Math.max(0, Math.floor((e.clientY - r.top - boardTop) / ROW_PITCH)), fromTray: true } : null;
+        if (!raf) raf = requestAnimationFrame(() => { raf = 0; layoutBoard(); });
+        return;
+      }
+      const card = grid.querySelector('.tfDash-favs'), box = card?.getBoundingClientRect();
+      favAim = null;
+      if (box && !overTray && e.clientX >= box.left && e.clientX <= box.right && e.clientY >= box.top && e.clientY <= box.bottom) {
+        let best = Infinity;
+        card.querySelectorAll('[data-k^="fav:"]').forEach((row, i) => {
+          const r = row.getBoundingClientRect(), d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
+          if (d < best) { best = d; favAim = { i, r, after: e.clientX > r.left + r.width / 2 }; }
+        });
+        favAim ||= { i: 0, r: null, after: false };
+      }
+      if (favAim?.r) {
+        if (!mark.isConnected) app.appendChild(mark);
+        Object.assign(mark.style, { left: (favAim.after ? favAim.r.right : favAim.r.left) - 2 + 'px', top: favAim.r.top + 8 + 'px', height: favAim.r.height - 16 + 'px' });
+      } else mark.remove();
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      cancelAnimationFrame(raf);
+      ghost?.remove();
+      mark.remove();
+      if (kind === 'card') {
+        if (!ghost) showCard(key);
+        else if (drag?.fromTray) {
+          layoutBoard();
+          const dash = dashPrefs(), cells = cellsNow();
+          drag = null;
+          saveCells({ ...dash, hidden: dash.hidden.filter((k) => k !== key) }, cells);
+        }
+        drag = null;
+        layoutBoard();
+        refresh();
+        renderTray();
+        return;
+      }
+      if (!favAim) return;
+      // where it went among the shown favourites becomes its place in the list (a hidden suggestion becomes a favourite)
+      const hidden = new Set(prefs.favHidden || []);
+      hidden.delete(key);
+      const list = starred().filter((x) => x !== key), shown = list.filter((x) => !hidden.has(x));
+      const before = shown[Math.min(favAim.i + (favAim.after ? 1 : 0), shown.length)];
+      list.splice(before ? list.indexOf(before) : list.length, 0, key);
+      favAim = null;
+      saveFavs({ favourites: list, favHidden: [...hidden] });
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+  // the favourites' order, by their grips
+  function reorderFav(ev, li) {
+    ev.preventDefault();
+    const list = li.parentElement;
+    li.classList.add('moving');
+    const move = (e) => {
+      const over = [...list.children].find((x) => { const r = x.getBoundingClientRect(); return x !== li && e.clientY >= r.top && e.clientY <= r.bottom; });
+      if (over) { const r = over.getBoundingClientRect(); list.insertBefore(li, e.clientY < r.top + r.height / 2 ? over : over.nextSibling); }
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      li.classList.remove('moving');
+      const stars = new Set(starred());
+      trayHtml.favs = null;
+      saveFavs({ favourites: [...list.children].map((x) => x.dataset.trayFav).filter((id) => stars.has(id)) });
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+  tray.addEventListener('pointerdown', (ev) => {
+    if (ev.button > 0) return;
+    const card = ev.target.closest('[data-tray-card]'), fav = ev.target.closest('.tfTrayFav');
+    if (card) dragOut(ev, card, 'card', card.dataset.trayCard);
+    else if (fav && ev.target.closest('.tfTrayGrip')) reorderFav(ev, fav);
+    else if (fav?.classList.contains('off') && !ev.target.closest('button')) dragOut(ev, fav, 'fav', fav.dataset.trayFav);
+  });
   // dragging: the card follows the pointer and lands on the nearest cell; cards in the way move down to make room
   function boardDown(ev) {
-    if (!editing || ev.button !== 0 || ev.target.closest('[data-board-more],.tfBoardMenu,.tfBoardTray')) return;
+    if (!editing || ev.button !== 0 || ev.target.closest('[data-board-more],.tfBoardMenu,.tfFavHides')) return;
     const el = ev.target.closest('.tfBoardItem');
     const it = el && boardItems().find((x) => x.el === el);
     if (!it || HEAD.includes(it.key)) return;
@@ -1502,6 +1742,7 @@ export function mountTestFocus(root, { config, getHass }) {
   /* the page: areas, Home (weather, vacuum), Security, then each room: its label, readings, plants and action tiles */
   function layout() {
     model = house.model(getHass());
+    seedFavourites();
     states = model.states;
     // Settings → Sources: the grid's power and the alarm, when picked
     if (states[prefs.sources?.grid]) model.grid = prefs.sources.grid;
@@ -2075,12 +2316,13 @@ export function mountTestFocus(root, { config, getHass }) {
   // the same controls work on the page and in the stand-in more-info
   function bindControls(el) {
     el.addEventListener('click', (ev) => {
-      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-energy-pick],.tfAreaPanel');
+      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-fav-hide],[data-energy-pick],.tfAreaPanel');
       if (boardOpen && !ev.target.closest('.tfBoardMenu,[data-board-more]')) closeBoardMenu();
       if (!t || !el.contains(t) || t.disabled) return;
       if (t.dataset.boardMore) { if (boardOpen?.key === t.dataset.boardMore) closeBoardMenu(true); else openBoardMenu(t.dataset.boardMore, t); }
       else if (t.dataset.boardAct) boardAct(boardOpen.key, t.dataset.boardAct);
       else if (t.dataset.boardShow) showCard(t.dataset.boardShow);
+      else if (t.dataset.favHide) setFavShown(t.dataset.favHide, false);
       else if (t.dataset.energyPick) pickEnergy(t.dataset.energyPick);
       else if (t.dataset.act) run(t.dataset.act);
       else if (t.hasAttribute('data-details')) toggleDetails(!more?.details);
