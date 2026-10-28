@@ -206,13 +206,15 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   // the settings as they are now: each choice pressed, the sources' lists, the summaries' switches
   function syncSettings() {
+    if (usesDac()) bringDac();
     const pane = $('housePane');
     if (!pane) return;
-    const have = Boolean(customElements.get(DAC_TAG)), lights = have ? look.lights : 'tile';
-    pane.querySelectorAll('[data-lights]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.lights === lights)); if (b.dataset.lights === 'dac') b.disabled = !have; });
-    $('lightsRow').querySelector('.status').textContent = have ? 'How lights show on the house page.' : 'Install the Dual Axis Controller from HACS to use it.';
+    const have = Boolean(customElements.get(DAC_TAG));
+    pane.querySelectorAll('[data-lights]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lights === look.lights)));
+    $('lightsRow').querySelector('.status').textContent = have || !usesDac() ? 'How lights show on the house page.'
+      : dacFetch === 'failed' ? "The Dual Axis Controller didn't load. Check the connection, or install it from HACS." : 'Getting the Dual Axis Controller…';
     pane.querySelectorAll('[data-dac-pad]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.dacPad === look.dacPad)));
-    $('dacPadRow').hidden = !have || !(look.lights === 'dac' || Object.values(look.lightStyles).includes('dac'));
+    $('dacPadRow').hidden = !usesDac();
     for (const sel of pane.querySelectorAll('[data-source]')) {
       if (sel === root.activeElement) continue;
       const [kind] = SOURCES.find(([k]) => k === sel.dataset.source), ids = Object.keys(states).filter(SOURCES.find(([k]) => k === kind)[3]).sort((a, b) => nameOf(a).localeCompare(nameOf(b)));
@@ -229,8 +231,8 @@ export function mountTestFocus(root, { config, getHass }) {
         const style = look.lightStyles[id] || '', pad = look.lightPads[id] || '', fav = stars.has(id), name = esc(nameOf(id));
         return '<tr><td><strong>' + name + '</strong></td><td>' + esc(whereIs.get(id) || '—') + '</td><td>' + esc(valueOf(id)) + '</td>' +
           '<td class="metaSwitchCol"><button class="switch' + (fav ? ' on' : '') + '" type="button" role="switch" aria-checked="' + fav + '" data-light-fav="' + esc(id) + '" aria-label="' + name + ' is a favourite"></button></td>' +
-          '<td><select class="settingsSelect" data-light-style="' + esc(id) + '" aria-label="' + name + ' tile">' + opt('', 'Default', style) + opt('tile', 'HomeCore tile', style) + opt('dac', 'Dual Axis Controller', style, !have) + '</select></td>' +
-          '<td><select class="settingsSelect" data-light-pad="' + esc(id) + '" aria-label="' + name + ' pad"' + (dacFor(id) ? '' : ' disabled') + '>' + opt('', 'Default', pad) + opt('temperature', 'Temperature', pad) + opt('colour', 'Colour', pad) + '</select></td></tr>';
+          '<td><select class="settingsSelect" data-light-style="' + esc(id) + '" aria-label="' + name + ' tile">' + opt('', 'Default', style) + opt('tile', 'HomeCore tile', style) + opt('dac', 'Dual Axis Controller', style) + '</select></td>' +
+          '<td><select class="settingsSelect" data-light-pad="' + esc(id) + '" aria-label="' + name + ' pad"' + (wantsDac(id) ? '' : ' disabled') + '>' + opt('', 'Default', pad) + opt('temperature', 'Temperature', pad) + opt('colour', 'Colour', pad) + '</select></td></tr>';
       }).join('');
     if (body.dataset.html !== html) { body.innerHTML = html; body.dataset.html = html; }
   }
@@ -573,11 +575,29 @@ export function mountTestFocus(root, { config, getHass }) {
       '<div class="tfActionHead">' + iconButton(id, s) + nameButton(id) + '</div>' + sections.join('') + '</div>';
   }
   /* the Dual Axis Controller (Matt's HACS card, custom:dual-controller-v3): when Settings picks it, every light is its
-     tile, with its own pad and controller */
+     tile, with its own pad and controller. It comes with HomeCore (Matt, 28 Oct: people install one thing): the first
+     time a light uses it, it's fetched from its GitHub release, unless Home Assistant loads one installed from HACS
+     (one of its dashboard resources), which is then used instead */
   const DAC_TAG = 'dual-controller-v3';
+  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.1/dist/dual-axis-controller-v4.js';
+  let dacFetch = null; // null, 'loading' or 'failed'
+  async function bringDac() {
+    if (dacFetch || customElements.get(DAC_TAG)) return;
+    dacFetch = 'loading';
+    const resources = await Promise.resolve().then(() => callWS({ type: 'lovelace/resources' })).catch(() => null);
+    const installed = Array.isArray(resources) && resources.some((r) => /dual-axis-controller/i.test(r.url || ''));
+    // an installed one may still be on its way: it gets a moment first
+    await Promise.race([customElements.whenDefined(DAC_TAG), new Promise((done) => setTimeout(done, installed ? 8000 : 0))]);
+    if (customElements.get(DAC_TAG)) return;
+    const script = Object.assign(document.createElement('script'), { src: DAC_URL });
+    script.onerror = () => { dacFetch = 'failed'; syncSettings(); };
+    document.head.appendChild(script);
+  }
   const dacs = new Map(); // place:light id → its card, kept across redraws
   // a light's tile and pad: its own choice in the lights table, else Appearance's
-  function dacFor(id) { return (look.lightStyles[id] || look.lights) === 'dac' && Boolean(customElements.get(DAC_TAG)); }
+  const wantsDac = (id) => (look.lightStyles[id] || look.lights) === 'dac';
+  const usesDac = () => look.lights === 'dac' || Object.values(look.lightStyles).includes('dac');
+  function dacFor(id) { return wantsDac(id) && Boolean(customElements.get(DAC_TAG)); }
   const padOf = (id) => look.lightPads[id] || look.dacPad;
   // the card follows this page's theme rather than Home Assistant's
   const dacHass = () => { const h = getHass(); return h && { ...h, themes: { ...(h.themes || {}), darkMode: !app.classList.contains('light') } }; };

@@ -29,10 +29,9 @@ You need Home Assistant with [HACS](https://hacs.xyz) installed, and to be signe
 6. **Make it yours.** Tap **Settings** in HomeCore's bottom bar:
    - **Sources**: pick your weather, the grid's power (for energy) and your alarm.
    - **Summaries**: choose which summaries show at the top.
-   - **Appearance**: the theme, and your lights as HomeCore's own tiles or as the Dual Axis Controller (step 7).
+   - **Appearance**: the theme, and your lights as HomeCore's own tiles or as the [Dual Axis Controller](https://github.com/mbb365/Dual-Axis-Controller-v4). The controller comes with HomeCore, so there's nothing else to install; if you've installed it from HACS yourself, your copy is used.
 
    Your rooms come from Home Assistant's areas, so put your devices in areas (**Settings → Areas, labels & zones**). Anything your house doesn't have yet is filled in with a made-up device, so the page is complete; made-up devices only work on the page.
-7. **Optional: the Dual Axis Controller for lights.** Add `https://github.com/mbb365/Dual-Axis-Controller-v4` to HACS the same way (type **Dashboard**), download **Dual Axis Controller**, reload, then choose it in HomeCore's **Settings → Appearance**.
 
 On a tablet or computer, the pencil in the bottom bar lets you move and resize the cards. Phones show the same cards in one column, in the same order.
 
@@ -54,7 +53,7 @@ Open **HACS → Move Assistant → ⋮ → Redownload**, then reload the page (o
 - **Weather** is a bento: now, the next hours, sun, moon, wind, UV, Compared to average, humidity, pressure, rain and air quality, each at its own size (the squares stay square).
 - **Covers** are drawn as curtains, a roller blind or venetian blinds. Drag the drawing, or tap the four blocks for 25, 50, 75 or 100%.
 - **More info** opens when you tap a device's name. Settings → Appearance → **More info** shows it as a popup or a sheet; Details rolls out beside it.
-- **Settings** (HomeCore) has four tabs. **Appearance**: theme, Show density, More info, and lights as this page's tiles or as the [Dual Axis Controller](https://github.com/mbb365/Dual-Axis-Controller-v4) (install it from HACS; its pad on temperature or colour). **Lights**: an example table of every light, to star it and pick its own tile and pad. **Sources** picks the weather, the grid's power and the alarm; **Summaries** turns each summary on or off.
+- **Settings** (HomeCore) has four tabs. **Appearance**: theme, Show density, More info, and lights as this page's tiles or as the [Dual Axis Controller](https://github.com/mbb365/Dual-Axis-Controller-v4) (it comes with HomeCore, fetched the first time a light uses it, unless it's installed from HACS; its pad on temperature or colour). **Lights**: an example table of every light, to star it and pick its own tile and pad. **Sources** picks the weather, the grid's power and the alarm; **Summaries** turns each summary on or off.
 
 Settings → Appearance → **Show density** outlines each card with its height and counts how many readings fit on the screen.
 

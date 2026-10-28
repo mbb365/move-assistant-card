@@ -7,8 +7,9 @@
 </head>
 <body>
 <move-assistant-card></move-assistant-card>
-<!-- ?test=1: the Dual Axis Controller as released (v9.0.0), for Settings → Lights; on Home Assistant it comes from HACS -->
-<script src="https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.0/dist/dual-axis-controller-v4.js"></script>
+<!-- the Dual Axis Controller as if installed from HACS (v9.0.1), for Settings → Lights. ?nodac=1 leaves it out, so
+     HomeCore fetches it itself once a light uses it -->
+<script>if (!new URLSearchParams(location.search).has("nodac")) document.write('<script src="https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.1/dist/dual-axis-controller-v4.js"><\/script>');</script>
 <script type="module">
 // Fake Home Assistant so the card can be previewed without a real instance.
 // Saved data lives in this browser's localStorage under "ma-dev".
