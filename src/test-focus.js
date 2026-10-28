@@ -596,7 +596,7 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function syncDacs() { const h = dacHass(); dacs.forEach((el, key) => { if (el.isConnected) el.hass = h; else dacs.delete(key); }); }
   // the card can load after this one: draw again once it's there
-  customElements.whenDefined(DAC_TAG).then(() => { if (testFocus && grid?.querySelector('[data-tf]')) render(); });
+  customElements.whenDefined(DAC_TAG).then(() => { if (testFocus && grid?.querySelector('[data-tf]')) keepPlace(render); });
   const held = (kind, id, fallback) => (dragging.has(kind + '|' + id) ? dragging.get(kind + '|' + id) : fallback);
 
   // each kind of device: whether it's on, its button, and its sections in order
@@ -1469,31 +1469,57 @@ export function mountTestFocus(root, { config, getHass }) {
   // a section's page header, as Move Assistant's pages have: a big back arrow and the section's name
   const areaHead = (x, order) => '<div class="settingsHeader tfAreaHead" data-tf data-k="areahead" style="order:' + order + '">' +
     '<button class="back" type="button" data-area-back aria-label="Back to the house">' + BACK + '</button><div class="settingsTitle">' + esc(x.name) + '</div></div>';
-  // a room's Go, or the Security summary, opens its section's page; back returns to the house where you were
+  // a room's Go, or the Security summary, opens its section's page at its top; back returns to the house exactly where
+  // you were (Matt, 28 Oct). Scrolling it into view instead would tuck its title under Home Assistant's top bar
+  let leftAt = 0; // how far the house was scrolled when a page opened
   function openArea(key) {
+    if (!areaPage) leftAt = scroller().scrollTop;
     areaPage = key;
     if (key.startsWith('room:')) activeArea = key.slice(5);
     render();
-    root.getElementById('homeView')?.scrollIntoView({ block: 'start' });
+    scroller().scrollTop = 0;
     grid.querySelector('[data-area-back]')?.focus({ preventScroll: true });
   }
   function closeArea() {
     const key = areaPage;
     areaPage = null;
     render();
+    // again a frame later, once the weather and anything else drawn after has its height
+    const sc = scroller(), y = leftAt;
+    sc.scrollTop = y;
+    requestAnimationFrame(() => { sc.scrollTop = y; });
     const panel = key.startsWith('room:') ? grid.querySelector('.tfAreaPanel[data-area="' + CSS.escape(key.slice(5)) + '"]')
       : key === 'weather' ? dashBoxes.wx.querySelector('.wbOpenPage') : grid.querySelector('[data-k="sum:' + CSS.escape(key) + '"]');
-    panel?.scrollIntoView({ block: 'center' });
     (panel?.querySelector('[data-go]') || panel)?.focus({ preventScroll: true });
   }
   const blockHtml = (n) => (n.wrap ? n.wrap(n.tiles.map((t) => t.html).join(''), n)
     : '<div class="tfBlock" data-tf data-k="' + esc(n.key) + '" style="order:' + n.order + '"><div class="tfActions">' + n.tiles.map((t) => t.html).join('') + '</div></div>');
   const signOf = (out) => out.map((n) => n.key + (n.tiles ? '(' + n.tiles.map((t) => t.key).join(',') + ')' : '')).join(';');
 
+  // what scrolls the page: a scrolling box round the card if there is one, else the window (Home Assistant's
+  // dashboards scroll the window, under its fixed top bar)
+  function scroller() {
+    for (let el = app.parentElement || app.getRootNode().host; el; el = el.parentElement || el.getRootNode().host) {
+      const y = getComputedStyle(el).overflowY;
+      if ((y === 'auto' || y === 'scroll') && el.scrollHeight > el.clientHeight) return el;
+    }
+    return document.scrollingElement;
+  }
+  // a redraw never moves the page (Matt, 28 Oct: "the page jumps to a seemingly random spot"): whatever card is on
+  // the screen stays exactly where it was, even when something above it changes height (Safari doesn't do this itself)
+  function keepPlace(change) {
+    const sc = scroller(), onScreen = (el) => { const r = el.getBoundingClientRect(); return r.height && r.bottom > 0 && r.top < window.innerHeight; };
+    const mark = [...grid.children, ...grid.querySelectorAll('.tfDashTiles > *')].find((el) => !el.matches('.tfDashTiles') && onScreen(el));
+    const key = mark?.dataset.k, was = mark?.getBoundingClientRect().top;
+    change();
+    const now = mark?.isConnected ? mark : key && grid.querySelector('[data-k="' + CSS.escape(key) + '"]');
+    if (now?.isConnected && was != null) sc.scrollTop += now.getBoundingClientRect().top - was;
+  }
   function render() {
     if (!testFocus || !grid) return;
-    grid.querySelectorAll('[data-tf]').forEach((el) => el.remove());
+    // the new page is ready before the old one goes, so the page never stands empty (it would lose its scroll)
     const out = layout();
+    grid.querySelectorAll('[data-tf]').forEach((el) => el.remove());
     units.clear();
     const wrap = document.createElement('div');
     wrap.innerHTML = out.map((n) => (n.tiles ? blockHtml(n) : n.html)).join('');
@@ -1518,7 +1544,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // Redraw only what changed, so a held bar or a focused button isn't replaced under the pointer
   // after a redraw, focus what was: the same label, or else the same action (a toggle's label flips when it's pressed)
   const focusOf = (scope) => { const f = root.activeElement && scope.contains(root.activeElement) ? root.activeElement : null; return f && { label: f.getAttribute('aria-label'), act: f.dataset?.act }; };
-  const refocus = (scope, was) => { if (!was) return; ((was.label && scope.querySelector('[aria-label="' + CSS.escape(was.label) + '"]')) || (was.act && scope.querySelector('[data-act="' + CSS.escape(was.act) + '"]')))?.focus(); };
+  const refocus = (scope, was) => { if (!was) return; ((was.label && scope.querySelector('[aria-label="' + CSS.escape(was.label) + '"]')) || (was.act && scope.querySelector('[data-act="' + CSS.escape(was.act) + '"]')))?.focus({ preventScroll: true }); };
   function replace(el, html) {
     const t = document.createElement('div');
     t.innerHTML = html;
@@ -1532,6 +1558,9 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function refresh() {
     if (!testFocus || !grid || drag) return;
+    keepPlace(redraw);
+  }
+  function redraw() {
     if (!grid.querySelector('[data-tf]')) { render(); return; }
     const out = layout();
     if (signOf(out) !== signature) { render(); return; }
@@ -1589,6 +1618,25 @@ export function mountTestFocus(root, { config, getHass }) {
   sheet.className = 'tfMoreBackdrop';
   sheet.hidden = true;
   app.appendChild(sheet);
+  // while a popup is open the page behind it stays still (Matt, 28 Oct): a swipe or wheel only scrolls what's inside
+  // the popup, and nothing once that's at its end; on the dark round it, nothing at all. Sideways swipes and the
+  // popup's own controls are left alone
+  const scrollsInside = (from, dy) => {
+    for (let el = from; el && el !== sheet; el = el.parentElement) {
+      const y = getComputedStyle(el).overflowY;
+      if ((y === 'auto' || y === 'scroll') && el.scrollHeight > el.clientHeight + 1 && (dy < 0 ? el.scrollTop > 0 : el.scrollTop + el.clientHeight < el.scrollHeight - 1)) return true;
+    }
+    return false;
+  };
+  let touchAt = null;
+  sheet.addEventListener('touchstart', (ev) => { touchAt = { x: ev.touches[0].clientX, y: ev.touches[0].clientY }; }, { passive: true });
+  sheet.addEventListener('touchmove', (ev) => {
+    if (!touchAt || ev.touches.length > 1 || ev.target.closest?.('input,textarea,select')) return;
+    const t = ev.touches[0], dx = touchAt.x - t.clientX, dy = touchAt.y - t.clientY;
+    touchAt = { x: t.clientX, y: t.clientY };
+    if (Math.abs(dy) >= Math.abs(dx) && !scrollsInside(ev.target, dy)) ev.preventDefault();
+  }, { passive: false });
+  sheet.addEventListener('wheel', (ev) => { if (!scrollsInside(ev.target, ev.deltaY)) ev.preventDefault(); }, { passive: false });
   // a device's details sit behind a Details button and roll out beside the dialog, which stays where it is (Matt,
   // 27 Oct); where there's no room beside it (always on phones) they open over the top of it
   function fitDetails() {
@@ -1654,7 +1702,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!more) return;
     more.details = open;
     renderMore();
-    sheet.querySelector(open ? '[data-details-close]' : '[data-details]')?.focus();
+    sheet.querySelector(open ? '[data-details-close]' : '[data-details]')?.focus({ preventScroll: true });
   }
   // a cover's drawing in its window: kept across redraws so it can keep moving
   const coverView = (id) => {
@@ -1683,6 +1731,8 @@ export function mountTestFocus(root, { config, getHass }) {
     const was = focusOf(sheet), side = detailsOf(more.id);
     const wide = more.id.startsWith('summary:') || more.id.startsWith('group:');
     if (sheet.hidden || !box || parts.length !== moreParts.length || box.classList.contains('wide') !== wide) {
+      // drawn again while open (a light turning off loses its colour): it stays scrolled where it was
+      const keep = !sheet.hidden && box ? box.scrollTop : 0;
       // the dialog and, beside it, its details: one dialog for screen readers
       sheet.innerHTML = '<div class="tfMorePair" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (wide ? ' wide' : '') + '">' + parts.join('') + '</section>' +
         (side ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + ARROW + '</button>' +
@@ -1693,8 +1743,9 @@ export function mountTestFocus(root, { config, getHass }) {
       mountArt(sheet);
       mountDacs(sheet);
       fillIcons(sheet);
+      if (keep) sheet.querySelector('.tfMore').scrollTop = keep;
       refocus(sheet, was);
-      if (!sheet.contains(root.activeElement)) sheet.querySelector('[data-more-close]')?.focus();
+      if (!sheet.contains(root.activeElement)) sheet.querySelector('[data-more-close]')?.focus({ preventScroll: true });
     } else {
       // only the parts that changed, so the drawing and a focused button stay
       parts.forEach((p, i) => {
@@ -1735,10 +1786,12 @@ export function mountTestFocus(root, { config, getHass }) {
     dacs.forEach((el, k) => { if (k.startsWith('more:')) dacs.delete(k); });
     sheet.hidden = true;
     sheet.innerHTML = '';
-    if (opener?.isConnected) opener.focus();
-    else if (opener?.dataset?.more) grid.querySelector('[data-more="' + CSS.escape(opener.dataset.more) + '"]')?.focus();
-    else if (opener?.dataset?.summary) grid.querySelector('[data-summary="' + CSS.escape(opener.dataset.summary) + '"]')?.focus();
-    else if (opener?.hasAttribute?.('data-favs-edit')) grid.querySelector('[data-favs-edit]')?.focus();
+    // focus goes back to what opened it, without moving the page
+    const quiet = { preventScroll: true };
+    if (opener?.isConnected) opener.focus(quiet);
+    else if (opener?.dataset?.more) grid.querySelector('[data-more="' + CSS.escape(opener.dataset.more) + '"]')?.focus(quiet);
+    else if (opener?.dataset?.summary) grid.querySelector('[data-summary="' + CSS.escape(opener.dataset.summary) + '"]')?.focus(quiet);
+    else if (opener?.hasAttribute?.('data-favs-edit')) grid.querySelector('[data-favs-edit]')?.focus(quiet);
   }
 
   /* graphs: the last 24 hours of an open reading, and the balcony's solar */
@@ -1874,7 +1927,7 @@ export function mountTestFocus(root, { config, getHass }) {
     open = { key, id, h: c ? Math.round(c.getBoundingClientRect().height) : 0 };
     units.delete(key);
     refresh();
-    grid.querySelector('.tfOpen [data-close]')?.focus();
+    grid.querySelector('.tfOpen [data-close]')?.focus({ preventScroll: true });
   }
   function pickArea(panel) {
     activeArea = panel.dataset.area;
@@ -1940,7 +1993,7 @@ export function mountTestFocus(root, { config, getHass }) {
       else if (t.dataset.go) openArea('room:' + t.dataset.go);
       else if (t.hasAttribute('data-area-back')) closeArea();
       else if (t.dataset.open) openReading(t);
-      else if (t.hasAttribute('data-close')) { const was = open; open = null; units.delete(was.key); refresh(); grid.querySelector('[data-open="' + CSS.escape(was.key + '|' + was.id) + '"]')?.focus(); }
+      else if (t.hasAttribute('data-close')) { const was = open; open = null; units.delete(was.key); refresh(); grid.querySelector('[data-open="' + CSS.escape(was.key + '|' + was.id) + '"]')?.focus({ preventScroll: true }); }
       else if (t.classList.contains('tfAreaPanel') && !t.classList.contains('active')) pickArea(t);
     });
     el.addEventListener('keydown', (ev) => {

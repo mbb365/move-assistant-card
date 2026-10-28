@@ -55,6 +55,22 @@
 #app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--text)}
 #app.house.light{--hc-icon:#e6e6e6}
 #app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+/* phones (Matt, 28 Oct): cards 16 apart, double the 8 (the Weather page's too, and so the title to the first card);
+   page titles 30% smaller, 46 to 32, the back arrow's glyph with them. It keeps its 40 to tap, hanging over the
+   title's line so the header is only as tall as the title */
+@media(max-width:620px){
+  #app.house{--grid-gap:16px}
+  #app.house .settingsTitle{font-size:32px}
+  #app.house .tfAreaHead .back{margin-block:calc((32px * .92 - 40px) / 2)}
+  #app.house .tfAreaHead .back svg{width:24px;height:24px}
+}
+@container wb-bento (width < 652px){
+  #app.house .wbBento{gap:var(--grid-gap)}
+  #app.house .wbItem[data-size="tile"]{width:calc((100% - var(--grid-gap)) / 2)}
+}
+/* the page keeps your place itself when something above it changes (keepPlace in test-focus.js; Safari has no scroll
+   anchoring), so the browser's own anchoring stays out of it */
+#app.house #homeView{overflow-anchor:none}
 :is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfCard .activityRow{display:grid;align-items:center}
 /* opened: the tile fills its card (padding 10) with the graph space under it (Figma "HC FINAL - tile clicked") */
@@ -215,6 +231,8 @@
 .tfMoreHead .activityTitle{flex:1;min-width:0}
 /* the stand-in more-info for made-up devices: a dialog in card colour, a sheet from the bottom on phones */
 .tfMoreBackdrop{position:fixed;inset:0;z-index:180;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.45)}
+/* a popup holds the page behind it still: its own scrolling stops at its ends (and test-focus.js stops the rest) */
+.tfMoreBackdrop,.tfMore,.tfMoreSideInner,.tfMoreSideBody{overscroll-behavior:contain}
 .tfMoreBackdrop[hidden]{display:none}
 .tfMore{flex:none;width:440px;max-width:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}
 .tfMoreHead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}
