@@ -937,12 +937,32 @@ export function mountTestFocus(root, { config, getHass }) {
     ]);
     // edit mode's old choices (sections, order, sizes…) are left behind: the page is laid out as Home Assistant has it
     const v = mine?.value || {};
-    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, dash: v.dash };
+    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, dash: v.dash, named: v.named };
     haHome = home?.value || {};
     haSecurity = security?.value || {};
     predicted = Array.isArray(usage?.entities) ? usage.entities : [];
     suggested = null;
     if (Object.keys(states).length) refresh();
+    nameDashboard();
+  }
+  // the sidebar calls this page HomeCore (Matt, 28 Oct). A sidebar entry's name is its dashboard's title, kept in Home
+  // Assistant rather than in the card, so the card names its own dashboard: once (a dashboard renamed afterwards is left
+  // alone), only a dashboard of just this page, and only for an admin, as Home Assistant allows no one else
+  const SIDEBAR_NAME = 'HomeCore';
+  async function nameDashboard() {
+    const path = location.pathname.split('/')[1], named = prefs.named || [];
+    if (!getHass()?.user?.is_admin || !path || named.includes(path)) return;
+    const remember = () => { prefs = { ...prefs, named: [...named, path] }; savePrefs(); };
+    try {
+      const board = (await callWS({ type: 'lovelace/dashboards/list' }))?.find((d) => d.url_path === path);
+      if (!board || board.mode === 'yaml') return;
+      if (board.title === SIDEBAR_NAME) { remember(); return; }
+      const config = await callWS({ type: 'lovelace/config', url_path: path });
+      const cards = (config?.views || []).flatMap((v) => [...(v.cards || []), ...(v.sections || []).flatMap((s) => s.cards || [])]);
+      if (!cards.length || !cards.every((c) => c?.type === 'custom:move-assistant-card' && c.layout === 'test-focus')) return;
+      await callWS({ type: 'lovelace/dashboards/update', dashboard_id: board.id, title: SIDEBAR_NAME });
+      remember();
+    } catch { /* not allowed, or no such dashboard: its name stays as it is */ }
   }
 
   /* ---------- the dashboard (Matt, 27 Oct) ----------
