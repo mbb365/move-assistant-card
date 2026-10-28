@@ -1,8 +1,6 @@
-# Move Assistant
+# HomeCore
 
-One card for Home Assistant, installed from HACS, with two full pages built on the HomeCore design language:
-
-- **HomeCore**: a page for your whole house, to try HomeCore with your own devices.
+- **HomeCore**: a page for your whole house, to try HomeCore with your own devices. Experiments in a new design language.
 - **Move Assistant**: a guided movement timer ([further down](#move-assistant-the-movement-timer)).
 
 ## HomeCore
