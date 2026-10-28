@@ -275,6 +275,8 @@ export function mountTestFocus(root, { config, getHass }) {
   const history = new Map(); // entity id → { at, points }
   const energyText = new Map(); // the dashboard's energy: statistic id → { name, text, icon } its tile shows
   const dragging = new Map(); // "kind|entity id" → value while a bar is held
+  const BAR_HOLD_MS = 350; // how long a finger rests on a bar before it moves it (about a third of a second)
+  let heldBar = null; // the bar a finger is moving, if any
   const goals = new Map(); // cover id → { pos, tilt, at }: where it was sent, until it gets there
   const arts = new Map(); // cover id → its drawing in more-info, kept across redraws
   const keyTimers = new Map(); // cover id → the pause before keyed steps are sent
@@ -579,7 +581,7 @@ export function mountTestFocus(root, { config, getHass }) {
      time a light uses it, it's fetched from its GitHub release, unless Home Assistant loads one installed from HACS
      (one of its dashboard resources), which is then used instead */
   const DAC_TAG = 'dual-controller-v3';
-  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.1/dist/dual-axis-controller-v4.js';
+  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.2/dist/dual-axis-controller-v4.js';
   let dacFetch = null; // null, 'loading' or 'failed'
   async function bringDac() {
     if (dacFetch || customElements.get(DAC_TAG)) return;
@@ -600,7 +602,11 @@ export function mountTestFocus(root, { config, getHass }) {
   function dacFor(id) { return wantsDac(id) && Boolean(customElements.get(DAC_TAG)); }
   const padOf = (id) => look.lightPads[id] || look.dacPad;
   // the card follows this page's theme rather than Home Assistant's
-  const dacHass = () => { const h = getHass(); return h && { ...h, themes: { ...(h.themes || {}), darkMode: !app.classList.contains('light') } }; };
+  const dacHass = () => {
+    const h = getHass();
+    return h && { ...h, themes: { ...(h.themes || {}), darkMode: !app.classList.contains('light') },
+      callService: (domain, service, data, ...rest) => h.callService(domain, ...asLastOn(domain, service, data), ...rest) };
+  };
   // on the dashboard its name opens its pad in place (a tap action the page catches, below) rather than the card's own
   // controller, and its pad takes the height its cells leave (--tf-dac-pad, through the card's open shadow root)
   const DAC_FIT = '.halo.is-size-tile .halo__pad-shell{height:var(--tf-dac-pad,158px)!important;transition:height .25s cubic-bezier(.2,.7,.3,1)}';
@@ -1909,8 +1915,17 @@ export function mountTestFocus(root, { config, getHass }) {
     g.at = Date.now();
     goals.set(id, g);
   }
+  // a light turned on without a brightness comes back at its last one (Matt, 28 Oct: some lights come on at 100%
+  // otherwise), whether this page or the Dual Axis Controller turns it on; with none remembered yet, the light decides
+  function asLastOn(domain, service, data) {
+    const id = data?.entity_id;
+    if (domain !== 'light' || typeof id !== 'string' || !lastBright[id] || !dimmable(id) || data.brightness_pct != null || data.brightness != null) return [service, data];
+    if (service !== 'turn_on' && !(service === 'toggle' && states[id]?.state !== 'on')) return [service, data];
+    return ['turn_on', { ...data, brightness_pct: lastBright[id] }];
+  }
   function send(domain, service, id, data) {
-    const d = { entity_id: id, ...(data || {}) };
+    let d = { entity_id: id, ...(data || {}) };
+    [service, d] = asLastOn(domain, service, d);
     if (domain === 'cover') noteGoal(service, d);
     used[id] = (used[id] || 0) + 1;
     local.set(USED_KEY, JSON.stringify(used));
@@ -2070,25 +2085,59 @@ export function mountTestFocus(root, { config, getHass }) {
         commit(kind, id);
       }
     });
-    // bars: press and drag along, set on release
+    // bars (Matt, 28 Oct): a tap on a light that's off turns it on as it was last (its faint line), never to where the
+    // tap landed. A finger only moves a bar after a short hold, and then from where the bar is (a light that's off, from
+    // where it last was), so a swipe across it scrolls the page and a quick touch changes nothing; held, it follows the
+    // finger and sets on release. A mouse drags straight away, from the pointer
     el.addEventListener('pointerdown', (ev) => {
       const blocksEl = ev.target.closest('[data-blocks]');
       if (blocksEl && ev.button === 0) { ev.preventDefault(); holdBlocks(blocksEl, ev); return; }
       const bar = ev.target.closest('[data-drag]');
-      if (!bar) return;
+      if (!bar || ev.button > 0) return;
       const [kind, id] = bar.dataset.drag.split('|');
       if (kind === 'bright' && !dimmable(id)) { run(act('light', 'toggle', id)); return; }
-      ev.preventDefault();
-      bar.setPointerCapture?.(ev.pointerId);
+      const off = kind === 'bright' && states[id]?.state !== 'on', finger = ev.pointerType !== 'mouse';
       const inset = kind === 'tilt' ? 3 : 0; // the tilt bar's fill sits 3 in
-      const at = (e2) => { const r = bar.getBoundingClientRect(); return Math.max(0, Math.min(1, (e2.clientX - r.left - inset) / (r.width - inset * 2))); };
-      showDrag(bar, kind, id, at(ev));
-      const move = (e2) => showDrag(bar, kind, id, at(e2));
-      const up = () => { bar.removeEventListener('pointermove', move); bar.removeEventListener('pointerup', up); bar.removeEventListener('pointercancel', up); commit(kind, id); };
+      const span = () => bar.getBoundingClientRect().width - inset * 2;
+      const at = (e2) => { const r = bar.getBoundingClientRect(); return Math.max(0, Math.min(1, (e2.clientX - r.left - inset) / span())); };
+      // waiting: a finger that may yet be a tap, a swipe or a hold; pressed: a mouse on a light that's off, which may
+      // yet be a click; held: a finger moving the bar from where it was; dragging: a mouse moving it to the pointer
+      let mode = finger ? 'waiting' : off ? 'pressed' : 'dragging', from = 0, fromX = 0;
+      const x0 = ev.clientX, y0 = ev.clientY, moved = (e2, by) => Math.hypot(e2.clientX - x0, e2.clientY - y0) > by;
+      const capture = () => { try { bar.setPointerCapture(ev.pointerId); } catch { /* a pointer that's already gone */ } };
+      if (!finger) { ev.preventDefault(); capture(); }
+      if (mode === 'dragging') showDrag(bar, kind, id, at(ev));
+      const timer = finger && setTimeout(() => {
+        if (mode !== 'waiting') return;
+        mode = 'held';
+        heldBar = bar;
+        bar.classList.add('held');
+        capture();
+        if (navigator.userActivation?.hasBeenActive) navigator.vibrate?.(8); // a small buzz where phones allow it
+        from = off ? (lastBright[id] ?? 100) / 100 : Number(bar.getAttribute('aria-valuenow')) / 100;
+        fromX = x0;
+        showDrag(bar, kind, id, from);
+      }, BAR_HOLD_MS);
+      const move = (e2) => {
+        if (mode === 'waiting' && moved(e2, 8)) mode = 'gone';
+        else if (mode === 'pressed' && moved(e2, 4)) mode = 'dragging';
+        if (mode === 'held') showDrag(bar, kind, id, Math.max(0, Math.min(1, from + (e2.clientX - fromX) / span())));
+        else if (mode === 'dragging') showDrag(bar, kind, id, at(e2));
+      };
+      const up = (e2) => {
+        clearTimeout(timer);
+        ['pointermove', 'pointerup', 'pointercancel'].forEach((t, i) => bar.removeEventListener(t, i ? up : move));
+        bar.classList.remove('held');
+        if (heldBar === bar) heldBar = null;
+        if (mode === 'held' || mode === 'dragging') commit(kind, id);
+        else if (e2.type === 'pointerup' && off && (mode === 'waiting' || mode === 'pressed')) send('light', 'turn_on', id).catch(() => {});
+      };
       bar.addEventListener('pointermove', move);
       bar.addEventListener('pointerup', up);
       bar.addEventListener('pointercancel', up);
     });
+    // once a bar is held, the finger moves it and not the page
+    el.addEventListener('touchmove', (ev) => { if (heldBar && ev.cancelable) ev.preventDefault(); }, { passive: false });
   }
   if (grid && testFocus) {
     loadPrefs();
@@ -2122,6 +2171,8 @@ export function mountTestFocus(root, { config, getHass }) {
       if (!testFocus) return;
       const first = !Object.keys(states).length;
       states = next || {};
+      // every dimmable light that's on, remembered at its brightness for when it next comes on (not only those drawn)
+      for (const id in states) if (id.startsWith('light.') && states[id].state === 'on' && dimmable(id)) noteBright(id, brightnessOf(states[id]));
       if (first) render(); else refresh();
     },
     // the bento's animation runs while it's mounted, so it goes while the card is away
