@@ -581,7 +581,7 @@ export function mountTestFocus(root, { config, getHass }) {
      time a light uses it, it's fetched from its GitHub release, unless Home Assistant loads one installed from HACS
      (one of its dashboard resources), which is then used instead */
   const DAC_TAG = 'dual-controller-v3';
-  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.2/dist/dual-axis-controller-v4.js';
+  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.3/dist/dual-axis-controller-v4.js';
   let dacFetch = null; // null, 'loading' or 'failed'
   async function bringDac() {
     if (dacFetch || customElements.get(DAC_TAG)) return;

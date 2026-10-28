@@ -5872,7 +5872,7 @@ function Nm(n, { config: s, getHass: i }) {
     const d = qo(t), m = l || (a && t.startsWith("light.") ? ["bright"] : null), T = d.sections.map((y, b) => y && (!m || m.includes((d.parts || [])[b])) ? y : "").filter(Boolean);
     return '<div class="tfAction' + (d.on ? " on" : "") + '" data-k="' + ue(t) + '"' + (d.tone ? ' data-tone="' + d.tone + '"' : "") + zt(t) + '><div class="tfActionHead">' + gn(t, d) + Pn(t) + "</div>" + T.join("") + "</div>";
   }
-  const In = "dual-controller-v3", Yn = "https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.2/dist/dual-axis-controller-v4.js";
+  const In = "dual-controller-v3", Yn = "https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.3/dist/dual-axis-controller-v4.js";
   let Sa = null;
   async function mo() {
     if (Sa || customElements.get(In)) return;
@@ -7155,7 +7155,7 @@ function Nm(n, { config: s, getHass: i }) {
     }
   };
 }
-const Bm = "0.45.2", yl = "move_assistant", Pm = "move_assistant", ic = "move_assistant_checkin_reminder";
+const Bm = "0.45.3", yl = "move_assistant", Pm = "move_assistant", ic = "move_assistant_checkin_reminder";
 function Im() {
   if (document.getElementById("move-assistant-inter")) return;
   const n = document.createElement("link");
