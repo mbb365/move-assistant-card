@@ -8,7 +8,7 @@
   /* Base palette — mirrors the Figma "Color" variables (Dark). A sync changes only these two blocks. */
   --color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;
   /* text a softer grey than the bright fills (Matt, 28 Oct: "in dark mode, make the whites more grey"; was #f1f1f1).
-     Figma's Color variable still says #f1f1f1: a sync would put it back */
+     Figma's color/text/primary (Dark) is neutral/300 #d9d9d9 too (28 Oct) */
   --color-fill-bright:#f1f1f1;--color-text-primary:#d9d9d9;--color-text-muted:#969696;--color-text-on-bright:#090909;
   --color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;
   --color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;

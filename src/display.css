@@ -14,7 +14,7 @@
 /* header: 28 tall, 18 in from the card's sides, title only, 10 above the tiles */
 #homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}
 #homeView .activityHeader .activityIcon{display:none}
-#homeView .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}
+:is(#homeView,.tfMoreBackdrop,.tfEditTray) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}
 
 /* tiles in a card: they touch, and the card shows through until you hover one */
 #homeView .card .activityRows{gap:0}
@@ -147,8 +147,8 @@
 .tfBar:is(.pos,.vol) i{background:var(--primary)}
 /* a target with − and + */
 .tfStep{display:flex;align-items:center;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}
-.tfStep button{flex:none;width:46px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);font:400 24px/1 var(--font);cursor:pointer}
-.tfStep output{flex:1;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}
+.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);font:400 24px/1 var(--font);cursor:pointer}
+.tfStep output{flex:1 0 auto;white-space:nowrap;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}
 /* modes and buttons: segments in a track, 4 in from its edge */
 .tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}
 .tfSeg button{flex:1;min-width:0;min-height:0;padding:0 6px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -501,7 +501,6 @@ button.tfAreaIcon{cursor:pointer}
 .tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}
 .tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px rgba(0,0,0,.3)}
 .tfTrayHead{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.tfEditTray .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;color:var(--text)}
 .tfTraySection{display:flex;flex-direction:column;gap:8px}
 .tfTraySection .sectionLabel{margin:0}
 .tfTrayNote{margin:0;color:var(--muted);font:400 14px/1.3 var(--font)}
