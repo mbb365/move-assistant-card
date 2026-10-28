@@ -604,14 +604,20 @@ export function mountTestFocus(root, { config, getHass }) {
   // on the dashboard its name opens its pad in place (a tap action the page catches, below) rather than the card's own
   // controller, and its pad takes the height its cells leave (--tf-dac-pad, through the card's open shadow root)
   const DAC_FIT = '.halo.is-size-tile .halo__pad-shell{height:var(--tf-dac-pad,158px)!important;transition:height .25s cubic-bezier(.2,.7,.3,1)}';
+  // and wherever it is, its dark mode text is this page's grey (Matt, 28 Oct: #d9d9d9; the card's own is #f1f1f1)
+  const DAC_TEXT = '.hc--dark{--hc-text:var(--color-text-primary,#f1f1f1)}';
+  const dressDac = (el, onBoard) => {
+    if (!el.shadowRoot || el.shadowRoot.querySelector('style[data-tf]')) return;
+    el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_TEXT + (onBoard ? DAC_FIT : '') })).dataset.tf = '';
+  };
   function mountDacs(scope) {
     scope.querySelectorAll('[data-dac]').forEach((slot) => {
       const key = slot.dataset.dac, onBoard = key.startsWith('dash:');
       let el = dacs.get(key);
       if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), ...(onBoard ? { tap_action: { action: 'none' } } : {}) }); dacs.set(key, el); }
       el.hass = dacHass();
-      if (onBoard && el.shadowRoot && !el.shadowRoot.querySelector('style[data-tf-fit]')) el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_FIT })).dataset.tfFit = '';
       if (el.parentNode !== slot) slot.replaceChildren(el);
+      dressDac(el, onBoard);
     });
   }
   function syncDacs() { const h = dacHass(); dacs.forEach((el, key) => { if (el.isConnected) el.hass = h; else dacs.delete(key); }); }
