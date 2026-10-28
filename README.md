@@ -1,5 +1,67 @@
 # Move Assistant
 
+One card for Home Assistant, installed from HACS, with two full pages built on the HomeCore design language:
+
+- **HomeCore**: a page for your whole house, to try HomeCore with your own devices.
+- **Move Assistant**: a guided movement timer ([further down](#move-assistant-the-movement-timer)).
+
+## HomeCore
+
+HomeCore is one page for your whole house: your home's name and summaries, the weather, your rooms, favourites, what's just happened, energy, and your lights and heating. The rooms, the weather and security each open as a page of their own.
+
+### Install HomeCore, step by step
+
+You need Home Assistant with [HACS](https://hacs.xyz) installed, and to be signed in as an admin.
+
+1. **Add the repository to HACS.** Open **HACS**, tap **⋮** (top right) → **Custom repositories**. Paste `https://github.com/mbb365/move-assistant-card`, set the type to **Dashboard**, tap **Add**, then close the window.
+2. **Download the card.** In HACS, search for **Move Assistant**, open it and tap **Download** (and **Download** again to confirm).
+3. **Reload.** Reload the page in your browser. In the Home Assistant app, close the app completely and open it again.
+4. **Add a dashboard.** Go to **Settings → Dashboards**, tap **Add dashboard** and choose **New dashboard from scratch**. Set the title to **HomeCore** and the icon to `mdi:home`, then tap **Create**.
+5. **Put HomeCore on it.** Open **HomeCore** from the sidebar. Tap the **pencil** (top right), then **⋮ → Raw configuration editor**. Delete everything there, paste the lines below and tap **Save**. Close the editor with **✕** and tap **Done**.
+
+   ```yaml
+   views:
+     - title: HomeCore
+       type: panel
+       cards:
+         - type: custom:move-assistant-card
+           layout: test-focus
+   ```
+
+6. **Make it yours.** Tap **Settings** in HomeCore's bottom bar:
+   - **Sources**: pick your weather, the grid's power (for energy) and your alarm.
+   - **Summaries**: choose which summaries show at the top.
+   - **Appearance**: the theme, and your lights as HomeCore's own tiles or as the Dual Axis Controller (step 7).
+
+   Your rooms come from Home Assistant's areas, so put your devices in areas (**Settings → Areas, labels & zones**). Anything your house doesn't have yet is filled in with a made-up device, so the page is complete; made-up devices only work on the page.
+7. **Optional: the Dual Axis Controller for lights.** Add `https://github.com/mbb365/Dual-Axis-Controller-v4` to HACS the same way (type **Dashboard**), download **Dual Axis Controller**, reload, then choose it in HomeCore's **Settings → Appearance**.
+
+On a tablet or computer, the pencil in the bottom bar lets you move and resize the cards. Phones show the same cards in one column, in the same order.
+
+Added the dashboard earlier under another name? A dashboard that holds only HomeCore is named **HomeCore** in the sidebar the first time an admin opens it. That happens once: rename it afterwards and it keeps your name. A dashboard with other cards on it is never renamed.
+
+### Updating
+
+Open **HACS → Move Assistant → ⋮ → Redownload**, then reload the page (or close and reopen the app).
+
+### What's on the page
+
+- **Dashboard** is Home: the HomeCore concept's cards at their drawn sizes, with no labels above anything. Your home's name, the summaries, the weather card and the areas, Favourites and Activity (five rows each, so their tiles line up), Energy today (a graph of the day and its sources in one row; tap a source to see its day, the card never moving), Compared to average, and tiles for the lights and the thermostat. The dashboard shows only the living room's, bedroom's and office's lights. A light that's off keeps a faint line on its bar where it was. Tap the weather card's Now for the Weather page; a day opens in the card. Activity is your devices' latest changes from Home Assistant's logbook, with who did it and when: as many as its card fits (five in a large card), the rest a scroll away, each scroll settling on the next one. Energy today comes from your Energy dashboard, or is made up if it isn't set up; tap a source for its graph.
+- **Peg board**: on a tablet and up the dashboard's cards sit on a solid grid of cells from the top left, columns 252 wide and rows 60 tall, 16 apart, under your home's name and the summaries (which keep their own sizes). Every card fills whole cells: a light tile 1 × 2, a Dual Axis Controller 1 × 3 (tap its name and its pad opens to 1 × 5), a weather data tile 1 × 3, Energy today and Compared to average 2 × 4, and the large cards (the weather, the areas, Favourites and Activity) 2 × 5. The pencil in the bottom bar turns on edit mode, which draws the cells. Tiles side by side are one height: a light beside a Dual Axis Controller grows to its three rows, its slider at the bottom. Drag a card by its grip (or anywhere on it) into any free cell; cards in the way move down. Its three dots make it a tile or a card, put Energy today's graph above or below, move it a cell, or hide it (hidden cards wait under the board). Where everything is saves with the page's settings in Home Assistant; on a narrower board the cards keep that order, top row first, each in the first free cell from the top left. Phones keep one column, in the board's order: its top row first, each row left to right.
+- **Rooms** come from your Home Assistant areas. Each has a readings card (tap a reading to see its last 24 hours) and its devices as tiles: lights (brightness, warm to cool, colour), thermostat, humidifier, covers, media, robot vacuum, locks, alarm and watering. The icon turns a device on or off. Rooms with solar get an energy card, and each plant gets a card. Each room has its own page, opened from its area card.
+- **Made-up devices** fill in what the house doesn't have yet: thermostat, covers, humidifier, robot vacuum, balcony solar and watering, alarm, doors and windows, plants, and room temperature and humidity. Their ids contain `made_up_`. They work from the page but exist only in this card.
+- **Summaries and favourites** sit at the top, as on Home Assistant's home view. Favourites are your starred devices, then suggestions; star them in Favourites → Edit. A summary opens a popup of its devices with their controls (lights: brightness, and turn all off or on).
+- **Area cards** show one room open: its temperature big and up to four controls. Tap a control's icon to turn it on or off, or its name to open what it stands for (the room's lights, covers or plugs, or the one device). The others are folded: their main reading with the name under it, and their control icons; an open door is shown plainly, only a leak in red. Go opens the room's page: a big back arrow, its name, and only its devices.
+- **Security** (alarm, locks, doors and windows) opens from its summary as a page of its own.
+- **Weather** is a bento: now, the next hours, sun, moon, wind, UV, Compared to average, humidity, pressure, rain and air quality, each at its own size (the squares stay square).
+- **Covers** are drawn as curtains, a roller blind or venetian blinds. Drag the drawing, or tap the four blocks for 25, 50, 75 or 100%.
+- **More info** opens when you tap a device's name. Settings → Appearance → **More info** shows it as a popup or a sheet; Details rolls out beside it.
+- **Settings** (HomeCore) has four tabs. **Appearance**: theme, Show density, More info, and lights as this page's tiles or as the [Dual Axis Controller](https://github.com/mbb365/Dual-Axis-Controller-v4) (install it from HACS; its pad on temperature or colour). **Lights**: an example table of every light, to star it and pick its own tile and pad. **Sources** picks the weather, the grid's power and the alarm; **Summaries** turns each summary on or off.
+
+Settings → Appearance → **Show density** outlines each card with its height and counts how many readings fit on the screen.
+
+## Move Assistant, the movement timer
+
 A guided movement timer for Home Assistant, built on the HomeCore design language.
 Runs as a full-page dashboard card.
 
@@ -17,9 +79,9 @@ Runs as a full-page dashboard card.
 - **Halves**: tiles in a card sit two side by side whenever each still has 140 px; narrower than that, one per row. The spacing follows HomeCore FINAL in the Figma file.
 - **TV mode** (⛶ button) goes full screen with no HA header or sidebar. Works with a keyboard, TV remote or game controller.
 
-## Install (HACS)
+### Install the movement timer
 
-1. HACS → ⋮ → **Custom repositories** → add this repo's URL, type **Dashboard**.
+1. HACS → ⋮ → **Custom repositories** → add `https://github.com/mbb365/move-assistant-card`, type **Dashboard**.
 2. Install **Move Assistant**, then reload the browser.
 3. Settings → Dashboards → **Add dashboard** → "New dashboard from scratch", name it *Move*, icon `mdi:run`.
 4. Open it → ✎ → ⋮ **Raw configuration editor**, paste:
@@ -32,39 +94,7 @@ views:
       - type: custom:move-assistant-card
 ```
 
-## HomeCore
-
-`layout: test-focus` turns the card into **HomeCore**, a page for your house, to try HomeCore with real devices. Your normal Home never shows it. To give it its own place in the sidebar:
-
-1. Settings → Dashboards → **Add dashboard** → "New dashboard from scratch", name it *HomeCore*, icon `mdi:home`.
-2. Open it → ✎ → ⋮ **Raw configuration editor**, paste:
-
-```yaml
-views:
-  - title: HomeCore
-    type: panel
-    cards:
-      - type: custom:move-assistant-card
-        layout: test-focus
-```
-
-A dashboard that holds only this page is named **HomeCore** in the sidebar the first time an admin opens it, so one you made earlier under another name gets it too. It happens once: rename the dashboard afterwards and it keeps your name. A dashboard with other cards on it is never renamed.
-
-- **Dashboard** is Home: the HomeCore concept's cards at their drawn sizes, with no labels above anything. Your home's name, the summaries, the weather card and the areas, Favourites and Activity (five rows each, so their tiles line up), Energy today (a graph of the day and its sources in one row; tap a source to see its day, the card never moving), Compared to average, and tiles for the lights and the thermostat. The dashboard shows only the living room's, bedroom's and office's lights. A light that's off keeps a faint line on its bar where it was. Tap the weather card's Now for the Weather page; a day opens in the card. Activity is your devices' latest changes from Home Assistant's logbook, with who did it and when: as many as its card fits (five in a large card), the rest a scroll away, each scroll settling on the next one. Energy today comes from your Energy dashboard, or is made up if it isn't set up; tap a source for its graph.
-- **Peg board**: on a tablet and up the dashboard's cards sit on a solid grid of cells from the top left, columns 252 wide and rows 60 tall, 16 apart, under your home's name and the summaries (which keep their own sizes). Every card fills whole cells: a light tile 1 × 2, a Dual Axis Controller 1 × 3 (tap its name and its pad opens to 1 × 5), a weather data tile 1 × 3, Energy today and Compared to average 2 × 4, and the large cards (the weather, the areas, Favourites and Activity) 2 × 5. The pencil in the bottom bar turns on edit mode, which draws the cells. Tiles side by side are one height: a light beside a Dual Axis Controller grows to its three rows, its slider at the bottom. Drag a card by its grip (or anywhere on it) into any free cell; cards in the way move down. Its three dots make it a tile or a card, put Energy today's graph above or below, move it a cell, or hide it (hidden cards wait under the board). Where everything is saves with the page's settings in Home Assistant; on a narrower board the cards keep that order, top row first, each in the first free cell from the top left. Phones keep one column, in the board's order: its top row first, each row left to right.
-- **Rooms** come from your Home Assistant areas. Each has a readings card (tap a reading to see its last 24 hours) and its devices as tiles: lights (brightness, warm to cool, colour), thermostat, humidifier, covers, media, robot vacuum, locks, alarm and watering. The icon turns a device on or off. Rooms with solar get an energy card, and each plant gets a card. Each room has its own page, opened from its area card.
-- **Made-up devices** fill in what the house doesn't have yet: thermostat, covers, humidifier, robot vacuum, balcony solar and watering, alarm, doors and windows, plants, and room temperature and humidity. Their ids contain `made_up_`. They work from the page but exist only in this card.
-- **Summaries and favourites** sit at the top, as on Home Assistant's home view. Favourites are your starred devices, then suggestions; star them in Favourites → Edit. A summary opens a popup of its devices with their controls (lights: brightness, and turn all off or on).
-- **Area cards** show one room open: its temperature big and up to four controls. Tap a control's icon to turn it on or off, or its name to open what it stands for (the room's lights, covers or plugs, or the one device). The others are folded: their main reading with the name under it, and their control icons; an open door is shown plainly, only a leak in red. Go opens the room's page: a big back arrow, its name, and only its devices.
-- **Security** (alarm, locks, doors and windows) opens from its summary as a page of its own.
-- **Weather** is a bento: now, the next hours, sun, moon, wind, UV, Compared to average, humidity, pressure, rain and air quality, each at its own size (the squares stay square).
-- **Covers** are drawn as curtains, a roller blind or venetian blinds. Drag the drawing, or tap the four blocks for 25, 50, 75 or 100%.
-- **More info** opens when you tap a device's name. Settings → Appearance → **More info** shows it as a popup or a sheet; Details rolls out beside it.
-- **Settings** (HomeCore test) has four tabs. **Appearance**: theme, Show density, More info, and lights as this page's tiles or as the [Dual Axis Controller](https://github.com/mbb365/Dual-Axis-Controller-v4) (install it from HACS; its pad on temperature or colour). **Lights**: an example table of every light, to star it and pick its own tile and pad. **Sources** picks the weather, the grid's power and the alarm; **Summaries** turns each summary on or off.
-
-Settings → Appearance → **Show density** outlines each card with its height and counts how many readings fit on the screen.
-
-## Automations
+### Automations
 
 Every move sends a `move_assistant` event. `action` is one of
 `started`, `step`, `rest`, `paused`, `resumed`, `completed`, `ended`, `checkin`.
