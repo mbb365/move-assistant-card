@@ -299,16 +299,22 @@
 @media(prefers-reduced-motion:reduce){.tfMorePair,.tfMoreSide{animation:none!important;transition:none!important}}
 
 /* =========================================================
-   Area cards, as Matt drew them in Figma ("Area card accordions" 490:9283, 27 Oct): 18 in (10 at the bottom), the name
-   Geist 700 24 a further 10 in, the main 64 with a 16 line under it, then up to four controls as tiles inside the
-   padding; the lights' icon shows the colour of a light that's on. Folded: the main 32 light, the name, the room's
-   control icons two by two.
+   Area cards, as Matt drew them in Figma ("Area card accordions v04" 521:9673, 28 Oct): 18 in (10 at the bottom); at the
+   top the room's icon (40, corner 16, glyph 22: the button for its lights, in a light's colour while one is on) and,
+   14 along, its name (Geist 700 24), which opens its page; the main 64 with a 16 line under it, then up to four
+   controls as tiles inside the padding. Folded: the icon with the name under it (6 apart), the main 32 light, the
+   room's control icons two by two.
    ========================================================= */
 #homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}
-.tfAreaPanel .workoutPanelTop{padding:0 10px}
+.tfAreaPanel .workoutPanelTop{justify-content:flex-start;gap:14px;padding:0}
 .tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}
 .tfAreaPanel .icon{width:22px;height:22px}
-.tfAName{font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em}
+.tfATitle{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+#app .tfAName{max-width:100%;min-height:0;padding:0;border:0;border-radius:6px;background:none;color:var(--text);font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.tfAreaIcon{flex:none;border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}
+button.tfAreaIcon{cursor:pointer}
+.tfAreaIcon[data-light]{background:var(--light);color:var(--light-ink)}
+.tfAreaGlyph{display:grid;place-items:center}
 /* a section's own page (an area's Go, the Security summary): Move Assistant's page header (40 back, 52 title) over its
    devices; the weather steps aside */
 .tfAreaHead{grid-column:1/-1;margin-bottom:0}
@@ -330,12 +336,13 @@
 .tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
 .tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
 .tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* folded (Matt's Figma "Area card accordions" 490:9283): 10 in at the top and bottom; at the top the main (Geist 200 32)
-   with the name under it (Inter 600 16), 8 apart, level and cut with "…" when it doesn't fit; at the bottom the room's
-   icons two by two as 60 tiles (icon 40, corner 16, glyph 22), one column of two when the card is narrower than two */
-.tfACollapsed{flex-direction:column;justify-content:space-between;padding:10px 0;container-type:inline-size}
-.tfACTop{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:calc(100% - 20px)}
-.tfACMain{max-width:100%;font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* folded (Matt's Figma "Area card accordions v04" 521:9673): 18 in at the top, 10 at the bottom; at the top the room's
+   icon with its name under it (Inter 600 16), 6 apart, cut with "…" when it doesn't fit; the main (Geist 200 32) between;
+   at the bottom the room's icons two by two as 60 tiles (icon 40, corner 16, glyph 22), one column of two when the card
+   is narrower than two */
+.tfACollapsed{flex-direction:column;justify-content:space-between;padding:18px 0 10px;container-type:inline-size}
+.tfACTop{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:calc(100% - 20px)}
+.tfACMain{max-width:calc(100% - 20px);font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfACTiles{display:grid;grid-template-columns:repeat(2,60px)}
 .tfACTile{display:grid;place-items:center;width:60px;height:60px}

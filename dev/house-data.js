@@ -1,8 +1,9 @@
 // ?test=1: a stand-in for Matt's house, copied from his Home Assistant on 26 Oct 2026 (areas, lights and what
 // they support, media players, plugs and power). The card adds its made-up devices on top, as it does on HA.
+// [id, name, floor, icon]: the Balcony and Test Area have no icon, as an area can have none
 const AREAS = [
-  ["living_room", "Living Room", "alcove"], ["kitchen", "Kitchen", "back_bit"], ["balcony", "Balcony", "back_bit"],
-  ["bedroom", "Bedroom", "half_1"], ["office", "Office", "half_1"], ["bathroom", "Bathroom", "half_1"],
+  ["living_room", "Living Room", "alcove", "mdi:sofa"], ["kitchen", "Kitchen", "back_bit", "mdi:countertop"], ["balcony", "Balcony", "back_bit"],
+  ["bedroom", "Bedroom", "half_1", "mdi:bed"], ["office", "Office", "half_1", "mdi:desk"], ["bathroom", "Bathroom", "half_1", "mdi:shower"],
   ["roaming", "Roaming", null], ["test_area", "Test Area", "test"],
 ];
 const light = (name, state, modes, extra = {}) => ({ state, attributes: { friendly_name: name, supported_color_modes: modes, ...(state === "on" ? { color_mode: "color_temp", brightness: 189, color_temp_kelvin: 2538, hs_color: [28.8, 71.2] } : {}), min_color_temp_kelvin: 2000, max_color_temp_kelvin: 6535, ...extra } });
@@ -58,7 +59,7 @@ const ENTITIES = {
 
 export const HOUSE = {
   config: { latitude: 52.3676, longitude: 4.9041, location_name: "Amsterdam", time_zone: "Europe/Amsterdam", unit_system: { temperature: "°C", length: "km" } },
-  areas: Object.fromEntries(AREAS.map(([area_id, name, floor_id]) => [area_id, { area_id, name, floor_id }])),
+  areas: Object.fromEntries(AREAS.map(([area_id, name, floor_id, icon]) => [area_id, { area_id, name, floor_id, ...(icon ? { icon } : {}) }])),
   entities: {},
   states: {},
 };

@@ -796,7 +796,17 @@ export function mountTestFocus(root, { config, getHass }) {
       media: (() => { const players = of(/^media_player\./); return [players.find((id) => states[id]?.state === 'playing') || players.find((id) => states[id]?.state === 'paused') || players[0]].filter(Boolean); })() })[key] || [];
   };
   const keyButton = (k, cls, inner) => '<button class="' + cls + (k.on ? ' on' : '') + '" type="button" data-tone="' + k.tone + '" data-acts="' + acts(k.acts) + '" aria-label="' + esc(k.aria) + '" aria-pressed="' + k.on + '">' + inner + '</button>';
-  const goButton = (r) => '<button class="pill" type="button" data-go="' + esc(r.id) + '" aria-label="Go to ' + esc(r.name) + '">Go</button>';
+  // the room's name opens its page (Matt, 28 Oct: the title is the link; there's no Go any more)
+  const areaTitle = (r) => '<button class="tfAName" type="button" data-go="' + esc(r.id) + '" aria-label="Open ' + esc(r.name) + '">' + esc(r.name) + '</button>';
+  // the room's own icon (its area's in Home Assistant, else Home Assistant's own area icon), the button for its lights
+  // (Matt, 28 Oct, Figma "Area card accordions v04" 521:9673): in a light's colour while one is on, grey when they're
+  // all off. A room without lights, and a folded card, only show it
+  function areaIcon(r, keys, folded = false) {
+    const k = keys.find((x) => x.key === 'lights'), on = Boolean(k?.on), lit = on && k.light ? ' data-light style="' + k.light + '"' : '';
+    const glyph = '<span class="tfAreaGlyph"' + iconSlot('area:' + r.id, r.icon || 'mdi:texture-box', r.name) + '></span>';
+    if (folded || !k) return '<span class="tfIcon tfAreaIcon' + (on ? ' on' : '') + '"' + lit + ' aria-hidden="true">' + glyph + '</span>';
+    return '<button class="tfIcon tfAreaIcon' + (on ? ' on' : '') + '" type="button"' + lit + ' data-acts="' + acts(k.acts) + '" aria-label="' + esc(k.aria) + '" aria-pressed="' + on + '">' + glyph + '</button>';
+  }
   const alertTags = (keys) => keys.filter((k) => k.kind === 'alert' || k.kind === 'note').map((k) => '<span class="sourceTag">' + esc(k.label) + '</span>').join(' ');
   // a room's main: its temperature, else its first reading, else its first device
   const mainOf = (r) => r.readings.find((id) => attr(id).device_class === 'temperature') || [...r.readings, ...r.solar, ...r.openings, ...r.actions, ...r.plugs].find((id) => states[id]) || null;
@@ -825,8 +835,8 @@ export function mountTestFocus(root, { config, getHass }) {
     if (id.startsWith('climate.')) return [inRoom(r, id), off ? 'Off' : cap(a.hvac_action || states[id].state) + (a.temperature != null ? ' · ' + deg(a.temperature) : ''), h && h.value + ' humidity'].filter(Boolean).join(' · ');
     return [!(t && t.id === id) && inRoom(r, id), t && t.id !== id && t.value, h && h.id !== id && h.value + ' humidity'].filter(Boolean).join(' · ');
   };
-  // the open card: name, alerts and Go; the main, which opens its more-info; up to four
-  // controls as tiles, the icon the button
+  // the open card: the room's icon (its lights) and name (its page), with any alerts; the main, which opens its
+  // more-info; up to four controls as tiles, the icon the button
   function areaBody(r, keys, main) {
     const h = main && headline(main), sub = main ? mainSub(r, main, keys) : '';
     // the icon is the button; the name and value open what the tile stands for: a room's lights, covers or plugs as a
@@ -834,7 +844,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const opens = (k) => { const ids = groupIds(r, k.key); return ids.length === 1 ? ids[0] : 'group:' + r.id + ':' + k.key; };
     const tiles = keys.filter((k) => k.kind === 'control').slice(0, 4).map((k) => '<div class="tfATile' + (k.on ? ' on' : '') + '" data-tone="' + k.tone + '"' + (k.light ? ' data-light style="' + k.light + '"' : '') + '>' + keyButton(k, 'tfIcon', k.icon) +
       '<button class="tfName" type="button" data-more="' + esc(opens(k)) + '" aria-label="' + esc(r.name + ' ' + k.label.toLowerCase() + ', ' + k.value + '. Open') + '"><span class="activityRowName">' + esc(k.label) + '</span><span class="activityRowMeta">' + esc(k.value) + '</span></button></div>');
-    return '<div class="workoutPanelTop"><div><div class="tfAName">' + esc(r.name) + '</div>' + alertTags(keys) + '</div>' + goButton(r) + '</div>' +
+    return '<div class="workoutPanelTop">' + areaIcon(r, keys) + '<div class="tfATitle">' + areaTitle(r) + alertTags(keys) + '</div></div>' +
       (main ? '<button class="tfABig" type="button" data-more="' + esc(main) + '" aria-label="' + esc(nameOf(main) + ', ' + valueOf(main) + '. More info') + '">' +
         '<span class="tfABigMain' + (h.text.length > 7 ? ' long' : '') + '">' + esc(h.text) + (h.unit ? '<span class="tfABigUnit">' + esc(h.unit) + '</span>' : '') + '</span>' +
         (sub ? '<span class="tfABigSub">' + esc(sub) + '</span>' : '') + '</button>' : '') +
@@ -842,13 +852,14 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function areaPanel(r) {
     const isActive = r.id === activeArea, keys = roomKeys(r), main = mainOf(r), h = main && headline(main);
-    // a folded card's content can't be reached until it's open. Folded (Matt's Figma "Area card accordions" 490:9283, 27
-    // Oct): the main with the name under it, level and cut with "…" when it doesn't fit, then the room's control icons
-    // two by two (an alert after them, in red; an open door or window plain); tapping anywhere opens it
+    // a folded card's content can't be reached until it's open. Folded (Matt's Figma "Area card accordions v04" 521:9673,
+    // 28 Oct): the room's icon with its name under it, cut with "…" when it doesn't fit; the main; then the room's control
+    // icons two by two (an alert after them, in red; an open door or window plain); tapping anywhere opens it
     const chips = [...keys.filter((k) => k.kind === 'control'), ...keys.filter((k) => k.kind !== 'control' && k.kind !== 'reading')].slice(0, 4);
     return '<article class="workoutPanel tfAreaPanel' + (isActive ? ' active' : '') + '" data-area="' + esc(r.id) + '" tabindex="0" aria-expanded="' + isActive + '" aria-label="' + esc(r.name) + '">' +
       '<div class="panelExpanded"' + (isActive ? '' : ' inert') + '>' + areaBody(r, keys, main) + '</div>' +
-      '<div class="panelCollapsed tfACollapsed"><div class="tfACTop"><span class="tfACMain">' + (h ? esc(h.text + (h.unit ? ' ' + h.unit : '')) : '') + '</span><span class="tfACName">' + esc(r.name) + '</span></div>' +
+      '<div class="panelCollapsed tfACollapsed"><div class="tfACTop">' + areaIcon(r, keys, true) + '<span class="tfACName">' + esc(r.name) + '</span></div>' +
+      '<span class="tfACMain">' + (h ? esc(h.text + (h.unit ? ' ' + h.unit : '')) : '') + '</span>' +
       '<span class="tfACTiles" aria-hidden="true">' + chips.map((k) => '<span class="tfACTile"><span class="tfIcon' + (k.kind === 'alert' ? ' alert' : '') + '"' + (k.on && k.light ? ' data-light style="' + k.light + '"' : '') + '>' + k.icon + '</span></span>').join('') + '</span></div></article>';
   }
   let areaRooms = []; // the rooms with area cards, in Matt's order
