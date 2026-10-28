@@ -5872,7 +5872,7 @@ function Nm(n, { config: l, getHass: i }) {
     const d = Io(t), m = s || (o && t.startsWith("light.") ? ["bright"] : null), _ = d.sections.map((w, v) => w && (!m || m.includes((d.parts || [])[v])) ? w : "").filter(Boolean);
     return '<div class="tfAction' + (d.on ? " on" : "") + '" data-k="' + de(t) + '"' + (d.tone ? ' data-tone="' + d.tone + '"' : "") + Gt(t) + '><div class="tfActionHead">' + yn(t, d) + In(t) + "</div>" + _.join("") + "</div>";
   }
-  const Hn = "dual-controller-v3", Un = "https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.3/dist/dual-axis-controller-v4.js";
+  const Hn = "dual-controller-v3", Un = "https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.4/dist/dual-axis-controller-v4.js";
   let Aa = null;
   async function ho() {
     if (Aa || customElements.get(Hn)) return;
@@ -7177,7 +7177,7 @@ function Nm(n, { config: l, getHass: i }) {
     }
   };
 }
-const Bm = "0.45.5", kl = "move_assistant", Pm = "move_assistant", rc = "move_assistant_checkin_reminder";
+const Bm = "0.45.6", kl = "move_assistant", Pm = "move_assistant", rc = "move_assistant_checkin_reminder";
 function Im() {
   if (document.getElementById("move-assistant-inter")) return;
   const n = document.createElement("link");
