@@ -32,13 +32,20 @@ views:
       - type: custom:move-assistant-card
 ```
 
-## Test focus layout
+## HomeCore
 
-`layout: test-focus` turns Home into a page for your house, to try HomeCore with real devices. Your normal Home never shows it.
+`layout: test-focus` turns the card into **HomeCore**, a page for your house, to try HomeCore with real devices. Your normal Home never shows it. To give it its own place in the sidebar:
+
+1. Settings → Dashboards → **Add dashboard** → "New dashboard from scratch", name it *HomeCore*, icon `mdi:home`.
+2. Open it → ✎ → ⋮ **Raw configuration editor**, paste:
 
 ```yaml
-- type: custom:move-assistant-card
-  layout: test-focus
+views:
+  - title: HomeCore
+    type: panel
+    cards:
+      - type: custom:move-assistant-card
+        layout: test-focus
 ```
 
 - **Dashboard** is Home: the HomeCore concept's cards at their drawn sizes, with no labels above anything. Your home's name, the summaries, the weather card and the areas, Favourites and Activity (five rows each, so their tiles line up), Energy today (a graph of the day and its sources in one row; tap a source to see its day, the card never moving), Compared to average, and tiles for the lights and the thermostat. The dashboard shows only the living room's, bedroom's and office's lights. A light that's off keeps a faint line on its bar where it was. Tap the weather card's Now for the Weather page; a day opens in the card. Activity is your devices' latest changes from Home Assistant's logbook, with who did it and when: as many as its card fits (five in a large card), the rest a scroll away, each scroll settling on the next one. Energy today comes from your Energy dashboard, or is made up if it isn't set up; tap a source for its graph.

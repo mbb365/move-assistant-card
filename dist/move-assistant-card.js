@@ -5554,7 +5554,7 @@ function Nm(n, { config: s, getHass: o }) {
     var R, ie, G;
     if (!w || u("housePane")) return;
     const t = u("settingsView");
-    t.querySelector(".settingsTitle").textContent = "HomeCore test";
+    t.querySelector(".settingsTitle").textContent = "HomeCore";
     const i = [["look", "Appearance"], ["lights", "Lights"], ["sources", "Sources"], ["sums", "Summaries"]], l = (V, le) => '<div class="houseTab' + (V === "look" ? " active" : "") + '" data-house-pane="' + V + '"><section class="card">' + le + "</section></div>";
     t.querySelector(".rubberTabs").insertAdjacentHTML("afterend", '<div class="settingsPane active" id="housePane"><div class="tabs rubberTabs houseTabs"><div class="rubberIndicator" aria-hidden="true"></div>' + i.map(([V, le]) => '<button class="tab segBtn' + (V === "look" ? " active" : "") + '" type="button" data-house-tab="' + V + '">' + le + "</button>").join("") + "</div>" + l("look", '<div class="toggleList" id="houseLook"></div>') + l("lights", '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p><div class="metaTableWrap"><table class="metaTable tfLightTable"><thead><tr><th>Light</th><th>Room</th><th>Now</th><th class="metaSwitchCol">Favourite</th><th>Tile</th><th>Pad</th></tr></thead><tbody id="lightRows"></tbody></table></div>') + l("sources", '<div class="toggleList">' + N.map(([V, le, Se]) => j(le, Se, '<select class="settingsSelect" data-source="' + V + '" aria-label="' + le + '"></select>')).join("") + "</div>") + l("sums", '<div class="toggleList">' + Object.entries(ul).map(([V, le]) => j(le.name, "", '<button class="switch" type="button" role="switch" data-sum-toggle="' + V + '" aria-label="' + le.name + ' summary"></button>')).join("") + "</div>") + "</div>");
     const d = u("houseLook");
@@ -7094,7 +7094,7 @@ function Nm(n, { config: s, getHass: o }) {
     }
   };
 }
-const Bm = "0.43.4", hl = "move_assistant", Pm = "move_assistant", ec = "move_assistant_checkin_reminder";
+const Bm = "0.43.5", hl = "move_assistant", Pm = "move_assistant", ec = "move_assistant_checkin_reminder";
 function Im() {
   if (document.getElementById("move-assistant-inter")) return;
   const n = document.createElement("link");
