@@ -616,6 +616,16 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!el.shadowRoot || el.shadowRoot.querySelector('style[data-tf]')) return;
     el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_TEXT + (onBoard ? DAC_FIT : '') })).dataset.tf = '';
   };
+  // a controller taken off the page (another page opened) is drawn again from nothing when it's back, a moment later;
+  // until it is, its place keeps its last height, so nothing under it moves (Matt, 28 Oct: back from the weather, the
+  // page jumped)
+  const dacHeights = new Map(); // place:light id → its height when last drawn
+  const dacSizes = new ResizeObserver((entries) => entries.forEach(({ target }) => {
+    const slot = target.parentElement;
+    if (!slot || !target.offsetHeight) return;
+    slot.style.removeProperty('min-height');
+    dacHeights.set(slot.dataset.dac, slot.offsetHeight);
+  }));
   function mountDacs(scope) {
     scope.querySelectorAll('[data-dac]').forEach((slot) => {
       const key = slot.dataset.dac, onBoard = key.startsWith('dash:');
@@ -623,6 +633,8 @@ export function mountTestFocus(root, { config, getHass }) {
       if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), ...(onBoard ? { tap_action: { action: 'none' } } : {}) }); dacs.set(key, el); }
       el.hass = dacHass();
       if (el.parentNode !== slot) slot.replaceChildren(el);
+      if (!el.offsetHeight && dacHeights.has(key)) slot.style.minHeight = dacHeights.get(key) + 'px';
+      dacSizes.observe(el);
       dressDac(el, onBoard);
     });
   }
@@ -1523,23 +1535,41 @@ export function mountTestFocus(root, { config, getHass }) {
     '<button class="back" type="button" data-area-back aria-label="Back to the house">' + BACK + '</button><div class="settingsTitle">' + esc(x.name) + '</div></div>';
   // a room's Go, or the Security summary, opens its section's page at its top; back returns to the house exactly where
   // you were (Matt, 28 Oct). Scrolling it into view instead would tuck its title under Home Assistant's top bar
-  let leftAt = 0; // how far the house was scrolled when a page opened
+  let leftAt = 0, leftTop = null; // how far the house was scrolled when a page opened, and where its opener was on screen
+  // the card a page opened from: the weather card, the areas, or the summaries
+  const openerOf = (key) => (key === 'weather' ? dashBoxes.wx : key.startsWith('room:') ? grid.querySelector('.tfAreas') : grid.querySelector('.tfDashBarRow'));
   function openArea(key) {
-    if (!areaPage) leftAt = scroller().scrollTop;
+    if (!areaPage) { leftAt = scroller().scrollTop; leftTop = openerOf(key)?.getBoundingClientRect().top ?? null; }
     areaPage = key;
     if (key.startsWith('room:')) activeArea = key.slice(5);
     render();
     scroller().scrollTop = 0;
     grid.querySelector('[data-area-back]')?.focus({ preventScroll: true });
   }
+  // back on the house, the card you left from stays where it was on screen while the rest finishes drawing (1.5 s, or
+  // until you touch or scroll), so nothing that's drawn late moves the page under you
+  let holdStop = null;
+  function holdPlace(find, top) {
+    holdStop?.();
+    if (top == null) return;
+    const sc = scroller(), until = performance.now() + 1500, quit = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+    let raf = 0;
+    const stop = () => { cancelAnimationFrame(raf); quit.forEach((t) => window.removeEventListener(t, stop, true)); holdStop = null; };
+    const fix = () => {
+      const el = find();
+      if (el?.isConnected) { const off = el.getBoundingClientRect().top - top; if (Math.abs(off) > 0.5) sc.scrollTop += off; }
+      if (performance.now() < until) raf = requestAnimationFrame(fix); else stop();
+    };
+    quit.forEach((t) => window.addEventListener(t, stop, { capture: true, passive: true }));
+    holdStop = stop;
+    fix();
+  }
   function closeArea() {
     const key = areaPage;
     areaPage = null;
     render();
-    // again a frame later, once the weather and anything else drawn after has its height
-    const sc = scroller(), y = leftAt;
-    sc.scrollTop = y;
-    requestAnimationFrame(() => { sc.scrollTop = y; });
+    scroller().scrollTop = leftAt;
+    holdPlace(() => openerOf(key), leftTop);
     const panel = key.startsWith('room:') ? grid.querySelector('.tfAreaPanel[data-area="' + CSS.escape(key.slice(5)) + '"]')
       : key === 'weather' ? dashBoxes.wx.querySelector('.wbOpenPage') : grid.querySelector('[data-k="sum:' + CSS.escape(key) + '"]');
     (panel?.querySelector('[data-go]') || panel)?.focus({ preventScroll: true });
