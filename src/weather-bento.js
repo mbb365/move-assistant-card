@@ -6,13 +6,15 @@
 //   bento.setStyle(s);   // the weather style changed in Settings
 //   bento.destroy();     // unsubscribes, stops the timers and the paint clock, empties the container
 //
-// Cards, order and widths are the patch's (without its Visibility, which Matt never asked for): the weather card and
+// Cards, order and widths are the patch's (its Visibility since 29 Oct, when Matt asked for it): the weather card and
 // Next hours (520), then data tiles (252), with Compared to average two wide; they wrap with the container, 16 apart, and
 // go to the phone layout under 652. Heights follow the dashboard's grid on desktop (weather-bento.css).
 // A card without data hides, as in the patch. Rules are in weather-bento.css; the container must sit inside #app so
-// the card's tokens (and light mode) reach it. Weather art: weather-art.js, plus weather-bento-art.js for the three-day sky.
+// the card's tokens (and light mode) reach it. Weather art: weather-art.js, plus weather-bento-art.js for the three-day sky
+// and visibility-art.js for the visibility tile's ship.
 import {WX_PALETTE,wxKey,wxPose,wxBitmap} from './weather-art.js';
 import {wbStripBitmap,wbStripSmooth,wbSmoothIcon} from './weather-bento-art.js';
+import {visibilityBitmap,nearestLandmarks,visibilityToKm,visibilityLevel} from './visibility-art.js';
 
 const MINUTE=6e4,HOUR=36e5,DAY=864e5,DAY_MINUTES=1440;
 // The weather card: six days. Today's readings for the opened day are fetched again after ten minutes.
@@ -23,6 +25,8 @@ const WET=new Set(['rainy','pouring','lightning','lightning-rainy','hail','snowy
 // Data tiles: history refreshed every 30 minutes; a week of highs for the average (at least 3 days); 1 hPa in 3 hours is a trend
 const REFRESH=30*MINUTE,AVERAGE_DAYS=7,MIN_AVERAGE_DAYS=3,PRESSURE_TREND_HPA=1;
 const SUN_TICK=MINUTE,MOON_TICK=15*MINUTE;
+// Visibility: past landmarks, the distance as a walk at 5 km/h
+const WALKING_KMH=5;
 
 // Material Design Icons, as the patch uses them
 const I={
@@ -38,6 +42,7 @@ const I={
   sunny:'M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z',
   windy:'M4,10A1,1 0 0,1 3,9A1,1 0 0,1 4,8H12A2,2 0 0,0 14,6A2,2 0 0,0 12,4C11.45,4 10.95,4.22 10.59,4.59C10.2,5 9.56,5 9.17,4.59C8.78,4.2 8.78,3.56 9.17,3.17C9.9,2.45 10.9,2 12,2A4,4 0 0,1 16,6A4,4 0 0,1 12,10H4M19,12A1,1 0 0,0 20,11A1,1 0 0,0 19,10C18.72,10 18.47,10.11 18.29,10.29C17.9,10.68 17.27,10.68 16.88,10.29C16.5,9.9 16.5,9.27 16.88,8.88C17.42,8.34 18.17,8 19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14H5A1,1 0 0,1 4,13A1,1 0 0,1 5,12H19M18,18H4A1,1 0 0,1 3,17A1,1 0 0,1 4,16H18A3,3 0 0,1 21,19A3,3 0 0,1 18,22C17.17,22 16.42,21.66 15.88,21.12C15.5,20.73 15.5,20.1 15.88,19.71C16.27,19.32 16.9,19.32 17.29,19.71C17.47,19.89 17.72,20 18,20A1,1 0 0,0 19,19A1,1 0 0,0 18,18Z',
   airFilter:'M19,18.31V20A2,2 0 0,1 17,22H7A2,2 0 0,1 5,20V16.3C4.54,16.12 3.95,16 3,16A1,1 0 0,1 2,15A1,1 0 0,1 3,14C3.82,14 4.47,14.08 5,14.21V12.3C4.54,12.12 3.95,12 3,12A1,1 0 0,1 2,11A1,1 0 0,1 3,10C3.82,10 4.47,10.08 5,10.21V8.3C4.54,8.12 3.95,8 3,8A1,1 0 0,1 2,7A1,1 0 0,1 3,6C3.82,6 4.47,6.08 5,6.21V4A2,2 0 0,1 7,2H17A2,2 0 0,1 19,4V6.16C20.78,6.47 21.54,7.13 21.71,7.29C22.1,7.68 22.1,8.32 21.71,8.71C21.32,9.1 20.8,9.09 20.29,8.71V8.71C20.29,8.71 19.25,8 17,8C15.74,8 14.91,8.41 13.95,8.9C12.91,9.41 11.74,10 10,10C9.64,10 9.31,10 9,9.96V7.95C9.3,8 9.63,8 10,8C11.26,8 12.09,7.59 13.05,7.11C14.09,6.59 15.27,6 17,6V4H7V20H17V18C18.5,18 18.97,18.29 19,18.31M17,10C15.27,10 14.09,10.59 13.05,11.11C12.09,11.59 11.26,12 10,12C9.63,12 9.3,12 9,11.95V13.96C9.31,14 9.64,14 10,14C11.74,14 12.91,13.41 13.95,12.9C14.91,12.42 15.74,12 17,12C19.25,12 20.29,12.71 20.29,12.71V12.71C20.8,13.1 21.32,13.1 21.71,12.71C22.1,12.32 22.1,11.69 21.71,11.29C21.5,11.08 20.25,10 17,10M17,14C15.27,14 14.09,14.59 13.05,15.11C12.09,15.59 11.26,16 10,16C9.63,16 9.3,16 9,15.95V17.96C9.31,18 9.64,18 10,18C11.74,18 12.91,17.41 13.95,16.9C14.91,16.42 15.74,16 17,16C19.25,16 20.29,16.71 20.29,16.71V16.71C20.8,17.1 21.32,17.1 21.71,16.71C22.1,16.32 22.1,15.69 21.71,15.29C21.5,15.08 20.25,14 17,14Z',
+  eyeOutline:'M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z',
   flower:'M3,13A9,9 0 0,0 12,22C12,17 7.97,13 3,13M12,5.5A2.5,2.5 0 0,1 14.5,8A2.5,2.5 0 0,1 12,10.5A2.5,2.5 0 0,1 9.5,8A2.5,2.5 0 0,1 12,5.5M5.6,10.25A2.5,2.5 0 0,0 8.1,12.75C8.63,12.75 9.12,12.58 9.5,12.31C9.5,12.37 9.5,12.43 9.5,12.5A2.5,2.5 0 0,0 12,15A2.5,2.5 0 0,0 14.5,12.5C14.5,12.43 14.5,12.37 14.5,12.31C14.88,12.58 15.37,12.75 15.9,12.75C17.28,12.75 18.4,11.63 18.4,10.25C18.4,9.25 17.81,8.4 16.97,8C17.81,7.6 18.4,6.74 18.4,5.75C18.4,4.37 17.28,3.25 15.9,3.25C15.37,3.25 14.88,3.41 14.5,3.69C14.5,3.63 14.5,3.56 14.5,3.5A2.5,2.5 0 0,0 12,1A2.5,2.5 0 0,0 9.5,3.5C9.5,3.56 9.5,3.63 9.5,3.69C9.12,3.41 8.63,3.25 8.1,3.25A2.5,2.5 0 0,0 5.6,5.75C5.6,6.74 6.19,7.6 7.03,8C6.19,8.4 5.6,9.25 5.6,10.25M12,22A9,9 0 0,0 21,13C16,13 12,17 12,22Z'
 };
 
@@ -51,10 +56,12 @@ const T={
   phases:{new_moon:'New moon',waxing_crescent:'Waxing crescent',first_quarter:'First quarter',waxing_gibbous:'Waxing gibbous',full_moon:'Full moon',waning_gibbous:'Waning gibbous',last_quarter:'Last quarter',waning_crescent:'Waning crescent'},
   wind:'Wind',windFrom:'From {direction}',beaufort:'Bft',
   cardinal:{n:'N',nne:'NNE',ne:'NE',ene:'ENE',e:'E',ese:'ESE',se:'SE',sse:'SSE',s:'S',ssw:'SSW',sw:'SW',wsw:'WSW',w:'W',wnw:'WNW',nw:'NW',nnw:'NNW'},
-  metrics:{humidity:'Humidity',pressure:'Pressure',uv_index:'UV index',precipitation:'Precipitation',compared_to_average:'Compared to average'},
+  metrics:{humidity:'Humidity',pressure:'Pressure',uv_index:'UV index',precipitation:'Precipitation',compared_to_average:'Compared to average',visibility:'Visibility'},
   dewPoint:'Dew point {dew_point}',
   pressure:{rising:'Rising over 3 hours',falling:'Falling over 3 hours',steady:'Steady over 3 hours'},
-  uvLevel:{low:'Low',moderate:'Moderate',high:'High',very_high:'Very high',extreme:'Extreme'},uvPeak:'{level} · up to {uv_index} at {time}',
+  uvLevel:{low:'Low',moderate:'Moderate',high:'High',very_high:'Very high',extreme:'Extreme'},
+  visibilityLevel:{very_poor:'Very poor',poor:'Poor',moderate:'Moderate',good:'Good',very_good:'Very good',excellent:'Excellent'},
+  visibilityLandmarks:'As far as {from} is from {to}',walkMinutes:'A {minutes}-minute walk',walkHours:'A {hours}-hour walk',walkDay:"A day's walk",uvPeak:'{level} · up to {uv_index} at {time}',
   rainExpected:'{amount} in the next 24 hours',rainLast24h:'Last 24 hours',
   average:{above:'above the average high',below:'below the average high',same:'same as the average high'},
   highsLastDays:'Highs of the last {days} days',openPage:'Open the weather page',todayVsAverage:'Today {today} · average {average}',
@@ -194,6 +201,7 @@ function weatherUnit(h,s,measure){
     case 'precipitation':return a.precipitation_unit||(length==='km'?'mm':'in');
     case 'pressure':return a.pressure_unit||(length==='km'?'hPa':'inHg');
     case 'wind_speed':case 'wind_gust_speed':return a.wind_speed_unit||length+'/h';
+    case 'visibility':return a.visibility_unit||length;
     default:return a.temperature_unit||h.config?.unit_system?.temperature||'';
   }
 }
@@ -337,7 +345,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   container.replaceChildren(root);
 
   // The patch's strategy order; sizes from hui-weather-bento-card
-  const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','air_quality'].filter(name=>!cards||cards.includes(name));
+  const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','visibility','air_quality'].filter(name=>!cards||cards.includes(name));
   const SIZES={current:'wide',hourly:'wide',compared_to_average:'double'};
   const items={};
   CARDS.forEach(name=>{
@@ -779,6 +787,28 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       visual:valueHtml(fmtNum(data.rain.change,h.locale,{maximumFractionDigits:1}),unit)+(expected.length>1?barsHtml(expected.map(e=>({label:'',value:Number(e.precipitation)}))):'')});
   }
 
+  // Visibility (Matt, 28 Oct, Figma "Visibility tile · proposal"): a ship on the horizon in as much fog as the visibility,
+  // the distance as landmarks from the home's country, or as a walk; the Met Office's band under the name
+  function renderVisibility(h,src){
+    const vis=value(h,src,'visibility');if(!vis||!num(vis.value))return '';
+    const parts=attrParts(h,vis.stateObj,'visibility',vis.value),km=visibilityToKm(Number(vis.value),weatherUnit(h,vis.stateObj,'visibility'));
+    return tile({icon:I.eyeOutline,name:T.metrics.visibility,sub:T.visibilityLevel[visibilityLevel(km)],
+      visual:'<div class="wbSea"><canvas class="wbSeaArt" data-wb-sea="'+km+'" aria-hidden="true"></canvas><div class="wbSeaFact">'+esc(distanceFact(h,km))+'</div>'+
+        '<div class="wbSeaValue">'+valueHtml(parts.number,parts.unit)+'</div></div>'});
+  }
+  // a distance people can picture: landmarks, or the walk when there are none (whole minutes for short walks, then fives)
+  function distanceFact(h,km){
+    const pair=nearestLandmarks(h.config?.country,km);
+    if(pair)return fill(T.visibilityLandmarks,{from:pair.from,to:pair.to});
+    const minutes=(km/WALKING_KMH)*60;
+    if(minutes<60){
+      const rounded=minutes<5?Math.max(1,Math.round(minutes)):5*Math.round(minutes/5);
+      if(rounded<60)return fill(T.walkMinutes,{minutes:fmtNum(rounded,h.locale)});
+    }
+    const hours=Math.max(1,Math.round(minutes/30)/2);
+    return hours<8?fill(T.walkHours,{hours:fmtNum(hours,h.locale)}):T.walkDay;
+  }
+
   /* ---- Air quality and pollen: tiles in halves; a tapped tile opens inside the card ---- */
   function renderAirQuality(h){
     if(data.categories===undefined)loadCategories(h);
@@ -811,7 +841,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   }
 
   const RENDER={current:renderCurrent,hourly:renderHourly,sun:renderSun,moon:renderMoon,wind:renderWind,uv_index:renderUv,
-    compared_to_average:renderCompared,humidity:renderHumidity,pressure:renderPressure,precipitation:renderPrecipitation,air_quality:renderAirQuality};
+    compared_to_average:renderCompared,humidity:renderHumidity,pressure:renderPressure,precipitation:renderPrecipitation,visibility:renderVisibility,air_quality:renderAirQuality};
 
   /* ---- Drawing: each card is redrawn only when its markup changes; focus and the strip's scroll stay put ---- */
   function render(force){
@@ -884,6 +914,13 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
         putImage(cv,wxBitmap(wxPose(cv.dataset.wbWx,c.colors),{size:Number(cv.dataset.size)||40,px:2,oneBit:style==='onebit',colors:c.colors,ink:c.ink,paper:c.paper,clock:t,idle}));
       });
     }
+    // the visibility tile's sea doesn't move: it repaints only when its size, the visibility or the sky's colour changes
+    root.querySelectorAll('canvas[data-wb-sea]').forEach(cv=>{
+      const w=cv.clientWidth,hgt=cv.clientHeight,km=Number(cv.dataset.wbSea),at=w+'x'+hgt+':'+km+':'+c.colors.skyClearDay;
+      if(!w||!hgt||!(km>0)||cv.dataset.painted===at)return;
+      cv.dataset.painted=at;
+      putImage(cv,visibilityBitmap(w,hgt,km,c.colors));
+    });
     paintStrip(t,c);
   }
   // Bitmap and 1-bit step ten times a second; the Smooth sky drifts every frame

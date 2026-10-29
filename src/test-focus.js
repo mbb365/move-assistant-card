@@ -129,7 +129,7 @@ export function mountTestFocus(root, { config, getHass }) {
   const SOURCES = [
     ['weather', 'Weather', 'The forecast under Home.', (id) => id.startsWith('weather.')],
     ['grid', 'Energy', 'Power from the grid, for Energy.', (id) => id.startsWith('sensor.') && attr(id).device_class === 'power' && /^(W|kW)$/.test(attr(id).unit_of_measurement || '')],
-    ['alarm', 'Alarm', 'The alarm on the Security page.', (id) => id.startsWith('alarm_control_panel.')],
+    ['alarm', 'Alarm', 'The alarm in the Security popup.', (id) => id.startsWith('alarm_control_panel.')],
   ];
   const seg = (id, label, attrName, opts) => '<div class="themeChoice" id="' + id + '" role="group" aria-label="' + label + '">' +
     opts.map(([v, t]) => '<button class="wxLayoutBtn" type="button" aria-pressed="false" ' + attrName + '="' + v + '">' + t + '</button>').join('') + '</div>';
@@ -278,7 +278,7 @@ export function mountTestFocus(root, { config, getHass }) {
   const grid = root.querySelector('#homeView .grid');
   let open = null; // { key of its card, entity id, card height before it opened }
   let activeArea = null; // the area card that's open in the accordion
-  let areaPage = null; // the section whose own page is open (a room's, from its card's Go; Security's, from its summary), or null for the house
+  let areaPage = null; // the section whose own page is open (a room's, from its card's Go, or the weather's), or null for the house
   let more = null; // { id, opener } while the stand-in more-info is open
   const history = new Map(); // entity id → { at, points }
   const energyText = new Map(); // the dashboard's energy: statistic id → { name, text, icon } its tile shows
@@ -427,6 +427,8 @@ export function mountTestFocus(root, { config, getHass }) {
     if (d === 'switch') return st.state === 'on' ? 'On' : 'Off';
     if (d === 'plant') return st.state === 'ok' ? 'Healthy' : cap(a.problem);
     if (d === 'binary_sensor') {
+      if (a.device_class === 'battery') return st.state === 'on' ? 'Low' : 'Normal';
+      if (a.device_class === 'problem') return st.state === 'on' ? 'Problem' : 'OK';
       if (a.device_class === 'moisture') return st.state === 'on' ? 'Wet' : 'Dry';
       if (OPEN_CLASSES.includes(a.device_class)) return st.state === 'on' ? 'Open' : 'Closed';
       return st.state === 'on' ? 'Detected' : 'Clear';
@@ -521,7 +523,6 @@ export function mountTestFocus(root, { config, getHass }) {
     return card(key, order, 'Energy', rows, '<div class="tfCardGraph"><svg class="tfGraph" data-solar role="img" aria-label="Solar, last 24 hours"></svg></div>');
   }
   const plantCard = (p, order) => card('plant:' + p.id, order, nameOf(p.id), p.readings.map((id) => readingRow('plant:' + p.id, id)), '', p.id);
-  const openingsCard = (order) => card('openings', order, 'Doors and windows', model.security.openings.map((id) => readingRow('openings', id)));
 
   /* action tiles: a name row, then sections stacked under it */
   // was: where a light's brightness was before it went off, a faint line on its bar
@@ -874,10 +875,10 @@ export function mountTestFocus(root, { config, getHass }) {
   const areasHtml = (order) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + order + '">' +
     '<section class="workoutGallery tfAreaGallery" aria-label="Areas">' + areaRooms.map(areaPanel).join('') + '</section></div>';
 
-  /* sections: Home, Security and each room, with their devices as Home Assistant has them */
+  /* sections: Home and each room, with their devices as Home Assistant has them (Security is a summary's popup, Matt
+     29 Oct) */
   const sectionsOf = () => [
     { key: 'home', name: 'Home', ids: model.homeVacuums },
-    { key: 'security', name: 'Security', ids: [...model.security.alarms, ...model.security.locks] },
     ...model.rooms.map((r) => ({ key: 'room:' + r.id, name: r.name, room: r, ids: r.actions })),
   ];
 
@@ -923,18 +924,23 @@ export function mountTestFocus(root, { config, getHass }) {
     return '<button class="tfStar" type="button" data-star="' + esc(id) + '" aria-pressed="' + on + '" aria-label="Favourite: ' + esc(nameOf(id)) + '">' + STAR(on) + '</button>';
   };
   // a device as a tile in a card: its icon is the button where it has one, and its name opens more-info. Favourites
-  // add the room; the favourites list gives a star instead of the button
-  function deviceRow(id, { area = false, star = false } = {}) {
-    const d = id.split('.')[0], spec = ACTION_DOMAINS.includes(d) ? specFor(id) : null;
+  // add the room; the favourites list gives a star instead of the button. Plain: no button, and what it says can be
+  // given (Maintenance's vacuum is just its battery), and it goes by its device's name, as Home Assistant's
+  // Maintenance page names a battery ("Back door sensor", not "Back door sensor Battery"); alert: what it says is in
+  // the danger colour
+  function deviceRow(id, { area = false, star = false, plain = false, say = null, alert = false } = {}) {
+    const dev = plain && getHass()?.devices?.[getHass()?.entities?.[id]?.device_id];
+    const name = (dev && (dev.name_by_user || dev.name)) || nameOf(id);
+    const d = id.split('.')[0], spec = !plain && ACTION_DOMAINS.includes(d) ? specFor(id) : null;
     const on = spec ? spec.on : ['on', 'open', 'playing'].includes(states[id]?.state);
-    const button = spec ? spec.button
+    const button = plain ? null : spec ? spec.button
       : TOGGLES.includes(d) ? { act: act(d, 'toggle', id), label: 'Turn ' + nameOf(id) + (on ? ' off' : ' on') }
         : d === 'scene' || d === 'script' ? { act: act(d, 'turn_on', id), label: 'Run ' + nameOf(id) } : null;
-    const meta = valueOf(id) + (area && whereIs.get(id) ? ' · ' + whereIs.get(id) : '');
+    const meta = (say ?? valueOf(id)) + (area && whereIs.get(id) ? ' · ' + whereIs.get(id) : '');
     const icon = spec?.icon || iconFor(id);
-    return '<div class="activityRow' + (button ? ' tfPlug' : '') + (on ? ' on' : '') + (star ? ' tfPick' : '') + '" data-k="' + esc((area ? 'fav:' : 'row:') + id) + '" data-tone="' + (d === 'light' ? 'light' : spec?.tone || 'blue') + '"' + lightAttrs(id) + '>' +
+    return '<div class="activityRow' + (button ? ' tfPlug' : '') + (on ? ' on' : '') + (star ? ' tfPick' : '') + (alert ? ' alert' : '') + '" data-k="' + esc((area ? 'fav:' : 'row:') + id) + '" data-tone="' + (d === 'light' ? 'light' : spec?.tone || 'blue') + '"' + lightAttrs(id) + '>' +
       (button && !star ? '<button class="tfIcon" type="button" data-act="' + button.act + '" aria-label="' + esc(button.label) + '"' + iconSlot(id, icon) + '></button>' : '<div class="tfIcon" aria-hidden="true"' + iconSlot(id, icon) + '></div>') +
-      '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(nameOf(id) + ', ' + meta + '. More info') + '"><span class="activityRowName">' + esc(nameOf(id)) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></button>' +
+      '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(name + ', ' + meta + '. More info') + '"><span class="activityRowName">' + esc(name) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></button>' +
       (star ? starButton(id) : '') + '</div>';
   }
   const weatherId = () => (states[prefs.sources?.weather] ? prefs.sources.weather : states['weather.forecast_home'] ? 'weather.forecast_home' : Object.keys(states).find((x) => x.startsWith('weather.')));
@@ -956,6 +962,40 @@ export function mountTestFocus(root, { config, getHass }) {
     keys.forEach((key) => { if (!seen.has(key)) out.push({ type: 'summary', key }); });
     return out;
   }
+  // Maintenance (Matt, 29 Oct): counted as Home Assistant counts it (batteries at 20% or under that aren't charging,
+  // battery and problem sensors that are on, any of them unavailable), plus plants that need care and a vacuum that's
+  // low and away from its dock. What needs attention comes first, then everything else by room, the room order the
+  // dashboard's; a vacuum is just its battery there
+  function maintenanceData() {
+    const ents = getHass()?.entities || {}, dc = (id) => attr(id).device_class;
+    const sensors = Object.keys(states).filter((id) => (id.startsWith('sensor.') && dc(id) === 'battery') || (id.startsWith('binary_sensor.') && ['battery', 'problem'].includes(dc(id))));
+    const plants = model.rooms.flatMap((r) => r.plants.map((p) => p.id));
+    if (!sensors.length && !plants.length) return null;
+    const charging = (id) => {
+      const dev = ents[id]?.device_id;
+      return Boolean(dev) && Object.keys(states).some((x) => x.startsWith('binary_sensor.') && ents[x]?.device_id === dev && dc(x) === 'battery_charging' && states[x].state === 'on');
+    };
+    const isLow = (id) => (id.startsWith('vacuum.') ? attr(id).battery_level <= 20 && states[id].state !== 'docked'
+      : id.startsWith('binary_sensor.') ? dc(id) === 'battery' && states[id].state === 'on'
+        : parseFloat(states[id].state) <= 20 && !charging(id));
+    const low = [...sensors, ...model.vacuums].filter((id) => states[id] && isLow(id));
+    const problems = [...sensors.filter((id) => dc(id) === 'problem' && states[id].state === 'on'), ...plants.filter((id) => states[id]?.state === 'problem')];
+    const gone = sensors.filter((id) => states[id].state === 'unavailable');
+    const attention = [...new Set([...low, ...problems, ...gone])];
+    // the rest: plants, the vacuum, batteries lowest first, then problem sensors
+    const level = (id) => { const n = parseFloat(states[id].state); return dc(id) === 'battery' && Number.isFinite(n) ? n : 101; };
+    const rest = [...plants, ...model.vacuums, ...[...sensors].sort((a, b) => level(a) - level(b))].filter((id) => states[id] && !attention.includes(id));
+    const byRoom = new Map();
+    rest.forEach((id) => { const a = model.areaOf?.(id) || ''; byRoom.set(a, [...(byRoom.get(a) || []), id]); });
+    const rank = (a) => { const i = model.rooms.findIndex((r) => r.id === a); return a === '' ? Infinity : i < 0 ? model.rooms.length : i; };
+    const rooms = [...byRoom.keys()].sort((a, b) => rank(a) - rank(b));
+    const roomName = (a) => model.rooms.find((r) => r.id === a)?.name || getHass()?.areas?.[a]?.name || a;
+    return {
+      value: [low.length && count(low.length, 'low battery', 'low batteries'), problems.length && count(problems.length, 'problem', 'problems'), gone.length && count(gone.length, 'unavailable device', 'unavailable devices')].filter(Boolean).join(', ') || 'All good',
+      plain: true,
+      groups: [{ name: 'Needs attention', ids: attention, alert: true }, ...rooms.map((a) => ({ name: a ? roomName(a) : rooms.length > 1 ? 'Other devices' : 'Devices', ids: byRoom.get(a) }))].filter((g) => g.ids.length),
+    };
+  }
   // each summary's line, worked out as Home Assistant's summary card does, and the devices it opens to
   function summaryData() {
     const rooms = model.rooms, sec = model.security, of = (r, re) => r.actions.filter((id) => re.test(id));
@@ -969,17 +1009,14 @@ export function mountTestFocus(root, { config, getHass }) {
     const disarmed = sec.alarms.filter((id) => states[id]?.state === 'disarmed').length;
     const warnText = warnings ? count(warnings, 'warning', 'warnings') : null;
     const secText = unlocked ? unlocked + ' unlocked' : disarmed ? disarmed + ' disarmed' : warnText ? null : 'All secure';
-    const batteries = Object.keys(states).filter((id) => id.startsWith('sensor.') && attr(id).device_class === 'battery').sort((a, b) => Number(states[a].state) - Number(states[b].state));
-    const low = [...batteries.filter((id) => Number(states[id].state) < 20), ...model.vacuums.filter((id) => attr(id).battery_level < 20)];
-    const plants = rooms.flatMap((r) => r.plants.map((p) => p.id)).sort((a, b) => (states[b]?.state === 'problem') - (states[a]?.state === 'problem'));
-    const care = plants.filter((id) => states[id]?.state === 'problem');
+    const maint = maintenanceData();
     const solar = rooms.flatMap((r) => r.solar), solarNow = solar.find((id) => id.endsWith('_power'));
     const all = {
       light: lights.length && { value: lit ? lit + ' on' : 'All off', groups: groups((r) => r.lights) },
       climate: temps.length && { value: lo === hi ? lo + '°' : lo + ' - ' + hi + '°', groups: groups((r) => [...r.readings.filter((id) => ['temperature', 'humidity'].includes(attr(id).device_class)), ...of(r, /^(climate|humidifier)\./)]) },
       security: (sec.alarms.length || sec.locks.length) && { value: [warnText, secText].filter(Boolean).join(', '), groups: [{ name: 'Alarm and locks', ids: [...sec.alarms, ...sec.locks] }, { name: 'Doors and windows', ids: sec.openings }].filter((g) => g.ids.length) },
       media_players: players.length && { value: playing ? playing + ' playing' : 'No media playing', groups: groups((r) => of(r, /^media_player\./)) },
-      maintenance: (batteries.length || plants.length) && { value: [low.length && count(low.length, 'low battery', 'low batteries'), care.length && count(care.length, 'problem', 'problems')].filter(Boolean).join(', ') || 'All good', groups: [{ name: 'Plants', ids: plants }, { name: 'Batteries', ids: [...model.vacuums, ...batteries] }].filter((g) => g.ids.length) },
+      maintenance: maint,
       energy: model.grid && { value: watts(Number(states[solarNow]?.state || 0) * 1000 + Number(states[model.grid].state)) + ' now', groups: [{ name: 'Energy', ids: [...solar, model.grid] }] },
     };
     const out = [];
@@ -1008,7 +1045,6 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function openSummary(key, opener) {
     if (key.startsWith('path:')) { go(key.slice(5)); return; }
-    if (key === 'security') { openArea('security'); return; }
     openMore('summary:' + key, opener);
   }
   // saved favourites, Home Assistant's home view and security settings, and its suggested devices
@@ -1839,7 +1875,7 @@ export function mountTestFocus(root, { config, getHass }) {
     drawHistory(svg.dataset.graph, svg).then(() => { if (animate) drawIn(svg); });
   }
 
-  /* the page: areas, Home (weather, vacuum), Security, then each room: its label, readings, plants and action tiles */
+  /* the page: areas, Home (weather, vacuum), then each room: its label, readings, plants and action tiles */
   function layout() {
     model = house.model(getHass());
     seedFavourites();
@@ -1861,7 +1897,7 @@ export function mountTestFocus(root, { config, getHass }) {
     areaRooms = secs.filter((x) => x.room).map((x) => x.room);
     if (!areaRooms.some((r) => r.id === activeArea)) activeArea = areaRooms[0]?.id || null;
     // Home is the dashboard (Matt, 27 Oct: no house page any more). A section has its own page: a room's from its area
-    // card's Go, Security's from its summary; its header, then only that section. The weather card opens the Weather
+    // card's Go; its header, then only that section. The weather card opens the Weather
     // page: its header and the whole bento
     const page = areaPage === 'weather' ? { key: 'weather', name: 'Weather' } : areaPage && secs.find((x) => x.key === areaPage);
     if (!page) areaPage = null;
@@ -1873,23 +1909,22 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!page) return dashboard(out, summaryData());
     out.push({ key: 'areahead', html: areaHead(page, ++order) });
     if (page.key === 'weather') { out.weather = ++order; return out; }
-    // the section: a room's energy, readings and plants, then its tiles; Security's doors and windows come last
+    // the section: a room's energy, readings and plants, then its tiles
     const ids = page.ids, name = page.room ? page.room.id : page.key, r = page.room;
     if (r?.solar.length) out.push({ key: 'energy:' + r.id, html: energyCard(r, ++order) });
     if (r && (r.readings.length || r.plugs.length || r.power != null)) out.push({ key: 'readings:' + r.id, html: roomCard(r, ++order) });
     r?.plants.forEach((p) => out.push({ key: 'plant:' + p.id, html: plantCard(p, ++order) }));
     if (ids.length) out.push({ key: 'block:' + name, order: ++order, tiles: ids.map((id) => ({ key: id, html: actionTile(id) })) });
-    if (page.key === 'security') out.push({ key: 'openings', html: openingsCard(++order) });
     return out;
   }
   // a section's page header, as Move Assistant's pages have: a big back arrow and the section's name
   const areaHead = (x, order) => '<div class="settingsHeader tfAreaHead" data-tf data-k="areahead" style="order:' + order + '">' +
     '<button class="back" type="button" data-area-back aria-label="Back to the house">' + BACK + '</button><div class="settingsTitle">' + esc(x.name) + '</div></div>';
-  // a room's Go, or the Security summary, opens its section's page at its top; back returns to the house exactly where
+  // a room's Go opens its section's page at its top; back returns to the house exactly where
   // you were (Matt, 28 Oct). Scrolling it into view instead would tuck its title under Home Assistant's top bar
   let leftAt = 0, leftTop = null; // how far the house was scrolled when a page opened, and where its opener was on screen
-  // the card a page opened from: the weather card, the areas, or the summaries
-  const openerOf = (key) => (key === 'weather' ? dashBoxes.wx : key.startsWith('room:') ? grid.querySelector('.tfAreas') : grid.querySelector('.tfDashBarRow'));
+  // the card a page opened from: the weather card or the areas
+  const openerOf = (key) => (key === 'weather' ? dashBoxes.wx : grid.querySelector('.tfAreas'));
   function openArea(key) {
     if (!areaPage) { leftAt = scroller().scrollTop; leftTop = openerOf(key)?.getBoundingClientRect().top ?? null; }
     areaPage = key;
@@ -2095,30 +2130,31 @@ export function mountTestFocus(root, { config, getHass }) {
         .map((g, i) => (i ? { ...g, ids: g.ids.filter((x) => !inStars.has(x)) } : g)).filter((g) => g.ids.length);
       return [head('Favourites'), now(stars.length ? stars.length + ' starred' : 'None starred'), list(groups, { star: true }, true)];
     }
+    // a group of devices in one grid (Matt, 29 Oct: one grid, one width): devices first, each its tile with all its
+    // controls, then readings as tiles of the same width. Plain (Maintenance): every device is a reading, and a vacuum
+    // says only its battery
+    const groupGrid = (ids, { name = '', alert = false, plain = false } = {}) => {
+      const tiles = plain ? [] : ids.filter((x) => ACTION_DOMAINS.includes(x.split('.')[0])), rows = ids.filter((x) => !tiles.includes(x));
+      const battery = (x) => (x.startsWith('vacuum.') && attr(x).battery_level != null ? attr(x).battery_level + '%' : null);
+      return '<div class="tfMoreGroup">' + (name ? '<div class="tfMoreGroupName">' + esc(name) + '</div>' : '') + '<div class="tfMoreActions">' +
+        tiles.map((x) => actionTile(x, true)).join('') + rows.map((x) => deviceRow(x, { plain, alert, say: plain ? battery(x) : null })).join('') + '</div></div>';
+    };
     // a summary (Matt, 27 Oct: room to breathe, and more control than opening tiles): its line, with all on or off for
-    // the lights, then its devices by room, each as its tile with all its controls; readings stay rows in a card
+    // the lights, then its devices by room. A group named as the popup is (Energy's) goes without its name
     if (id.startsWith('summary:')) {
       const s = summaryData().find((x) => x.key === id.slice(8));
       if (!s) return null;
       const lights = s.key === 'light' ? (s.groups || []).flatMap((g) => g.ids) : [], anyOn = lights.some((x) => states[x]?.state === 'on');
       const all = lights.length ? '<button class="primary" type="button" data-acts="' + acts(lights.map((x) => ['light', anyOn ? 'turn_off' : 'turn_on', x])) + '">' + (anyOn ? 'Turn all off' : 'Turn all on') + '</button>' : '';
-      return [head(s.name), '<div class="tfMoreNowRow">' + now(s.value) + all + '</div>', ...(s.groups || []).map((g) => {
-        const tiles = g.ids.filter((x) => ACTION_DOMAINS.includes(x.split('.')[0])), rows = g.ids.filter((x) => !tiles.includes(x));
-        return '<div class="tfMoreGroup"><div class="tfMoreGroupName">' + esc(g.name) + '</div>' +
-          (tiles.length ? '<div class="tfMoreActions">' + tiles.map((x) => actionTile(x, true)).join('') + '</div>' : '') +
-          (rows.length ? '<div class="tfMoreTiles">' + rows.map((x) => deviceRow(x, {})).join('') + '</div>' : '') + '</div>';
-      })];
+      return [head(s.name), '<div class="tfMoreNowRow">' + now(s.value) + all + '</div>', ...(s.groups || []).map((g) => groupGrid(g.ids, { name: g.name === s.name ? '' : g.name, alert: g.alert, plain: s.plain }))];
     }
     // a room's lights, covers or plugs, opened from its area card's tile (Matt, 27 Oct): laid out as a summary, all on or
     // off beside its line
     if (id.startsWith('group:')) {
       const [, roomId, key] = id.split(':'), r = model.rooms.find((x) => x.id === roomId), k = r && roomKeys(r).find((x) => x.key === key);
       if (!k) return null;
-      const ids = groupIds(r, key), tiles = ids.filter((x) => ACTION_DOMAINS.includes(x.split('.')[0])), rows = ids.filter((x) => !tiles.includes(x));
       const all = k.acts ? '<button class="primary" type="button" data-acts="' + acts(k.acts) + '">' + (k.on ? 'Turn all off' : 'Turn all on') + '</button>' : '';
-      return [head(r.name + ' ' + k.label.toLowerCase()), '<div class="tfMoreNowRow">' + now(k.value) + all + '</div>', '<div class="tfMoreGroup">' +
-        (tiles.length ? '<div class="tfMoreActions">' + tiles.map((x) => actionTile(x, true)).join('') + '</div>' : '') +
-        (rows.length ? '<div class="tfMoreTiles">' + rows.map((x) => deviceRow(x, {})).join('') + '</div>' : '') + '</div>'];
+      return [head(r.name + ' ' + k.label.toLowerCase()), '<div class="tfMoreNowRow">' + now(k.value) + all + '</div>', groupGrid(groupIds(r, key))];
     }
     const d = id.split('.')[0], st = states[id];
     const s = ACTION_DOMAINS.includes(d) ? specFor(id) : { sections: [] };
@@ -2163,15 +2199,17 @@ export function mountTestFocus(root, { config, getHass }) {
     const parts = partsOf(more.id), box = sheet.querySelector('.tfMore');
     if (!parts) { closeMore(); return; }
     const was = focusOf(sheet), side = detailsOf(more.id);
-    const wide = more.id.startsWith('summary:') || more.id.startsWith('group:');
+    const wide = more.frame ? more.frame.wide : more.id.startsWith('summary:') || more.id.startsWith('group:');
     if (sheet.hidden || !box || parts.length !== moreParts.length || box.classList.contains('wide') !== wide) {
-      // drawn again while open (a light turning off loses its colour): it stays scrolled where it was
-      const keep = !sheet.hidden && box ? box.scrollTop : 0;
-      // the dialog and, beside it, its details: one dialog for screen readers
-      sheet.innerHTML = '<div class="tfMorePair" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (wide ? ' wide' : '') + '">' + parts.join('') + '</section>' +
+      // drawn again while open (a light turning off loses its colour): it stays scrolled where it was. A new page in it
+      // starts at its top, and Back returns to where that page was left
+      const keep = turning ? more.scroll || 0 : !sheet.hidden && box ? box.scrollTop : 0;
+      // the dialog and, beside it, its details: one dialog for screen readers. Already open, it doesn't rise in again
+      sheet.innerHTML = '<div class="tfMorePair' + (sheet.hidden ? '' : ' still') + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (wide ? ' wide' : '') + '"' + (more.frame ? ' style="height:' + more.frame.h + 'px"' : '') + '>' + parts.join('') + '</section>' +
         (side ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + ARROW + '</button>' +
           '<div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + side + '</div></div></aside>' : '') + '</div>';
       moreSide = side;
+      sheet.classList.toggle('wide', wide);
       sheet.hidden = false;
       fitDetails();
       mountArt(sheet);
@@ -2202,16 +2240,21 @@ export function mountTestFocus(root, { config, getHass }) {
   // "5 minutes ago" moves on while it's open
   setInterval(() => { if (more) renderMore(); }, 15 * 1000);
   function openMore(id, opener) {
-    // opened from inside the dialog (a summary's device): Back returns there
-    const inside = Boolean(more && opener && sheet.contains(opener));
-    more = { id, opener: inside ? more.opener : opener, back: inside ? more : null };
+    // opened from inside the dialog (a summary's device): it opens in the same popup, which keeps the size and place it
+    // first opened at, with Back and the device's name where the summary's was (Matt, 29 Oct: you don't lose where you
+    // were). Back returns there
+    const inside = Boolean(more && opener && sheet.contains(opener)), box = inside && sheet.querySelector('.tfMore');
+    if (inside) more.scroll = box.scrollTop;
+    more = { id, opener: inside ? more.opener : opener, back: inside ? more : null, frame: inside ? more.frame || { wide: box.classList.contains('wide'), h: box.offsetHeight } : null };
     showMore();
   }
+  let turning = false; // a new page in the open popup (a device, or Back)
   function showMore() {
     moreParts = [];
-    sheet.hidden = true;
+    turning = !sheet.hidden;
     arts.forEach((art, k) => { if (k !== more.id && sheet.contains(art.el)) { art.destroy(); arts.delete(k); } });
     renderMore();
+    turning = false;
   }
   function closeMore() {
     const opener = more?.opener;
@@ -2429,7 +2472,7 @@ export function mountTestFocus(root, { config, getHass }) {
       else if (t.hasAttribute('data-details-close')) toggleDetails(false);
       else if (t.dataset.summary) openSummary(t.dataset.summary, t);
       else if (t.dataset.star) toggleStar(t.dataset.star);
-      else if (t.hasAttribute('data-more-back')) { more = more.back; showMore(); }
+      else if (t.hasAttribute('data-more-back')) { const from = more.id; more = more.back; showMore(); sheet.querySelector('.tfMore [data-more="' + CSS.escape(from) + '"]')?.focus({ preventScroll: true }); }
       else if (t.hasAttribute('data-favs-edit')) openMore('favourites', t);
       else if (t.dataset.acts) JSON.parse(t.dataset.acts).forEach(([domain, service, id, data]) => send(domain, service, id, data).catch(() => {}));
       else if (t.dataset.more) openMore(t.dataset.more, t);

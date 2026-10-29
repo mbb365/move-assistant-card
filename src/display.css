@@ -217,8 +217,8 @@
 .tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfSide .activityRow>div{min-width:0}
 /* a favourite's icon is its button: a light that's on in its own colour, a triggered alarm red */
-:is(.tfCard,.tfMoreList) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
-:is(.tfCard,.tfMoreList) .tfPlug.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
+:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
+:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
 /* a summary's devices, and the favourites list, in the dialog: tiles by room, two to a row (one with stars) */
 .tfMoreList{display:flex;flex-direction:column;gap:14px}
 .tfMoreGroupName{margin:0 0 4px 10px;color:var(--muted);font:500 13px/18px var(--font)}
@@ -284,6 +284,7 @@
 .tfMorePair{position:relative;display:flex;align-items:stretch;max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}
 #app[data-more="sheet"] .tfMoreBackdrop{place-items:end center;padding:0}
 #app[data-more="sheet"] .tfMorePair{max-height:85vh;animation:tfSheetIn .28s cubic-bezier(.2,.7,.3,1)}
+#app[data-more="sheet"] .tfMorePair.still{animation:none}
 #app[data-more="sheet"] .tfMore{width:640px}
 #app[data-more="sheet"] :is(.tfMore,.tfMoreSideInner){border-radius:var(--r-card) var(--r-card) 0 0}
 @keyframes tfSheetIn{from{transform:translateY(100%)}}
@@ -356,18 +357,33 @@ button.tfAreaIcon{cursor:pointer}
 /* =========================================================
    A summary's popup (Matt, 27 Oct: "double all the spacing", "native to the size of screen", more control than
    opening tiles): up to 1040 wide on the page's ground, 40 in with 28 between parts; its devices are their tiles with
-   all their controls, 20 apart, as many to a row as fit at 260; readings sit as rows in a card. Lights get all on or
-   off beside the line.
+   all their controls, 20 apart, as many to a row as fit at 260. Lights get all on or off beside the line.
+   Matt, 29 Oct: one grid, one width. Readings are tiles in the same grid, as wide as the devices' tiles, with just
+   their icon, name and state; what needs attention says so in the danger colour. As a popup on a wider screen, it
+   starts 16 from the top whatever its height, so a short one doesn't sit lower than a tall one
    ========================================================= */
 .tfMore.wide{width:min(1040px,100vw - 32px);padding:40px;gap:28px;background:var(--bg)}
 #app[data-more="sheet"] .tfMore.wide{width:min(1040px,100vw)}
+/* a device opened from it keeps this frame (test-focus.js holds its height), and so do its details over the top */
+.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{gap:28px;padding:40px;background:var(--bg)}
+/* Matt, 29 Oct: its head (and its Details') sits 20 from its top, and its close 20 from the side, as its tiles' padding
+   and the gap between them; the title stays in line with everything under it. A 24 title, the area card's size. On
+   phones it's already that close */
+#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:-20px -20px 0 0}
+#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead) .activityTitle{font-size:24px}
+@media(max-width:620px){#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:0}}
+@media(min-width:621px){#app:not([data-more="sheet"]) .tfMoreBackdrop.wide{place-items:start center}}
 .tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}
 .tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}
 .tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px;align-items:start}
 .tfMoreActions .tfAction{grid-column:auto}
-.tfMore.wide .tfMoreTiles{grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));padding:var(--inset);border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}
-@media(max-width:620px){.tfMore.wide{width:100%;padding:20px 16px;gap:20px}}
+.tfMoreActions>.activityRow{display:flex;align-items:center;gap:12px;min-width:0;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
+.tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}
+.tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfMoreActions>.activityRow.alert .activityRowMeta{color:var(--danger)}
+@media(max-width:620px){.tfMore.wide,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{width:100%;padding:20px 16px;gap:20px}}
 
 /* =========================================================
    The dashboard (Matt, 27 Oct): the HomeCore concept's order (Figma "Visual Design Language" 1851:906) with this

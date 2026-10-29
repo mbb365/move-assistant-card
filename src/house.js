@@ -236,6 +236,8 @@ export function createHouse({ onChange }) {
     const alarms = all('alarm_control_panel'), vacuums = realVacuums.length ? realVacuums : ['vacuum.' + PREFIX + 'robot'];
     return {
       states, rooms, grid,
+      // any device's room, hidden ones too (Maintenance's batteries are mostly diagnostic)
+      areaOf: (id) => (fake[id] ? area[id] : areaOf(id)),
       vacuums,
       homeVacuums: vacuums.filter((id) => !rooms.some((r) => r.actions.includes(id))),
       security: {
