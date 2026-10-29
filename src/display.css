@@ -609,3 +609,7 @@ button.tfAreaIcon{cursor:pointer}
 #app.house :is(button,a,input,select,[tabindex]){scroll-margin-bottom:96px}
 /* narrow screens and 200% text: names and states wrap instead of being cut */
 @media(max-width:620px){#app.house :is(.activityRowName,.activityRowMeta){white-space:normal;text-overflow:clip;overflow:visible;overflow-wrap:break-word;hyphens:auto}}
+
+/* a tooltip for text cut short (Matt, 29 Oct): the bright fill, as the toast, 8 from the text, up to 320 wide */
+.tfTooltip{position:fixed;z-index:500;max-width:min(320px,calc(100vw - 16px));padding:6px 10px;border-radius:10px;background:var(--bright);color:var(--on-bright);font:500 14px/18px var(--font);overflow-wrap:break-word;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.tfTooltip[hidden]{display:none}

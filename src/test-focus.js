@@ -1279,15 +1279,17 @@ export function mountTestFocus(root, { config, getHass }) {
     return out;
   }
   /* ---------- the peg board (Matt, 27 Oct) ----------
-     The dashboard is a solid grid of cells from the top left: columns 252 wide (on a tablet four narrower ones, down to
-     230, so two cards still fit side by side) and rows 60 tall, 16 apart both ways. Every card fills whole cells, so
+     The dashboard is a solid grid of cells from the top left: columns that fill its width (Matt, 29 Oct: as the window
+     narrows, the cards narrow with it) and rows 60 tall, 16 apart both ways. As many columns as fit at 200; they share
+     the width, so they narrow together as it narrows and, at 200, one goes and they widen again (never more than 25%
+     past their drawn 252). Rows stay 60 whatever the width. Every card fills whole cells, so
      everything lines up: a tile is 1 × 2, a card 2 wide; the large cards (the weather, the areas, Favourites and
      Activity) are 5 rows (364, Favourites' and Activity's own height); the others as many rows as they need. A card
      can sit in any free cell; one dropped where others are pushes them down. Edit mode (the pencil in the bottom bar)
      draws the cells: drag a card by its grip (or anywhere on it), or use its ⋯ to size, move or hide it, and Energy
      today's graph above or below. Where everything is goes with the page's settings in Home Assistant (prefs.dash:
      cells, sizes, what's hidden, options). Phones keep one column */
-  const PEG = 252, PEG_GAP = 16, PEG_MIN = 230, ROW = 60, ROW_PITCH = ROW + PEG_GAP, LARGE_ROWS = 5, EXTRA_ROWS = 3;
+  const PEG = 252, PEG_GAP = 16, PEG_MIN = 200, PEG_MAX = Math.round(PEG * 1.25), ROW = 60, ROW_PITCH = ROW + PEG_GAP, LARGE_ROWS = 5, EXTRA_ROWS = 3;
   const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average' };
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
   // each card's rows, matched to what it holds (Matt, 27 Oct): large ones 5 (364); Energy today 4 (288); Compared to
@@ -1303,9 +1305,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // 80 or 140 and never fits the grid's rows; Matt, 27 Oct: "we have rules to follow")
   const HEAD = ['title', 'sums'];
   const pegsFor = (W) => {
-    let n = Math.floor((W + PEG_GAP) / (PEG + PEG_GAP)), w = PEG;
-    if (n < 4 && W >= 4 * PEG_MIN + 3 * PEG_GAP) { n = 4; w = Math.floor((W - 3 * PEG_GAP) / 4); }
-    return { n: Math.max(1, n), w };
+    const n = Math.max(1, Math.floor((W + PEG_GAP) / (PEG_MIN + PEG_GAP)));
+    return { n, w: Math.max(1, Math.min(PEG_MAX, Math.floor((W - (n - 1) * PEG_GAP) / n))) };
   };
   const dashPrefs = () => ({ cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) });
   function saveDash(next) { prefs = { ...prefs, dash: next }; savePrefs(); }
@@ -1410,7 +1411,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // lays the board out on its cells: the name and the summaries first, then the cards (placeCards)
   function layoutBoard() {
     if (!testFocus || !grid) return;
-    const W = grid.clientWidth, { n, w } = pegsFor(W), board = app.classList.contains('tfDash') && n >= 2;
+    // phones keep one column: the board starts where two drawn columns fit, as before
+    const W = grid.clientWidth, { n, w } = pegsFor(W), board = app.classList.contains('tfDash') && W >= 2 * PEG + PEG_GAP;
     app.classList.toggle('tfBoard', board);
     app.classList.toggle('tfEditing', board && editing);
     const pen = $('dashEditNav');
@@ -1628,6 +1630,60 @@ export function mountTestFocus(root, { config, getHass }) {
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => el.classList.remove('show', 'withAction'), undo ? 5000 : 2200);
   }
+  /* ---------- tooltips (Matt, 29 Oct: a HomeCore rule) ----------
+     Text cut short with "…" shows all of it in a tooltip, by the mouse or keyboard focus (not touch): the first after
+     0.7 s, then, while one has shown in the last second, the next straight away. It stays while the pointer is on it,
+     Escape closes it, and it goes when the page scrolls */
+  const TIP_DELAY = 700, TIP_WARM = 1000;
+  const tip = Object.assign(document.createElement('div'), { className: 'tfTooltip', hidden: true });
+  tip.setAttribute('role', 'tooltip');
+  tip.setAttribute('aria-hidden', 'true'); // what it says is already each control's name
+  app.appendChild(tip);
+  let tipFor = null, tipTimer = 0, tipHideTimer = 0, tipGoneAt = -Infinity;
+  const cutShort = (el) => el.nodeType === 1 && el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).textOverflow === 'ellipsis';
+  const cutUnder = (el) => { for (let e = el; e && e !== app; e = e.parentElement) if (cutShort(e)) return e; return null; };
+  function showTip(el, text) {
+    clearTimeout(tipTimer);
+    clearTimeout(tipHideTimer);
+    const go = () => {
+      if (!el.isConnected) return;
+      tipFor = el;
+      tip.textContent = text;
+      tip.hidden = false;
+      // above the text, 8 from it, else under it; never off the screen
+      const r = el.getBoundingClientRect(), t = tip.getBoundingClientRect();
+      const y = r.top - t.height - 8 >= 8 ? r.top - t.height - 8 : r.bottom + 8;
+      tip.style.left = Math.max(8, Math.min(window.innerWidth - t.width - 8, r.left + r.width / 2 - t.width / 2)) + 'px';
+      tip.style.top = y + 'px';
+    };
+    if (!tip.hidden || performance.now() - tipGoneAt < TIP_WARM) go(); else tipTimer = setTimeout(go, TIP_DELAY);
+  }
+  function hideTip() {
+    clearTimeout(tipTimer);
+    clearTimeout(tipHideTimer);
+    if (!tip.hidden) tipGoneAt = performance.now();
+    tip.hidden = true;
+    tipFor = null;
+  }
+  root.addEventListener('pointerover', (ev) => {
+    if (ev.pointerType === 'touch') return;
+    if (tip.contains(ev.target)) { clearTimeout(tipHideTimer); return; }
+    const el = cutUnder(ev.target);
+    if (el) { if (el !== tipFor) showTip(el, el.textContent.trim()); else clearTimeout(tipHideTimer); return; }
+    // a moment to reach the tooltip itself before it goes
+    clearTimeout(tipTimer);
+    clearTimeout(tipHideTimer);
+    tipHideTimer = setTimeout(hideTip, 120);
+  });
+  root.addEventListener('focusin', (ev) => {
+    const el = ev.target;
+    if (!el.matches?.(':focus-visible')) return;
+    const cut = [el, ...el.querySelectorAll('*')].filter(cutShort);
+    if (cut.length) showTip(el, cut.map((x) => x.textContent.trim()).join(' · '));
+  });
+  root.addEventListener('focusout', (ev) => { if (ev.target === tipFor) hideTip(); });
+  root.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !tip.hidden) { ev.stopPropagation(); hideTip(); } }, true);
+  window.addEventListener('scroll', () => { if (!tip.hidden || tipTimer) hideTip(); }, { capture: true, passive: true });
   // Undo: the page's settings put back as they were before the edit
   const undoTo = (before) => () => { prefs = before; savePrefs(); refresh(); layoutBoard(); renderTray(); };
   // a tile just added: the page scrolls gently until it's in view, and a ring round it fades over 1.5 s (Home
