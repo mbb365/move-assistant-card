@@ -48,7 +48,10 @@ button,input{font:inherit}
   --color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-accent-secondary:#03a9f4;--color-bg-resting:#7dbb98;
   --color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#b42a2a;
   --color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);
-  --color-bg-chip:#fbf9f6;--color-fill-selected:#fbf9f6;--color-text-on-selected:#26221e;--color-bg-segment-selected:#fbf9f6;
+  --color-bg-chip:#fbf9f6;--color-fill-selected:#26221e;--color-text-on-selected:#fbf9f6;--color-bg-segment-selected:#fbf9f6;
+  /* accessibility (Matt, 29 Oct): a deeper blue, 3.2 to 3.7:1 on these backgrounds, for focus rings, outlines and
+     switches; the selected fill (the bottom bar's open page) the bright, as in dark mode */
+  --color-accent-primary:#0288d1;--color-border-focus:#0288d1;
   --scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}
 
 :host(.lightBody){background:#EEEBE8;color-scheme:light}

@@ -154,7 +154,8 @@
 /* modes and buttons: segments in a track, 4 in from its edge */
 .tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}
 .tfSeg button{flex:1;min-width:0;min-height:0;padding:0 6px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tfSeg button[aria-pressed="true"]{background:var(--card);color:var(--text);box-shadow:var(--hc-hair)}
+/* the picked one in the bright fill, as Settings' choice buttons (Matt, 29 Oct: 3:1 for states) */
+.tfSeg button[aria-pressed="true"]{background:var(--bright);color:var(--on-bright)}
 .tfSeg button:not([aria-pressed]){color:var(--text)}
 .tfSeg button:disabled{opacity:.4;cursor:default}
 .tfSeg svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}
@@ -591,3 +592,20 @@ button.tfAreaIcon{cursor:pointer}
 .activityRow .tfIcon.alert{background:#e53935;color:#ffffff}
 .tfGraph.tfDay{flex:none;height:62px;min-height:0}
 .tfGraph.tfDay text{font-size:10px}
+
+/* =========================================================
+   Accessibility (Matt, 29 Oct: a review against WCAG 2.2 AA, every fix kept)
+   ========================================================= */
+/* the open Settings tab in the bright fill, as a tile's picked choice */
+#housePane .rubberIndicator{background:var(--bright)}
+#housePane .tab.active{color:var(--on-bright)}
+/* light mode: a line in the text colour where a brightness bar's fill ends (amber on the light track is 1.4:1) */
+#app.light .tfBar i{box-shadow:inset -2px 0 0 var(--text)}
+/* fields: an edge in the muted text colour, and placeholders in it */
+#app.house :is(.settingsSelect,.addInput){border:1px solid var(--muted)}
+#app.house .addInput::placeholder{color:var(--muted);opacity:1}
+/* focus: Activity's rings inside their scrolling list, and a focused control kept clear of the bottom bar */
+#app .activityRows :focus-visible{outline-offset:-2.4px}
+#app.house :is(button,a,input,select,[tabindex]){scroll-margin-bottom:96px}
+/* narrow screens and 200% text: names and states wrap instead of being cut */
+@media(max-width:620px){#app.house :is(.activityRowName,.activityRowMeta){white-space:normal;text-overflow:clip;overflow:visible;overflow-wrap:break-word;hyphens:auto}}

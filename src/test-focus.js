@@ -373,17 +373,23 @@ export function mountTestFocus(root, { config, getHass }) {
   const brightnessOf = (st) => (st?.state === 'on' ? (st.attributes.brightness != null ? Math.max(1, Math.round(st.attributes.brightness / 2.55)) : 100) : 0);
   const modesOf = (id) => attr(id).supported_color_modes || [];
   // a light's colour while it's on, as Home Assistant's tiles show it: its rgb, else its hue, else its warm to cool,
-  // else amber; the glyph goes dark on pale colours
+  // else amber
   const kelvinRgb = (k) => {
     const t = k / 100;
     return [t <= 66 ? 255 : 329.7 * Math.pow(t - 60, -0.1332), t <= 66 ? 99.47 * Math.log(t) - 161.12 : 288.12 * Math.pow(t - 60, -0.0755), t >= 66 ? 255 : t <= 19 ? 0 : 138.52 * Math.log(t - 10) - 305.04];
   };
   const hueRgb = (h, sat) => [5, 3, 1].map((n) => { const k = (n + h / 60) % 6; return 255 * (1 - (sat / 100) * Math.max(0, Math.min(k, 4 - k, 1))); });
+  // the glyph takes whichever ink contrasts more with the light's colour, so it's always 3:1 or more (Matt, 29 Oct:
+  // accessibility; white on amber was 2:1)
+  const lin = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+  const darkInkWins = (rgb) => {
+    const L = 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
+    return (L + 0.05) / 0.0664 > 1.05 / (L + 0.05);
+  };
   function lightVars(id) {
     const a = attr(id);
     const rgb = (a.rgb_color || (a.hs_color && a.color_mode !== 'color_temp' ? hueRgb(...a.hs_color) : a.color_temp_kelvin ? kelvinRgb(a.color_temp_kelvin) : [255, 170, 0])).map((v) => Math.round(Math.max(0, Math.min(255, v))));
-    const pale = (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255 > 0.8;
-    return '--light:rgb(' + rgb.join(',') + ');--light-ink:' + (pale ? '#26221e' : '#ffffff');
+    return '--light:rgb(' + rgb.join(',') + ');--light-ink:' + (darkInkWins(rgb) ? '#26221e' : '#ffffff');
   }
   const lightAttrs = (id) => (id.startsWith('light.') && states[id]?.state === 'on' ? ' data-light style="' + lightVars(id) + '"' : '');
   const dimmable = (id) => { const m = modesOf(id); return m.length ? m.some((x) => x !== 'onoff') : attr(id).brightness != null; };
@@ -1265,8 +1271,9 @@ export function mountTestFocus(root, { config, getHass }) {
     out.push({ key: 'dash:energy', html: energyGlance() });
     const cols = dashCols();
     dashColsSeen = cols;
-    out.push({ key: 'dash:tiles', wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tiles">' + inner + '</div>',
-      tiles: dashTileIds(cols >= 3 ? cols : cols * 2).map((id) => ({ key: id, html: actionTile(id, false, dashControl(id)) })) });
+    // each tile in a wrapper of its own (display:contents), so the page can be put in reading order round the cards
+    dashTileIds(cols >= 3 ? cols : cols * 2).forEach((id) => out.push({ key: 'dash:tile:' + id, wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tile:' + esc(id) + '">' + inner + '</div>',
+      tiles: [{ key: id, html: actionTile(id, false, dashControl(id)) }] }));
     loadActivity();
     loadEnergy();
     return out;
@@ -1376,7 +1383,28 @@ export function mountTestFocus(root, { config, getHass }) {
     const own = (dash.phone || []).map((k) => cards.find((it) => it.key === k && !hidden.has(k))).filter(Boolean);
     return [...own, ...cards.filter((it) => !own.includes(it))];
   }
-  const phoneOrder = () => phoneCards().forEach((it, i) => it.el.style.setProperty('--o', String(3 + i)));
+  const phoneOrder = () => {
+    const cards = phoneCards();
+    cards.forEach((it, i) => it.el.style.setProperty('--o', String(3 + i)));
+    readingOrder([...boardItems().filter((it) => HEAD.includes(it.key)), ...cards].map((it) => it.el));
+  };
+  // the page in the order it reads (Matt, 29 Oct: accessibility; Tab and screen readers follow the page, not where the
+  // board draws things): on the board the top row first, each row left to right; on phones the order they show in.
+  // Only what's out of place moves, with moveBefore where there is one, so a Dual Axis Controller and focus stay as
+  // they were
+  function readingOrder(els) {
+    if (drag) return;
+    const was = root.activeElement;
+    let prev = null;
+    for (const node of new Set(els.map((el) => { while (el && el.parentElement !== grid) el = el.parentElement; return el; }).filter(Boolean))) {
+      const ref = prev ? prev.nextSibling : grid.querySelector(':scope > [data-tf]');
+      if (node !== ref) {
+        try { grid.moveBefore ? grid.moveBefore(node, ref) : grid.insertBefore(node, ref); } catch (_e) { grid.insertBefore(node, ref); }
+      }
+      prev = node;
+    }
+    if (was && was !== root.activeElement && was.isConnected) was.focus({ preventScroll: true });
+  }
   // saves where every card is, with the board's width in pegs so a phone can read them in the same order
   const saveCells = (dash, cells) => saveDash({ ...dash, cells, pegs: pegsFor(grid.clientWidth).n });
   // lays the board out on its cells: the name and the summaries first, then the cards (placeCards)
@@ -1438,6 +1466,7 @@ export function mountTestFocus(root, { config, getHass }) {
       it.el.style.top = p.y + 'px';
     });
     lastPlaced = placed;
+    readingOrder([...shown.filter((it) => HEAD.includes(it.key)), ...cards.slice().sort((a, b) => placed.get(a.key).row - placed.get(b.key).row || placed.get(a.key).col - placed.get(b.key).col)].map((it) => it.el));
     // Activity shows as many changes as its card fits (under its title, above its 10 of padding), whole tiles only;
     // the rest scroll
     const act = placed.get('act'), list = act && grid.querySelector('.tfDash-act > .activityRows');
