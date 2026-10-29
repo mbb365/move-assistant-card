@@ -93,9 +93,37 @@ if (testMode) {
   states["sensor.living_room_temperature"].attributes.state_class = "measurement";
   Object.assign(states, HOUSE.states);
   states["person.matt"] = { entity_id: "person.matt", state: "home", attributes: { friendly_name: "Matt", user_id: "dev-matt" } };
+  // a leak earlier today, dry again (its changes are in devLog), for Activity's red row
+  const dry = new Date(Date.now() - 20 * 60000).toISOString();
+  states["binary_sensor.kitchen_leak"] = { entity_id: "binary_sensor.kitchen_leak", state: "off", last_changed: dry, last_updated: dry, attributes: { friendly_name: "Kitchen leak sensor", device_class: "moisture" } };
 }
+// the dashboard's activity: a few changes over the last two hours, by Matt (person.matt) or an automation
+const devLog = () => {
+  const at = (min) => (Date.now() - min * 60000) / 1000;
+  return [
+  { when: at(4), entity_id: "lock.openable_lock", state: "unlocked", context_user_id: "dev-matt" },
+  { when: at(20), entity_id: "binary_sensor.kitchen_leak", state: "off" },
+  { when: at(40), entity_id: "binary_sensor.kitchen_leak", state: "on" },
+  { when: at(23), entity_id: "light.kitchen", state: "on", context_domain: "automation", context_event_type: "automation_triggered", context_name: "Morning lights" },
+  { when: at(51), entity_id: "media_player.telly", state: "off", context_user_id: "dev-matt" },
+  { when: at(96), entity_id: "light.office_ceiling", state: "off" },
+  { when: at(131), entity_id: "switch.clothes_washer", state: "on", context_user_id: "dev-matt" },
+  { when: at(164), entity_id: "light.small_sphere_chappy", state: "on", context_domain: "automation", context_event_type: "automation_triggered", context_name: "Office at dusk" },
+  { when: at(205), entity_id: "media_player.jeremy_clarkson", state: "playing", context_user_id: "dev-matt" },
+  { when: at(248), entity_id: "lock.basic_lock", state: "locked", context_user_id: "dev-matt" },
+  { when: at(296), entity_id: "switch.dish_washer", state: "on" },
+  { when: at(340), entity_id: "light.big_sphere", state: "off", context_user_id: "dev-matt" },
+  { when: at(395), entity_id: "switch.tv_stuff", state: "off" },
+  ];
+};
+// a device that's on or off: its changes from the log, and the other way round before them
+const FLIP = { on: "off", off: "on", locked: "unlocked", unlocked: "locked", playing: "paused", paused: "playing" };
 const fakeHistory = (id) => {
   const st = states[id]; const now = Date.now(); const v = Number(st.state); const growing = st.attributes.state_class === "total_increasing";
+  if (!Number.isFinite(v)) {
+    const ev = devLog().filter((e) => e.entity_id === id).sort((a, b) => a.when - b.when);
+    return [{ s: FLIP[(ev[0] || st).state] || st.state, lu: (now - 864e5) / 1000 }, ...ev.map((e) => ({ s: e.state, lu: e.when }))];
+  }
   return [...Array(48)].map((_, i) => { const t = now - (48 - i) * 30 * 60 * 1000; const k = i / 47;
     const val = growing ? v * k : v * (0.7 + 0.3 * Math.sin(i / 5) + 0.12 * Math.sin(i * 1.7));
     return { s: String(Math.round(val * 100) / 100), lu: t / 1000 }; });
@@ -133,23 +161,7 @@ const hass = {
       return { [msg.entity_ids[0]]: out };
     }
     if (msg.type === "history/history_during_period") return { [msg.entity_ids[0]]: fakeHistory(msg.entity_ids[0]) };
-    // the dashboard's activity: a few changes over the last two hours, by Matt (person.matt) or an automation
-    if (msg.type === "logbook/get_events") {
-      const at = (min) => (Date.now() - min * 60000) / 1000;
-      return [
-        { when: at(4), entity_id: "lock.openable_lock", state: "unlocked", context_user_id: "dev-matt" },
-        { when: at(23), entity_id: "light.kitchen", state: "on", context_domain: "automation", context_event_type: "automation_triggered", context_name: "Morning lights" },
-        { when: at(51), entity_id: "media_player.telly", state: "off", context_user_id: "dev-matt" },
-        { when: at(96), entity_id: "light.office_ceiling", state: "off" },
-        { when: at(131), entity_id: "switch.clothes_washer", state: "on", context_user_id: "dev-matt" },
-        { when: at(164), entity_id: "light.small_sphere_chappy", state: "on", context_domain: "automation", context_event_type: "automation_triggered", context_name: "Office at dusk" },
-        { when: at(205), entity_id: "media_player.jeremy_clarkson", state: "playing", context_user_id: "dev-matt" },
-        { when: at(248), entity_id: "lock.basic_lock", state: "locked", context_user_id: "dev-matt" },
-        { when: at(296), entity_id: "switch.dish_washer", state: "on" },
-        { when: at(340), entity_id: "light.big_sphere", state: "off", context_user_id: "dev-matt" },
-        { when: at(395), entity_id: "switch.tv_stuff", state: "off" },
-      ].filter((e) => !msg.entity_ids || msg.entity_ids.includes(e.entity_id));
-    }
+    if (msg.type === "logbook/get_events") return devLog().filter((e) => !msg.entity_ids || msg.entity_ids.includes(e.entity_id));
     if (msg.type === "call_service" && (msg.domain === "switch" || msg.domain === "media_player" || msg.domain === "lock")) {
       const next = houseService(hass.states, msg);
       if (next) setTimeout(() => { hass.states = { ...hass.states, [next.entity_id]: next }; card.hass = { ...hass }; }, 120);

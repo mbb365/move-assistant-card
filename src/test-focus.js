@@ -90,6 +90,8 @@ const ALARM_MODES = [['disarmed', 'Off', 'alarm_disarm', 0], ['armed_home', 'Hom
 const ALARM_STATE = { disarmed: 'Disarmed', armed_home: 'Armed home', armed_away: 'Armed away', armed_night: 'Armed night', armed_vacation: 'Armed vacation', arming: 'Arming', pending: 'Pending', triggered: 'Triggered', disarming: 'Disarming' };
 const COLOUR_MODES = ['hs', 'xy', 'rgb', 'rgbw', 'rgbww'];
 const OPEN_CLASSES = ['door', 'window', 'garage_door', 'opening'];
+// alarms Activity keeps for the day, in red (Matt, 29 Oct): what it detected, and what it says once it's cleared
+const ALARM_CLASSES = { moisture: ['detected water', 'dry'], smoke: ['detected smoke', 'clear'], gas: ['detected gas', 'clear'], carbon_monoxide: ['detected carbon monoxide', 'clear'], safety: ['became unsafe', 'safe'] };
 const ACTION_DOMAINS = ['light', 'climate', 'cover', 'humidifier', 'media_player', 'vacuum', 'lock', 'alarm_control_panel', 'valve'];
 // The dashboard (Matt, 27 Oct): what its activity card follows, how many changes and favourites it shows, and its
 // energy's icons
@@ -1097,7 +1099,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // Activity: the latest change to each of the house's devices, from Home Assistant's logbook (who did it and when);
   // what changed since then comes from the devices themselves, and without a logbook (the dev preview) everything does
   let logbook = null, logbookAt = 0, logbookBusy = false;
-  const followed = (id) => { const d = id.split('.')[0]; return ACTIVITY_DOMAINS.includes(d) && (d !== 'binary_sensor' || OPEN_CLASSES.includes(attr(id).device_class)); };
+  const followed = (id) => { const d = id.split('.')[0], dc = attr(id).device_class; return ACTIVITY_DOMAINS.includes(d) && (d !== 'binary_sensor' || OPEN_CLASSES.includes(dc) || Boolean(ALARM_CLASSES[dc])); };
+  const alarmOf = (id) => (id.startsWith('binary_sensor.') ? ALARM_CLASSES[attr(id).device_class] : null);
   async function loadActivity() {
     if (logbookBusy || Date.now() - logbookAt < 30 * 1000) return;
     logbookBusy = true;
@@ -1110,20 +1113,28 @@ export function mountTestFocus(root, { config, getHass }) {
     logbookBusy = false;
     refresh();
   }
+  // an alarm is its own row for the day, from when it last went off, with when it cleared after that; everything else is
+  // each device's latest change
   function activityItems() {
-    const latest = new Map();
+    const latest = new Map(), alarms = new Map();
     const note = (e) => {
       if (!states[e.entity_id] || !followed(e.entity_id) || !dashLight(e.entity_id) || ['unavailable', 'unknown'].includes(e.state)) return;
+      if (alarmOf(e.entity_id)) {
+        const a = alarms.get(e.entity_id);
+        if (e.state === 'on') { if (!a || e.when > a.when + 1) alarms.set(e.entity_id, { ...e, alarm: true, cleared: null }); }
+        else if (a && !a.cleared && e.when > a.when) a.cleared = e.when;
+        return;
+      }
       const was = latest.get(e.entity_id);
       if (!was || e.when > was.when + 1) latest.set(e.entity_id, e);
     };
-    (logbook || []).forEach(note);
+    [...(logbook || [])].sort((a, b) => a.when - b.when).forEach(note);
     const since = logbook ? logbookAt / 1000 - 5 : 0;
     Object.keys(states).forEach((id) => {
       const st = states[id], when = st.last_changed ? Date.parse(st.last_changed) / 1000 : 0;
       if (when > since) note({ entity_id: id, state: st.state, when, context_user_id: st.context?.user_id });
     });
-    return [...latest.values()].sort((a, b) => b.when - a.when).slice(0, ACTIVITY_MOST);
+    return [...latest.values(), ...alarms.values()].sort((a, b) => b.when - a.when).slice(0, ACTIVITY_MOST);
   }
   // who: the person with that user, else the automation or script that did it
   function whoDid(e) {
@@ -1145,10 +1156,13 @@ export function mountTestFocus(root, { config, getHass }) {
     if (d === 'vacuum') return { cleaning: 'started cleaning', docked: 'docked', returning: 'went home', paused: 'paused', idle: 'stopped' }[s] || cap(s).toLowerCase();
     return s === 'on' ? 'turned on' : s === 'off' ? 'turned off' : cap(s).toLowerCase();
   }
+  // a row opens its device with its day, this moment marked (data-at)
   function activityRow(e) {
-    const id = e.entity_id, what = nameOf(id) + ' ' + didWhat(e), meta = [whoDid(e), clock(e.when * 1000)].filter(Boolean).join(' · ');
-    return '<div class="activityRow"><div class="tfIcon" aria-hidden="true"' + iconSlot(id, iconFor(id)) + '></div>' +
-      '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(what + ', ' + meta + '. More info') + '"><span class="activityRowName">' + esc(what) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></button></div>';
+    const id = e.entity_id, alarm = e.alarm && alarmOf(id);
+    const what = nameOf(id) + ' ' + (alarm ? alarm[0] : didWhat(e));
+    const meta = alarm ? clock(e.when * 1000) + (e.cleared ? ' · ' + alarm[1] + ' since ' + clock(e.cleared * 1000) : '') : [whoDid(e), clock(e.when * 1000)].filter(Boolean).join(' · ');
+    return '<div class="activityRow' + (alarm ? ' alert' : '') + '"><div class="tfIcon' + (alarm ? ' alert' : '') + '" aria-hidden="true"' + iconSlot(id, iconFor(id)) + '></div>' +
+      '<button class="tfName" type="button" data-more="' + esc(id) + '" data-at="' + Math.round(e.when * 1000) + '" aria-label="' + esc(what + ', ' + meta + '. More info') + '"><span class="activityRowName">' + esc(what) + '</span><span class="activityRowMeta">' + esc(meta) + '</span></button></div>';
   }
   // Energy today: Home Assistant's energy dashboard where it's set up (each source's use since midnight); otherwise
   // made up, as the house makes up what it doesn't have. A tile opens to its graph, like a reading
@@ -1212,14 +1226,19 @@ export function mountTestFocus(root, { config, getHass }) {
     line.animate([{ strokeDasharray: len, strokeDashoffset: len }, { strokeDasharray: len, strokeDashoffset: 0 }], { duration: 700, easing: 'cubic-bezier(.2,.7,.3,1)' });
     area?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 200, easing: 'ease-out', fill: 'backwards' });
   }
-  // the bottom row: the lights of the living room, bedroom and office (on first, then the most used) and up to two
-  // thermostats, each a light tile (252), as many as
-  // fit in one row (two rows of two on phones); worked out once a visit, so tiles don't move while you use them
+  // the dashboard's tiles: yours once you've added or removed one in edit mode (Matt, 29 Oct), any device with controls
+  // from any room. Until then, the bottom row: the lights of the living room, bedroom and office (on first, then the
+  // most used) and up to two thermostats, each a light tile (252), as many as fit in one row (two rows of two on
+  // phones); worked out once a visit, so tiles don't move while you use them
   let dashPicks = null, dashColsSeen = 0;
   // the dashboard shows only these rooms' lights (anything else passes)
   const dashLight = (id) => !id.startsWith('light.') || DASH_LIGHT_ROOMS.includes((whereIs.get(id) || '').toLowerCase());
   const dashCols = () => Math.max(2, pegsFor(grid?.clientWidth || 0).n);
+  // a tile on the dashboard shows its first control: a light's brightness, a thermostat's target, a cover's position…
+  const dashControl = (id) => { const s = specFor(id), i = s.sections.findIndex(Boolean); return i < 0 ? [] : [s.parts[i]]; };
   function dashTileIds(n) {
+    const own = dashPrefs().tiles;
+    if (own) return own.filter((id) => states[id]);
     if (!dashPicks) {
       const rank = (id) => (states[id]?.state === 'on' ? 1e6 : 0) + (used[id] || 0);
       dashPicks = {
@@ -1247,7 +1266,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const cols = dashCols();
     dashColsSeen = cols;
     out.push({ key: 'dash:tiles', wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tiles">' + inner + '</div>',
-      tiles: dashTileIds(cols >= 3 ? cols : cols * 2).map((id) => ({ key: id, html: actionTile(id, false, id.startsWith('climate.') ? ['step'] : ['bright']) })) });
+      tiles: dashTileIds(cols >= 3 ? cols : cols * 2).map((id) => ({ key: id, html: actionTile(id, false, dashControl(id)) })) });
     loadActivity();
     loadEnergy();
     return out;
@@ -1479,13 +1498,16 @@ export function mountTestFocus(root, { config, getHass }) {
     }
     return height;
   }
+  let editStart = ''; // the page's settings when edit mode began
   function setEditing(on) {
     editing = on;
-    if (!on) { drag = null; trayPicking = false; closeBoardMenu(); }
+    if (!on) { drag = null; trayPicking = tilePicking = false; closeBoardMenu(); }
     layoutBoard();
+    if (on) editStart = JSON.stringify(prefs);
+    else if (editStart && JSON.stringify(prefs) !== editStart) toast('Changes saved');
   }
   // a card's ⋯: its size (a tile or a card; a DAC taller or shorter), a cell left, right, up or down, Energy today's
-  // graph, and hide
+  // graph, and hide; a tile is removed instead (Matt, 29 Oct), and added again from the edit tray
   function openBoardMenu(key, opener) {
     closeBoardMenu();
     const p = lastPlaced.get(key), { n } = pegsFor(grid.clientWidth), dash = dashPrefs(), span = dash.spans[key] ?? 2;
@@ -1494,12 +1516,12 @@ export function mountTestFocus(root, { config, getHass }) {
     const menu = Object.assign(document.createElement('div'), { className: 'tfBoardMenu' });
     menu.setAttribute('role', 'menu');
     menu.setAttribute('aria-label', boardName(key) + ' options');
-    const dac = grid.querySelector('.tfDashTiles > .tfDac[data-k="' + CSS.escape(key) + '"]');
+    const tile = grid.querySelector('.tfDashTiles > [data-k="' + CSS.escape(key) + '"]'), dac = tile?.classList.contains('tfDac');
     menu.innerHTML = (RESIZABLE.includes(key) ? item('size', span === 1 ? 'Card size' : 'Tile size') : '') +
       (dac ? item('tall', tallDac(key) ? 'Make shorter' : 'Make taller') : '') +
       (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
       item('left', 'Move left', full || p.col === 0) + item('right', 'Move right', full || p.col + p.cols >= n) +
-      item('up', 'Move up', p.row <= 0) + item('down', 'Move down') + item('hide', 'Hide');
+      item('up', 'Move up', p.row <= 0) + item('down', 'Move down') + (tile ? item('remove', 'Remove') : item('hide', 'Hide'));
     grid.appendChild(menu);
     const left = Math.min(p.x + p.w - menu.offsetWidth, grid.clientWidth - menu.offsetWidth);
     Object.assign(menu.style, { left: Math.max(0, left) + 'px', top: (p.y + 28) + 'px' });
@@ -1516,7 +1538,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // every card's cell as it is now, so moving one leaves the rest where they are
   const cellsNow = () => Object.fromEntries([...lastPlaced].map(([k, p]) => [k, { col: p.col, row: p.row }]));
   function boardAct(key, act) {
-    const dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
+    if (act === 'remove') { closeBoardMenu(); removeTile(key); return; }
+    const before = prefs, dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
     if (act === 'size') dash.spans = { ...dash.spans, [key]: (dash.spans[key] ?? 2) === 1 ? 2 : 1 };
     if (act === 'tall') dash.opts = { ...dash.opts, [key]: { ...(dash.opts[key] || {}), tall: !tallDac(key) } };
     if (act === 'graph') dash.opts = { ...dash.opts, energy: { ...(dash.opts.energy || {}), graph: (dash.opts.energy?.graph || 'above') === 'above' ? 'below' : 'above' } };
@@ -1533,31 +1556,109 @@ export function mountTestFocus(root, { config, getHass }) {
     if (act === 'graph') { units.delete('dash:energy'); refresh(); }
     layoutBoard();
     if (act !== 'hide') grid.querySelector('[data-board-more="' + CSS.escape(key) + '"]')?.focus();
+    else toast(boardName(key) + ' hidden', undoTo(before));
   }
   function showCard(key) {
     const dash = dashPrefs();
     saveDash({ ...dash, hidden: dash.hidden.filter((k) => k !== key) });
     layoutBoard();
+    toast(boardName(key) + ' put back');
+  }
+  // the dashboard's tiles as they are: yours, else today's picks as shown. A tile added goes in the first free cell
+  // (left of the edit tray), everything else staying where it is; one removed leaves its cell free. Tiles aren't hidden any more, so any hidden
+  // before go with the first change
+  const tilesNow = () => dashPrefs().tiles || [...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => el.dataset.k).filter((k) => !dashPrefs().hidden.includes(k));
+  function setTiles(tiles, cells) {
+    const dash = dashPrefs();
+    saveCells({ ...dash, tiles, hidden: dash.hidden.filter((k) => !k.includes('.')) }, cells);
+    refresh();
+    renderTray();
+  }
+  const addTile = (id) => { setTiles([...tilesNow().filter((x) => x !== id), id], cellsNow()); toast(nameOf(id) + ' added'); reveal(id); };
+  const removeTile = (id) => { const before = prefs, cells = cellsNow(); delete cells[id]; setTiles(tilesNow().filter((x) => x !== id), cells); toast(nameOf(id) + ' removed', undoTo(before)); };
+  /* ---------- toasts (Matt, 29 Oct) ----------
+     The card's toast, at the bottom middle of the board (left of the edit tray when it's out) and 12 above the bottom
+     bar: what an edit did, with Undo for 5 s after a remove or a hide. Done says Changes saved when the edits changed
+     anything; they save as they're made */
+  let toastTimer = 0;
+  function toast(message, undo = null) {
+    const el = $('toast');
+    if (!el) return;
+    el.replaceChildren(Object.assign(document.createElement('span'), { textContent: message }));
+    if (undo) {
+      const b = Object.assign(document.createElement('button'), { type: 'button', className: 'toastAction', textContent: 'Undo' });
+      b.addEventListener('click', () => { clearTimeout(toastTimer); el.classList.remove('show', 'withAction'); undo(); });
+      el.appendChild(b);
+    }
+    const box = app.getBoundingClientRect(), bar = root.querySelector('.bottomNav')?.getBoundingClientRect();
+    const right = tray.classList.contains('open') && !trayTucked ? Math.min(box.right, tray.getBoundingClientRect().left) : box.right;
+    el.style.left = (box.left + right) / 2 + 'px';
+    el.style.bottom = (bar?.height ? window.innerHeight - bar.top + 12 : 26) + 'px';
+    el.classList.add('tfToast', 'show');
+    el.classList.toggle('withAction', Boolean(undo));
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show', 'withAction'), undo ? 5000 : 2200);
+  }
+  // Undo: the page's settings put back as they were before the edit
+  const undoTo = (before) => () => { prefs = before; savePrefs(); refresh(); layoutBoard(); renderTray(); };
+  // a tile just added: the page scrolls gently until it's in view, and a ring round it fades over 1.5 s (Home
+  // Assistant's highlight on a pasted card; edit mode already outlines every card, so a ring outside it). With Reduce
+  // motion the scroll jumps and the ring holds still
+  function reveal(key) {
+    const find = () => grid.querySelector('.tfDashTiles > [data-k="' + CSS.escape(key) + '"]');
+    // once it has slid out from under the tray (and been drawn again)
+    setTimeout(() => {
+      const el = find();
+      if (!el) return;
+      const still = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches, r = el.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > window.innerHeight) el.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
+      const ring = (a) => '0 0 0 4px color-mix(in srgb,var(--primary) ' + a + '%,transparent),0 0 24px color-mix(in srgb,var(--primary) ' + a + '%,transparent)';
+      el.animate([{ boxShadow: ring(55) }, { boxShadow: ring(0) }], { duration: 1500, easing: still ? 'steps(1, end)' : 'ease-out' });
+    }, clearOfTray(key) ? 260 : 0);
+  }
+  // a tile added under the edit tray moves to the first free cell left of it, so it can be seen; true if it moved
+  function clearOfTray(key) {
+    const p = lastPlaced.get(key);
+    if (!p || !tray.classList.contains('open') || trayTucked) return false;
+    const { n, w } = pegsFor(grid.clientWidth), edge = tray.getBoundingClientRect().left - grid.getBoundingClientRect().left;
+    const clear = (c) => c * (w + PEG_GAP) + p.cols * w + (p.cols - 1) * PEG_GAP <= edge;
+    if (clear(p.col)) return false;
+    const taken = new Set();
+    lastPlaced.forEach((q, k) => { if (k !== key) for (let y = q.row; y < q.row + q.rows; y++) for (let x = q.col; x < q.col + q.cols; x++) taken.add(x + ',' + y); });
+    const free = (c, r) => { for (let y = r; y < r + p.rows; y++) for (let x = c; x < c + p.cols; x++) if (taken.has(x + ',' + y)) return false; return true; };
+    for (let r = 0; r <= boardRows; r++) for (let c = 0; c + p.cols <= n && clear(c); c++) {
+      if (!free(c, r)) continue;
+      saveCells(dashPrefs(), { ...cellsNow(), [key]: { col: c, row: r } });
+      layoutBoard();
+      return true;
+    }
+    return false;
   }
   /* ---------- the edit tray (Matt, 28 Oct) ----------
      Edit mode's side panel, sliding in from the right with the pencil (tablets and up). It holds the cards hidden from
      the board (drag one onto the board where it should go, or tap it to put it back) and the favourites, edited as on
      Home Assistant's home view: Add favourite (any device, made-up ones too), drag to reorder, the eye to show or hide
      one on the dashboard, remove, and Show suggestions. A favourite hidden from the Favourites card waits here; drag it
-     back into the card where it should go. The tray lies over the board rather than squeezing it, so the board edited
-     is the board shown, and the tab on its edge tucks it away */
+     back into the card where it should go. Add tile (Matt, 29 Oct) puts any device with controls on the board as its
+     tile. The tray lies over the board rather than squeezing it, so the board edited is the board shown, and the tab
+     on its edge tucks it away */
   const PICK_DOMAINS = /^(light|switch|cover|climate|fan|lock|valve|media_player|humidifier|vacuum|scene|script|alarm_control_panel|water_heater|input_boolean)\./;
   const tray = Object.assign(document.createElement('aside'), { className: 'tfEditTray' });
   tray.setAttribute('aria-label', 'Edit the dashboard');
   tray.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button>' +
     '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div>' +
-    '<section class="tfTraySection" data-tray="cards"></section><section class="tfTraySection" data-tray="phone"></section>' +
+    '<section class="tfTraySection" data-tray="cards"></section>' +
+    '<section class="tfTraySection"><div class="sectionLabel">Tiles</div><p class="tfTrayNote">Remove a tile from its ⋯.</p>' +
+    '<button class="pill tfTrayAdd" type="button" data-tile-add aria-expanded="false">Add tile</button>' +
+    '<div class="tfTrayPick" data-pick="tiles" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-tile-search>' +
+    '<ul class="tfTrayList" data-tray="tilepick"></ul></div></section>' +
+    '<section class="tfTraySection" data-tray="phone"></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul>' +
     '<button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button>' +
-    '<div class="tfTrayPick" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
+    '<div class="tfTrayPick" data-pick="favs" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
     '<ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>';
   app.appendChild(tray);
-  let trayTucked = false, trayPicking = false, favAim = null, phoneShown = false;
+  let trayTucked = false, trayPicking = false, tilePicking = false, favAim = null, phoneShown = false;
   const trayHtml = {};
   const trayPut = (key, html) => {
     if (trayHtml[key] === html) return;
@@ -1572,12 +1673,13 @@ export function mountTestFocus(root, { config, getHass }) {
     trayName(id, off ? 'Hidden' + (whereIs.get(id) ? ' · ' + whereIs.get(id) : '') : whereIs.get(id) || valueOf(id)) +
     '<button class="tfTrayBtn" type="button" data-fav-eye="' + esc(id) + '" aria-pressed="' + !off + '" aria-label="' + (off ? 'Show ' : 'Hide ') + esc(nameOf(id)) + ' on the dashboard">' + (off ? EYE_OFF : EYE) + '</button>' +
     (star ? '<button class="tfTrayBtn" type="button" data-fav-remove="' + esc(id) + '" aria-label="Remove ' + esc(nameOf(id)) + ' from favourites">' + CROSS + '</button>' : '<span></span>') + '</li>';
-  function pickHtml(q) {
-    const stars = new Set(starred()), words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    const ids = Object.keys(states).filter((id) => PICK_DOMAINS.test(id) && !stars.has(id) && states[id].state !== 'unavailable')
+  // the devices to pick from, by room: those it can take that aren't there already
+  function pickHtml(q, takes, there, attr) {
+    const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const ids = Object.keys(states).filter((id) => takes(id) && !there.has(id) && states[id].state !== 'unavailable')
       .filter((id) => { const hay = (nameOf(id) + ' ' + (whereIs.get(id) || '') + ' ' + id).toLowerCase(); return words.every((w) => hay.includes(w)); })
       .sort((a, b) => (whereIs.get(a) || '~').localeCompare(whereIs.get(b) || '~') || nameOf(a).localeCompare(nameOf(b))).slice(0, 40);
-    return ids.map((id) => '<li><button class="tfTrayPickItem" type="button" data-fav-pick="' + esc(id) + '"><span class="tfIcon"' + iconSlot(id, iconFor(id)) + '></span>' +
+    return ids.map((id) => '<li><button class="tfTrayPickItem" type="button" ' + attr + '="' + esc(id) + '"><span class="tfIcon"' + iconSlot(id, iconFor(id)) + '></span>' +
       trayName(id, whereIs.get(id) || '—') + '</button></li>').join('') || '<li class="tfTrayNote">Nothing matches.</li>';
   }
   function renderTray() {
@@ -1601,20 +1703,28 @@ export function mountTestFocus(root, { config, getHass }) {
     const hidden = new Set(prefs.favHidden || []), stars = starred();
     const ids = [...stars, ...[...hidden].filter((id) => !stars.includes(id) && states[id])];
     trayPut('favs', ids.map((id) => favRow(id, hidden.has(id), stars.includes(id))).join('') || '<li class="tfTrayNote">No favourites yet.</li>');
-    tray.querySelector('.tfTrayPick').hidden = !trayPicking;
+    tray.querySelector('[data-pick="tiles"]').hidden = !tilePicking;
+    tray.querySelector('[data-tile-add]').setAttribute('aria-expanded', String(tilePicking));
+    if (tilePicking) trayPut('tilepick', pickHtml(tray.querySelector('[data-tile-search]').value, (id) => ACTION_DOMAINS.includes(id.split('.')[0]), new Set(tilesNow()), 'data-tile-pick'));
+    tray.querySelector('[data-pick="favs"]').hidden = !trayPicking;
     tray.querySelector('[data-fav-add]').setAttribute('aria-expanded', String(trayPicking));
-    if (trayPicking) trayPut('pick', pickHtml(tray.querySelector('[data-fav-search]').value));
+    if (trayPicking) trayPut('pick', pickHtml(tray.querySelector('[data-fav-search]').value, (id) => PICK_DOMAINS.test(id), new Set(starred()), 'data-fav-pick'));
     trayPut('suggest', '<div><strong>Show suggestions</strong><div class="status">Fills the card after your favourites.</div></div>' +
       '<button class="switch' + (suggestOn() ? ' on' : '') + '" type="button" role="switch" aria-checked="' + suggestOn() + '" data-fav-suggest aria-label="Show suggestions"></button>');
   }
   const saveFavs = (next) => { prefs = { ...prefs, ...next }; savePrefs(); refresh(); renderTray(); };
   function setFavShown(id, show) {
-    const hidden = new Set(prefs.favHidden || []);
+    const before = prefs, hidden = new Set(prefs.favHidden || []);
     if (show) hidden.delete(id); else hidden.add(id);
     saveFavs({ favHidden: [...hidden] });
+    if (show) toast(nameOf(id) + ' put back'); else toast(nameOf(id) + ' hidden', undoTo(before));
   }
-  const removeFav = (id) => saveFavs({ favourites: starred().filter((x) => x !== id), favHidden: (prefs.favHidden || []).filter((x) => x !== id) });
-  const addFav = (id) => saveFavs({ favourites: [...starred().filter((x) => x !== id), id], favHidden: (prefs.favHidden || []).filter((x) => x !== id) });
+  const removeFav = (id) => {
+    const before = prefs;
+    saveFavs({ favourites: starred().filter((x) => x !== id), favHidden: (prefs.favHidden || []).filter((x) => x !== id) });
+    toast(nameOf(id) + ' removed from favourites', undoTo(before));
+  };
+  const addFav = (id) => { saveFavs({ favourites: [...starred().filter((x) => x !== id), id], favHidden: (prefs.favHidden || []).filter((x) => x !== id) }); toast(nameOf(id) + ' added to favourites'); };
   tray.addEventListener('click', (ev) => {
     const t = ev.target.closest('button');
     if (!t) return;
@@ -1626,15 +1736,19 @@ export function mountTestFocus(root, { config, getHass }) {
     else if (t.dataset.favRemove) removeFav(t.dataset.favRemove);
     else if (t.hasAttribute('data-fav-add')) { trayPicking = !trayPicking; renderTray(); if (trayPicking) tray.querySelector('[data-fav-search]').focus({ preventScroll: true }); }
     else if (t.dataset.favPick) addFav(t.dataset.favPick);
+    else if (t.hasAttribute('data-tile-add')) { tilePicking = !tilePicking; renderTray(); if (tilePicking) tray.querySelector('[data-tile-search]').focus({ preventScroll: true }); }
+    else if (t.dataset.tilePick) addTile(t.dataset.tilePick);
     else if (t.hasAttribute('data-fav-suggest')) saveFavs({ suggest: !suggestOn() });
   });
-  tray.addEventListener('input', (ev) => { if (ev.target.matches('[data-fav-search]')) renderTray(); });
+  tray.addEventListener('input', (ev) => { if (ev.target.matches('[data-fav-search],[data-tile-search]')) renderTray(); });
+  // Escape closes the search it's in
   tray.addEventListener('keydown', (ev) => {
-    if (ev.key !== 'Escape' || !trayPicking) return;
+    const tiles = Boolean(ev.target.closest?.('[data-pick="tiles"],[data-tile-add]'));
+    if (ev.key !== 'Escape' || !(tiles ? tilePicking : trayPicking)) return;
     ev.stopPropagation();
-    trayPicking = false;
+    if (tiles) tilePicking = false; else trayPicking = false;
     renderTray();
-    tray.querySelector('[data-fav-add]').focus({ preventScroll: true });
+    tray.querySelector(tiles ? '[data-tile-add]' : '[data-fav-add]').focus({ preventScroll: true });
   });
   // out of the tray: a hidden card onto the board, at the cell under the pointer (a press without a drag puts it back
   // where there's room); a hidden favourite into the Favourites card, at the place under the pointer
@@ -1689,6 +1803,7 @@ export function mountTestFocus(root, { config, getHass }) {
           const dash = dashPrefs(), cells = cellsNow();
           drag = null;
           saveCells({ ...dash, hidden: dash.hidden.filter((k) => k !== key) }, cells);
+          toast(boardName(key) + ' put back');
         }
         drag = null;
         layoutBoard();
@@ -1705,6 +1820,7 @@ export function mountTestFocus(root, { config, getHass }) {
       list.splice(before ? list.indexOf(before) : list.length, 0, key);
       favAim = null;
       saveFavs({ favourites: list, favHidden: [...hidden] });
+      toast(nameOf(key) + ' put back');
     };
     window.addEventListener('pointermove', move);
     window.addEventListener('pointerup', up);
@@ -2161,6 +2277,7 @@ export function mountTestFocus(root, { config, getHass }) {
     return [
       head(nameOf(id)),
       now(valueOf(id), st.last_changed && ago(Date.parse(st.last_changed))),
+      more?.at && '<svg class="tfGraph tfDay" data-day="' + esc(id) + '" role="img" aria-label="' + esc(nameOf(id)) + ', last 24 hours"></svg>',
       d === 'cover' && '<div data-cover-art="' + esc(id) + '"></div>',
       ...s.sections.filter(Boolean),
       detailsOf(id) && '<button class="tfDetailsBtn" type="button" data-details aria-expanded="' + Boolean(more?.details) + '" aria-controls="tfMoreSide"><span>Details</span>' + CHEVRON + '</button>',
@@ -2215,6 +2332,7 @@ export function mountTestFocus(root, { config, getHass }) {
       mountArt(sheet);
       mountDacs(sheet);
       fillIcons(sheet);
+      sheet.querySelectorAll('[data-day]').forEach((svg) => drawDay(svg.dataset.day, svg, more.at));
       if (keep) sheet.querySelector('.tfMore').scrollTop = keep;
       refocus(sheet, was);
       if (!sheet.contains(root.activeElement)) sheet.querySelector('[data-more-close]')?.focus({ preventScroll: true });
@@ -2245,7 +2363,7 @@ export function mountTestFocus(root, { config, getHass }) {
     // were). Back returns there
     const inside = Boolean(more && opener && sheet.contains(opener)), box = inside && sheet.querySelector('.tfMore');
     if (inside) more.scroll = box.scrollTop;
-    more = { id, opener: inside ? more.opener : opener, back: inside ? more : null, frame: inside ? more.frame || { wide: box.classList.contains('wide'), h: box.offsetHeight } : null };
+    more = { id, opener: inside ? more.opener : opener, back: inside ? more : null, frame: inside ? more.frame || { wide: box.classList.contains('wide'), h: box.offsetHeight } : null, at: Number(opener?.dataset?.at) || null };
     showMore();
   }
   let turning = false; // a new page in the open popup (a device, or Back)
@@ -2285,6 +2403,78 @@ export function mountTestFocus(root, { config, getHass }) {
     svg.innerHTML = '<path d="' + d + 'V' + bottom + 'H' + x(pts[0][0]).toFixed(1) + 'Z" fill="' + (opts.colour || 'var(--primary)') + '" fill-opacity=".14"/>' +
       '<path d="' + d + '" fill="none" stroke="' + (opts.colour || 'var(--primary)') + '" stroke-width="2" stroke-linejoin="round"/>' +
       '<text x="0" y="' + (H - 4) + '">24 h ago</text><text x="' + W + '" y="' + (H - 4) + '" text-anchor="end">Now</text>';
+  }
+  /* a device's day, opened from Activity (Matt, 29 Oct; the motion lab's "On and off through the day"): one track 26
+     tall across the last 24 hours, corner 8, in the text colour at 10%; each time it was on (open, wet, unlocked…) a span
+     in its colour (a light amber, an alarm red, the rest the accent), when above it; the hours under it; the Activity
+     row's moment marked. A number draws as a line instead */
+  const ON_STATES = { lock: ['unlocked', 'open', 'opening'], cover: ['open', 'opening', 'closing'], valve: ['open', 'opening', 'closing'], vacuum: ['cleaning', 'returning'] };
+  const isOn = (id, s) => {
+    const d = id.split('.')[0];
+    if (ON_STATES[d]) return ON_STATES[d].includes(s);
+    if (d === 'alarm_control_panel' || d === 'climate' || d === 'media_player') return !['off', 'standby', 'disarmed', 'unavailable', 'unknown'].includes(s);
+    return s === 'on';
+  };
+  const onWord = (id) => {
+    const d = id.split('.')[0], dc = attr(id).device_class;
+    if (d === 'binary_sensor') return { moisture: 'Wet', smoke: 'Smoke', gas: 'Gas', carbon_monoxide: 'Carbon monoxide', safety: 'Unsafe' }[dc] || (OPEN_CLASSES.includes(dc) ? 'Open' : 'On');
+    return { lock: 'Unlocked', cover: 'Open', valve: 'Open', vacuum: 'Cleaning', alarm_control_panel: 'Armed' }[d] || 'On';
+  };
+  const days = new Map(); // entity id → { at, pts }: its changes over the last 24 hours
+  let dayClips = 0;
+  async function dayOf(id) {
+    let h = days.get(id);
+    if (!h || Date.now() - h.at > 60 * 1000) {
+      let pts = [];
+      try {
+        const res = await callWS({ type: 'history/history_during_period', start_time: new Date(Date.now() - 864e5).toISOString(), entity_ids: [id], minimal_response: true, no_attributes: true, significant_changes_only: false });
+        pts = (res?.[id] || []).map((r) => [r.lu != null ? r.lu * 1000 : Date.parse(r.last_updated || r.last_changed), String(r.s ?? r.state)]).filter(([t]) => Number.isFinite(t));
+      } catch (_e) { /* no history: the logbook's changes, then the device's own */ }
+      if (!pts.length) pts = (logbook || []).filter((e) => e.entity_id === id).map((e) => [e.when * 1000, String(e.state)]);
+      h = { at: Date.now(), pts };
+      days.set(id, h);
+    }
+    const st = states[id], pts = h.pts.slice().sort((a, b) => a[0] - b[0]);
+    if (st && (!pts.length || pts[pts.length - 1][1] !== st.state)) pts.push([Date.parse(st.last_changed) || Date.now(), st.state]);
+    return pts;
+  }
+  async function drawDay(id, svg, at) {
+    const pts = await dayOf(id);
+    if (!svg.isConnected) return;
+    const nums = pts.map(([t, s]) => [t, Number(s)]);
+    if (pts.length > 1 && nums.every(([, v]) => Number.isFinite(v))) { plot(svg, nums, nameOf(id) + ', last 24 hours'); return; }
+    const t1 = Date.now(), t0 = t1 - 864e5, W = Math.max(200, svg.clientWidth || 360), H = 62, x = (t) => Math.max(0, Math.min(W, ((t - t0) / 864e5) * W));
+    const spans = [];
+    let from = null;
+    pts.forEach(([t, s]) => {
+      const on = isOn(id, s);
+      if (on && from == null) from = Math.max(t, t0);
+      else if (!on && from != null) { spans.push([from, Math.max(t, t0)]); from = null; }
+    });
+    if (from != null) spans.push([from, t1]);
+    const colour = alarmOf(id) ? 'var(--danger)' : id.startsWith('light.') ? '#ffaa00' : 'var(--primary)', word = onWord(id), clip = 'tfDayClip' + ++dayClips;
+    const said = spans.map(([a, b]) => word + (b >= t1 - 1000 && a <= t0 + 1000 ? ' all day' : b >= t1 - 1000 ? ' since ' + clock(a) : a <= t0 + 1000 ? ' until ' + clock(b) : ' ' + clock(a) + '–' + clock(b)));
+    // when, above each span, where there's room
+    let labels = '', end = -Infinity;
+    spans.forEach(([a], i) => {
+      const w = said[i].length * 5.4, lx = Math.min(x(a), W - w);
+      if (lx < end + 8) return;
+      labels += '<text x="' + lx.toFixed(1) + '" y="10">' + esc(said[i]) + '</text>';
+      end = lx + w;
+    });
+    // the hours under it: midnight, 06, 12 and 18 where they fall, and Now at the end
+    let hours = '<text x="' + W + '" y="' + (H - 2) + '" text-anchor="end">Now</text>';
+    [0, 6, 12, 18].forEach((hr) => {
+      let t = new Date(t1).setHours(hr, 0, 0, 0);
+      if (t > t1) t -= 864e5;
+      if (x(t) > 8 && x(t) < W - 34) hours += '<text x="' + x(t).toFixed(1) + '" y="' + (H - 2) + '" text-anchor="middle">' + String(hr).padStart(2, '0') + '</text>';
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('aria-label', nameOf(id) + ', last 24 hours: ' + (said.length ? said.join(', ') : 'no changes'));
+    svg.innerHTML = '<clipPath id="' + clip + '"><rect x="0" y="18" width="' + W + '" height="26" rx="8"/></clipPath>' + labels +
+      '<rect x="0" y="18" width="' + W + '" height="26" rx="8" fill="var(--text)" fill-opacity=".1"/>' +
+      '<g clip-path="url(#' + clip + ')">' + spans.map(([a, b]) => '<rect x="' + x(a).toFixed(1) + '" y="18" width="' + Math.max(2, x(b) - x(a)).toFixed(1) + '" height="26" fill="' + colour + '"/>').join('') + '</g>' +
+      (at && at >= t0 ? '<line x1="' + x(at).toFixed(1) + '" x2="' + x(at).toFixed(1) + '" y1="13" y2="49" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>' : '') + hours;
   }
   function madeUpHistory(id) {
     const v = Number(states[id]?.state), now = Date.now();

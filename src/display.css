@@ -347,12 +347,15 @@ button.tfAreaIcon{cursor:pointer}
 .tfACTop{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:calc(100% - 20px)}
 .tfACMain{max-width:calc(100% - 20px);font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tfACTiles{display:grid;grid-template-columns:repeat(2,60px)}
+.tfACTiles{display:grid;grid-template-columns:repeat(2,60px);min-height:60px}
+/* the main sits at one height on every folded card (Matt, 29 Oct): where it is above one row of icons. A second row
+   rises above the first instead of pushing the main up */
+.tfACTiles:has(>:nth-child(3)){margin-top:-60px}
 .tfACTile{display:grid;place-items:center;width:60px;height:60px}
 .tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}
 .tfACTile .tfIcon.alert{background:#e53935;color:#ffffff}
-@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}}
+@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}.tfACTiles:has(>:nth-child(2)){margin-top:-60px}}
 
 /* =========================================================
    A summary's popup (Matt, 27 Oct: "double all the spacing", "native to the size of screen", more control than
@@ -458,6 +461,9 @@ button.tfAreaIcon{cursor:pointer}
 .tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}
 #app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}
 #app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}
+/* the dashboard's weather card is the now and the days, without the condition and today's range (Matt's Figma "Card ·
+   Weather" 539:1395, 29 Oct); the Weather page keeps them */
+.tfDash-wx .wbCondition{display:none}
 /* the tiles: each its own item among the cards, so it can sit where the board has it; on a phone two to a row, as far
    apart as the cards. Tiles side by side are one height (on the board placeCards gives them the same rows); a taller
    light tile keeps its name at the top and its slider pinned to the bottom (Matt, 27 Oct) */
@@ -574,3 +580,14 @@ button.tfAreaIcon{cursor:pointer}
 .tfDash-energy.graphAbove>.tfDashGraph{order:-1;margin:0 0 var(--inset)}
 /* the source in the graph keeps the tile's hover look */
 #homeView .card.tfDash-energy .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}
+
+/* HomeCore's toast (Matt, 29 Oct): the card's toast at the bottom middle of the board, above the bottom bar
+   (test-focus.js sets its left and bottom), rising in */
+.toast.tfToast{top:auto;right:auto;max-width:calc(100vw - 32px);transform:translate(-50%,6px)}
+.toast.tfToast.show{transform:translate(-50%,0)}
+
+/* Activity's alarms (Matt, 29 Oct): a red row for the day; a device opened from Activity shows its day on one track */
+.tfDash-act .activityRow.alert .activityRowName{color:var(--danger)}
+.activityRow .tfIcon.alert{background:#e53935;color:#ffffff}
+.tfGraph.tfDay{flex:none;height:62px;min-height:0}
+.tfGraph.tfDay text{font-size:10px}
