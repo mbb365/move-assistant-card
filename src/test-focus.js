@@ -43,7 +43,7 @@ const COVER_NOUN = { curtain: 'curtains', blind: 'blind', venetian: 'blinds' };
 // the home view's summaries (Home Assistant's home-summaries.ts, with its English names), in its default order. Energy
 // shows what the house uses now: this page can't read the energy dashboard's day
 const SUMMARIES = {
-  light: { name: 'Lights', icon: 'mdi:lamps', colour: '#ffc107' },
+  light: { name: 'Lights', icon: 'mdi:lightbulb', colour: '#ffc107' },
   climate: { name: 'Climate', icon: 'mdi:home-thermometer', colour: '#ff5722' },
   security: { name: 'Security', icon: 'mdi:security', colour: '#607d8b' },
   media_players: { name: 'Media players', icon: 'mdi:multimedia', colour: '#2196f3' },
@@ -74,7 +74,8 @@ const TICK = svgIcon(['M20 6L9 17L4 12']);
 const AREA_ICON = {
   temp: svgIcon(['M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0Z']),
   hum: svgIcon(['M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z']),
-  lights: svgIcon(['M9 18h6', 'M10 22h4', 'M12 2a7 7 0 0 0-4 12.74V17h8v-2.26A7 7 0 0 0 12 2Z']),
+  // the solid bulb every light shows (Matt, 30 Oct)
+  lights: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path style="fill:currentColor;stroke:none" d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/></svg>',
   covers: svgIcon(['M3 3h18', 'M5 3v18c3-4 4-10 4-18', 'M19 3v18c-3-4-4-10-4-18']),
   climate: svgIcon(['M2 8h20', 'M2 19h20', 'M5 5v17', 'M9.5 5v17', 'M14.5 5v17', 'M19 5v17']),
   humidifier: svgIcon(['M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z', 'M9 15a3 3 0 0 0 3 3']),
@@ -473,7 +474,10 @@ export function mountTestFocus(root, { config, getHass }) {
       }
     });
   }
-  const iconSlot = (id, icon, letter) => ' data-icon-for="' + esc(id) + '"' + (icon ? ' data-icon-name="' + esc(icon) + '"' : '') + (letter ? ' data-letter="' + esc(letter) + '"' : '');
+  // every light the same solid bulb, on or off, its state in the chip's colour (Matt, 30 Oct); a light given its own
+  // icon in Home Assistant keeps it
+  const lightIcon = (id) => (id.startsWith('light.') && states[id] && !attr(id).icon && !getHass()?.entities?.[id]?.icon ? 'mdi:lightbulb' : '');
+  const iconSlot = (id, icon, letter) => { icon = icon || lightIcon(id); return ' data-icon-for="' + esc(id) + '"' + (icon ? ' data-icon-name="' + esc(icon) + '"' : '') + (letter ? ' data-letter="' + esc(letter) + '"' : ''); };
   const iconFor = (id) => (id.endsWith('_solar_power') ? 'mdi:solar-power-variant' : attr(id).rang ? 'mdi:doorbell' : '');
   // a service call on a button: domain|service|entity|data
   const act = (domain, service, id, data) => esc([domain, service, id, data ? JSON.stringify(data) : ''].join('|'));

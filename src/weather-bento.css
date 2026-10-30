@@ -209,7 +209,8 @@
 .wbSecondary{min-height:20px;color:var(--muted);font:400 15px/20px var(--font)}
 @container wb-card (width < 480px){
   .wbHourly :is(.wbHeader,.wbTabs){padding:0 8px}
-  .wbStripScroll{min-height:150px}
+  /* phones: the strip 2.5 times as tall as it was (Matt, 30 Oct), the sky taking the room */
+  .wbStripScroll{min-height:380px}
 }
 
 /* ---- Sun: a glowing sun on a deep maroon sky ---- */
