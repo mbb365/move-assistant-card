@@ -86,6 +86,9 @@
 /* lights: a tile on its own, 20 in from its edge, the brightness bar 14 under the name (Figma "HC FINAL ACTION TILE") */
 .tfAction{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
 .tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}
+/* tiles side by side are one height, everywhere (Matt, 31 Oct: the dashboard, a room's page, a popup): a taller tile
+   keeps its head at the top and its controls together on the bottom edge, 14 apart */
+.tfAction>.tfActionHead{margin-bottom:auto}
 .tfActionHead>:is(div,.tfName){min-width:0}
 .tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
 .tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
@@ -99,7 +102,7 @@
 .tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 /* a block of action tiles; half the grid wide on desktop */
 .tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}
-.tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start}
+.tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .tfAction{grid-column:span 2}
 @container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction{grid-column:auto}}
 .tfBar::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}
@@ -147,9 +150,13 @@
 .tfBar b{position:absolute;top:8px;bottom:8px;width:4px;margin-left:-2px;border-radius:2px;background:#ffffff;box-shadow:0 0 0 .5px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.25)}
 .tfAction:not(.on) .tfBar:is(.ct,.hue){opacity:.45}
 .tfBar:is(.pos,.vol) i{background:var(--primary)}
+/* every control is one track (Matt, 31 Oct): 46 tall, corner 16, the edge line, as wide as the tile allows; pieces
+   inside sit 4 in, 4 apart, 38 tall with corner 12 (16 less the 4, so they nest); labels Geist 600 14, icons 22 */
+:is(.tfStep,.tfSeg,.tfBlocks,.tfTilt,.tfChips){font-family:var(--font-tile)}
 /* a target with − and + */
 .tfStep{display:flex;align-items:center;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}
-.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);font:400 24px/1 var(--font);cursor:pointer}
+.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);cursor:pointer}
+.tfStep svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}
 .tfStep output{flex:1 0 auto;white-space:nowrap;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}
 /* modes and buttons: segments in a track, 4 in from its edge */
 .tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}
@@ -179,27 +186,27 @@
 .tfAreaPanel .sourceTag{margin-right:4px}
 /* covers (Claude Design "Covers design" → Main.dc.html): four blocks for 25/50/75/100, a Shut to Open tilt bar and
    Open/Stop/Close, each 38 tall with corner 12 and 3 inside, as drawn there (the HomeCore bars beside them are 46 / 16) */
-.tfBlocks{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;height:38px;padding:3px;border-radius:12px;background:var(--tile);cursor:pointer;touch-action:none;user-select:none}
+.tfBlocks{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:none;user-select:none;container:blocks/inline-size}
 .tfBlocks>span{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:4px;transition:background .12s}
-.tfBlocks>span:first-child{border-radius:9px 4px 4px 9px}
-.tfBlocks>span:nth-child(4){border-radius:4px 9px 9px 4px}
+.tfBlocks>span:first-child{border-radius:12px 4px 4px 12px}
+.tfBlocks>span:nth-child(4){border-radius:4px 12px 12px 4px}
 .tfBlocks:not(.fine)>span:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}
 .tfBlocks i{position:absolute;inset:0 auto 0 0;border-radius:inherit;background:var(--primary)}
-.tfBlocks b{position:relative;color:var(--text);font:600 12px/1 var(--font-tile);transition:opacity .15s}
+.tfBlocks b{position:relative;color:var(--text);font:600 14px/1 var(--font-tile);transition:opacity .15s}
+.tfBlocks b small{font:inherit}
+/* a track too narrow for "100%" at 14 (blocks under 38 wide) shows the numbers alone */
+@container blocks (width < 164px){.tfBlocks b small{display:none}}
 .tfBlocks b.lit{color:#ffffff}
 /* held: the labels fade and the value sits over the fill's edge */
 .tfBlocks.fine b{opacity:0}
 .tfTip{position:absolute;bottom:calc(100% + 8px);z-index:2;transform:translateX(-50%);padding:3px 8px;border-radius:7px;background:var(--text);color:var(--card);font:700 12px/16px var(--font-tile);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s}
 .tfBlocks.fine .tfTip{opacity:1}
-.tfTilt{position:relative;display:flex;align-items:center;justify-content:space-between;height:38px;border-radius:12px;background:var(--tile);cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.tfTilt i{position:absolute;top:3px;bottom:3px;left:3px;border-radius:9px;background:var(--primary)}
-.tfTilt span{position:relative;padding:0 15px;color:var(--text);font:600 12px/1 var(--font-tile)}
+.tfTilt{position:relative;display:flex;align-items:center;justify-content:space-between;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.tfTilt i{position:absolute;top:4px;bottom:4px;left:4px;border-radius:12px;background:var(--primary)}
+.tfTilt span{position:relative;padding:0 16px;color:var(--text);font:600 14px/1 var(--font-tile)}
 .tfTilt span.lit{color:#ffffff}
 :is(.tfBlocks,.tfTilt):focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.tfCoverBtns{display:flex;gap:12px}
-.tfCoverBtns button{flex:1;display:grid;place-items:center;height:38px;min-width:0;min-height:0;padding:0;border:0;border-radius:12px;background:var(--tile);color:var(--text);cursor:pointer}
-.tfCoverBtns button:disabled{opacity:.38;cursor:default}
-.tfCoverBtns svg{display:block;width:22px;height:22px}
+.tfCoverBtns svg{fill:none}
 /* the cover in its window (more-info): as wide as the design's dialog draws it, smaller when the screen is short */
 .tfCoverArt{align-self:center;width:min(294px,100%,max(150px,100vh - 520px));aspect-ratio:1;border-radius:24px;touch-action:none;user-select:none;-webkit-tap-highlight-color:transparent}
 .tfCoverArt.x{cursor:ew-resize}
@@ -250,7 +257,7 @@
 .tfMoreRow{display:flex;justify-content:space-between;gap:16px;padding:10px 0;box-shadow:inset 0 -.4px 0 var(--line);font:400 14px/20px var(--font)}
 .tfMoreRow span:first-child{color:var(--muted)}
 .tfMoreNote{color:var(--muted);font:400 12px/16px var(--font)}
-@media(max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}.tfMore .tfCoverBtns{gap:8px}}
+@media(max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}}
 @media(max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}
 @media(max-width:900px){.tfCard,.tfBlock{grid-column:auto}}
 
@@ -380,9 +387,10 @@ button.tfAreaIcon{cursor:pointer}
 .tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}
 .tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}
-.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px;align-items:start}
+.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}
 .tfMoreActions .tfAction{grid-column:auto}
-.tfMoreActions>.activityRow{display:flex;align-items:center;gap:12px;min-width:0;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
+/* a reading tile beside a taller device keeps its icon and name at the top */
+.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
 .tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}
 .tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -470,7 +478,6 @@ button.tfAreaIcon{cursor:pointer}
    light tile keeps its name at the top and its slider pinned to the bottom (Matt, 27 Oct) */
 #app.tfDash .tfDashTiles{display:contents}
 .tfDashTiles>:is(.tfAction,.tfDac){flex:none;align-self:stretch;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}
-.tfDashTiles>.tfAction{justify-content:space-between}
 /* =========================================================
    The peg board (Matt, 27 Oct; edit mode drawn in Figma "Dashboard edit mode" for him to change): on a tablet and up
    the dashboard is a solid grid of cells, columns --peg-w (252) and rows 60, 16 apart, and every card fills whole cells
@@ -613,3 +620,14 @@ button.tfAreaIcon{cursor:pointer}
 /* a tooltip for text cut short (Matt, 29 Oct): the bright fill, as the toast, 8 from the text, up to 320 wide */
 .tfTooltip{position:fixed;z-index:500;max-width:min(320px,calc(100vw - 16px));padding:6px 10px;border-radius:10px;background:var(--bright);color:var(--on-bright);font:500 14px/18px var(--font);overflow-wrap:break-word;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .tfTooltip[hidden]{display:none}
+
+/* Energy today's bars rise from their base (Matt, 31 Oct) */
+.tfDashGraph rect{transform-box:fill-box;transform-origin:50% 100%}
+
+/* Long names (Matt, 31 Oct; Settings → Appearance, this device). Automatic: cut with "…" on the board, two lines on
+   phones (as above). Cut short: "…" everywhere. Two lines: wraps everywhere, at most two lines, then "…". Scroll: cut
+   with "…" and glides across once (test-focus.js) */
+#app.house:is([data-names="cut"],[data-names="scroll"]) :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+#app.house[data-names="wrap"] :is(.activityRowName,.activityRowMeta){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;hyphens:auto}
+/* names on two lines can make Favourites taller than its card: its list scrolls inside it, as Activity's does */
+#app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}

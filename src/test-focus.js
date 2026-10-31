@@ -28,6 +28,11 @@ const MEDIA = {
   play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
   pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>',
 };
+// a stepper's − and +, drawn at 22 like the telly's buttons
+const STEP = {
+  down: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg>',
+  up: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>',
+};
 // media_player supported_features bits
 const PAUSE = 1, VOLUME_SET = 4, PREVIOUS = 16, NEXT = 32, TURN_ON = 128, TURN_OFF = 256, PLAY = 16384;
 // cover supported_features bits
@@ -58,6 +63,8 @@ const TOGGLES = ['switch', 'fan', 'input_boolean', 'automation'];
 // bottom on phones.
 const LOOK_KEY = 'move-assistant-house-look';
 const MORE_STYLES = [['popup', 'Popup'], ['sheet', 'Sheet']];
+// Settings → Appearance → Long names (Matt, 31 Oct): how a name or state too long for its space shows
+const NAME_STYLES = [['auto', 'Automatic'], ['cut', 'Cut short'], ['wrap', 'Two lines'], ['scroll', 'Scroll']];
 // the dashboard's edit mode: the pencil and Done in the bottom bar, and each card's grip and options
 const GRIP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>';
 const DOTS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>';
@@ -156,7 +163,7 @@ export function mountTestFocus(root, { config, getHass }) {
       tabPane('sums', '<div class="toggleList">' +
         Object.entries(SUMMARIES).map(([k, s]) => settingRow(s.name, '', '<button class="switch" type="button" role="switch" data-sum-toggle="' + k + '" aria-label="' + s.name + ' summary"></button>')).join('') + '</div>') + '</div>');
     const rows = $('houseLook');
-    [view.querySelector('.themeBtn')?.closest('.toggleRow'), $('densityToggle')?.closest('.toggleRow'), $('moreInfoChoice')?.closest('.toggleRow')].forEach((row) => row && rows.appendChild(row));
+    [view.querySelector('.themeBtn')?.closest('.toggleRow'), $('densityToggle')?.closest('.toggleRow'), $('moreInfoChoice')?.closest('.toggleRow'), $('namesChoice')?.closest('.toggleRow')].forEach((row) => row && rows.appendChild(row));
     rows.insertAdjacentHTML('beforeend', settingRow('Lights', 'How lights show on the house page.', seg('lightsChoice', 'Lights', 'data-lights', [['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']]), 'lightsRow') +
       settingRow('Pad', 'What the Dual Axis Controller’s pad sets on its tile.', seg('dacPadChoice', 'Pad', 'data-dac-pad', [['temperature', 'Temperature'], ['colour', 'Colour']]), 'dacPadRow'));
     const pane = $('housePane'), bar = pane.querySelector('.houseTabs'), mark = bar.querySelector('.rubberIndicator');
@@ -312,11 +319,11 @@ export function mountTestFocus(root, { config, getHass }) {
     let v = {};
     try { v = JSON.parse(local.get(LOOK_KEY)) || {}; } catch (_e) { /* the defaults */ }
     const only = (o, ok) => Object.fromEntries(Object.entries(o || {}).filter(([, x]) => ok.includes(x)));
-    return { more: v.more === 'sheet' ? 'sheet' : 'popup', lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
+    return { more: v.more === 'sheet' ? 'sheet' : 'popup', names: ['cut', 'wrap', 'scroll'].includes(v.names) ? v.names : 'auto', lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
       lightStyles: only(v.lightStyles, ['tile', 'dac']), lightPads: only(v.lightPads, ['temperature', 'colour']) };
   })();
   const saveLook = () => local.set(LOOK_KEY, JSON.stringify(look));
-  const applyLook = () => { app.dataset.more = look.more; fitDetails(); };
+  const applyLook = () => { app.dataset.more = look.more; app.dataset.names = look.names; fitDetails(); };
   /* Settings → Appearance → More info (the house page): a popup or a sheet */
   if (testFocus && list && !$('moreInfoChoice')) {
     $('densityToggle').closest('.toggleRow').insertAdjacentHTML('afterend',
@@ -330,6 +337,19 @@ export function mountTestFocus(root, { config, getHass }) {
       saveLook();
       applyLook();
       $('moreInfoChoice').querySelectorAll('[data-more-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    });
+    // Long names: Automatic cuts with "…" on the board and wraps on phones; the others do one thing everywhere
+    $('moreInfoChoice').closest('.toggleRow').insertAdjacentHTML('afterend',
+      '<div class="toggleRow"><div><strong>Long names</strong><div class="status">How a name or state too long for its space shows.</div></div>' +
+      '<div class="themeChoice" id="namesChoice" role="group" aria-label="Long names">' +
+      NAME_STYLES.map(([value, text]) => '<button class="wxLayoutBtn" type="button" aria-pressed="' + (look.names === value) + '" data-names-style="' + value + '">' + text + '</button>').join('') + '</div></div>');
+    $('namesChoice').addEventListener('click', (ev) => {
+      const b = ev.target.closest('[data-names-style]');
+      if (!b) return;
+      look.names = b.dataset.namesStyle;
+      saveLook();
+      applyLook();
+      $('namesChoice').querySelectorAll('[data-names-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     });
   }
   houseSettings();
@@ -555,16 +575,17 @@ export function mountTestFocus(root, { config, getHass }) {
     lastBrightTimer = setTimeout(() => local.set(LAST_BRIGHT_KEY, JSON.stringify(lastBright)), 500);
   };
   const stepper = (label, valueText, down, up) => '<div class="tfStep" role="group" aria-label="' + esc(label) + '">' +
-    '<button type="button" data-act="' + down + '" aria-label="Lower ' + esc(label.toLowerCase()) + '">−</button><output>' + esc(valueText) + '</output>' +
-    '<button type="button" data-act="' + up + '" aria-label="Raise ' + esc(label.toLowerCase()) + '">+</button></div>';
+    '<button type="button" data-act="' + down + '" aria-label="Lower ' + esc(label.toLowerCase()) + '">' + STEP.down + '</button><output>' + esc(valueText) + '</output>' +
+    '<button type="button" data-act="' + up + '" aria-label="Raise ' + esc(label.toLowerCase()) + '">' + STEP.up + '</button></div>';
   const buttons = (cls, label, items) => '<div class="' + cls + '" role="group" aria-label="' + esc(label) + '">' + items.filter(Boolean).map((it) =>
     '<button type="button" data-act="' + it.act + '"' + (it.pressed != null ? ' aria-pressed="' + it.pressed + '"' : '') + (it.disabled ? ' disabled' : '') + (it.aria ? ' aria-label="' + esc(it.aria) + '"' : '') + '>' + (it.html || esc(it.label)) + '</button>').join('') + '</div>';
   // a cover: four blocks for 25, 50, 75 and 100% (tap one for its stop; hold or drag for 1% steps), the slats' tilt
-  // from Shut to Open, then open, stop and close; 38 tall with corner 12, as on the covers design
+  // from Shut to Open, then open, stop and close; each the track every control is (Matt, 31 Oct): 46 tall, corner 16,
+  // 4 in from its edge
   const blockFill = (v, i) => 'width:' + Math.round(Math.max(0, Math.min(1, (v - i * 25) / 25)) * 1000) / 10 + '%;opacity:' + (0.6 + (0.4 * i) / 3).toFixed(2);
-  const tipAt = (v) => 'left:calc(3px + ' + v / 100 + ' * (100% - 6px))';
+  const tipAt = (v) => 'left:calc(4px + ' + v / 100 + ' * (100% - 8px))';
   const blocks = (id, v) => '<div class="tfBlocks" role="slider" tabindex="0" aria-label="' + esc(nameOf(id)) + ' position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(v) + '" aria-valuetext="' + Math.round(v) + '% open" data-blocks="' + esc(id) + '">' +
-    [0, 1, 2, 3].map((i) => '<span><i style="' + blockFill(v, i) + '"></i><b' + (v >= (i + 1) * 25 - 12 ? ' class="lit"' : '') + '>' + (i + 1) * 25 + '%</b></span>').join('') +
+    [0, 1, 2, 3].map((i) => '<span><i style="' + blockFill(v, i) + '"></i><b' + (v >= (i + 1) * 25 - 12 ? ' class="lit"' : '') + '>' + (i + 1) * 25 + '<small>%</small></b></span>').join('') +
     '<output class="tfTip" aria-hidden="true" style="' + tipAt(v) + '">' + Math.round(v) + '%</output></div>';
   function paintBlocks(el, v) {
     el.querySelectorAll(':scope>span').forEach((c, i) => { c.firstElementChild.setAttribute('style', blockFill(v, i)); c.lastElementChild.classList.toggle('lit', v >= (i + 1) * 25 - 12); });
@@ -575,8 +596,8 @@ export function mountTestFocus(root, { config, getHass }) {
     el.setAttribute('aria-valuetext', Math.round(v) + '% open');
   }
   const tiltBar = (id, v) => '<div class="tfTilt" role="slider" tabindex="0" aria-label="' + esc(nameOf(id)) + ' tilt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(v) + '" aria-valuetext="' + Math.round(v) + '% open" data-drag="tilt|' + esc(id) + '">' +
-    '<i style="width:calc((100% - 6px) * ' + v / 100 + ')"></i><span' + (v > 8 ? ' class="lit"' : '') + '>Shut</span><span' + (v > 92 ? ' class="lit"' : '') + '>Open</span></div>';
-  const coverButtons = (id, v, moving) => '<div class="tfCoverBtns" role="group" aria-label="' + esc(nameOf(id)) + '">' + [
+    '<i style="width:calc((100% - 8px) * ' + v / 100 + ')"></i><span' + (v > 8 ? ' class="lit"' : '') + '>Shut</span><span' + (v > 92 ? ' class="lit"' : '') + '>Open</span></div>';
+  const coverButtons = (id, v, moving) => '<div class="tfSeg tfCoverBtns" role="group" aria-label="' + esc(nameOf(id)) + '">' + [
     has(id, OPEN) && ['open', 'Open', 'open_cover', v >= 100 && !moving],
     has(id, STOP) && ['stop', 'Stop', 'stop_cover', false],
     has(id, CLOSE_COVER) && ['close', 'Close', 'close_cover', v <= 0 && !moving],
@@ -1188,17 +1209,17 @@ export function mountTestFocus(root, { config, getHass }) {
       for (const [key, name, ids] of [['electricity', 'Electricity', statsOf('grid')], ['solar', 'Solar', statsOf('solar')], ['gas', 'Gas', statsOf('gas')], ['water', 'Water', statsOf('water')]]) {
         if (!ids.length) continue;
         const today = await Promise.all(ids.map((id) => Promise.resolve(callWS({ type: 'recorder/statistic_during_period', statistic_id: id, calendar: { period: 'day' }, types: ['change'] })).then((r) => Number(r?.change) || 0, () => 0)));
-        list.push({ key, name, id: ids[0], value: today.reduce((t, v) => t + v, 0), unit: attr(ids[0]).unit_of_measurement || (key === 'gas' || key === 'water' ? 'm³' : 'kWh') });
+        list.push({ key, name, id: ids[0], ids, value: today.reduce((t, v) => t + v, 0), unit: attr(ids[0]).unit_of_measurement || (key === 'gas' || key === 'water' ? 'm³' : 'kWh') });
       }
     } catch (_e) { /* no energy dashboard: made up */ }
     energy = list;
     refresh();
   }
   // Energy today's sources are a glance, and tapping one shows its day in the graph, in place: the card never moves
-  // (Matt, 27 Oct, as in the HomeCore motion lab: the line draws in)
-  let energyPick = null;
+  // (Matt, 27 Oct; since 31 Oct its use by the hour, the bars rising as in the HomeCore motion lab)
+  let energyPick = null, energyTiles = [];
   function energyGlance() {
-    const tiles = energy?.length ? energy : MADE_UP_ENERGY.map(([key, name, value, unit]) => {
+    const tiles = energyTiles = energy?.length ? energy : MADE_UP_ENERGY.map(([key, name, value, unit]) => {
       const id = 'sensor.made_up_energy_' + key;
       states[id] = { entity_id: id, state: String(value), last_changed: new Date().toISOString(), attributes: { friendly_name: name + ' today', unit_of_measurement: unit, state_class: 'total_increasing' } };
       return { key, name, id, value, unit };
@@ -1226,6 +1247,62 @@ export function mountTestFocus(root, { config, getHass }) {
     svg.dataset.drawn = '';
     units.set('dash:energy', energyGlance());
     drawDashGraph(true);
+  }
+  /* Energy today's graph (Matt, 31 Oct: use over the day, not the meter climbing): each hour's use since midnight, from
+     Home Assistant's hourly statistics (what each hour added to the meter) and, for the hour it is, its use so far. A
+     made-up source follows a day's usual shape, adding up to its total */
+  const USUAL_DAY = {
+    electricity: [15, 12, 10, 10, 10, 12, 25, 45, 40, 30, 25, 30, 35, 30, 25, 25, 35, 60, 80, 70, 55, 45, 30, 20],
+    gas: [2, 2, 2, 2, 3, 8, 18, 20, 12, 6, 4, 4, 4, 4, 4, 5, 8, 14, 16, 14, 10, 6, 3, 2],
+    water: [0, 0, 0, 0, 0, 2, 12, 18, 8, 4, 3, 4, 6, 3, 2, 3, 4, 6, 10, 8, 5, 5, 3, 1],
+  };
+  const hourly = new Map(); // a source's id → { at, day, hours }
+  async function hoursOf(src) {
+    const now = new Date(), day = new Date(now).setHours(0, 0, 0, 0), hour = now.getHours(), part = now.getMinutes() / 60;
+    const hours = Array.from({ length: 24 }, (_, h) => (h <= hour ? 0 : null));
+    if (!src.ids) {
+      const shape = USUAL_DAY[src.key] || USUAL_DAY.electricity, sofar = shape.map((w, h) => (h < hour ? w : h === hour ? w * part : 0));
+      const sum = sofar.reduce((t, w) => t + w, 0) || 1;
+      return hours.map((v, h) => (v == null ? null : (src.value * sofar[h]) / sum));
+    }
+    const was = hourly.get(src.id);
+    if (was && was.day === day && Date.now() - was.at < 5 * 60 * 1000) return was.hours;
+    try {
+      const res = await callWS({ type: 'recorder/statistics_during_period', start_time: new Date(day).toISOString(), end_time: now.toISOString(), statistic_ids: src.ids, period: 'hour', types: ['change'] });
+      src.ids.forEach((id) => (res?.[id] || []).forEach((row) => {
+        const t = typeof row.start === 'number' ? row.start : Date.parse(row.start), h = new Date(t).getHours();
+        if (t >= day && h < hour) hours[h] += Number(row.change) || 0;
+      }));
+      // the hour it is isn't in the hourly statistics until it ends
+      const start = new Date(now).setMinutes(0, 0, 0);
+      const parts = await Promise.all(src.ids.map((id) => Promise.resolve(callWS({ type: 'recorder/statistic_during_period', statistic_id: id, fixed_period: { start_time: new Date(start).toISOString(), end_time: now.toISOString() }, types: ['change'] })).then((r) => Number(r?.change) || 0, () => 0)));
+      hours[hour] = parts.reduce((t, v) => t + v, 0);
+    } catch (_e) { /* no statistics: an empty day */ }
+    hourly.set(src.id, { at: Date.now(), day, hours });
+    return hours;
+  }
+  // the motion lab's "Bars by the hour" (Figma 602:3168): a bar for each hour, 72% of its slot, corner 2, in the text
+  // colour at 50% (the lab's 22% is under 3:1), the hour it is in the accent; three guide lines; 00, 06, 12 and 18
+  // under it; the busiest hour named top left
+  async function drawEnergyDay(svg, src) {
+    const hours = await hoursOf(src);
+    if (!svg.isConnected) return;
+    const W = Math.max(120, svg.clientWidth || 260), H = Math.max(60, svg.clientHeight || 130), top = 18, base = H - 18;
+    const slot = W / 24, bw = slot * 0.72, now = new Date().getHours(), vals = hours.map((v) => v ?? 0), max = Math.max(0, ...vals);
+    const y = (v) => base - (max > 0 ? (v / max) * (base - top) : 0);
+    const f = (v) => v.toLocaleString(undefined, { maximumFractionDigits: v < 10 ? 2 : 1 }) + ' ' + src.unit;
+    const hh = (h) => String(h).padStart(2, '0') + ':00', most = max > 0 ? vals.indexOf(max) : -1;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('aria-label', src.name + ' today by the hour: ' + f(src.value) + (most >= 0 ? ', most ' + f(max) + ' at ' + hh(most) : ''));
+    svg.innerHTML = [top, (top + base) / 2, base].map((ly) => '<line x1="0" x2="' + W + '" y1="' + ly + '" y2="' + ly + '" stroke="var(--line)" stroke-width="1"/>').join('') +
+      hours.map((v, h) => (v > 0 ? '<rect x="' + (h * slot + (slot - bw) / 2).toFixed(1) + '" y="' + y(v).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + (base - y(v)).toFixed(1) + '" rx="2" fill="' + (h === now ? 'var(--primary)' : 'var(--text)') + '"' + (h === now ? '' : ' fill-opacity=".5"') + '/>' : '')).join('') +
+      [0, 6, 12, 18].map((h) => '<text x="' + (h * slot).toFixed(1) + '" y="' + (H - 3) + '">' + String(h).padStart(2, '0') + '</text>').join('') +
+      (most >= 0 ? '<text x="0" y="11">Most: ' + esc(f(max)) + ' at ' + hh(most) + '</text>' : '');
+  }
+  // the bars rise from the base, a little after one another; not with Reduce motion
+  function rise(svg) {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    svg.querySelectorAll('rect').forEach((r, i) => r.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 500, delay: i * 18, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards' }));
   }
   // the line draws in over 700 and the area under it follows (the motion lab's graphs); not with Reduce motion
   function drawIn(svg) {
@@ -1644,7 +1721,11 @@ export function mountTestFocus(root, { config, getHass }) {
   tip.setAttribute('aria-hidden', 'true'); // what it says is already each control's name
   app.appendChild(tip);
   let tipFor = null, tipTimer = 0, tipHideTimer = 0, tipGoneAt = -Infinity;
-  const cutShort = (el) => el.nodeType === 1 && el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).textOverflow === 'ellipsis';
+  const cutShort = (el) => {
+    if (el.nodeType !== 1) return false;
+    const cs = getComputedStyle(el);
+    return (cs.textOverflow === 'ellipsis' && el.scrollWidth > el.clientWidth + 1) || (cs.webkitLineClamp !== 'none' && el.scrollHeight > el.clientHeight + 1);
+  };
   const cutUnder = (el) => { for (let e = el; e && e !== app; e = e.parentElement) if (cutShort(e)) return e; return null; };
   function showTip(el, text) {
     clearTimeout(tipTimer);
@@ -1673,6 +1754,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (ev.pointerType === 'touch') return;
     if (tip.contains(ev.target)) { clearTimeout(tipHideTimer); return; }
     const el = cutUnder(ev.target);
+    if (el && look.names === 'scroll' && el.matches(NAME_SEL)) { glide(el); return; }
     if (el) { if (el !== tipFor) showTip(el, el.textContent.trim()); else clearTimeout(tipHideTimer); return; }
     // a moment to reach the tooltip itself before it goes
     clearTimeout(tipTimer);
@@ -1682,12 +1764,45 @@ export function mountTestFocus(root, { config, getHass }) {
   root.addEventListener('focusin', (ev) => {
     const el = ev.target;
     if (!el.matches?.(':focus-visible')) return;
-    const cut = [el, ...el.querySelectorAll('*')].filter(cutShort);
+    let cut = [el, ...el.querySelectorAll('*')].filter(cutShort);
+    if (look.names === 'scroll') { cut.filter((x) => x.matches(NAME_SEL)).forEach(glide); cut = cut.filter((x) => !x.matches(NAME_SEL)); }
     if (cut.length) showTip(el, cut.map((x) => x.textContent.trim()).join(' · '));
   });
   root.addEventListener('focusout', (ev) => { if (ev.target === tipFor) hideTip(); });
   root.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !tip.hidden) { ev.stopPropagation(); hideTip(); } }, true);
   window.addEventListener('scroll', () => { if (!tip.hidden || tipTimer) hideTip(); }, { capture: true, passive: true });
+  /* Long names → Scroll (Matt, 31 Oct): a name or state cut short glides across to its end and back once, when it comes
+     into view and when it's hovered or reached with the keyboard, then rests cut with "…" again: 30 a second, a 0.6 s
+     pause before and 1 s at the end. Nothing keeps moving (WCAG 2.2.2), and none of it with Reduce motion */
+  const NAME_SEL = '.activityRowName,.activityRowMeta';
+  const gliding = new WeakSet();
+  function glide(el) {
+    if (look.names !== 'scroll' || gliding.has(el) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const d = el.scrollWidth - el.clientWidth;
+    if (d < 2) return;
+    const go = (d / 30) * 1000, total = 600 + go + 1000 + go;
+    gliding.add(el);
+    el.style.textOverflow = 'clip';
+    const a = el.animate([
+      { textIndent: '0px', offset: 0 },
+      { textIndent: '0px', offset: 600 / total, easing: 'ease-in-out' },
+      { textIndent: -d + 'px', offset: (600 + go) / total },
+      { textIndent: -d + 'px', offset: (1600 + go) / total, easing: 'ease-in-out' },
+      { textIndent: '0px', offset: 1 },
+    ], { duration: total });
+    a.onfinish = a.oncancel = () => { el.style.textOverflow = ''; gliding.delete(el); };
+  }
+  // each cut name glides the first time it's wholly in view
+  const inView = new IntersectionObserver((seen) => seen.forEach((e) => { if (e.isIntersecting) { inView.unobserve(e.target); glide(e.target); } }), { threshold: 1 });
+  let namesQueued = false;
+  new MutationObserver(() => {
+    if (namesQueued || look.names !== 'scroll') return;
+    namesQueued = true;
+    setTimeout(() => {
+      namesQueued = false;
+      root.querySelectorAll(NAME_SEL).forEach((el) => { if (!el.dataset.glided && cutShort(el)) { el.dataset.glided = '1'; inView.observe(el); } });
+    }, 300);
+  }).observe(root, { childList: true, subtree: true });
   // Undo: the page's settings put back as they were before the edit
   const undoTo = (before) => () => { prefs = before; savePrefs(); refresh(); layoutBoard(); renderTray(); };
   // a tile just added: the page scrolls gently until it's in view, and a ring round it fades over 1.5 s (Home
@@ -2074,10 +2189,14 @@ export function mountTestFocus(root, { config, getHass }) {
   function drawDashGraph(animate = false) {
     const svg = grid?.querySelector('.tfDashGraph svg[data-graph]');
     if (!svg?.clientWidth) return;
-    const drawn = svg.dataset.graph + '@' + svg.clientWidth + 'x' + svg.clientHeight;
+    // drawn again when it's resized, picked or five minutes old
+    const drawn = svg.dataset.graph + '@' + svg.clientWidth + 'x' + svg.clientHeight + '@' + Math.floor(Date.now() / 300000);
     if (svg.dataset.drawn === drawn) return;
+    const first = !svg.dataset.drawn;
     svg.dataset.drawn = drawn;
-    drawHistory(svg.dataset.graph, svg).then(() => { if (animate) drawIn(svg); });
+    const src = energyTiles.find((t) => t.id === svg.dataset.graph);
+    if (src) drawEnergyDay(svg, src).then(() => { if (animate || first) rise(svg); });
+    else drawHistory(svg.dataset.graph, svg).then(() => { if (animate) drawIn(svg); });
   }
 
   /* the page: areas, Home (weather, vacuum), then each room: its label, readings, plants and action tiles */
@@ -2715,8 +2834,8 @@ export function mountTestFocus(root, { config, getHass }) {
     const pct = Math.round(f * 100) + '%';
     const i = bar.querySelector('i');
     if (kind === 'tilt') {
-      // the tilt bar's fill sits 3 in from its edge; Shut and Open turn white once the fill is under them
-      i.style.width = 'calc((100% - 6px) * ' + f + ')';
+      // the tilt bar's fill sits 4 in from its edge; Shut and Open turn white once the fill is under them
+      i.style.width = 'calc((100% - 8px) * ' + f + ')';
       const [shut, open] = bar.querySelectorAll('span');
       shut.classList.toggle('lit', f > 0.08);
       open.classList.toggle('lit', f > 0.92);
@@ -2802,7 +2921,7 @@ export function mountTestFocus(root, { config, getHass }) {
       const [kind, id] = bar.dataset.drag.split('|');
       if (kind === 'bright' && !dimmable(id)) { run(act('light', 'toggle', id)); return; }
       const off = kind === 'bright' && states[id]?.state !== 'on', finger = ev.pointerType !== 'mouse';
-      const inset = kind === 'tilt' ? 3 : 0; // the tilt bar's fill sits 3 in
+      const inset = kind === 'tilt' ? 4 : 0; // the tilt bar's fill sits 4 in
       const span = () => bar.getBoundingClientRect().width - inset * 2;
       const at = (e2) => { const r = bar.getBoundingClientRect(); return Math.max(0, Math.min(1, (e2.clientX - r.left - inset) / span())); };
       // waiting: a finger that may yet be a tap, a swipe or a hold; pressed: a mouse on a light that's off, which may
