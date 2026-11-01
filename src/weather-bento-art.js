@@ -81,7 +81,7 @@ function stripGeometry(segs,{width,height,colors,wave=.38,soft=6,glow=.6,columns
 
 // Where the sun, moon, stars, clouds, rain, snow, fog and lightning sit, with a fixed seed so a week always looks the same
 function stripMarks(G,{clock=0,ambient=false,seed=1}){
-  const {S,sw,side,C,TAU,sy}=G,c=clock;
+  const {S,sw,side,C,TAU,sy,H}=G,c=clock;
   const M={stars:[],suns:[],moons:[],clouds:[],drops:[],flakes:[],fogs:[],bolts:[]};
   S.forEach((s,i)=>{
     const r=seeded(seed*977+i*131+7),cx=(i+.5)*sw;
@@ -100,13 +100,18 @@ function stripMarks(G,{clock=0,ambient=false,seed=1}){
       M.moons.push({x:x+23*sc,y:(4+(ambient?.8*Math.sin(TAU*c/5200+i):0))*sy+23*sc,d:46*sc});
     }
   });
+  // clouds sized by the sky's height, not the width of a half day (Matt, 1 Nov: way too big once the strip showed fewer
+  // hours across): 56 to 100 wide, more of them across a wide half so cloudy still looks cloudy
+  const cloudW=Math.max(56,Math.min(100,H*.45)),spread=Math.max(1,sw/(cloudW*2.4));
   S.forEach((s,i)=>{
-    const n=({clear:0,partly:1,cloudy:3,fog:0,rain:3,storm:3,snow:2})[s.k];if(!n)return;
+    const base=({clear:0,partly:1,cloudy:3,fog:0,rain:3,storm:3,snow:2})[s.k];if(!base)return;
+    const n=s.k==='partly'?1:Math.round(base*spread);
     const r=seeded(seed*577+i*71+3),cx=(i+.5)*sw;
     const fill=s.k==='rain'||s.k==='storm'||s.night?C.cloudNight:C.cloudDay,alpha=s.night?.82:s.k==='storm'?.75:1;
     for(let j=0;j<n;j++){
-      const sc=sw/46*(s.k==='partly'?.85:.75+r()*.55);
-      const x=cx+(s.k==='partly'?sw*.12:(r()-.5)*sw*1.05),y=(s.k==='partly'?40:6+r()*26)*sy;
+      const sc=cloudW/46*(s.k==='partly'?1:.8+r()*.4);
+      // spread evenly across the half, each nudged a little, so they don't bunch up
+      const x=cx+(s.k==='partly'?sw*.12:((j+.5)/n-.5)*sw*.95+(r()-.5)*sw*.5/n),y=(s.k==='partly'?40:6+r()*26)*sy;
       const dx=ambient?2.5*Math.sin(TAU*c/9000+i*1.3+j*2.1):0,dy=ambient?.9*Math.sin(TAU*c/6100+i+j):0;
       M.clouds.push({x:x-23*sc+dx,y:y-15.33*sc+dy,w:46*sc,h:30.66*sc,fill,o:alpha*(n>1&&j===0?.85:1)});
     }
@@ -260,6 +265,10 @@ export function wbStripSmooth(ctx,segs,o){
 
 function drawSmooth(ctx,G,M){
   const {W,H,S,C,cw,yb,glowAt,soft,tw,sy}=G;
+  // a very faint shadow under the sun, the moons and the clouds (Matt, 1 Nov); the canvas's scale undone so it's the
+  // same at any pixel density
+  const dpr=ctx.getTransform().a||1;
+  const lift=on=>{ctx.shadowColor=on?'rgba(28,18,8,.22)':'transparent';ctx.shadowBlur=on?4*dpr:0;ctx.shadowOffsetY=on?1.5*dpr:0};
   const rgba=(h,a)=>{const c=rgbOf(h);return 'rgba('+c[0]+','+c[1]+','+c[2]+','+Math.max(0,Math.min(1,a)).toFixed(3)+')'};
   const band=(cols,first)=>{
     const gr=ctx.createLinearGradient(0,0,W,0);gr.addColorStop(0,cols[0]);
@@ -299,17 +308,17 @@ function drawSmooth(ctx,G,M){
     const hg=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.halo);hg.addColorStop(0,rgba(halo,.42));hg.addColorStop(.7,rgba(halo,0));
     ctx.fillStyle=hg;ctx.beginPath();ctx.arc(s.x,s.y,s.halo,0,Math.PI*2);ctx.fill();
     const dg=ctx.createLinearGradient(0,s.y-s.rad,0,s.y+s.rad);dg.addColorStop(.6,C.sun);dg.addColorStop(1,C.sunEdge);
-    ctx.fillStyle=dg;ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=dg;lift(true);ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fill();lift(false);
   });
   const light=mix(C.moon,'#ffffff',.6);
   M.moons.forEach(m=>{
     ctx.save();ctx.translate(m.x-m.d/2,m.y-m.d/2);ctx.scale(m.d/46,m.d/46);
     const mg=ctx.createLinearGradient(0,6,0,40);mg.addColorStop(0,light);mg.addColorStop(1,C.moon);
-    ctx.fillStyle=mg;ctx.fill(moon);ctx.restore();
+    ctx.fillStyle=mg;lift(true);ctx.fill(moon);lift(false);ctx.restore();
   });
   M.clouds.forEach(cl=>{
     ctx.save();ctx.globalAlpha=cl.o;ctx.translate(cl.x,cl.y);ctx.scale(cl.w/46,cl.h/30.66);ctx.translate(-4,-9.67);
-    ctx.fillStyle=cl.fill;ctx.fill(cloud);ctx.restore();
+    ctx.fillStyle=cl.fill;lift(true);ctx.fill(cloud);lift(false);ctx.restore();
   });
   M.fogs.forEach(fg=>{
     const gr=ctx.createLinearGradient(fg.x,0,fg.x+fg.w,0);
@@ -349,15 +358,18 @@ const wxDrops=L=>(L?['29.35','43.04','56.74'].map((x,i)=>'<g class="wbDrop" styl
 const wxFlakes=L=>(L?[[33.67,67.67],[47.67,64.67],[61.67,67.67],[40.67,77.67],[54.67,77.67]]:[[21.2,42.2],[29.2,40.2],[37.2,42.2],[25.2,48.2],[33.2,48.2]])
   .map(([x,y],i)=>'<circle class="wbFlake" style="animation-delay:-'+i*640+'ms" cx="'+x+'" cy="'+y+'" r="'+(L?3.67:2.2)+'" fill="#fff"/>').join('');
 function wxArt(k,night,L,g){
-  if(k==='clear')return night?wxMoon(L?WX_MOON.l:WX_MOON.s,g)+(L?wxStar(70,20,5.83,1)+wxStar(78.33,41.67,3.75,.8)+wxStar(60,71.67,3.33,.6):wxStar(42,12,3.5,1)+wxStar(47,25,2.25,.8)+wxStar(36,43,2,.6)):wxSun(g,L);
-  if(k==='partly')return (night?wxMoon(L?WX_MOON.lp:WX_MOON.sp,g):(L?'<circle class="wbSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>':'<circle class="wbSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>'))
-    +wxCloud(L?WX_CLOUD.lp:WX_CLOUD.sp,night?'wbCloudLight':'wbBright')+(night?(L?wxStar(73.33,16.67,4.17,.9):wxStar(44,10,2.5,.9)):'');
-  if(k==='cloudy')return wxCloud(L?WX_CLOUD.lc:WX_CLOUD.s,night?'wbCloudLight':'wbBright')+(night?(L?wxStar(15,15,3.75,.8)+wxStar(76.67,13.33,2.92,.6):wxStar(9,9,2.25,.8)+wxStar(46,8,1.75,.6)):'');
-  return wxCloud(L?WX_CLOUD.lr:WX_CLOUD.s,'wbCloudLight')+(k==='rain'?wxDrops(L):wxFlakes(L));
+  const lift=sh=>'<g filter="url(#'+g+'-sh)">'+sh+'</g>';
+  if(k==='clear')return night?lift(wxMoon(L?WX_MOON.l:WX_MOON.s,g))+(L?wxStar(70,20,5.83,1)+wxStar(78.33,41.67,3.75,.8)+wxStar(60,71.67,3.33,.6):wxStar(42,12,3.5,1)+wxStar(47,25,2.25,.8)+wxStar(36,43,2,.6)):lift(wxSun(g,L));
+  if(k==='partly')return lift(night?wxMoon(L?WX_MOON.lp:WX_MOON.sp,g):(L?'<circle class="wbSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>':'<circle class="wbSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>'))
+    +lift(wxCloud(L?WX_CLOUD.lp:WX_CLOUD.sp,night?'wbCloudLight':'wbBright'))+(night?(L?wxStar(73.33,16.67,4.17,.9):wxStar(44,10,2.5,.9)):'');
+  if(k==='cloudy')return lift(wxCloud(L?WX_CLOUD.lc:WX_CLOUD.s,night?'wbCloudLight':'wbBright'))+(night?(L?wxStar(15,15,3.75,.8)+wxStar(76.67,13.33,2.92,.6):wxStar(9,9,2.25,.8)+wxStar(46,8,1.75,.6)):'');
+  return lift(wxCloud(L?WX_CLOUD.lr:WX_CLOUD.s,'wbCloudLight'))+(k==='rain'?wxDrops(L):wxFlakes(L));
 }
+// the shadow: straight down, soft and faint, a little larger on the large icon
+const wxShadow=(g,L)=>'<defs><filter id="'+g+'-sh" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="'+(L?1.6:1)+'" stdDeviation="'+(L?1.8:1.1)+'" flood-color="#1c1208" flood-opacity=".22"/></filter></defs>';
 // A condition as Smooth artwork: small (54 box) or large (90 box). id names the gradient, unique in the shadow root.
 export function wbSmoothIcon(condition,large,isNight,id){
   let k=wxKind(condition);const night=k==='night'||!!isNight;if(k==='night')k='clear';
   const n=large?90:54;
-  return {k,night,svg:'<svg viewBox="0 0 '+n+' '+n+'">'+wxArt(k,night,large,id)+'</svg>'};
+  return {k,night,svg:'<svg viewBox="0 0 '+n+' '+n+'">'+wxShadow(id,large)+wxArt(k,night,large,id)+'</svg>'};
 }

@@ -374,6 +374,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   const P='wb'+(++mounts)+'-';   // SVG ids, unique in the shadow root
   const root=document.createElement('div');
   root.className='wb';
+  root.dataset.style=style;   // the CSS's hook for a style's finish (Smooth's grain)
   const bento=document.createElement('div');
   bento.className='wbBento';
   root.appendChild(bento);
@@ -739,9 +740,11 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const fahrenheit=/F/.test(weatherUnit(h,forecastState(h,'daily'),'temperature')),celsius=v=>fahrenheit?(v-32)/1.8:v;
     const grad='linear-gradient(90deg,'+[0,.25,.5,.75,1].map(f=>tempColour(celsius(lo+f*span))+' '+f*100+'%').join(',')+')';
     const current=value(h,src,'temperature')?.value;
-    return '<div class="wbCard wbHc wbHourly wbBars">'+head+'<div class="wbRanges" role="list">'+list.map((e,i)=>{
+    // as tall as Hours would be (its mode tabs counted), the days scrolling inside (Matt, 1 Nov)
+    const tabbed=hourlyModes(forecast('hourly').filter(e=>new Date(e.datetime).getTime()>Date.now()-HOUR)).length>1;
+    return '<div class="wbCard wbHc wbHourly wbBars'+(tabbed?' wbTabbed':'')+'">'+head+'<div class="wbDayBars" role="list">'+list.map((e,i)=>{
       const d=dayName(h,e),today=sameDay(new Date(e.datetime),new Date()),l=Number(e.templow),t=Number(e.temperature);
-      return '<div class="wbRange" role="listitem" aria-label="'+esc(fill(T.rangeRow,{day:d,low:deg(h,l),high:deg(h,t)}))+'">'+
+      return '<div class="wbDayBar" role="listitem" aria-label="'+esc(fill(T.rangeRow,{day:d,low:deg(h,l),high:deg(h,t)}))+'">'+
         '<span class="wbRangeDay">'+esc(d)+'</span>'+wxIcon(e.condition,40,false,'r'+i)+
         '<span class="wbRangeLo">'+esc(deg(h,l))+'</span>'+
         '<span class="wbRangeTrack"><i class="wbRangeFill" style="background:'+grad+';clip-path:inset(0 '+(100-pct(t))+'% 0 '+pct(l)+'% round 4px)"></i>'+
@@ -1148,7 +1151,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     refresh(){render(true)},
     setStyle(next){
       if(!next||next===style)return;
-      style=next;
+      style=next;root.dataset.style=style;
       render(true);wake();
     },
     destroy(){
