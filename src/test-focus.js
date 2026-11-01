@@ -65,6 +65,8 @@ const LOOK_KEY = 'move-assistant-house-look';
 const MORE_STYLES = [['popup', 'Popup'], ['sheet', 'Sheet']];
 // Settings → Appearance → Long names (Matt, 31 Oct): how a name or state too long for its space shows
 const NAME_STYLES = [['auto', 'Automatic'], ['cut', 'Cut short'], ['wrap', 'Two lines'], ['scroll', 'Scroll']];
+const HOUR_WINDOWS = [['day', 'Daytime 06–22'], ['waking', 'Waking 07–23'], ['all', 'All day']];
+const WX_STYLES = [['bitmap', 'Pixel'], ['onebit', '1-bit'], ['smooth', 'Smooth'], ['line', 'Line']];
 // the dashboard's edit mode: the pencil and Done in the bottom bar, and each card's grip and options
 const GRIP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>';
 const DOTS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>';
@@ -153,7 +155,7 @@ export function mountTestFocus(root, { config, getHass }) {
       tabPane('sums', '<div class="toggleList">' +
         Object.entries(SUMMARIES).map(([k, s]) => settingRow(s.name, '', '<button class="switch" type="button" role="switch" data-sum-toggle="' + k + '" aria-label="' + s.name + ' summary"></button>')).join('') + '</div>') + '</div>');
     const rows = $('houseLook');
-    [view.querySelector('.themeBtn')?.closest('.toggleRow'), $('densityToggle')?.closest('.toggleRow'), $('moreInfoChoice')?.closest('.toggleRow'), $('namesChoice')?.closest('.toggleRow')].forEach((row) => row && rows.appendChild(row));
+    [view.querySelector('.themeBtn')?.closest('.toggleRow'), $('densityToggle')?.closest('.toggleRow'), $('moreInfoChoice')?.closest('.toggleRow'), $('namesChoice')?.closest('.toggleRow'), $('hoursChoice')?.closest('.toggleRow'), $('wxStyleChoice')?.closest('.toggleRow')].forEach((row) => row && rows.appendChild(row));
     rows.insertAdjacentHTML('beforeend', settingRow('Lights', 'How lights show on the house page.', seg('lightsChoice', 'Lights', 'data-lights', [['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']]), 'lightsRow') +
       settingRow('Pad', 'What the Dual Axis Controller’s pad sets on its tile.', seg('dacPadChoice', 'Pad', 'data-dac-pad', [['temperature', 'Temperature'], ['colour', 'Colour']]), 'dacPadRow'));
     const pane = $('housePane'), bar = pane.querySelector('.houseTabs'), mark = bar.querySelector('.rubberIndicator');
@@ -309,7 +311,9 @@ export function mountTestFocus(root, { config, getHass }) {
     let v = {};
     try { v = JSON.parse(local.get(LOOK_KEY)) || {}; } catch (_e) { /* the defaults */ }
     const only = (o, ok) => Object.fromEntries(Object.entries(o || {}).filter(([, x]) => ok.includes(x)));
-    return { more: v.more === 'sheet' ? 'sheet' : 'popup', names: v.namesPicked && ['auto', 'cut', 'wrap', 'scroll'].includes(v.names) ? v.names : 'scroll', namesPicked: Boolean(v.namesPicked), lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
+    return { more: v.more === 'sheet' ? 'sheet' : 'popup', names: v.namesPicked && ['auto', 'cut', 'wrap', 'scroll'].includes(v.names) ? v.names : 'scroll', namesPicked: Boolean(v.namesPicked),
+      hoursWindow: ['day', 'waking', 'all'].includes(v.hoursWindow) ? v.hoursWindow : 'day',
+      wxStyle: ['bitmap', 'onebit', 'smooth', 'line'].includes(v.wxStyle) ? v.wxStyle : 'bitmap', lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
       lightStyles: only(v.lightStyles, ['tile', 'dac']), lightPads: only(v.lightPads, ['temperature', 'colour']) };
   })();
   const saveLook = () => local.set(LOOK_KEY, JSON.stringify(look));
@@ -343,6 +347,33 @@ export function mountTestFocus(root, { config, getHass }) {
       applyLook();
       $('namesChoice').querySelectorAll('[data-names-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     });
+    // Next hours (Matt, 1 Nov): the hours each day's page shows, a swipe snapping from one day's to the next
+    $('namesChoice').closest('.toggleRow').insertAdjacentHTML('afterend',
+      '<div class="toggleRow"><div><strong>Next hours</strong><div class="status">The hours each day shows on the Weather page.</div></div>' +
+      '<div class="themeChoice" id="hoursChoice" role="group" aria-label="Next hours">' +
+      HOUR_WINDOWS.map(([value, text]) => '<button class="wxLayoutBtn" type="button" aria-pressed="' + (look.hoursWindow === value) + '" data-hours-window="' + value + '">' + text + '</button>').join('') + '</div></div>');
+    $('hoursChoice').addEventListener('click', (ev) => {
+      const b = ev.target.closest('[data-hours-window]');
+      if (!b) return;
+      look.hoursWindow = b.dataset.hoursWindow;
+      saveLook();
+      bento?.refresh();
+      $('hoursChoice').querySelectorAll('[data-hours-window]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    });
+    // Weather art (Matt, 1 Nov: back in Settings): how the weather's pictures and the sky are drawn
+    $('hoursChoice').closest('.toggleRow').insertAdjacentHTML('afterend',
+      '<div class="toggleRow"><div><strong>Weather art</strong><div class="status">How the weather and the sky are drawn.</div></div>' +
+      '<div class="themeChoice" id="wxStyleChoice" role="group" aria-label="Weather art">' +
+      WX_STYLES.map(([value, text]) => '<button class="wxLayoutBtn" type="button" aria-pressed="' + (look.wxStyle === value) + '" data-wx-style="' + value + '">' + text + '</button>').join('') + '</div></div>');
+    $('wxStyleChoice').addEventListener('click', (ev) => {
+      const b = ev.target.closest('[data-wx-style]');
+      if (!b) return;
+      look.wxStyle = b.dataset.wxStyle;
+      saveLook();
+      bento?.setStyle(look.wxStyle);
+      dashBentos?.forEach((x) => x.setStyle(look.wxStyle));
+      $('wxStyleChoice').querySelectorAll('[data-wx-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    });
   }
   houseSettings();
   let model = { rooms: [], vacuums: [], homeVacuums: [], grid: null, security: { alarms: [], locks: [], openings: [] } };
@@ -361,7 +392,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!id || order == null) { bentoBox.remove(); return; }
     if (!bentoBox.isConnected) grid.append(bentoBox);
     bentoBox.style.order = order;
-    if (!bento && !suspended) { bento = mountWeatherBento(bentoBox, { getHass, entityId: id, style: 'bitmap' }); bentoId = id; }
+    if (!bento && !suspended) { bento = mountWeatherBento(bentoBox, { getHass, entityId: id, style: look.wxStyle, hoursWindow: () => look.hoursWindow }); bentoId = id; }
   }
   // the dashboard's own weather cards (Matt, 27 Oct): the weather card, whose Now opens the Weather page, and Compared
   // to average in the place of the concept's to-do list; each kept mounted across redraws
@@ -373,7 +404,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (dashBentos && dashBentoId !== id) { dashBentos.forEach((b) => b.destroy()); dashBentos = null; }
     Object.values(dashBoxes).forEach((box) => (id ? !box.isConnected && grid.append(box) : box.remove()));
     if (id && !dashBentos && !suspended) {
-      dashBentos = DASH_WEATHER.map(([k, cards]) => mountWeatherBento(dashBoxes[k], { getHass, entityId: id, style: 'bitmap', cards, onOpen: k === 'wx' ? () => openArea('weather') : undefined }));
+      dashBentos = DASH_WEATHER.map(([k, cards]) => mountWeatherBento(dashBoxes[k], { getHass, entityId: id, style: look.wxStyle, cards, onOpen: k === 'wx' ? () => openArea('weather') : undefined }));
       dashBentoId = id;
     }
   }

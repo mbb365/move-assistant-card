@@ -4,6 +4,7 @@
 //   const bento = mountWeatherBento(container, { getHass, entityId, style });   // style: 'bitmap' | 'onebit' | 'smooth'
 //   bento.update();      // whenever hass changes; redraws only the cards whose content changed
 //   bento.setStyle(s);   // the weather style changed in Settings
+//   bento.refresh();     // another choice in Settings changed (hoursWindow(): 'day' | 'waking' | 'all', Next hours' pages)
 //   bento.destroy();     // unsubscribes, stops the timers and the paint clock, empties the container
 //
 // Cards, order and widths are the patch's (its Visibility since 29 Oct, when Matt asked for it): the weather card and
@@ -20,7 +21,40 @@ const MINUTE=6e4,HOUR=36e5,DAY=864e5,DAY_MINUTES=1440;
 // The weather card: six days. Today's readings for the opened day are fetched again after ten minutes.
 const DAYS=6,HISTORY_MAX_AGE=10*MINUTE;
 // Next hours: from 06:00 over three days, a day half (06–18) and a night half (18–06) per column; about a day across the card
-const STRIP_COLUMNS=3,PX_PER_HOUR=20,MARK_EVERY=3;
+const STRIP_COLUMNS=3,MARK_EVERY=3;
+// Next hours as pages (Matt, 1 Nov): each page a day's chosen hours, a swipe snapping from one day to the next
+const WINDOWS={day:[6,22],waking:[7,23],all:[0,24]};
+// Next days as bars: a colour for each temperature in °C, blue when cold to red when hot, as Apple Weather's
+const TEMP_COLOURS=[[-5,[91,141,239]],[5,[79,195,230]],[12,[95,211,160]],[18,[255,211,77]],[24,[255,159,67]],[30,[255,91,79]]];
+// Line (Matt, 1 Nov: a style to try): the weather as thin outline drawings on a 24 grid, round ends, in the text colour
+const LINE_CLOUD='M6.5 18.5h11a4 4 0 0 0 .4-7.98 5.5 5.5 0 0 0-10.6-1.1A4.5 4.5 0 0 0 6.5 18.5Z';
+const lineSun=(cx,cy,r,ray)=>'<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'"/><path d="'+[0,45,90,135,180,225,270,315].map(a=>{
+  const c=Math.cos(a*Math.PI/180),n=Math.sin(a*Math.PI/180),r1=r+2,r2=r+2+ray;
+  return 'M'+(cx+c*r1).toFixed(2)+' '+(cy+n*r1).toFixed(2)+'L'+(cx+c*r2).toFixed(2)+' '+(cy+n*r2).toFixed(2);
+}).join('')+'"/>';
+const lineCloud=t=>'<path d="'+LINE_CLOUD+'"'+(t?' transform="'+t+'"':'')+'/>';
+const lineMarks=d=>'<path d="'+d+'"/>';
+const LINE_MOON='<path d="M19.5 14.5A7.5 7.5 0 1 1 9.5 4.5a6 6 0 0 0 10 10Z"/>';
+function lineArt(condition,night){
+  const up='translate(0,-3)';
+  switch(condition){
+    case 'sunny':return night?LINE_MOON:lineSun(12,12,4,2.5);
+    case 'clear-night':return LINE_MOON;
+    case 'partlycloudy':return (night?'<path d="M11.5 9.5A4.5 4.5 0 1 1 6 4a3.6 3.6 0 0 0 5.5 5.5Z"/>':lineSun(7.5,7.5,2.6,1.4))+lineCloud('translate(3.6,3) scale(.85)');
+    case 'cloudy':return lineCloud();
+    case 'fog':return lineMarks('M4 8.5h16M3 12.5h18M5 16.5h14');
+    case 'rainy':return lineCloud(up)+lineMarks('M8.5 18.5 7.5 21M12.5 18.5l-1 2.5M16.5 18.5l-1 2.5');
+    case 'pouring':return lineCloud(up)+lineMarks('M7.5 18.5 6 22M11 18.5 9.5 22M14.5 18.5 13 22M18 18.5 16.5 22');
+    case 'snowy':return lineCloud(up)+lineMarks('M8 20h.01M12 21.5h.01M16 20h.01');
+    case 'snowy-rainy':return lineCloud(up)+lineMarks('M8.5 18.5 7.5 21M12 21h.01M16.5 18.5l-1 2.5');
+    case 'hail':return lineCloud(up)+'<circle cx="8" cy="20.5" r="1"/><circle cx="12" cy="21.5" r="1"/><circle cx="16" cy="20.5" r="1"/>';
+    case 'lightning':return lineCloud(up)+lineMarks('M12.5 16 10.5 19.5h3l-2 3');
+    case 'lightning-rainy':return lineCloud(up)+lineMarks('M12.5 16 10.5 19.5h3l-2 3M7.5 18.5l-1 2.5M17.5 18.5l-1 2.5');
+    case 'windy':case 'windy-variant':return lineMarks('M3 8.5h10.5a2.5 2.5 0 1 0-2.5-2.5M3 12h15.5a2.5 2.5 0 1 1-2.5 2.5M3 15.5h8');
+    default:return '<circle cx="12" cy="12" r="8"/>'+lineMarks('M12 8v5M12 16h.01');
+  }
+}
+const lineIcon=(condition,night)=>'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+lineArt(condition,night)+'</svg>';
 const WET=new Set(['rainy','pouring','lightning','lightning-rainy','hail','snowy','snowy-rainy']);
 // Data tiles: history refreshed every 30 minutes; a week of highs for the average (at least 3 days); 1 hPa in 3 hours is a trend
 const REFRESH=30*MINUTE,AVERAGE_DAYS=7,MIN_AVERAGE_DAYS=3,PRESSURE_TREND_HPA=1;
@@ -48,7 +82,8 @@ const I={
 
 // The patch's English text (ui.card.weather.*); placeholders in braces
 const T={
-  now:'Now',today:'Today',tomorrow:'Tomorrow',back:'Back',nextHours:'Next hours',humidity:'Humidity',high:'High',low:'Low',
+  now:'Now',today:'Today',tomorrow:'Tomorrow',back:'Back',nextHours:'Next hours',nextDays:'Next days',views:{strip:'Hours',bars:'Days'},showAs:'Show as',
+  rangeRow:'{day}: low {low}, high {high}',humidity:'Humidity',high:'High',low:'Low',
   modes:{temperature:'Temperature',precipitation:'Rain',wind:'Wind'},
   range:'H {high}   L {low}',highLow:'{high} / {low}',noHourly:'No hourly forecast for this day',noRain:'No rain expected',
   sun:'Sun',daylightShort:'{hours}h {minutes}m daylight',
@@ -335,7 +370,7 @@ let mounts=0;
 
 // cards: only these cards (the dashboard places the weather card, Compared to average and Humidity on their own);
 // onOpen: the weather card's Now becomes a button that calls it (the dashboard opens its Weather page)
-export function mountWeatherBento(container,{getHass,entityId,style='bitmap',motion=true,cards,onOpen}={}){
+export function mountWeatherBento(container,{getHass,entityId,style='bitmap',motion=true,cards,onOpen,hoursWindow}={}){
   const P='wb'+(++mounts)+'-';   // SVG ids, unique in the shadow root
   const root=document.createElement('div');
   root.className='wb';
@@ -355,7 +390,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   });
 
   let destroyed=false,lastKey=null,raf=0,lastStep=-1,queued=false,focusAfter=null;
-  const ui={openDay:undefined,opener:undefined,dayMode:'temperature',hourlyMode:'temperature',aq:undefined};
+  const VIEW_KEY='homecore-next-view',saved=(()=>{try{return localStorage.getItem(VIEW_KEY)}catch(_e){return null}})();
+  const ui={openDay:undefined,opener:undefined,dayMode:'temperature',hourlyMode:'temperature',hourlyView:saved==='bars'?'bars':'strip',aq:undefined};
   const data={todayHistory:undefined,rain:undefined,temperatureHistory:undefined,pressureHistory:undefined,aqHistory:undefined,categories:undefined,lastFetch:0};
   let sunNow=new Date(),moonNow=new Date(),strip=null;
 
@@ -458,6 +494,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
 
   /* ---- Weather icons: Bitmap and 1-bit are canvases painted by the clock, Smooth is the Figma artwork ---- */
   function wxIcon(condition,size,night,id){
+    if(style==='line')return '<span class="wbWx wbS'+size+' wbLineIcon" aria-hidden="true">'+lineIcon(condition,night||condition==='clear-night')+'</span>';
     if(style==='smooth'){
       const a=wbSmoothIcon(condition,size===90,night,P+'g-'+id);
       return '<span class="wbWx wbS'+size+' wb'+a.k[0].toUpperCase()+a.k.slice(1)+(a.night?' wbNight':'')+'" aria-hidden="true">'+a.svg+'</span>';
@@ -570,12 +607,10 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     if(entries.some(e=>e.wind_speed!=null))modes.push('wind');
     return modes;
   }
-  // Where the strip starts: 06:00 today, or yesterday before 06:00
-  function stripStart(){const s=new Date();s.setHours(6,0,0,0);if(s.getTime()>Date.now())s.setDate(s.getDate()-1);return s}
   // The sky for each half: the most common hourly condition in it (rain and snow count double), else that day's forecast
-  function halves(start,hours){
+  function halves(start,hours,columns=STRIP_COLUMNS){
     const daily=forecast('daily'),out=[];
-    for(let column=0;column<STRIP_COLUMNS;column++)for(const night of [false,true]){
+    for(let column=0;column<columns;column++)for(const night of [false,true]){
       const from=start.getTime()+(column*24+(night?12:0))*HOUR,to=from+12*HOUR,count={};
       hours.forEach(e=>{const t=new Date(e.datetime).getTime();if(e.condition&&t>=from&&t<to)count[e.condition]=(count[e.condition]??0)+(WET.has(e.condition)?2:1)});
       let cond=Object.entries(count).sort((a,b)=>b[1]-a[1])[0]?.[0];
@@ -595,31 +630,124 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       default:return [deg(h,entry.temperature),(entry.precipitation_probability??0)>=20?probability:''];
     }
   }
-  function renderHourly(h){
+  // the pages: today's chosen hours (until they're over), then the next days', as long as the hourly forecast reaches
+  function hourPages(h,hours,now){
+    const [ws,we]=WINDOWS[hoursWindow?.()]||WINDOWS.day,out=[];
+    for(let i=0;i<4&&out.length<3;i++){
+      const a=new Date();a.setHours(0,0,0,0);a.setDate(a.getDate()+i);
+      const b=new Date(a);b.setHours(we,0,0,0);a.setHours(ws,0,0,0);
+      if(b.getTime()<=now||!hours.some(e=>{const t=new Date(e.datetime).getTime();return t>=a.getTime()&&t<=b.getTime()}))continue;
+      out.push({a:a.getTime(),b:b.getTime(),label:dayName(h,{datetime:a.toISOString()})});
+    }
+    return out;
+  }
+  /* Line's sky: each day's sun as an arc from its real sunrise to its sunset, highest at noon, on a horizon; the nights
+     between shaded, their edges drawn; the sun where it is now; a drawing of the weather at each named time */
+  function lineSky(h,first,last,marks,now,pos){
+    const total=(last.b-first.a)/HOUR,X=t=>((t-first.a)/HOUR).toFixed(3),HZ=80,TOP=32;
+    const suns=[];
+    for(const d=new Date(first.a-DAY);d.getTime()<last.b+DAY;d.setDate(d.getDate()+1)){
+      const {rise,set}=sunTimes(h,new Date(d));
+      if(rise&&set)suns.push({rise:rise.getTime(),set:set.getTime()});
+    }
+    const yAt=(s,t)=>HZ-(HZ-TOP)*Math.sin(Math.PI*(t-s.rise)/(s.set-s.rise));
+    const night=t=>!suns.some(s=>t>=s.rise&&t<=s.set);
+    let art='',edges='',times='';
+    suns.forEach((s,i)=>{
+      const pts=[];for(let t=s.rise;t<=s.set;t+=15*MINUTE)pts.push(X(t)+','+yAt(s,t).toFixed(2));pts.push(X(s.set)+','+HZ);
+      art+='<polyline class="wbLineArc" points="'+pts.join(' ')+'"/>';
+      const next=suns[i+1];
+      if(next)art+='<rect class="wbLineNight" x="'+X(s.set)+'" y="0" width="'+((next.rise-s.set)/HOUR).toFixed(3)+'" height="100"/>';
+      [[s.rise,'↑'],[s.set,'↓']].forEach(([t,arrow])=>{
+        if(t<first.a||t>last.b)return;
+        edges+='<line class="wbLineEdge" x1="'+X(t)+'" x2="'+X(t)+'" y1="0" y2="100"/>';
+        times+='<span class="wbLineTime" style="left:'+pos(t)+'">'+arrow+' '+esc(fmtTime(new Date(t),h))+'</span>';
+      });
+    });
+    const sun=suns.find(s=>now>=s.rise&&now<=s.set);
+    return '<svg class="wbLineArt" viewBox="0 0 '+total+' 100" preserveAspectRatio="none" aria-hidden="true">'+art+edges+
+      '<line class="wbLineHorizon" x1="0" x2="'+total+'" y1="'+HZ+'" y2="'+HZ+'"/></svg>'+times+
+      (sun?'<span class="wbLineNow" style="left:'+pos(now)+';top:'+yAt(sun,now)+'%">'+lineIcon('sunny',false)+'</span>':'')+
+      marks.filter(m=>m.entry&&!m.now).map(m=>'<span class="wbLineGlyph'+m.edge+'" style="left:'+pos(m.t)+'">'+lineIcon(m.entry.condition??'cloudy',night(m.t))+'</span>').join('');
+  }
+  function renderHourly(h,src){
     strip=null;
+    const view=ui.hourlyView==='bars'?'bars':'strip';
+    const head='<div class="wbHeader"><h2 class="wbTitle">'+esc(view==='bars'?T.nextDays:T.nextHours)+'</h2>'+
+      '<div class="wbSegments wbViews" role="group" aria-label="'+esc(T.showAs)+'">'+['strip','bars'].map(v=>'<button aria-pressed="'+(v===view)+'" data-wb="hourly-view" data-view="'+v+'" data-wb-focus="hourly-view-'+v+'">'+esc(T.views[v])+'</button>').join('')+'</div></div>';
+    if(view==='bars')return renderBars(h,src,head);
     const hours=forecast('hourly'),now=Math.floor(Date.now()/MINUTE)*MINUTE;
     const coming=hours.filter(e=>new Date(e.datetime).getTime()>now-HOUR);
     if(!coming.length)return '';
     const modes=hourlyModes(coming),mode=modes.includes(ui.hourlyMode)?ui.hourlyMode:'temperature';
-    const start=stripStart(),end=start.getTime()+STRIP_COLUMNS*24*HOUR;
-    const offset=((now-start.getTime())/HOUR)*PX_PER_HOUR,total=STRIP_COLUMNS*24*PX_PER_HOUR,xOf=t=>((t-now)/HOUR)*PX_PER_HOUR;
-    const marks=[{x:0,label:T.now,entry:coming[0]},...coming.filter(e=>{
-      const t=new Date(e.datetime);
-      // room for "Now" on the left
-      return xOf(t.getTime())>=48&&t.getTime()<end&&t.getHours()%MARK_EVERY===0;
-    }).map(e=>{const t=new Date(e.datetime);return {x:xOf(t.getTime()),label:fmtTime(t,h),entry:e}})];
-    const mark=(m,i,content)=>'<span class="wbMark'+(i===0?' wbFirst':'')+'" style="left:'+m.x+'px">'+content+'</span>';
-    strip={segs:halves(start,hours),seed:start.getDate()};
-    return '<div class="wbCard wbHc wbHourly"><div class="wbHeader"><h2 class="wbTitle">'+esc(T.nextHours)+'</h2></div>'+
+    const pages=hourPages(h,hours,now);
+    if(!pages.length)return '';
+    const first=pages[0],last=pages[pages.length-1],span=(first.b-first.a)/HOUR;
+    // a unit of one hour: a page is the strip's width
+    const pos=t=>'calc(var(--wb-u) * '+((t-first.a)/HOUR).toFixed(3)+')';
+    // the sky from 06:00 on the first page's day (the day before when the page starts earlier), whole days of it
+    const art=new Date(first.a);art.setHours(6,0,0,0);if(art.getTime()>first.a)art.setDate(art.getDate()-1);
+    const columns=Math.ceil((last.b-art.getTime())/DAY);
+    strip=style==='line'?null:{segs:halves(art,hours,columns),seed:art.getDate(),columns};
+    const edge=t=>t===first.a?' wbFirst':t===last.b?' wbLast':'';
+    // the days it crosses: each named at its left, the name staying at the strip's left while its day is there
+    const days=[];
+    for(let t=first.a;t<last.b;){const d=new Date(t);d.setHours(24,0,0,0);const end=Math.min(d.getTime(),last.b);days.push({a:t,b:end,label:dayName(h,{datetime:new Date(t).toISOString()}),page:pages.find(p=>p.a>=t&&p.a<end)||pages.find(p=>p.a<end&&p.b>t)});t=end}
+    // it opens on the even hour before now
+    const startAt=now>first.a&&now<last.b?Math.floor((now-first.a)/(2*HOUR))*2:0;
+    const marks=[];
+    for(let t=first.a;t<=last.b;t+=HOUR){
+      const d=new Date(t),isEdge=edge(t);
+      if(!isEdge&&d.getHours()%MARK_EVERY)continue;
+      // the strip's first and last hours are always named; a time too close to them gives way
+      if(!isEdge&&(Math.abs(first.a-t)<2*HOUR||Math.abs(last.b-t)<2*HOUR))continue;
+      if(now>=first.a&&Math.abs(t-now)<1.5*HOUR&&!isEdge)continue;
+      marks.push({t,edge:isEdge,label:fmtTime(d,h),entry:t>=now-HOUR?hours.find(e=>new Date(e.datetime).getTime()===t):undefined});
+    }
+    if(now>first.a&&now<first.b)marks.push({t:now,edge:now-first.a<HOUR?' wbFirst':first.b-now<HOUR?' wbLast':'',label:T.now,entry:coming[0],now:true});
+    const mark=(m,content)=>'<span class="wbMark'+m.edge+(m.now?' wbNowMark':'')+'" style="left:'+pos(m.t)+'">'+content+'</span>';
+    return '<div class="wbCard wbHc wbHourly">'+head+
       (modes.length>1?'<div class="wbTabs"><div class="wbSegments" role="group">'+modes.map(v=>'<button aria-pressed="'+(v===mode)+'" data-wb="hourly-mode" data-mode="'+v+'" data-wb-focus="hourly-mode-'+v+'">'+esc(T.modes[v])+'</button>').join('')+'</div></div>':'')+
-      '<div class="wbStripScroll"><div class="wbStrip" style="width:'+(total-offset)+'px">'+
-      '<div class="wbRow wbTimes">'+marks.map((m,i)=>mark(m,i,esc(m.label))).join('')+'</div>'+
-      '<div class="wbSky"><div class="wbSkyArt" style="left:'+(-offset)+'px;width:'+total+'px"><canvas data-wb-strip'+(style==='smooth'?'':' class="wbPixels"')+'></canvas></div></div>'+
-      '<div class="wbRow wbValues">'+marks.map((m,i)=>{
+      '<div class="wbStripScroll wbPaged" tabindex="0" aria-label="'+esc(T.nextHours)+'" data-span="'+span+'" data-start="'+startAt+'"><div class="wbStrip" style="--wb-u:calc(100cqw / '+span+');width:calc(var(--wb-u) * '+((last.b-first.a)/HOUR)+')">'+
+      // a stop every two hours (Matt, 1 Nov): a swipe settles on one, a flick runs on past several
+      [...Array(Math.floor((last.b-first.a)/(2*HOUR))+1)].map((_,i)=>'<i class="wbSnap" style="left:'+pos(first.a+i*2*HOUR)+'"></i>').join('')+
+      '<div class="wbDays">'+days.map((d,i)=>'<span class="wbDaySpan" style="width:calc(var(--wb-u) * '+((d.b-d.a)/HOUR).toFixed(3)+')"><button class="wbDayName" data-wb="hours-day" data-hours="'+(i===0?startAt:((d.page?.a??d.a)-first.a)/HOUR)+'" data-wb-focus="hours-day-'+i+'">'+esc(d.label)+'</button></span>').join('')+'</div>'+
+      '<div class="wbRow wbTimes">'+marks.map(m=>mark(m,esc(m.label))).join('')+'</div>'+
+      (style==='line'?'<div class="wbSky wbLineSky">'+lineSky(h,first,last,marks,now,pos):
+        '<div class="wbSky"><div class="wbSkyArt" style="left:'+pos(art.getTime())+';width:calc(var(--wb-u) * '+columns*24+')"><canvas data-wb-strip'+(style==='smooth'?'':' class="wbPixels"')+'></canvas></div>')+
+      (now>first.a?'<i class="wbPast" style="width:'+pos(Math.min(now,last.b))+'"></i><i class="wbNowLine" style="left:'+pos(now)+'"></i>':'')+
+      days.slice(1).map(d=>'<i class="wbMidnight" style="left:'+pos(d.a)+'"></i>').join('')+'</div>'+
+      '<div class="wbRow wbValues">'+marks.map(m=>{
         if(!m.entry)return '';
         const [primary,secondary]=hourlyValues(h,m.entry,mode);
-        return mark(m,i,'<span class="wbPrimaryV">'+esc(primary)+'</span><span class="wbSecondary">'+esc(secondary)+'</span>');
+        return mark(m,'<span class="wbPrimaryV">'+esc(primary)+'</span><span class="wbSecondary">'+esc(secondary)+'</span>');
       }).join('')+'</div></div></div></div>';
+  }
+  // a temperature's colour (°C), between the stops
+  function tempColour(c){
+    const st=TEMP_COLOURS,i=st.findIndex(([t])=>t>=c);
+    if(i<=0)return 'rgb('+st[i<0?st.length-1:0][1].join(',')+')';
+    const [t0,a]=st[i-1],[t1,b]=st[i],f=(c-t0)/(t1-t0);
+    return 'rgb('+a.map((v,k)=>Math.round(v+(b[k]-v)*f)).join(',')+')';
+  }
+  /* ---- Next days: each day's low to high on one scale for the week, coloured by temperature, now's a dot on today ---- */
+  function renderBars(h,src,head){
+    const list=forecast('daily').filter(e=>num(e.templow)&&num(e.temperature)).slice(0,7);
+    if(!list.length)return '';
+    const lo=Math.min(...list.map(e=>Number(e.templow))),hi=Math.max(...list.map(e=>Number(e.temperature))),span=Math.max(1,hi-lo);
+    const pct=v=>Math.max(0,Math.min(100,((v-lo)/span)*100)).toFixed(2);
+    const fahrenheit=/F/.test(weatherUnit(h,forecastState(h,'daily'),'temperature')),celsius=v=>fahrenheit?(v-32)/1.8:v;
+    const grad='linear-gradient(90deg,'+[0,.25,.5,.75,1].map(f=>tempColour(celsius(lo+f*span))+' '+f*100+'%').join(',')+')';
+    const current=value(h,src,'temperature')?.value;
+    return '<div class="wbCard wbHc wbHourly wbBars">'+head+'<div class="wbRanges" role="list">'+list.map((e,i)=>{
+      const d=dayName(h,e),today=sameDay(new Date(e.datetime),new Date()),l=Number(e.templow),t=Number(e.temperature);
+      return '<div class="wbRange" role="listitem" aria-label="'+esc(fill(T.rangeRow,{day:d,low:deg(h,l),high:deg(h,t)}))+'">'+
+        '<span class="wbRangeDay">'+esc(d)+'</span>'+wxIcon(e.condition,40,false,'r'+i)+
+        '<span class="wbRangeLo">'+esc(deg(h,l))+'</span>'+
+        '<span class="wbRangeTrack"><i class="wbRangeFill" style="background:'+grad+';clip-path:inset(0 '+(100-pct(t))+'% 0 '+pct(l)+'% round 4px)"></i>'+
+        (today&&num(current)?'<i class="wbRangeNow" style="left:'+pct(Number(current))+'%"></i>':'')+'</span>'+
+        '<span class="wbRangeHi">'+esc(deg(h,t))+'</span></div>';
+    }).join('')+'</div></div>';
   }
 
   /* ---- Sun: a glowing sun on a deep maroon sky, deep red at sunrise and sunset to warm gold at midday ---- */
@@ -862,9 +990,11 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       try{html=RENDER[name](h,src)||''}catch(_e){html=''}   // a card that can't draw hides; the bento never throws
       if(html===it.html)continue;
       const focused=active&&it.el.contains(active)?active.dataset?.wbFocus:undefined;
-      const scroller=it.el.querySelector('.wbStripScroll'),scroll=scroller?scroller.scrollLeft:0;
+      const scroller=it.el.querySelector('.wbStripScroll'),scroll=scroller?scroller.scrollLeft:null;
       it.html=html;it.el.hidden=!html;it.el.innerHTML=html;
-      if(scroll)it.el.querySelector('.wbStripScroll')?.scrollTo({left:scroll});
+      const sc=it.el.querySelector('.wbStripScroll');
+      if(sc&&scroll!=null)sc.scrollTo({left:scroll});
+      else if(sc?.dataset.start)sc.scrollTo({left:Number(sc.dataset.start)*sc.clientWidth/Number(sc.dataset.span)});
       if(focused&&!focusAfter)it.el.querySelector('[data-wb-focus="'+focused+'"]')?.focus();
     }
     if(focusAfter){root.querySelector('[data-wb-focus="'+focusAfter+'"]')?.focus();focusAfter=null}
@@ -894,7 +1024,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const cv=root.querySelector('canvas[data-wb-strip]');
     if(!cv||!strip||!cv.getClientRects().length)return;
     const w=cv.clientWidth,hgt=cv.clientHeight;if(!w||!hgt)return;
-    const o={width:w,height:hgt,columns:STRIP_COLUMNS,colors:c.colors,clock:t,ambient:moving(),seed:strip.seed};
+    // day and night more clearly apart (Matt, 1 Nov): a crisp edge where they meet
+    const o={width:w,height:hgt,columns:strip.columns||STRIP_COLUMNS,colors:c.colors,clock:t,ambient:moving(),seed:strip.seed,soft:1.5};
     if(style==='smooth'){
       const dpr=Math.min(2,window.devicePixelRatio||1),pw=Math.round(w*dpr),ph=Math.round(hgt*dpr);
       if(cv.width!==pw)cv.width=pw;
@@ -953,6 +1084,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       case 'open-page':onOpen?.();return;
       case 'day-mode':ui.dayMode=el.dataset.mode;break;
       case 'hourly-mode':ui.hourlyMode=el.dataset.mode;break;
+      case 'hourly-view':ui.hourlyView=el.dataset.view;try{localStorage.setItem(VIEW_KEY,ui.hourlyView)}catch(_e){/* this visit only */}break;
+      case 'hours-day':{const sc=root.querySelector('.wbStripScroll');if(sc)sc.scrollTo({left:Number(el.dataset.hours)*sc.clientWidth/Number(sc.dataset.span),behavior:'smooth'});return}
       case 'aq-open':ui.aq=el.dataset.entity;fetchAqHistory(ui.aq);break;
       case 'aq-close':ui.aq=undefined;break;
       default:return;
@@ -968,6 +1101,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const sc=ev.target.closest?.('.wbStripScroll');
     if(!sc||ev.button!==0)return;
     drag={startX:ev.pageX,left:sc.scrollLeft,moved:false};
+    sc.classList.add('wbHeld');
     window.addEventListener('mousemove',onMouseMove);
     window.addEventListener('mouseup',onMouseUp,{once:true});
   }
@@ -981,7 +1115,12 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   function onMouseUp(){
     drag=null;
     window.removeEventListener('mousemove',onMouseMove);
-    root.querySelector('.wbStripScroll')?.classList.remove('wbDragging');
+    const sc=root.querySelector('.wbStripScroll');
+    if(!sc)return;
+    sc.classList.remove('wbDragging','wbHeld');
+    // let go: it settles on the nearest page
+    const snaps=[...sc.querySelectorAll('.wbSnap')];
+    if(snaps.length){const to=snaps.reduce((a,b)=>Math.abs(b.offsetLeft-sc.scrollLeft)<Math.abs(a.offsetLeft-sc.scrollLeft)?b:a);sc.scrollTo({left:to.offsetLeft,behavior:'smooth'})}
   }
   root.addEventListener('click',onClick);
   root.addEventListener('keydown',onKeyDown);
@@ -1005,6 +1144,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
 
   return {
     update(){render(false)},
+    // a choice in Settings changed (Next hours' window)
+    refresh(){render(true)},
     setStyle(next){
       if(!next||next===style)return;
       style=next;

@@ -49,7 +49,9 @@ const ENTITIES = {
     "sensor.p1_meter_power": { state: "243.0", attributes: { friendly_name: "P1 Meter Power", device_class: "power", unit_of_measurement: "W", state_class: "measurement" } },
     // what met.no and the sun give the weather bento on HA
     "weather.forecast_home": { state: "sunny", attributes: { friendly_name: "Forecast Amsterdam", temperature: 26, temperature_unit: "°C", humidity: 58, dew_point: 17.1, pressure: 1016.4, pressure_unit: "hPa", wind_speed: 18.7, wind_gust_speed: 34.2, wind_bearing: 236, wind_speed_unit: "km/h", uv_index: 4, visibility: 14, visibility_unit: "km", precipitation_unit: "mm", supported_features: 3 } },
-    "sun.sun": { state: new Date().getHours() >= 7 && new Date().getHours() < 18 ? "above_horizon" : "below_horizon", attributes: { friendly_name: "Sun", next_rising: new Date(new Date().setHours(new Date().getHours() >= 7 ? 31 : 7, 22, 0, 0)).toISOString(), next_setting: new Date(new Date().setHours(new Date().getHours() >= 18 ? 41 : 17, 4, 0, 0)).toISOString() } },
+    // no rising or setting times, so the card works them out from the home's location (fixed times here put tomorrow's
+    // sunrise before today's)
+    "sun.sun": { state: new Date().getHours() >= 7 && new Date().getHours() < 18 ? "above_horizon" : "below_horizon", attributes: { friendly_name: "Sun" } },
     "lock.openable_lock": { state: "locked", attributes: { friendly_name: "Openable lock", supported_features: 1 } },
     "lock.another_openable_lock": { state: "unlocked", attributes: { friendly_name: "Another openable lock", supported_features: 1 } },
     "lock.basic_lock": { state: "locked", attributes: { friendly_name: "Basic lock", supported_features: 0 } },

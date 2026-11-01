@@ -123,6 +123,9 @@
 .wbWx>canvas{image-rendering:pixelated}
 .wbWx.wbS60{width:60px;height:60px;border-radius:20px}
 .wbWx.wbS90{width:90px;height:90px;border-radius:28px}
+/* Line (Matt, 1 Nov: a style to try): an outline drawing on the tile colour, in the text colour */
+.wbWx.wbLineIcon{display:grid;place-items:center;background:var(--tile);color:var(--text)}
+.wbWx.wbLineIcon>svg{width:64%;height:64%}
 /* Smooth style: the sky is the square's colour */
 .wbWx.wbClear,.wbWx.wbPartly{background:var(--wx-clear)}
 .wbWx.wbCloudy{background:var(--wx-cloudy)}
@@ -204,6 +207,49 @@
 .wbTimes .wbMark.wbFirst{font:600 14px/20px var(--font-tile)}
 /* the sky: one picture over three days, shifted so now is on the left */
 .wbSky{position:relative;flex:1;min-height:72px;border-radius:var(--r-inner);overflow:hidden}
+/* Next hours (Matt, 1 Nov): the chosen hours of a day across the strip's width, a swipe or a drag settling every two
+   hours; each day named at its left, the name staying put while its day is in view, a line where one day meets the next */
+.wbStripScroll.wbPaged{container-type:inline-size;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
+.wbStripScroll.wbPaged.wbHeld{scroll-snap-type:none}
+.wbPaged .wbStrip{position:relative;min-width:0;padding:0}
+.wbSnap{position:absolute;top:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
+.wbMark.wbLast{align-items:flex-end;transform:translateX(-100%)}
+.wbPaged .wbTimes .wbMark.wbFirst{font:400 14px/20px var(--font)}
+.wbPaged .wbTimes .wbMark.wbNowMark{font:600 14px/20px var(--font-tile)}
+.wbSky .wbPast{position:absolute;top:0;bottom:0;left:0;background:var(--card);opacity:.45;pointer-events:none}
+.wbSky .wbNowLine{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--text);opacity:.55;pointer-events:none}
+/* Line's sky: on the tile colour; each day's sun an arc over a horizon from its real sunrise to sunset, the nights shaded
+   with their edges drawn, the sun where it is now, and the weather drawn at each named time */
+.wbSky.wbLineSky{background:var(--tile);color:var(--text)}
+.wbLineArt{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.wbLineArt .wbLineArc{fill:none;stroke:var(--text);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}
+.wbLineArt .wbLineHorizon{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.35}
+.wbLineArt .wbLineNight{fill:var(--text);opacity:.07}
+.wbLineArt .wbLineEdge{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.3}
+.wbLineTime{position:absolute;top:calc(80% + 4px);transform:translateX(-50%);color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none}
+.wbLineNow{position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);border-radius:50%;background:var(--tile);pointer-events:none}
+.wbLineNow>svg,.wbLineGlyph>svg{display:block;width:100%;height:100%}
+.wbLineGlyph{position:absolute;top:calc(50% - 14px);width:28px;height:28px;transform:translateX(-50%);pointer-events:none}
+.wbLineGlyph.wbFirst{transform:none}
+.wbLineGlyph.wbLast{transform:translateX(-100%)}
+.wbSky .wbMidnight{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--text);opacity:.5;pointer-events:none}
+.wbDays{position:absolute;top:36px;left:0;z-index:1;display:flex;pointer-events:none}
+.wbDaySpan{flex:none;min-width:0}
+.wbDayName{position:sticky;left:8px;margin-left:8px;height:26px;min-height:0;padding:0 10px;border:0;background:color-mix(in srgb,var(--card) 82%,transparent);color:var(--text);font:600 13px/26px var(--font-tile);white-space:nowrap;cursor:pointer;pointer-events:auto}
+.wb .wbDayName{border-radius:13px!important;font-family:var(--font-tile)!important}
+.wbViews button{padding:2px 10px;font-size:13px}
+
+/* Next days (Matt, 1 Nov, as Apple Weather's): a row a day, its low to high on one scale for the week, coloured by
+   temperature; now is a dot on today's */
+.wbBars .wbRanges{flex:1;display:flex;flex-direction:column;padding:0 18px}
+.wbRange{flex:1;display:grid;grid-template-columns:minmax(56px,auto) 40px 36px minmax(0,1fr) 36px;align-items:center;column-gap:12px;min-height:48px;box-shadow:inset 0 -.4px 0 var(--line)}
+.wbRange:last-child{box-shadow:none}
+.wbRangeDay{color:var(--text);font:600 14px/20px var(--font-tile);white-space:nowrap}
+.wbRangeLo{color:var(--muted);text-align:right;font:400 16px/20px var(--font);font-variant-numeric:tabular-nums}
+.wbRangeHi{color:var(--text);text-align:right;font:400 16px/20px var(--font-tile);font-variant-numeric:tabular-nums}
+.wbRangeTrack{position:relative;height:6px;border-radius:3px;background:var(--tile)}
+.wbRangeFill{position:absolute;inset:0;border-radius:3px}
+.wbRangeNow{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#ffffff;box-shadow:0 0 0 2px var(--card)}
 .wbSkyArt{position:absolute;top:0;height:100%}
 .wbSkyArt>canvas{display:block;width:100%;height:100%}
 .wbSkyArt>canvas.wbPixels{image-rendering:pixelated}
@@ -211,6 +257,8 @@
 .wbSecondary{min-height:20px;color:var(--muted);font:400 15px/20px var(--font)}
 @container wb-card (width < 480px){
   .wbHourly :is(.wbHeader,.wbTabs){padding:0 8px}
+  .wbBars .wbRanges{padding:0 8px}
+  .wbRange{column-gap:8px}
   /* phones: the strip 2.5 times as tall as it was (Matt, 30 Oct), the sky taking the room */
   .wbStripScroll{min-height:380px}
 }
