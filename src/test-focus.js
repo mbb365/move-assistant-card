@@ -526,7 +526,19 @@ export function mountTestFocus(root, { config, getHass }) {
         slot.textContent = (slot.dataset.letter || nameOf(slot.dataset.iconFor) || '?').trim().charAt(0).toUpperCase();
       }
     });
+    scope.querySelectorAll?.('.tfIcon').forEach(fadeChip);
+    if (scope.classList?.contains('tfIcon')) fadeChip(scope);
     fitSoon();
+  }
+  /* on and off fade over 0.18 s, as the Dual Axis Controller's icon does (Matt, 1 Nov: every light icon behaves the
+     same); a redraw makes a chip anew, so it fades from the colours it last had */
+  const chipWas = new Map(); // a chip's place and device → the colours it last had
+  function fadeChip(chip) {
+    const key = (chip.closest('[data-k]')?.dataset.k || '') + '|' + (chip.dataset.iconFor || chip.querySelector('[data-icon-for]')?.dataset.iconFor || chip.getAttribute('aria-label') || '');
+    const cs = getComputedStyle(chip), now = { backgroundColor: cs.backgroundColor, color: cs.color }, was = chipWas.get(key);
+    chipWas.set(key, now);
+    if (!was || (was.backgroundColor === now.backgroundColor && was.color === now.color) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    chip.animate([was, now], { duration: 180, easing: 'ease' });
   }
   /* icon fit (Matt, 31 Oct: one size for every icon): Material Design Icons draw at different sizes in their 24 grid
      (curtains 22 across, a water drop 12), so in one box they look different sizes. Once drawn, each glyph is sized so
@@ -684,7 +696,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // not a barrage of colour; warmth and colour are on the light's own popup)
   // on the dashboard's bottom row (only) a tile keeps just its first control: a light its brightness, a thermostat its target
   function actionTile(id, inDialog = false, only = null) {
-    if (id.startsWith('light.') && dacFor(id)) return '<div class="tfDac" data-k="' + esc(id) + '" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"></div>';
+    if (id.startsWith('light.') && dacFor(id)) return '<div class="tfDac" data-k="' + esc(id) + '" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"' + lightAttrs(id) + '></div>';
     const s = specFor(id), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
     const sections = s.sections.map((sec, i) => (sec && (!keep || keep.includes((s.parts || [])[i])) ? sec : '')).filter(Boolean);
     return '<div class="tfAction' + (s.on ? ' on' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
@@ -724,8 +736,10 @@ export function mountTestFocus(root, { config, getHass }) {
   // on the dashboard its name opens its pad in place (a tap action the page catches, below) rather than the card's own
   // controller, and its pad takes the height its cells leave (--tf-dac-pad, through the card's open shadow root)
   const DAC_FIT = '.halo.is-size-tile .halo__pad-shell{height:var(--tf-dac-pad,158px)!important;transition:height .25s cubic-bezier(.2,.7,.3,1)}';
-  // and wherever it is, its dark mode text is this page's grey (Matt, 28 Oct: #d9d9d9; the card's own is #f1f1f1)
-  const DAC_TEXT = '.hc--dark{--hc-text:var(--color-text-primary,#f1f1f1)}';
+  // and wherever it is, its dark mode text is this page's grey (Matt, 28 Oct: #d9d9d9; the card's own is #f1f1f1); its
+  // icon is as every tile and card's here (Matt, 1 Nov): off, the grey chip with the muted glyph; lit, the light's own
+  // colour with the glyph a darker shade of it (the controller's was a fixed amber with white, 2:1)
+  const DAC_TEXT = '.hc--dark{--hc-text:var(--color-text-primary,#f1f1f1)}.hcChip:not(.is-on){background:var(--hc-icon,var(--hc-tile))!important;color:var(--hc-icon-ink,var(--hc-text))!important}.hcChip.is-on{background:var(--light,var(--hc-light-on))!important;color:var(--light-ink,#ffffff)!important}';
   const dressDac = (el, onBoard) => {
     if (!el.shadowRoot || el.shadowRoot.querySelector('style[data-tf]')) return;
     el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_TEXT + (onBoard ? DAC_FIT : '') })).dataset.tf = '';
@@ -741,7 +755,8 @@ export function mountTestFocus(root, { config, getHass }) {
     dacHeights.set(slot.dataset.dac, slot.offsetHeight);
   }));
   function mountDacs(scope) {
-    scope.querySelectorAll('[data-dac]').forEach((slot) => {
+    // the scope can be the controller's own place (a tile redrawn on its own, now its light's colour rides on it)
+    [...(scope.matches?.('[data-dac]') ? [scope] : []), ...scope.querySelectorAll('[data-dac]')].forEach((slot) => {
       const key = slot.dataset.dac, onBoard = key.startsWith('dash:');
       let el = dacs.get(key);
       if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), ...(onBoard ? { tap_action: { action: 'none' } } : {}) }); dacs.set(key, el); }

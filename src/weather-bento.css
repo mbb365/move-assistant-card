@@ -179,8 +179,19 @@
 .wbHi{font:400 18px/20px var(--font-tile)}
 .wbLo{color:var(--muted);font:400 18px/1.2 var(--font);letter-spacing:-.18px}
 .wbHalves{display:none;grid-template-columns:repeat(2,minmax(0,1fr))}
-/* phone: Figma "Weather card · halves" */
+/* the forecast in a sentence (Matt, 1 Nov): only in the room a large card leaves between Now and the days, never making
+   the card taller (it takes no height of its own, and gives back the gap before it); two lines when they fit, one, or none */
+.wbSummary{position:relative;flex:1 1 0;min-height:0;margin-top:-12px;container:wbsum/size}
+.wbSummaryText{position:absolute;top:12px;left:0;right:0;margin:0;color:var(--text);font:400 16px/22px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+@container wbsum (height < 56px){.wbSummaryText{-webkit-line-clamp:1}}
+@container wbsum (height < 34px){.wbSummaryText{display:none}}
+/* a board card narrower than its drawn 520 (two columns down to 200 each): day columns kept, their pictures 48 */
 @container wb-card (width < 480px){
+  .wbColumn .wbWx.wbS60{width:48px;height:48px;border-radius:16px}
+}
+/* phone: Figma "Weather card · halves", no sentence (Matt, 1 Nov: on the board the days stay columns, as the Weather page's) */
+@container wb-card (width < 400px){
+  .wbSummary{display:none}
   /* as the area card: 18 round the top, its unfilled day tiles 10 from the bottom */
   .wbCard.wbWeather{gap:16px;padding:18px 18px 10px}
   .wbWeather .wbWx.wbS90{width:60px;height:60px;border-radius:20px}

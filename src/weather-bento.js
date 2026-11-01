@@ -394,7 +394,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   const VIEW_KEY='homecore-next-view',saved=(()=>{try{return localStorage.getItem(VIEW_KEY)}catch(_e){return null}})();
   const ui={openDay:undefined,opener:undefined,dayMode:'temperature',hourlyMode:'temperature',hourlyView:saved==='bars'?'bars':'strip',aq:undefined};
   const data={todayHistory:undefined,rain:undefined,temperatureHistory:undefined,pressureHistory:undefined,aqHistory:undefined,categories:undefined,lastFetch:0};
-  let sunNow=new Date(),moonNow=new Date(),strip=null;
+  let sunNow=new Date(),moonNow=new Date();
+  const strips={};   // the painted skies, by name (Next hours' is hourly)
 
   /* ---- Forecasts: one subscription per kind, from the first source that has it ---- */
   const subs={},forecasts={};
@@ -524,6 +525,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       '<div class="wbPlace">'+esc(h.config?.location_name??'')+'</div></div>'+(onOpen?'</button>':'</div>')+
       '<div class="wbCondition"><div class="wbCondName">'+esc(stateText(h,primary))+'</div>'+
       (hasToday&&today.templow!=null?'<div class="wbRange">'+esc(fill(T.range,{high:deg(h,today.temperature),low:deg(h,today.templow)}))+'</div>':'')+'</div></div>';
+    s+=forecastSentence(h);
     if(list.length){
       s+='<div class="wbColumns" role="list">'+list.map((e,i)=>'<button class="wbColumn" role="listitem" data-wb="day" data-index="'+i+'" data-wb-focus="col-'+i+'">'+
         '<span class="wbDay">'+esc(shortName(h,e,i))+'</span>'+wxIcon(e.condition??'cloudy',60,false,'col'+i)+
@@ -534,6 +536,36 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     }
     return s+'</div>'+(open?renderOpenDay(h,src,open):'')+'</div>';
   }
+  /* the forecast in a sentence (Matt, 1 Nov), in the room a large card leaves between Now and the days; it never makes
+     a card taller, and it isn't shown where there's no room: the next 12 hours' weather, when it changes, and where the
+     temperature goes */
+  const SKY_WORDS={sunny:'sunny','clear-night':'clear',partlycloudy:'partly cloudy',cloudy:'cloudy',fog:'foggy',rainy:'rain',pouring:'heavy rain',
+    snowy:'snow','snowy-rainy':'sleet',hail:'hail',lightning:'thunder','lightning-rainy':'thunderstorms',windy:'windy','windy-variant':'windy',exceptional:'unsettled'};
+  const SKY_KIND={sunny:'clear','clear-night':'clear',partlycloudy:'partly',cloudy:'cloudy',windy:'cloudy','windy-variant':'cloudy',fog:'fog',
+    rainy:'rain',pouring:'rain',hail:'rain',snowy:'snow','snowy-rainy':'snow',lightning:'storm','lightning-rainy':'storm'};
+  function forecastLine(h){
+    const now=Date.now(),next=forecast('hourly').filter(e=>new Date(e.datetime).getTime()>now-HOUR).slice(0,13);
+    if(next.length<2)return '';
+    const at=e=>fmtTime(new Date(e.datetime),h),word=e=>SKY_WORDS[e.condition]||'',kind=e=>SKY_KIND[e.condition]||e.condition;
+    let line=word(next[0]);
+    if(!line)return '';
+    // up to two changes in the sky
+    let was=next[0],changes=0;
+    for(const e of next.slice(1)){
+      if(changes===2||kind(e)===kind(was)||!word(e))continue;
+      line+=(changes?' and ':', ')+word(e)+' from '+at(e);
+      was=e;changes++;
+    }
+    // where the temperature goes, when it goes far enough to say
+    const t0=Number(next[0].temperature),temps=next.filter(e=>num(e.temperature));
+    if(num(t0)&&temps.length){
+      const lo=temps.reduce((a,b)=>Number(b.temperature)<Number(a.temperature)?b:a),hi=temps.reduce((a,b)=>Number(b.temperature)>Number(a.temperature)?b:a);
+      if(t0-Number(lo.temperature)>=3)line+=', down to '+deg(h,lo.temperature)+' by '+at(lo);
+      else if(Number(hi.temperature)-t0>=3)line+=', up to '+deg(h,hi.temperature)+' by '+at(hi);
+    }
+    return line[0].toUpperCase()+line.slice(1)+'.';
+  }
+  const forecastSentence=h=>{const t=forecastLine(h);return t?'<div class="wbSummary"><p class="wbSummaryText">'+esc(t)+'</p></div>':''};
   // The hourly forecast for a day, from the current hour on
   function hoursOf(dayStart){
     const from=dayStart.getTime(),earliest=Date.now()-HOUR;
@@ -672,7 +704,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       marks.filter(m=>m.entry&&!m.now).map(m=>'<span class="wbLineGlyph'+m.edge+'" style="left:'+pos(m.t)+'">'+lineIcon(m.entry.condition??'cloudy',night(m.t))+'</span>').join('');
   }
   function renderHourly(h,src){
-    strip=null;
+    delete strips.hourly;
     const view=ui.hourlyView==='bars'?'bars':'strip';
     const head='<div class="wbHeader"><h2 class="wbTitle">'+esc(view==='bars'?T.nextDays:T.nextHours)+'</h2>'+
       '<div class="wbSegments wbViews" role="group" aria-label="'+esc(T.showAs)+'">'+['strip','bars'].map(v=>'<button aria-pressed="'+(v===view)+'" data-wb="hourly-view" data-view="'+v+'" data-wb-focus="hourly-view-'+v+'">'+esc(T.views[v])+'</button>').join('')+'</div></div>';
@@ -689,7 +721,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     // the sky from 06:00 on the first page's day (the day before when the page starts earlier), whole days of it
     const art=new Date(first.a);art.setHours(6,0,0,0);if(art.getTime()>first.a)art.setDate(art.getDate()-1);
     const columns=Math.ceil((last.b-art.getTime())/DAY);
-    strip=style==='line'?null:{segs:halves(art,hours,columns),seed:art.getDate(),columns};
+    if(style!=='line')strips.hourly={segs:halves(art,hours,columns),seed:art.getDate(),columns};
     const edge=t=>t===first.a?' wbFirst':t===last.b?' wbLast':'';
     // the days it crosses: each named at its left, the name staying at the strip's left while its day is there
     const days=[];
@@ -715,7 +747,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       '<div class="wbDays">'+days.map((d,i)=>'<span class="wbDaySpan" style="width:calc(var(--wb-u) * '+((d.b-d.a)/HOUR).toFixed(3)+')"><button class="wbDayName" data-wb="hours-day" data-hours="'+(i===0?startAt:((d.page?.a??d.a)-first.a)/HOUR)+'" data-wb-focus="hours-day-'+i+'">'+esc(d.label)+'</button></span>').join('')+'</div>'+
       '<div class="wbRow wbTimes">'+marks.map(m=>mark(m,esc(m.label))).join('')+'</div>'+
       (style==='line'?'<div class="wbSky wbLineSky">'+lineSky(h,first,last,marks,now,pos):
-        '<div class="wbSky"><div class="wbSkyArt" style="left:'+pos(art.getTime())+';width:calc(var(--wb-u) * '+columns*24+')"><canvas data-wb-strip'+(style==='smooth'?'':' class="wbPixels"')+'></canvas></div>')+
+        '<div class="wbSky"><div class="wbSkyArt" style="left:'+pos(art.getTime())+';width:calc(var(--wb-u) * '+columns*24+')"><canvas data-wb-strip="hourly"'+(style==='smooth'?'':' class="wbPixels"')+'></canvas></div>')+
       (now>first.a?'<i class="wbPast" style="width:'+pos(Math.min(now,last.b))+'"></i><i class="wbNowLine" style="left:'+pos(now)+'"></i>':'')+
       days.slice(1).map(d=>'<i class="wbMidnight" style="left:'+pos(d.a)+'"></i>').join('')+'</div>'+
       '<div class="wbRow wbValues">'+marks.map(m=>{
@@ -1024,8 +1056,10 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   };
   const moving=()=>motion&&!reduceMotion();
   function paintStrip(t,c){
-    const cv=root.querySelector('canvas[data-wb-strip]');
-    if(!cv||!strip||!cv.getClientRects().length)return;
+    root.querySelectorAll('canvas[data-wb-strip]').forEach(cv=>paintSky(cv,strips[cv.dataset.wbStrip],t,c));
+  }
+  function paintSky(cv,strip,t,c){
+    if(!strip||!cv.getClientRects().length)return;
     const w=cv.clientWidth,hgt=cv.clientHeight;if(!w||!hgt)return;
     // day and night more clearly apart (Matt, 1 Nov): a crisp edge where they meet
     const o={width:w,height:hgt,columns:strip.columns||STRIP_COLUMNS,colors:c.colors,clock:t,ambient:moving(),seed:strip.seed,soft:1.5};
