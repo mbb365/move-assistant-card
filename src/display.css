@@ -134,11 +134,10 @@
 .tfLightTable td strong{font:600 14px/20px var(--font-tile)}
 .tfLightTable .settingsSelect{min-width:150px}
 .tfLightTable .settingsSelect:disabled{opacity:.4}
-/* a light as the Dual Axis Controller: its card sets its own size (up to 280 wide), in a tile's place */
-.tfDac{grid-column:span 2;min-width:0}
-/* a block, so the height hold's ResizeObserver sees its real size (an inline element always measures 0 × 0) */
-.tfDac>dual-controller-v3{display:block}
-.tfMoreActions .tfDac{grid-column:auto}
+/* a light as the Dual Axis Controller is a tile like the others (Matt, 1 Nov); its pad is the tile's control: a block,
+   so the height hold's ResizeObserver sees its real size (an inline element always measures 0 × 0) */
+.tfDacPad{min-width:0}
+.tfDacPad>dual-controller-v3{display:block}
 #app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}
 #app.house .checkinTab{display:none}
 /* Home's weather: the bento takes the weather card's place */
@@ -335,6 +334,20 @@ button.tfAreaIcon{cursor:pointer}
    (the grid's gap; the dashboard's title to first card is the rule) and its cards from the left edge, under the back
    arrow, each row filling from the left. So its bento has no padding or centring of its own */
 #app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{margin:0;padding:0;justify-content:flex-start}
+/* the Weather page is the dashboard's board (Matt, 1 Nov: one rule set, the same element the same size on every page):
+   its columns (--peg-w, the board's own sums) and rows of 60, 16 apart, each element the whole rows it needs, as on
+   the dashboard: the weather card and Next hours 2 × 5, Compared to average 2 × 4, every weather tile 1 × 4 (Air
+   quality, Pollen and Rain radar too); each in the first cells it fits, from the top left */
+#app.tfWeatherOpen .tfBento.tfPegs .wbBento{display:grid;grid-template-columns:repeat(var(--peg-n),var(--peg-w));grid-auto-rows:60px;grid-auto-flow:row dense;align-items:stretch;gap:16px;max-width:none}
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem{width:auto;min-height:0;align-self:stretch;display:flex;flex-direction:column}
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem>*{flex:1;min-height:0}
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size="wide"]{grid-column:span 2;grid-row:span 5}
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size="double"]{grid-column:span 2;grid-row:span 4}
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size="tile"]{grid-column:span 1;grid-row:span 4}
+#app.tfWeatherOpen .tfBento.tfPegs .wbCard.wbSquare{aspect-ratio:auto}
+#app.tfWeatherOpen .tfBento.tfPegs .wbWeather .wbNow{margin-bottom:auto}
+/* on the board Next hours' sky takes its cells' height; its 380 is for phones */
+#app.tfWeatherOpen .tfBento.tfPegs :is(.wbStripScroll,.wbBars .wbDayBars,.wbBars.wbTabbed .wbDayBars){min-height:0}
 /* the main: it opens its more-info */
 .tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}
 .tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}
@@ -428,12 +441,10 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfDash .tfDashTiles>*{order:var(--o,9)}
 /* drawn sizes: never wider than drawn; a card may give up to 12% (520 down to 460) so two sit side by side on a
    tablet, and takes the whole width only on a phone */
-#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg,.tfDash-aq,.tfDash-pollen,.tfDash-radar){flex:1 1 460px;max-width:520px;min-width:0}
-@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg,.tfDash-aq,.tfDash-pollen,.tfDash-radar){flex-basis:100%;max-width:none}}
-/* the new cards (Matt, 1 Nov): off the page until added from the edit tray; off the board, as wide as the page and 212
-   tall (a square would be the page's width tall) */
+#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}
+@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}
+/* the new cards (Matt, 1 Nov): off the page until added from the edit tray */
 #app .tfNotAdded{display:none!important}
-#app:not(.tfBoard) :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar) .wbCard.wbSquare{aspect-ratio:auto;min-height:212px}
 #app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}
 @media(min-width:901px){
   #app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}
@@ -462,7 +473,7 @@ button.tfAreaIcon{cursor:pointer}
 #homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}
 /* Activity: as many changes as its card fits, whole tiles only (five, 300, until the board says); the rest scroll, a thin
    bar at the side, and each scroll settles smoothly on the next tile (Matt, 27 Oct) */
-#homeView .card.tfDash-act>.activityRows{flex:none;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}
+#homeView .card.tfDash-act>.activityRows{flex:none;margin-top:auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}
 #homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}
 #homeView .card.tfDash-energy .activityRows{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
 .tfDashCard :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

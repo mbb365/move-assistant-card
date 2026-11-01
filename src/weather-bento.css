@@ -43,18 +43,17 @@
 .wbName{font:600 14px/20px var(--font-tile);overflow:hidden;text-overflow:ellipsis}
 .wbSub{font:400 16px/1.15 var(--font);letter-spacing:-.32px;overflow:hidden;text-overflow:ellipsis}
 
-/* Square data tile: the title row, then one drawing. Everything scales with the tile, 252 on desktop to about 170 on phones */
-.wbCard.wbSquare{display:flex;flex-direction:column;gap:clamp(8px,calc(5.6cqw * var(--wb-k,1)),14px);aspect-ratio:1;--wb-k:1;box-sizing:border-box;
-  padding:clamp(12px,calc(7.9cqw * var(--wb-k,1)),20px);border-radius:clamp(22px,calc(11.1cqw * var(--wb-k,1)),28px);overflow:hidden}
-/* two squares wide: everything sized as in a square */
-.wbCard.wbSquare.wbDouble{aspect-ratio:520/252;--wb-k:.4846}
+/* Square data tile: the title row, then one drawing. A tile like every other (Matt, 1 Nov): corner 28, 18 in, a 40 chip
+   with its icon fitted to 26, name 14 and the line under it 16, at every width; the drawing takes the room left */
+.wbCard.wbSquare{display:flex;flex-direction:column;gap:14px;aspect-ratio:1;--wb-k:1;box-sizing:border-box;padding:18px;border-radius:28px;overflow:hidden}
 .wbHead{display:flex;align-items:flex-start;gap:12px;min-width:0}
-.wbSquare .wbHead{gap:clamp(8px,calc(4.8cqw * var(--wb-k,1)),12px)}
-.wbSquare .wbChip{width:clamp(30px,calc(15.9cqw * var(--wb-k,1)),40px);height:clamp(30px,calc(15.9cqw * var(--wb-k,1)),40px);
-  border-radius:clamp(12px,calc(6.3cqw * var(--wb-k,1)),16px);--wb-icon:clamp(18px,calc(9.5cqw * var(--wb-k,1)),24px)}
-.wbSquare .wbName{font-size:clamp(12px,calc(5.6cqw * var(--wb-k,1)),14px);line-height:1.4}
-.wbSquare .wbSub{font-size:clamp(13px,calc(6.3cqw * var(--wb-k,1)),16px)}
-.wbVisual{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(6px,calc(4cqw * var(--wb-k,1)),10px)}
+.wbSquare .wbChip{width:40px;height:40px;border-radius:16px}
+.wbSquare .wbName{font-size:14px;line-height:1.4}
+.wbSquare .wbSub{font-size:16px}
+.wbVisual{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:10px}
+/* two columns wide (Compared to average): the same head and 18 in as every element (Matt, 1 Nov: a unified system),
+   a card's corner */
+.wbCard.wbSquare.wbDouble{aspect-ratio:520/252;--wb-k:.4846;border-radius:34px}
 .wbVisual>svg{display:block;width:100%;height:100%;min-height:0}
 .wbVisual svg text{font-family:var(--font-tile)}
 .wbValue{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}
@@ -131,7 +130,7 @@
 /* new cards (Matt, 1 Nov): Air quality, Pollen and Rain radar in the data tiles' shape, base elements whose looks come
    later: the reading big, two more under it; the radar's map area with home in the middle */
 .wbBaseRows{display:flex;flex-direction:column;gap:4px;width:100%}
-.wbBaseRow{display:flex;justify-content:space-between;gap:clamp(8px,calc(4.8cqw * var(--wb-k,1)),12px);color:var(--muted);font:400 clamp(12px,calc(5.6cqw * var(--wb-k,1)),14px)/1.4 var(--font)}
+.wbBaseRow{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font:400 14px/20px var(--font)}
 .wbBaseRow>span:last-child{color:var(--text);white-space:nowrap}
 .wbBaseRow>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wbRadar{position:relative;flex:1;align-self:stretch;min-height:80px;border-radius:var(--r-inner);overflow:hidden;background-color:var(--tile);
@@ -294,7 +293,7 @@
 }
 
 /* ---- Sun: a glowing sun on a deep maroon sky ---- */
-.wbSunSky{flex:1;min-height:0;display:flex;border-radius:clamp(12px,6.3cqw,16px);overflow:hidden;transition:background 1s ease}
+.wbSunSky{flex:1;min-height:0;display:flex;border-radius:16px;overflow:hidden;transition:background 1s ease}
 .wbSunSky svg{display:block;width:100%;height:100%;overflow:visible}
 /* Figma "Data tile · Sun" (Matt, 27 Oct): the path as a wide band, 30 at 252 */
 .wbSunPath{fill:none;stroke:var(--wb-sun-line);stroke-opacity:.4;stroke-width:28.3}
@@ -306,9 +305,10 @@
 .wbMoonBox{flex:1;min-height:0;display:flex;justify-content:center}
 .wbMoonArt{display:block;flex:none;width:auto;height:100%;max-width:100%}
 /* too small for a caption on a phone */
-@container wb-card (width < 220px){
-  .wbMoonCaption{display:none}
-}
+/* the moonrise and how much is lit show at every width (Matt, 1 Nov: no information lost); a time that can't fit ends in … */
+.wbMoonCaption{gap:8px}
+.wbMoonCaption span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wbMoonCaption span:last-child{flex:none}
 .wbMaria{fill:#7d7d78}
 .wbCrater{fill:rgb(0 0 0/9%)}
 .wbRays{stroke:#ffffff;stroke-width:1.2;stroke-linecap:round;opacity:.16}
@@ -346,7 +346,7 @@
 /* ---- Visibility: a ship on the horizon in the fog ---- */
 /* Figma "Visibility tile · proposal" 564:4340 (Matt, 28 Oct): the picture with corner 16 at 252 like the Sun's sky; the
    fact top left in the sky, the value bottom left on the near water, 12 in. One pixel a CSS pixel */
-.wbSea{position:relative;flex:1;min-height:0;border-radius:clamp(12px,6.3cqw,16px);overflow:hidden;--wb-sea-inset:clamp(8.88px,calc(4.76cqw * var(--wb-k,1)),12px)}
+.wbSea{position:relative;flex:1;min-height:0;border-radius:16px;overflow:hidden;--wb-sea-inset:clamp(8.88px,calc(4.76cqw * var(--wb-k,1)),12px)}
 .wbSeaArt{position:absolute;inset:0;display:block;width:100%;height:100%;image-rendering:pixelated}
 .wbSeaFact{position:absolute;top:clamp(7px,calc(3.97cqw * var(--wb-k,1)),10px);inset-inline:var(--wb-sea-inset);color:#26221e;font:600 clamp(9.44px,calc(5.47cqw * var(--wb-k,1)),13.78px)/1.23 var(--font-tile)}
 .wbSeaValue{position:absolute;bottom:var(--wb-sea-inset);inset-inline-start:var(--wb-sea-inset);color:#ffffff;text-shadow:0 0 2px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}

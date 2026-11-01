@@ -126,6 +126,22 @@ const FORECAST_FEATURE={daily:1,hourly:2};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fill=(text,vars)=>text.replace(/\{(\w+)\}/g,(_,k)=>vars[k]??'');
 const svgIcon=path=>'<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="'+path+'"/></svg>';
+// a tile's icon, fitted as every tile's is (Matt, 31 Oct): Material Design Icons draw at different sizes in their 24 grid,
+// so each is measured once and sized so its longest side is 26, centred on what's drawn
+const FITTED=new Map();
+function fittedIcon(path){
+  let style=FITTED.get(path);
+  if(style===undefined){
+    const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg'),shape=document.createElementNS(ns,'path');
+    svg.setAttribute('viewBox','0 0 24 24');svg.style.cssText='position:absolute;width:24px;height:24px;visibility:hidden;pointer-events:none';
+    shape.setAttribute('d',path);svg.append(shape);document.body.append(svg);
+    const b=shape.getBBox();svg.remove();
+    const side=Math.max(b.width,b.height),size=side?26*24/side:0,at=size/24;
+    style=side?'width:'+size.toFixed(2)+'px;height:'+size.toFixed(2)+'px;translate:'+((12-b.x-b.width/2)*at).toFixed(2)+'px '+((12-b.y-b.height/2)*at).toFixed(2)+'px':'';
+    FITTED.set(path,style);
+  }
+  return style?'<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true" style="'+style+'"><path d="'+path+'"/></svg>':svgIcon(path);
+}
 const reduceMotion=()=>!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const num=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
 
@@ -313,7 +329,7 @@ const moonShadowPath=(cx,cy,r,f)=>{const rx=r*Math.abs(1-2*f),sweep=f<.5?0:1;ret
 // Square data tile: chip, name and subdata, then one drawing that fills the rest
 const tile=({icon,name,sub,visual,double,backdrop,cls})=>'<div class="wbCard wbSquare'+(double?' wbDouble':'')+(backdrop?' wbHasBackdrop':'')+(cls?' '+cls:'')+'">'+
   (backdrop?'<div class="wbBackdrop" aria-hidden="true">'+backdrop+'</div>':'')+
-  '<div class="wbHead"><div class="wbChip wbPlain">'+svgIcon(icon)+'</div><div class="wbText"><span class="wbName">'+esc(name)+'</span>'+
+  '<div class="wbHead"><div class="wbChip wbPlain">'+fittedIcon(icon)+'</div><div class="wbText"><span class="wbName">'+esc(name)+'</span>'+
   (sub?'<span class="wbSub">'+esc(sub)+'</span>':'')+'</div></div><div class="wbVisual">'+visual+'</div></div>';
 const valueHtml=(n,unit)=>'<div class="wbValue"><span class="wbNum">'+esc(n)+'</span>'+(unit?'<span class="wbUnitV">'+esc(unit)+'</span>':'')+'</div>';
 

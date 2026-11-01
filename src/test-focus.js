@@ -96,9 +96,9 @@ const ACTION_DOMAINS = ['light', 'climate', 'cover', 'humidifier', 'media_player
 // The dashboard (Matt, 27 Oct): what its activity card follows, how many changes and favourites it shows, and its
 // energy's icons
 const ACTIVITY_DOMAINS = ['light', 'switch', 'fan', 'lock', 'cover', 'climate', 'humidifier', 'media_player', 'alarm_control_panel', 'vacuum', 'valve', 'binary_sensor'];
-// Favourites: five rows, so beside Activity their tiles line up. Activity: the latest changes, as many as its card fits
-// (five in a large card); the rest scroll (Matt, 27 Oct)
-const DASH_FAVOURITES = 10, ACTIVITY_MOST = 20;
+// Favourites: five rows, so beside Activity their tiles line up. Activity: the latest changes, five before the rest
+// scroll (Matt, 27 Oct)
+const DASH_FAVOURITES = 10, ACTIVITY_MOST = 20, ACTIVITY_SHOWN = 5;
 const ENERGY_ICON = { electricity: 'mdi:lightning-bolt', solar: 'mdi:solar-power-variant', gas: 'mdi:fire', water: 'mdi:water' };
 // the bottom row's tiles: a light tile's size, 10 apart (light tiles' rule)
 const DASH_TILE_W = 252, DASH_TILE_GAP = 10;
@@ -699,10 +699,12 @@ export function mountTestFocus(root, { config, getHass }) {
   // not a barrage of colour; warmth and colour are on the light's own popup)
   // on the dashboard's bottom row (only) a tile keeps just its first control: a light its brightness, a thermostat its target
   function actionTile(id, inDialog = false, only = null) {
-    if (id.startsWith('light.') && dacFor(id)) return '<div class="tfDac" data-k="' + esc(id) + '" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"' + lightAttrs(id) + '></div>';
-    const s = specFor(id), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
-    const sections = s.sections.map((sec, i) => (sec && (!keep || keep.includes((s.parts || [])[i])) ? sec : '')).filter(Boolean);
-    return '<div class="tfAction' + (s.on ? ' on' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
+    // a light as the Dual Axis Controller is a tile like every other, the controller's pad its control (Matt, 1 Nov:
+    // it's just another action)
+    const s = specFor(id), dac = id.startsWith('light.') && dacFor(id), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
+    const sections = dac ? ['<div class="tfDacPad" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"></div>']
+      : s.sections.map((sec, i) => (sec && (!keep || keep.includes((s.parts || [])[i])) ? sec : '')).filter(Boolean);
+    return '<div class="tfAction' + (dac ? ' tfDac' : '') + (s.on ? ' on' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
       '<div class="tfActionHead">' + iconButton(id, s) + nameButton(id) + '</div>' + sections.join('') + '</div>';
   }
   /* the Dual Axis Controller (Matt's HACS card, custom:dual-controller-v3): when Settings picks it, every light is its
@@ -736,16 +738,16 @@ export function mountTestFocus(root, { config, getHass }) {
     return h && { ...h, themes: { ...(h.themes || {}), darkMode: !app.classList.contains('light') },
       callService: (domain, service, data, ...rest) => h.callService(domain, ...asLastOn(domain, service, data), ...rest) };
   };
-  // on the dashboard its name opens its pad in place (a tap action the page catches, below) rather than the card's own
-  // controller, and its pad takes the height its cells leave (--tf-dac-pad, through the card's open shadow root)
-  const DAC_FIT = '.halo.is-size-tile .halo__pad-shell{height:var(--tf-dac-pad,158px)!important;transition:height .25s cubic-bezier(.2,.7,.3,1)}';
-  // and wherever it is, its dark mode text is this page's grey (Matt, 28 Oct: #d9d9d9; the card's own is #f1f1f1); its
-  // icon is as every tile and card's here (Matt, 1 Nov): off, the grey chip with the muted glyph; lit, the light's own
-  // colour with the glyph a darker shade of it (the controller's was a fixed amber with white, 2:1)
-  const DAC_TEXT = '.hc--dark{--hc-text:var(--color-text-primary,#f1f1f1)}.hcChip:not(.is-on){background:var(--hc-icon,var(--hc-tile))!important;color:var(--hc-icon-ink,var(--hc-text))!important}.hcChip.is-on{background:var(--light,var(--hc-light-on))!important;color:var(--light-ink,#ffffff)!important}';
-  const dressDac = (el, onBoard) => {
+  // the controller gives only its pad (Matt, 1 Nov: it's just another action): the tile around it, head and all, is this
+  // page's, so the card's own frame and head are hidden (through its open shadow root), and the pad takes the room the
+  // tile leaves (--tf-dac-pad: on the board its cells less the tile's 90; elsewhere 198, a 4-row tile's); in dark mode
+  // its text is this page's grey (Matt, 28 Oct: #d9d9d9; the card's own is #f1f1f1)
+  const DAC_PAD = 'ha-card,.hc.hcTile{padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}' +
+    '.hcTileHead{display:none!important}.hc--dark{--hc-text:var(--color-text-primary,#f1f1f1)}' +
+    '.halo.is-size-tile .halo__pad-shell{height:var(--tf-dac-pad,198px)!important;transition:height .25s cubic-bezier(.2,.7,.3,1)}';
+  const dressDac = (el) => {
     if (!el.shadowRoot || el.shadowRoot.querySelector('style[data-tf]')) return;
-    el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_TEXT + (onBoard ? DAC_FIT : '') })).dataset.tf = '';
+    el.shadowRoot.appendChild(Object.assign(document.createElement('style'), { textContent: DAC_PAD })).dataset.tf = '';
   };
   // a controller taken off the page (another page opened) is drawn again from nothing when it's back, a moment later;
   // until it is, its place keeps its last height, so nothing under it moves (Matt, 28 Oct: back from the weather, the
@@ -758,16 +760,16 @@ export function mountTestFocus(root, { config, getHass }) {
     dacHeights.set(slot.dataset.dac, slot.offsetHeight);
   }));
   function mountDacs(scope) {
-    // the scope can be the controller's own place (a tile redrawn on its own, now its light's colour rides on it)
-    [...(scope.matches?.('[data-dac]') ? [scope] : []), ...scope.querySelectorAll('[data-dac]')].forEach((slot) => {
-      const key = slot.dataset.dac, onBoard = key.startsWith('dash:');
+    // its place is the pad's, inside its tile
+    scope.querySelectorAll('[data-dac]').forEach((slot) => {
+      const key = slot.dataset.dac;
       let el = dacs.get(key);
-      if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), ...(onBoard ? { tap_action: { action: 'none' } } : {}) }); dacs.set(key, el); }
+      if (!el) { const id = key.slice(key.indexOf(':') + 1); el = document.createElement(DAC_TAG); el.setConfig({ type: 'custom:' + DAC_TAG, entity: id, pad: padOf(id), tap_action: { action: 'none' } }); dacs.set(key, el); }
       el.hass = dacHass();
-      if (el.parentNode !== slot) slot.replaceChildren(el, ...slot.querySelectorAll(':scope > .tfEditChips')); // edit mode's grip and ⋯ stay
+      if (el.parentNode !== slot) slot.replaceChildren(el);
       if (!el.offsetHeight && dacHeights.has(key)) slot.style.minHeight = dacHeights.get(key) + 'px';
       dacSizes.observe(el);
-      dressDac(el, onBoard);
+      dressDac(el);
     });
   }
   function syncDacs() { const h = dacHass(); dacs.forEach((el, key) => { if (el.isConnected) el.hass = h; else dacs.delete(key); }); }
@@ -1456,21 +1458,23 @@ export function mountTestFocus(root, { config, getHass }) {
      narrows, the cards narrow with it) and rows 60 tall, 16 apart both ways. As many columns as fit at 200; they share
      the width, so they narrow together as it narrows and, at 200, one goes and they widen again (never more than 25%
      past their drawn 252). Rows stay 60 whatever the width. Every card fills whole cells, so
-     everything lines up: a tile is 1 × 2, a card 2 wide; the large cards (the weather, the areas, Favourites and
-     Activity) are 5 rows (364, Favourites' and Activity's own height); the others as many rows as they need. A card
+     everything lines up. Every element is as many whole rows as what it holds needs (Matt, 1 Nov: any height, but
+     always a whole row bigger or smaller, never part of one); a tile is one column wide, a card two, the areas the
+     whole width. A card
      can sit in any free cell; one dropped where others are pushes them down. Edit mode (the pencil in the bottom bar)
      draws the cells: drag a card by its grip (or anywhere on it), or use its ⋯ to size, move or hide it, and Energy
      today's graph above or below. Where everything is goes with the page's settings in Home Assistant (prefs.dash:
      cells, sizes, what's hidden, options). Phones keep one column */
-  const PEG = 252, PEG_GAP = 16, PEG_MIN = 200, PEG_MAX = Math.round(PEG * 1.25), ROW = 60, ROW_PITCH = ROW + PEG_GAP, LARGE_ROWS = 5, EXTRA_ROWS = 3;
+  const PEG = 252, PEG_GAP = 16, PEG_MIN = 200, PEG_MAX = Math.round(PEG * 1.25), ROW = 60, ROW_PITCH = ROW + PEG_GAP, EXTRA_ROWS = 3;
   const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average', aq: 'Air quality', pollen: 'Pollen', radar: 'Rain radar' };
   // the new cards are two columns, as Compared to average (Matt, 1 Nov: one was too narrow), a tile in their ⋯
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
-  // each card's rows, matched to what it holds (Matt, 27 Oct): large ones 5 (364); Energy today 4 (288); Compared to
-  // average 4 (288: its number and words need about 257); a Dual Axis Controller 3 (212), 5 when made taller in its ⋯
-  // menu (Matt, 28 Oct: it stays that way); a light or thermostat tile 2 (136)
-  const ROWS = { wx: LARGE_ROWS, areas: LARGE_ROWS, favs: LARGE_ROWS, act: LARGE_ROWS, energy: 4, avg: 4, aq: 3, pollen: 3, radar: 3 };
-  const DAC_ROWS = 3, DAC_CHROME = 94; // a DAC tile's padding, name row and gap around its pad
+  // each kind of element's rows, the whole rows it needs, the same for every one of its kind (Matt, 1 Nov: a unified
+  // system): the weather, the areas, Favourites and Activity 5 (364); Energy today and Compared to average 4 (288);
+  // every weather tile 4 (288), Air quality, Pollen and Rain radar included, and a Dual Axis Controller the same (5 when
+  // made taller in its ⋯ menu; Matt, 28 Oct: it stays that way); a light or thermostat tile its own height (2 rows, 136)
+  const ROWS = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 };
+  const DAC_ROWS = 4, TALL_DAC_ROWS = 5, TILE_ROWS = 2, DAC_CHROME = 90; // a tile's padding (18 and 18), head (40) and gap (14) around the controller's pad
   const tallDac = (key) => Boolean(dashPrefs().opts[key]?.tall); // a dashboard DAC made taller in its ⋯ menu
   const boardName = (key) => BOARD_NAMES[key] || nameOf(key);
   const AREA_OPEN = 409, AREA_FOLDED = 128;
@@ -1504,14 +1508,12 @@ export function mountTestFocus(root, { config, getHass }) {
     return Math.min(n, dashPrefs().spans[it.key] ?? it.span);
   };
   // a card's rows, unless they come from its own height (a tile's do)
-  const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (tallDac(it.key) ? LARGE_ROWS : DAC_ROWS) : null);
+  const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (tallDac(it.key) ? TALL_DAC_ROWS : DAC_ROWS) : null);
   // each card's cell on a board n pegs wide (the cards know their cols and rows): a dragged card where it would land;
   // then the cards with a saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in
   // the page's order, each in the first cell from the top left it fits.
   // Cells saved on a wider board that don't fit this one would crowd its right edge, so then the cards keep the saved
   // order instead (the top row first, each row left to right), each in the first cell from the top left it fits.
-  // Tiles side by side are one height, the tallest's (Matt, 27 Oct: a light beside a Dual Axis Controller grows to its
-  // 3 rows, not stacked at different heights); a taller DAC doesn't count
   function placeCards(cards, n, dragged = null) {
     const cells = dashPrefs().cells, fits = cards.every((it) => !cells[it.key] || cells[it.key].col + it.cols <= n);
     const at = (it) => cells[it.key] || { row: 1e9, col: 0 };
@@ -1531,22 +1533,26 @@ export function mountTestFocus(root, { config, getHass }) {
       rest.filter((it) => !cells[it.key]).forEach(first);
       return placed;
     };
-    // tiles starting on the same row and touching take the tallest one's rows; once they have, lay out again
-    for (let pass = 0; ; pass++) {
-      const placed = place();
-      if (pass === 3) return placed;
-      const tiles = cards.filter((it) => it.tile && !tallDac(it.key)).map((it) => ({ it, p: placed.get(it.key) }))
-        .sort((a, b) => a.p.row - b.p.row || a.p.col - b.p.col);
-      let grew = false;
-      for (let i = 0, j; i < tiles.length; i = j) {
-        for (j = i + 1; j < tiles.length && tiles[j].p.row === tiles[i].p.row && tiles[j].p.col === tiles[j - 1].p.col + 1; j++);
-        const run = tiles.slice(i, j), rows = Math.max(...run.map((t) => t.it.rows));
-        run.forEach((t) => { if (t.it.rows < rows) { t.it.rows = rows; grew = true; } });
-      }
-      if (!grew) return placed;
-    }
+    // nothing stretches (Matt, 1 Nov: the information density stays the same): a tile keeps its own rows
+    return place();
   }
-  // a phone has no board: its cards run down one column in the board's reading order, the top row first and each row
+  // the same board on a phone: each card in the phone's order, in the first cells it fits from the top left
+  function placeInOrder(cards, n) {
+    const taken = new Set(), placed = new Map();
+    const free = (c, r, it) => { for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) if (taken.has(x + ',' + y)) return false; return true; };
+    cards.forEach((it) => {
+      for (let r = 0; ; r++) {
+        let c = 0;
+        while (c <= n - it.cols && !free(c, r, it)) c++;
+        if (c > n - it.cols) continue;
+        for (let y = r; y < r + it.rows; y++) for (let x = c; x < c + it.cols; x++) taken.add(x + ',' + y);
+        placed.set(it.key, { col: c, row: r, cols: it.cols, rows: it.rows });
+        return;
+      }
+    });
+    return placed;
+  }
+  // a phone's order: its cards run down in the board's reading order, the top row first and each row
   // left to right (Matt, 27 Oct), unless the mini phone in the edit tray gave phones an order of their own (Matt, 28
   // Oct; dash.phone): those cards first in that order, then any it doesn't know yet in the board's. The board is the
   // one last on screen, else the one the cells were saved on (four pegs wide if they never were); hidden cards last
@@ -1555,7 +1561,7 @@ export function mountTestFocus(root, { config, getHass }) {
     let placed = lastPlaced;
     if (!placed.size) {
       const n = dash.pegs || 4, shown = cards.filter((it) => !hidden.has(it.key));
-      shown.forEach((it) => { it.cols = colsOf(it, n, PEG); it.rows = rowsOf(it) ?? 2; });
+      shown.forEach((it) => { it.cols = colsOf(it, n, PEG); it.rows = rowsOf(it) ?? TILE_ROWS; });
       placed = placeCards(shown, n);
     }
     const at = (it) => (!hidden.has(it.key) && placed.get(it.key)) || { row: 1e9, col: 0 };
@@ -1590,14 +1596,20 @@ export function mountTestFocus(root, { config, getHass }) {
   // lays the board out on its cells: the name and the summaries first, then the cards (placeCards)
   function layoutBoard() {
     if (!testFocus || !grid) return;
-    // phones keep one column: the board starts where two drawn columns fit, as before
-    const W = grid.clientWidth, { n, w } = pegsFor(W), board = app.classList.contains('tfDash') && W >= 2 * PEG + PEG_GAP;
+    // a phone is the same board two columns wide (Matt, 1 Nov: one rule everywhere, so Smalls stack beside a Medium
+    // there too), its cards in the phone's order and not edited there
+    const W = grid.clientWidth, phone = W < 2 * PEG + PEG_GAP, board = app.classList.contains('tfDash');
+    const { n, w } = phone ? { n: 2, w: Math.floor((W - PEG_GAP) / 2) } : pegsFor(W);
+    // the Weather page is laid on the same board, its columns the dashboard's (Matt, 1 Nov: one rule set)
+    bentoBox.classList.add('tfPegs');
+    bentoBox.style.setProperty('--peg-n', n);
+    bentoBox.style.setProperty('--peg-w', w + 'px');
     const off = new Set(dashPrefs().hidden);
     NEW_CARDS.forEach((k) => dashBoxes[k]?.classList.toggle('tfNotAdded', off.has(k) && !(drag?.fromTray && drag.key === k)));
     app.classList.toggle('tfBoard', board);
-    app.classList.toggle('tfEditing', board && editing);
+    app.classList.toggle('tfEditing', board && editing && !phone);
     const pen = $('dashEditNav');
-    if (pen) { pen.hidden = !board; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit the dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
+    if (pen) { pen.hidden = !board || phone; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit the dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
     const items = board ? boardItems() : [];
     if (!board) {
       grid.style.height = '';
@@ -1637,7 +1649,8 @@ export function mountTestFocus(root, { config, getHass }) {
       it.rows = rowsOf(it) ?? Math.max(1, Math.ceil((it.el.offsetHeight + PEG_GAP - 6) / ROW_PITCH));
     });
     const dragged = drag && cards.find((it) => it.key === drag.key);
-    const placed = placeCards(cards, n, dragged);
+    const order = phone && phoneCards().map((it) => it.key), seq = (it) => (order.includes(it.key) ? order.indexOf(it.key) : -1);
+    const placed = phone ? placeInOrder([...cards].sort((a, b) => seq(a) - seq(b)), n) : placeCards(cards, n, dragged);
     placed.forEach((p) => Object.assign(p, { x: p.cols === n ? 0 : p.col * pitch, y: boardTop + p.row * ROW_PITCH, w: p.cols === n ? W : p.cols * w + (p.cols - 1) * PEG_GAP, h: p.rows * ROW_PITCH - PEG_GAP }));
     cards.forEach((it) => {
       const p = placed.get(it.key);
@@ -1648,15 +1661,14 @@ export function mountTestFocus(root, { config, getHass }) {
       it.el.style.left = p.x + 'px';
       it.el.style.top = p.y + 'px';
     });
-    lastPlaced = placed;
+    if (!phone) lastPlaced = placed; // the board's own places, which a phone's order follows
     readingOrder([...shown.filter((it) => HEAD.includes(it.key)), ...cards.slice().sort((a, b) => placed.get(a.key).row - placed.get(b.key).row || placed.get(a.key).col - placed.get(b.key).col)].map((it) => it.el));
-    // Activity shows as many changes as its card fits (under its title, above its 10 of padding), whole tiles only;
-    // the rest scroll
+    // Activity shows five changes, or as many as its card fits under its title (whole tiles only); the rest scroll
     const act = placed.get('act'), list = act && grid.querySelector('.tfDash-act > .activityRows');
-    if (list) list.style.maxHeight = Math.max(ROW, Math.floor((act.h - list.offsetTop - 10) / ROW) * ROW) + 'px';
+    if (list) list.style.maxHeight = Math.max(ROW, Math.min(ACTIVITY_SHOWN, Math.floor((act.h - list.offsetTop - 10) / ROW)) * ROW) + 'px';
     boardRows = Math.max(0, ...[...placed.values()].map((p) => p.row + p.rows));
     let height = boardTop + boardRows * ROW_PITCH - PEG_GAP;
-    height = editTools(editing, cards, placed, height, n, w);
+    height = editTools(editing && !phone, cards, placed, height, n, w);
     grid.style.height = height + 'px';
     // cards slide to new places from the second layout on (not as the page first draws)
     requestAnimationFrame(() => app.classList.add('tfBoardReady'));
@@ -2136,7 +2148,7 @@ export function mountTestFocus(root, { config, getHass }) {
      the phone's cards as simple blocks at 80% of their phone size (about: heights measured on a 375 phone), in the
      order phones show them; drag a block, or move it with the arrow keys, to give phones their own order. Follow the
      board drops it again */
-  const PHONE_H = { sums: 201, wx: 286, favs: 363, areas: 323, act: 363, energy: 301, avg: 182 }, PHONE_TILE = 140, PHONE_DAC = 252, PHONE_SCALE = 0.8;
+  const PHONE_H = { sums: 201, wx: 364, favs: 364, areas: 364, act: 364, energy: 288, avg: 288, aq: 288, pollen: 288, radar: 288 }, PHONE_TILE = 136, PHONE_DAC = 288, PHONE_SCALE = 0.8;
   const CARD_ICON = { wx: 'mdi:weather-partly-cloudy', areas: 'mdi:home', favs: 'mdi:star', act: 'mdi:history', energy: 'mdi:lightning-bolt', avg: 'mdi:chart-line', aq: 'mdi:air-filter', pollen: 'mdi:flower-pollen', radar: 'mdi:radar' };
   const phone = Object.assign(document.createElement('aside'), { className: 'tfMiniPhone' });
   phone.setAttribute('aria-label', 'Phone order');
@@ -2440,16 +2452,37 @@ export function mountTestFocus(root, { config, getHass }) {
   // after a redraw, focus what was: the same label, or else the same action (a toggle's label flips when it's pressed)
   const focusOf = (scope) => { const f = root.activeElement && scope.contains(root.activeElement) ? root.activeElement : null; return f && { label: f.getAttribute('aria-label'), act: f.dataset?.act }; };
   const refocus = (scope, was) => { if (!was) return; ((was.label && scope.querySelector('[aria-label="' + CSS.escape(was.label) + '"]')) || (was.act && scope.querySelector('[data-act="' + CSS.escape(was.act) + '"]')))?.focus({ preventScroll: true }); };
+  // swaps an element for its redrawn self. A Dual Axis Controller's pad stays where it is (moved, the controller draws
+  // again from nothing, under a finger too): its tile takes its new head and colours in place, and what holds it, its
+  // new attributes
+  function swapIn(old, next) {
+    if (!old.querySelector('.tfDacPad')) { old.replaceWith(next); return next; }
+    const pad = old.matches('.tfDac') && old.querySelector(':scope > .tfDacPad'), fresh = next.querySelector(':scope > .tfDacPad');
+    if (pad) {
+      if (fresh?.dataset.dac !== pad.dataset.dac) { old.replaceWith(next); return next; }
+      old.querySelector(':scope > .tfActionHead').replaceWith(next.querySelector(':scope > .tfActionHead'));
+      old.classList.toggle('on', next.classList.contains('on'));
+      ['data-light', 'data-tone'].forEach((a) => (next.hasAttribute(a) ? old.setAttribute(a, next.getAttribute(a)) : old.removeAttribute(a)));
+      // the light's colours; the board's own (--tf-…, its place and size) stay
+      [...old.style].filter((v) => v.startsWith('--') && !v.startsWith('--tf-')).forEach((v) => old.style.removeProperty(v));
+      [...next.style].forEach((v) => old.style.setProperty(v, next.style.getPropertyValue(v)));
+      return old;
+    }
+    if (old.tagName !== next.tagName || old.children.length !== next.children.length) { old.replaceWith(next); return next; }
+    [...old.attributes].forEach((a) => { if (!next.hasAttribute(a.name)) old.removeAttribute(a.name); });
+    [...next.attributes].forEach((a) => old.setAttribute(a.name, a.value));
+    const kids = [...next.children];
+    [...old.children].forEach((c, i) => swapIn(c, kids[i]));
+    return old;
+  }
   function replace(el, html) {
     const t = document.createElement('div');
     t.innerHTML = html;
-    const next = t.firstElementChild;
-    const was = focusOf(el);
-    el.replaceWith(next);
-    fillIcons(next);
-    mountArt(next);
-    mountDacs(next);
-    refocus(next, was);
+    const was = focusOf(el), now = swapIn(el, t.firstElementChild);
+    fillIcons(now);
+    mountArt(now);
+    mountDacs(now);
+    refocus(now, was);
   }
   function refresh() {
     if (!testFocus || !grid || drag) return;
@@ -2653,8 +2686,7 @@ export function mountTestFocus(root, { config, getHass }) {
         if ([...dragging.keys()].some((k) => box.children[i].querySelector('[data-drag="' + CSS.escape(k) + '"]'))) return;
         const t = document.createElement('div');
         t.innerHTML = p;
-        const next = t.firstElementChild;
-        box.children[i].replaceWith(next);
+        const next = swapIn(box.children[i], t.firstElementChild);
         fillIcons(next);
         mountDacs(next);
       });
@@ -3076,13 +3108,6 @@ export function mountTestFocus(root, { config, getHass }) {
     root.querySelector('.bottomNav')?.insertAdjacentHTML('beforeend', '<button class="navBtn" id="dashEditNav" type="button" title="Edit" aria-label="Edit the dashboard" aria-pressed="false" hidden>' + PENCIL + '</button>');
     $('dashEditNav')?.addEventListener('click', () => setEditing(!editing));
     grid.addEventListener('pointerdown', boardDown);
-    // a dashboard DAC's name opens its more info, as on every other tile (its height is in its ⋯ menu)
-    grid.addEventListener('hass-action', (ev) => {
-      const slot = ev.target.closest?.('.tfDac'), key = slot?.dataset.k;
-      if (!key || !slot.dataset.dac.startsWith('dash:') || editing) return;
-      ev.stopPropagation();
-      openMore(key, slot);
-    });
     // the dashboard's bottom row holds as many tiles as fit, and its rows are measured again as the page changes size
     new ResizeObserver(() => { if (app.classList.contains('tfDash') && dashCols() !== dashColsSeen) refresh(); else queueFit(); }).observe(grid);
     window.addEventListener('resize', queueFit, { passive: true });
