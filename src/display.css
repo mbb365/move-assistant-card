@@ -326,7 +326,6 @@
 #app .tfAName{max-width:100%;min-height:0;padding:0;border:0;border-radius:6px;background:none;color:var(--text);font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
 .tfAreaIcon{flex:none;border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}
 button.tfAreaIcon{cursor:pointer}
-.tfAreaIcon[data-light]{background:var(--light);color:var(--light-ink)}
 .tfAreaGlyph{display:grid;place-items:center}
 /* a section's own page (an area's Go, the Security summary): Move Assistant's page header (40 back, 52 title) over its
    devices; the weather steps aside */

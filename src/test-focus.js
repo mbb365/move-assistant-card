@@ -928,10 +928,12 @@ export function mountTestFocus(root, { config, getHass }) {
   // the room's name opens its page (Matt, 28 Oct: the title is the link; there's no Go any more)
   const areaTitle = (r) => '<button class="tfAName" type="button" data-go="' + esc(r.id) + '" aria-label="Open ' + esc(r.name) + '">' + esc(r.name) + '</button>';
   // the room's own icon (its area's in Home Assistant, else Home Assistant's own area icon), the button for its lights
-  // (Matt, 28 Oct, Figma "Area card accordions v04" 521:9673): in a light's colour while one is on, grey when they're
-  // all off. A room without lights, and a folded card, only show it
+  // (Matt, 28 Oct, Figma "Area card accordions v04" 521:9673), always grey for now. A room without lights, and a folded
+  // card, only show it
   function areaIcon(r, keys, folded = false) {
-    const k = keys.find((x) => x.key === 'lights'), on = Boolean(k?.on), lit = on && k.light ? ' data-light style="' + k.light + '"' : '';
+    // no colour on a room's icon for now (Matt, 1 Nov: generic this round): the grey chip and muted glyph, lights on or
+    // off; the button still turns the room's lights on and off
+    const k = keys.find((x) => x.key === 'lights'), on = Boolean(k?.on), lit = '';
     const glyph = '<span class="tfAreaGlyph"' + iconSlot('area:' + r.id, r.icon || 'mdi:texture-box', r.name) + '></span>';
     if (folded || !k) return '<span class="tfIcon tfAreaIcon' + (on ? ' on' : '') + '"' + lit + ' aria-hidden="true">' + glyph + '</span>';
     return '<button class="tfIcon tfAreaIcon' + (on ? ' on' : '') + '" type="button"' + lit + ' data-acts="' + acts(k.acts) + '" aria-label="' + esc(k.aria) + '" aria-pressed="' + on + '">' + glyph + '</button>';
