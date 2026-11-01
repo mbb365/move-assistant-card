@@ -78,19 +78,9 @@ const svgIcon = (paths) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="t
 const PENCIL = svgIcon(['M12 20H21', 'M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z']);
 const TICK = svgIcon(['M20 6L9 17L4 12']);
 // Area cards: the room's main thing big, then its controls as tiles (Matt, 27 Oct: Big's headline with Tiles)
-const AREA_ICON = {
-  temp: svgIcon(['M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0Z']),
-  hum: svgIcon(['M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z']),
-  // the solid bulb every light shows (Matt, 30 Oct)
-  lights: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path style="fill:currentColor;stroke:none" d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/></svg>',
-  covers: svgIcon(['M3 3h18', 'M5 3v18c3-4 4-10 4-18', 'M19 3v18c-3-4-4-10-4-18']),
-  climate: svgIcon(['M2 8h20', 'M2 19h20', 'M5 5v17', 'M9.5 5v17', 'M14.5 5v17', 'M19 5v17']),
-  humidifier: svgIcon(['M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z', 'M9 15a3 3 0 0 0 3 3']),
-  media: svgIcon(['M3 6h18v12H3Z', 'M8 21h8']),
-  plugs: svgIcon(['M9 2v6', 'M15 2v6', 'M6 8h12v4a6 6 0 0 1-12 0Z', 'M12 18v4']),
-  alert: svgIcon(['M12 9v4', 'M12 17h.01', 'M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z']),
-  door: svgIcon(['M13 4h5v16h-5', 'M3 20h18', 'M13 4L6 6v14l7 0Z', 'M10.5 12h.01']),
-};
+// an area card's icons: the same solid Material Design Icons as everywhere else (Matt, 31 Oct: no line icons), a
+// device's own where the key is one device, else its kind's
+const areaGlyph = (id, name = '') => '<span class="tfAreaGlyph"' + ' data-icon-for="' + esc(id || '') + '"' + (name ? ' data-icon-name="' + esc(name) + '"' : '') + '></span>';
 const STAR = (on) => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 6 6.6.6-5 4.4 1.5 6.5L12 17l-5.9 3.3 1.5-6.5-5-4.4 6.6-.6z" fill="' + (on ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
 // lock: can open the door; alarm: arm home, away, night
 const LOCK_OPEN = 1;
@@ -319,7 +309,7 @@ export function mountTestFocus(root, { config, getHass }) {
     let v = {};
     try { v = JSON.parse(local.get(LOOK_KEY)) || {}; } catch (_e) { /* the defaults */ }
     const only = (o, ok) => Object.fromEntries(Object.entries(o || {}).filter(([, x]) => ok.includes(x)));
-    return { more: v.more === 'sheet' ? 'sheet' : 'popup', names: ['cut', 'wrap', 'scroll'].includes(v.names) ? v.names : 'auto', lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
+    return { more: v.more === 'sheet' ? 'sheet' : 'popup', names: v.namesPicked && ['auto', 'cut', 'wrap', 'scroll'].includes(v.names) ? v.names : 'scroll', namesPicked: Boolean(v.namesPicked), lights: v.lights === 'dac' ? 'dac' : 'tile', dacPad: v.dacPad === 'colour' ? 'colour' : 'temperature',
       lightStyles: only(v.lightStyles, ['tile', 'dac']), lightPads: only(v.lightPads, ['temperature', 'colour']) };
   })();
   const saveLook = () => local.set(LOOK_KEY, JSON.stringify(look));
@@ -338,7 +328,8 @@ export function mountTestFocus(root, { config, getHass }) {
       applyLook();
       $('moreInfoChoice').querySelectorAll('[data-more-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     });
-    // Long names: Automatic cuts with "…" on the board and wraps on phones; the others do one thing everywhere
+    // Long names: Scroll unless one's picked here (Matt, 31 Oct); Automatic cuts with "…" on the board and wraps on
+    // phones; the others do one thing everywhere
     $('moreInfoChoice').closest('.toggleRow').insertAdjacentHTML('afterend',
       '<div class="toggleRow"><div><strong>Long names</strong><div class="status">How a name or state too long for its space shows.</div></div>' +
       '<div class="themeChoice" id="namesChoice" role="group" aria-label="Long names">' +
@@ -347,6 +338,7 @@ export function mountTestFocus(root, { config, getHass }) {
       const b = ev.target.closest('[data-names-style]');
       if (!b) return;
       look.names = b.dataset.namesStyle;
+      look.namesPicked = true;
       saveLook();
       applyLook();
       $('namesChoice').querySelectorAll('[data-names-style]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
@@ -400,17 +392,27 @@ export function mountTestFocus(root, { config, getHass }) {
     return [t <= 66 ? 255 : 329.7 * Math.pow(t - 60, -0.1332), t <= 66 ? 99.47 * Math.log(t) - 161.12 : 288.12 * Math.pow(t - 60, -0.0755), t >= 66 ? 255 : t <= 19 ? 0 : 138.52 * Math.log(t - 10) - 305.04];
   };
   const hueRgb = (h, sat) => [5, 3, 1].map((n) => { const k = (n + h / 60) % 6; return 255 * (1 - (sat / 100) * Math.max(0, Math.min(k, 4 - k, 1))); });
-  // the glyph takes whichever ink contrasts more with the light's colour, so it's always 3:1 or more (Matt, 29 Oct:
-  // accessibility; white on amber was 2:1)
+  // a lit light's glyph is its own colour, deepened (or, where white would contrast more, paled) only as far as 3.5:1
+  // on it (Matt, 1 Nov: black on orange was harsh; 29 Oct: white on amber was 2:1)
   const lin = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
   const darkInkWins = (rgb) => {
     const L = 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
     return (L + 0.05) / 0.0664 > 1.05 / (L + 0.05);
   };
+  const lum = (rgb) => 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
+  const ratio = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  const tonalInk = (rgb, want) => {
+    const dark = darkInkWins(rgb);
+    for (let f = 0.1; f < 1; f += 0.02) {
+      const c = rgb.map((v) => Math.round(dark ? v * (1 - f) : v + (255 - v) * f));
+      if (ratio(c, rgb) >= want) return 'rgb(' + c.join(',') + ')';
+    }
+    return dark ? '#26221e' : '#ffffff';
+  };
   function lightVars(id) {
     const a = attr(id);
     const rgb = (a.rgb_color || (a.hs_color && a.color_mode !== 'color_temp' ? hueRgb(...a.hs_color) : a.color_temp_kelvin ? kelvinRgb(a.color_temp_kelvin) : [255, 170, 0])).map((v) => Math.round(Math.max(0, Math.min(255, v))));
-    return '--light:rgb(' + rgb.join(',') + ');--light-ink:' + (darkInkWins(rgb) ? '#26221e' : '#ffffff');
+    return '--light:rgb(' + rgb.join(',') + ');--light-ink:' + tonalInk(rgb, 3.5);
   }
   const lightAttrs = (id) => (id.startsWith('light.') && states[id]?.state === 'on' ? ' data-light style="' + lightVars(id) + '"' : '');
   const dimmable = (id) => { const m = modesOf(id); return m.length ? m.some((x) => x !== 'onoff') : attr(id).brightness != null; };
@@ -493,7 +495,46 @@ export function mountTestFocus(root, { config, getHass }) {
         slot.textContent = (slot.dataset.letter || nameOf(slot.dataset.iconFor) || '?').trim().charAt(0).toUpperCase();
       }
     });
+    fitSoon();
   }
+  /* icon fit (Matt, 31 Oct: one size for every icon): Material Design Icons draw at different sizes in their 24 grid
+     (curtains 22 across, a water drop 12), so in one box they look different sizes. Once drawn, each glyph is sized so
+     its longest side leaves 7 clear in its room, 26 in a 40 (tiles, rows, summaries, popups and area cards alike; 18
+     in the mini phone's 32), and centred on what's drawn */
+  const ICON_SEL = '[data-icon-for]>:is(ha-state-icon,ha-icon),.tfIcon>svg';
+  const firstSvg = (el) => { const q = [el]; while (q.length) { const n = q.shift(); if (n.localName === 'svg') return n; if (n.shadowRoot) q.push(...n.shadowRoot.children); q.push(...n.children); } return null; };
+  // true once the icon is fitted (or there's nothing to fit); false while it's still loading or out of sight
+  function fitIcon(el) {
+    const svg = el.localName === 'svg' ? el : firstSvg(el);
+    const shapes = svg ? [...svg.querySelectorAll('path,rect,circle,ellipse,polygon,polyline,line')] : [];
+    if (!shapes.length) return !svg;
+    const room = el.closest('.tfIcon')?.offsetWidth;
+    if (room === undefined) return true;
+    if (!room) return false;
+    const key = room + '|' + shapes.map((x) => x.getAttribute('d') || x.localName).join('|');
+    if (el.dataset.fitted === key) return true;
+    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+    for (const x of shapes) {
+      const b = x.getBBox(), cs = getComputedStyle(x), pad = cs.stroke !== 'none' ? (parseFloat(cs.strokeWidth) || 0) / 2 : 0;
+      if (!b.width && !b.height) continue;
+      x1 = Math.min(x1, b.x - pad); y1 = Math.min(y1, b.y - pad); x2 = Math.max(x2, b.x + b.width + pad); y2 = Math.max(y2, b.y + b.height + pad);
+    }
+    if (!(x2 > x1)) return false;
+    const vb = svg.viewBox?.baseVal?.width ? svg.viewBox.baseVal : { x: 0, y: 0, width: 24, height: 24 };
+    const target = room - 14, size = (target * vb.width) / Math.max(x2 - x1, y2 - y1), at = size / vb.width;
+    if (el.localName === 'svg') { el.style.width = size + 'px'; el.style.height = size + 'px'; } else el.style.setProperty('--mdc-icon-size', size + 'px');
+    svg.style.translate = ((vb.x + vb.width / 2 - (x1 + x2) / 2) * at).toFixed(2) + 'px ' + ((vb.y + vb.height / 2 - (y1 + y2) / 2) * at).toFixed(2) + 'px';
+    el.dataset.fitted = key;
+    return true;
+  }
+  let fitTimer = 0;
+  // icons load after they're placed, so a few tries
+  function fitIcons(tries = 0) {
+    clearTimeout(fitTimer);
+    const waiting = [...root.querySelectorAll(ICON_SEL)].filter((el) => !fitIcon(el)).length;
+    if (waiting && tries < 5) fitTimer = setTimeout(() => fitIcons(tries + 1), 300);
+  }
+  function fitSoon() { clearTimeout(fitTimer); fitTimer = setTimeout(() => fitIcons(), 60); }
   // every light the same solid bulb, on or off, its state in the chip's colour (Matt, 30 Oct); a light given its own
   // icon in Home Assistant keeps it
   const lightIcon = (id) => (id.startsWith('light.') && states[id] && !attr(id).icon && !getHass()?.entities?.[id]?.icon ? 'mdi:lightbulb' : '');
@@ -514,11 +555,11 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   const sumRow = (name, value, icon) => '<div class="activityRow" aria-label="' + esc(name + ', ' + value) + '"><div class="tfIcon" aria-hidden="true"' + iconSlot('', icon, name) + '></div>' +
     '<div><div class="activityRowName">' + esc(name) + '</div><div class="activityRowMeta">' + esc(value) + '</div></div></div>';
-  // a plug: its icon is the button
+  // a plug: its icon is the button; its name and value open its popup (Matt, 1 Nov: a name or subtitle always does)
   function plugRow(id) {
     const on = states[id]?.state === 'on';
     return '<div class="activityRow tfPlug' + (on ? ' on' : '') + '"><button class="tfIcon" type="button" data-act="' + act('switch', 'toggle', id) + '" aria-label="Turn ' + esc(nameOf(id)) + (on ? ' off' : ' on') + '"' + iconSlot(id) + '></button>' +
-      '<div><div class="activityRowName">' + esc(nameOf(id)) + '</div><div class="activityRowMeta">' + esc(valueOf(id)) + '</div></div></div>';
+      '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(nameOf(id) + ', ' + valueOf(id) + '. More info') + '"><span class="activityRowName">' + esc(nameOf(id)) + '</span><span class="activityRowMeta">' + esc(valueOf(id)) + '</span></button></div>';
   }
   // an opened tile shows its reading, or what its card says instead (the dashboard's energy: today's use, by source)
   const openName = (id) => energyText.get(id)?.name ?? nameOf(id);
@@ -530,11 +571,11 @@ export function mountTestFocus(root, { config, getHass }) {
       '<button class="tfBack" type="button" data-close aria-label="Close ' + esc(openName(id)) + '’s last 24 hours">' + ARROW + '</button></div>' +
       '<svg class="tfGraph" data-graph="' + esc(id) + '" role="img" aria-label="' + esc(openName(id)) + ', last 24 hours"></svg></div>';
   }
-  // a card of readings; its title can open more-info (a plant)
+  // a card of readings; its title can open more-info (a plant) or its popup (Energy today, Favourites)
   function card(key, order, title, rows, extra = '', moreId = null, cls = '') {
     const isOpen = open && open.key === key;
     return '<section class="card tfCard' + (cls ? ' ' + cls : '') + (isOpen ? ' open' : '') + '" data-tf data-k="' + esc(key) + '" style="order:' + order + (isOpen && open.h ? ';min-height:' + open.h + 'px' : '') + '" aria-label="' + esc(title) + '">' +
-      '<div class="activityHeader">' + (moreId ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + esc(moreId) + '" aria-label="' + esc(title + ', ' + valueOf(moreId) + '. More info') + '">' + esc(title) + '</button>' : '<div class="activityTitle">' + esc(title) + '</div>') + '</div>' +
+      '<div class="activityHeader">' + (moreId ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + esc(moreId) + '" aria-label="' + esc(title + (states[moreId] ? ', ' + valueOf(moreId) : '') + '. More info') + '">' + esc(title) + '</button>' : '<div class="activityTitle">' + esc(title) + '</div>') + '</div>' +
       (isOpen ? openTile(open.id) : '<div class="activityRows">' + rows.join('') + '</div>' + extra) + '</section>';
   }
   function roomCard(r, order) {
@@ -800,35 +841,35 @@ export function mountTestFocus(root, { config, getHass }) {
     const players = of(/^media_player\./), playing = players.find((id) => states[id]?.state === 'playing') || players.find((id) => states[id]?.state === 'paused');
     const plugsOn = r.plugs.filter((id) => states[id]?.state === 'on');
     const keys = [];
-    if (temp && Number.isFinite(num1(temp))) keys.push({ key: 'temp', id: temp, kind: 'reading', icon: AREA_ICON.temp, label: 'Temperature', value: num(num1(temp)) + '°' });
-    if (hum && Number.isFinite(num1(hum))) keys.push({ key: 'hum', id: hum, kind: 'reading', icon: AREA_ICON.hum, label: 'Humidity', value: Math.round(num1(hum)) + '%' });
-    if (r.lights.length) keys.push({ key: 'lights', kind: 'control', tone: 'light', icon: AREA_ICON.lights, label: 'Lights', value: lit.length ? lit.length + ' of ' + r.lights.length + ' on' : 'All off', short: lit.length ? lit.length + ' on' : 'Off', on: lit.length > 0, light: lit.length ? lightVars(lit[0]) : '',
+    if (temp && Number.isFinite(num1(temp))) keys.push({ key: 'temp', id: temp, kind: 'reading', icon: areaGlyph(temp), label: 'Temperature', value: num(num1(temp)) + '°' });
+    if (hum && Number.isFinite(num1(hum))) keys.push({ key: 'hum', id: hum, kind: 'reading', icon: areaGlyph(hum), label: 'Humidity', value: Math.round(num1(hum)) + '%' });
+    if (r.lights.length) keys.push({ key: 'lights', kind: 'control', tone: 'light', icon: areaGlyph('', 'mdi:lightbulb'), label: 'Lights', value: lit.length ? lit.length + ' of ' + r.lights.length + ' on' : 'All off', short: lit.length ? lit.length + ' on' : 'Off', on: lit.length > 0, light: lit.length ? lightVars(lit[0]) : '',
       acts: r.lights.map((id) => ['light', lit.length ? 'turn_off' : 'turn_on', id]), aria: (lit.length ? 'Turn off' : 'Turn on') + ' the lights in ' + r.name });
     if (covers.length) {
       const noun = kinds.length === 1 ? COVER_NOUN[kinds[0]] : 'covers', avg = Math.round(covers.reduce((t, id) => t + posOf(id), 0) / covers.length);
-      keys.push({ key: 'covers', kind: 'control', tone: 'blue', icon: AREA_ICON.covers, label: cap(noun), value: avg <= 0 ? 'Closed' : avg >= 100 ? 'Open' : avg + '% open', short: avg <= 0 ? 'Closed' : avg + '%', on: open.length > 0,
+      keys.push({ key: 'covers', kind: 'control', tone: 'blue', icon: areaGlyph('', COVER_ICON[kinds[0]]?.[open.length ? 0 : 1] || 'mdi:window-shutter'), label: cap(noun), value: avg <= 0 ? 'Closed' : avg >= 100 ? 'Open' : avg + '% open', short: avg <= 0 ? 'Closed' : avg + '%', on: open.length > 0,
         acts: covers.map((id) => ['cover', open.length ? 'close_cover' : 'open_cover', id]), aria: (open.length ? 'Close the ' : 'Open the ') + noun + ' in ' + r.name });
     }
     if (climate) {
       const a = attr(climate), off = states[climate].state === 'off';
-      keys.push({ key: 'climate', kind: 'control', tone: a.hvac_action === 'cooling' ? 'cool' : 'heat', icon: AREA_ICON.climate, label: nameOf(climate), value: off ? 'Off' : cap(a.hvac_action || states[climate].state) + ' · ' + deg(a.temperature), short: off ? 'Off' : deg(a.temperature), on: !off,
+      keys.push({ key: 'climate', kind: 'control', tone: a.hvac_action === 'cooling' ? 'cool' : 'heat', icon: areaGlyph(climate), label: nameOf(climate), value: off ? 'Off' : cap(a.hvac_action || states[climate].state) + ' · ' + deg(a.temperature), short: off ? 'Off' : deg(a.temperature), on: !off,
         acts: [['climate', 'toggle', climate]], aria: 'Turn ' + nameOf(climate) + (off ? ' on' : ' off') });
     }
     if (humidifier) {
       const on = states[humidifier].state === 'on';
-      keys.push({ key: 'humidifier', kind: 'control', tone: 'blue', icon: AREA_ICON.humidifier, label: nameOf(humidifier), value: on ? 'On · ' + attr(humidifier).humidity + '%' : 'Off', short: on ? attr(humidifier).humidity + '%' : 'Off', on,
+      keys.push({ key: 'humidifier', kind: 'control', tone: 'blue', icon: areaGlyph('', 'mdi:air-humidifier'), label: nameOf(humidifier), value: on ? 'On · ' + attr(humidifier).humidity + '%' : 'Off', short: on ? attr(humidifier).humidity + '%' : 'Off', on,
         acts: [['humidifier', 'toggle', humidifier]], aria: 'Turn ' + nameOf(humidifier) + (on ? ' off' : ' on') });
     }
     if (players.length) {
       const id = playing || players[0], st = states[id], isOn = st.state === 'playing';
-      keys.push({ key: 'media', kind: 'control', tone: 'blue', icon: AREA_ICON.media, label: nameOf(id), value: valueOf(id), short: isOn ? 'Playing' : st.state === 'paused' ? 'Paused' : cap(st.state), on: isOn,
+      keys.push({ key: 'media', kind: 'control', tone: 'blue', icon: areaGlyph(id), label: nameOf(id), value: valueOf(id), short: isOn ? 'Playing' : st.state === 'paused' ? 'Paused' : cap(st.state), on: isOn,
         acts: [['media_player', st.state === 'playing' || st.state === 'paused' ? 'media_play_pause' : 'toggle', id]], aria: (isOn ? 'Pause ' : 'Play ') + nameOf(id) });
     }
-    if (r.plugs.length) keys.push({ key: 'plugs', kind: 'control', tone: 'blue', icon: AREA_ICON.plugs, label: 'Plugs', value: plugsOn.length ? plugsOn.length + ' of ' + r.plugs.length + ' on' : 'All off', short: plugsOn.length ? plugsOn.length + ' on' : 'Off', on: plugsOn.length > 0,
+    if (r.plugs.length) keys.push({ key: 'plugs', kind: 'control', tone: 'blue', icon: areaGlyph('', 'mdi:power-plug'), label: 'Plugs', value: plugsOn.length ? plugsOn.length + ' of ' + r.plugs.length + ' on' : 'All off', short: plugsOn.length ? plugsOn.length + ' on' : 'Off', on: plugsOn.length > 0,
       acts: r.plugs.map((id) => ['switch', plugsOn.length ? 'turn_off' : 'turn_on', id]), aria: (plugsOn.length ? 'Turn off' : 'Turn on') + ' the plugs in ' + r.name });
     // a leak is an alert, in red; an open door or window is only worth a note, never red (Matt, 27 Oct: the balcony door)
-    r.alerts.forEach((id) => keys.push(attr(id).device_class === 'moisture' ? { key: 'alert:' + id, kind: 'alert', icon: AREA_ICON.alert, label: 'Water leak' }
-      : { key: 'note:' + id, kind: 'note', icon: AREA_ICON.door, label: nameOf(id) + ' ' + valueOf(id).toLowerCase() }));
+    r.alerts.forEach((id) => keys.push(attr(id).device_class === 'moisture' ? { key: 'alert:' + id, kind: 'alert', icon: areaGlyph(id), label: 'Water leak' }
+      : { key: 'note:' + id, kind: 'note', icon: areaGlyph(id), label: nameOf(id) + ' ' + valueOf(id).toLowerCase() }));
     return keys;
   }
   // the devices a room's key stands for
@@ -1235,7 +1276,7 @@ export function mountTestFocus(root, { config, getHass }) {
     // the picked source's day as a graph, above the glance or below it (its ⋯ in edit mode)
     const pick = tiles.find((t) => t.id === energyPick), below = (dashPrefs().opts.energy?.graph || 'above') === 'below';
     const graph = '<div class="tfCardGraph tfDashGraph"><svg class="tfGraph" data-graph="' + esc(pick.id) + '" role="img" aria-label="' + esc(pick.name) + ', last 24 hours"></svg></div>';
-    return card('dash:energy', 0, 'Energy today', rows, graph, null, 'tfDashCard tfDash-energy' + (below ? '' : ' graphAbove'));
+    return card('dash:energy', 0, 'Energy today', rows, graph, summaryData().some((x) => x.key === 'energy') ? 'summary:energy' : null, 'tfDashCard tfDash-energy' + (below ? '' : ' graphAbove'));
   }
   // a source picked: its tile marked and its day drawn into the graph; nothing else on the page changes
   function pickEnergy(id) {
@@ -1337,7 +1378,7 @@ export function mountTestFocus(root, { config, getHass }) {
     return [...dashPicks.lights.filter((id) => states[id]).slice(0, Math.max(0, n - climates.length)), ...climates];
   }
   const dashWrap = (cls, key, label, titled) => (inner) => '<section class="card tfCard tfDashCard ' + cls + '" data-tf data-k="' + key + '" aria-label="' + label + '">' +
-    (titled ? '<div class="activityHeader"><div class="activityTitle">' + label + '</div></div>' : '') + '<div class="activityRows">' + inner + '</div></section>';
+    (titled ? '<div class="activityHeader">' + (key === 'favs' ? '<button class="activityTitle tfTitleBtn" type="button" data-more="favourites" aria-label="Favourites. More info">' + label + '</button>' : '<div class="activityTitle">' + label + '</div>') + '</div>' : '') + '<div class="activityRows">' + inner + '</div></section>';
   function dashboard(out, sums) {
     out.dash = true;
     out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });

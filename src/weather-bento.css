@@ -140,7 +140,8 @@
 .wbMotion .wbWx .wbTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}
 
 /* ---- Weather card (Figma "HC FINAL - Weather card"): Now, then six days as columns ---- */
-.wbCard.wbWeather{position:relative;display:flex;flex-direction:column;gap:12px;padding:20px}
+/* the area card's spacing (Matt, 1 Nov: one rule for every card): the sky 18 in from the top and left */
+.wbCard.wbWeather{position:relative;display:flex;flex-direction:column;gap:12px;padding:18px}
 .wbClosed{display:contents}
 .wbWeather.wbIsOpen .wbClosed{visibility:hidden}
 /* the opened day covers the card, 10 in, whatever the card's size */
@@ -172,7 +173,8 @@
 .wbHalves{display:none;grid-template-columns:repeat(2,minmax(0,1fr))}
 /* phone: Figma "Weather card · halves" */
 @container wb-card (width < 480px){
-  .wbCard.wbWeather{gap:16px;padding:var(--inset)}
+  /* as the area card: 18 round the top, its unfilled day tiles 10 from the bottom */
+  .wbCard.wbWeather{gap:16px;padding:18px 18px 10px}
   .wbWeather .wbWx.wbS90{width:60px;height:60px;border-radius:20px}
   .wbDeg{font-size:46px;letter-spacing:-.92px}
   .wbRange{font-size:20px}

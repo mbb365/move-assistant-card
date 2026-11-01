@@ -50,9 +50,10 @@
 .tfLabel{grid-column:1/-1}
 .tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}
 .tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}
-/* icons on the house page (Matt, 27 Oct): one neutral grey, on or off. A light that's on shows its own colour (--light,
-   set on its tile with data-light); alerts and a triggered alarm stay red */
-#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--text)}
+/* icons on the house page (Matt, 27 Oct): one neutral grey, on or off, the glyph in the muted text colour (Matt, 1 Nov:
+   softer than black; 4.8:1 light, 3.9:1 dark). A light that's on shows its own colour (--light, set on its tile with
+   data-light); alerts and a triggered alarm stay red */
+#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--muted)}
 #app.house.light{--hc-icon:#e6e6e6}
 #app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 /* phones (Matt, 28 Oct): cards 16 apart, double the 8 (the Weather page's too, and so the title to the first card);
@@ -83,8 +84,8 @@
 .tfBack .icon{width:34px;height:34px}
 .tfGraph{display:block;width:100%;flex:1;min-height:80px}
 .tfGraph text{fill:var(--muted);font:400 11px var(--font)}
-/* lights: a tile on its own, 20 in from its edge, the brightness bar 14 under the name (Figma "HC FINAL ACTION TILE") */
-.tfAction{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
+/* a tile on its own, 18 in from its edge as the area card (Matt, 1 Nov; was 20), its controls 14 under the name */
+.tfAction{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
 .tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}
 /* tiles side by side are one height, everywhere (Matt, 31 Oct: the dashboard, a room's page, a popup): a taller tile
    keeps its head at the top and its controls together on the bottom edge, 14 apart */
@@ -293,7 +294,8 @@
 #app[data-more="sheet"] .tfMoreBackdrop{place-items:end center;padding:0}
 #app[data-more="sheet"] .tfMorePair{max-height:85vh;animation:tfSheetIn .28s cubic-bezier(.2,.7,.3,1)}
 #app[data-more="sheet"] .tfMorePair.still{animation:none}
-#app[data-more="sheet"] .tfMore{width:640px}
+/* never wider than the screen: on a phone a 640 sheet cut off the right of what's in it (the day track's now and its line) */
+#app[data-more="sheet"] .tfMore{width:min(640px,100vw)}
 #app[data-more="sheet"] :is(.tfMore,.tfMoreSideInner){border-radius:var(--r-card) var(--r-card) 0 0}
 @keyframes tfSheetIn{from{transform:translateY(100%)}}
 .tfDetailsBtn{display:flex;flex:none;align-items:center;justify-content:space-between;gap:12px;width:100%;height:46px;min-height:0;padding:0 12px 0 16px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer}
@@ -390,7 +392,7 @@ button.tfAreaIcon{cursor:pointer}
 .tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}
 .tfMoreActions .tfAction{grid-column:auto}
 /* a reading tile beside a taller device keeps its icon and name at the top */
-.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:20px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
+.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
 .tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}
 .tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -495,7 +497,6 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}
 #app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}
 #app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%}
-#app.tfBoard .tfDashTiles>.tfAction{padding-block:18px}
 /* edit mode: the cells as a solid grid under the cards, each card outlined in the accent with its grip (top middle,
    80 × 40, across the card's top edge so it covers nothing in it) and ⋯ (top right); its own controls rest. Nothing
    shakes */
