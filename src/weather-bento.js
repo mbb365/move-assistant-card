@@ -75,6 +75,7 @@ const I={
   night:'M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z',
   sunny:'M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z',
   windy:'M4,10A1,1 0 0,1 3,9A1,1 0 0,1 4,8H12A2,2 0 0,0 14,6A2,2 0 0,0 12,4C11.45,4 10.95,4.22 10.59,4.59C10.2,5 9.56,5 9.17,4.59C8.78,4.2 8.78,3.56 9.17,3.17C9.9,2.45 10.9,2 12,2A4,4 0 0,1 16,6A4,4 0 0,1 12,10H4M19,12A1,1 0 0,0 20,11A1,1 0 0,0 19,10C18.72,10 18.47,10.11 18.29,10.29C17.9,10.68 17.27,10.68 16.88,10.29C16.5,9.9 16.5,9.27 16.88,8.88C17.42,8.34 18.17,8 19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14H5A1,1 0 0,1 4,13A1,1 0 0,1 5,12H19M18,18H4A1,1 0 0,1 3,17A1,1 0 0,1 4,16H18A3,3 0 0,1 21,19A3,3 0 0,1 18,22C17.17,22 16.42,21.66 15.88,21.12C15.5,20.73 15.5,20.1 15.88,19.71C16.27,19.32 16.9,19.32 17.29,19.71C17.47,19.89 17.72,20 18,20A1,1 0 0,0 19,19A1,1 0 0,0 18,18Z',
+  radar:'M19.07,4.93L17.66,6.34C19.1,7.79 20,9.79 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12C4,7.92 7.05,4.56 11,4.07V6.09C8.16,6.57 6,9.03 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12C18,10.34 17.33,8.84 16.24,7.76L14.83,9.17C15.55,9.9 16,10.9 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12C8,10.14 9.28,8.59 11,8.14V10.28C10.4,10.63 10,11.26 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.26 13.6,10.62 13,10.28V2H12A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,9.24 20.88,6.74 19.07,4.93Z',
   airFilter:'M19,18.31V20A2,2 0 0,1 17,22H7A2,2 0 0,1 5,20V16.3C4.54,16.12 3.95,16 3,16A1,1 0 0,1 2,15A1,1 0 0,1 3,14C3.82,14 4.47,14.08 5,14.21V12.3C4.54,12.12 3.95,12 3,12A1,1 0 0,1 2,11A1,1 0 0,1 3,10C3.82,10 4.47,10.08 5,10.21V8.3C4.54,8.12 3.95,8 3,8A1,1 0 0,1 2,7A1,1 0 0,1 3,6C3.82,6 4.47,6.08 5,6.21V4A2,2 0 0,1 7,2H17A2,2 0 0,1 19,4V6.16C20.78,6.47 21.54,7.13 21.71,7.29C22.1,7.68 22.1,8.32 21.71,8.71C21.32,9.1 20.8,9.09 20.29,8.71V8.71C20.29,8.71 19.25,8 17,8C15.74,8 14.91,8.41 13.95,8.9C12.91,9.41 11.74,10 10,10C9.64,10 9.31,10 9,9.96V7.95C9.3,8 9.63,8 10,8C11.26,8 12.09,7.59 13.05,7.11C14.09,6.59 15.27,6 17,6V4H7V20H17V18C18.5,18 18.97,18.29 19,18.31M17,10C15.27,10 14.09,10.59 13.05,11.11C12.09,11.59 11.26,12 10,12C9.63,12 9.3,12 9,11.95V13.96C9.31,14 9.64,14 10,14C11.74,14 12.91,13.41 13.95,12.9C14.91,12.42 15.74,12 17,12C19.25,12 20.29,12.71 20.29,12.71V12.71C20.8,13.1 21.32,13.1 21.71,12.71C22.1,12.32 22.1,11.69 21.71,11.29C21.5,11.08 20.25,10 17,10M17,14C15.27,14 14.09,14.59 13.05,15.11C12.09,15.59 11.26,16 10,16C9.63,16 9.3,16 9,15.95V17.96C9.31,18 9.64,18 10,18C11.74,18 12.91,17.41 13.95,16.9C14.91,16.42 15.74,16 17,16C19.25,16 20.29,16.71 20.29,16.71V16.71C20.8,17.1 21.32,17.1 21.71,16.71C22.1,16.32 22.1,15.69 21.71,15.29C21.5,15.08 20.25,14 17,14Z',
   eyeOutline:'M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z',
   flower:'M3,13A9,9 0 0,0 12,22C12,17 7.97,13 3,13M12,5.5A2.5,2.5 0 0,1 14.5,8A2.5,2.5 0 0,1 12,10.5A2.5,2.5 0 0,1 9.5,8A2.5,2.5 0 0,1 12,5.5M5.6,10.25A2.5,2.5 0 0,0 8.1,12.75C8.63,12.75 9.12,12.58 9.5,12.31C9.5,12.37 9.5,12.43 9.5,12.5A2.5,2.5 0 0,0 12,15A2.5,2.5 0 0,0 14.5,12.5C14.5,12.43 14.5,12.37 14.5,12.31C14.88,12.58 15.37,12.75 15.9,12.75C17.28,12.75 18.4,11.63 18.4,10.25C18.4,9.25 17.81,8.4 16.97,8C17.81,7.6 18.4,6.74 18.4,5.75C18.4,4.37 17.28,3.25 15.9,3.25C15.37,3.25 14.88,3.41 14.5,3.69C14.5,3.63 14.5,3.56 14.5,3.5A2.5,2.5 0 0,0 12,1A2.5,2.5 0 0,0 9.5,3.5C9.5,3.56 9.5,3.63 9.5,3.69C9.12,3.41 8.63,3.25 8.1,3.25A2.5,2.5 0 0,0 5.6,5.75C5.6,6.74 6.19,7.6 7.03,8C6.19,8.4 5.6,9.25 5.6,10.25M12,22A9,9 0 0,0 21,13C16,13 12,17 12,22Z'
@@ -100,7 +101,8 @@ const T={
   rainExpected:'{amount} in the next 24 hours',rainLast24h:'Last 24 hours',
   average:{above:'above the average high',below:'below the average high',same:'same as the average high'},
   highsLastDays:'Highs of the last {days} days',openPage:'Open the weather page',todayVsAverage:'Today {today} · average {average}',
-  airQuality:'Air quality',fineParticles:'fine particles',
+  airQuality:'Air quality',pollen:'Pollen',rainRadar:'Rain radar',noAir:'No air quality sensor yet',noPollen:'No pollen sensor yet',
+  rainFrom:'Rain from {time}',noRain12:'No rain in the next 12 hours',fineParticles:'fine particles',
   aqLevel:{good:'Good',fair:'Fair',moderate:'Moderate',poor:'Poor',very_poor:'Very poor',extremely_poor:'Extremely poor'}
 };
 // Condition names as Home Assistant shows them, when hass can't format the state itself
@@ -381,7 +383,10 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   container.replaceChildren(root);
 
   // The patch's strategy order; sizes from hui-weather-bento-card
-  const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','visibility','air_quality'].filter(name=>!cards||cards.includes(name));
+  // the new cards (Matt, 1 Nov) end the Weather page and are on the dashboard once added
+  const BASE_CARDS=['aq_tile','pollen_tile','radar_tile'];
+  const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','visibility','air_quality',...BASE_CARDS]
+    .filter(name=>!cards||cards.includes(name));
   const SIZES={current:'wide',hourly:'wide',compared_to_average:'double'};
   const items={};
   CARDS.forEach(name=>{
@@ -1003,8 +1008,48 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       '<button class="wbBack" title="'+esc(T.back)+'" data-wb="aq-close">'+svgIcon(I.back)+'</button></div><div class="wbGraph">'+graph+'</div></div></div>';
   }
 
+  /* ---- New cards (Matt, 1 Nov): base elements in the data tiles' shape, a head and a large area for the data; their
+     looks come later. Any air quality or pollen sensor will do (not only an air quality service's) ---- */
+  const AQ_WORDS={good:'Good',fair:'Fair',moderate:'Moderate',poor:'Poor',very_poor:'Very poor',extremely_poor:'Extremely poor'};
+  const aqiWord=v=>v<=50?'Good':v<=100?'Moderate':v<=150?'Unhealthy for some':v<=200?'Unhealthy':v<=300?'Very unhealthy':'Hazardous';
+  function anyAir(h){
+    const by=new Map();
+    Object.values(h.states||{}).filter(s=>s.entity_id.startsWith('sensor.')&&AIR_QUALITY_DEVICE_CLASSES.includes(s.attributes?.device_class??'')&&available(s)&&userFacing(h,s.entity_id))
+      .sort((a,b)=>a.entity_id.localeCompare(b.entity_id)).forEach(s=>{if(!by.has(s.attributes.device_class))by.set(s.attributes.device_class,s)});
+    return AIR_QUALITY_DEVICE_CLASSES.map(c=>by.get(c)).filter(Boolean);
+  }
+  const anyPollen=h=>Object.values(h.states||{}).filter(s=>s.entity_id.startsWith('sensor.')&&available(s)&&userFacing(h,s.entity_id)
+    &&(h.entities?.[s.entity_id]?.translation_key??s.entity_id).toLowerCase().includes('pollen'));
+  const POLLEN_RANK=['none','very_low','low','moderate','high','very_high'];
+  const pollenRank=s=>num(s.state)?Number(s.state):POLLEN_RANK.indexOf(String(s.state).toLowerCase().replace(/ /g,'_'));
+  const sayLevel=t=>{const w=String(t).replace(/_/g,' ');return w[0].toUpperCase()+w.slice(1)};
+  const baseRows=rows=>rows.length?'<div class="wbBaseRows">'+rows.map(([a,b])=>'<span class="wbBaseRow"><span>'+esc(a)+'</span><span>'+esc(b)+'</span></span>').join('')+'</div>':'';
+  function renderAqTile(h){
+    const air=anyAir(h),main=air[0];
+    if(!main)return tile({icon:I.airFilter,name:T.airQuality,sub:T.noAir,visual:valueHtml('–',''),cls:'wbBase'});
+    const dc=main.attributes.device_class,v=Number(main.state),n=num(main.state);
+    const sub=dc==='aqi'&&n?aqiWord(v):dc==='pm25'&&n?AQ_WORDS[pm25Level(v)]:stateText(h,main);
+    return tile({icon:I.airFilter,name:T.airQuality,sub,cls:'wbBase',
+      visual:valueHtml(n?fmtNum(Math.round(v),h.locale):String(main.state),dc==='aqi'?'AQI':main.attributes.unit_of_measurement||'')+
+        baseRows(air.slice(1,3).map(s=>[entityName(h,s),stateText(h,s)]))});
+  }
+  function renderPollenTile(h){
+    const all=anyPollen(h).sort((a,b)=>pollenRank(b)-pollenRank(a));
+    if(!all.length)return tile({icon:I.flower,name:T.pollen,sub:T.noPollen,visual:valueHtml('–',''),cls:'wbBase'});
+    const top=all[0],level=s=>num(s.state)?stateText(h,s):sayLevel(s.state);
+    return tile({icon:I.flower,name:T.pollen,sub:entityName(h,top)+' · '+level(top),cls:'wbBase',
+      visual:valueHtml(level(top),'')+baseRows(all.slice(1,3).map(s=>[entityName(h,s),level(s)]))});
+  }
+  function renderRadarTile(h){
+    const now=Date.now(),hours=forecast('hourly').filter(e=>{const t=new Date(e.datetime).getTime();return t>now-HOUR&&t<now+12*HOUR});
+    const wet=hours.find(e=>(e.precipitation_probability??0)>=50||(e.precipitation??0)>=.2);
+    const sub=wet?fill(T.rainFrom,{time:fmtTime(new Date(Math.max(now,new Date(wet.datetime).getTime())),h)}):hours.length?T.noRain12:undefined;
+    // where the radar's map goes: home in the middle, rings round it
+    return tile({icon:I.radar,name:T.rainRadar,sub,cls:'wbBase',visual:'<div class="wbRadar" aria-hidden="true"><i class="wbRadarRing"></i><i class="wbRadarHome"></i></div>'});
+  }
   const RENDER={current:renderCurrent,hourly:renderHourly,sun:renderSun,moon:renderMoon,wind:renderWind,uv_index:renderUv,
-    compared_to_average:renderCompared,humidity:renderHumidity,pressure:renderPressure,precipitation:renderPrecipitation,visibility:renderVisibility,air_quality:renderAirQuality};
+    compared_to_average:renderCompared,humidity:renderHumidity,pressure:renderPressure,precipitation:renderPrecipitation,visibility:renderVisibility,air_quality:renderAirQuality,
+    aq_tile:renderAqTile,pollen_tile:renderPollenTile,radar_tile:renderRadarTile};
 
   /* ---- Drawing: each card is redrawn only when its markup changes; focus and the strip's scroll stay put ---- */
   function render(force){
@@ -1015,6 +1060,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     if(!data.lastFetch)fetchTiles();
     const ids=aqIds(h),moonId=findMoonEntity(h),gauge=findRainGauge(h);
     const key=[...src.map(id=>h.states[id]),h.states['sun.sun'],moonId&&h.states[moonId],gauge&&h.states[gauge],...ids.air.map(id=>h.states[id]),...ids.pollen.map(id=>h.states[id]),
+      ...(CARDS.some(c=>BASE_CARDS.includes(c))?[...anyAir(h),...anyPollen(h)]:[]),
       h.locale,h.config,h.entities,Math.floor(Date.now()/MINUTE)];
     if(!force&&lastKey&&key.length===lastKey.length&&key.every((v,i)=>v===lastKey[i]))return;
     lastKey=key;

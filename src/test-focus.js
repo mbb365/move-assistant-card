@@ -396,7 +396,10 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   // the dashboard's own weather cards (Matt, 27 Oct): the weather card, whose Now opens the Weather page, and Compared
   // to average in the place of the concept's to-do list; each kept mounted across redraws
-  const DASH_WEATHER = [['wx', ['current']], ['avg', ['compared_to_average']]];
+  // and the new cards in the data tiles' shape (Matt, 1 Nov): Air quality, Pollen and Rain radar, off the board until
+  // they're added from the edit tray
+  const DASH_WEATHER = [['wx', ['current']], ['avg', ['compared_to_average']], ['aq', ['aq_tile']], ['pollen', ['pollen_tile']], ['radar', ['radar_tile']]];
+  const NEW_CARDS = ['aq', 'pollen', 'radar'];
   const dashBoxes = Object.fromEntries(DASH_WEATHER.map(([k]) => [k, Object.assign(document.createElement('div'), { className: 'tfDashBento tfDash-' + k })]));
   let dashBentos = null, dashBentoId = null;
   function placeDash(on) {
@@ -1460,12 +1463,13 @@ export function mountTestFocus(root, { config, getHass }) {
      today's graph above or below. Where everything is goes with the page's settings in Home Assistant (prefs.dash:
      cells, sizes, what's hidden, options). Phones keep one column */
   const PEG = 252, PEG_GAP = 16, PEG_MIN = 200, PEG_MAX = Math.round(PEG * 1.25), ROW = 60, ROW_PITCH = ROW + PEG_GAP, LARGE_ROWS = 5, EXTRA_ROWS = 3;
-  const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average' };
+  const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average', aq: 'Air quality', pollen: 'Pollen', radar: 'Rain radar' };
+  // the new cards are two columns, as Compared to average (Matt, 1 Nov: one was too narrow), a tile in their ⋯
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
   // each card's rows, matched to what it holds (Matt, 27 Oct): large ones 5 (364); Energy today 4 (288); Compared to
   // average 4 (288: its number and words need about 257); a Dual Axis Controller 3 (212), 5 when made taller in its ⋯
   // menu (Matt, 28 Oct: it stays that way); a light or thermostat tile 2 (136)
-  const ROWS = { wx: LARGE_ROWS, areas: LARGE_ROWS, favs: LARGE_ROWS, act: LARGE_ROWS, energy: 4, avg: 4 };
+  const ROWS = { wx: LARGE_ROWS, areas: LARGE_ROWS, favs: LARGE_ROWS, act: LARGE_ROWS, energy: 4, avg: 4, aq: 3, pollen: 3, radar: 3 };
   const DAC_ROWS = 3, DAC_CHROME = 94; // a DAC tile's padding, name row and gap around its pad
   const tallDac = (key) => Boolean(dashPrefs().opts[key]?.tall); // a dashboard DAC made taller in its ⋯ menu
   const boardName = (key) => BOARD_NAMES[key] || nameOf(key);
@@ -1478,13 +1482,18 @@ export function mountTestFocus(root, { config, getHass }) {
     const n = Math.max(1, Math.floor((W + PEG_GAP) / (PEG_MIN + PEG_GAP)));
     return { n, w: Math.max(1, Math.min(PEG_MAX, Math.floor((W - (n - 1) * PEG_GAP) / n))) };
   };
-  const dashPrefs = () => ({ cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) });
-  function saveDash(next) { prefs = { ...prefs, dash: next }; savePrefs(); }
+  // a card the page hasn't offered before starts off the board, waiting in the edit tray (known: the ones it has)
+  const dashPrefs = () => {
+    const d = { cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) }, fresh = NEW_CARDS.filter((k) => !(d.known || []).includes(k) && !d.hidden.includes(k));
+    return fresh.length ? { ...d, hidden: [...d.hidden, ...fresh] } : d;
+  };
+  function saveDash(next) { prefs = { ...prefs, dash: { ...next, known: NEW_CARDS } }; savePrefs(); }
   // what's on the board: each card's key, its element, its width in pegs ('full' the whole width) and whether it's a tile
   function boardItems() {
     const q = (sel) => grid.querySelector(sel);
     return [['title', q('.tfDashTitle'), 'full'], ['sums', q('.tfDashBarRow'), 'full'], ['wx', dashBoxes.wx, 2], ['areas', q('.tfAreas'), 'areas'],
       ['favs', q('.tfDash-favs'), 2], ['act', q('.tfDash-act'), 2], ['energy', q('.tfDash-energy'), 2], ['avg', dashBoxes.avg, 2],
+      ...NEW_CARDS.map((k) => [k, dashBoxes[k], 1]),
       ...[...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => [el.dataset.k, el, 1, true])]
       .filter(([, el]) => el?.isConnected).map(([key, el, span, tile = false]) => ({ key, el, span, tile }));
   }
@@ -1583,6 +1592,8 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!testFocus || !grid) return;
     // phones keep one column: the board starts where two drawn columns fit, as before
     const W = grid.clientWidth, { n, w } = pegsFor(W), board = app.classList.contains('tfDash') && W >= 2 * PEG + PEG_GAP;
+    const off = new Set(dashPrefs().hidden);
+    NEW_CARDS.forEach((k) => dashBoxes[k]?.classList.toggle('tfNotAdded', off.has(k) && !(drag?.fromTray && drag.key === k)));
     app.classList.toggle('tfBoard', board);
     app.classList.toggle('tfEditing', board && editing);
     const pen = $('dashEditNav');
@@ -1759,11 +1770,13 @@ export function mountTestFocus(root, { config, getHass }) {
     if (act !== 'hide') grid.querySelector('[data-board-more="' + CSS.escape(key) + '"]')?.focus();
     else toast(boardName(key) + ' hidden', undoTo(before));
   }
+  // a card back from the edit tray: put back, or added if it's never been on the board
+  const backWord = (key) => (NEW_CARDS.includes(key) && !(prefs.dash?.cells || {})[key] ? ' added' : ' put back');
   function showCard(key) {
-    const dash = dashPrefs();
+    const dash = dashPrefs(), said = boardName(key) + backWord(key);
     saveDash({ ...dash, hidden: dash.hidden.filter((k) => k !== key) });
     layoutBoard();
-    toast(boardName(key) + ' put back');
+    toast(said);
   }
   // the dashboard's tiles as they are: yours, else today's picks as shown. A tile added goes in the first free cell
   // (left of the edit tray), everything else staying where it is; one removed leaves its cell free. Tiles aren't hidden any more, so any hidden
@@ -1988,9 +2001,9 @@ export function mountTestFocus(root, { config, getHass }) {
     tuck.setAttribute('aria-expanded', String(!trayTucked));
     tuck.setAttribute('aria-label', trayTucked ? 'Show the edit tray' : 'Tuck the edit tray away');
     const hiddenCards = dashPrefs().hidden.filter((k) => boardItems().some((it) => it.key === k));
-    trayPut('cards', '<div class="sectionLabel">Hidden cards</div>' + (hiddenCards.length ? '<div class="tfTrayCards">' + hiddenCards.map((k) =>
+    trayPut('cards', '<div class="sectionLabel">Hidden and new cards</div>' + (hiddenCards.length ? '<div class="tfTrayCards">' + hiddenCards.map((k) =>
       '<button class="tfTrayCard" type="button" data-tray-card="' + esc(k) + '" aria-label="' + esc(boardName(k)) + ': drag it onto the board, or press to put it back">' +
-      '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>').join('') + '</div>' : '<p class="tfTrayNote">Cards you hide wait here.</p>'));
+      '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>').join('') + '</div>' : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>'));
     trayPut('phone', '<div class="sectionLabel">Phone</div><p class="tfTrayNote">' + (dashPrefs().phone ? 'Phones have an order of their own.' : 'Phones follow the board\'s order.') + '</p>' +
       '<button class="pill tfTrayAdd" type="button" data-phone-toggle aria-pressed="' + phoneShown + '">' + (phoneShown ? 'Hide the phone' : 'Show the phone') + '</button>');
     const hidden = new Set(prefs.favHidden || []), stars = starred();
@@ -2093,10 +2106,10 @@ export function mountTestFocus(root, { config, getHass }) {
         if (!ghost) showCard(key);
         else if (drag?.fromTray) {
           layoutBoard();
-          const dash = dashPrefs(), cells = cellsNow();
+          const said = boardName(key) + backWord(key), dash = dashPrefs(), cells = cellsNow();
           drag = null;
           saveCells({ ...dash, hidden: dash.hidden.filter((k) => k !== key) }, cells);
-          toast(boardName(key) + ' put back');
+          toast(said);
         }
         drag = null;
         layoutBoard();
@@ -2124,7 +2137,7 @@ export function mountTestFocus(root, { config, getHass }) {
      order phones show them; drag a block, or move it with the arrow keys, to give phones their own order. Follow the
      board drops it again */
   const PHONE_H = { sums: 201, wx: 286, favs: 363, areas: 323, act: 363, energy: 301, avg: 182 }, PHONE_TILE = 140, PHONE_DAC = 252, PHONE_SCALE = 0.8;
-  const CARD_ICON = { wx: 'mdi:weather-partly-cloudy', areas: 'mdi:home', favs: 'mdi:star', act: 'mdi:history', energy: 'mdi:lightning-bolt', avg: 'mdi:chart-line' };
+  const CARD_ICON = { wx: 'mdi:weather-partly-cloudy', areas: 'mdi:home', favs: 'mdi:star', act: 'mdi:history', energy: 'mdi:lightning-bolt', avg: 'mdi:chart-line', aq: 'mdi:air-filter', pollen: 'mdi:flower-pollen', radar: 'mdi:radar' };
   const phone = Object.assign(document.createElement('aside'), { className: 'tfMiniPhone' });
   phone.setAttribute('aria-label', 'Phone order');
   phone.innerHTML = '<div class="tfPhoneHead"><div class="activityTitle">Phone</div><button class="tfTrayBtn" type="button" data-phone-close aria-label="Close the phone">' + CROSS + '</button></div>' +

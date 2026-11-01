@@ -424,11 +424,16 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfDash .tfDash-act{order:var(--o,6)!important}
 #app.tfDash .tfDash-energy{order:var(--o,7)!important}
 #app.tfDash .tfDash-avg{order:var(--o,8)!important}
+#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar){order:var(--o,8)!important}
 #app.tfDash .tfDashTiles>*{order:var(--o,9)}
 /* drawn sizes: never wider than drawn; a card may give up to 12% (520 down to 460) so two sit side by side on a
    tablet, and takes the whole width only on a phone */
-#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}
-@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}
+#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg,.tfDash-aq,.tfDash-pollen,.tfDash-radar){flex:1 1 460px;max-width:520px;min-width:0}
+@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg,.tfDash-aq,.tfDash-pollen,.tfDash-radar){flex-basis:100%;max-width:none}}
+/* the new cards (Matt, 1 Nov): off the page until added from the edit tray; off the board, as wide as the page and 212
+   tall (a square would be the page's width tall) */
+#app .tfNotAdded{display:none!important}
+#app:not(.tfBoard) :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar) .wbCard.wbSquare{aspect-ratio:auto;min-height:212px}
 #app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}
 @media(min-width:901px){
   #app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}
@@ -470,6 +475,8 @@ button.tfAreaIcon{cursor:pointer}
 .tfDashBento .wb{flex:1;display:flex;flex-direction:column;min-width:0}
 .tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}
 #app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}
+/* a dashboard card is its card's width, a data tile too (the Weather page puts two to a row) */
+#app.house .tfDashBento .wbItem[data-size]{width:100%}
 #app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}
 /* the dashboard's weather card is the now and the days, without the condition and today's range (Matt's Figma "Card ·
    Weather" 539:1395, 29 Oct); the Weather page keeps them */

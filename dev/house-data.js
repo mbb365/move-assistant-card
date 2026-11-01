@@ -52,6 +52,13 @@ const ENTITIES = {
     // no rising or setting times, so the card works them out from the home's location (fixed times here put tomorrow's
     // sunrise before today's)
     "sun.sun": { state: new Date().getHours() >= 7 && new Date().getHours() < 18 ? "above_horizon" : "below_horizon", attributes: { friendly_name: "Sun" } },
+    // made-up air quality and pollen readings, for the new Air quality and Pollen cards
+    "sensor.home_air_quality_index": { state: "32", attributes: { friendly_name: "Air quality index", device_class: "aqi" } },
+    "sensor.home_pm25": { state: "8.4", attributes: { friendly_name: "Fine particles", device_class: "pm25", unit_of_measurement: "µg/m³" } },
+    "sensor.home_pm10": { state: "14", attributes: { friendly_name: "Coarse particles", device_class: "pm10", unit_of_measurement: "µg/m³" } },
+    "sensor.home_grass_pollen": { state: "moderate", attributes: { friendly_name: "Grass pollen" } },
+    "sensor.home_tree_pollen": { state: "low", attributes: { friendly_name: "Tree pollen" } },
+    "sensor.home_weed_pollen": { state: "none", attributes: { friendly_name: "Weed pollen" } },
     "lock.openable_lock": { state: "locked", attributes: { friendly_name: "Openable lock", supported_features: 1 } },
     "lock.another_openable_lock": { state: "unlocked", attributes: { friendly_name: "Another openable lock", supported_features: 1 } },
     "lock.basic_lock": { state: "locked", attributes: { friendly_name: "Basic lock", supported_features: 0 } },
