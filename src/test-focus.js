@@ -285,7 +285,7 @@ export function mountTestFocus(root, { config, getHass }) {
   const history = new Map(); // entity id → { at, points }
   const energyText = new Map(); // the dashboard's energy: statistic id → { name, text, icon } its tile shows
   const dragging = new Map(); // "kind|entity id" → value while a bar is held
-  const BAR_HOLD_MS = 350; // how long a finger rests on a bar before it moves it (about a third of a second)
+  const BAR_SLOP = 6; // how far a finger goes before it's sliding a bar or scrolling the page
   let heldBar = null; // the bar a finger is moving, if any
   const goals = new Map(); // cover id → { pos, tilt, at }: where it was sent, until it gets there
   const arts = new Map(); // cover id → its drawing in more-info, kept across redraws
@@ -712,7 +712,7 @@ export function mountTestFocus(root, { config, getHass }) {
      time a light uses it, it's fetched from its GitHub release, unless Home Assistant loads one installed from HACS
      (one of its dashboard resources), which is then used instead */
   const DAC_TAG = 'dual-controller-v3';
-  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.4/dist/dual-axis-controller-v4.js';
+  const DAC_URL = 'https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.5/dist/dual-axis-controller-v4.js';
   let dacFetch = null; // null, 'loading' or 'failed'
   async function bringDac() {
     if (dacFetch || customElements.get(DAC_TAG)) return;
@@ -3043,58 +3043,59 @@ export function mountTestFocus(root, { config, getHass }) {
         commit(kind, id);
       }
     });
-    // bars (Matt, 28 Oct): a tap on a light that's off turns it on as it was last (its faint line), never to where the
-    // tap landed. A finger only moves a bar after a short hold, and then from where the bar is (a light that's off, from
-    // where it last was), so a swipe across it scrolls the page and a quick touch changes nothing; held, it follows the
-    // finger and sets on release. A mouse drags straight away, from the pointer
+    // bars (Matt, 28 Oct and 2 Nov): a tap on a light that's off turns it on as it was last (its faint line), never to
+    // where the tap landed. A finger sliding sideways moves the bar at once, from where it is (a light that's off, from
+    // where it last was), so where it lands never makes it jump; a finger going up or down scrolls the page, and a quick
+    // touch changes nothing. A mouse drags straight away, from the pointer
     el.addEventListener('pointerdown', (ev) => {
       const blocksEl = ev.target.closest('[data-blocks]');
       if (blocksEl && ev.button === 0) { ev.preventDefault(); holdBlocks(blocksEl, ev); return; }
       const bar = ev.target.closest('[data-drag]');
       if (!bar || ev.button > 0) return;
       const [kind, id] = bar.dataset.drag.split('|');
-      if (kind === 'bright' && !dimmable(id)) { run(act('light', 'toggle', id)); return; }
-      const off = kind === 'bright' && states[id]?.state !== 'on', finger = ev.pointerType !== 'mouse';
+      // a light that only turns on and off: a click, or a finger's tap, toggles it
+      const fixed = kind === 'bright' && !dimmable(id), finger = ev.pointerType !== 'mouse';
+      if (fixed && !finger) { run(act('light', 'toggle', id)); return; }
+      const off = kind === 'bright' && states[id]?.state !== 'on';
       const inset = kind === 'tilt' ? 4 : 0; // the tilt bar's fill sits 4 in
       const span = () => bar.getBoundingClientRect().width - inset * 2;
       const at = (e2) => { const r = bar.getBoundingClientRect(); return Math.max(0, Math.min(1, (e2.clientX - r.left - inset) / span())); };
-      // waiting: a finger that may yet be a tap, a swipe or a hold; pressed: a mouse on a light that's off, which may
-      // yet be a click; held: a finger moving the bar from where it was; dragging: a mouse moving it to the pointer
-      let mode = finger ? 'waiting' : off ? 'pressed' : 'dragging', from = 0, fromX = 0;
+      // waiting: a finger that may yet be a tap, a slide or a scroll; pressed: a mouse on a light that's off, which may
+      // yet be a click; sliding: a finger moving the bar from where it was; dragging: a mouse moving it to the pointer
+      let mode = finger ? 'waiting' : off ? 'pressed' : 'dragging', from = 0;
       const x0 = ev.clientX, y0 = ev.clientY, moved = (e2, by) => Math.hypot(e2.clientX - x0, e2.clientY - y0) > by;
       const capture = () => { try { bar.setPointerCapture(ev.pointerId); } catch { /* a pointer that's already gone */ } };
       if (!finger) { ev.preventDefault(); capture(); }
       if (mode === 'dragging') showDrag(bar, kind, id, at(ev));
-      const timer = finger && setTimeout(() => {
-        if (mode !== 'waiting') return;
-        mode = 'held';
+      const slide = () => {
+        mode = 'sliding';
         heldBar = bar;
         bar.classList.add('held');
         capture();
         if (navigator.userActivation?.hasBeenActive) navigator.vibrate?.(8); // a small buzz where phones allow it
         from = off ? (lastBright[id] ?? 100) / 100 : Number(bar.getAttribute('aria-valuenow')) / 100;
-        fromX = x0;
-        showDrag(bar, kind, id, from);
-      }, BAR_HOLD_MS);
+      };
       const move = (e2) => {
-        if (mode === 'waiting' && moved(e2, 8)) mode = 'gone';
-        else if (mode === 'pressed' && moved(e2, 4)) mode = 'dragging';
-        if (mode === 'held') showDrag(bar, kind, id, Math.max(0, Math.min(1, from + (e2.clientX - fromX) / span())));
+        // sideways, the bar takes the finger; up or down, the page does (and the bar hears no more of it)
+        if (mode === 'waiting' && moved(e2, BAR_SLOP)) {
+          if (!fixed && Math.abs(e2.clientX - x0) > Math.abs(e2.clientY - y0)) slide(); else mode = 'gone';
+        } else if (mode === 'pressed' && moved(e2, 4)) mode = 'dragging';
+        if (mode === 'sliding') showDrag(bar, kind, id, Math.max(0, Math.min(1, from + (e2.clientX - x0) / span())));
         else if (mode === 'dragging') showDrag(bar, kind, id, at(e2));
       };
       const up = (e2) => {
-        clearTimeout(timer);
         ['pointermove', 'pointerup', 'pointercancel'].forEach((t, i) => bar.removeEventListener(t, i ? up : move));
         bar.classList.remove('held');
         if (heldBar === bar) heldBar = null;
-        if (mode === 'held' || mode === 'dragging') commit(kind, id);
+        if (mode === 'sliding' || mode === 'dragging') commit(kind, id);
+        else if (e2.type === 'pointerup' && fixed) run(act('light', 'toggle', id));
         else if (e2.type === 'pointerup' && off && (mode === 'waiting' || mode === 'pressed')) send('light', 'turn_on', id).catch(() => {});
       };
       bar.addEventListener('pointermove', move);
       bar.addEventListener('pointerup', up);
       bar.addEventListener('pointercancel', up);
     });
-    // once a bar is held, the finger moves it and not the page
+    // once a finger is sliding a bar, it moves the bar and not the page
     el.addEventListener('touchmove', (ev) => { if (heldBar && ev.cancelable) ev.preventDefault(); }, { passive: false });
   }
   if (grid && testFocus) {
