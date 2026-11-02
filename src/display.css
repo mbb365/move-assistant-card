@@ -471,7 +471,7 @@ button.tfAreaIcon{cursor:pointer}
    27 Oct: it was taking too much space as halves), each at least 140 like a half; one line each, cut with "…" */
 #app.tfDash .tfDashCard:not(.tfDash-bar){container-type:inline-size}
 #homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}
-/* Activity: as many changes as its card fits, whole tiles only (five, 300, until the board says); the rest scroll, a thin
+/* Activity: as many changes as its card fits, whole tiles only (on the board, its height's rows); the rest scroll, a thin
    bar at the side, and each scroll settles smoothly on the next tile (Matt, 27 Oct) */
 #homeView .card.tfDash-act>.activityRows{flex:none;margin-top:auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}
 #homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}
@@ -513,7 +513,7 @@ button.tfAreaIcon{cursor:pointer}
    light tile 18 in at the top and bottom so it fits two rows (136) */
 #app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}
 #app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}
-#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%}
+#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%;min-height:0}
 /* edit mode: the cells as a solid grid under the cards, each card outlined in the accent with its grip (top middle,
    80 × 40, across the card's top edge so it covers nothing in it) and ⋯ (top right); its own controls rest. Nothing
    shakes */
@@ -533,11 +533,71 @@ button.tfAreaIcon{cursor:pointer}
 /* dragging: the card lifts (2% bigger, a shadow) and follows the pointer; where it will land is a dashed outline */
 #app.tfEditing .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
 .tfBoardLand{position:absolute;z-index:1;box-sizing:border-box;border:1.5px dashed var(--primary);border-radius:28px;background:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;transition:left .2s,top .2s,width .2s,height .2s}
-/* a card's ⋯: its size, Energy today's graph, a cell left, right, up or down, hide */
+/* a card's ⋯: its height and width, Energy today's graph, a cell left, right, up or down, hide */
 .tfBoardMenu{position:absolute;z-index:30;display:grid;gap:2px;min-width:200px;padding:6px;border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px rgba(0,0,0,.35)}
 .tfBoardMenu button{display:flex;align-items:center;min-height:40px;padding:0 12px;border:0;border-radius:var(--r-inner);background:transparent;color:var(--text);font:500 14px/20px var(--font);text-align:start;cursor:pointer}
 .tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}
 .tfBoardMenu button:disabled{opacity:.4;cursor:default}
+/* its height (Matt, 2 Nov): XS to XL side by side on the menu's top, the picked one filled; one the element has
+   nothing to fill greyed out */
+.tfHeight{display:grid;gap:6px;padding:6px 6px 8px}
+.tfHeightLabel{padding:0 6px;color:var(--muted);font:500 12px/16px var(--font)}
+.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--tile)}
+.tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}
+.tfBoardMenu .tfHeightTabs button[aria-checked="true"]{background:var(--text);color:var(--card)}
+.tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}
+/* what each height shows (Matt, 2 Nov): a smaller one shows fewer of the same things, never part of one. At XS
+   (one row, 60) every element is one tile: 10 in, its icon, name and line, no title and no controls */
+#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows{grid-auto-rows:var(--fill-row,60px);margin-top:0}
+#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows>.activityRow{min-height:0;height:var(--fill-row,60px);box-sizing:border-box}
+#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]{padding:0;gap:0}
+#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityHeader,#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.tfDashGraph{display:none}
+#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityRows{margin:0;flex:1}
+#app.tfBoard .tfBoardItem.tfAction[data-rows="1"]{padding:10px;border-radius:24px}
+#app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}
+#app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}
+/* the weather: XS now as a tile; S now; M now and a sentence; L now and the days; XL all three */
+#app.tfBoard .tfDash-wx[data-rows="1"] .wbNow{margin:0}
+#app.tfBoard .tfDash-wx[data-rows="1"] .wbWx.wbS90{width:40px;height:40px;border-radius:12px}
+#app.tfBoard .tfDashBento[data-rows] :is(.wb,.wbBento,.wbItem){height:100%;min-height:0}
+#app.tfBoard .tfDashBento[data-rows] .wbCard{height:100%;min-height:0;box-sizing:border-box;aspect-ratio:auto}
+#app.tfBoard .tfDash-wx[data-rows="1"] .wbDeg{font-size:20px;letter-spacing:0;line-height:22px}
+#app.tfBoard .tfDash-wx[data-rows="1"] .wbPlace{font-size:13px;line-height:18px}
+#app.tfBoard .tfDash-wx[data-rows="1"] .wbTempBlock{gap:0}
+#app.tfBoard .tfDash-wx[data-rows="1"] .wbUnit{font-size:14px;line-height:22px}
+#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="4"]) .wbSummary{display:none}
+#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) :is(.wbColumns,.wbHalves){display:none}
+#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:12px}
+#app.tfBoard .tfDash-wx[data-rows="4"] .wbHalves>:nth-child(n+5){display:none}
+/* Energy today: XS and S its sources in one row (XS without its title), M a short graph, L and XL taller */
+#app.tfBoard .tfDash-energy[data-rows="2"] .tfDashGraph{display:none}
+#app.tfBoard .tfDash-energy:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) .activityRows{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}
+#app.tfBoard .tfDash-energy[data-rows="3"] .tfDashGraph{min-height:0}
+/* the weather tiles: XS the head, S the reading, M and up its details */
+#app.tfBoard .tfDashBento[data-rows="2"] .wbBaseRows{display:none}
+#app.tfBoard .tfDashBento[data-rows="2"] :is(.wbRadar,.wbCompareBars,.wbCompareWords,.wbCompareTemps){display:none}
+#app.tfBoard .tfDashBento[data-rows="3"] :is(.wbCompareWords,.wbCompareTemps){display:none}
+/* the areas: XS each room a tile (the open one its name and value); S the open room's name and 2 tiles, the others'
+   name and value; M and L 4 tiles and a row of icons; XL as drawn */
+#app.tfBoard .tfAreas[data-rows="1"] .workoutPanel.tfAreaPanel{padding:10px}
+#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 12px;align-content:center}
+#app.tfBoard .tfAreas[data-rows="1"] :is(.panelExpanded>.workoutPanelTop,.tfACTop){display:contents}
+#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded .tfAreaIcon{grid-row:span 2}
+#app.tfBoard .tfAreas[data-rows="1"] .tfATitle .tfAName{font-size:14px;line-height:20px;height:auto}
+#app.tfBoard .tfAreas[data-rows="1"] .tfABig{margin:0;flex-direction:row}
+#app.tfBoard .tfAreas[data-rows="1"] .tfABigMain{font-size:14px;line-height:18px;letter-spacing:0}
+#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigUnit){font-size:14px}
+#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigSub,.tfATiles,.tfACTiles,.sourceTag){display:none}
+#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:center;padding:0}
+#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed .tfAreaIcon{grid-row:span 2}
+#app.tfBoard .tfAreas[data-rows="1"] :is(.tfACName,.tfACMain){margin:0;font-size:14px;line-height:18px;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfABig{display:none}
+#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfATiles{margin-top:auto}
+#app.tfBoard .tfAreas[data-rows="2"] .tfATile:nth-child(n+3),#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfATile:nth-child(n+5){display:none}
+#app.tfBoard .tfAreas[data-rows="2"] .tfACTiles{display:none}
+#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTile:nth-child(n+3){display:none}
+#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACollapsed{justify-content:flex-start;gap:10px}
+#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTiles{margin-top:auto}
 /* hidden cards wait under the board */
 /* the edit tray (Matt, 28 Oct): edit mode's side panel from the right, over the board (the board isn't squeezed, so the
    board edited is the board shown); its tab tucks it away. It holds the hidden cards (drag one onto the board) and the

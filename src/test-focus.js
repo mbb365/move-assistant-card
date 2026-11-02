@@ -98,7 +98,7 @@ const ACTION_DOMAINS = ['light', 'climate', 'cover', 'humidifier', 'media_player
 const ACTIVITY_DOMAINS = ['light', 'switch', 'fan', 'lock', 'cover', 'climate', 'humidifier', 'media_player', 'alarm_control_panel', 'vacuum', 'valve', 'binary_sensor'];
 // Favourites: five rows, so beside Activity their tiles line up. Activity: the latest changes, five before the rest
 // scroll (Matt, 27 Oct)
-const DASH_FAVOURITES = 10, ACTIVITY_MOST = 20, ACTIVITY_SHOWN = 5;
+const DASH_FAVOURITES = 10, ACTIVITY_MOST = 20;
 const ENERGY_ICON = { electricity: 'mdi:lightning-bolt', solar: 'mdi:solar-power-variant', gas: 'mdi:fire', water: 'mdi:water' };
 // the bottom row's tiles: a light tile's size, 10 apart (light tiles' rule)
 const DASH_TILE_W = 252, DASH_TILE_GAP = 10;
@@ -701,7 +701,9 @@ export function mountTestFocus(root, { config, getHass }) {
   function actionTile(id, inDialog = false, only = null) {
     // a light as the Dual Axis Controller is a tile like every other, the controller's pad its control (Matt, 1 Nov:
     // it's just another action)
-    const s = specFor(id), dac = id.startsWith('light.') && dacFor(id), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
+    // a Dual Axis Controller on the dashboard is its pad from M; at S its brightness only, as a light of bars, and at
+    // XS its head (Matt, 2 Nov)
+    const s = specFor(id), dac = id.startsWith('light.') && dacFor(id) && !(only && sizeOf(id) < 3), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
     const sections = dac ? ['<div class="tfDacPad" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"></div>']
       : s.sections.map((sec, i) => (sec && (!keep || keep.includes((s.parts || [])[i])) ? sec : '')).filter(Boolean);
     return '<div class="tfAction' + (dac ? ' tfDac' : '') + (s.on ? ' on' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
@@ -1415,8 +1417,10 @@ export function mountTestFocus(root, { config, getHass }) {
   // the dashboard shows only these rooms' lights (anything else passes)
   const dashLight = (id) => !id.startsWith('light.') || DASH_LIGHT_ROOMS.includes((whereIs.get(id) || '').toLowerCase());
   const dashCols = () => Math.max(2, pegsFor(grid?.clientWidth || 0).n);
-  // a tile on the dashboard shows its first control: a light's brightness, a thermostat's target, a cover's position…
-  const dashControl = (id) => { const s = specFor(id), i = s.sections.findIndex(Boolean); return i < 0 ? [] : [s.parts[i]]; };
+  // a tile on the dashboard shows one control more for each row past its head: at XS none, at S its first (a light's
+  // brightness, a thermostat's target, a cover's position…), at M its first two, and so on
+  const controlsOf = (id) => { const s = specFor(id); return s.sections.map((sec, i) => sec && (s.parts || [])[i]).filter(Boolean); };
+  const dashControl = (id) => controlsOf(id).slice(0, sizeOf(id) - 1);
   function dashTileIds(n) {
     const own = dashPrefs().tiles;
     if (own) return own.filter((id) => states[id]);
@@ -1469,13 +1473,21 @@ export function mountTestFocus(root, { config, getHass }) {
   const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average', aq: 'Air quality', pollen: 'Pollen', radar: 'Rain radar' };
   // the new cards are two columns, as Compared to average (Matt, 1 Nov: one was too narrow), a tile in their ⋯
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
-  // each kind of element's rows, the whole rows it needs, the same for every one of its kind (Matt, 1 Nov: a unified
-  // system): the weather, the areas, Favourites and Activity 5 (364); Energy today and Compared to average 4 (288);
-  // every weather tile 4 (288), Air quality, Pollen and Rain radar included, and a Dual Axis Controller the same (5 when
-  // made taller in its ⋯ menu; Matt, 28 Oct: it stays that way); a light or thermostat tile its own height (2 rows, 136)
-  const ROWS = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 };
-  const DAC_ROWS = 4, TALL_DAC_ROWS = 5, TILE_ROWS = 2, DAC_CHROME = 90; // a tile's padding (18 and 18), head (40) and gap (14) around the controller's pad
-  const tallDac = (key) => Boolean(dashPrefs().opts[key]?.tall); // a dashboard DAC made taller in its ⋯ menu
+  // five heights, picked in an element's ⋯ (Matt, 2 Nov), each a whole number of rows: XS 1 (60, one tile), S 2 (136),
+  // M 3 (212), L 4 (288), XL 5 (364). Each element starts at its kind's own (the weather, the areas, Favourites and
+  // Activity XL; Energy today, Compared to average and the weather tiles L; a Dual Axis Controller L, XL if it was made
+  // taller before; a light or thermostat tile S), and one with nothing to fill a height doesn't offer it: a tile goes
+  // up a row for each control it has (a light of bars to L, a thermostat to M)
+  const SIZE_NAMES = ['XS', 'S', 'M', 'L', 'XL'], ROWS_MOST = SIZE_NAMES.length;
+  const SIZES = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 };
+  const mostRows = (key) => (!key.includes('.') || (key.startsWith('light.') && wantsDac(key)) ? ROWS_MOST : Math.min(ROWS_MOST, controlsOf(key).length + 1));
+  const sizeOf = (key) => {
+    const o = dashPrefs().opts[key] || {}, most = mostRows(key), h = Number(o.h) || (o.tall ? 5 : SIZES[key] || (most === ROWS_MOST ? 4 : 2));
+    return Math.max(1, Math.min(most, h));
+  };
+  const TILE_ROWS = 2, DAC_CHROME = 90; // a tile's padding (18 and 18), head (40) and gap (14) around the controller's pad
+  // a card of tiles fills its height (Matt, 2 Nov): as many rows as fit at 56 or taller, every row the same height
+  const FILL_MIN = 56;
   const boardName = (key) => BOARD_NAMES[key] || nameOf(key);
   const AREA_OPEN = 409, AREA_FOLDED = 128;
   let editing = false, drag = null, boardOpen = null, fitQueued = false, lastPlaced = new Map(), boardRows = 0, boardTop = 0;
@@ -1507,8 +1519,8 @@ export function mountTestFocus(root, { config, getHass }) {
     if (it.span === 'areas') return Math.min(n, Math.ceil((AREA_OPEN + Math.max(0, areaRooms.length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / (w + PEG_GAP)));
     return Math.min(n, dashPrefs().spans[it.key] ?? it.span);
   };
-  // a card's rows, unless they come from its own height (a tile's do)
-  const rowsOf = (it) => ROWS[it.key] ?? (it.el.classList.contains('tfDac') ? (tallDac(it.key) ? TALL_DAC_ROWS : DAC_ROWS) : null);
+  // a card's rows: its height's
+  const rowsOf = (it) => sizeOf(it.key);
   // each card's cell on a board n pegs wide (the cards know their cols and rows): a dragged card where it would land;
   // then the cards with a saved cell, top to bottom (one in the way goes down to the next free cell); then the rest in
   // the page's order, each in the first cell from the top left it fits.
@@ -1655,6 +1667,7 @@ export function mountTestFocus(root, { config, getHass }) {
     cards.forEach((it) => {
       const p = placed.get(it.key);
       it.el.style.height = p.h + 'px';
+      it.el.dataset.rows = sizeOf(it.key);
       // a DAC's pad takes what its cells leave under its name
       if (it.el.classList.contains('tfDac')) it.el.style.setProperty('--tf-dac-pad', (p.h - DAC_CHROME) + 'px');
       if (it === dragged && !drag.fromTray) return; // the dragged card follows the pointer; where it lands shows instead
@@ -1663,9 +1676,15 @@ export function mountTestFocus(root, { config, getHass }) {
     });
     if (!phone) lastPlaced = placed; // the board's own places, which a phone's order follows
     readingOrder([...shown.filter((it) => HEAD.includes(it.key)), ...cards.slice().sort((a, b) => placed.get(a.key).row - placed.get(b.key).row || placed.get(a.key).col - placed.get(b.key).col)].map((it) => it.el));
-    // Activity shows five changes, or as many as its card fits under its title (whole tiles only); the rest scroll
-    const act = placed.get('act'), list = act && grid.querySelector('.tfDash-act > .activityRows');
-    if (list) list.style.maxHeight = Math.max(ROW, Math.min(ACTIVITY_SHOWN, Math.floor((act.h - list.offsetTop - 10) / ROW)) * ROW) + 'px';
+    // Favourites and Activity fill their height with whole rows of tiles (FILL_MIN); the rest scroll
+    [['favs', '.tfDash-favs'], ['act', '.tfDash-act']].forEach(([key, sel]) => {
+      const p = placed.get(key), card = p && grid.querySelector(sel), list = card?.querySelector(':scope > .activityRows'), head = card?.querySelector(':scope > .activityHeader');
+      if (!list || !head) return;
+      // at XS a card has no title: its one row of tiles is the card
+      const space = p.rows === 1 ? p.h : p.h - (head.offsetTop + head.offsetHeight + 10) - parseFloat(getComputedStyle(card).paddingBottom), n = Math.max(1, Math.floor(space / FILL_MIN));
+      list.style.setProperty('--fill-row', (space / n).toFixed(2) + 'px');
+      list.style.maxHeight = space + 'px';
+    });
     boardRows = Math.max(0, ...[...placed.values()].map((p) => p.row + p.rows));
     let height = boardTop + boardRows * ROW_PITCH - PEG_GAP;
     height = editTools(editing && !phone, cards, placed, height, n, w);
@@ -1730,7 +1749,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (on) editStart = JSON.stringify(prefs);
     else if (editStart && JSON.stringify(prefs) !== editStart) toast('Changes saved');
   }
-  // a card's ⋯: its size (a tile or a card; a DAC taller or shorter), a cell left, right, up or down, Energy today's
+  // a card's ⋯: its height (XS to XL), its width (a tile or a card), a cell left, right, up or down, Energy today's
   // graph, and hide; a tile is removed instead (Matt, 29 Oct), and added again from the edit tray
   function openBoardMenu(key, opener) {
     closeBoardMenu();
@@ -1740,9 +1759,11 @@ export function mountTestFocus(root, { config, getHass }) {
     const menu = Object.assign(document.createElement('div'), { className: 'tfBoardMenu' });
     menu.setAttribute('role', 'menu');
     menu.setAttribute('aria-label', boardName(key) + ' options');
-    const tile = grid.querySelector('.tfDashTiles > [data-k="' + CSS.escape(key) + '"]'), dac = tile?.classList.contains('tfDac');
-    menu.innerHTML = (RESIZABLE.includes(key) ? item('size', span === 1 ? 'Card size' : 'Tile size') : '') +
-      (dac ? item('tall', tallDac(key) ? 'Make shorter' : 'Make taller') : '') +
+    const tile = grid.querySelector('.tfDashTiles > [data-k="' + CSS.escape(key) + '"]'), most = mostRows(key), now = sizeOf(key);
+    // its height first: XS to XL side by side, one not offered greyed out (Matt, 2 Nov)
+    const height = '<div class="tfHeight" role="group" aria-label="Height"><span class="tfHeightLabel" aria-hidden="true">Height</span><div class="tfHeightTabs">' +
+      SIZE_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === now) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' rows' : ' row') + '" data-board-act="h:' + (i + 1) + '"' + (i < most ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>';
+    menu.innerHTML = height + (RESIZABLE.includes(key) ? item('size', span === 1 ? 'Card size' : 'Tile size') : '') +
       (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
       item('left', 'Move left', full || p.col === 0) + item('right', 'Move right', full || p.col + p.cols >= n) +
       item('up', 'Move up', p.row <= 0) + item('down', 'Move down') + (tile ? item('remove', 'Remove') : item('hide', 'Hide'));
@@ -1765,7 +1786,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (act === 'remove') { closeBoardMenu(); removeTile(key); return; }
     const before = prefs, dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
     if (act === 'size') dash.spans = { ...dash.spans, [key]: (dash.spans[key] ?? 2) === 1 ? 2 : 1 };
-    if (act === 'tall') dash.opts = { ...dash.opts, [key]: { ...(dash.opts[key] || {}), tall: !tallDac(key) } };
+    if (act.startsWith('h:')) dash.opts = { ...dash.opts, [key]: { ...(dash.opts[key] || {}), h: Number(act.slice(2)), tall: undefined } };
     if (act === 'graph') dash.opts = { ...dash.opts, energy: { ...(dash.opts.energy || {}), graph: (dash.opts.energy?.graph || 'above') === 'above' ? 'below' : 'above' } };
     if (act === 'left') cells[key] = { ...here, col: here.col - 1 };
     if (act === 'right') cells[key] = { ...here, col: here.col + 1 };
@@ -1778,6 +1799,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (drag) { layoutBoard(); drag = null; saveCells(dashPrefs(), cellsNow()); }
     closeBoardMenu();
     if (act === 'graph') { units.delete('dash:energy'); refresh(); }
+    if (act.startsWith('h:') && key.includes('.')) refresh(); // a tile's controls change with its height
     layoutBoard();
     if (act !== 'hide') grid.querySelector('[data-board-more="' + CSS.escape(key) + '"]')?.focus();
     else toast(boardName(key) + ' hidden', undoTo(before));
