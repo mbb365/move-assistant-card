@@ -2417,7 +2417,47 @@ function finishSession(completed){
   renderInsights();
 }
 
+/* ---- sound cues: so you can follow a move without looking ----
+   Tones are made in the browser. The Start move tap switches audio on (browsers need a tap first). */
+let soundCtx=null,lastCueSecond=null,quietNextStep=false;
+function soundsOn(){return settings().sounds!==false}
+function unlockSound(){
+ if(!soundsOn())return;
+ try{
+   // play through the iPhone silent switch, like a workout timer
+   if(navigator.audioSession)navigator.audioSession.type='playback';
+   soundCtx=soundCtx||new (window.AudioContext||window.webkitAudioContext)();
+   if(soundCtx.state==='suspended')soundCtx.resume();
+ }catch(_){soundCtx=null}
+}
+function tone(freq,at,dur,{to=freq,vol=.25,type='sine'}={}){
+ const t=soundCtx.currentTime+at,osc=soundCtx.createOscillator(),gain=soundCtx.createGain();
+ osc.type=type;
+ osc.frequency.setValueAtTime(freq,t);
+ if(to!==freq)osc.frequency.exponentialRampToValueAtTime(to,t+dur);
+ gain.gain.setValueAtTime(0.0001,t);
+ gain.gain.exponentialRampToValueAtTime(vol,t+.01);
+ gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+ osc.connect(gain).connect(soundCtx.destination);
+ osc.start(t);osc.stop(t+dur+.02);
+}
+const CUES={
+ tick:()=>tone(880,0,.07,{vol:.18}),
+ move:()=>{tone(660,0,.12,{type:'triangle',vol:.3});tone(990,.13,.16,{type:'triangle',vol:.3})},
+ rest:()=>tone(660,0,.4,{to:440,vol:.22}),
+ done:()=>{tone(523,0,.16,{type:'triangle'});tone(659,.16,.16,{type:'triangle'});tone(784,.32,.4,{type:'triangle'})}
+};
+function cue(name){
+ if(!soundsOn()||!soundCtx)return;
+ try{if(soundCtx.state==='suspended')soundCtx.resume();CUES[name]()}catch(_){}
+}
+// three ticks before a move or rest ends
+function cueCountdown(){
+ if(seconds>=1&&seconds<=3&&seconds!==lastCueSecond){lastCueSecond=seconds;cue('tick')}
+}
+
 function showWorkout(){
+ unlockSound();
  showView('workout');startCountdown();
  const first=nextVisibleRoutineIndex(0);
  if(first>=0&&routine[first].kind==='video')prepareVideo(routine[first]);
@@ -2427,16 +2467,19 @@ function startCountdown(){
  countdown.classList.add('active');
  let n=5;
  countNum.textContent=n;
+ cue('tick');
  requestAnimationFrame(burstCountdownPixels);
  clearInterval(countTimer);
  countTimer=setInterval(()=>{
    n--;
    if(n>0){
      countNum.textContent=n;
+     cue('tick');
      burstCountdownPixels();
    }else{
      clearInterval(countTimer);
      countNum.textContent='GO';
+     cue('move');quietNextStep=true;
      burstCountdownPixels();
      setTimeout(()=>{
        countdown.classList.remove('active');
@@ -2671,6 +2714,8 @@ function loadStep(){
  if(s.kind==='video')playVideoStep(s);else stopVideo();
  seconds=s.duration;
  totalPhase=s.duration;
+ lastCueSecond=null;
+ if(quietNextStep)quietNextStep=false;else cue(s.kind==='rest'?'rest':'move');
  title.textContent=s.name;
  meta.textContent=s.group;
  meta.hidden=true;
@@ -2704,17 +2749,17 @@ function tick(){
    const t=Number(yt?.getCurrentTime?.())||0,start=Number(s.start)||0,end=videoEndAt(s);
    totalPhase=Math.max(1,end-start);
    if(t>start||yt?.getPlayerState?.()===YT_PLAYING)seconds=Math.max(0,Math.ceil(end-t));
-   updateTimer();
+   updateTimer();cueCountdown();
    if(t>start&&t>=end-.25)videoFinished();
    return;
  }
- seconds--;updateTimer();if(seconds<=0){if(s.rest>0)startRest(s.rest);else advance()}
+ seconds--;updateTimer();cueCountdown();if(seconds<=0){if(s.rest>0)startRest(s.rest);else advance()}
 }
 function startRest(restSec){
  isResting=true;$('app').classList.add('resting');
  const activeSeg=activeSegment();if(activeSeg)activeSeg.style.setProperty('--segment-progress','100%');
- clearInterval(timer);seconds=restSec;totalPhase=restSec;if(session)moveEvent('rest',{duration:restSec});title.textContent='Rest';meta.textContent=routine[index]?.roundBreakAfter?'Round '+(routine[index].round+1)+' next':'Recovery';updateNextCard();updateTimer();
- timer=setInterval(()=>{if(paused)return;seconds--;updateTimer();if(seconds<=0){clearInterval(timer);advance();timer=setInterval(tick,1000)}},1000)
+ clearInterval(timer);seconds=restSec;totalPhase=restSec;lastCueSecond=null;cue('rest');if(session)moveEvent('rest',{duration:restSec});title.textContent='Rest';meta.textContent=routine[index]?.roundBreakAfter?'Round '+(routine[index].round+1)+' next':'Recovery';updateNextCard();updateTimer();
+ timer=setInterval(()=>{if(paused)return;seconds--;updateTimer();cueCountdown();if(seconds<=0){clearInterval(timer);advance();timer=setInterval(tick,1000)}},1000)
 }
 function advance(){
  isResting=false;
@@ -2730,6 +2775,7 @@ function advance(){
    title.textContent='Complete';meta.textContent='Move finished';meta.hidden=false;digits.textContent='✓';
    {const rounds=totalRounds();stepLabel.textContent=rounds>1?rounds+' rounds done':routine.filter(x=>!x.roundBreak).length+' steps done';}
    finishSession(true);
+   cue('done');
    {const wk=dailySeries(7).reduce((a,d)=>a+d.minutes,0);meta.textContent='Move finished · '+wk+' min in the last 7 days';}
    fill.style.width='100%';updateNextCard();
  }
@@ -2780,6 +2826,7 @@ $('restartSegment').addEventListener('click',()=>{
    const current=routine[index];
    seconds=current.rest;
    totalPhase=current.rest;
+   lastCueSecond=null;cue('rest');
    title.textContent='Rest';
    meta.textContent='Recovery';
    $('app').classList.add('resting');
@@ -2788,7 +2835,7 @@ $('restartSegment').addEventListener('click',()=>{
  }else{
    loadStep();
  }
- timer=setInterval(isResting?()=>{if(paused)return;seconds--;updateTimer();if(seconds<=0){clearInterval(timer);advance();timer=setInterval(tick,1000)}}:tick,1000);
+ timer=setInterval(isResting?()=>{if(paused)return;seconds--;updateTimer();cueCountdown();if(seconds<=0){clearInterval(timer);advance();timer=setInterval(tick,1000)}}:tick,1000);
 });
 
 function bindFuseHold(button,fill,duration,onComplete){
@@ -3010,6 +3057,13 @@ if(settings().trailStrength!==undefined)trailStrength=settings().trailStrength;
 if(settings().trailMaxAge!==undefined)trailMaxAge=settings().trailMaxAge;
 applyMotionSettings();
 
+const soundsToggle=$('soundsToggle');
+soundsToggle.classList.toggle('on',soundsOn());
+soundsToggle.addEventListener('click',()=>{
+  saveSetting('sounds',!soundsOn());
+  soundsToggle.classList.toggle('on',soundsOn());
+  if(soundsOn()){unlockSound();cue('move')}
+});
 pixelTrailToggle.addEventListener('click',()=>{
   trailEnabled=!trailEnabled;
   pixelTrailToggle.classList.toggle('on',trailEnabled);
