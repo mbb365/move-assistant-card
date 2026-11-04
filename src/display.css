@@ -353,9 +353,18 @@ button.tfAreaIcon{cursor:pointer}
 .tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}
 .tfABigMain.long{font-size:40px}
 .tfABigUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}
-.tfABigSub{color:var(--muted);font:400 16px/1.2 var(--font)}
+.tfABigSub{max-width:100%;overflow:hidden;color:var(--muted);font:400 16px/1.2 var(--font);white-space:nowrap;text-overflow:ellipsis}
 /* the controls: two to a row inside the padding, so their icons line up with the name; the icon is the button */
-.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+/* an open area's tiles always hold two rows' room (Matt, 4 Nov), one row on their bottom edge, so its reading stays where
+   two rows put it, however many tiles there are; the reading is one line under the number, cut with "…" */
+.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:calc(2 * var(--tile-min));align-content:end}
+.tfABig{max-width:100%}
+/* an area with no tiles keeps the same room under its reading */
+.panelExpanded:not(:has(.tfATiles)) .tfABig{margin-bottom:calc(2 * var(--tile-min) + 16px)}
+/* a folded area's number sits on the open area's number's baseline (Matt, 4 Nov), placed from the card's bottom as the
+   open one is: 10 padding, two rows of tiles (120), 16, then the reading, whose number's baseline is 32.5 above its foot;
+   the folded number's own baseline is 8.4 above its box's foot, so its box sits 170 up */
+#app.tfBoard .tfAreas[data-rows="5"] .tfACMain{position:absolute;left:10px;right:10px;bottom:170.3px;max-width:none;text-align:center}
 .tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}
 .tfATile>:is(div,.tfName):last-child{min-width:0}
 .tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}

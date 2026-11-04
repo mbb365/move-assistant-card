@@ -1,4 +1,4 @@
-const zp = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;--color-fill-bright:#f1f1f1;--color-text-primary:#d9d9d9;--color-text-muted:#969696;--color-text-on-bright:#090909;--color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;--color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;--color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;--color-state-hover:rgba(255,255,255,.08);--color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;--color-bg-segment-selected:#2b2b2b;--wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;--wx-cloud-bright:#f1f1f1;--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}#app{--bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);--tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);--segment:var(--color-bg-tile);--seg-on:var(--color-bg-segment-selected);--scroll-thumb:var(--color-bg-tile);--control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-chip);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);--border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);--bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);--hover:var(--color-state-hover);--wash-2:var(--color-state-hover);--danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);--primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:var(--color-bg-resting)}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,var(--color-bg-card))}#app.light{--color-bg-ground:#eeebe8;--color-bg-card:#fbf9f6;--color-bg-tile:#f3efea;--color-fill-bright:#26221e;--color-text-primary:#26221e;--color-text-muted:#6a625a;--color-text-on-bright:#fbf9f6;--color-text-on-accent:#26221e;--color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-accent-secondary:#03a9f4;--color-bg-resting:#7dbb98;--color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#b42a2a;--color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);--color-bg-chip:#fbf9f6;--color-fill-selected:#26221e;--color-text-on-selected:#fbf9f6;--color-bg-segment-selected:#fbf9f6;--color-accent-primary:#0288d1;--color-border-focus:#0288d1;--scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}:host(.lightBody){background:#eeebe8;color-scheme:light}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.activityCard,.weekly{grid-column:span 6}.activityCard,.weekly{min-height:288px}.sourceTag{display:inline-flex;margin-top:11.2px;padding:4px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:inherit;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:var(--color-text-on-accent)!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:var(--inset);margin-bottom:var(--inset)}.activityIcon{display:grid;place-items:center}.icon{width:var(--glyph-size);height:var(--glyph-size);flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon *{vector-effect:non-scaling-stroke}.addPanelPlus .icon,.addFab .icon{width:24px;height:24px}.checkinTabIcon .icon{width:18px;height:18px}.weekTick .icon{width:1em;height:1em}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 16px}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:42px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 16px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:42px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}.switch.on{background:var(--color-accent-primary);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.wxLayoutBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.wxLayoutBtn[aria-pressed=true]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 12px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--color-fill-selected);color:var(--color-text-on-selected)}@media (max-width:900px){.weekCopy{white-space:normal}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}}:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary,.wxStyleBtn,.tfSeg>button){border-radius:var(--r-inner)!important}.card,.panel,.tile,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#fbf9f638}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis;field-sizing:content}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.insightCard{display:grid;gap:22.4px}.day{display:grid;gap:6.4px;justify-items:center}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:var(--inset);border:0}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px;border:.32px solid var(--line);border-right:0;border-radius:var(--r-fine) 0 0 var(--r-fine)!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{box-shadow:0 0 0 2.4px var(--color-bg-ground),0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}}.insightCard{grid-column:span 9;align-content:start}@media (max-width:1200px){.insightCard{grid-column:span 8}}@media (max-width:900px){.insightCard{grid-column:auto}}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:4px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-tile:Geist,var(--font);--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:52px;--t-title:22px;--t-card-title:18px;--t-value:16px;--t-section:18px;--t-strong:14px;--t-body:12px;--t-caption:12px;--lh-display:1.05;--lh-title:1;--t-wx-temp:64px;--t-wx-range:24px;--t-tile-title:14px;--lh-tile-title:20px;--t-tile-detail:16px;--lh-tile-detail:20px;--inset:10px;--r-card:34px;--r-tile:24px;--r-inner:16px;--r-fine:12px;--tile-min:60px;--chip-size:40px;--glyph-size:34px;--gutter:22px;--grid-gap:16px}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}:where(#app) strong,:where(#app) b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.feelHeadline,.settingsTitle{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.activityTitle{font-size:var(--t-card-title);font-weight:var(--w-medium);font-style:italic;line-height:1.1;letter-spacing:-.02em;text-box:trim-both cap alphabetic}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.timeLabel,.moveItemName,.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.moveMeta,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.wxLayoutBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.routineSummary,.helpSteps li,.helpNote,.createStepSummary{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.scaleEnds,.peekAt,.upcomingMeta,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.fieldError,.globalTimingValue,.createStepNumber,.feelMeterTop,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}.insightCard{display:flex;flex-direction:column;gap:0}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#26221e;--muted:rgba(38,34,30,.85);--accent-text:#26221e;--line:rgba(38,34,30,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable :is(th,td):first-child{padding-left:4px}.metaTable :is(th,td):last-child{padding-right:4px}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:var(--r-card) var(--r-card) 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--inset)}.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}.upcomingCard{padding:var(--inset)}.workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}.workoutPanel.active{border-radius:var(--r-tile)}.workoutPanel.addPanel{padding:var(--inset)}.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--inset);gap:var(--inset)}.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}.activityRows{gap:12px}.timeTile{padding:var(--inset);gap:var(--inset)}.timeHeader{gap:var(--inset)}.createPresetBtn,.createExtraToggle{padding:var(--inset)}.moveMeta,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}.createPresetBtn.active span{color:var(--on-bright)}.moveMeta,.activityRowMeta{margin-top:0}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);font-size:20px}.navBtn,.back{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);min-height:0;padding:0;border-radius:var(--r-inner)}.moveRow.editing{padding:var(--inset)}.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--inset)}.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-inner);background:var(--icon-bg);color:var(--muted)}.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}.moveRow.restItem .dragHandle{background:transparent}.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}.moveRow.restItem .dragHandle:hover{background:var(--hover)}.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer}.segBtn:hover{background:var(--hover)}.moveActions.seg{gap:4px}.moveActions .segBtn{min-width:100px}.moveActions .editBtn{background:var(--seg-on)}.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}.moveActions .removeBtn svg{display:block;width:24px;height:24px}.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}.moveActions .removeBtn.holding{color:#fff}@media (max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}.tabs.rubberTabs{padding:4px;gap:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-fine);background:var(--seg-on)}.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}.tabs.rubberTabs .tab.active{color:var(--text)}#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;transition:background .16s ease,opacity .16s ease}.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--color-accent-primary);opacity:1}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}@media (max-width:900px){.workoutPanel:not(.addPanel){border-radius:var(--r-tile);padding:var(--inset)}}@media (max-width:620px){:host{--gutter:0px;--grid-gap:8px}}@media (max-width:620px){.modalBackdrop{padding:0}.modal,.modal:not(.createMode){width:100%;height:100%;max-height:none;border-radius:0;border:0}.modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}.modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}}#app{--group-bg:var(--card)}.modal,.sheet{--group-bg:var(--tile)}.view{padding-left:var(--gutter);padding-right:var(--gutter)}.grid{gap:var(--grid-gap)}.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow):before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}.setupText{display:grid;gap:2px;min-width:0}.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}.setupRow .rangeTrack[hidden]{display:none}.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}.rangeTrack.setupSlider:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}.setupSlider .rangeFill:after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}.setupSlider:focus-within{outline:0}.setupSlider:focus-within .rangeFill:after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}.stepBtn:hover:not(:disabled){background:var(--hover)}.stepBtn:disabled{opacity:.35;cursor:default}.stepCount{min-width:24px;text-align:center;font:600 var(--t-strong)/1 var(--font);font-variant-numeric:tabular-nums}.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}.editNameLabel{padding:0 4px}.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}#settingsView .card+.card{margin-top:36px}#settingsView .paneTitle{margin:0 4px}#settingsView .note{margin:0 4px 4px}#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}#settingsView .helpSteps{gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}#settingsView .helpSteps li{border-radius:0;background:transparent}#settingsView .helpSteps li+li:after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}.activityCard,.insightCard{grid-column:span 3}.weatherCard,.grid.noWeather .activityCard,.grid.noWeather .insightCard,.grid.noActivity .insightCard{grid-column:span 6}.grid.noActivity.noWeather .insightCard{grid-column:span 12}@media (max-width:1199px) and (min-width:901px){.activityCard,.insightCard{grid-column:span 6}.weatherCard,.grid.noActivity .insightCard{grid-column:span 12}}@media (max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}.jointRows{gap:0;padding:4px 0;border-radius:var(--r-tile);background:var(--tile)}.jointRows>.activityRow{background:transparent}.insightCard .jointRows{flex:1;align-content:space-evenly}.weatherCard{display:flex;flex-direction:column}.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--inset)}.wxNow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wxTempBlock{display:grid;gap:4px;min-width:0}.wxTemp{display:flex;align-items:flex-start;gap:2px}.wxPlace{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}.wxIcon{position:relative;display:block;flex:0 0 auto;width:54px;height:54px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wxIcon>svg,.wxLayer>svg{display:block;width:100%;height:100%}:is(.wxIcon,.wxLayer).clear,:is(.wxIcon,.wxLayer).partly{background:var(--wx-clear)}:is(.wxIcon,.wxLayer).cloudy{background:var(--wx-cloudy)}:is(.wxIcon,.wxLayer).rain,:is(.wxIcon,.wxLayer).snow{background:var(--color-text-muted)}:is(.wxIcon,.wxLayer).night{background:var(--wx-night)}.wxIcon .wxBright{fill:var(--wx-cloud-bright)}.wxIcon .wxCloudLight{fill:var(--wx-cloudy)}.wxIcon .wxAccent{fill:var(--color-accent-primary)}.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}.wxIcon>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxIcon :is(.wxSunDisc,.wxMoonPath,.wxBright,.wxCloudLight,.wxDrop,.wxFlake,.wxTwinkle){transform-box:fill-box;transform-origin:center}#app.wxMotion .wxIcon .wxSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}#app.wxMotion .wxIcon .wxMoonPath{animation:wxBob 5.2s ease-in-out infinite}#app.wxMotion .wxIcon :is(.wxBright,.wxCloudLight){animation:wxDrift 6.4s ease-in-out infinite}#app.wxMotion .wxIcon .wxDrop{animation:wxFall .95s linear infinite}#app.wxMotion .wxIcon .wxFlake{animation:wxSnow 3.2s linear infinite}#app.wxMotion .wxIcon .wxTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}@keyframes wxBreathe{50%{transform:scale(1.03)}}@keyframes wxBob{50%{transform:translateY(-1px)}}@keyframes wxDrift{0%,to{transform:translate(-1.5px)}50%{transform:translate(1.5px)}}@keyframes wxFall{0%{transform:translateY(-5px);opacity:0}18%,72%{opacity:1}to{transform:translateY(9px);opacity:0}}@keyframes wxSnow{0%{transform:translateY(-6px);opacity:0}20%,75%{opacity:1}to{transform:translate(1.5px,8px);opacity:0}}@keyframes wxTwinkle{50%{opacity:.35}}.wxLayer{position:absolute;top:0;right:0;bottom:0;left:0;display:block}.wxLayer.wxOut{animation:wxFadeOut .7s cubic-bezier(.3,0,1,1) forwards}@keyframes wxFadeOut{to{opacity:0}}.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}.wxPlace,.wxCondName{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxNow[role=button],.wxDayTile{cursor:pointer;border-radius:var(--r-tile)}:is(.wxNow,.wxDayTile,.wxStripDay):focus-visible{outline:2px solid var(--color-border-focus);outline-offset:2px}.wxStrip{position:relative;flex:1;display:flex}.wxStripDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}.wxStripDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);cursor:pointer}@media (hover:hover){.wxStripDay:hover{background:var(--color-state-hover)}}.wxStripGap{align-self:stretch;height:90px}.wxStripDay .wxTemps{display:grid;justify-items:center;gap:8px}.wxStripSky{position:absolute;left:0;top:calc(var(--inset) * 2 + var(--lh-tile-detail));width:100%;height:90px;border-radius:var(--r-inner);pointer-events:none;image-rendering:pixelated}.wxStripDay .wxDayName,.wxStripDay .wxHigh,.wxGraphDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxStripDay .wxLow{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);color:var(--muted)}.wxBackdrop{z-index:170}.wxDialogCard{width:min(860px,100%);display:grid;gap:var(--inset)}.wxDialogHead{display:flex;align-items:center;justify-content:space-between;gap:var(--inset);padding-left:var(--inset)}.wxDialogHead .activityTitle{margin:0}.wxDialogClose{background:transparent}.wxGraph{display:grid;gap:8px;touch-action:pan-y;cursor:ew-resize;border-radius:var(--r-tile);user-select:none;-webkit-user-select:none}.wxGraph:focus{outline:none}.wxGraph:focus-visible{outline:2px solid var(--color-border-focus);outline-offset:4px}.wxGraphDays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));text-align:center;color:var(--muted)}.wxGraphSky{position:relative;height:200px;border-radius:var(--r-tile);overflow:hidden;background:var(--tile)}.wxGraphSky>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxGraphLine{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none}.wxLineLabel{font-family:var(--font-tile);font-size:14px;font-weight:var(--w-semibold);text-anchor:middle;paint-order:stroke;stroke-width:3px;stroke-linejoin:round}@media (max-width:620px){.wxGraphSky{height:160px}.wxDialogNow{flex-wrap:wrap}}.segBtn{transition:background .15s ease,transform .18s cubic-bezier(.34,1.46,.64,1),box-shadow .15s ease,color .15s ease}.segBtn:hover{background:transparent}@media (hover:hover){.segBtn:hover{background:var(--color-state-hover)}}.tabs.rubberTabs .tab.active:hover{background:transparent}.segBtn:active{background:var(--color-state-pressed);transform:scale(.97)}.segBtn:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--color-border-focus)}.segBtn:disabled{opacity:.4;cursor:default}.moveActions.seg{background:transparent;transition:background .18s ease}.moveActions.seg:focus-within{background:var(--seg-bg)}@media (hover:hover){.moveActions.seg:hover{background:var(--seg-bg)}}.moveActions .editBtn,.moveActions .editBtn:hover{background:transparent}.moveActions .removeBtn,.moveActions .removeBtn:hover{background:transparent;color:var(--text)}@media (hover:hover){.moveActions .editBtn:hover{background:var(--color-state-hover)}.moveActions .removeBtn:hover{background:var(--danger-fill);color:var(--color-text-on-danger)}}.moveActions .removeBtn:active{background:linear-gradient(var(--color-state-pressed-on-bright),var(--color-state-pressed-on-bright)),var(--danger-fill);color:var(--color-text-on-danger)}.moveActions .removeBtn.holding{background:var(--danger-bg);color:var(--color-text-on-danger)}.moveActions .removeFill{background:var(--danger-fill)}.activityIcon{color:var(--muted)}.activityRowIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--text)}.wxTempBlock{padding-top:6px}.motionRangeWrap input[type=range]{accent-color:var(--bright);background:transparent}', jp = '#app{--hc-on-accent:#f4f3f3;--hc-open-edge:rgba(255,255,255,.1);--hc-hair:inset 0 0 0 .2px var(--line),inset 0 -.2px 0 var(--line);--hc-hair-all:inset 0 0 0 .4px var(--line)}#app.light{--hc-open-edge:#e3e3e3}#homeView .card{padding:var(--inset);border-radius:var(--r-card);box-shadow:var(--hc-hair)}#homeView .card:has(>.activityHeader){padding-top:14px;box-shadow:var(--hc-hair-all)}#homeView .activityCard{min-height:0}#homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}#homeView .activityHeader .activityIcon{display:none}:is(#homeView,.tfMoreBackdrop,.tfEditTray,.tfMiniPhone) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}#homeView .card .activityRows{gap:0}#homeView .card .jointRows{padding:0;background:transparent}#homeView .card .activityRow{min-height:var(--tile-min);padding:var(--inset);gap:12px;border-radius:var(--r-tile);grid-template-columns:var(--chip-size) minmax(0,1fr);background:transparent}#homeView .activityRowIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent)}#homeView .activityRowName{font:600 14px/20px var(--font-tile)}#homeView .activityRowMeta{font:400 16px/1.15 var(--font);margin:0}#homeView .card .activityRow.tap{cursor:pointer}#homeView .card .activityRow:is(.tap,:has(.tfName)){transition:background .15s ease,box-shadow .15s ease}#homeView .card .activityRow:is(.tap,:has(.tfName)):hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}#homeView .weatherCard{padding:20px}#homeView .wxWide{gap:16px}#homeView .wxIcon.large{border-radius:28px}#homeView .wxCondition{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:10px 16px;border-radius:28px}#homeView .wxCondName{font:400 18px/1.2 var(--font)}#homeView .weatherCard .activityRow .wxIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}@media (max-width:620px){#homeView .weatherCard{padding:var(--inset)}#homeView .wxIcon.large{width:60px;height:60px;border-radius:20px}#homeView .wxDeg{font-size:46px}#homeView .wxRange{font-size:20px}}.tfLabel{grid-column:1/-1}.tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}.tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--muted)}#app.house.light{--hc-icon:#e6e6e6}#app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}@media (max-width:620px){#app.house{--grid-gap:16px}#app.house .settingsTitle{font-size:32px}#app.house .tfAreaHead .back{margin-block:calc((32px * .92 - 40px) / 2)}#app.house .tfAreaHead .back svg{width:24px;height:24px}}@container wb-bento (width < 652px){#app.house .wbBento{gap:var(--grid-gap)}#app.house .wbItem[data-size=tile]{width:calc((100% - var(--grid-gap)) / 2)}}#app.house #homeView{overflow-anchor:none}:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfCard .activityRow{display:grid;align-items:center}#homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}.tfCard.open>.activityHeader{display:none}.tfOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.tfOpenHead{display:flex;align-items:center;gap:12px}.tfOpenHead>div:nth-child(2){flex:1;min-width:0}.tfBack{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}.tfBack .icon{width:34px;height:34px}.tfGraph{display:block;width:100%;flex:1;min-height:80px}.tfGraph text{fill:var(--muted);font:400 11px var(--font)}.tfAction{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}.tfAction>.tfActionHead{margin-bottom:auto}.tfActionHead>:is(div,.tfName){min-width:0}.tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}:is(.tfBar,.tfTilt).held{outline:2px solid var(--primary);outline-offset:-2px}.tfBar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#ffc247,#fa0)}.tfBar .was{position:absolute;top:12px;bottom:12px;width:2px;margin-left:-1px;border-radius:1px;background:var(--text);opacity:.22}.tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}.tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.tfAction{grid-column:span 2}@container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction{grid-column:auto}}.tfBar:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}.tfAction :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.house .moveSection{display:none}#app.house #settingsView :is(.rubberTabs:not(.houseTabs),.settingsPane:not(#housePane)){display:none}#app.house #housePane{display:block}#housePane .houseTab{display:none}#housePane .houseTab.active{display:block}#housePane .toggleRow:has(>.switch){flex-direction:row-reverse;justify-content:flex-end}#housePane .toggleRow:has(>.switch)>div:first-child{flex:1}#housePane .settingsSelect{flex:none;width:220px}@media (max-width:620px){#housePane .settingsSelect{width:150px}}#housePane .wxLayoutBtn:disabled{opacity:.4;cursor:default}.tfTableNote{margin:0 0 12px;padding:10px 14px;border-radius:var(--r-inner);background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--text)}.tfLightTable td{white-space:nowrap}.tfLightTable td strong{font:600 14px/20px var(--font-tile)}.tfLightTable .settingsSelect{min-width:150px}.tfLightTable .settingsSelect:disabled{opacity:.4}.tfDacPad{min-width:0}.tfDacPad>dual-controller-v3{display:block}#app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}#app.house .checkinTab,#app.houseBento #weatherCard{display:none}.tfBento{grid-column:1/-1;min-width:0}.tfIcon.art{background-size:cover;background-position:center}.tfBar.ct{background:linear-gradient(90deg,#ff9e45,#ffd3a3 32%,#fff7ee 55%,#d7e7ff)}.tfBar.hue{background:linear-gradient(90deg,red,#ff0 17%,#0f0 33%,#0ff,#00f 67%,#f0f 83%,red)}.tfBar b{position:absolute;top:8px;bottom:8px;width:4px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 0 .5px #0006,0 1px 3px #00000040}.tfAction:not(.on) .tfBar:is(.ct,.hue){opacity:.45}.tfBar:is(.pos,.vol) i{background:var(--primary)}:is(.tfStep,.tfSeg,.tfBlocks,.tfTilt,.tfChips){font-family:var(--font-tile)}.tfStep{display:flex;align-items:center;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);cursor:pointer}.tfStep svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfStep output{flex:1 0 auto;white-space:nowrap;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}.tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfSeg button{flex:1;min-width:0;min-height:0;padding:0 6px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSeg button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfSeg button:not([aria-pressed]){color:var(--text)}.tfSeg button:disabled{opacity:.4;cursor:default}.tfSeg svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfChips{display:flex;flex-wrap:wrap;gap:8px}.tfChips button{height:40px;min-height:0;padding:0 14px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer;box-shadow:var(--hc-hair-all)}.tfChips button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfCard .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfCardGraph{height:120px;padding:0 var(--inset)}.tfCardGraph .tfGraph{height:100%}.tfAction.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfName{flex:1;display:block;min-width:0;min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}.tfName>span{display:block}.tfTitleBtn{min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;text-align:left;cursor:pointer}.tfAreas{grid-column:1/-1;min-width:0}.tfAreaPanel .workoutPanelTop>div{min-width:0}.tfAreaPanel .sourceTag{margin-right:4px}.tfBlocks{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;container:blocks/inline-size}.tfBlocks>span{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:4px;transition:background .12s}.tfBlocks>span:first-child{border-radius:12px 4px 4px 12px}.tfBlocks>span:nth-child(4){border-radius:4px 12px 12px 4px}.tfBlocks:not(.fine)>span:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}.tfBlocks i{position:absolute;inset:0 auto 0 0;border-radius:inherit;background:var(--primary)}.tfBlocks b{position:relative;color:var(--text);font:600 14px/1 var(--font-tile);transition:opacity .15s}.tfBlocks b small{font:inherit}@container blocks (width < 164px){.tfBlocks b small{display:none}}.tfBlocks b.lit{color:#fff}.tfBlocks.fine b{opacity:0}.tfTip{position:absolute;bottom:calc(100% + 8px);z-index:2;transform:translate(-50%);padding:3px 8px;border-radius:7px;background:var(--text);color:var(--card);font:700 12px/16px var(--font-tile);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s}.tfBlocks.fine .tfTip{opacity:1}.tfTilt{position:relative;display:flex;align-items:center;justify-content:space-between;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.tfTilt i{position:absolute;top:4px;bottom:4px;left:4px;border-radius:12px;background:var(--primary)}.tfTilt span{position:relative;padding:0 16px;color:var(--text);font:600 14px/1 var(--font-tile)}.tfTilt span.lit{color:#fff}:is(.tfBlocks,.tfTilt):focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfCoverBtns svg{fill:none}.tfCoverArt{align-self:center;width:min(294px,100%,max(150px,100vh - 520px));aspect-ratio:1;border-radius:24px;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.tfCoverArt.x{cursor:ew-resize}.tfCoverArt.y{cursor:ns-resize}.tfCoverArt:focus-visible{outline:none;box-shadow:0 0 0 3px var(--primary)}.tfCoverArt svg{display:block;width:100%;height:100%}.tfSide{grid-column:1/-1;align-self:start;min-width:0}.tfSideLabel{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-right:22.4px}#homeView .tfSide.tfSums .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(150px,calc(50% - 10px)),1fr))}#homeView .tfSide.tfFavs .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(240px,calc(50% - 10px)),1fr))}#homeView .tfSum .tfIcon{background:var(--sum,var(--hc-icon));color:var(--sum-ink,var(--hc-icon-ink))}.tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSide .activityRow>div{min-width:0}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfMoreList{display:flex;flex-direction:column;gap:14px}.tfMoreGroupName{margin:0 0 4px 10px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tfMoreTiles.single{grid-template-columns:1fr}.tfMoreList .activityRow{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile);transition:background .15s ease}.tfMoreList .activityRow:hover{background:var(--tile)}.tfMoreList .activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreList .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreList .tfPick{grid-template-columns:var(--chip-size) minmax(0,1fr) auto}.tfMoreList :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfStar{display:grid;place-items:center;width:34px;height:34px;min-height:0;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}.tfStar[aria-pressed=true]{color:#fa0}.tfStar svg{width:24px;height:24px}.tfMoreHead .activityTitle{flex:1;min-width:0}.tfMoreBackdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:180;display:grid;place-items:center;padding:16px;background:#00000073}.tfMoreBackdrop,.tfMore,.tfMoreSideInner,.tfMoreSideBody{overscroll-behavior:contain}.tfMoreBackdrop[hidden]{display:none}.tfMore{flex:none;width:440px;max-width:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreHead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}.tfMoreState{font:500 28px/1.15 var(--font-tile);letter-spacing:-.01em}.tfMoreSub{margin-top:3px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreState.live{color:var(--primary)}.tfMoreRows{display:flex;flex-direction:column}.tfMoreRow{display:flex;justify-content:space-between;gap:16px;padding:10px 0;box-shadow:inset 0 -.4px 0 var(--line);font:400 14px/20px var(--font)}.tfMoreRow span:first-child{color:var(--muted)}.tfMoreNote{color:var(--muted);font:400 12px/16px var(--font)}@media (max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}}@media (max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}@media (max-width:900px){.tfCard,.tfBlock{grid-column:auto}}#app.showDensity #homeView :is(.card,.tfAction){position:relative;outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}#app.showDensity #homeView :is(.card,.tfAction):after{content:attr(data-h);position:absolute;top:6px;right:12px;z-index:5;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;font:600 11px/16px var(--font);pointer-events:none}.densityBadge{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;transform:translate(-50%);display:flex;align-items:center;gap:10px;padding:8px 16px;border-radius:99px;background:var(--bright);color:var(--on-bright);font:600 13px/18px var(--font);box-shadow:0 6px 20px #00000040;pointer-events:none;white-space:nowrap}.densityBadge[hidden]{display:none}.densityBadge b{font-variant-numeric:tabular-nums}.densityBadge small{font-weight:400;opacity:.75}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard){container-type:inline-size}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard) .activityRows{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}@container (max-width:279px){#homeView .card .activityRows{grid-template-columns:1fr}}@media (min-width:1200px){#homeView .grid>.card:is(.activityCard,.insightCard){grid-column:span 6}#homeView .grid>.weatherCard{grid-column:span 6}}.tfMorePair{position:relative;display:flex;align-items:stretch;max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}#app[data-more=sheet] .tfMoreBackdrop{place-items:end center;padding:0}#app[data-more=sheet] .tfMorePair{max-height:85vh;animation:tfSheetIn .28s cubic-bezier(.2,.7,.3,1)}#app[data-more=sheet] .tfMorePair.still{animation:none}#app[data-more=sheet] .tfMore{width:min(640px,100vw)}#app[data-more=sheet] :is(.tfMore,.tfMoreSideInner){border-radius:var(--r-card) var(--r-card) 0 0}@keyframes tfSheetIn{0%{transform:translateY(100%)}}.tfDetailsBtn{display:flex;flex:none;align-items:center;justify-content:space-between;gap:12px;width:100%;height:46px;min-height:0;padding:0 12px 0 16px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer}.tfDetailsBtn svg{width:20px;height:20px;transition:transform .2s ease}.tfDetailsBtn[aria-expanded=true] svg{transform:rotate(180deg)}.tfMoreSide{position:absolute;top:0;bottom:0;left:100%;width:0;overflow:hidden;visibility:hidden;transition:width .28s cubic-bezier(.2,.7,.3,1),visibility 0s linear .28s}.tfMorePair.details .tfMoreSide{width:312px;visibility:visible;transition:width .28s cubic-bezier(.2,.7,.3,1)}.tfMoreSideInner{box-sizing:border-box;display:flex;flex-direction:column;gap:14px;width:300px;height:100%;margin-left:12px;padding:20px;overflow:auto;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreSideInner .tfMoreHead{justify-content:flex-start}.tfMorePair.over .tfMoreSide{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;width:auto;transform:translate(24px);opacity:0;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease,visibility 0s linear .25s}.tfMorePair.over.details .tfMoreSide{width:auto;transform:none;opacity:1;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease}.tfMorePair.over .tfMoreSideInner{width:100%;margin:0}@media (max-width:620px){.tfMoreSideInner{border-radius:var(--r-card) var(--r-card) 0 0}}@media (prefers-reduced-motion:reduce){.tfMorePair,.tfMoreSide{animation:none!important;transition:none!important}}#homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}.tfAreaPanel .workoutPanelTop{justify-content:flex-start;gap:14px;padding:0}.tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}.tfAreaPanel .icon{width:22px;height:22px}.tfATitle{display:flex;flex-direction:column;align-items:flex-start;min-width:0}#app .tfAName{max-width:100%;min-height:0;padding:0;border:0;border-radius:6px;background:none;color:var(--text);font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.tfAreaIcon{flex:none;border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}button.tfAreaIcon{cursor:pointer}.tfAreaGlyph{display:grid;place-items:center}.tfAreaHead{grid-column:1/-1;margin-bottom:0}#app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{margin:0;padding:0;justify-content:flex-start}#app.tfWeatherOpen .tfBento.tfPegs .wbBento{display:grid;grid-template-columns:repeat(var(--peg-n),var(--peg-w));grid-auto-rows:60px;grid-auto-flow:row dense;align-items:stretch;gap:16px;max-width:none}#app.tfWeatherOpen .tfBento.tfPegs .wbItem{width:auto;min-height:0;align-self:stretch;display:flex;flex-direction:column}#app.tfWeatherOpen .tfBento.tfPegs .wbItem>*{flex:1;min-height:0}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=wide]{grid-column:span 2;grid-row:span 5}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=double]{grid-column:span 2;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=tile]{grid-column:span 1;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbCard.wbSquare{aspect-ratio:auto}#app.tfWeatherOpen .tfBento.tfPegs .wbWeather .wbNow{margin-bottom:auto}#app.tfWeatherOpen .tfBento.tfPegs :is(.wbStripScroll,.wbBars .wbDayBars,.wbBars.wbTabbed .wbDayBars){min-height:0}.tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}.tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}.tfABigMain.long{font-size:40px}.tfABigUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}.tfABigSub{color:var(--muted);font:400 16px/1.2 var(--font)}.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}.tfATile>:is(div,.tfName):last-child{min-width:0}.tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACollapsed{flex-direction:column;justify-content:space-between;padding:18px 0 10px;container-type:inline-size}.tfACTop{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:calc(100% - 20px)}.tfACMain{max-width:calc(100% - 20px);font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACTiles{display:grid;grid-template-columns:repeat(2,60px);min-height:60px}.tfACTiles:has(>:nth-child(3)){margin-top:-60px}.tfACTile{display:grid;place-items:center;width:60px;height:60px}.tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}.tfACTile .tfIcon.alert{background:#e53935;color:#fff}@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}.tfACTiles:has(>:nth-child(2)){margin-top:-60px}}.tfMore.wide{width:min(1040px,100vw - 32px);padding:40px;gap:28px;background:var(--bg)}#app[data-more=sheet] .tfMore.wide{width:min(1040px,100vw)}.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{gap:28px;padding:40px;background:var(--bg)}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:-20px -20px 0 0}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead) .activityTitle{font-size:24px}@media (max-width:620px){#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:0}}@media (min-width:621px){#app:not([data-more=sheet]) .tfMoreBackdrop.wide{place-items:start center}}.tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}.tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}.tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}.tfMoreActions .tfAction{grid-column:auto}.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfMoreActions>.activityRow.alert .activityRowMeta{color:var(--danger)}@media (max-width:620px){.tfMore.wide,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{width:100%;padding:20px 16px;gap:20px}}#app.tfDash #homeView{max-width:none;container:tfdash/inline-size}#app.tfDash #homeView .grid{display:flex;flex-wrap:wrap;align-items:flex-start;align-content:flex-start}#app.tfDash .tfDashTitle{order:1!important;flex:0 0 100%;margin:0}#app.tfDash .tfDashBarRow{order:2!important;flex:0 0 100%;display:flex;min-width:0}#app.tfDash .tfDash-wx{order:var(--o,3)!important}#app.tfDash .tfAreas{order:var(--o,4)!important}#app.tfDash .tfDash-favs{order:var(--o,5)!important}#app.tfDash .tfDash-act{order:var(--o,6)!important}#app.tfDash .tfDash-energy{order:var(--o,7)!important}#app.tfDash .tfDash-avg{order:var(--o,8)!important}#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar){order:var(--o,8)!important}#app.tfDash .tfDashTiles>*{order:var(--o,9)}#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}#app .tfNotAdded{display:none!important}#app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}@media (min-width:901px){#app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}#app.tfDash .tfAreaGallery::-webkit-scrollbar{display:none}#app.tfDash .tfAreaPanel.active{flex:1 0 409px}#app.tfDash .tfAreaPanel:not(.active){flex:0 0 128px}}#app.tfDash .tfDash-bar{flex:none;max-width:100%}#app.tfDash #homeView .card.tfDash-bar{container-type:normal}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(var(--bar-cols,6),auto)}#homeView .card.tfDash-bar .activityRow{min-width:200px}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:visible;text-overflow:clip}@container tfdash (width < 640px){#app.tfDash .tfDash-bar{width:100%}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#homeView .card.tfDash-bar .activityRow{min-width:0}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:hidden;text-overflow:ellipsis}#app.tfDash .tfDashTitle{padding:0 16px;box-sizing:border-box}}#app.tfDash .tfDashCard:not(.tfDash-bar){container-type:inline-size}#homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}#homeView .card.tfDash-act>.activityRows{flex:none;margin-top:auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}#homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}#homeView .card.tfDash-energy .activityRows{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}.tfDashCard :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfDashCard .activityRow>*{min-width:0}.tfDashNone{margin:0;padding:var(--inset) 18px;color:var(--muted)}.tfDashBento{display:flex;flex-direction:column;min-width:0}#app:not(.tfDash) .tfDashBento{display:none}.tfDashBento:not(:has(.wbItem:not([hidden]))){display:none}.tfDashBento .wb{flex:1;display:flex;flex-direction:column;min-width:0}.tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}#app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}#app.house .tfDashBento .wbItem[data-size]{width:100%}#app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}.tfDash-wx .wbCondition{display:none}#app.tfDash .tfDashTiles{display:contents}.tfDashTiles>:is(.tfAction,.tfDac){flex:none;align-self:stretch;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}#app.tfBoard #homeView .grid{display:block;position:relative}#app.tfBoard .tfBoardItem{position:absolute;z-index:1;margin:0;max-width:none;min-height:0;box-sizing:border-box}#app.tfEditing.tfBoardReady .tfBoardItem{transition:left .25s cubic-bezier(.2,.7,.3,1),top .25s cubic-bezier(.2,.7,.3,1),height .25s cubic-bezier(.2,.7,.3,1)}#app.tfBoard .tfBoardHidden{display:none!important}#app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}#app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%;min-height:0}.tfBoardCells{position:absolute;top:0;left:0;z-index:0;display:grid;grid-auto-rows:60px;gap:16px;pointer-events:none}.tfBoardCells i{border-radius:var(--r-inner);background:color-mix(in srgb,var(--text) 7%,transparent)}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfDashBento){outline:1.5px solid var(--primary);outline-offset:-1.5px;border-radius:var(--r-card)}#app.tfEditing .tfBoardItem:is(.tfAction,.tfDac){border-radius:28px}#app.tfEditing .tfAreas{border-radius:24px}#app.tfEditing .tfDashBento .wbCard{outline:1.5px solid var(--primary);outline-offset:-1.5px}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;overflow:visible;-webkit-user-select:none;user-select:none;touch-action:none}.tfEditChips{position:absolute;inset:-8px -8px auto -8px;z-index:5;height:40px;display:flex;justify-content:flex-end;pointer-events:none}.tfEditGrip{position:absolute;top:-10px;left:50%;display:grid;place-items:center;width:80px;height:40px;border-radius:var(--r-inner);background:var(--text);color:var(--card);transform:translate(-50%);pointer-events:auto;cursor:grab}.tfEditGrip svg{width:24px;height:24px;fill:currentColor}.tfEditChip{display:grid;place-items:center;width:28px;height:28px;min-height:0;padding:0;border:0;border-radius:50%;background:var(--text);color:var(--card);pointer-events:auto;cursor:pointer}.tfEditChip svg{width:18px;height:18px;fill:currentColor}.tfEditChip:focus-visible{outline:2px solid var(--primary);outline-offset:2px}#app.tfEditing .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}.tfBoardLand{position:absolute;z-index:1;box-sizing:border-box;border:1.5px dashed var(--primary);border-radius:28px;background:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;transition:left .2s,top .2s,width .2s,height .2s}.tfBoardMenu{position:absolute;z-index:30;display:grid;gap:2px;min-width:200px;padding:6px;border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px #00000059}.tfBoardMenu button{display:flex;align-items:center;min-height:40px;padding:0 12px;border:0;border-radius:var(--r-inner);background:transparent;color:var(--text);font:500 14px/20px var(--font);text-align:start;cursor:pointer}.tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}.tfBoardMenu button:disabled{opacity:.4;cursor:default}.tfHeight{display:grid;gap:6px;padding:6px 6px 8px}.tfHeightLabel{padding:0 6px;color:var(--muted);font:500 12px/16px var(--font)}.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--tile)}.tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}.tfBoardMenu .tfHeightTabs button[aria-checked=true]{background:var(--text);color:var(--card)}.tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows{grid-auto-rows:var(--fill-row,60px);margin-top:0}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows>.activityRow{min-height:0;height:var(--fill-row,60px);box-sizing:border-box}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]{padding:0;gap:0}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityHeader,#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.tfDashGraph{display:none}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityRows{margin:0;flex:1}#app.tfBoard .tfBoardItem.tfAction[data-rows="1"],#app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}#app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}#app.tfBoard .tfDash-wx[data-rows="1"] .wbNow{margin:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbWx.wbS90{width:40px;height:40px;border-radius:12px}#app.tfBoard .tfDashBento[data-rows] :is(.wb,.wbBento,.wbItem){height:100%;min-height:0}#app.tfBoard .tfDashBento[data-rows] .wbCard{height:100%;min-height:0;box-sizing:border-box;aspect-ratio:auto}#app.tfBoard .tfDash-wx[data-rows="1"] .wbDeg{font-size:20px;letter-spacing:0;line-height:22px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbPlace{font-size:13px;line-height:18px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbUnit{font-size:14px;line-height:22px}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="4"]) .wbSummary{display:none}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) :is(.wbColumns,.wbHalves){display:none}#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:12px}#app.tfBoard .tfDash-wx[data-rows="4"] .wbHalves>:nth-child(n+5){display:none}#app.tfBoard .tfDash-energy[data-rows="2"] .tfDashGraph{display:none}#app.tfBoard .tfDash-energy:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) .activityRows{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}#app.tfBoard .tfDash-energy[data-rows="3"] .tfDashGraph{min-height:0}#app.tfBoard .tfDashBento[data-rows="2"] .wbBaseRows{display:none}#app.tfBoard .tfDashBento[data-rows="2"] :is(.wbRadar,.wbCompareBars,.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfDashBento[data-rows="3"] :is(.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfAreas[data-rows="1"] .workoutPanel.tfAreaPanel{padding:10px}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 12px;align-content:center}#app.tfBoard .tfAreas[data-rows="1"] :is(.panelExpanded>.workoutPanelTop,.tfACTop){display:contents}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] .tfATitle .tfAName{font-size:14px;line-height:20px;height:auto}#app.tfBoard .tfAreas[data-rows="1"] .tfABig{margin:0;flex-direction:row}#app.tfBoard .tfAreas[data-rows="1"] .tfABigMain{font-size:14px;line-height:18px;letter-spacing:0}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigUnit){font-size:14px}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigSub,.tfATiles,.tfACTiles,.sourceTag){display:none}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:center;padding:0}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfACName,.tfACMain){margin:0;font-size:14px;line-height:18px;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfABig{display:none}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfATiles{margin-top:auto}#app.tfBoard .tfAreas[data-rows="2"] .tfATile:nth-child(n+3),#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfATile:nth-child(n+5){display:none}#app.tfBoard .tfAreas[data-rows="2"] .tfACTiles{display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTile:nth-child(n+3){display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACollapsed{justify-content:flex-start;gap:10px}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTiles{margin-top:auto}.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:360px;max-width:calc(100vw - 56px);transform:translate(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfEditTray.open{transform:none}.tfEditTray.open.tucked{transform:translate(100%)}.tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}.tfTrayTuck{position:absolute;top:20px;left:-40px;display:grid;place-items:center;width:40px;height:56px;min-height:0;padding:0;border:0;border-radius:16px 0 0 16px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}.tfTrayTuck svg{width:22px;height:22px}.tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}.tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d}.tfTrayHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.tfTraySection{display:flex;flex-direction:column;gap:8px}.tfTraySection .sectionLabel{margin:0}.tfTrayNote{margin:0;color:var(--muted);font:400 14px/1.3 var(--font)}.tfTrayCards{display:flex;flex-direction:column;gap:6px}.tfTrayCard{display:flex;align-items:center;gap:10px;min-height:var(--tile-min);padding:0 14px 0 10px;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none}.tfTrayList{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}.tfTrayFav{display:grid;grid-template-columns:22px var(--chip-size) minmax(0,1fr) 36px 36px;align-items:center;gap:8px;min-height:var(--tile-min);padding:0 4px 0 6px;border-radius:var(--r-tile)}.tfTrayFav.off{cursor:grab;touch-action:none}.tfTrayFav.off :is(.tfIcon,.tfTrayName){opacity:.5}.tfTrayFav.moving{background:var(--tile)}.tfTrayGrip{display:grid;place-items:center;color:var(--muted);cursor:grab;touch-action:none}.tfTrayGrip svg{width:20px;height:20px;fill:currentColor}:is(.tfTrayFav,.tfTrayPickItem) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfTrayName{display:flex;flex-direction:column;min-width:0}.tfTrayName>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfTrayBtn{display:grid;place-items:center;width:36px;height:36px;min-height:0;padding:0;border:0;border-radius:12px;background:none;color:var(--text);cursor:pointer}.tfTrayBtn svg{width:20px;height:20px;fill:currentColor}.tfTrayBtn:hover{background:var(--tile)}.tfTrayAdd{align-self:flex-start}.tfTrayPick{display:flex;flex-direction:column;gap:6px}.tfTrayPick[hidden]{display:none}.tfTrayPickItem{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;width:100%;min-height:var(--tile-min);padding:0 10px;border:0;border-radius:var(--r-tile);background:none;color:var(--text);text-align:start;cursor:pointer}.tfTrayPickItem:hover{background:var(--tile)}.tfTraySuggest{margin-top:8px}.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(360px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d;opacity:0;transform:translate(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfMiniPhone.open{opacity:1;transform:none;pointer-events:auto}.tfPhoneHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px 0 12px}.tfMiniPhone>.tfTrayNote{padding:0 12px 4px}.tfLinkBtn{min-height:0;padding:0;border:0;background:none;color:var(--primary);font:inherit;text-decoration:underline;cursor:pointer}.tfPhoneScreen{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border-radius:34px;background:var(--bg);box-shadow:var(--hc-hair-all);padding:14px 0 24px}.tfPhoneList{display:flex;flex-wrap:wrap;gap:12.8px}.tfPhoneTitle{width:100%;padding:0 12.8px;color:var(--text);font:800 25.6px/1 var(--font);letter-spacing:-.055em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfPhoneBlock{display:flex;align-items:flex-start;gap:10px;width:100%;min-height:0;padding:12px;border:0;border-radius:27px;background:var(--card);box-shadow:var(--hc-hair);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}.tfPhoneBlock.tile{width:calc((100% - 12.8px)/2);border-radius:22.4px}.tfPhoneBlock.fixed{align-items:center;color:var(--muted);cursor:default}.tfPhoneBlock.moving{box-shadow:var(--hc-hair),0 0 0 2px var(--primary);cursor:grabbing}.tfPhoneBlock:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfPhoneBlock .tfIcon{width:32px;height:32px;border-radius:13px;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}.tfPhoneName{min-width:0;padding-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.tfTrayGhost{position:fixed;top:0;left:0;z-index:200;margin:0;pointer-events:none;opacity:.9;background:var(--tile);border-radius:var(--r-tile);box-shadow:0 8px 24px #00000059}.tfFavDrop{position:fixed;z-index:200;width:4px;border-radius:2px;background:var(--primary);pointer-events:none}.tfFavHides{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;pointer-events:none}.tfFavHide{position:absolute;display:grid;place-items:center;width:32px;height:32px;min-height:0;padding:0;border:0;border-radius:12px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;pointer-events:auto}.tfFavHide svg{width:18px;height:18px;fill:currentColor}.tfDash-energy .tfDashGraph{flex:1;min-height:80px;height:auto;margin:var(--inset) 0 0}.tfDash-energy.graphAbove>.activityHeader{order:-2}.tfDash-energy.graphAbove>.tfDashGraph{order:-1;margin:0 0 var(--inset)}#homeView .card.tfDash-energy .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.toast.tfToast{top:auto;right:auto;max-width:calc(100vw - 32px);transform:translate(-50%,6px)}.toast.tfToast.show{transform:translate(-50%)}.tfDash-act .activityRow.alert .activityRowName{color:var(--danger)}.activityRow .tfIcon.alert{background:#e53935;color:#fff}.tfGraph.tfDay{flex:none;height:62px;min-height:0}.tfGraph.tfDay text{font-size:10px}#housePane .rubberIndicator{background:var(--bright)}#housePane .tab.active{color:var(--on-bright)}#app.light .tfBar i{box-shadow:inset -2px 0 0 var(--text)}#app.house :is(.settingsSelect,.addInput){border:1px solid var(--muted)}#app.house .addInput::placeholder{color:var(--muted);opacity:1}#app .activityRows :focus-visible{outline-offset:-2.4px}#app.house :is(button,a,input,select,[tabindex]){scroll-margin-bottom:96px}@media (max-width:620px){#app.house :is(.activityRowName,.activityRowMeta){white-space:normal;text-overflow:clip;overflow:visible;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}}.tfTooltip{position:fixed;z-index:500;max-width:min(320px,calc(100vw - 16px));padding:6px 10px;border-radius:10px;background:var(--bright);color:var(--on-bright);font:500 14px/18px var(--font);overflow-wrap:break-word;box-shadow:0 4px 16px #00000040}.tfTooltip[hidden]{display:none}.tfDashGraph rect{transform-box:fill-box;transform-origin:50% 100%}#app.house:is([data-names=cut],[data-names=scroll]) :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#app.house[data-names=wrap] :is(.activityRowName,.activityRowMeta){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}#app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}', Vp = `.wb{container:wb-bento/inline-size;display:block;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}.wbBento{box-sizing:content-box;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:16px;max-width:1056px;margin:0 auto;padding:10px}.wbItem{container:wb-card/inline-size;min-width:0}.wbItem[hidden]{display:none!important}.wbItem[data-size=wide]{width:520px;align-self:stretch;display:flex;flex-direction:column}.wbItem[data-size=wide]>*{flex:1}.wbItem[data-size=wide]>.wbWeather{flex:none}.wbItem[data-size=tile]{width:252px}.wbItem[data-size=double]{width:520px}@container wb-bento (width < 652px){.wbBento{gap:10px;padding:10px}.wbItem:is([data-size=wide],[data-size=double]){width:100%}.wbItem[data-size=tile]{width:calc(50% - 5px)}}.wbCard{position:relative;display:block;box-sizing:border-box;border:0;border-radius:var(--r-card);background:var(--card);color:var(--text);font-family:var(--font);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line);transition:all .3s ease-out}.wbCard.wbHc{display:flex;flex-direction:column;gap:10px;padding:14px var(--inset) var(--inset);box-shadow:var(--hc-hair-all)}.wbHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;padding:0 18px}.wbTitle{margin:0;font:500 18px/1.2 var(--font-tile);letter-spacing:-.18px;color:var(--text);white-space:nowrap}.wbIcon{display:block;flex:none;width:var(--wb-icon,24px);height:var(--wb-icon,24px);fill:currentColor;pointer-events:none}.wbTile{display:flex;align-items:center;gap:12px;min-width:0;min-height:var(--tile-min);box-sizing:border-box;padding:var(--inset);border:0;border-radius:var(--r-tile);background:transparent;color:inherit;font:inherit;text-align:start}.wb button.wbTile{border-radius:var(--r-tile)!important;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease}.wb button.wbTile:hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.wb button.wbTile:focus-visible{outline:2px solid var(--primary)!important;outline-offset:2px!important}.wbChip{flex:none;display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent);--wb-icon:24px}.wbChip.wbPlain{background:var(--icon-bg);color:var(--text)}.wbText{display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0;align-self:stretch;overflow:hidden;white-space:nowrap}.wbName{font:600 14px/20px var(--font-tile);overflow:hidden;text-overflow:ellipsis}.wbSub{font:400 16px/1.15 var(--font);letter-spacing:-.32px;overflow:hidden;text-overflow:ellipsis}.wbCard.wbSquare{display:flex;flex-direction:column;gap:14px;aspect-ratio:1;--wb-k:1;box-sizing:border-box;padding:18px;border-radius:28px;overflow:hidden}.wbHead{display:flex;align-items:flex-start;gap:12px;min-width:0}.wbSquare .wbChip{width:40px;height:40px;border-radius:16px}.wbSquare .wbName{font-size:14px;line-height:1.4}.wbSquare .wbSub{font-size:16px}.wbVisual{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:10px}.wbCard.wbSquare.wbDouble{aspect-ratio:520/252;--wb-k:.4846;border-radius:34px}.wbVisual>svg{display:block;width:100%;height:100%;min-height:0}.wbVisual svg text{font-family:var(--font-tile)}.wbValue{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbValue .wbNum{font:500 clamp(30px,calc(17.5cqw * var(--wb-k,1)),44px)/1 var(--font-tile);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.wbValue .wbUnitV{font:300 clamp(13px,calc(7.1cqw * var(--wb-k,1)),18px)/1.25 var(--font-tile);color:var(--muted)}.wbScaleNote{display:flex;justify-content:space-between;color:var(--muted);font:400 clamp(10px,calc(4.4cqw * var(--wb-k,1)),12px)/1.3 var(--font)}.wbCard.wbSquare.wbHasBackdrop{position:relative;isolation:isolate}.wbBackdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;overflow:hidden;border-radius:inherit;pointer-events:none}.wbBackdrop~*{position:relative;z-index:1}.wbGraph{position:relative;display:flex;flex-direction:column;justify-content:center;height:120px;box-sizing:border-box;padding:12px 16px;border-radius:10px 10px 18px 18px;background:var(--tile);overflow:hidden;--wb-scale-edge:var(--tile)}.wbChart{display:block;width:100%;height:100%;overflow:visible}.wbChart .wbLine{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbChart .wbArea{fill:var(--primary);opacity:.14}.wbChart .wbBar{fill:var(--muted);opacity:.45}.wbChart .wbBar.wbNowBar{fill:var(--primary);opacity:1}.wbChart .wbGuide{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 4}.wbChart text{fill:var(--muted);font:400 11px var(--font)}.wbGraphNote{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:400 12px/1.4 var(--font)}.wbDayChart{flex:1;min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:20px minmax(0,1fr) 18px;grid-template-areas:". sun" "y plot" ". x";column-gap:6px;color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums}.wbDcSun,.wbDcX,.wbDcY,.wbDcPlot{position:relative;min-width:0}.wbDcSun{grid-area:sun}.wbDcY{grid-area:y}.wbDcPlot{grid-area:plot}.wbDcX{grid-area:x}.wbDcSunMark,.wbDcX span{position:absolute;bottom:0;transform:translate(-50%);white-space:nowrap}.wbDcSunMark{display:flex;align-items:center;gap:2px;bottom:4px;--wb-icon:14px}.wbDcSunMark .wbIcon{fill:#fea916}.wbDcX span{top:4px;bottom:auto}.wbDcY span{position:absolute;right:0;transform:translateY(-50%);white-space:nowrap}.wbDcPlot svg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbDcNight{fill:var(--page);opacity:.6}.wbDcGrid{stroke:var(--line);stroke-width:1}.wbDcSunLine{stroke:#fea916;stroke-width:1;stroke-dasharray:2 4;opacity:.7}.wbDcNow{stroke:var(--text);stroke-width:1;opacity:.4}.wbDcLine,.wbDcPast{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbDcPast{stroke:var(--muted);stroke-width:2}.wbDcArea{fill:var(--primary);opacity:.14}.wbDcBar{position:absolute;bottom:0;min-height:3px;border-radius:4px 4px 1px 1px;background:var(--primary)}.wbDcDot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--card)}.wbDcPeak{position:absolute;transform:translate(-50%,calc(-100% - 6px));color:var(--text);font-weight:500;white-space:nowrap}.wbDcNote{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;place-items:center;padding:0 8px;text-align:center;color:var(--muted);font:400 13px/1.4 var(--font)}.wbOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.wbOpenHead{display:flex;align-items:center;gap:12px}.wbBack{flex:none;display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer;--wb-icon:24px}.wb button.wbBack{border-radius:var(--r-fine)!important}.wbBack:hover{background:var(--hover)}.wbOpen .wbGraph{flex:1;height:auto;min-height:152.2px;background:var(--card);--wb-scale-edge:var(--tile)}.wbSegments{display:inline-flex;gap:0;padding:4px;border-radius:var(--r-inner);background:var(--page)}.wbSegments button{padding:4px 12px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer}.wb .wbSegments button{border-radius:var(--r-fine)!important;font-family:var(--font-tile)!important}.wbSegments button[aria-pressed=true]{background:var(--tile);color:var(--text)}.wbWx{position:relative;display:block;flex:none;width:40px;height:40px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wbWx>svg,.wbWx>canvas{display:block;width:100%;height:100%}.wbWx>canvas{image-rendering:pixelated}.wbWx.wbS60{width:60px;height:60px;border-radius:20px}.wbWx.wbS90{width:90px;height:90px;border-radius:28px}.wb[data-style=smooth] :is(.wbWx,.wbSky):after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;border-radius:inherit;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.3 0 0 0 -.15 1.3 0 0 0 -.15 1.3 0 0 0 -.15 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;mix-blend-mode:overlay;opacity:.3}.wbBaseRows{display:flex;flex-direction:column;gap:4px;width:100%}.wbBaseRow{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font:400 14px/20px var(--font)}.wbBaseRow>span:last-child{color:var(--text);white-space:nowrap}.wbBaseRow>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbRadar{position:relative;flex:1;align-self:stretch;min-height:80px;border-radius:var(--r-inner);overflow:hidden;background-color:var(--tile);background-image:linear-gradient(color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px);background-size:24px 24px;background-position:center}.wbRadarRing{position:absolute;left:50%;top:50%;width:64%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 20%,transparent)}.wbRadarRing:after{content:"";position:absolute;top:25%;right:25%;bottom:25%;left:25%;border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 14%,transparent)}.wbRadarHome{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px var(--tile)}.wbWx.wbLineIcon{display:grid;place-items:center;background:var(--tile);color:var(--text)}.wbWx.wbLineIcon>svg{width:64%;height:64%}.wbWx.wbClear,.wbWx.wbPartly{background:var(--wx-clear)}.wbWx.wbCloudy{background:var(--wx-cloudy)}.wbWx.wbRain,.wbWx.wbSnow{background:#969696}.wbWx.wbNight{background:var(--wx-night)}.wbWx .wbBright{fill:var(--wx-cloud-bright)}.wbWx .wbCloudLight{fill:var(--wx-cloudy)}.wbWx .wbAccent{fill:var(--primary)}.wbWx :is(.wbSunDisc,.wbMoonPath,.wbBright,.wbCloudLight,.wbDrop,.wbFlake,.wbTwinkle){transform-box:fill-box;transform-origin:center}.wbMotion .wbWx .wbSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}.wbMotion .wbWx .wbMoonPath{animation:wxBob 5.2s ease-in-out infinite}.wbMotion .wbWx :is(.wbBright,.wbCloudLight){animation:wxDrift 6.4s ease-in-out infinite}.wbMotion .wbWx .wbDrop{animation:wxFall .95s linear infinite}.wbMotion .wbWx .wbFlake{animation:wxSnow 3.2s linear infinite}.wbMotion .wbWx .wbTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}.wbCard.wbWeather{position:relative;display:flex;flex-direction:column;gap:12px;padding:18px}.wbClosed{display:contents}.wbWeather.wbIsOpen .wbClosed{visibility:hidden}.wbWeather .wbOpen{position:absolute;top:10px;right:10px;bottom:10px;left:10px;min-height:0}.wbWeather .wbOpen .wbGraph{min-height:0;padding:8px 14px 6px 8px}.wbDayTabs{display:flex}.wbNow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.wbCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wb button.wbOpenPage{padding:0;border:0;border-radius:var(--r-tile)!important;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}.wb button.wbOpenPage:focus-visible{outline:2px solid var(--primary)!important;outline-offset:4px!important}.wbTempBlock{display:flex;flex-direction:column;gap:4px;min-width:0}.wbTemp{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbDeg{font:500 64px/1 var(--font-tile);letter-spacing:-1.28px}.wbUnit,.wbRange{font:300 24px/1.25 var(--font-tile);white-space:nowrap}.wbPlace{color:var(--muted);font:600 14px/20px var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wbCondition{flex:none;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;padding:10px 16px;border-radius:var(--r-tile);background:var(--tile)}.wbCondName{font:400 18px/1.2 var(--font);letter-spacing:-.18px;white-space:nowrap}.wbColumns{display:flex;height:185px;border-radius:28px;overflow:hidden}.wbColumn{flex:1 0 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 0;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:inherit;cursor:pointer}.wb button.wbColumn{border-radius:var(--r-tile)!important}.wbColumn:hover{background:var(--hover);box-shadow:inset 0 0 0 .4px var(--line)}.wb button.wbColumn:focus-visible{outline:2px solid var(--primary)!important;outline-offset:-2px!important}.wbDay{font:400 14px/1.4 var(--font);white-space:nowrap}.wbTemps{display:flex;flex-direction:column;align-items:center;gap:8px}.wbHi{font:400 18px/20px var(--font-tile)}.wbLo{color:var(--muted);font:400 18px/1.2 var(--font);letter-spacing:-.18px}.wbHalves{display:none;grid-template-columns:repeat(2,minmax(0,1fr))}.wbSummary{position:relative;flex:1 1 0;min-height:0;margin-top:-12px;container:wbsum/size}.wbSummaryText{position:absolute;top:12px;left:0;right:0;margin:0;color:var(--text);font:400 16px/22px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}@container wbsum (height < 56px){.wbSummaryText{-webkit-line-clamp:1}}@container wbsum (height < 34px){.wbSummaryText{display:none}}@container wb-card (width < 480px){.wbColumn .wbWx.wbS60{width:48px;height:48px;border-radius:16px}}@container wb-card (width < 400px){.wbSummary{display:none}.wbCard.wbWeather{gap:16px;padding:18px 18px 10px}.wbWeather .wbWx.wbS90{width:60px;height:60px;border-radius:20px}.wbDeg{font-size:46px;letter-spacing:-.92px}.wbRange{font-size:20px}.wbCondition{align-self:flex-start;gap:0;border-radius:28px}.wbColumns{display:none}.wbHalves{display:grid}.wbWeather .wbDcX .wbMinor{display:none}}@container wb-card (width < 280px){.wbHalves{grid-template-columns:1fr}}.wbCard.wbHourly{flex:1}.wbTabs{padding:0 18px}.wbStripScroll{flex:1;min-height:160px;display:flex;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border-radius:var(--r-tile);-webkit-user-select:none;user-select:none}.wbStripScroll::-webkit-scrollbar{display:none}.wbStripScroll.wbDragging{cursor:grabbing}.wbStrip{flex:none;display:flex;flex-direction:column;gap:8px;min-width:100%;box-sizing:border-box;padding:0 10px}.wbRow{position:relative;flex:none}.wbTimes{height:20px}.wbValues{height:44px}.wbMark{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;transform:translate(-50%);white-space:nowrap}.wbMark.wbFirst{align-items:flex-start;transform:none}.wbTimes .wbMark{font:400 14px/20px var(--font);font-variant-numeric:tabular-nums}.wbTimes .wbMark.wbFirst{font:600 14px/20px var(--font-tile)}.wbSky{position:relative;flex:1;min-height:72px;border-radius:var(--r-inner);overflow:hidden}.wbStripScroll.wbPaged{container-type:inline-size;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}.wbStripScroll.wbPaged.wbHeld{scroll-snap-type:none}.wbPaged .wbStrip{position:relative;min-width:0;padding:0}.wbSnap{position:absolute;top:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}.wbMark.wbLast{align-items:flex-end;transform:translate(-100%)}.wbPaged .wbTimes .wbMark.wbFirst{font:400 14px/20px var(--font)}.wbPaged .wbTimes .wbMark.wbNowMark{font:600 14px/20px var(--font-tile)}.wbSky .wbPast{position:absolute;top:0;bottom:0;left:0;background:var(--card);opacity:.45;pointer-events:none}.wbSky .wbNowLine{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--text);opacity:.55;pointer-events:none}.wbSky.wbLineSky{background:var(--tile);color:var(--text)}.wbLineArt{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbLineArt .wbLineArc{fill:none;stroke:var(--text);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}.wbLineArt .wbLineHorizon{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.35}.wbLineArt .wbLineNight{fill:var(--text);opacity:.07}.wbLineArt .wbLineEdge{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.3}.wbLineTime{position:absolute;top:calc(80% + 4px);transform:translate(-50%);color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none}.wbLineNow{position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);border-radius:50%;background:var(--tile);pointer-events:none}.wbLineNow>svg,.wbLineGlyph>svg{display:block;width:100%;height:100%}.wbLineGlyph{position:absolute;top:calc(50% - 14px);width:28px;height:28px;transform:translate(-50%);pointer-events:none}.wbLineGlyph.wbFirst{transform:none}.wbLineGlyph.wbLast{transform:translate(-100%)}.wbSky .wbMidnight{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--text);opacity:.5;pointer-events:none}.wbDays{position:absolute;top:36px;left:0;z-index:1;display:flex;pointer-events:none}.wbDaySpan{flex:none;min-width:0}.wbDayName{position:sticky;left:8px;margin-left:8px;height:26px;min-height:0;padding:0 10px;border:0;background:color-mix(in srgb,var(--card) 82%,transparent);color:var(--text);font:600 13px/26px var(--font-tile);white-space:nowrap;cursor:pointer;pointer-events:auto}.wb .wbDayName{border-radius:13px!important;font-family:var(--font-tile)!important}.wbViews button{padding:2px 10px;font-size:13px}.wbBars .wbDayBars{flex:1 1 0;min-height:160px;display:flex;flex-direction:column;padding:0 18px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}.wbBars.wbTabbed .wbDayBars{min-height:206px}.wbDayBar{flex:1 0 auto;display:grid;grid-template-columns:minmax(56px,auto) 40px 36px minmax(0,1fr) 36px;align-items:center;column-gap:12px;min-height:48px;box-shadow:inset 0 -.4px 0 var(--line)}.wbDayBar:last-child{box-shadow:none}.wbRangeDay{color:var(--text);font:600 14px/20px var(--font-tile);white-space:nowrap}.wbRangeLo{color:var(--muted);text-align:right;font:400 16px/20px var(--font);font-variant-numeric:tabular-nums}.wbRangeHi{color:var(--text);text-align:right;font:400 16px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbRangeTrack{position:relative;height:6px;border-radius:3px;background:var(--tile)}.wbRangeFill{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:3px}.wbRangeNow{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--card)}.wbSkyArt{position:absolute;top:0;height:100%}.wbSkyArt>canvas{display:block;width:100%;height:100%}.wbSkyArt>canvas.wbPixels{image-rendering:pixelated}.wbPrimaryV{font:400 18px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbSecondary{min-height:20px;color:var(--muted);font:400 15px/20px var(--font)}@container wb-card (width < 480px){.wbHourly :is(.wbHeader,.wbTabs){padding:0 8px}.wbBars .wbDayBars{padding:0 8px;min-height:380px}.wbBars.wbTabbed .wbDayBars{min-height:426px}.wbDayBar{column-gap:8px}.wbStripScroll{min-height:380px}}.wbSunSky{flex:1;min-height:0;display:flex;border-radius:16px;overflow:hidden;transition:background 1s ease}.wbSunSky svg{display:block;width:100%;height:100%;overflow:visible}.wbSunPath{fill:none;stroke:var(--wb-sun-line);stroke-opacity:.4;stroke-width:28.3}.wbHorizon{stroke:var(--wb-sun-line);stroke-opacity:.3;stroke-width:1}.wbSunTime{fill:var(--wb-sun-line);font-size:13px;font-weight:600;text-anchor:middle}.wbSunTime.wbNoon{dominant-baseline:central}.wbMoonBox{flex:1;min-height:0;display:flex;justify-content:center}.wbMoonArt{display:block;flex:none;width:auto;height:100%;max-width:100%}.wbMoonCaption{gap:8px}.wbMoonCaption span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbMoonCaption span:last-child{flex:none}.wbMaria{fill:#7d7d78}.wbCrater{fill:#00000017}.wbRays{stroke:#fff;stroke-width:1.2;stroke-linecap:round;opacity:.16}.wbBrightSpots{fill:#fff;opacity:.25}.wbBrightCenter{fill:#f6f6f2;opacity:.75}.wbMottle{opacity:.3;mix-blend-mode:multiply}.wbGrain{opacity:.12;mix-blend-mode:multiply}.wbMoonNight{fill:#0a0a0ebf}.wbWind .wbVisual>svg{overflow:visible}.wbTick{stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}.wbTick.wbMajor{stroke:var(--text);stroke-width:3}.wbLetter{fill:var(--muted);font-size:15px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbLetter.wbNorth{fill:var(--text)}.wbMarker{fill:var(--primary)}.wbDisc{fill:var(--text)}.wbSpeed{fill:var(--card);font-size:34px;font-weight:500;letter-spacing:-.5px;text-anchor:middle;dominant-baseline:central}.wbSpeedUnit{fill:var(--card);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central;opacity:.7}.wbWater{position:absolute;left:0;right:0;bottom:0;transition:height 1.2s ease}.wbWater .wbBody{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,#b2e5fc2e,#81d4fa52,#4fc3f76b 70%,#03a9f48c);-webkit-mask-image:linear-gradient(180deg,transparent,#000 26px);mask-image:linear-gradient(180deg,transparent,#000 26px)}.wbWater .wbMist{position:absolute;left:-10%;right:-10%;bottom:calc(100% - 26px);height:60px;background:radial-gradient(ellipse at 50% 100%,#b2e5fc4d,#b2e5fc00 70%);filter:blur(8px)}.wbWater .wbHaze{position:absolute;width:80%;height:45%;border-radius:50%;background:radial-gradient(closest-side,#ffffff38,#fff0);filter:blur(10px);animation:wbDrift 16s ease-in-out infinite alternate}.wbWater .wbHaze.wbOne{left:-15%;top:8%}.wbWater .wbHaze.wbTwo{right:-20%;top:40%;animation-duration:21s;animation-direction:alternate-reverse}@keyframes wbDrift{0%{transform:translate(-12%)}to{transform:translate(18%)}}.wbWaterValue{flex:1;display:flex;align-items:flex-end}.wbSea{position:relative;flex:1;min-height:0;border-radius:16px;overflow:hidden;--wb-sea-inset:clamp(8.88px,calc(4.76cqw * var(--wb-k,1)),12px)}.wbSeaArt{position:absolute;top:0;right:0;bottom:0;left:0;display:block;width:100%;height:100%;image-rendering:pixelated}.wbSeaFact{position:absolute;top:clamp(7px,calc(3.97cqw * var(--wb-k,1)),10px);inset-inline:var(--wb-sea-inset);color:#26221e;font:600 clamp(9.44px,calc(5.47cqw * var(--wb-k,1)),13.78px)/1.23 var(--font-tile)}.wbSeaValue{position:absolute;bottom:var(--wb-sea-inset);inset-inline-start:var(--wb-sea-inset);color:#fff;text-shadow:0 0 2px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}.wbSeaValue .wbUnitV{color:inherit}.wbVu{display:block;width:100%;height:100%;min-height:0;overflow:visible}.wbVuZone{fill:none;stroke-width:12.3;stroke-linecap:butt}.wbVuTick{stroke:var(--muted);stroke-width:.95;stroke-linecap:round}.wbVuTick.wbMajor{stroke:var(--text);stroke-width:1.9}.wbVisual svg text.wbVuLabel{fill:var(--muted);font-family:"Alfarn",var(--font-tile);font-size:18.9px;font-weight:600;letter-spacing:.08em;text-anchor:middle;dominant-baseline:central}.wbVuNeedle{transform-box:view-box;transform-origin:100px 130px;transform:rotate(var(--wb-angle));animation:wbSwing 1.4s cubic-bezier(.3,1.6,.5,1);transition:transform 1s cubic-bezier(.3,1.6,.5,1)}.wbVuNeedle line{stroke:#e0574d;stroke-width:2;stroke-linecap:round}@keyframes wbSwing{0%{transform:rotate(-48deg)}}.wbVuHousing{fill:var(--tile)}.wbVuValue{fill:var(--text);font-size:30.2px;font-weight:600;text-anchor:middle;dominant-baseline:central}@media (prefers-reduced-motion:reduce){.wbWater .wbHaze,.wbVuNeedle{animation:none}}.wbTapeRow{flex:1;min-height:0;display:flex;align-items:stretch;gap:8px}.wbTapeValue{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}.wbTapeUnit{color:var(--muted);font:300 clamp(13px,7.1cqw,18px)/1.25 var(--font-tile)}.wbTape{flex:none;width:40%;height:100%}.wbTapeTick{stroke:var(--text);stroke-width:2;stroke-linecap:round}.wbTapeLabel{fill:var(--text);font-size:15px;dominant-baseline:central}.wbTapeEnd{fill:var(--muted);font-size:14px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbTapeMarker{stroke:#e0574d;stroke-width:4;stroke-linecap:round}.wbCompare{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) calc(50% - 28px * var(--wb-k));grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch}.wbCompareText{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0}.wbCompareNumber{font:500 calc(26.4cqw * var(--wb-k)) / 1 var(--font-tile);letter-spacing:-.02em;white-space:nowrap}.wbCompareWords{color:var(--muted);font:300 clamp(14px,calc(7.1cqw * var(--wb-k)),18px) / 1.25 var(--font-tile)}.wbCompareTemps{margin-top:6px;font:400 clamp(12px,calc(5.6cqw * var(--wb-k)),14px) / 1.4 var(--font)}.wbCompareBars{display:block;width:100%;height:100%;min-height:0}.wbAvgValue{fill:var(--muted);font-size:10px;text-anchor:middle}.wbAvgValue.wbToday{fill:var(--text);font-size:12px;font-weight:600}.wbAvgBar{fill:var(--muted);opacity:.45}.wbAvgBar.wbToday{fill:var(--primary);opacity:1}.wbAvgDay{fill:var(--muted);font-size:11px;text-anchor:middle}.wbAvgDay.wbToday{fill:var(--text);font-weight:600}.wbAvgLine{stroke:var(--text);stroke-width:1;stroke-dasharray:3 4;opacity:.6}.wbCard.wbHc.wbAqOpen{padding:var(--inset);min-height:243px}.wbAqTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@container wb-card (width < 280px){.wbAqTiles{grid-template-columns:1fr}}.wbAq .wbGraph{gap:10px}.wbScale{position:relative;height:4px;border-radius:9999px}.wbScale i{position:absolute;top:50%;box-sizing:content-box;width:10px;height:10px;border-radius:50%;background-color:var(--text);border:2px solid var(--wb-scale-edge);transform:translate(-50%,-50%)}`, Gp = `<main id="app"><div class="shell">
+const zp = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;--color-fill-bright:#f1f1f1;--color-text-primary:#d9d9d9;--color-text-muted:#969696;--color-text-on-bright:#090909;--color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;--color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;--color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;--color-state-hover:rgba(255,255,255,.08);--color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;--color-bg-segment-selected:#2b2b2b;--wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;--wx-cloud-bright:#f1f1f1;--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}#app{--bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);--tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);--segment:var(--color-bg-tile);--seg-on:var(--color-bg-segment-selected);--scroll-thumb:var(--color-bg-tile);--control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-chip);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);--border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);--bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);--hover:var(--color-state-hover);--wash-2:var(--color-state-hover);--danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);--primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:var(--color-bg-resting)}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,var(--color-bg-card))}#app.light{--color-bg-ground:#eeebe8;--color-bg-card:#fbf9f6;--color-bg-tile:#f3efea;--color-fill-bright:#26221e;--color-text-primary:#26221e;--color-text-muted:#6a625a;--color-text-on-bright:#fbf9f6;--color-text-on-accent:#26221e;--color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-accent-secondary:#03a9f4;--color-bg-resting:#7dbb98;--color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#b42a2a;--color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);--color-bg-chip:#fbf9f6;--color-fill-selected:#26221e;--color-text-on-selected:#fbf9f6;--color-bg-segment-selected:#fbf9f6;--color-accent-primary:#0288d1;--color-border-focus:#0288d1;--scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}:host(.lightBody){background:#eeebe8;color-scheme:light}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.activityCard,.weekly{grid-column:span 6}.activityCard,.weekly{min-height:288px}.sourceTag{display:inline-flex;margin-top:11.2px;padding:4px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:inherit;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:var(--color-text-on-accent)!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:var(--inset);margin-bottom:var(--inset)}.activityIcon{display:grid;place-items:center}.icon{width:var(--glyph-size);height:var(--glyph-size);flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon *{vector-effect:non-scaling-stroke}.addPanelPlus .icon,.addFab .icon{width:24px;height:24px}.checkinTabIcon .icon{width:18px;height:18px}.weekTick .icon{width:1em;height:1em}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 16px}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:42px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 16px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:42px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}.switch.on{background:var(--color-accent-primary);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.wxLayoutBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.wxLayoutBtn[aria-pressed=true]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 12px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--color-fill-selected);color:var(--color-text-on-selected)}@media (max-width:900px){.weekCopy{white-space:normal}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}}:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary,.wxStyleBtn,.tfSeg>button){border-radius:var(--r-inner)!important}.card,.panel,.tile,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#fbf9f638}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis;field-sizing:content}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.insightCard{display:grid;gap:22.4px}.day{display:grid;gap:6.4px;justify-items:center}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:var(--inset);border:0}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px;border:.32px solid var(--line);border-right:0;border-radius:var(--r-fine) 0 0 var(--r-fine)!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{box-shadow:0 0 0 2.4px var(--color-bg-ground),0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}}.insightCard{grid-column:span 9;align-content:start}@media (max-width:1200px){.insightCard{grid-column:span 8}}@media (max-width:900px){.insightCard{grid-column:auto}}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:4px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-tile:Geist,var(--font);--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:52px;--t-title:22px;--t-card-title:18px;--t-value:16px;--t-section:18px;--t-strong:14px;--t-body:12px;--t-caption:12px;--lh-display:1.05;--lh-title:1;--t-wx-temp:64px;--t-wx-range:24px;--t-tile-title:14px;--lh-tile-title:20px;--t-tile-detail:16px;--lh-tile-detail:20px;--inset:10px;--r-card:34px;--r-tile:24px;--r-inner:16px;--r-fine:12px;--tile-min:60px;--chip-size:40px;--glyph-size:34px;--gutter:22px;--grid-gap:16px}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}:where(#app) strong,:where(#app) b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.feelHeadline,.settingsTitle{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.activityTitle{font-size:var(--t-card-title);font-weight:var(--w-medium);font-style:italic;line-height:1.1;letter-spacing:-.02em;text-box:trim-both cap alphabetic}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.timeLabel,.moveItemName,.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.moveMeta,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.wxLayoutBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.routineSummary,.helpSteps li,.helpNote,.createStepSummary{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.scaleEnds,.peekAt,.upcomingMeta,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.fieldError,.globalTimingValue,.createStepNumber,.feelMeterTop,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}.insightCard{display:flex;flex-direction:column;gap:0}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#26221e;--muted:rgba(38,34,30,.85);--accent-text:#26221e;--line:rgba(38,34,30,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable :is(th,td):first-child{padding-left:4px}.metaTable :is(th,td):last-child{padding-right:4px}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:var(--r-card) var(--r-card) 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--inset)}.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}.upcomingCard{padding:var(--inset)}.workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}.workoutPanel.active{border-radius:var(--r-tile)}.workoutPanel.addPanel{padding:var(--inset)}.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--inset);gap:var(--inset)}.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}.activityRows{gap:12px}.timeTile{padding:var(--inset);gap:var(--inset)}.timeHeader{gap:var(--inset)}.createPresetBtn,.createExtraToggle{padding:var(--inset)}.moveMeta,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}.createPresetBtn.active span{color:var(--on-bright)}.moveMeta,.activityRowMeta{margin-top:0}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);font-size:20px}.navBtn,.back{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);min-height:0;padding:0;border-radius:var(--r-inner)}.moveRow.editing{padding:var(--inset)}.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--inset)}.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-inner);background:var(--icon-bg);color:var(--muted)}.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}.moveRow.restItem .dragHandle{background:transparent}.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}.moveRow.restItem .dragHandle:hover{background:var(--hover)}.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer}.segBtn:hover{background:var(--hover)}.moveActions.seg{gap:4px}.moveActions .segBtn{min-width:100px}.moveActions .editBtn{background:var(--seg-on)}.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}.moveActions .removeBtn svg{display:block;width:24px;height:24px}.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}.moveActions .removeBtn.holding{color:#fff}@media (max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}.tabs.rubberTabs{padding:4px;gap:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-fine);background:var(--seg-on)}.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}.tabs.rubberTabs .tab.active{color:var(--text)}#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;transition:background .16s ease,opacity .16s ease}.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--color-accent-primary);opacity:1}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}@media (max-width:900px){.workoutPanel:not(.addPanel){border-radius:var(--r-tile);padding:var(--inset)}}@media (max-width:620px){:host{--gutter:0px;--grid-gap:8px}}@media (max-width:620px){.modalBackdrop{padding:0}.modal,.modal:not(.createMode){width:100%;height:100%;max-height:none;border-radius:0;border:0}.modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}.modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}}#app{--group-bg:var(--card)}.modal,.sheet{--group-bg:var(--tile)}.view{padding-left:var(--gutter);padding-right:var(--gutter)}.grid{gap:var(--grid-gap)}.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow):before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}.setupText{display:grid;gap:2px;min-width:0}.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}.setupRow .rangeTrack[hidden]{display:none}.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}.rangeTrack.setupSlider:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}.setupSlider .rangeFill:after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}.setupSlider:focus-within{outline:0}.setupSlider:focus-within .rangeFill:after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}.stepBtn:hover:not(:disabled){background:var(--hover)}.stepBtn:disabled{opacity:.35;cursor:default}.stepCount{min-width:24px;text-align:center;font:600 var(--t-strong)/1 var(--font);font-variant-numeric:tabular-nums}.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}.editNameLabel{padding:0 4px}.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}#settingsView .card+.card{margin-top:36px}#settingsView .paneTitle{margin:0 4px}#settingsView .note{margin:0 4px 4px}#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}#settingsView .helpSteps{gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}#settingsView .helpSteps li{border-radius:0;background:transparent}#settingsView .helpSteps li+li:after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}.activityCard,.insightCard{grid-column:span 3}.weatherCard,.grid.noWeather .activityCard,.grid.noWeather .insightCard,.grid.noActivity .insightCard{grid-column:span 6}.grid.noActivity.noWeather .insightCard{grid-column:span 12}@media (max-width:1199px) and (min-width:901px){.activityCard,.insightCard{grid-column:span 6}.weatherCard,.grid.noActivity .insightCard{grid-column:span 12}}@media (max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}.jointRows{gap:0;padding:4px 0;border-radius:var(--r-tile);background:var(--tile)}.jointRows>.activityRow{background:transparent}.insightCard .jointRows{flex:1;align-content:space-evenly}.weatherCard{display:flex;flex-direction:column}.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--inset)}.wxNow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wxTempBlock{display:grid;gap:4px;min-width:0}.wxTemp{display:flex;align-items:flex-start;gap:2px}.wxPlace{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}.wxIcon{position:relative;display:block;flex:0 0 auto;width:54px;height:54px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wxIcon>svg,.wxLayer>svg{display:block;width:100%;height:100%}:is(.wxIcon,.wxLayer).clear,:is(.wxIcon,.wxLayer).partly{background:var(--wx-clear)}:is(.wxIcon,.wxLayer).cloudy{background:var(--wx-cloudy)}:is(.wxIcon,.wxLayer).rain,:is(.wxIcon,.wxLayer).snow{background:var(--color-text-muted)}:is(.wxIcon,.wxLayer).night{background:var(--wx-night)}.wxIcon .wxBright{fill:var(--wx-cloud-bright)}.wxIcon .wxCloudLight{fill:var(--wx-cloudy)}.wxIcon .wxAccent{fill:var(--color-accent-primary)}.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}.wxIcon>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxIcon :is(.wxSunDisc,.wxMoonPath,.wxBright,.wxCloudLight,.wxDrop,.wxFlake,.wxTwinkle){transform-box:fill-box;transform-origin:center}#app.wxMotion .wxIcon .wxSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}#app.wxMotion .wxIcon .wxMoonPath{animation:wxBob 5.2s ease-in-out infinite}#app.wxMotion .wxIcon :is(.wxBright,.wxCloudLight){animation:wxDrift 6.4s ease-in-out infinite}#app.wxMotion .wxIcon .wxDrop{animation:wxFall .95s linear infinite}#app.wxMotion .wxIcon .wxFlake{animation:wxSnow 3.2s linear infinite}#app.wxMotion .wxIcon .wxTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}@keyframes wxBreathe{50%{transform:scale(1.03)}}@keyframes wxBob{50%{transform:translateY(-1px)}}@keyframes wxDrift{0%,to{transform:translate(-1.5px)}50%{transform:translate(1.5px)}}@keyframes wxFall{0%{transform:translateY(-5px);opacity:0}18%,72%{opacity:1}to{transform:translateY(9px);opacity:0}}@keyframes wxSnow{0%{transform:translateY(-6px);opacity:0}20%,75%{opacity:1}to{transform:translate(1.5px,8px);opacity:0}}@keyframes wxTwinkle{50%{opacity:.35}}.wxLayer{position:absolute;top:0;right:0;bottom:0;left:0;display:block}.wxLayer.wxOut{animation:wxFadeOut .7s cubic-bezier(.3,0,1,1) forwards}@keyframes wxFadeOut{to{opacity:0}}.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}.wxPlace,.wxCondName{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxNow[role=button],.wxDayTile{cursor:pointer;border-radius:var(--r-tile)}:is(.wxNow,.wxDayTile,.wxStripDay):focus-visible{outline:2px solid var(--color-border-focus);outline-offset:2px}.wxStrip{position:relative;flex:1;display:flex}.wxStripDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}.wxStripDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);cursor:pointer}@media (hover:hover){.wxStripDay:hover{background:var(--color-state-hover)}}.wxStripGap{align-self:stretch;height:90px}.wxStripDay .wxTemps{display:grid;justify-items:center;gap:8px}.wxStripSky{position:absolute;left:0;top:calc(var(--inset) * 2 + var(--lh-tile-detail));width:100%;height:90px;border-radius:var(--r-inner);pointer-events:none;image-rendering:pixelated}.wxStripDay .wxDayName,.wxStripDay .wxHigh,.wxGraphDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxStripDay .wxLow{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);color:var(--muted)}.wxBackdrop{z-index:170}.wxDialogCard{width:min(860px,100%);display:grid;gap:var(--inset)}.wxDialogHead{display:flex;align-items:center;justify-content:space-between;gap:var(--inset);padding-left:var(--inset)}.wxDialogHead .activityTitle{margin:0}.wxDialogClose{background:transparent}.wxGraph{display:grid;gap:8px;touch-action:pan-y;cursor:ew-resize;border-radius:var(--r-tile);user-select:none;-webkit-user-select:none}.wxGraph:focus{outline:none}.wxGraph:focus-visible{outline:2px solid var(--color-border-focus);outline-offset:4px}.wxGraphDays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));text-align:center;color:var(--muted)}.wxGraphSky{position:relative;height:200px;border-radius:var(--r-tile);overflow:hidden;background:var(--tile)}.wxGraphSky>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxGraphLine{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none}.wxLineLabel{font-family:var(--font-tile);font-size:14px;font-weight:var(--w-semibold);text-anchor:middle;paint-order:stroke;stroke-width:3px;stroke-linejoin:round}@media (max-width:620px){.wxGraphSky{height:160px}.wxDialogNow{flex-wrap:wrap}}.segBtn{transition:background .15s ease,transform .18s cubic-bezier(.34,1.46,.64,1),box-shadow .15s ease,color .15s ease}.segBtn:hover{background:transparent}@media (hover:hover){.segBtn:hover{background:var(--color-state-hover)}}.tabs.rubberTabs .tab.active:hover{background:transparent}.segBtn:active{background:var(--color-state-pressed);transform:scale(.97)}.segBtn:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--color-border-focus)}.segBtn:disabled{opacity:.4;cursor:default}.moveActions.seg{background:transparent;transition:background .18s ease}.moveActions.seg:focus-within{background:var(--seg-bg)}@media (hover:hover){.moveActions.seg:hover{background:var(--seg-bg)}}.moveActions .editBtn,.moveActions .editBtn:hover{background:transparent}.moveActions .removeBtn,.moveActions .removeBtn:hover{background:transparent;color:var(--text)}@media (hover:hover){.moveActions .editBtn:hover{background:var(--color-state-hover)}.moveActions .removeBtn:hover{background:var(--danger-fill);color:var(--color-text-on-danger)}}.moveActions .removeBtn:active{background:linear-gradient(var(--color-state-pressed-on-bright),var(--color-state-pressed-on-bright)),var(--danger-fill);color:var(--color-text-on-danger)}.moveActions .removeBtn.holding{background:var(--danger-bg);color:var(--color-text-on-danger)}.moveActions .removeFill{background:var(--danger-fill)}.activityIcon{color:var(--muted)}.activityRowIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--text)}.wxTempBlock{padding-top:6px}.motionRangeWrap input[type=range]{accent-color:var(--bright);background:transparent}', jp = '#app{--hc-on-accent:#f4f3f3;--hc-open-edge:rgba(255,255,255,.1);--hc-hair:inset 0 0 0 .2px var(--line),inset 0 -.2px 0 var(--line);--hc-hair-all:inset 0 0 0 .4px var(--line)}#app.light{--hc-open-edge:#e3e3e3}#homeView .card{padding:var(--inset);border-radius:var(--r-card);box-shadow:var(--hc-hair)}#homeView .card:has(>.activityHeader){padding-top:14px;box-shadow:var(--hc-hair-all)}#homeView .activityCard{min-height:0}#homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}#homeView .activityHeader .activityIcon{display:none}:is(#homeView,.tfMoreBackdrop,.tfEditTray,.tfMiniPhone) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}#homeView .card .activityRows{gap:0}#homeView .card .jointRows{padding:0;background:transparent}#homeView .card .activityRow{min-height:var(--tile-min);padding:var(--inset);gap:12px;border-radius:var(--r-tile);grid-template-columns:var(--chip-size) minmax(0,1fr);background:transparent}#homeView .activityRowIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent)}#homeView .activityRowName{font:600 14px/20px var(--font-tile)}#homeView .activityRowMeta{font:400 16px/1.15 var(--font);margin:0}#homeView .card .activityRow.tap{cursor:pointer}#homeView .card .activityRow:is(.tap,:has(.tfName)){transition:background .15s ease,box-shadow .15s ease}#homeView .card .activityRow:is(.tap,:has(.tfName)):hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}#homeView .weatherCard{padding:20px}#homeView .wxWide{gap:16px}#homeView .wxIcon.large{border-radius:28px}#homeView .wxCondition{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:10px 16px;border-radius:28px}#homeView .wxCondName{font:400 18px/1.2 var(--font)}#homeView .weatherCard .activityRow .wxIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}@media (max-width:620px){#homeView .weatherCard{padding:var(--inset)}#homeView .wxIcon.large{width:60px;height:60px;border-radius:20px}#homeView .wxDeg{font-size:46px}#homeView .wxRange{font-size:20px}}.tfLabel{grid-column:1/-1}.tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}.tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--muted)}#app.house.light{--hc-icon:#e6e6e6}#app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}@media (max-width:620px){#app.house{--grid-gap:16px}#app.house .settingsTitle{font-size:32px}#app.house .tfAreaHead .back{margin-block:calc((32px * .92 - 40px) / 2)}#app.house .tfAreaHead .back svg{width:24px;height:24px}}@container wb-bento (width < 652px){#app.house .wbBento{gap:var(--grid-gap)}#app.house .wbItem[data-size=tile]{width:calc((100% - var(--grid-gap)) / 2)}}#app.house #homeView{overflow-anchor:none}:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfCard .activityRow{display:grid;align-items:center}#homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}.tfCard.open>.activityHeader{display:none}.tfOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.tfOpenHead{display:flex;align-items:center;gap:12px}.tfOpenHead>div:nth-child(2){flex:1;min-width:0}.tfBack{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}.tfBack .icon{width:34px;height:34px}.tfGraph{display:block;width:100%;flex:1;min-height:80px}.tfGraph text{fill:var(--muted);font:400 11px var(--font)}.tfAction{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}.tfAction>.tfActionHead{margin-bottom:auto}.tfActionHead>:is(div,.tfName){min-width:0}.tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}:is(.tfBar,.tfTilt).held{outline:2px solid var(--primary);outline-offset:-2px}.tfBar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#ffc247,#fa0)}.tfBar .was{position:absolute;top:12px;bottom:12px;width:2px;margin-left:-1px;border-radius:1px;background:var(--text);opacity:.22}.tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}.tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.tfAction{grid-column:span 2}@container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction{grid-column:auto}}.tfBar:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}.tfAction :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.house .moveSection{display:none}#app.house #settingsView :is(.rubberTabs:not(.houseTabs),.settingsPane:not(#housePane)){display:none}#app.house #housePane{display:block}#housePane .houseTab{display:none}#housePane .houseTab.active{display:block}#housePane .toggleRow:has(>.switch){flex-direction:row-reverse;justify-content:flex-end}#housePane .toggleRow:has(>.switch)>div:first-child{flex:1}#housePane .settingsSelect{flex:none;width:220px}@media (max-width:620px){#housePane .settingsSelect{width:150px}}#housePane .wxLayoutBtn:disabled{opacity:.4;cursor:default}.tfTableNote{margin:0 0 12px;padding:10px 14px;border-radius:var(--r-inner);background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--text)}.tfLightTable td{white-space:nowrap}.tfLightTable td strong{font:600 14px/20px var(--font-tile)}.tfLightTable .settingsSelect{min-width:150px}.tfLightTable .settingsSelect:disabled{opacity:.4}.tfDacPad{min-width:0}.tfDacPad>dual-controller-v3{display:block}#app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}#app.house .checkinTab,#app.houseBento #weatherCard{display:none}.tfBento{grid-column:1/-1;min-width:0}.tfIcon.art{background-size:cover;background-position:center}.tfBar.ct{background:linear-gradient(90deg,#ff9e45,#ffd3a3 32%,#fff7ee 55%,#d7e7ff)}.tfBar.hue{background:linear-gradient(90deg,red,#ff0 17%,#0f0 33%,#0ff,#00f 67%,#f0f 83%,red)}.tfBar b{position:absolute;top:8px;bottom:8px;width:4px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 0 .5px #0006,0 1px 3px #00000040}.tfAction:not(.on) .tfBar:is(.ct,.hue){opacity:.45}.tfBar:is(.pos,.vol) i{background:var(--primary)}:is(.tfStep,.tfSeg,.tfBlocks,.tfTilt,.tfChips){font-family:var(--font-tile)}.tfStep{display:flex;align-items:center;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);cursor:pointer}.tfStep svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfStep output{flex:1 0 auto;white-space:nowrap;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}.tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfSeg button{flex:1;min-width:0;min-height:0;padding:0 6px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSeg button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfSeg button:not([aria-pressed]){color:var(--text)}.tfSeg button:disabled{opacity:.4;cursor:default}.tfSeg svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfChips{display:flex;flex-wrap:wrap;gap:8px}.tfChips button{height:40px;min-height:0;padding:0 14px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer;box-shadow:var(--hc-hair-all)}.tfChips button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfCard .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfCardGraph{height:120px;padding:0 var(--inset)}.tfCardGraph .tfGraph{height:100%}.tfAction.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfName{flex:1;display:block;min-width:0;min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}.tfName>span{display:block}.tfTitleBtn{min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;text-align:left;cursor:pointer}.tfAreas{grid-column:1/-1;min-width:0}.tfAreaPanel .workoutPanelTop>div{min-width:0}.tfAreaPanel .sourceTag{margin-right:4px}.tfBlocks{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;container:blocks/inline-size}.tfBlocks>span{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:4px;transition:background .12s}.tfBlocks>span:first-child{border-radius:12px 4px 4px 12px}.tfBlocks>span:nth-child(4){border-radius:4px 12px 12px 4px}.tfBlocks:not(.fine)>span:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}.tfBlocks i{position:absolute;inset:0 auto 0 0;border-radius:inherit;background:var(--primary)}.tfBlocks b{position:relative;color:var(--text);font:600 14px/1 var(--font-tile);transition:opacity .15s}.tfBlocks b small{font:inherit}@container blocks (width < 164px){.tfBlocks b small{display:none}}.tfBlocks b.lit{color:#fff}.tfBlocks.fine b{opacity:0}.tfTip{position:absolute;bottom:calc(100% + 8px);z-index:2;transform:translate(-50%);padding:3px 8px;border-radius:7px;background:var(--text);color:var(--card);font:700 12px/16px var(--font-tile);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s}.tfBlocks.fine .tfTip{opacity:1}.tfTilt{position:relative;display:flex;align-items:center;justify-content:space-between;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.tfTilt i{position:absolute;top:4px;bottom:4px;left:4px;border-radius:12px;background:var(--primary)}.tfTilt span{position:relative;padding:0 16px;color:var(--text);font:600 14px/1 var(--font-tile)}.tfTilt span.lit{color:#fff}:is(.tfBlocks,.tfTilt):focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfCoverBtns svg{fill:none}.tfCoverArt{align-self:center;width:min(294px,100%,max(150px,100vh - 520px));aspect-ratio:1;border-radius:24px;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.tfCoverArt.x{cursor:ew-resize}.tfCoverArt.y{cursor:ns-resize}.tfCoverArt:focus-visible{outline:none;box-shadow:0 0 0 3px var(--primary)}.tfCoverArt svg{display:block;width:100%;height:100%}.tfSide{grid-column:1/-1;align-self:start;min-width:0}.tfSideLabel{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-right:22.4px}#homeView .tfSide.tfSums .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(150px,calc(50% - 10px)),1fr))}#homeView .tfSide.tfFavs .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(240px,calc(50% - 10px)),1fr))}#homeView .tfSum .tfIcon{background:var(--sum,var(--hc-icon));color:var(--sum-ink,var(--hc-icon-ink))}.tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSide .activityRow>div{min-width:0}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfMoreList{display:flex;flex-direction:column;gap:14px}.tfMoreGroupName{margin:0 0 4px 10px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tfMoreTiles.single{grid-template-columns:1fr}.tfMoreList .activityRow{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile);transition:background .15s ease}.tfMoreList .activityRow:hover{background:var(--tile)}.tfMoreList .activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreList .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreList .tfPick{grid-template-columns:var(--chip-size) minmax(0,1fr) auto}.tfMoreList :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfStar{display:grid;place-items:center;width:34px;height:34px;min-height:0;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}.tfStar[aria-pressed=true]{color:#fa0}.tfStar svg{width:24px;height:24px}.tfMoreHead .activityTitle{flex:1;min-width:0}.tfMoreBackdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:180;display:grid;place-items:center;padding:16px;background:#00000073}.tfMoreBackdrop,.tfMore,.tfMoreSideInner,.tfMoreSideBody{overscroll-behavior:contain}.tfMoreBackdrop[hidden]{display:none}.tfMore{flex:none;width:440px;max-width:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreHead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}.tfMoreState{font:500 28px/1.15 var(--font-tile);letter-spacing:-.01em}.tfMoreSub{margin-top:3px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreState.live{color:var(--primary)}.tfMoreRows{display:flex;flex-direction:column}.tfMoreRow{display:flex;justify-content:space-between;gap:16px;padding:10px 0;box-shadow:inset 0 -.4px 0 var(--line);font:400 14px/20px var(--font)}.tfMoreRow span:first-child{color:var(--muted)}.tfMoreNote{color:var(--muted);font:400 12px/16px var(--font)}@media (max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}}@media (max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}@media (max-width:900px){.tfCard,.tfBlock{grid-column:auto}}#app.showDensity #homeView :is(.card,.tfAction){position:relative;outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}#app.showDensity #homeView :is(.card,.tfAction):after{content:attr(data-h);position:absolute;top:6px;right:12px;z-index:5;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;font:600 11px/16px var(--font);pointer-events:none}.densityBadge{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;transform:translate(-50%);display:flex;align-items:center;gap:10px;padding:8px 16px;border-radius:99px;background:var(--bright);color:var(--on-bright);font:600 13px/18px var(--font);box-shadow:0 6px 20px #00000040;pointer-events:none;white-space:nowrap}.densityBadge[hidden]{display:none}.densityBadge b{font-variant-numeric:tabular-nums}.densityBadge small{font-weight:400;opacity:.75}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard){container-type:inline-size}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard) .activityRows{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}@container (max-width:279px){#homeView .card .activityRows{grid-template-columns:1fr}}@media (min-width:1200px){#homeView .grid>.card:is(.activityCard,.insightCard){grid-column:span 6}#homeView .grid>.weatherCard{grid-column:span 6}}.tfMorePair{position:relative;display:flex;align-items:stretch;max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}#app[data-more=sheet] .tfMoreBackdrop{place-items:end center;padding:0}#app[data-more=sheet] .tfMorePair{max-height:85vh;animation:tfSheetIn .28s cubic-bezier(.2,.7,.3,1)}#app[data-more=sheet] .tfMorePair.still{animation:none}#app[data-more=sheet] .tfMore{width:min(640px,100vw)}#app[data-more=sheet] :is(.tfMore,.tfMoreSideInner){border-radius:var(--r-card) var(--r-card) 0 0}@keyframes tfSheetIn{0%{transform:translateY(100%)}}.tfDetailsBtn{display:flex;flex:none;align-items:center;justify-content:space-between;gap:12px;width:100%;height:46px;min-height:0;padding:0 12px 0 16px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer}.tfDetailsBtn svg{width:20px;height:20px;transition:transform .2s ease}.tfDetailsBtn[aria-expanded=true] svg{transform:rotate(180deg)}.tfMoreSide{position:absolute;top:0;bottom:0;left:100%;width:0;overflow:hidden;visibility:hidden;transition:width .28s cubic-bezier(.2,.7,.3,1),visibility 0s linear .28s}.tfMorePair.details .tfMoreSide{width:312px;visibility:visible;transition:width .28s cubic-bezier(.2,.7,.3,1)}.tfMoreSideInner{box-sizing:border-box;display:flex;flex-direction:column;gap:14px;width:300px;height:100%;margin-left:12px;padding:20px;overflow:auto;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreSideInner .tfMoreHead{justify-content:flex-start}.tfMorePair.over .tfMoreSide{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;width:auto;transform:translate(24px);opacity:0;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease,visibility 0s linear .25s}.tfMorePair.over.details .tfMoreSide{width:auto;transform:none;opacity:1;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease}.tfMorePair.over .tfMoreSideInner{width:100%;margin:0}@media (max-width:620px){.tfMoreSideInner{border-radius:var(--r-card) var(--r-card) 0 0}}@media (prefers-reduced-motion:reduce){.tfMorePair,.tfMoreSide{animation:none!important;transition:none!important}}#homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}.tfAreaPanel .workoutPanelTop{justify-content:flex-start;gap:14px;padding:0}.tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}.tfAreaPanel .icon{width:22px;height:22px}.tfATitle{display:flex;flex-direction:column;align-items:flex-start;min-width:0}#app .tfAName{max-width:100%;min-height:0;padding:0;border:0;border-radius:6px;background:none;color:var(--text);font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.tfAreaIcon{flex:none;border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}button.tfAreaIcon{cursor:pointer}.tfAreaGlyph{display:grid;place-items:center}.tfAreaHead{grid-column:1/-1;margin-bottom:0}#app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{margin:0;padding:0;justify-content:flex-start}#app.tfWeatherOpen .tfBento.tfPegs .wbBento{display:grid;grid-template-columns:repeat(var(--peg-n),var(--peg-w));grid-auto-rows:60px;grid-auto-flow:row dense;align-items:stretch;gap:16px;max-width:none}#app.tfWeatherOpen .tfBento.tfPegs .wbItem{width:auto;min-height:0;align-self:stretch;display:flex;flex-direction:column}#app.tfWeatherOpen .tfBento.tfPegs .wbItem>*{flex:1;min-height:0}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=wide]{grid-column:span 2;grid-row:span 5}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=double]{grid-column:span 2;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=tile]{grid-column:span 1;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbCard.wbSquare{aspect-ratio:auto}#app.tfWeatherOpen .tfBento.tfPegs .wbWeather .wbNow{margin-bottom:auto}#app.tfWeatherOpen .tfBento.tfPegs :is(.wbStripScroll,.wbBars .wbDayBars,.wbBars.wbTabbed .wbDayBars){min-height:0}.tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}.tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}.tfABigMain.long{font-size:40px}.tfABigUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}.tfABigSub{max-width:100%;overflow:hidden;color:var(--muted);font:400 16px/1.2 var(--font);white-space:nowrap;text-overflow:ellipsis}.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:calc(2 * var(--tile-min));align-content:end}.tfABig{max-width:100%}.panelExpanded:not(:has(.tfATiles)) .tfABig{margin-bottom:calc(2 * var(--tile-min) + 16px)}#app.tfBoard .tfAreas[data-rows="5"] .tfACMain{position:absolute;left:10px;right:10px;bottom:170.3px;max-width:none;text-align:center}.tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}.tfATile>:is(div,.tfName):last-child{min-width:0}.tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACollapsed{flex-direction:column;justify-content:space-between;padding:18px 0 10px;container-type:inline-size}.tfACTop{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:calc(100% - 20px)}.tfACMain{max-width:calc(100% - 20px);font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACTiles{display:grid;grid-template-columns:repeat(2,60px);min-height:60px}.tfACTiles:has(>:nth-child(3)){margin-top:-60px}.tfACTile{display:grid;place-items:center;width:60px;height:60px}.tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}.tfACTile .tfIcon.alert{background:#e53935;color:#fff}@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}.tfACTiles:has(>:nth-child(2)){margin-top:-60px}}.tfMore.wide{width:min(1040px,100vw - 32px);padding:40px;gap:28px;background:var(--bg)}#app[data-more=sheet] .tfMore.wide{width:min(1040px,100vw)}.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{gap:28px;padding:40px;background:var(--bg)}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:-20px -20px 0 0}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead) .activityTitle{font-size:24px}@media (max-width:620px){#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:0}}@media (min-width:621px){#app:not([data-more=sheet]) .tfMoreBackdrop.wide{place-items:start center}}.tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}.tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}.tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}.tfMoreActions .tfAction{grid-column:auto}.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfMoreActions>.activityRow.alert .activityRowMeta{color:var(--danger)}@media (max-width:620px){.tfMore.wide,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{width:100%;padding:20px 16px;gap:20px}}#app.tfDash #homeView{max-width:none;container:tfdash/inline-size}#app.tfDash #homeView .grid{display:flex;flex-wrap:wrap;align-items:flex-start;align-content:flex-start}#app.tfDash .tfDashTitle{order:1!important;flex:0 0 100%;margin:0}#app.tfDash .tfDashBarRow{order:2!important;flex:0 0 100%;display:flex;min-width:0}#app.tfDash .tfDash-wx{order:var(--o,3)!important}#app.tfDash .tfAreas{order:var(--o,4)!important}#app.tfDash .tfDash-favs{order:var(--o,5)!important}#app.tfDash .tfDash-act{order:var(--o,6)!important}#app.tfDash .tfDash-energy{order:var(--o,7)!important}#app.tfDash .tfDash-avg{order:var(--o,8)!important}#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar){order:var(--o,8)!important}#app.tfDash .tfDashTiles>*{order:var(--o,9)}#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}#app .tfNotAdded{display:none!important}#app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}@media (min-width:901px){#app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}#app.tfDash .tfAreaGallery::-webkit-scrollbar{display:none}#app.tfDash .tfAreaPanel.active{flex:1 0 409px}#app.tfDash .tfAreaPanel:not(.active){flex:0 0 128px}}#app.tfDash .tfDash-bar{flex:none;max-width:100%}#app.tfDash #homeView .card.tfDash-bar{container-type:normal}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(var(--bar-cols,6),auto)}#homeView .card.tfDash-bar .activityRow{min-width:200px}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:visible;text-overflow:clip}@container tfdash (width < 640px){#app.tfDash .tfDash-bar{width:100%}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#homeView .card.tfDash-bar .activityRow{min-width:0}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:hidden;text-overflow:ellipsis}#app.tfDash .tfDashTitle{padding:0 16px;box-sizing:border-box}}#app.tfDash .tfDashCard:not(.tfDash-bar){container-type:inline-size}#homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}#homeView .card.tfDash-act>.activityRows{flex:none;margin-top:auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}#homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}#homeView .card.tfDash-energy .activityRows{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}.tfDashCard :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfDashCard .activityRow>*{min-width:0}.tfDashNone{margin:0;padding:var(--inset) 18px;color:var(--muted)}.tfDashBento{display:flex;flex-direction:column;min-width:0}#app:not(.tfDash) .tfDashBento{display:none}.tfDashBento:not(:has(.wbItem:not([hidden]))){display:none}.tfDashBento .wb{flex:1;display:flex;flex-direction:column;min-width:0}.tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}#app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}#app.house .tfDashBento .wbItem[data-size]{width:100%}#app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}.tfDash-wx .wbCondition{display:none}#app.tfDash .tfDashTiles{display:contents}.tfDashTiles>:is(.tfAction,.tfDac){flex:none;align-self:stretch;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}#app.tfBoard #homeView .grid{display:block;position:relative}#app.tfBoard .tfBoardItem{position:absolute;z-index:1;margin:0;max-width:none;min-height:0;box-sizing:border-box}#app.tfEditing.tfBoardReady .tfBoardItem{transition:left .25s cubic-bezier(.2,.7,.3,1),top .25s cubic-bezier(.2,.7,.3,1),height .25s cubic-bezier(.2,.7,.3,1)}#app.tfBoard .tfBoardHidden{display:none!important}#app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}#app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%;min-height:0}.tfBoardCells{position:absolute;top:0;left:0;z-index:0;display:grid;grid-auto-rows:60px;gap:16px;pointer-events:none}.tfBoardCells i{border-radius:var(--r-inner);background:color-mix(in srgb,var(--text) 7%,transparent)}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfDashBento){outline:1.5px solid var(--primary);outline-offset:-1.5px;border-radius:var(--r-card)}#app.tfEditing .tfBoardItem:is(.tfAction,.tfDac){border-radius:28px}#app.tfEditing .tfAreas{border-radius:24px}#app.tfEditing .tfDashBento .wbCard{outline:1.5px solid var(--primary);outline-offset:-1.5px}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;overflow:visible;-webkit-user-select:none;user-select:none;touch-action:none}.tfEditChips{position:absolute;inset:-8px -8px auto -8px;z-index:5;height:40px;display:flex;justify-content:flex-end;pointer-events:none}.tfEditGrip{position:absolute;top:-10px;left:50%;display:grid;place-items:center;width:80px;height:40px;border-radius:var(--r-inner);background:var(--text);color:var(--card);transform:translate(-50%);pointer-events:auto;cursor:grab}.tfEditGrip svg{width:24px;height:24px;fill:currentColor}.tfEditChip{display:grid;place-items:center;width:28px;height:28px;min-height:0;padding:0;border:0;border-radius:50%;background:var(--text);color:var(--card);pointer-events:auto;cursor:pointer}.tfEditChip svg{width:18px;height:18px;fill:currentColor}.tfEditChip:focus-visible{outline:2px solid var(--primary);outline-offset:2px}#app.tfEditing .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}.tfBoardLand{position:absolute;z-index:1;box-sizing:border-box;border:1.5px dashed var(--primary);border-radius:28px;background:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;transition:left .2s,top .2s,width .2s,height .2s}.tfBoardMenu{position:absolute;z-index:30;display:grid;gap:2px;min-width:200px;padding:6px;border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px #00000059}.tfBoardMenu button{display:flex;align-items:center;min-height:40px;padding:0 12px;border:0;border-radius:var(--r-inner);background:transparent;color:var(--text);font:500 14px/20px var(--font);text-align:start;cursor:pointer}.tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}.tfBoardMenu button:disabled{opacity:.4;cursor:default}.tfHeight{display:grid;gap:6px;padding:6px 6px 8px}.tfHeightLabel{padding:0 6px;color:var(--muted);font:500 12px/16px var(--font)}.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--tile)}.tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}.tfBoardMenu .tfHeightTabs button[aria-checked=true]{background:var(--text);color:var(--card)}.tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows{grid-auto-rows:var(--fill-row,60px);margin-top:0}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows>.activityRow{min-height:0;height:var(--fill-row,60px);box-sizing:border-box}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]{padding:0;gap:0}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityHeader,#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.tfDashGraph{display:none}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityRows{margin:0;flex:1}#app.tfBoard .tfBoardItem.tfAction[data-rows="1"],#app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}#app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}#app.tfBoard .tfDash-wx[data-rows="1"] .wbNow{margin:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbWx.wbS90{width:40px;height:40px;border-radius:12px}#app.tfBoard .tfDashBento[data-rows] :is(.wb,.wbBento,.wbItem){height:100%;min-height:0}#app.tfBoard .tfDashBento[data-rows] .wbCard{height:100%;min-height:0;box-sizing:border-box;aspect-ratio:auto}#app.tfBoard .tfDash-wx[data-rows="1"] .wbDeg{font-size:20px;letter-spacing:0;line-height:22px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbPlace{font-size:13px;line-height:18px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbUnit{font-size:14px;line-height:22px}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="4"]) .wbSummary{display:none}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) :is(.wbColumns,.wbHalves){display:none}#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:12px}#app.tfBoard .tfDash-wx[data-rows="4"] .wbHalves>:nth-child(n+5){display:none}#app.tfBoard .tfDash-energy[data-rows="2"] .tfDashGraph{display:none}#app.tfBoard .tfDash-energy:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) .activityRows{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}#app.tfBoard .tfDash-energy[data-rows="3"] .tfDashGraph{min-height:0}#app.tfBoard .tfDashBento[data-rows="2"] .wbBaseRows{display:none}#app.tfBoard .tfDashBento[data-rows="2"] :is(.wbRadar,.wbCompareBars,.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfDashBento[data-rows="3"] :is(.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfAreas[data-rows="1"] .workoutPanel.tfAreaPanel{padding:10px}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 12px;align-content:center}#app.tfBoard .tfAreas[data-rows="1"] :is(.panelExpanded>.workoutPanelTop,.tfACTop){display:contents}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] .tfATitle .tfAName{font-size:14px;line-height:20px;height:auto}#app.tfBoard .tfAreas[data-rows="1"] .tfABig{margin:0;flex-direction:row}#app.tfBoard .tfAreas[data-rows="1"] .tfABigMain{font-size:14px;line-height:18px;letter-spacing:0}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigUnit){font-size:14px}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigSub,.tfATiles,.tfACTiles,.sourceTag){display:none}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:center;padding:0}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfACName,.tfACMain){margin:0;font-size:14px;line-height:18px;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfABig{display:none}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfATiles{margin-top:auto}#app.tfBoard .tfAreas[data-rows="2"] .tfATile:nth-child(n+3),#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfATile:nth-child(n+5){display:none}#app.tfBoard .tfAreas[data-rows="2"] .tfACTiles{display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTile:nth-child(n+3){display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACollapsed{justify-content:flex-start;gap:10px}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTiles{margin-top:auto}.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:360px;max-width:calc(100vw - 56px);transform:translate(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfEditTray.open{transform:none}.tfEditTray.open.tucked{transform:translate(100%)}.tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}.tfTrayTuck{position:absolute;top:20px;left:-40px;display:grid;place-items:center;width:40px;height:56px;min-height:0;padding:0;border:0;border-radius:16px 0 0 16px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}.tfTrayTuck svg{width:22px;height:22px}.tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}.tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d}.tfTrayHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.tfTraySection{display:flex;flex-direction:column;gap:8px}.tfTraySection .sectionLabel{margin:0}.tfTrayNote{margin:0;color:var(--muted);font:400 14px/1.3 var(--font)}.tfTrayCards{display:flex;flex-direction:column;gap:6px}.tfTrayCard{display:flex;align-items:center;gap:10px;min-height:var(--tile-min);padding:0 14px 0 10px;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none}.tfTrayList{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}.tfTrayFav{display:grid;grid-template-columns:22px var(--chip-size) minmax(0,1fr) 36px 36px;align-items:center;gap:8px;min-height:var(--tile-min);padding:0 4px 0 6px;border-radius:var(--r-tile)}.tfTrayFav.off{cursor:grab;touch-action:none}.tfTrayFav.off :is(.tfIcon,.tfTrayName){opacity:.5}.tfTrayFav.moving{background:var(--tile)}.tfTrayGrip{display:grid;place-items:center;color:var(--muted);cursor:grab;touch-action:none}.tfTrayGrip svg{width:20px;height:20px;fill:currentColor}:is(.tfTrayFav,.tfTrayPickItem) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfTrayName{display:flex;flex-direction:column;min-width:0}.tfTrayName>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfTrayBtn{display:grid;place-items:center;width:36px;height:36px;min-height:0;padding:0;border:0;border-radius:12px;background:none;color:var(--text);cursor:pointer}.tfTrayBtn svg{width:20px;height:20px;fill:currentColor}.tfTrayBtn:hover{background:var(--tile)}.tfTrayAdd{align-self:flex-start}.tfTrayPick{display:flex;flex-direction:column;gap:6px}.tfTrayPick[hidden]{display:none}.tfTrayPickItem{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;width:100%;min-height:var(--tile-min);padding:0 10px;border:0;border-radius:var(--r-tile);background:none;color:var(--text);text-align:start;cursor:pointer}.tfTrayPickItem:hover{background:var(--tile)}.tfTraySuggest{margin-top:8px}.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(360px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d;opacity:0;transform:translate(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfMiniPhone.open{opacity:1;transform:none;pointer-events:auto}.tfPhoneHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px 0 12px}.tfMiniPhone>.tfTrayNote{padding:0 12px 4px}.tfLinkBtn{min-height:0;padding:0;border:0;background:none;color:var(--primary);font:inherit;text-decoration:underline;cursor:pointer}.tfPhoneScreen{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border-radius:34px;background:var(--bg);box-shadow:var(--hc-hair-all);padding:14px 0 24px}.tfPhoneList{display:flex;flex-wrap:wrap;gap:12.8px}.tfPhoneTitle{width:100%;padding:0 12.8px;color:var(--text);font:800 25.6px/1 var(--font);letter-spacing:-.055em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfPhoneBlock{display:flex;align-items:flex-start;gap:10px;width:100%;min-height:0;padding:12px;border:0;border-radius:27px;background:var(--card);box-shadow:var(--hc-hair);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}.tfPhoneBlock.tile{width:calc((100% - 12.8px)/2);border-radius:22.4px}.tfPhoneBlock.fixed{align-items:center;color:var(--muted);cursor:default}.tfPhoneBlock.moving{box-shadow:var(--hc-hair),0 0 0 2px var(--primary);cursor:grabbing}.tfPhoneBlock:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfPhoneBlock .tfIcon{width:32px;height:32px;border-radius:13px;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}.tfPhoneName{min-width:0;padding-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.tfTrayGhost{position:fixed;top:0;left:0;z-index:200;margin:0;pointer-events:none;opacity:.9;background:var(--tile);border-radius:var(--r-tile);box-shadow:0 8px 24px #00000059}.tfFavDrop{position:fixed;z-index:200;width:4px;border-radius:2px;background:var(--primary);pointer-events:none}.tfFavHides{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;pointer-events:none}.tfFavHide{position:absolute;display:grid;place-items:center;width:32px;height:32px;min-height:0;padding:0;border:0;border-radius:12px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;pointer-events:auto}.tfFavHide svg{width:18px;height:18px;fill:currentColor}.tfDash-energy .tfDashGraph{flex:1;min-height:80px;height:auto;margin:var(--inset) 0 0}.tfDash-energy.graphAbove>.activityHeader{order:-2}.tfDash-energy.graphAbove>.tfDashGraph{order:-1;margin:0 0 var(--inset)}#homeView .card.tfDash-energy .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.toast.tfToast{top:auto;right:auto;max-width:calc(100vw - 32px);transform:translate(-50%,6px)}.toast.tfToast.show{transform:translate(-50%)}.tfDash-act .activityRow.alert .activityRowName{color:var(--danger)}.activityRow .tfIcon.alert{background:#e53935;color:#fff}.tfGraph.tfDay{flex:none;height:62px;min-height:0}.tfGraph.tfDay text{font-size:10px}#housePane .rubberIndicator{background:var(--bright)}#housePane .tab.active{color:var(--on-bright)}#app.light .tfBar i{box-shadow:inset -2px 0 0 var(--text)}#app.house :is(.settingsSelect,.addInput){border:1px solid var(--muted)}#app.house .addInput::placeholder{color:var(--muted);opacity:1}#app .activityRows :focus-visible{outline-offset:-2.4px}#app.house :is(button,a,input,select,[tabindex]){scroll-margin-bottom:96px}@media (max-width:620px){#app.house :is(.activityRowName,.activityRowMeta){white-space:normal;text-overflow:clip;overflow:visible;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}}.tfTooltip{position:fixed;z-index:500;max-width:min(320px,calc(100vw - 16px));padding:6px 10px;border-radius:10px;background:var(--bright);color:var(--on-bright);font:500 14px/18px var(--font);overflow-wrap:break-word;box-shadow:0 4px 16px #00000040}.tfTooltip[hidden]{display:none}.tfDashGraph rect{transform-box:fill-box;transform-origin:50% 100%}#app.house:is([data-names=cut],[data-names=scroll]) :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#app.house[data-names=wrap] :is(.activityRowName,.activityRowMeta){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}#app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}', Vp = `.wb{container:wb-bento/inline-size;display:block;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}.wbBento{box-sizing:content-box;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:16px;max-width:1056px;margin:0 auto;padding:10px}.wbItem{container:wb-card/inline-size;min-width:0}.wbItem[hidden]{display:none!important}.wbItem[data-size=wide]{width:520px;align-self:stretch;display:flex;flex-direction:column}.wbItem[data-size=wide]>*{flex:1}.wbItem[data-size=wide]>.wbWeather{flex:none}.wbItem[data-size=tile]{width:252px}.wbItem[data-size=double]{width:520px}@container wb-bento (width < 652px){.wbBento{gap:10px;padding:10px}.wbItem:is([data-size=wide],[data-size=double]){width:100%}.wbItem[data-size=tile]{width:calc(50% - 5px)}}.wbCard{position:relative;display:block;box-sizing:border-box;border:0;border-radius:var(--r-card);background:var(--card);color:var(--text);font-family:var(--font);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line);transition:all .3s ease-out}.wbCard.wbHc{display:flex;flex-direction:column;gap:10px;padding:14px var(--inset) var(--inset);box-shadow:var(--hc-hair-all)}.wbHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;padding:0 18px}.wbTitle{margin:0;font:500 18px/1.2 var(--font-tile);letter-spacing:-.18px;color:var(--text);white-space:nowrap}.wbIcon{display:block;flex:none;width:var(--wb-icon,24px);height:var(--wb-icon,24px);fill:currentColor;pointer-events:none}.wbTile{display:flex;align-items:center;gap:12px;min-width:0;min-height:var(--tile-min);box-sizing:border-box;padding:var(--inset);border:0;border-radius:var(--r-tile);background:transparent;color:inherit;font:inherit;text-align:start}.wb button.wbTile{border-radius:var(--r-tile)!important;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease}.wb button.wbTile:hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.wb button.wbTile:focus-visible{outline:2px solid var(--primary)!important;outline-offset:2px!important}.wbChip{flex:none;display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent);--wb-icon:24px}.wbChip.wbPlain{background:var(--icon-bg);color:var(--text)}.wbText{display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0;align-self:stretch;overflow:hidden;white-space:nowrap}.wbName{font:600 14px/20px var(--font-tile);overflow:hidden;text-overflow:ellipsis}.wbSub{font:400 16px/1.15 var(--font);letter-spacing:-.32px;overflow:hidden;text-overflow:ellipsis}.wbCard.wbSquare{display:flex;flex-direction:column;gap:14px;aspect-ratio:1;--wb-k:1;box-sizing:border-box;padding:18px;border-radius:28px;overflow:hidden}.wbHead{display:flex;align-items:flex-start;gap:12px;min-width:0}.wbSquare .wbChip{width:40px;height:40px;border-radius:16px}.wbSquare .wbName{font-size:14px;line-height:1.4}.wbSquare .wbSub{font-size:16px}.wbVisual{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:10px}.wbCard.wbSquare.wbDouble{aspect-ratio:520/252;--wb-k:.4846;border-radius:34px}.wbVisual>svg{display:block;width:100%;height:100%;min-height:0}.wbVisual svg text{font-family:var(--font-tile)}.wbValue{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbValue .wbNum{font:500 clamp(30px,calc(17.5cqw * var(--wb-k,1)),44px)/1 var(--font-tile);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.wbValue .wbUnitV{font:300 clamp(13px,calc(7.1cqw * var(--wb-k,1)),18px)/1.25 var(--font-tile);color:var(--muted)}.wbScaleNote{display:flex;justify-content:space-between;color:var(--muted);font:400 clamp(10px,calc(4.4cqw * var(--wb-k,1)),12px)/1.3 var(--font)}.wbCard.wbSquare.wbHasBackdrop{position:relative;isolation:isolate}.wbBackdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;overflow:hidden;border-radius:inherit;pointer-events:none}.wbBackdrop~*{position:relative;z-index:1}.wbGraph{position:relative;display:flex;flex-direction:column;justify-content:center;height:120px;box-sizing:border-box;padding:12px 16px;border-radius:10px 10px 18px 18px;background:var(--tile);overflow:hidden;--wb-scale-edge:var(--tile)}.wbChart{display:block;width:100%;height:100%;overflow:visible}.wbChart .wbLine{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbChart .wbArea{fill:var(--primary);opacity:.14}.wbChart .wbBar{fill:var(--muted);opacity:.45}.wbChart .wbBar.wbNowBar{fill:var(--primary);opacity:1}.wbChart .wbGuide{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 4}.wbChart text{fill:var(--muted);font:400 11px var(--font)}.wbGraphNote{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:400 12px/1.4 var(--font)}.wbDayChart{flex:1;min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:20px minmax(0,1fr) 18px;grid-template-areas:". sun" "y plot" ". x";column-gap:6px;color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums}.wbDcSun,.wbDcX,.wbDcY,.wbDcPlot{position:relative;min-width:0}.wbDcSun{grid-area:sun}.wbDcY{grid-area:y}.wbDcPlot{grid-area:plot}.wbDcX{grid-area:x}.wbDcSunMark,.wbDcX span{position:absolute;bottom:0;transform:translate(-50%);white-space:nowrap}.wbDcSunMark{display:flex;align-items:center;gap:2px;bottom:4px;--wb-icon:14px}.wbDcSunMark .wbIcon{fill:#fea916}.wbDcX span{top:4px;bottom:auto}.wbDcY span{position:absolute;right:0;transform:translateY(-50%);white-space:nowrap}.wbDcPlot svg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbDcNight{fill:var(--page);opacity:.6}.wbDcGrid{stroke:var(--line);stroke-width:1}.wbDcSunLine{stroke:#fea916;stroke-width:1;stroke-dasharray:2 4;opacity:.7}.wbDcNow{stroke:var(--text);stroke-width:1;opacity:.4}.wbDcLine,.wbDcPast{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbDcPast{stroke:var(--muted);stroke-width:2}.wbDcArea{fill:var(--primary);opacity:.14}.wbDcBar{position:absolute;bottom:0;min-height:3px;border-radius:4px 4px 1px 1px;background:var(--primary)}.wbDcDot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--card)}.wbDcPeak{position:absolute;transform:translate(-50%,calc(-100% - 6px));color:var(--text);font-weight:500;white-space:nowrap}.wbDcNote{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;place-items:center;padding:0 8px;text-align:center;color:var(--muted);font:400 13px/1.4 var(--font)}.wbOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.wbOpenHead{display:flex;align-items:center;gap:12px}.wbBack{flex:none;display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer;--wb-icon:24px}.wb button.wbBack{border-radius:var(--r-fine)!important}.wbBack:hover{background:var(--hover)}.wbOpen .wbGraph{flex:1;height:auto;min-height:152.2px;background:var(--card);--wb-scale-edge:var(--tile)}.wbSegments{display:inline-flex;gap:0;padding:4px;border-radius:var(--r-inner);background:var(--page)}.wbSegments button{padding:4px 12px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer}.wb .wbSegments button{border-radius:var(--r-fine)!important;font-family:var(--font-tile)!important}.wbSegments button[aria-pressed=true]{background:var(--tile);color:var(--text)}.wbWx{position:relative;display:block;flex:none;width:40px;height:40px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wbWx>svg,.wbWx>canvas{display:block;width:100%;height:100%}.wbWx>canvas{image-rendering:pixelated}.wbWx.wbS60{width:60px;height:60px;border-radius:20px}.wbWx.wbS90{width:90px;height:90px;border-radius:28px}.wb[data-style=smooth] :is(.wbWx,.wbSky):after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;border-radius:inherit;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.3 0 0 0 -.15 1.3 0 0 0 -.15 1.3 0 0 0 -.15 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;mix-blend-mode:overlay;opacity:.3}.wbBaseRows{display:flex;flex-direction:column;gap:4px;width:100%}.wbBaseRow{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font:400 14px/20px var(--font)}.wbBaseRow>span:last-child{color:var(--text);white-space:nowrap}.wbBaseRow>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbRadar{position:relative;flex:1;align-self:stretch;min-height:80px;border-radius:var(--r-inner);overflow:hidden;background-color:var(--tile);background-image:linear-gradient(color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px);background-size:24px 24px;background-position:center}.wbRadarRing{position:absolute;left:50%;top:50%;width:64%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 20%,transparent)}.wbRadarRing:after{content:"";position:absolute;top:25%;right:25%;bottom:25%;left:25%;border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 14%,transparent)}.wbRadarHome{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px var(--tile)}.wbWx.wbLineIcon{display:grid;place-items:center;background:var(--tile);color:var(--text)}.wbWx.wbLineIcon>svg{width:64%;height:64%}.wbWx.wbClear,.wbWx.wbPartly{background:var(--wx-clear)}.wbWx.wbCloudy{background:var(--wx-cloudy)}.wbWx.wbRain,.wbWx.wbSnow{background:#969696}.wbWx.wbNight{background:var(--wx-night)}.wbWx .wbBright{fill:var(--wx-cloud-bright)}.wbWx .wbCloudLight{fill:var(--wx-cloudy)}.wbWx .wbAccent{fill:var(--primary)}.wbWx :is(.wbSunDisc,.wbMoonPath,.wbBright,.wbCloudLight,.wbDrop,.wbFlake,.wbTwinkle){transform-box:fill-box;transform-origin:center}.wbMotion .wbWx .wbSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}.wbMotion .wbWx .wbMoonPath{animation:wxBob 5.2s ease-in-out infinite}.wbMotion .wbWx :is(.wbBright,.wbCloudLight){animation:wxDrift 6.4s ease-in-out infinite}.wbMotion .wbWx .wbDrop{animation:wxFall .95s linear infinite}.wbMotion .wbWx .wbFlake{animation:wxSnow 3.2s linear infinite}.wbMotion .wbWx .wbTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}.wbCard.wbWeather{position:relative;display:flex;flex-direction:column;gap:12px;padding:18px}.wbClosed{display:contents}.wbWeather.wbIsOpen .wbClosed{visibility:hidden}.wbWeather .wbOpen{position:absolute;top:10px;right:10px;bottom:10px;left:10px;min-height:0}.wbWeather .wbOpen .wbGraph{min-height:0;padding:8px 14px 6px 8px}.wbDayTabs{display:flex}.wbNow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.wbCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wb button.wbOpenPage{padding:0;border:0;border-radius:var(--r-tile)!important;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}.wb button.wbOpenPage:focus-visible{outline:2px solid var(--primary)!important;outline-offset:4px!important}.wbTempBlock{display:flex;flex-direction:column;gap:4px;min-width:0}.wbTemp{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbDeg{font:500 64px/1 var(--font-tile);letter-spacing:-1.28px}.wbUnit,.wbRange{font:300 24px/1.25 var(--font-tile);white-space:nowrap}.wbPlace{color:var(--muted);font:600 14px/20px var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wbCondition{flex:none;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;padding:10px 16px;border-radius:var(--r-tile);background:var(--tile)}.wbCondName{font:400 18px/1.2 var(--font);letter-spacing:-.18px;white-space:nowrap}.wbColumns{display:flex;height:185px;border-radius:28px;overflow:hidden}.wbColumn{flex:1 0 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 0;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:inherit;cursor:pointer}.wb button.wbColumn{border-radius:var(--r-tile)!important}.wbColumn:hover{background:var(--hover);box-shadow:inset 0 0 0 .4px var(--line)}.wb button.wbColumn:focus-visible{outline:2px solid var(--primary)!important;outline-offset:-2px!important}.wbDay{font:400 14px/1.4 var(--font);white-space:nowrap}.wbTemps{display:flex;flex-direction:column;align-items:center;gap:8px}.wbHi{font:400 18px/20px var(--font-tile)}.wbLo{color:var(--muted);font:400 18px/1.2 var(--font);letter-spacing:-.18px}.wbHalves{display:none;grid-template-columns:repeat(2,minmax(0,1fr))}.wbSummary{position:relative;flex:1 1 0;min-height:0;margin-top:-12px;container:wbsum/size}.wbSummaryText{position:absolute;top:12px;left:0;right:0;margin:0;color:var(--text);font:400 16px/22px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}@container wbsum (height < 56px){.wbSummaryText{-webkit-line-clamp:1}}@container wbsum (height < 34px){.wbSummaryText{display:none}}@container wb-card (width < 480px){.wbColumn .wbWx.wbS60{width:48px;height:48px;border-radius:16px}}@container wb-card (width < 400px){.wbSummary{display:none}.wbCard.wbWeather{gap:16px;padding:18px 18px 10px}.wbWeather .wbWx.wbS90{width:60px;height:60px;border-radius:20px}.wbDeg{font-size:46px;letter-spacing:-.92px}.wbRange{font-size:20px}.wbCondition{align-self:flex-start;gap:0;border-radius:28px}.wbColumns{display:none}.wbHalves{display:grid}.wbWeather .wbDcX .wbMinor{display:none}}@container wb-card (width < 280px){.wbHalves{grid-template-columns:1fr}}.wbCard.wbHourly{flex:1}.wbTabs{padding:0 18px}.wbStripScroll{flex:1;min-height:160px;display:flex;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border-radius:var(--r-tile);-webkit-user-select:none;user-select:none}.wbStripScroll::-webkit-scrollbar{display:none}.wbStripScroll.wbDragging{cursor:grabbing}.wbStrip{flex:none;display:flex;flex-direction:column;gap:8px;min-width:100%;box-sizing:border-box;padding:0 10px}.wbRow{position:relative;flex:none}.wbTimes{height:20px}.wbValues{height:44px}.wbMark{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;transform:translate(-50%);white-space:nowrap}.wbMark.wbFirst{align-items:flex-start;transform:none}.wbTimes .wbMark{font:400 14px/20px var(--font);font-variant-numeric:tabular-nums}.wbTimes .wbMark.wbFirst{font:600 14px/20px var(--font-tile)}.wbSky{position:relative;flex:1;min-height:72px;border-radius:var(--r-inner);overflow:hidden}.wbStripScroll.wbPaged{container-type:inline-size;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}.wbStripScroll.wbPaged.wbHeld{scroll-snap-type:none}.wbPaged .wbStrip{position:relative;min-width:0;padding:0}.wbSnap{position:absolute;top:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}.wbMark.wbLast{align-items:flex-end;transform:translate(-100%)}.wbPaged .wbTimes .wbMark.wbFirst{font:400 14px/20px var(--font)}.wbPaged .wbTimes .wbMark.wbNowMark{font:600 14px/20px var(--font-tile)}.wbSky .wbPast{position:absolute;top:0;bottom:0;left:0;background:var(--card);opacity:.45;pointer-events:none}.wbSky .wbNowLine{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--text);opacity:.55;pointer-events:none}.wbSky.wbLineSky{background:var(--tile);color:var(--text)}.wbLineArt{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbLineArt .wbLineArc{fill:none;stroke:var(--text);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}.wbLineArt .wbLineHorizon{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.35}.wbLineArt .wbLineNight{fill:var(--text);opacity:.07}.wbLineArt .wbLineEdge{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.3}.wbLineTime{position:absolute;top:calc(80% + 4px);transform:translate(-50%);color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none}.wbLineNow{position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);border-radius:50%;background:var(--tile);pointer-events:none}.wbLineNow>svg,.wbLineGlyph>svg{display:block;width:100%;height:100%}.wbLineGlyph{position:absolute;top:calc(50% - 14px);width:28px;height:28px;transform:translate(-50%);pointer-events:none}.wbLineGlyph.wbFirst{transform:none}.wbLineGlyph.wbLast{transform:translate(-100%)}.wbSky .wbMidnight{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--text);opacity:.5;pointer-events:none}.wbDays{position:absolute;top:36px;left:0;z-index:1;display:flex;pointer-events:none}.wbDaySpan{flex:none;min-width:0}.wbDayName{position:sticky;left:8px;margin-left:8px;height:26px;min-height:0;padding:0 10px;border:0;background:color-mix(in srgb,var(--card) 82%,transparent);color:var(--text);font:600 13px/26px var(--font-tile);white-space:nowrap;cursor:pointer;pointer-events:auto}.wb .wbDayName{border-radius:13px!important;font-family:var(--font-tile)!important}.wbViews button{padding:2px 10px;font-size:13px}.wbBars .wbDayBars{flex:1 1 0;min-height:160px;display:flex;flex-direction:column;padding:0 18px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}.wbBars.wbTabbed .wbDayBars{min-height:206px}.wbDayBar{flex:1 0 auto;display:grid;grid-template-columns:minmax(56px,auto) 40px 36px minmax(0,1fr) 36px;align-items:center;column-gap:12px;min-height:48px;box-shadow:inset 0 -.4px 0 var(--line)}.wbDayBar:last-child{box-shadow:none}.wbRangeDay{color:var(--text);font:600 14px/20px var(--font-tile);white-space:nowrap}.wbRangeLo{color:var(--muted);text-align:right;font:400 16px/20px var(--font);font-variant-numeric:tabular-nums}.wbRangeHi{color:var(--text);text-align:right;font:400 16px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbRangeTrack{position:relative;height:6px;border-radius:3px;background:var(--tile)}.wbRangeFill{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:3px}.wbRangeNow{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--card)}.wbSkyArt{position:absolute;top:0;height:100%}.wbSkyArt>canvas{display:block;width:100%;height:100%}.wbSkyArt>canvas.wbPixels{image-rendering:pixelated}.wbPrimaryV{font:400 18px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbSecondary{min-height:20px;color:var(--muted);font:400 15px/20px var(--font)}@container wb-card (width < 480px){.wbHourly :is(.wbHeader,.wbTabs){padding:0 8px}.wbBars .wbDayBars{padding:0 8px;min-height:380px}.wbBars.wbTabbed .wbDayBars{min-height:426px}.wbDayBar{column-gap:8px}.wbStripScroll{min-height:380px}}.wbSunSky{flex:1;min-height:0;display:flex;border-radius:16px;overflow:hidden;transition:background 1s ease}.wbSunSky svg{display:block;width:100%;height:100%;overflow:visible}.wbSunPath{fill:none;stroke:var(--wb-sun-line);stroke-opacity:.4;stroke-width:28.3}.wbHorizon{stroke:var(--wb-sun-line);stroke-opacity:.3;stroke-width:1}.wbSunTime{fill:var(--wb-sun-line);font-size:13px;font-weight:600;text-anchor:middle}.wbSunTime.wbNoon{dominant-baseline:central}.wbMoonBox{flex:1;min-height:0;display:flex;justify-content:center}.wbMoonArt{display:block;flex:none;width:auto;height:100%;max-width:100%}.wbMoonCaption{gap:8px}.wbMoonCaption span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbMoonCaption span:last-child{flex:none}.wbMaria{fill:#7d7d78}.wbCrater{fill:#00000017}.wbRays{stroke:#fff;stroke-width:1.2;stroke-linecap:round;opacity:.16}.wbBrightSpots{fill:#fff;opacity:.25}.wbBrightCenter{fill:#f6f6f2;opacity:.75}.wbMottle{opacity:.3;mix-blend-mode:multiply}.wbGrain{opacity:.12;mix-blend-mode:multiply}.wbMoonNight{fill:#0a0a0ebf}.wbWind .wbVisual>svg{overflow:visible}.wbTick{stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}.wbTick.wbMajor{stroke:var(--text);stroke-width:3}.wbLetter{fill:var(--muted);font-size:15px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbLetter.wbNorth{fill:var(--text)}.wbMarker{fill:var(--primary)}.wbDisc{fill:var(--text)}.wbSpeed{fill:var(--card);font-size:34px;font-weight:500;letter-spacing:-.5px;text-anchor:middle;dominant-baseline:central}.wbSpeedUnit{fill:var(--card);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central;opacity:.7}.wbWater{position:absolute;left:0;right:0;bottom:0;transition:height 1.2s ease}.wbWater .wbBody{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,#b2e5fc2e,#81d4fa52,#4fc3f76b 70%,#03a9f48c);-webkit-mask-image:linear-gradient(180deg,transparent,#000 26px);mask-image:linear-gradient(180deg,transparent,#000 26px)}.wbWater .wbMist{position:absolute;left:-10%;right:-10%;bottom:calc(100% - 26px);height:60px;background:radial-gradient(ellipse at 50% 100%,#b2e5fc4d,#b2e5fc00 70%);filter:blur(8px)}.wbWater .wbHaze{position:absolute;width:80%;height:45%;border-radius:50%;background:radial-gradient(closest-side,#ffffff38,#fff0);filter:blur(10px);animation:wbDrift 16s ease-in-out infinite alternate}.wbWater .wbHaze.wbOne{left:-15%;top:8%}.wbWater .wbHaze.wbTwo{right:-20%;top:40%;animation-duration:21s;animation-direction:alternate-reverse}@keyframes wbDrift{0%{transform:translate(-12%)}to{transform:translate(18%)}}.wbWaterValue{flex:1;display:flex;align-items:flex-end}.wbSea{position:relative;flex:1;min-height:0;border-radius:16px;overflow:hidden;--wb-sea-inset:clamp(8.88px,calc(4.76cqw * var(--wb-k,1)),12px)}.wbSeaArt{position:absolute;top:0;right:0;bottom:0;left:0;display:block;width:100%;height:100%;image-rendering:pixelated}.wbSeaFact{position:absolute;top:clamp(7px,calc(3.97cqw * var(--wb-k,1)),10px);inset-inline:var(--wb-sea-inset);color:#26221e;font:600 clamp(9.44px,calc(5.47cqw * var(--wb-k,1)),13.78px)/1.23 var(--font-tile)}.wbSeaValue{position:absolute;bottom:var(--wb-sea-inset);inset-inline-start:var(--wb-sea-inset);color:#fff;text-shadow:0 0 2px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}.wbSeaValue .wbUnitV{color:inherit}.wbVu{display:block;width:100%;height:100%;min-height:0;overflow:visible}.wbVuZone{fill:none;stroke-width:12.3;stroke-linecap:butt}.wbVuTick{stroke:var(--muted);stroke-width:.95;stroke-linecap:round}.wbVuTick.wbMajor{stroke:var(--text);stroke-width:1.9}.wbVisual svg text.wbVuLabel{fill:var(--muted);font-family:"Alfarn",var(--font-tile);font-size:18.9px;font-weight:600;letter-spacing:.08em;text-anchor:middle;dominant-baseline:central}.wbVuNeedle{transform-box:view-box;transform-origin:100px 130px;transform:rotate(var(--wb-angle));animation:wbSwing 1.4s cubic-bezier(.3,1.6,.5,1);transition:transform 1s cubic-bezier(.3,1.6,.5,1)}.wbVuNeedle line{stroke:#e0574d;stroke-width:2;stroke-linecap:round}@keyframes wbSwing{0%{transform:rotate(-48deg)}}.wbVuHousing{fill:var(--tile)}.wbVuValue{fill:var(--text);font-size:30.2px;font-weight:600;text-anchor:middle;dominant-baseline:central}@media (prefers-reduced-motion:reduce){.wbWater .wbHaze,.wbVuNeedle{animation:none}}.wbTapeRow{flex:1;min-height:0;display:flex;align-items:stretch;gap:8px}.wbTapeValue{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}.wbTapeUnit{color:var(--muted);font:300 clamp(13px,7.1cqw,18px)/1.25 var(--font-tile)}.wbTape{flex:none;width:40%;height:100%}.wbTapeTick{stroke:var(--text);stroke-width:2;stroke-linecap:round}.wbTapeLabel{fill:var(--text);font-size:15px;dominant-baseline:central}.wbTapeEnd{fill:var(--muted);font-size:14px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbTapeMarker{stroke:#e0574d;stroke-width:4;stroke-linecap:round}.wbCompare{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) calc(50% - 28px * var(--wb-k));grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch}.wbCompareText{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0}.wbCompareNumber{font:500 calc(26.4cqw * var(--wb-k)) / 1 var(--font-tile);letter-spacing:-.02em;white-space:nowrap}.wbCompareWords{color:var(--muted);font:300 clamp(14px,calc(7.1cqw * var(--wb-k)),18px) / 1.25 var(--font-tile)}.wbCompareTemps{margin-top:6px;font:400 clamp(12px,calc(5.6cqw * var(--wb-k)),14px) / 1.4 var(--font)}.wbCompareBars{display:block;width:100%;height:100%;min-height:0}.wbAvgValue{fill:var(--muted);font-size:10px;text-anchor:middle}.wbAvgValue.wbToday{fill:var(--text);font-size:12px;font-weight:600}.wbAvgBar{fill:var(--muted);opacity:.45}.wbAvgBar.wbToday{fill:var(--primary);opacity:1}.wbAvgDay{fill:var(--muted);font-size:11px;text-anchor:middle}.wbAvgDay.wbToday{fill:var(--text);font-weight:600}.wbAvgLine{stroke:var(--text);stroke-width:1;stroke-dasharray:3 4;opacity:.6}.wbCard.wbHc.wbAqOpen{padding:var(--inset);min-height:243px}.wbAqTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@container wb-card (width < 280px){.wbAqTiles{grid-template-columns:1fr}}.wbAq .wbGraph{gap:10px}.wbScale{position:relative;height:4px;border-radius:9999px}.wbScale i{position:absolute;top:50%;box-sizing:content-box;width:10px;height:10px;border-radius:50%;background-color:var(--text);border:2px solid var(--wb-scale-edge);transform:translate(-50%,-50%)}`, Gp = `<main id="app"><div class="shell">
 <div class="toast" id="toast" aria-live="polite"></div>
 
 <!-- HOME -->
@@ -709,7 +709,7 @@ const zp = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - va
   if (h <= 0) return 0;
   if (h >= 1) return 1;
   let v = 0, w = 1, A = h;
-  for (let x = 0; x < 18; x++)
+  for (let y = 0; y < 18; y++)
     A = (v + w) / 2, 3 * (1 - A) * (1 - A) * A * a + 3 * (1 - A) * A * A * o + A * A * A < h ? v = A : w = A;
   return 3 * (1 - A) * (1 - A) * A * l + 3 * (1 - A) * A * A * c + A * A * A;
 }, Yp = { std: bd(0.2, 0, 0, 1), acc: bd(0.3, 0, 1, 1), dec: bd(0, 0, 0, 1) };
@@ -723,7 +723,7 @@ function sp(a) {
 }
 const Fd = [[61, 29, 4.4], [73, 16, 2.9], [79, 57, 3.3], [21, 77, 2.5], [13, 20, 2.3]], Od = [[29.35, 60.65], [43.04, 60.65], [56.74, 60.65]], Wd = [[30, 64], [44, 61], [58, 64], [37, 74], [51, 74]];
 function qd(a, l = sa) {
-  const o = { ...sa, ...l }, c = sp(o), h = String(a).split("/"), v = c[h[0]] ? h[0] : "clear", w = h[1] === "night", A = c[v][w ? 1 : 0], x = {
+  const o = { ...sa, ...l }, c = sp(o), h = String(a).split("/"), v = c[h[0]] ? h[0] : "clear", w = h[1] === "night", A = c[v][w ? 1 : 0], y = {
     night: w,
     clearness: v === "clear" ? 1 : v === "partly" ? 0.7 : 0.25,
     sky: A,
@@ -737,7 +737,7 @@ function qd(a, l = sa) {
     snow: Wd.map(() => ({ o: 0, dy: -16 })),
     bolt: { o: 0, dy: -10 }
   }, R = (ve) => Fd.map(() => ({ o: ve }));
-  return v === "clear" ? w ? (x.moon.o = 1, x.stars = R(1)) : x.sun.o = 1 : v === "partly" ? (x.cloud = { x: 52.83, y: 52.83, w: 58.7, o: 1, f: w ? 1 : 0 }, w ? (x.moon = { x: 34, y: 33, d: 48, o: 1 }, x.stars = R(0.7)) : x.sun = { x: 35.22, y: 33.26, r: 23.48, o: 1 }) : v === "cloudy" || v === "fog" ? (x.cloud = { x: 45, y: 42.99, w: 66.52, o: 1, f: w ? 1 : 0 }, w ? x.moon = { x: 40, y: 36, d: 40, o: 0 } : x.sun = { x: 40, y: 36, r: 20, o: 0 }) : (x.cloud = { x: 45, y: 33.26, w: 58.7, o: 1, f: 1 }, w ? x.moon = { x: 38, y: 28, d: 36, o: 0 } : x.sun = { x: 38, y: 28, r: 18, o: 0 }, v === "snow" ? x.snow = Wd.map(() => ({ o: 1, dy: 0 })) : x.rain = Od.map((ve, ie) => ({ o: v === "storm" && ie === 1 ? 0 : 1, dy: 0 })), v === "storm" && (x.bolt = { o: 1, dy: 0 })), x;
+  return v === "clear" ? w ? (y.moon.o = 1, y.stars = R(1)) : y.sun.o = 1 : v === "partly" ? (y.cloud = { x: 52.83, y: 52.83, w: 58.7, o: 1, f: w ? 1 : 0 }, w ? (y.moon = { x: 34, y: 33, d: 48, o: 1 }, y.stars = R(0.7)) : y.sun = { x: 35.22, y: 33.26, r: 23.48, o: 1 }) : v === "cloudy" || v === "fog" ? (y.cloud = { x: 45, y: 42.99, w: 66.52, o: 1, f: w ? 1 : 0 }, w ? y.moon = { x: 40, y: 36, d: 40, o: 0 } : y.sun = { x: 40, y: 36, r: 20, o: 0 }) : (y.cloud = { x: 45, y: 33.26, w: 58.7, o: 1, f: 1 }, w ? y.moon = { x: 38, y: 28, d: 36, o: 0 } : y.sun = { x: 38, y: 28, r: 18, o: 0 }, v === "snow" ? y.snow = Wd.map(() => ({ o: 1, dy: 0 })) : y.rain = Od.map((ve, ie) => ({ o: v === "storm" && ie === 1 ? 0 : 1, dy: 0 })), v === "storm" && (y.bolt = { o: 1, dy: 0 })), y;
 }
 const fc = {
   cloud: { enter: [0, 0.55, "dec"], leave: [0.25, 0.8, "acc"], stay: [0.1, 0.75, "std"] },
@@ -749,7 +749,7 @@ function Zp(a, l, o, c = sa, h = !1) {
   const v = { ...sa, ...c }, w = (U, $) => U > 0.01 && $ > 0.01 ? "stay" : U > 0.01 ? "leave" : $ > 0.01 ? "enter" : "none", A = (U, $, ne, Y) => {
     const G = U[0] + $ * Y, W = U[1] - (ne - 1 - $) * Y;
     return Yp[U[2]](ra((o - G) / Math.max(1e-3, W - G)));
-  }, x = (U, $, ne, Y = 0, G = 1, W = 0) => {
+  }, y = (U, $, ne, Y = 0, G = 1, W = 0) => {
     const pe = w(U.o, $.o);
     if (pe === "none") return { ...$, o: 0 };
     const ee = A(fc[ne][pe], Y, G, W), ue = {};
@@ -768,13 +768,13 @@ function Zp(a, l, o, c = sa, h = !1) {
     sky: ve,
     skyStops: ie,
     skyT: R,
-    sun: x(a.sun, l.sun, "body"),
-    moon: x(a.moon, l.moon, "body"),
-    cloud: x(a.cloud, l.cloud, "cloud"),
-    stars: l.stars.map((U, $) => x(a.stars[$], U, "fx", $, l.stars.length, 0.05)),
-    rain: l.rain.map((U, $) => x(a.rain[$], U, "fx", $, l.rain.length, 0.05)),
-    snow: l.snow.map((U, $) => x(a.snow[$], U, "fx", $, l.snow.length, 0.05)),
-    bolt: x(a.bolt, l.bolt, "fx")
+    sun: y(a.sun, l.sun, "body"),
+    moon: y(a.moon, l.moon, "body"),
+    cloud: y(a.cloud, l.cloud, "cloud"),
+    stars: l.stars.map((U, $) => y(a.stars[$], U, "fx", $, l.stars.length, 0.05)),
+    rain: l.rain.map((U, $) => y(a.rain[$], U, "fx", $, l.rain.length, 0.05)),
+    snow: l.snow.map((U, $) => y(a.snow[$], U, "fx", $, l.snow.length, 0.05)),
+    bolt: y(a.bolt, l.bolt, "fx")
   };
 }
 const Kp = [
@@ -850,8 +850,8 @@ const Kp = [
   }
   return c;
 };
-function dp(a, { size: l = 90, px: o = 2, oneBit: c = !1, colors: h = sa, ink: v = "#26221e", paper: w = "#fbf9f6", clock: A = 0, idle: x = !1 } = {}) {
-  const R = { ...sa, ...h }, ve = Math.sin, ie = Math.PI * 2, U = Math.max(6, Math.round(l / o)), $ = U / 90, ne = x ? Math.floor(A / 100) * 100 : 0, Y = x ? ve(ie * ne / 3600) : 0, G = x ? 1.8 * ve(ie * ne / 6400) : 0, W = x ? 0.9 * ve(ie * ne / 4100) : 0, pe = x ? 0.8 * ve(ie * ne / 5200) : 0, ee = ne / 3400 % 1, ue = x && a.bolt.o > 0.5 && (ee < 0.04 || ee > 0.08 && ee < 0.11), J = new Array(U * U), E = new Uint8Array(U * U), P = (k, _, T, I, me) => {
+function dp(a, { size: l = 90, px: o = 2, oneBit: c = !1, colors: h = sa, ink: v = "#26221e", paper: w = "#fbf9f6", clock: A = 0, idle: y = !1 } = {}) {
+  const R = { ...sa, ...h }, ve = Math.sin, ie = Math.PI * 2, U = Math.max(6, Math.round(l / o)), $ = U / 90, ne = y ? Math.floor(A / 100) * 100 : 0, Y = y ? ve(ie * ne / 3600) : 0, G = y ? 1.8 * ve(ie * ne / 6400) : 0, W = y ? 0.9 * ve(ie * ne / 4100) : 0, pe = y ? 0.8 * ve(ie * ne / 5200) : 0, ee = ne / 3400 % 1, ue = y && a.bolt.o > 0.5 && (ee < 0.04 || ee > 0.08 && ee < 0.11), J = new Array(U * U), E = new Uint8Array(U * U), P = (k, _, T, I, me) => {
     T == null || k < 0 || _ < 0 || k >= U || _ >= U || (I >= 1 || I > ia(k + 5, _ + 3)) && (J[_ * U + k] = T, E[_ * U + k] = me);
   }, re = (k, _, T, I) => {
     for (let me = Math.max(0, Math.floor(_ - T) - 1); me <= Math.min(U - 1, _ + T + 1); me++) for (let z = Math.max(0, Math.floor(k - T) - 1); z <= Math.min(U - 1, k + T + 1); z++) I(z, me, z + 0.5 - k, me + 0.5 - _);
@@ -869,14 +869,14 @@ function dp(a, { size: l = 90, px: o = 2, oneBit: c = !1, colors: h = sa, ink: v
   }
   if (a.sun.o > 0.01) {
     const k = a.sun.x * $, _ = a.sun.y * $, T = Math.max(1, a.sun.r * $);
-    if (x) {
+    if (y) {
       const I = T * (1.45 + 0.06 * Y), me = en(R.sun, "#ffffff", 0.55);
-      if (re(k, _, I, (z, le, ge, xe) => {
-        const $e = Math.sqrt(ge * ge + xe * xe);
+      if (re(k, _, I, (z, le, ge, ye) => {
+        const $e = Math.sqrt(ge * ge + ye * ye);
         $e > T && $e < I && P(z, le, me, 0.26 * (1 - ($e - T) / (I - T)) * a.sun.o, $p);
       }), a.sun.o > 0.5) {
         const z = Math.floor(ne / 500) % 2, le = Math.max(1, T * 0.22);
-        for (let ge = 0; ge < 8; ge++) if (ge % 2 === z) for (let xe = T + 1.5; xe < T + 1.5 + le; xe += 0.7) P(Math.floor(k + Math.cos(ge * Math.PI / 4) * xe), Math.floor(_ + Math.sin(ge * Math.PI / 4) * xe), R.sun, a.sun.o, Zd);
+        for (let ge = 0; ge < 8; ge++) if (ge % 2 === z) for (let ye = T + 1.5; ye < T + 1.5 + le; ye += 0.7) P(Math.floor(k + Math.cos(ge * Math.PI / 4) * ye), Math.floor(_ + Math.sin(ge * Math.PI / 4) * ye), R.sun, a.sun.o, Zd);
       }
     }
     re(k, _, T, (I, me, z, le) => {
@@ -888,20 +888,20 @@ function dp(a, { size: l = 90, px: o = 2, oneBit: c = !1, colors: h = sa, ink: v
   if (Fd.forEach((k, _) => {
     const T = a.stars[_].o;
     if (T < 0.01) return;
-    const I = Math.floor(k[0] * $), me = Math.floor(k[1] * $), z = x ? (Math.floor(ne / 300) + _ * 3) % 6 : 0;
+    const I = Math.floor(k[0] * $), me = Math.floor(k[1] * $), z = y ? (Math.floor(ne / 300) + _ * 3) % 6 : 0;
     if (z === 5) return;
     const le = Math.round(k[2] * $ * (z === 4 ? 0.3 : z < 2 ? 1 : 0.6));
     P(I, me, R.star, T, Bi);
     for (let ge = 1; ge <= le; ge++) {
-      const xe = ge === le && le > 1 ? en(R.star, a.sky, 0.5) : R.star;
-      P(I - ge, me, xe, T, Bi), P(I + ge, me, xe, T, Bi), P(I, me - ge, xe, T, Bi), P(I, me + ge, xe, T, Bi);
+      const ye = ge === le && le > 1 ? en(R.star, a.sky, 0.5) : R.star;
+      P(I - ge, me, ye, T, Bi), P(I + ge, me, ye, T, Bi), P(I, me - ge, ye, T, Bi), P(I, me + ge, ye, T, Bi);
     }
   }), a.moon.o > 0.01) {
-    const k = Math.max(1.5, a.moon.d * $ * 0.37), _ = a.moon.x * $, T = a.moon.y * $ + (x && pe > 0.4 ? -1 : 0), I = _ + 0.547 * k, me = T - 0.503 * k, z = 0.82 * k, le = en(R.moon, "#ffffff", 0.6);
-    re(_, T, k, (ge, xe, $e, st) => {
+    const k = Math.max(1.5, a.moon.d * $ * 0.37), _ = a.moon.x * $, T = a.moon.y * $ + (y && pe > 0.4 ? -1 : 0), I = _ + 0.547 * k, me = T - 0.503 * k, z = 0.82 * k, le = en(R.moon, "#ffffff", 0.6);
+    re(_, T, k, (ge, ye, $e, st) => {
       if ($e * $e + st * st > k * k) return;
-      const At = ge + 0.5 - I, Tn = xe + 0.5 - me;
-      At * At + Tn * Tn <= z * z || P(ge, xe, ra((st + k) / (2 * k) * 1.1 - 0.1) > ia(ge, xe) ? R.moon : le, a.moon.o, Gd);
+      const At = ge + 0.5 - I, Tn = ye + 0.5 - me;
+      At * At + Tn * Tn <= z * z || P(ge, ye, ra((st + k) / (2 * k) * 1.1 - 0.1) > ia(ge, ye) ? R.moon : le, a.moon.o, Gd);
     });
   }
   const Ie = Math.max(2, Math.round(15.65 * $)), V = Math.max(1, Math.round(5.87 * $ * 0.5));
@@ -909,26 +909,26 @@ function dp(a, { size: l = 90, px: o = 2, oneBit: c = !1, colors: h = sa, ink: v
     const T = a.rain[_];
     let I = T.dy, me = T.o;
     if (me < 0.01) return;
-    if (x) {
+    if (y) {
       const ge = (ne / 950 + _ / 3) % 1;
       I += -5 + ge * 14, me *= ge < 0.18 ? ge / 0.18 : ge > 0.72 ? (1 - ge) / 0.28 : 1;
     }
     const z = (k[0] + 3 + G) * $, le = (k[1] + I) * $;
-    for (let ge = 0; ge < Ie; ge++) for (let xe = 0; xe < V; xe++) P(Math.floor(z - 0.208 * ge) + xe, Math.floor(le) + ge, R.rain, me, Yd);
+    for (let ge = 0; ge < Ie; ge++) for (let ye = 0; ye < V; ye++) P(Math.floor(z - 0.208 * ge) + ye, Math.floor(le) + ge, R.rain, me, Yd);
   });
   const qe = Math.max(0, Math.round(7.34 * $ / 2.6));
   if (Wd.forEach((k, _) => {
     const T = a.snow[_];
     let I = T.dy, me = 0, z = T.o;
     if (z < 0.01) return;
-    if (x) {
-      const xe = (ne / 3200 + _ / 5) % 1;
-      I += -6 + xe * 14, me = 1.5 * ve(ie * (xe * 1.5 + _ / 5)), z *= xe < 0.2 ? xe / 0.2 : xe > 0.75 ? (1 - xe) / 0.25 : 1;
+    if (y) {
+      const ye = (ne / 3200 + _ / 5) % 1;
+      I += -6 + ye * 14, me = 1.5 * ve(ie * (ye * 1.5 + _ / 5)), z *= ye < 0.2 ? ye / 0.2 : ye > 0.75 ? (1 - ye) / 0.25 : 1;
     }
     const le = Math.floor((k[0] + 3.67 + me + G) * $), ge = Math.floor((k[1] + 3.67 + I) * $);
     P(le, ge, R.snow, z, oa);
-    for (let xe = 1; xe <= qe; xe++)
-      P(le - xe, ge, R.snow, z, oa), P(le + xe, ge, R.snow, z, oa), P(le, ge - xe, R.snow, z, oa), P(le, ge + xe, R.snow, z, oa), qe > 1 && xe < qe && (P(le - xe, ge - xe, R.snow, z, oa), P(le + xe, ge - xe, R.snow, z, oa), P(le - xe, ge + xe, R.snow, z, oa), P(le + xe, ge + xe, R.snow, z, oa));
+    for (let ye = 1; ye <= qe; ye++)
+      P(le - ye, ge, R.snow, z, oa), P(le + ye, ge, R.snow, z, oa), P(le, ge - ye, R.snow, z, oa), P(le, ge + ye, R.snow, z, oa), qe > 1 && ye < qe && (P(le - ye, ge - ye, R.snow, z, oa), P(le + ye, ge - ye, R.snow, z, oa), P(le - ye, ge + ye, R.snow, z, oa), P(le + ye, ge + ye, R.snow, z, oa));
   }), a.bolt.o > 0.01)
     if (U >= 30) {
       const k = 39 + G, _ = 50 + a.bolt.dy;
@@ -938,21 +938,21 @@ function dp(a, { size: l = 90, px: o = 2, oneBit: c = !1, colors: h = sa, ink: v
       const k = U / 18, _ = 7, T = 10 + Math.round(a.bolt.dy * 0.2);
       Xp.forEach((I, me) => I.split("").forEach((z, le) => {
         if (z !== "#") return;
-        const ge = Math.floor((_ + le) * k), xe = Math.floor((T + me) * k);
-        for (let $e = xe; $e < Math.max(xe + 1, Math.floor((T + me + 1) * k)); $e++) for (let st = ge; st < Math.max(ge + 1, Math.floor((_ + le + 1) * k)); st++) P(st, $e, R.sun, a.bolt.o, os);
+        const ge = Math.floor((_ + le) * k), ye = Math.floor((T + me) * k);
+        for (let $e = ye; $e < Math.max(ye + 1, Math.floor((T + me + 1) * k)); $e++) for (let st = ge; st < Math.max(ge + 1, Math.floor((_ + le + 1) * k)); st++) P(st, $e, R.sun, a.bolt.o, os);
       }));
     }
   if (a.cloud.o > 0.01) {
     const k = Math.max(3, a.cloud.w * $), _ = k * 0.6665, T = (a.cloud.x + G) * $ - k / 2, I = (a.cloud.y + W) * $ - _ / 2, me = en(R.cloudDay, R.cloudNight, Math.round(a.cloud.f * 4) / 4), z = en(me, "#000000", 0.16);
     for (let le = Math.max(0, Math.floor(I) - 1); le <= Math.min(U - 1, I + _ + 1); le++) for (let ge = Math.max(0, Math.floor(T) - 1); ge <= Math.min(U - 1, T + k + 1); ge++) {
-      const xe = (ge + 0.5 - T) / k, $e = (le + 0.5 - I) / k;
-      Ol(xe, $e) && P(ge, le, !Ol(xe, $e + 1 / k) || ra(($e - 0.42) / 0.25) * 0.8 > ia(ge, le) ? z : me, a.cloud.o, Ud);
+      const ye = (ge + 0.5 - T) / k, $e = (le + 0.5 - I) / k;
+      Ol(ye, $e) && P(ge, le, !Ol(ye, $e + 1 / k) || ra(($e - 0.42) / 0.25) * 0.8 > ia(ge, le) ? z : me, a.cloud.o, Ud);
     }
   }
   return cp(J, E, U, U, { oneBit: c, ink: v, paper: w, snowInk: !a.night });
 }
 function cp(a, l, o, c, { oneBit: h, ink: v, paper: w, snowInk: A }) {
-  const x = new Uint8ClampedArray(o * c * 4), R = Il(v), ve = Il(w);
+  const y = new Uint8ClampedArray(o * c * 4), R = Il(v), ve = Il(w);
   for (let ie = 0; ie < c; ie++) for (let U = 0; U < o; U++) {
     const $ = ie * o + U, ne = l[$];
     if (a[$] == null) continue;
@@ -961,9 +961,9 @@ function cp(a, l, o, c, { oneBit: h, ink: v, paper: w, snowInk: A }) {
       let G;
       ne === Yd || ne === Zd ? G = !0 : ne === oa ? G = A : ne === Bi || ne === os ? G = !1 : G = Math.round((0.2126 * Y[0] + 0.7152 * Y[1] + 0.0722 * Y[2]) / 255 * 4) / 4 <= ia(U, ie), (ne === Vd || ne === Gd || ne === Ud || ne === os) && (U > 0 && l[$ - 1] !== ne || U < o - 1 && l[$ + 1] !== ne || ie > 0 && l[$ - o] !== ne || ie < c - 1 && l[$ + o] !== ne) && (G = !0), Y = G ? R : ve;
     }
-    x[$ * 4] = Y[0], x[$ * 4 + 1] = Y[1], x[$ * 4 + 2] = Y[2], x[$ * 4 + 3] = 255;
+    y[$ * 4] = Y[0], y[$ * 4 + 1] = Y[1], y[$ * 4 + 2] = Y[2], y[$ * 4 + 3] = 255;
   }
-  return { w: o, h: c, data: x };
+  return { w: o, h: c, data: y };
 }
 const Qp = { clear: 0, partly: 0.35, cloudy: 0.85, fog: 0.9, rain: 1, storm: 1, snow: 0.9 }, eu = (a) => Vl(a, !1).split("/")[0], wd = (a) => () => {
   a |= 0, a = a + 1831565813 | 0;
@@ -971,9 +971,9 @@ const Qp = { clear: 0, partly: 0.35, cloudy: 0.85, fog: 0.9, rain: 1, storm: 1, 
   return l = l + Math.imul(l ^ l >>> 7, 61 | l) ^ l, ((l ^ l >>> 14) >>> 0) / 4294967296;
 }, tu = "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", nu = "M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z", au = "M0 -1L0.2687 -0.2687L1 0L0.2687 0.2687L0 1L-0.2687 0.2687L-1 0L-0.2687 -0.2687Z", ou = "M7 0L0 13L5 13L2 24L11 9L6 9L9 0Z", iu = [[7, 0], [0, 13], [5, 13], [2, 24], [11, 9], [6, 9], [9, 0]], ru = [".##", "##.", ".#.", "#.."];
 function pp(a, { width: l, height: o, colors: c, wave: h = 0.38, soft: v = 6, glow: w = 0.6 }) {
-  const A = { ...sa, dawn: "#e5a77e", ...c }, x = sp(A), R = l, ve = o, ie = R / 6, U = ie / 2, $ = Math.PI * 2, ne = a.length ? a : [{ cond: "cloudy", night: !1 }], Y = [...Array(12)].map((ee, ue) => {
+  const A = { ...sa, dawn: "#e5a77e", ...c }, y = sp(A), R = l, ve = o, ie = R / 6, U = ie / 2, $ = Math.PI * 2, ne = a.length ? a : [{ cond: "cloudy", night: !1 }], Y = [...Array(12)].map((ee, ue) => {
     const J = ne[Math.min(ue, ne.length - 1)], E = eu(J.cond), P = ue % 2 === 1;
-    return { cond: J.cond, k: E, night: P, sky: x[E][P ? 1 : 0], cover: Qp[E] };
+    return { cond: J.cond, k: E, night: P, sky: y[E][P ? 1 : 0], cover: Qp[E] };
   }), G = (ee) => ve * (0.5 - h * Math.cos($ * (ee / ie - 0.25)));
   return { C: A, S: Y, W: R, H: ve, cw: ie, sw: U, TAU: $, yb: G, side: (ee, ue, J) => {
     const E = (ee ? G(ue) - J : J - G(ue)) / Math.max(3, v * 1.4) + 0.5;
@@ -984,27 +984,27 @@ function pp(a, { width: l, height: o, colors: c, wave: h = 0.38, soft: v = 6, gl
   }, soft: v, tw: ie * 0.3, sy: ve / 90 };
 }
 function up(a, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
-  const { S: h, sw: v, side: w, C: A, TAU: x, sy: R } = a, ve = l, ie = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
+  const { S: h, sw: v, side: w, C: A, TAU: y, sy: R } = a, ve = l, ie = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
   return h.forEach((U, $) => {
     const ne = wd(c * 977 + $ * 131 + 7), Y = ($ + 0.5) * v, G = U.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[U.k] : 0;
     for (let W = 0; W < G; W++) {
-      const pe = Y + (ne() - 0.5) * v * 1.6, ee = (6 + ne() * 76) * R, ue = ne() < 0.35, J = 1.8 + ne() * 1.6, E = w(!0, pe, ee) * (ue ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(x * ve / 2600 + W * 1.7 + $) : 1);
+      const pe = Y + (ne() - 0.5) * v * 1.6, ee = (6 + ne() * 76) * R, ue = ne() < 0.35, J = 1.8 + ne() * 1.6, E = w(!0, pe, ee) * (ue ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(y * ve / 2600 + W * 1.7 + $) : 1);
       E >= 0.03 && ie.stars.push({ x: pe, y: ee, big: ue, size: J, o: E });
     }
     if (!U.night && (U.k === "clear" || U.k === "partly")) {
       const W = Y + (ne() - 0.5) * v * 0.3, pe = Math.min(15, v * 0.29);
-      ie.suns.push({ x: W, y: 32 * R, rad: pe, halo: pe * 2.8 * (o ? 1 + 0.07 * Math.sin(x * ve / 3600 + $) : 1) });
+      ie.suns.push({ x: W, y: 32 * R, rad: pe, halo: pe * 2.8 * (o ? 1 + 0.07 * Math.sin(y * ve / 3600 + $) : 1) });
     }
     if (U.night && (U.k === "clear" || U.k === "partly")) {
       const W = Math.min(0.78, v * 0.55 / 34), pe = Y - 23 * W + (ne() - 0.5) * v * 0.2;
-      ie.moons.push({ x: pe + 23 * W, y: (4 + (o ? 0.8 * Math.sin(x * ve / 5200 + $) : 0)) * R + 23 * W, d: 46 * W });
+      ie.moons.push({ x: pe + 23 * W, y: (4 + (o ? 0.8 * Math.sin(y * ve / 5200 + $) : 0)) * R + 23 * W, d: 46 * W });
     }
   }), h.forEach((U, $) => {
     const ne = { clear: 0, partly: 1, cloudy: 3, fog: 0, rain: 3, storm: 3, snow: 2 }[U.k];
     if (!ne) return;
     const Y = wd(c * 577 + $ * 71 + 3), G = ($ + 0.5) * v, W = U.k === "rain" || U.k === "storm" || U.night ? A.cloudNight : A.cloudDay, pe = U.night ? 0.82 : U.k === "storm" ? 0.75 : 1;
     for (let ee = 0; ee < ne; ee++) {
-      const ue = v / 46 * (U.k === "partly" ? 0.85 : 0.75 + Y() * 0.55), J = G + (U.k === "partly" ? v * 0.12 : (Y() - 0.5) * v * 1.05), E = (U.k === "partly" ? 40 : 6 + Y() * 26) * R, P = o ? 2.5 * Math.sin(x * ve / 9e3 + $ * 1.3 + ee * 2.1) : 0, re = o ? 0.9 * Math.sin(x * ve / 6100 + $ + ee) : 0;
+      const ue = v / 46 * (U.k === "partly" ? 0.85 : 0.75 + Y() * 0.55), J = G + (U.k === "partly" ? v * 0.12 : (Y() - 0.5) * v * 1.05), E = (U.k === "partly" ? 40 : 6 + Y() * 26) * R, P = o ? 2.5 * Math.sin(y * ve / 9e3 + $ * 1.3 + ee * 2.1) : 0, re = o ? 0.9 * Math.sin(y * ve / 6100 + $ + ee) : 0;
       ie.clouds.push({ x: J - 23 * ue + P, y: E - 15.33 * ue + re, w: 46 * ue, h: 30.66 * ue, fill: W, o: pe * (ne > 1 && ee === 0 ? 0.85 : 1) });
     }
   }), h.forEach((U, $) => {
@@ -1024,14 +1024,14 @@ function up(a, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
       let ee = Y + (ne() - 0.5) * v * 1.05, ue = 40 + ne() * 44, J = 1;
       if (o) {
         const P = ((ue - 40 + ve * 9e-3) % 44 + 44) % 44;
-        ue = 40 + P, ee += 1.6 * Math.sin(x * ve / 2800 + pe * 1.9 + $), J = Math.min(1, P / 6, (44 - P) / 6);
+        ue = 40 + P, ee += 1.6 * Math.sin(y * ve / 2800 + pe * 1.9 + $), J = Math.min(1, P / 6, (44 - P) / 6);
       }
       ue *= R;
       const E = w(U.night, ee, ue) * J;
       E >= 0.05 && ie.flakes.push({ x: ee, y: ue, o: E });
     }
     if (U.k === "fog") {
-      const pe = U.night ? "#c8ccd6" : "#ffffff", ee = U.night ? 0.28 : 0.62, ue = o ? 4 * Math.sin(x * ve / 8e3 + $) : 0;
+      const pe = U.night ? "#c8ccd6" : "#ffffff", ee = U.night ? 0.28 : 0.62, ue = o ? 4 * Math.sin(y * ve / 8e3 + $) : 0;
       for (let J = 0; J < 4; J++) ie.fogs.push({ x: Y - v * 0.75 + J % 2 * v * 0.18 + (J % 2 ? ue : -ue), y: (30 + J * 13) * R, w: v * 1.3, c: pe, a: ee });
     }
     if (U.k === "storm") {
@@ -1041,7 +1041,7 @@ function up(a, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
   }), ie;
 }
 function su(a, l, o, c, h, v, w, A) {
-  const { S: x, C: R, cw: ve, yb: ie, glowAt: U, soft: $, tw: ne, sy: Y } = a, G = new Array(o * c), W = new Uint8Array(o * c), pe = new Uint8Array(o * c), ee = (k, _, T, I, me) => {
+  const { S: y, C: R, cw: ve, yb: ie, glowAt: U, soft: $, tw: ne, sy: Y } = a, G = new Array(o * c), W = new Uint8Array(o * c), pe = new Uint8Array(o * c), ee = (k, _, T, I, me) => {
     T == null || k < 0 || _ < 0 || k >= o || _ >= c || (I >= 1 || I > ia(k + 5, _ + 3)) && (G[_ * o + k] = T, W[_ * o + k] = me);
   }, ue = (k, _, T, I) => {
     for (let me = Math.max(0, Math.floor(_ - T) - 1); me <= Math.min(c - 1, _ + T + 1); me++) for (let z = Math.max(0, Math.floor(k - T) - 1); z <= Math.min(o - 1, k + T + 1); z++) I(z, me, z + 0.5 - k, me + 0.5 - _);
@@ -1053,13 +1053,13 @@ function su(a, l, o, c, h, v, w, A) {
     }
     const I = k[k.length - 1];
     return [I, I, 0];
-  }, E = x.filter((k) => !k.night).map((k) => k.sky), P = x.filter((k) => k.night).map((k) => k.sky), re = $ / v, Ae = 16 * Y / v;
+  }, E = y.filter((k) => !k.night).map((k) => k.sky), P = y.filter((k) => k.night).map((k) => k.sky), re = $ / v, Ae = 16 * Y / v;
   for (let k = 0; k < o; k++) {
     const _ = (k + 0.5) * h, T = ie(_) / v, I = J(E, 0.75, _), me = J(P, 1.25, _), z = U(_);
     for (let le = 0; le < c; le++) {
-      const ge = ia(k, le), xe = le + 0.5 - T, $e = (re > 0.01 ? ra(0.5 + xe / re) : xe > 0 ? 1 : 0) > ge;
+      const ge = ia(k, le), ye = le + 0.5 - T, $e = (re > 0.01 ? ra(0.5 + ye / re) : ye > 0 ? 1 : 0) > ge;
       let st = $e ? I[2] > ge ? I[1] : I[0] : me[2] > ge ? me[1] : me[0];
-      ($e ? ra(((le + 0.5) / c - 0.45) / 0.55) * 0.7 : ra(1 - (le + 0.5) / (c * 0.55)) * 0.7) > ia(k + 2, le + 5) && (st = $e ? en(st, "#ffffff", 0.18) : en(st, "#000000", 0.25)), $e && xe >= 0 && xe < Ae && z.a * 1.3 * (1 - xe / Ae) > ia(k + 6, le + 1) && (st = z.c), G[le * o + k] = st, pe[le * o + k] = $e ? 0 : 1;
+      ($e ? ra(((le + 0.5) / c - 0.45) / 0.55) * 0.7 : ra(1 - (le + 0.5) / (c * 0.55)) * 0.7) > ia(k + 2, le + 5) && (st = $e ? en(st, "#ffffff", 0.18) : en(st, "#000000", 0.25)), $e && ye >= 0 && ye < Ae && z.a * 1.3 * (1 - ye / Ae) > ia(k + 6, le + 1) && (st = z.c), G[le * o + k] = st, pe[le * o + k] = $e ? 0 : 1;
     }
   }
   const H = en(R.sun, "#ffffff", 0.55), Ie = en(R.moon, "#ffffff", 0.6);
@@ -1073,28 +1073,28 @@ function su(a, l, o, c, h, v, w, A) {
     });
   }), l.suns.forEach((k) => {
     const _ = Math.max(1.5, k.rad / h), T = k.x / h, I = k.y / v, me = k.halo / h * 0.85;
-    if (ue(T, I, me, (z, le, ge, xe) => {
-      const $e = Math.sqrt(ge * ge + xe * xe);
+    if (ue(T, I, me, (z, le, ge, ye) => {
+      const $e = Math.sqrt(ge * ge + ye * ye);
       $e > _ && $e < me && !pe[le * o + z] && ee(z, le, H, 0.3 * (1 - ($e - _) / (me - _)), 0);
     }), A) {
       const z = Math.floor(w / 500) % 2, le = Math.max(1, _ * 0.3);
-      for (let ge = 0; ge < 8; ge++) if (ge % 2 === z) for (let xe = _ + 1.2; xe < _ + 1.2 + le; xe += 0.7) ee(Math.floor(T + Math.cos(ge * Math.PI / 4) * xe), Math.floor(I + Math.sin(ge * Math.PI / 4) * xe), R.sun, 1, Zd);
+      for (let ge = 0; ge < 8; ge++) if (ge % 2 === z) for (let ye = _ + 1.2; ye < _ + 1.2 + le; ye += 0.7) ee(Math.floor(T + Math.cos(ge * Math.PI / 4) * ye), Math.floor(I + Math.sin(ge * Math.PI / 4) * ye), R.sun, 1, Zd);
     }
-    ue(T, I, _, (z, le, ge, xe) => {
-      ge * ge + xe * xe <= _ * _ && ee(z, le, ra(((xe / _ + 1) / 2 - 0.6) / 0.4) > ia(z, le) ? R.sunEdge : R.sun, 1, Vd);
+    ue(T, I, _, (z, le, ge, ye) => {
+      ge * ge + ye * ye <= _ * _ && ee(z, le, ra(((ye / _ + 1) / 2 - 0.6) / 0.4) > ia(z, le) ? R.sunEdge : R.sun, 1, Vd);
     });
   }), l.moons.forEach((k) => {
     const _ = Math.max(1.5, k.d * 0.37 / h), T = k.x / h, I = k.y / v, me = T + 0.547 * _, z = I - 0.503 * _, le = 0.82 * _;
-    ue(T, I, _, (ge, xe, $e, st) => {
+    ue(T, I, _, (ge, ye, $e, st) => {
       if ($e * $e + st * st > _ * _) return;
-      const At = ge + 0.5 - me, Tn = xe + 0.5 - z;
-      At * At + Tn * Tn > le * le && ee(ge, xe, ra((st + _) / (2 * _) * 1.1 - 0.1) > ia(ge, xe) ? R.moon : Ie, 1, Gd);
+      const At = ge + 0.5 - me, Tn = ye + 0.5 - z;
+      At * At + Tn * Tn > le * le && ee(ge, ye, ra((st + _) / (2 * _) * 1.1 - 0.1) > ia(ge, ye) ? R.moon : Ie, 1, Gd);
     });
   }), l.clouds.forEach((k) => {
     const _ = Math.max(3, k.w / h), T = _ * 0.6665, I = k.x / h, me = k.y / v, z = en(k.fill, "#000000", 0.16);
     for (let le = Math.max(0, Math.floor(me) - 1); le <= Math.min(c - 1, me + T + 1); le++) for (let ge = Math.max(0, Math.floor(I) - 1); ge <= Math.min(o - 1, I + _ + 1); ge++) {
-      const xe = (ge + 0.5 - I) / _, $e = (le + 0.5 - me) / _;
-      Ol(xe, $e) && ee(ge, le, !Ol(xe, $e + 1 / _) || ra(($e - 0.42) / 0.25) * 0.8 > ia(ge, le) ? z : k.fill, k.o, Ud);
+      const ye = (ge + 0.5 - I) / _, $e = (le + 0.5 - me) / _;
+      Ol(ye, $e) && ee(ge, le, !Ol(ye, $e + 1 / _) || ra(($e - 0.42) / 0.25) * 0.8 > ia(ge, le) ? z : k.fill, k.o, Ud);
     }
   }), l.fogs.forEach((k) => {
     const _ = Math.floor(k.y / v), T = Math.max(_, Math.floor((k.y + 6 * Y) / v) - 1), I = Math.floor(k.x / h), me = Math.floor((k.x + k.w) / h);
@@ -1127,13 +1127,13 @@ function su(a, l, o, c, h, v, w, A) {
   }), { col: G, ids: W };
 }
 function lu(a, l) {
-  const o = l.px, c = Math.max(6, Math.round(l.width / o)), h = Math.max(6, Math.round(l.height / o)), v = l.width / c, w = l.height / h, A = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, x = ($) => {
+  const o = l.px, c = Math.max(6, Math.round(l.width / o)), h = Math.max(6, Math.round(l.height / o)), v = l.width / c, w = l.height / h, A = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, y = ($) => {
     const ne = pp($, l);
     return su(ne, up(ne, { clock: A, ambient: l.ambient, seed: l.seed }), c, h, v, w, A, l.ambient);
-  }, R = x(a), ve = l.reveal == null ? 1 : ra(l.reveal);
+  }, R = y(a), ve = l.reveal == null ? 1 : ra(l.reveal);
   let ie = R.col, U = R.ids;
   if (ve < 1) {
-    const $ = l.prev ? x(l.prev) : null, ne = ve * (c + 12);
+    const $ = l.prev ? y(l.prev) : null, ne = ve * (c + 12);
     ie = new Array(c * h), U = new Uint8Array(c * h);
     for (let Y = 0; Y < c * h; Y++) {
       const G = Y % c, W = Y / c | 0;
@@ -1155,15 +1155,15 @@ function du(a, l, o) {
     a.save(), a.globalAlpha = v, w(a, l), a.restore();
     return;
   }
-  const A = a.canvas, x = A.__wxOff || (A.__wxOff = document.createElement("canvas"));
-  (x.width !== A.width || x.height !== A.height) && (x.width = A.width, x.height = A.height);
-  const R = x.getContext("2d");
+  const A = a.canvas, y = A.__wxOff || (A.__wxOff = document.createElement("canvas"));
+  (y.width !== A.width || y.height !== A.height) && (y.width = A.width, y.height = A.height);
+  const R = y.getContext("2d");
   R.setTransform(a.getTransform()), R.clearRect(0, 0, c, h), w(R, l);
   const ve = v * (c + 64) - 64, ie = R.createLinearGradient(ve, 0, ve + 64, 0);
-  ie.addColorStop(0, "rgba(0,0,0,1)"), ie.addColorStop(1, "rgba(0,0,0,0)"), R.globalCompositeOperation = "destination-in", R.fillStyle = ie, R.fillRect(0, 0, c, h), R.globalCompositeOperation = "source-over", a.save(), a.setTransform(1, 0, 0, 1, 0, 0), a.drawImage(x, 0, 0), a.restore();
+  ie.addColorStop(0, "rgba(0,0,0,1)"), ie.addColorStop(1, "rgba(0,0,0,0)"), R.globalCompositeOperation = "destination-in", R.fillStyle = ie, R.fillRect(0, 0, c, h), R.globalCompositeOperation = "source-over", a.save(), a.setTransform(1, 0, 0, 1, 0, 0), a.drawImage(y, 0, 0), a.restore();
 }
 function cu(a, l, o) {
-  const { W: c, H: h, S: v, C: w, cw: A, yb: x, glowAt: R, soft: ve, tw: ie, sy: U } = l, $ = (H, Ie) => {
+  const { W: c, H: h, S: v, C: w, cw: A, yb: y, glowAt: R, soft: ve, tw: ie, sy: U } = l, $ = (H, Ie) => {
     const V = Il(H);
     return "rgba(" + V[0] + "," + V[1] + "," + V[2] + "," + Math.max(0, Math.min(1, Ie)).toFixed(3) + ")";
   }, ne = (H, Ie) => {
@@ -1177,12 +1177,12 @@ function cu(a, l, o) {
   }, Y = Math.max(24, Math.ceil(c / 4)), G = (H, Ie) => {
     a.beginPath();
     for (let V = 0; V <= Y; V++) {
-      const qe = c * V / Y, k = H == null ? 0 : x(qe) + H;
+      const qe = c * V / Y, k = H == null ? 0 : y(qe) + H;
       V ? a.lineTo(qe, k) : a.moveTo(qe, k);
     }
     for (let V = Y; V >= 0; V--) {
       const qe = c * V / Y;
-      a.lineTo(qe, x(qe) + Ie);
+      a.lineTo(qe, y(qe) + Ie);
     }
     a.closePath(), a.fill();
   };
@@ -1239,7 +1239,7 @@ function pu(a, l) {
     w && (w.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
   A(), setInterval(A, 15e3);
-  const x = o("createFlow"), R = o("createMovementsSlot"), ve = o("createTimingSlot"), ie = o("createFinishSlot"), U = o("movementStepSummary"), $ = o("timingStepSummary"), ne = o("finishStepSummary"), Y = o("continueToTiming"), G = o("continueToFinish"), W = o("finishMoveButton");
+  const y = o("createFlow"), R = o("createMovementsSlot"), ve = o("createTimingSlot"), ie = o("createFinishSlot"), U = o("movementStepSummary"), $ = o("timingStepSummary"), ne = o("finishStepSummary"), Y = o("continueToTiming"), G = o("continueToFinish"), W = o("finishMoveButton");
   let pe = !1, ee = [];
   function ue(t) {
     !t || ee.some((r) => r.node === t) || ee.push({ node: t, parent: t.parentNode, next: t.nextSibling });
@@ -1270,12 +1270,12 @@ function pu(a, l) {
   }
   function Ae() {
     var Ee, Qe, We;
-    x.hidden = !1, pe = !1;
+    y.hidden = !1, pe = !1;
     const t = a.querySelector(".editNameRow"), r = o("createMoveOptions"), s = a.querySelector(".timeTiles"), p = o("routineSummaryModal"), g = a.querySelector(".tempoRevealRow"), C = o("tempoExperiment"), B = (Ee = o("warmupList")) == null ? void 0 : Ee.closest("section"), q = o("movementCreatorLaunch"), ae = o("movementCreator"), he = (Qe = o("strengthList")) == null ? void 0 : Qe.closest("section"), oe = (We = o("cooldownList")) == null ? void 0 : We.closest("section");
     [r == null ? void 0 : r.querySelector(".createExtras"), B, q, ae, he, oe].forEach((_e) => _e && J(_e, R)), [r, s, p, g, C].forEach((_e) => J(_e, ve)), J(t, ie), P("movements"), re();
   }
   function H() {
-    E(), x.hidden = !0, a.querySelectorAll(".createStep").forEach((t) => t.classList.remove("active"));
+    E(), y.hidden = !0, a.querySelectorAll(".createStep").forEach((t) => t.classList.remove("active"));
   }
   a.querySelectorAll("[data-open-step]").forEach((t) => t.addEventListener("click", () => {
     t.disabled || P(t.dataset.openStep);
@@ -1286,7 +1286,7 @@ function pu(a, l) {
   function k(t) {
     Object.entries(Ie).forEach(([r, s]) => s.classList.toggle("active", r === t)), V.classList.toggle("active", t === "home"), qe.classList.toggle("active", t === "settings"), t === "home" && setTimeout(Yi, 400), t === "settings" && (requestAnimationFrame(() => Wo(a.querySelector(".tab.active"), !1)), ki());
   }
-  const _ = o("totalTime"), T = o("workTime"), I = o("restTime"), me = o("totalOut"), z = o("workOut"), le = o("restOut"), ge = o("totalFill"), xe = o("workFill"), $e = o("restFill"), st = o("roundsInput"), At = o("roundsFill"), Tn = o("roundsOut"), zn = o("totalLabel"), mt = o("routineSummaryModal"), Xe = [
+  const _ = o("totalTime"), T = o("workTime"), I = o("restTime"), me = o("totalOut"), z = o("workOut"), le = o("restOut"), ge = o("totalFill"), ye = o("workFill"), $e = o("restFill"), st = o("roundsInput"), At = o("roundsFill"), Tn = o("roundsOut"), zn = o("totalLabel"), mt = o("routineSummaryModal"), Xe = [
     { id: "standing-reach", name: "Standing reach", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
@@ -1303,13 +1303,13 @@ function pu(a, l) {
     { id: "glute-bridge", name: "Glute bridge with kettlebell", group: "Glutes", kind: "work", hidden: !1 },
     { id: "pullover", name: "Kettlebell pullover", group: "Chest + core", kind: "work", hidden: !1 }
   ];
-  const xn = [
+  const yn = [
     { id: "hip-flexor", name: "Hip flexor stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "chest-opener", name: "Chest opener", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "hamstring", name: "Hamstring stretch", group: "Cooldown", kind: "cooldown", hidden: !1 },
     { id: "slow-breathing", name: "Slow breathing", group: "Cooldown", kind: "cooldown", hidden: !1 }
   ];
-  let Dn = xn.map((t) => ({ ...t }));
+  let Dn = yn.map((t) => ({ ...t }));
   const wr = {
     kettlebell: {
       name: "Kettlebell full body",
@@ -1371,11 +1371,11 @@ function pu(a, l) {
       order: p,
       selected: r.selected || p[0],
       history: Array.isArray(r.history) ? r.history : [],
-      checkins: (Array.isArray(r.checkins) ? r.checkins : yr(r.energy)).map(Ri),
+      checkins: (Array.isArray(r.checkins) ? r.checkins : xr(r.energy)).map(Ri),
       settings: { ...r.settings || {} }
     };
   }
-  function yr(t) {
+  function xr(t) {
     if (!Array.isArray(t)) return [];
     const r = ["Drained", "Low", "Okay", "Good", "Energised", "Great"], s = [];
     return t.forEach((p) => {
@@ -1407,10 +1407,10 @@ function pu(a, l) {
       const p = (r.sequence || []).map((C) => ({ ...C })), g = (C) => p.filter((B) => B.presetRole === C).map(({ presetRole: B, ...q }) => q);
       Lt = (r.warmup || g("warmup")).map((C) => ({ ...C })), Dn = (r.cooldown || g("cooldown")).map((C) => ({ ...C })), Je = p.filter((C) => !C.presetRole), Qo(r.preset || "movement", !1);
     } else
-      _.min = 3, _.max = 40, _.step = 1, T.min = 20, T.max = 60, T.step = 5, I.min = 5, I.max = 30, I.step = 5, Lt = (r.warmup || Xe).map((p) => ({ ...p })), Dn = (r.cooldown || xn).map((p) => ({ ...p })), Je = r.strength.map((p) => Array.isArray(p) ? (([g, C, B, q = !1]) => ({ id: g, name: C, group: B, kind: "work", hidden: !!q }))(p) : { ...p });
+      _.min = 3, _.max = 40, _.step = 1, T.min = 20, T.max = 60, T.step = 5, I.min = 5, I.max = 30, I.step = 5, Lt = (r.warmup || Xe).map((p) => ({ ...p })), Dn = (r.cooldown || yn).map((p) => ({ ...p })), Je = r.strength.map((p) => Array.isArray(p) ? (([g, C, B, q = !1]) => ({ id: g, name: C, group: B, kind: "work", hidden: !!q }))(p) : { ...p });
     a.querySelectorAll(".workoutPanel[data-workout]").forEach((p) => p.classList.toggle("active", p.dataset.workout === t)), kt();
   }
-  function xr(t, r, s) {
+  function yr(t, r, s) {
     const p = t.getBoundingClientRect(), g = p.width / 2, C = p.height / 2, B = r - g, q = s - C;
     let ae = 1 / 0, he = 1 / 0;
     B !== 0 && (ae = g / Math.abs(B)), q !== 0 && (he = C / Math.abs(q));
@@ -1419,17 +1419,17 @@ function pu(a, l) {
     return te < 0 && (te += 360), { edge: oe, angle: te };
   }
   function Xo(t, r, s = !1) {
-    const p = t.getBoundingClientRect(), g = r.clientX - p.left, C = r.clientY - p.top, { edge: B, angle: q } = xr(t, g, C), ae = s ? 100 : B * 100;
+    const p = t.getBoundingClientRect(), g = r.clientX - p.left, C = r.clientY - p.top, { edge: B, angle: q } = yr(t, g, C), ae = s ? 100 : B * 100;
     t.style.setProperty("--edge-proximity", ae.toFixed(3)), t.style.setProperty("--cursor-angle", q.toFixed(3) + "deg"), t.classList.toggle("borderGlowActive", s || ae >= 30);
   }
-  function xt(t) {
+  function yt(t) {
     t.addEventListener("pointermove", (s) => Xo(t, s, !1)), t.addEventListener("pointerenter", (s) => Xo(t, s, !1)), t.addEventListener("pointerdown", (s) => Xo(t, s, !0));
     const r = () => {
       t.classList.remove("borderGlowActive"), t.style.setProperty("--edge-proximity", "0");
     };
     t.addEventListener("pointerleave", r), t.addEventListener("pointerup", r), t.addEventListener("pointercancel", r);
   }
-  xt(o("addWorkoutPanel"));
+  yt(o("addWorkoutPanel"));
   let ke = !1, zt = null;
   function Oe(t) {
     return String(t ?? "").replace(/[&<>"']/g, (r) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[r]);
@@ -1444,7 +1444,7 @@ function pu(a, l) {
     const p = r.activityCount ?? (((C = r.sequence) == null ? void 0 : C.length) || 0);
     s.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div><div class="workoutName">' + Oe(r.name) + '</div><div class="sub">' + Oe(jn(r)) + '</div><span class="sourceTag">' + Oe(r.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (p ? p + " activities" + ((r.rounds || 1) > 1 ? " × " + r.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + Oe(r.name) + "</div></div>";
     const g = o("addWorkoutPanel");
-    return o("workoutGallery").insertBefore(s, g), xt(s), s.addEventListener("click", (B) => {
+    return o("workoutGallery").insertBefore(s, g), yt(s), s.addEventListener("click", (B) => {
       B.target.closest("button") || qt(t);
     }), s.addEventListener("keydown", (B) => {
       (B.key === "Enter" || B.key === " ") && !B.target.closest("button") && (B.preventDefault(), qt(t));
@@ -1489,7 +1489,7 @@ function pu(a, l) {
     return r >= 60 && r % 60 === 0 ? r / 60 + " hr" : r >= 60 ? Math.floor(r / 60) + " hr " + r % 60 + " min" : r + " min";
   }
   function Gn() {
-    ge.style.width = Co(_.value, Number(_.min), Number(_.max)) + "%", xe.style.width = Co(T.value, Number(T.min), Number(T.max)) + "%", $e.style.width = Co(I.value, Number(I.min), Number(I.max)) + "%", z.textContent = Yt(T.value), le.textContent = Yt(I.value);
+    ge.style.width = Co(_.value, Number(_.min), Number(_.max)) + "%", ye.style.width = Co(T.value, Number(T.min), Number(T.max)) + "%", $e.style.width = Co(I.value, Number(I.min), Number(I.max)) + "%", z.textContent = Yt(T.value), le.textContent = Yt(I.value);
     const t = Number(st.value) || 1;
     At.style.width = Co(t, 1, 10) + "%", zn.textContent = t > 1 ? "Time per round" : "Total time";
   }
@@ -1545,7 +1545,7 @@ function pu(a, l) {
   }
   function Ii() {
     const t = Ze[bt];
-    t != null && t.customSequence && (t.includeWarmup = o("includeWarmupPreset").checked, t.includeCooldown = o("includeCooldownPreset").checked, t.includeWarmup && !Lt.length && (Lt = Pi(Xe, "warm")), t.includeCooldown && !Dn.length && (Dn = Pi(xn, "cool")), kt());
+    t != null && t.customSequence && (t.includeWarmup = o("includeWarmupPreset").checked, t.includeCooldown = o("includeCooldownPreset").checked, t.includeWarmup && !Lt.length && (Lt = Pi(Xe, "warm")), t.includeCooldown && !Dn.length && (Dn = Pi(yn, "cool")), kt());
   }
   function is() {
     const t = o("upcomingCountSetting");
@@ -1706,7 +1706,7 @@ function pu(a, l) {
         return (vt = s.onHide) == null ? void 0 : vt.call(s);
       });
       const ze = te.querySelector("[data-a=remove]");
-      yi(ze, ze.querySelector(".removeFill"), 1200, () => {
+      xi(ze, ze.querySelector(".removeFill"), 1200, () => {
         var vt;
         return (vt = s.onRemove) == null ? void 0 : vt.call(s);
       });
@@ -1747,7 +1747,7 @@ function pu(a, l) {
         p.hidden = !p.hidden, kt();
       });
       const Ee = C.querySelector(".removeBtn");
-      yi(Ee, Ee.querySelector(".removeFill"), 1200, () => {
+      xi(Ee, Ee.querySelector(".removeFill"), 1200, () => {
         const We = t.indexOf(p);
         We < 0 || (t.splice(We, 1), kt(), Gt("Removed " + p.name, { label: "Undo", run: () => {
           t.splice(Math.min(We, t.length), 0, p), kt();
@@ -1775,7 +1775,7 @@ function pu(a, l) {
       g.setPointerCapture(C);
     } catch {
     }
-    const q = r.closest(".exerciseScroller") || y(r), ae = s.style.position;
+    const q = r.closest(".exerciseScroller") || x(r), ae = s.style.position;
     s.style.position = "relative";
     const he = [...s.children].filter((ct) => ct.classList.contains("moveRow")), oe = he.indexOf(r), te = parseFloat(getComputedStyle(s).rowGap) || 8, Ee = r.offsetHeight, Qe = Ee + te, We = he.map((ct) => ct.offsetTop), _e = he.map((ct) => ct.offsetHeight), Me = () => s.getBoundingClientRect().top, ht = s.getBoundingClientRect().width, gt = t.clientY - (Me() + We[oe]), ze = t.clientX;
     let vt = t.clientY, Et = t.clientX, rt = Me() + We[oe], at = 0, pn = 0, En = 0, Zt = 1, Li = 0, Le = oe, dt = !1, gn = 0, vn = !1, Sl = !1, $r = We[oe];
@@ -1897,7 +1897,7 @@ function pu(a, l) {
     const B = r.querySelector(".moveRow.editing");
     return ni(B, p), so(t === "rest"), B;
   }
-  function y(t) {
+  function x(t) {
     for (let r = t; r && r.nodeType === 1; r = r.parentElement) {
       const s = getComputedStyle(r).overflowY;
       if (/(auto|scroll)/.test(s) && r.scrollHeight > r.clientHeight) return r;
@@ -1916,7 +1916,7 @@ function pu(a, l) {
     (Bt || on) && (va(), Bt = null, kt());
     const g = t.getBoundingClientRect(), C = L(r, S[r]);
     C.setAttribute("aria-hidden", "true"), C.style.width = g.width + "px", C.style.height = g.height + "px", C.style.transform = "translate(" + g.left + "px," + g.top + "px)", t.classList.add("lifting");
-    const B = y(t);
+    const B = x(t);
     return Q({
       ghost: C,
       origin: g,
@@ -2077,7 +2077,7 @@ function pu(a, l) {
       window.addEventListener("pointermove", he, !0), window.addEventListener("pointerup", oe, !0), window.addEventListener("pointercancel", te, !0), window.addEventListener("keydown", We, !0), window.addEventListener("blur", Qe), t.addEventListener("lostpointercapture", Ee);
     });
   }
-  const ye = (ac = window.matchMedia) == null ? void 0 : ac.call(window, "(max-width: 620px)");
+  const xe = (ac = window.matchMedia) == null ? void 0 : ac.call(window, "(max-width: 620px)");
   function be() {
     var t;
     return !!((t = window.matchMedia) != null && t.call(window, "(max-width: 620px)").matches);
@@ -2132,7 +2132,7 @@ function pu(a, l) {
     }), Fe("Add to the move", t, null, !1);
   }
   function Re(t) {
-    Be && ya();
+    Be && xa();
     const r = $n(t, o("strengthList")), s = La(r, -1, {
       sheet: !0,
       isNew: !0,
@@ -2160,7 +2160,7 @@ function pu(a, l) {
   o("setupSummary").addEventListener("click", Kt), o("addFab").addEventListener("click", tt);
   function Pt() {
     const t = o("strengthList");
-    return y(t) || t.closest(".exerciseScroller");
+    return x(t) || t.closest(".exerciseScroller");
   }
   function Vt() {
     const t = o("strengthList").getBoundingClientRect(), r = (Pt() || o("strengthList")).getBoundingClientRect(), s = (Be == null ? void 0 : Be.ghost.offsetHeight) || 64;
@@ -2175,7 +2175,7 @@ function pu(a, l) {
     const g = ((q = a.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : q.offsetHeight) || 64;
     s.style.width = o("strengthList").getBoundingClientRect().width + "px", s.style.height = g + "px";
     const C = Vt(), B = In.querySelector(".modal").getBoundingClientRect().bottom;
-    s.style.transform = "translate(" + C.left + "px," + B + "px)", s.getBoundingClientRect(), Rn() || (s.classList.add("rising"), setTimeout(() => s.classList.remove("rising"), 650)), s.style.transform = "translate(" + C.left + "px," + C.top + "px)", p.querySelector("[data-a=end]").addEventListener("click", ya), p.querySelector("[data-a=discard]").addEventListener("click", kr), s.addEventListener("pointerdown", wa);
+    s.style.transform = "translate(" + C.left + "px," + B + "px)", s.getBoundingClientRect(), Rn() || (s.classList.add("rising"), setTimeout(() => s.classList.remove("rising"), 650)), s.style.transform = "translate(" + C.left + "px," + C.top + "px)", p.querySelector("[data-a=end]").addEventListener("click", xa), p.querySelector("[data-a=discard]").addEventListener("click", kr), s.addEventListener("pointerdown", wa);
   }
   function wa(t) {
     if (!Be || t.target.closest("button") || t.button !== void 0 && t.button !== 0) return;
@@ -2227,7 +2227,7 @@ function pu(a, l) {
     const g = da(r);
     t.kind !== "rest" && t.kind !== "video" && (t.kind = g.kind, g.group && (!t.group || t.group === "Movement") && (t.group = g.group)), g.arr.splice(Math.max(0, Math.min(s, g.arr.length)), 0, t), Lo(r.closest(".exerciseScroller,.createStepSlot") || r, () => kt()), ni(r.querySelector('.moveRow[data-id="' + t.id + '"]'), p), Gt(He(Ce(t)) + " added");
   }
-  function ya() {
+  function xa() {
     var p;
     if (!Be) return;
     const { item: t, ghost: r } = Be;
@@ -2248,8 +2248,8 @@ function pu(a, l) {
       const t = Vt();
       Be.ghost.style.width = t.width + "px", Be.ghost.style.transform = "translate(" + t.left + "px," + t.top + "px)";
     }
-  }), (oc = ye == null ? void 0 : ye.addEventListener) == null || oc.call(ye, "change", () => {
-    Te(), Be && !be() && ya(), ti();
+  }), (oc = xe == null ? void 0 : xe.addEventListener) == null || oc.call(xe, "change", () => {
+    Te(), Be && !be() && xa(), ti();
   });
   {
     const t = o("workoutModal").querySelector(".modal");
@@ -2374,7 +2374,7 @@ function pu(a, l) {
     const t = /* @__PURE__ */ new Date(), r = It(t), s = zi(t), p = Ya(), g = t.getHours() * 60 + t.getMinutes();
     return s === "morning" && g < ii(p.morning) || Mr(Pn(r, s)) ? null : s;
   }
-  const Za = o("checkinModal"), xa = o("checkinTab"), Ul = o("checkinBadge"), lo = { mood: { input: o("moodInput"), fill: o("moodFill") }, energy: { input: o("energyLevelInput"), fill: o("energyLevelFill") } };
+  const Za = o("checkinModal"), ya = o("checkinTab"), Ul = o("checkinBadge"), lo = { mood: { input: o("moodInput"), fill: o("moodFill") }, energy: { input: o("energyLevelInput"), fill: o("energyLevelFill") } };
   function Sr(t) {
     const { input: r, fill: s } = lo[t];
     s.style.width = r.value + "%", r.setAttribute("aria-valuetext", oi(t, r.value));
@@ -2402,15 +2402,15 @@ function pu(a, l) {
     o("peekCountdown").textContent = s + ":" + String(p).padStart(2, "0") + ":" + String(g).padStart(2, "0"), o("peekAt").textContent = "Available at " + t.time;
   }
   function Qs() {
-    Js(), xa.classList.add("peek"), clearInterval(Vi), Vi = setInterval(Js, 1e3), clearTimeout(ss), ss = setTimeout(Cr, 6e3);
+    Js(), ya.classList.add("peek"), clearInterval(Vi), Vi = setInterval(Js, 1e3), clearTimeout(ss), ss = setTimeout(Cr, 6e3);
   }
   function Cr() {
-    xa.classList.remove("peek"), clearInterval(Vi), clearTimeout(ss);
+    ya.classList.remove("peek"), clearInterval(Vi), clearTimeout(ss);
   }
   function ls() {
     const t = ji();
     if (!t) {
-      xa.classList.contains("peek") ? Cr() : Qs();
+      ya.classList.contains("peek") ? Cr() : Qs();
       return;
     }
     ka = { date: It(/* @__PURE__ */ new Date()), slot: t };
@@ -2444,14 +2444,14 @@ function pu(a, l) {
   }
   function Ma() {
     const t = ji();
-    Ul.hidden = !t, xa.hidden = !t, t || Cr(), xa.classList.toggle("due", !!t), xa.setAttribute("aria-label", t ? (t === "morning" ? "Morning" : "Evening") + " check-in is due" : Xs()), xa.title = t ? "Check in now" : Xs();
+    Ul.hidden = !t, ya.hidden = !t, t || Cr(), ya.classList.toggle("due", !!t), ya.setAttribute("aria-label", t ? (t === "morning" ? "Morning" : "Evening") + " check-in is due" : Xs()), ya.title = t ? "Check in now" : Xs();
   }
   function Yi() {
     Ma();
     const t = ji();
     !t || Za.classList.contains("open") || pt().checkinAutoOpen !== !1 && (o("app").classList.contains("house") || !Ie.home.classList.contains("active") || In.classList.contains("open") || Ui !== It(/* @__PURE__ */ new Date()) + "-" + t && ls());
   }
-  xa.addEventListener("click", ls), o("checkinLater").addEventListener("click", Gi), o("checkinSave").addEventListener("click", el), Za.addEventListener("click", (t) => {
+  ya.addEventListener("click", ls), o("checkinLater").addEventListener("click", Gi), o("checkinSave").addEventListener("click", el), Za.addEventListener("click", (t) => {
     t.target === Za && Gi();
   }), Za.addEventListener("keydown", (t) => {
     t.key === "Escape" && (t.preventDefault(), Gi());
@@ -2624,7 +2624,7 @@ function pu(a, l) {
       nl();
     Qi();
   }), o("saveWorkoutEdit").addEventListener("click", () => {
-    Te(), Be && ya();
+    Te(), Be && xa();
     const t = Ze[bt], r = h.value.trim() || "New move";
     if (t && (t.name = r), va(), Bt = null, kt(), ke && t)
       Wa(bt, t), a.querySelectorAll(".workoutPanel[data-workout]").forEach((s) => s.classList.toggle("active", s.dataset.workout === bt)), ke = !1, zt = null, lt.order.includes(bt) || lt.order.push(bt), Gt("Move created");
@@ -2916,7 +2916,7 @@ function pu(a, l) {
     const B = fa.currentTime + r, q = fa.createOscillator(), ae = fa.createGain();
     q.type = C, q.frequency.setValueAtTime(t, B), p !== t && q.frequency.exponentialRampToValueAtTime(p, B + s), ae.gain.setValueAtTime(1e-4, B), ae.gain.exponentialRampToValueAtTime(g, B + 0.01), ae.gain.exponentialRampToValueAtTime(1e-4, B + s), q.connect(ae).connect(fa.destination), q.start(B), q.stop(B + s + 0.02);
   }
-  const ys = {
+  const xs = {
     tick: () => go(880, 0, 0.07, { vol: 0.18 }),
     move: () => {
       go(660, 0, 0.12, { type: "triangle", vol: 0.3 }), go(990, 0.13, 0.16, { type: "triangle", vol: 0.3 });
@@ -2929,7 +2929,7 @@ function pu(a, l) {
   function Ja(t) {
     if (!(!Ra() || !fa))
       try {
-        fa.state === "suspended" && fa.resume(), ys[t]();
+        fa.state === "suspended" && fa.resume(), xs[t]();
       } catch {
       }
   }
@@ -2937,14 +2937,14 @@ function pu(a, l) {
     jt >= 1 && jt <= 3 && jt !== hn && (hn = jt, Ja("tick"));
   }
   function Pr() {
-    No(), k("workout"), xs();
+    No(), k("workout"), ys();
     const t = Yn(0);
     t >= 0 && Ge[t].kind === "video" && Ms(Ge[t]);
   }
   function vi() {
     Or(), cl(!1), clearInterval(tn), clearInterval(Jo), ln = !1, Na(!1), o("app").classList.remove("resting"), er.classList.remove("active"), k("home");
   }
-  function xs() {
+  function ys() {
     er.classList.add("active");
     let t = 5;
     Er.textContent = t, Ja("tick"), requestAnimationFrame(tr), clearInterval(Jo), Jo = setInterval(() => {
@@ -3249,7 +3249,7 @@ function pu(a, l) {
       Vn || (jt--, Io(), ir(), jt <= 0 && (clearInterval(tn), Ho(), tn = setInterval(bo, 1e3)));
     } : bo, 1e3);
   });
-  function yi(t, r, s, p) {
+  function xi(t, r, s, p) {
     let g = 0, C = null, B = !1;
     function q() {
       C && cancelAnimationFrame(C), C = null, g = 0, B = !1, r.style.width = "0%", t.classList.remove("holding");
@@ -3285,7 +3285,7 @@ function pu(a, l) {
     });
   }
   const gl = o("endWorkout");
-  yi(gl, o("holdEndFill"), 1500, vi);
+  xi(gl, o("holdEndFill"), 1500, vi);
   const Fo = o("deleteMoveConfirm");
   o("deleteMoveOpen").addEventListener("click", () => {
     Fo.classList.add("open"), Fo.setAttribute("aria-hidden", "false");
@@ -3302,14 +3302,14 @@ function pu(a, l) {
     }
     Fo.classList.remove("open"), Fo.setAttribute("aria-hidden", "true"), Ji = null, Qi(), qt(s.dataset.workout), Ln(), Gt("Move deleted");
   }
-  yi(o("deleteMoveYes"), o("deleteMoveFill"), 1500, vl);
-  const Oo = a.querySelector(".rubberTabs"), xi = o("rubberIndicator");
+  xi(o("deleteMoveYes"), o("deleteMoveFill"), 1500, vl);
+  const Oo = a.querySelector(".rubberTabs"), yi = o("rubberIndicator");
   function Wo(t, r = !0) {
-    if (!t || !Oo || !xi) return;
+    if (!t || !Oo || !yi) return;
     const s = Oo.getBoundingClientRect(), p = t.getBoundingClientRect();
-    xi.style.transition = r ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
+    yi.style.transition = r ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
     const g = _o();
-    xi.style.left = (p.left - s.left) / g + Oo.scrollLeft + "px", xi.style.width = p.width / g + "px", r && (xi.style.transform = "scaleX(1.08)", setTimeout(() => xi.style.transform = "scaleX(1)", 180));
+    yi.style.left = (p.left - s.left) / g + Oo.scrollLeft + "px", yi.style.width = p.width / g + "px", r && (yi.style.transform = "scaleX(1.08)", setTimeout(() => yi.style.transform = "scaleX(1)", 180));
   }
   a.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => {
     t.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), a.querySelectorAll(".tab").forEach((r) => r.classList.remove("active")), a.querySelectorAll(".settingsPane").forEach((r) => r.classList.remove("active")), t.classList.add("active"), o(t.dataset.pane).classList.add("active"), Wo(t, !0);
@@ -3336,7 +3336,7 @@ function pu(a, l) {
     };
     return Object.values(Ze).forEach((s) => {
       const p = s.name || "Move";
-      (s.warmup || (s.customSequence ? [] : Xe)).forEach((g) => r(g, "Warm-up", p)), (s.customSequence ? s.sequence || [] : s.strength || []).forEach((g) => r(g, g.presetRole === "warmup" ? "Warm-up" : g.presetRole === "cooldown" ? "Cooldown" : "Movement", p)), (s.cooldown || (s.customSequence ? [] : xn)).forEach((g) => r(g, "Cooldown", p));
+      (s.warmup || (s.customSequence ? [] : Xe)).forEach((g) => r(g, "Warm-up", p)), (s.customSequence ? s.sequence || [] : s.strength || []).forEach((g) => r(g, g.presetRole === "warmup" ? "Warm-up" : g.presetRole === "cooldown" ? "Cooldown" : "Movement", p)), (s.cooldown || (s.customSequence ? [] : yn)).forEach((g) => r(g, "Cooldown", p));
     }), [["rest", "Rest"], ["video", "Video"]].forEach(([s, p]) => {
       t.has(s) || t.set(s, { key: s, label: p, kinds: /* @__PURE__ */ new Set([p]), moves: /* @__PURE__ */ new Set(), count: 0 });
     }), [...t.values()].map((s) => ({ ...s, kind: s.kinds.has("Movement") ? "Movement" : [...s.kinds][0], moves: [...s.moves] })).sort((s, p) => As.indexOf(s.kind) - As.indexOf(p.kind) || s.label.localeCompare(p.label));
@@ -3525,11 +3525,11 @@ function pu(a, l) {
   const Is = (t, r) => '<path class="' + r + '" d="' + t + '"/>', sd = (t, r) => ' style="animation-delay:-' + Math.round(t * 137 % r) + 'ms"', Qn = (t, r, s, p) => {
     const g = s * 0.2687;
     return '<path class="wxTwinkle" fill="#fff"' + (p < 1 ? ' opacity="' + p + '"' : "") + sd(t, 2400) + ' d="M' + t + " " + (r - s) + "L" + (t + g) + " " + (r - g) + "L" + (t + s) + " " + r + "L" + (t + g) + " " + (r + g) + "L" + t + " " + (r + s) + "L" + (t - g) + " " + (r + g) + "L" + (t - s) + " " + r + "L" + (t - g) + " " + (r - g) + 'Z"/>';
-  }, yl = ([t, r, s], p) => '<path class="wxMoonPath" d="' + t + '" fill="url(#' + p + ')"/><defs><linearGradient id="' + p + '" x1="0" y1="' + r + '" x2="0" y2="' + s + '" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>', ld = (t, r) => r ? '<circle class="wxSunDisc" cx="45" cy="45" r="33.26" fill="url(#' + t + ')"/><defs><linearGradient id="' + t + '" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>' : '<circle class="wxSunDisc" cx="23" cy="23" r="17" fill="url(#' + t + ')"/><defs><linearGradient id="' + t + '" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>', dd = (t) => (t ? ["29.35", "43.04", "56.74"].map((r, s) => '<g class="wxDrop" style="animation-delay:-' + s * 317 + 'ms"><rect class="wxAccent" x="' + r + '" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 ' + r + ' 60.65)"/></g>') : [19, 26, 33].map((r, s) => '<g class="wxDrop" style="animation-delay:-' + s * 317 + 'ms"><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 ' + r + ' 38)"/></g>')).join(""), cd = (t) => (t ? [[33.67, 67.67], [47.67, 64.67], [61.67, 67.67], [40.67, 77.67], [54.67, 77.67]] : [[21.2, 42.2], [29.2, 40.2], [37.2, 42.2], [25.2, 48.2], [33.2, 48.2]]).map(([r, s], p) => '<circle class="wxFlake" style="animation-delay:-' + p * 640 + 'ms" cx="' + r + '" cy="' + s + '" r="' + (t ? 3.67 : 2.2) + '" fill="#fff"/>').join("");
+  }, xl = ([t, r, s], p) => '<path class="wxMoonPath" d="' + t + '" fill="url(#' + p + ')"/><defs><linearGradient id="' + p + '" x1="0" y1="' + r + '" x2="0" y2="' + s + '" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>', ld = (t, r) => r ? '<circle class="wxSunDisc" cx="45" cy="45" r="33.26" fill="url(#' + t + ')"/><defs><linearGradient id="' + t + '" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>' : '<circle class="wxSunDisc" cx="23" cy="23" r="17" fill="url(#' + t + ')"/><defs><linearGradient id="' + t + '" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>', dd = (t) => (t ? ["29.35", "43.04", "56.74"].map((r, s) => '<g class="wxDrop" style="animation-delay:-' + s * 317 + 'ms"><rect class="wxAccent" x="' + r + '" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 ' + r + ' 60.65)"/></g>') : [19, 26, 33].map((r, s) => '<g class="wxDrop" style="animation-delay:-' + s * 317 + 'ms"><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 ' + r + ' 38)"/></g>')).join(""), cd = (t) => (t ? [[33.67, 67.67], [47.67, 64.67], [61.67, 67.67], [40.67, 77.67], [54.67, 77.67]] : [[21.2, 42.2], [29.2, 40.2], [37.2, 42.2], [25.2, 48.2], [33.2, 48.2]]).map(([r, s], p) => '<circle class="wxFlake" style="animation-delay:-' + p * 640 + 'ms" cx="' + r + '" cy="' + s + '" r="' + (t ? 3.67 : 2.2) + '" fill="#fff"/>').join("");
   function Yr(t, r, s, p) {
-    return t === "clear" ? r ? yl(s ? Ci.l : Ci.s, p) + (s ? Qn(70, 20, 5.83, 1) + Qn(78.33, 41.67, 3.75, 0.8) + Qn(60, 71.67, 3.33, 0.6) : Qn(42, 12, 3.5, 1) + Qn(47, 25, 2.25, 0.8) + Qn(36, 43, 2, 0.6)) : ld(p, s) : t === "partly" ? (r ? yl(s ? Ci.lp : Ci.sp, p) : s ? '<circle class="wxSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>' : '<circle class="wxSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>') + Is(s ? to.lp : to.sp, r ? "wxCloudLight" : "wxBright") + (r ? s ? Qn(73.33, 16.67, 4.17, 0.9) : Qn(44, 10, 2.5, 0.9) : "") : t === "cloudy" ? Is(s ? to.lc : to.s, r ? "wxCloudLight" : "wxBright") + (r ? s ? Qn(15, 15, 3.75, 0.8) + Qn(76.67, 13.33, 2.92, 0.6) : Qn(9, 9, 2.25, 0.8) + Qn(46, 8, 1.75, 0.6) : "") : Is(s ? to.lr : to.s, "wxCloudLight") + (t === "rain" ? dd(s) : cd(s));
+    return t === "clear" ? r ? xl(s ? Ci.l : Ci.s, p) + (s ? Qn(70, 20, 5.83, 1) + Qn(78.33, 41.67, 3.75, 0.8) + Qn(60, 71.67, 3.33, 0.6) : Qn(42, 12, 3.5, 1) + Qn(47, 25, 2.25, 0.8) + Qn(36, 43, 2, 0.6)) : ld(p, s) : t === "partly" ? (r ? xl(s ? Ci.lp : Ci.sp, p) : s ? '<circle class="wxSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>' : '<circle class="wxSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>') + Is(s ? to.lp : to.sp, r ? "wxCloudLight" : "wxBright") + (r ? s ? Qn(73.33, 16.67, 4.17, 0.9) : Qn(44, 10, 2.5, 0.9) : "") : t === "cloudy" ? Is(s ? to.lc : to.s, r ? "wxCloudLight" : "wxBright") + (r ? s ? Qn(15, 15, 3.75, 0.8) + Qn(76.67, 13.33, 2.92, 0.6) : Qn(9, 9, 2.25, 0.8) + Qn(46, 8, 1.75, 0.6) : "") : Is(s ? to.lr : to.s, "wxCloudLight") + (t === "rain" ? dd(s) : cd(s));
   }
-  const xl = () => {
+  const yl = () => {
     var t;
     return ((t = Ut == null ? void 0 : Ut["sun.sun"]) == null ? void 0 : t.state) === "below_horizon";
   };
@@ -3540,7 +3540,7 @@ function pu(a, l) {
   };
   function ur(t, r, s, p = ea, g, C) {
     let B = wl(t);
-    const q = B === "night" || (C != null ? !!C : !!s && xl());
+    const q = B === "night" || (C != null ? !!C : !!s && yl());
     B === "night" && (B = "clear");
     const ae = r ? 90 : 54, he = Vl(t, q), oe = performance.now();
     let te = g ? no.get(g) : null;
@@ -3702,18 +3702,18 @@ function pu(a, l) {
     const r = t.closest("[data-wx-day]");
     if (r) {
       const p = /* @__PURE__ */ new Date();
-      yt(+new Date(p.getFullYear(), p.getMonth(), p.getDate() + Number(r.dataset.wxDay), 12), r);
+      xt(+new Date(p.getFullYear(), p.getMonth(), p.getDate() + Number(r.dataset.wxDay), 12), r);
       return;
     }
     const s = t.closest("[data-wx-open]");
-    s && yt(Date.now(), s);
+    s && xt(Date.now(), s);
   };
   Se.addEventListener("click", (t) => Ne(t.target)), Se.addEventListener("keydown", (t) => {
     (t.key === "Enter" || t.key === " ") && t.target.matches("[data-wx-day],[data-wx-open]") && (t.preventDefault(), Ne(t.target));
   });
   const X = o("wxDialog"), we = o("wxGraph"), j = o("wxGraphWrap");
   let fe = Date.now(), K = null, Ue = !1, Rt = null;
-  function yt(t, r) {
+  function xt(t, r) {
     const s = n();
     K = r || null, fe = Math.max(s.start, Math.min(s.end - nn, t)), f.delete("dialog"), no.delete("scrub"), X.classList.add("open"), X.setAttribute("aria-hidden", "false"), Ke(), N == null || N.observe(X.querySelector("canvas[data-wx-strip]")), we.focus({ preventScroll: !0 }), wo();
   }
@@ -3792,7 +3792,7 @@ function pu(a, l) {
   })), [_, T, I, st].forEach((t) => t.addEventListener("input", () => {
     const r = Ze[bt];
     r && (r.total = Number(_.value), r.work = Number(T.value), r.rest = Number(I.value)), kt();
-  })), V.addEventListener("click", vi), qe.addEventListener("click", () => k("settings")), o("settingsBack").addEventListener("click", vi), ar.addEventListener("click", () => Na(!Vn)), qt(bt), ri(), si(), Ca(), o("healthHelpOpen").addEventListener("click", () => a.querySelector(".tab[data-pane=helpPane]").click()), yi(o("resetStats"), o("resetStatsFill"), 1500, () => {
+  })), V.addEventListener("click", vi), qe.addEventListener("click", () => k("settings")), o("settingsBack").addEventListener("click", vi), ar.addEventListener("click", () => Na(!Vn)), qt(bt), ri(), si(), Ca(), o("healthHelpOpen").addEventListener("click", () => a.querySelector(".tab[data-pane=helpPane]").click()), xi(o("resetStats"), o("resetStatsFill"), 1500, () => {
     lt.history = [], lt.checkins = [], Ui = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
@@ -3913,7 +3913,7 @@ function mu({ onChange: a }) {
     }
   }), c("alarm_control_panel." + wn + "house", null, "disarmed", { friendly_name: "Alarm", supported_features: 7, code_format: null, changed_by: "Matt" }), v(null, "Front door", "door", !1), v(null, "Smoke alarm", "smoke", !1), c("sensor." + wn + "doorbell", null, "", { friendly_name: "Doorbell", device_class: "timestamp", rang: Date.now() - 47 * 60 * 1e3 });
   const w = {}, A = {};
-  let x = null;
+  let y = null;
   function R() {
     const G = /* @__PURE__ */ new Date();
     Object.keys(l).forEach((W) => {
@@ -3945,7 +3945,7 @@ function mu({ onChange: a }) {
       }
     });
     const ee = l["vacuum." + wn + "robot"], ue = ee.attributes;
-    ee.state === "cleaning" && W && pe(ee.entity_id, null, { battery_level: Math.max(5, ue.battery_level - 1) }), ee.state === "returning" && pe(ee.entity_id, "docked", {}), ee.state === "docked" && ue.battery_level < 100 && pe(ee.entity_id, null, { battery_level: Math.min(100, ue.battery_level + 2) }), x && Date.now() - x.at > 5e3 && (pe("alarm_control_panel." + wn + "house", "armed_" + x.mode, {}), x = null), G && a();
+    ee.state === "cleaning" && W && pe(ee.entity_id, null, { battery_level: Math.max(5, ue.battery_level - 1) }), ee.state === "returning" && pe(ee.entity_id, "docked", {}), ee.state === "docked" && ue.battery_level < 100 && pe(ee.entity_id, null, { battery_level: Math.min(100, ue.battery_level + 2) }), y && Date.now() - y.at > 5e3 && (pe("alarm_control_panel." + wn + "house", "armed_" + y.mode, {}), y = null), G && a();
   }
   const U = setInterval(ie, 1e3), $ = setInterval(() => {
     R(), a();
@@ -3969,9 +3969,9 @@ function mu({ onChange: a }) {
       ["open_valve", "close_valve", "toggle"].includes(W) && E(P ? "open" : "closed");
     }
     if (G === "alarm_control_panel") {
-      W === "alarm_disarm" && (x = null, E("disarmed", { changed_by: "Matt" }));
+      W === "alarm_disarm" && (y = null, E("disarmed", { changed_by: "Matt" }));
       const P = { alarm_arm_home: "home", alarm_arm_away: "away", alarm_arm_night: "night" }[W];
-      P && (x = { mode: P, at: Date.now() }, E("arming", { changed_by: "Matt" }));
+      P && (y = { mode: P, at: Date.now() }, E("arming", { changed_by: "Matt" }));
     }
     return a(), !0;
   }
@@ -3992,7 +3992,7 @@ function mu({ onChange: a }) {
       var I, me;
       return (me = (I = P[T]) == null ? void 0 : I.attributes) == null ? void 0 : me.device_class;
     }, Ae = ["door", "window", "garage_door", "opening", "motion", "occupancy", "smoke", "gas"], H = Object.keys(W).filter((T) => T.startsWith("vacuum.") && J(T)), Ie = Object.values((G == null ? void 0 : G.areas) || {}).filter((T) => !uu.has(T.area_id)).map((T) => {
-      const I = T.area_id, me = E[I] || [], z = (Xe) => me.filter((Lt) => Lt.startsWith(Xe + ".")), le = (Xe) => z("sensor").filter((Lt) => re(Lt) === Xe), ge = (Xe) => Object.keys(l).filter((Lt) => o[Lt] === I && Xe(Lt)), xe = (Xe, Lt) => Xe.length ? Xe : ge(Lt), $e = xe(le("temperature"), (Xe) => Xe.endsWith(I + "_temperature")), st = xe(le("humidity"), (Xe) => Xe.endsWith(I + "_humidity")), At = le("power").filter((Xe) => /^(W|kW)$/.test(P[Xe].attributes.unit_of_measurement || "")), Tn = z("binary_sensor").filter((Xe) => re(Xe) === "moisture"), zn = xe(z("plant"), (Xe) => Xe.startsWith("plant.")).map((Xe) => ({ id: Xe, readings: ge((Lt) => Lt.startsWith("sensor." + Xe.split(".")[1] + "_")) })), mt = [...z("binary_sensor").filter((Xe) => Ae.includes(re(Xe))), ...ge((Xe) => Xe.startsWith("binary_sensor."))];
+      const I = T.area_id, me = E[I] || [], z = (Xe) => me.filter((Lt) => Lt.startsWith(Xe + ".")), le = (Xe) => z("sensor").filter((Lt) => re(Lt) === Xe), ge = (Xe) => Object.keys(l).filter((Lt) => o[Lt] === I && Xe(Lt)), ye = (Xe, Lt) => Xe.length ? Xe : ge(Lt), $e = ye(le("temperature"), (Xe) => Xe.endsWith(I + "_temperature")), st = ye(le("humidity"), (Xe) => Xe.endsWith(I + "_humidity")), At = le("power").filter((Xe) => /^(W|kW)$/.test(P[Xe].attributes.unit_of_measurement || "")), Tn = z("binary_sensor").filter((Xe) => re(Xe) === "moisture"), zn = ye(z("plant"), (Xe) => Xe.startsWith("plant.")).map((Xe) => ({ id: Xe, readings: ge((Lt) => Lt.startsWith("sensor." + Xe.split(".")[1] + "_")) })), mt = [...z("binary_sensor").filter((Xe) => Ae.includes(re(Xe))), ...ge((Xe) => Xe.startsWith("binary_sensor."))];
       return {
         id: I,
         name: T.name,
@@ -4001,7 +4001,7 @@ function mu({ onChange: a }) {
         power: At.length ? At.reduce((Xe, Lt) => Xe + Number(P[Lt].state) * (P[Lt].attributes.unit_of_measurement === "kW" ? 1e3 : 1), 0) : null,
         plugs: z("switch"),
         lights: z("light"),
-        actions: [...z("light"), ...xe(z("climate"), (Xe) => Xe.startsWith("climate.")), ...xe(z("cover"), (Xe) => Xe.startsWith("cover.")), ...xe(z("humidifier"), (Xe) => Xe.startsWith("humidifier.")), ...xe(z("valve"), (Xe) => Xe.startsWith("valve.")), ...z("media_player"), ...z("vacuum"), ...H.length ? [] : ge((Xe) => Xe.startsWith("vacuum."))],
+        actions: [...z("light"), ...ye(z("climate"), (Xe) => Xe.startsWith("climate.")), ...ye(z("cover"), (Xe) => Xe.startsWith("cover.")), ...ye(z("humidifier"), (Xe) => Xe.startsWith("humidifier.")), ...ye(z("valve"), (Xe) => Xe.startsWith("valve.")), ...z("media_player"), ...z("vacuum"), ...H.length ? [] : ge((Xe) => Xe.startsWith("vacuum."))],
         solar: ge((Xe) => Xe.includes("_solar_")),
         plants: zn,
         openings: mt,
@@ -4114,8 +4114,8 @@ const bu = [
   }
   return c;
 };
-function yu(a, l, o, c, { oneBit: h, ink: v, paper: w, snowInk: A }) {
-  const x = new Uint8ClampedArray(o * c * 4), R = Hl(v), ve = Hl(w);
+function xu(a, l, o, c, { oneBit: h, ink: v, paper: w, snowInk: A }) {
+  const y = new Uint8ClampedArray(o * c * 4), R = Hl(v), ve = Hl(w);
   for (let ie = 0; ie < c; ie++) for (let U = 0; U < o; U++) {
     const $ = ie * o + U, ne = l[$];
     if (a[$] == null) continue;
@@ -4124,56 +4124,56 @@ function yu(a, l, o, c, { oneBit: h, ink: v, paper: w, snowInk: A }) {
       let G;
       ne === gp || ne === vp ? G = !0 : ne === es ? G = A : ne === jd || ne === Wl ? G = !1 : G = Math.round((0.2126 * Y[0] + 0.7152 * Y[1] + 0.0722 * Y[2]) / 255 * 4) / 4 <= Yo(U, ie), (ne === fp || ne === hp || ne === mp || ne === Wl) && (U > 0 && l[$ - 1] !== ne || U < o - 1 && l[$ + 1] !== ne || ie > 0 && l[$ - o] !== ne || ie < c - 1 && l[$ + o] !== ne) && (G = !0), Y = G ? R : ve;
     }
-    x[$ * 4] = Y[0], x[$ * 4 + 1] = Y[1], x[$ * 4 + 2] = Y[2], x[$ * 4 + 3] = 255;
+    y[$ * 4] = Y[0], y[$ * 4 + 1] = Y[1], y[$ * 4 + 2] = Y[2], y[$ * 4 + 3] = 255;
   }
-  return { w: o, h: c, data: x };
+  return { w: o, h: c, data: y };
 }
-const xu = { clear: 0, partly: 0.35, cloudy: 0.85, fog: 0.9, rain: 1, storm: 1, snow: 0.9 }, ku = (a) => Vl(a, !1).split("/")[0], yd = (a) => () => {
+const yu = { clear: 0, partly: 0.35, cloudy: 0.85, fog: 0.9, rain: 1, storm: 1, snow: 0.9 }, ku = (a) => Vl(a, !1).split("/")[0], xd = (a) => () => {
   a |= 0, a = a + 1831565813 | 0;
   let l = Math.imul(a ^ a >>> 15, 1 | a);
   return l = l + Math.imul(l ^ l >>> 7, 61 | l) ^ l, ((l ^ l >>> 14) >>> 0) / 4294967296;
 }, Mu = "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", Su = "M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z", Cu = "M0 -1L0.2687 -0.2687L1 0L0.2687 0.2687L0 1L-0.2687 0.2687L-1 0L-0.2687 -0.2687Z", Tu = "M7 0L0 13L5 13L2 24L11 9L6 9L9 0Z", Lu = [[7, 0], [0, 13], [5, 13], [2, 24], [11, 9], [6, 9], [9, 0]], Au = [".##", "##.", ".#.", "#.."];
 function bp(a, { width: l, height: o, colors: c, wave: h = 0.38, soft: v = 6, glow: w = 0.6, columns: A = 6 }) {
-  const x = { ...sa, dawn: "#e5a77e", ...c }, R = vu(x), ve = l, ie = o, U = ve / A, $ = U / 2, ne = Math.PI * 2, Y = a.length ? a : [{ cond: "cloudy", night: !1 }], G = [...Array(A * 2)].map((ue, J) => {
+  const y = { ...sa, dawn: "#e5a77e", ...c }, R = vu(y), ve = l, ie = o, U = ve / A, $ = U / 2, ne = Math.PI * 2, Y = a.length ? a : [{ cond: "cloudy", night: !1 }], G = [...Array(A * 2)].map((ue, J) => {
     const E = Y[Math.min(J, Y.length - 1)], P = ku(E.cond), re = J % 2 === 1;
-    return { cond: E.cond, k: P, night: re, sky: R[P][re ? 1 : 0], cover: xu[P] };
+    return { cond: E.cond, k: P, night: re, sky: R[P][re ? 1 : 0], cover: yu[P] };
   }), W = (ue) => ie * (0.5 - h * Math.cos(ne * (ue / U - 0.25)));
-  return { C: x, S: G, W: ve, H: ie, cw: U, sw: $, TAU: ne, yb: W, side: (ue, J, E) => {
+  return { C: y, S: G, W: ve, H: ie, cw: U, sw: $, TAU: ne, yb: W, side: (ue, J, E) => {
     const P = (ue ? W(J) - E : E - W(J)) / Math.max(3, v * 1.4) + 0.5;
     return P <= 0 ? 0 : P >= 1 ? 1 : P;
   }, glowAt: (ue) => {
     const J = ((ue / U - 0.25) % 1 + 1) % 1, E = Math.max(0, Math.min(A - 1, Math.round(ue / U - 0.25))), P = Math.max(0, Math.min(A - 1, Math.round(ue / U - 0.75))), re = 1 - (G[2 * E].cover + G[2 * P + 1].cover) / 2, Ae = Math.sin(Math.PI * Math.min(1, Math.max(0, W(ue) / ie)));
-    return { c: J < 0.5 ? x.dusk : x.dawn, a: w * (0.2 + 0.8 * re) * Ae * Ae };
+    return { c: J < 0.5 ? y.dusk : y.dawn, a: w * (0.2 + 0.8 * re) * Ae * Ae };
   }, soft: v, tw: U * 0.3, sy: ie / 90 };
 }
 function wp(a, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
-  const { S: h, sw: v, side: w, C: A, TAU: x, sy: R, H: ve } = a, ie = l, U = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
+  const { S: h, sw: v, side: w, C: A, TAU: y, sy: R, H: ve } = a, ie = l, U = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
   h.forEach((Y, G) => {
-    const W = yd(c * 977 + G * 131 + 7), pe = (G + 0.5) * v, ee = Y.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[Y.k] : 0;
+    const W = xd(c * 977 + G * 131 + 7), pe = (G + 0.5) * v, ee = Y.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[Y.k] : 0;
     for (let ue = 0; ue < ee; ue++) {
-      const J = pe + (W() - 0.5) * v * 1.6, E = (6 + W() * 76) * R, P = W() < 0.35, re = 1.8 + W() * 1.6, Ae = w(!0, J, E) * (P ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(x * ie / 2600 + ue * 1.7 + G) : 1);
+      const J = pe + (W() - 0.5) * v * 1.6, E = (6 + W() * 76) * R, P = W() < 0.35, re = 1.8 + W() * 1.6, Ae = w(!0, J, E) * (P ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(y * ie / 2600 + ue * 1.7 + G) : 1);
       Ae >= 0.03 && U.stars.push({ x: J, y: E, big: P, size: re, o: Ae });
     }
     if (!Y.night && (Y.k === "clear" || Y.k === "partly")) {
       const ue = pe + (W() - 0.5) * v * 0.3, J = Math.min(15, v * 0.29);
-      U.suns.push({ x: ue, y: 32 * R, rad: J, halo: J * 2.8 * (o ? 1 + 0.07 * Math.sin(x * ie / 3600 + G) : 1) });
+      U.suns.push({ x: ue, y: 32 * R, rad: J, halo: J * 2.8 * (o ? 1 + 0.07 * Math.sin(y * ie / 3600 + G) : 1) });
     }
     if (Y.night && (Y.k === "clear" || Y.k === "partly")) {
       const ue = Math.min(0.78, v * 0.55 / 34), J = pe - 23 * ue + (W() - 0.5) * v * 0.2;
-      U.moons.push({ x: J + 23 * ue, y: (4 + (o ? 0.8 * Math.sin(x * ie / 5200 + G) : 0)) * R + 23 * ue, d: 46 * ue });
+      U.moons.push({ x: J + 23 * ue, y: (4 + (o ? 0.8 * Math.sin(y * ie / 5200 + G) : 0)) * R + 23 * ue, d: 46 * ue });
     }
   });
   const $ = Math.max(56, Math.min(100, ve * 0.45)), ne = Math.max(1, v / ($ * 2.4));
   return h.forEach((Y, G) => {
     const W = { clear: 0, partly: 1, cloudy: 3, fog: 0, rain: 3, storm: 3, snow: 2 }[Y.k];
     if (!W) return;
-    const pe = Y.k === "partly" ? 1 : Math.round(W * ne), ee = yd(c * 577 + G * 71 + 3), ue = (G + 0.5) * v, J = Y.k === "rain" || Y.k === "storm" || Y.night ? A.cloudNight : A.cloudDay, E = Y.night ? 0.82 : Y.k === "storm" ? 0.75 : 1;
+    const pe = Y.k === "partly" ? 1 : Math.round(W * ne), ee = xd(c * 577 + G * 71 + 3), ue = (G + 0.5) * v, J = Y.k === "rain" || Y.k === "storm" || Y.night ? A.cloudNight : A.cloudDay, E = Y.night ? 0.82 : Y.k === "storm" ? 0.75 : 1;
     for (let P = 0; P < pe; P++) {
-      const re = $ / 46 * (Y.k === "partly" ? 1 : 0.8 + ee() * 0.4), Ae = ue + (Y.k === "partly" ? v * 0.12 : ((P + 0.5) / pe - 0.5) * v * 0.95 + (ee() - 0.5) * v * 0.5 / pe), H = (Y.k === "partly" ? 40 : 6 + ee() * 26) * R, Ie = o ? 2.5 * Math.sin(x * ie / 9e3 + G * 1.3 + P * 2.1) : 0, V = o ? 0.9 * Math.sin(x * ie / 6100 + G + P) : 0;
+      const re = $ / 46 * (Y.k === "partly" ? 1 : 0.8 + ee() * 0.4), Ae = ue + (Y.k === "partly" ? v * 0.12 : ((P + 0.5) / pe - 0.5) * v * 0.95 + (ee() - 0.5) * v * 0.5 / pe), H = (Y.k === "partly" ? 40 : 6 + ee() * 26) * R, Ie = o ? 2.5 * Math.sin(y * ie / 9e3 + G * 1.3 + P * 2.1) : 0, V = o ? 0.9 * Math.sin(y * ie / 6100 + G + P) : 0;
       U.clouds.push({ x: Ae - 23 * re + Ie, y: H - 15.33 * re + V, w: 46 * re, h: 30.66 * re, fill: J, o: E * (pe > 1 && P === 0 ? 0.85 : 1) });
     }
   }), h.forEach((Y, G) => {
-    const W = yd(c * 313 + G * 29 + 11), pe = (G + 0.5) * v, ee = Y.cond === "pouring" ? 16 : Y.cond === "rainy" || Y.cond === "hail" ? 9 : Y.cond === "lightning-rainy" ? 12 : Y.cond === "snowy-rainy" ? 5 : 0;
+    const W = xd(c * 313 + G * 29 + 11), pe = (G + 0.5) * v, ee = Y.cond === "pouring" ? 16 : Y.cond === "rainy" || Y.cond === "hail" ? 9 : Y.cond === "lightning-rainy" ? 12 : Y.cond === "snowy-rainy" ? 5 : 0;
     for (let J = 0; J < ee; J++) {
       let E = pe + (W() - 0.5) * v * 1.05, P = 44 + W() * 36, re = 1;
       if (o) {
@@ -4189,14 +4189,14 @@ function wp(a, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
       let E = pe + (W() - 0.5) * v * 1.05, P = 40 + W() * 44, re = 1;
       if (o) {
         const H = ((P - 40 + ie * 9e-3) % 44 + 44) % 44;
-        P = 40 + H, E += 1.6 * Math.sin(x * ie / 2800 + J * 1.9 + G), re = Math.min(1, H / 6, (44 - H) / 6);
+        P = 40 + H, E += 1.6 * Math.sin(y * ie / 2800 + J * 1.9 + G), re = Math.min(1, H / 6, (44 - H) / 6);
       }
       P *= R;
       const Ae = w(Y.night, E, P) * re;
       Ae >= 0.05 && U.flakes.push({ x: E, y: P, o: Ae });
     }
     if (Y.k === "fog") {
-      const J = Y.night ? "#c8ccd6" : "#ffffff", E = Y.night ? 0.28 : 0.62, P = o ? 4 * Math.sin(x * ie / 8e3 + G) : 0;
+      const J = Y.night ? "#c8ccd6" : "#ffffff", E = Y.night ? 0.28 : 0.62, P = o ? 4 * Math.sin(y * ie / 8e3 + G) : 0;
       for (let re = 0; re < 4; re++) U.fogs.push({ x: pe - v * 0.75 + re % 2 * v * 0.18 + (re % 2 ? P : -P), y: (30 + re * 13) * R, w: v * 1.3, c: J, a: E });
     }
     if (Y.k === "storm") {
@@ -4206,7 +4206,7 @@ function wp(a, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
   }), U;
 }
 function _u(a, l, o, c, h, v, w, A) {
-  const { S: x, C: R, cw: ve, yb: ie, glowAt: U, soft: $, tw: ne, sy: Y } = a, G = new Array(o * c), W = new Uint8Array(o * c), pe = new Uint8Array(o * c), ee = (k, _, T, I, me) => {
+  const { S: y, C: R, cw: ve, yb: ie, glowAt: U, soft: $, tw: ne, sy: Y } = a, G = new Array(o * c), W = new Uint8Array(o * c), pe = new Uint8Array(o * c), ee = (k, _, T, I, me) => {
     T == null || k < 0 || _ < 0 || k >= o || _ >= c || (I >= 1 || I > Yo(k + 5, _ + 3)) && (G[_ * o + k] = T, W[_ * o + k] = me);
   }, ue = (k, _, T, I) => {
     for (let me = Math.max(0, Math.floor(_ - T) - 1); me <= Math.min(c - 1, _ + T + 1); me++) for (let z = Math.max(0, Math.floor(k - T) - 1); z <= Math.min(o - 1, k + T + 1); z++) I(z, me, z + 0.5 - k, me + 0.5 - _);
@@ -4218,13 +4218,13 @@ function _u(a, l, o, c, h, v, w, A) {
     }
     const I = k[k.length - 1];
     return [I, I, 0];
-  }, E = x.filter((k) => !k.night).map((k) => k.sky), P = x.filter((k) => k.night).map((k) => k.sky), re = $ / v, Ae = 16 * Y / v;
+  }, E = y.filter((k) => !k.night).map((k) => k.sky), P = y.filter((k) => k.night).map((k) => k.sky), re = $ / v, Ae = 16 * Y / v;
   for (let k = 0; k < o; k++) {
     const _ = (k + 0.5) * h, T = ie(_) / v, I = J(E, 0.75, _), me = J(P, 1.25, _), z = U(_);
     for (let le = 0; le < c; le++) {
-      const ge = Yo(k, le), xe = le + 0.5 - T, $e = (re > 0.01 ? Zo(0.5 + xe / re) : xe > 0 ? 1 : 0) > ge;
+      const ge = Yo(k, le), ye = le + 0.5 - T, $e = (re > 0.01 ? Zo(0.5 + ye / re) : ye > 0 ? 1 : 0) > ge;
       let st = $e ? I[2] > ge ? I[1] : I[0] : me[2] > ge ? me[1] : me[0];
-      ($e ? Zo(((le + 0.5) / c - 0.45) / 0.55) * 0.7 : Zo(1 - (le + 0.5) / (c * 0.55)) * 0.7) > Yo(k + 2, le + 5) && (st = $e ? Oa(st, "#ffffff", 0.18) : Oa(st, "#000000", 0.25)), $e && xe >= 0 && xe < Ae && z.a * 1.3 * (1 - xe / Ae) > Yo(k + 6, le + 1) && (st = z.c), G[le * o + k] = st, pe[le * o + k] = $e ? 0 : 1;
+      ($e ? Zo(((le + 0.5) / c - 0.45) / 0.55) * 0.7 : Zo(1 - (le + 0.5) / (c * 0.55)) * 0.7) > Yo(k + 2, le + 5) && (st = $e ? Oa(st, "#ffffff", 0.18) : Oa(st, "#000000", 0.25)), $e && ye >= 0 && ye < Ae && z.a * 1.3 * (1 - ye / Ae) > Yo(k + 6, le + 1) && (st = z.c), G[le * o + k] = st, pe[le * o + k] = $e ? 0 : 1;
     }
   }
   const H = Oa(R.sun, "#ffffff", 0.55), Ie = Oa(R.moon, "#ffffff", 0.6);
@@ -4238,28 +4238,28 @@ function _u(a, l, o, c, h, v, w, A) {
     });
   }), l.suns.forEach((k) => {
     const _ = Math.max(1.5, k.rad / h), T = k.x / h, I = k.y / v, me = k.halo / h * 0.85;
-    if (ue(T, I, me, (z, le, ge, xe) => {
-      const $e = Math.sqrt(ge * ge + xe * xe);
+    if (ue(T, I, me, (z, le, ge, ye) => {
+      const $e = Math.sqrt(ge * ge + ye * ye);
       $e > _ && $e < me && !pe[le * o + z] && ee(z, le, H, 0.3 * (1 - ($e - _) / (me - _)), 0);
     }), A) {
       const z = Math.floor(w / 500) % 2, le = Math.max(1, _ * 0.3);
-      for (let ge = 0; ge < 8; ge++) if (ge % 2 === z) for (let xe = _ + 1.2; xe < _ + 1.2 + le; xe += 0.7) ee(Math.floor(T + Math.cos(ge * Math.PI / 4) * xe), Math.floor(I + Math.sin(ge * Math.PI / 4) * xe), R.sun, 1, vp);
+      for (let ge = 0; ge < 8; ge++) if (ge % 2 === z) for (let ye = _ + 1.2; ye < _ + 1.2 + le; ye += 0.7) ee(Math.floor(T + Math.cos(ge * Math.PI / 4) * ye), Math.floor(I + Math.sin(ge * Math.PI / 4) * ye), R.sun, 1, vp);
     }
-    ue(T, I, _, (z, le, ge, xe) => {
-      ge * ge + xe * xe <= _ * _ && ee(z, le, Zo(((xe / _ + 1) / 2 - 0.6) / 0.4) > Yo(z, le) ? R.sunEdge : R.sun, 1, fp);
+    ue(T, I, _, (z, le, ge, ye) => {
+      ge * ge + ye * ye <= _ * _ && ee(z, le, Zo(((ye / _ + 1) / 2 - 0.6) / 0.4) > Yo(z, le) ? R.sunEdge : R.sun, 1, fp);
     });
   }), l.moons.forEach((k) => {
     const _ = Math.max(1.5, k.d * 0.37 / h), T = k.x / h, I = k.y / v, me = T + 0.547 * _, z = I - 0.503 * _, le = 0.82 * _;
-    ue(T, I, _, (ge, xe, $e, st) => {
+    ue(T, I, _, (ge, ye, $e, st) => {
       if ($e * $e + st * st > _ * _) return;
-      const At = ge + 0.5 - me, Tn = xe + 0.5 - z;
-      At * At + Tn * Tn > le * le && ee(ge, xe, Zo((st + _) / (2 * _) * 1.1 - 0.1) > Yo(ge, xe) ? R.moon : Ie, 1, hp);
+      const At = ge + 0.5 - me, Tn = ye + 0.5 - z;
+      At * At + Tn * Tn > le * le && ee(ge, ye, Zo((st + _) / (2 * _) * 1.1 - 0.1) > Yo(ge, ye) ? R.moon : Ie, 1, hp);
     });
   }), l.clouds.forEach((k) => {
     const _ = Math.max(3, k.w / h), T = _ * 0.6665, I = k.x / h, me = k.y / v, z = Oa(k.fill, "#000000", 0.16);
     for (let le = Math.max(0, Math.floor(me) - 1); le <= Math.min(c - 1, me + T + 1); le++) for (let ge = Math.max(0, Math.floor(I) - 1); ge <= Math.min(o - 1, I + _ + 1); ge++) {
-      const xe = (ge + 0.5 - I) / _, $e = (le + 0.5 - me) / _;
-      vc(xe, $e) && ee(ge, le, !vc(xe, $e + 1 / _) || Zo(($e - 0.42) / 0.25) * 0.8 > Yo(ge, le) ? z : k.fill, k.o, mp);
+      const ye = (ge + 0.5 - I) / _, $e = (le + 0.5 - me) / _;
+      vc(ye, $e) && ee(ge, le, !vc(ye, $e + 1 / _) || Zo(($e - 0.42) / 0.25) * 0.8 > Yo(ge, le) ? z : k.fill, k.o, mp);
     }
   }), l.fogs.forEach((k) => {
     const _ = Math.floor(k.y / v), T = Math.max(_, Math.floor((k.y + 6 * Y) / v) - 1), I = Math.floor(k.x / h), me = Math.floor((k.x + k.w) / h);
@@ -4292,20 +4292,20 @@ function _u(a, l, o, c, h, v, w, A) {
   }), { col: G, ids: W };
 }
 function Eu(a, l) {
-  const o = l.px, c = Math.max(6, Math.round(l.width / o)), h = Math.max(6, Math.round(l.height / o)), v = l.width / c, w = l.height / h, A = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, x = ($) => {
+  const o = l.px, c = Math.max(6, Math.round(l.width / o)), h = Math.max(6, Math.round(l.height / o)), v = l.width / c, w = l.height / h, A = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, y = ($) => {
     const ne = bp($, l);
     return _u(ne, wp(ne, { clock: A, ambient: l.ambient, seed: l.seed }), c, h, v, w, A, l.ambient);
-  }, R = x(a), ve = l.reveal == null ? 1 : Zo(l.reveal);
+  }, R = y(a), ve = l.reveal == null ? 1 : Zo(l.reveal);
   let ie = R.col, U = R.ids;
   if (ve < 1) {
-    const $ = l.prev ? x(l.prev) : null, ne = ve * (c + 12);
+    const $ = l.prev ? y(l.prev) : null, ne = ve * (c + 12);
     ie = new Array(c * h), U = new Uint8Array(c * h);
     for (let Y = 0; Y < c * h; Y++) {
       const G = Y % c, W = Y / c | 0;
       (l.reduce ? ve : Zo((ne - G) / 12)) > Yo(G, W) ? (ie[Y] = R.col[Y], U[Y] = R.ids[Y]) : $ ? (ie[Y] = $.col[Y], U[Y] = $.ids[Y]) : (ie[Y] = null, U[Y] = 255);
     }
   }
-  return yu(ie, U, c, h, { oneBit: l.oneBit, ink: l.ink || "#26221e", paper: l.paper || "#fbf9f6", snowInk: !1 });
+  return xu(ie, U, c, h, { oneBit: l.oneBit, ink: l.ink || "#26221e", paper: l.paper || "#fbf9f6", snowInk: !1 });
 }
 function Du(a, l, o) {
   const c = o.width, h = o.height, v = o.reveal == null ? 1 : Zo(o.reveal), w = (U, $) => {
@@ -4320,15 +4320,15 @@ function Du(a, l, o) {
     a.save(), a.globalAlpha = v, w(a, l), a.restore();
     return;
   }
-  const A = a.canvas, x = A.__wxOff || (A.__wxOff = document.createElement("canvas"));
-  (x.width !== A.width || x.height !== A.height) && (x.width = A.width, x.height = A.height);
-  const R = x.getContext("2d");
+  const A = a.canvas, y = A.__wxOff || (A.__wxOff = document.createElement("canvas"));
+  (y.width !== A.width || y.height !== A.height) && (y.width = A.width, y.height = A.height);
+  const R = y.getContext("2d");
   R.setTransform(a.getTransform()), R.clearRect(0, 0, c, h), w(R, l);
   const ve = v * (c + 64) - 64, ie = R.createLinearGradient(ve, 0, ve + 64, 0);
-  ie.addColorStop(0, "rgba(0,0,0,1)"), ie.addColorStop(1, "rgba(0,0,0,0)"), R.globalCompositeOperation = "destination-in", R.fillStyle = ie, R.fillRect(0, 0, c, h), R.globalCompositeOperation = "source-over", a.save(), a.setTransform(1, 0, 0, 1, 0, 0), a.drawImage(x, 0, 0), a.restore();
+  ie.addColorStop(0, "rgba(0,0,0,1)"), ie.addColorStop(1, "rgba(0,0,0,0)"), R.globalCompositeOperation = "destination-in", R.fillStyle = ie, R.fillRect(0, 0, c, h), R.globalCompositeOperation = "source-over", a.save(), a.setTransform(1, 0, 0, 1, 0, 0), a.drawImage(y, 0, 0), a.restore();
 }
 function Bu(a, l, o) {
-  const { W: c, H: h, S: v, C: w, cw: A, yb: x, glowAt: R, soft: ve, tw: ie, sy: U } = l, $ = a.getTransform().a || 1, ne = (V) => {
+  const { W: c, H: h, S: v, C: w, cw: A, yb: y, glowAt: R, soft: ve, tw: ie, sy: U } = l, $ = a.getTransform().a || 1, ne = (V) => {
     a.shadowColor = V ? "rgba(28,18,8,.22)" : "transparent", a.shadowBlur = V ? 4 * $ : 0, a.shadowOffsetY = V ? 1.5 * $ : 0;
   }, Y = (V, qe) => {
     const k = Hl(V);
@@ -4344,12 +4344,12 @@ function Bu(a, l, o) {
   }, W = Math.max(24, Math.ceil(c / 4)), pe = (V, qe) => {
     a.beginPath();
     for (let k = 0; k <= W; k++) {
-      const _ = c * k / W, T = V == null ? 0 : x(_) + V;
+      const _ = c * k / W, T = V == null ? 0 : y(_) + V;
       k ? a.lineTo(_, T) : a.moveTo(_, T);
     }
     for (let k = W; k >= 0; k--) {
       const _ = c * k / W;
-      a.lineTo(_, x(_) + qe);
+      a.lineTo(_, y(_) + qe);
     }
     a.closePath(), a.fill();
   };
@@ -4402,13 +4402,13 @@ const Ru = (a) => a === "sunny" ? "clear" : a === "clear-night" ? "night" : a ==
   l: ["M41.1747 11.959C37.7298 16.5251 35.6875 22.2086 35.6874 28.3691C35.6874 43.4321 47.8979 55.6435 62.9608 55.6436C68.3701 55.6436 73.411 54.0676 77.6512 51.3516C74.6865 66.6826 61.197 78.2607 44.9999 78.2607C26.6305 78.2607 11.7391 63.3694 11.7391 45C11.7392 27.9244 24.6071 13.8562 41.1747 11.959Z", 11.96, 78.26],
   sp: ["M16.6201 5.0791C15.3771 6.72655 14.6397 8.7772 14.6396 11C14.6396 16.4345 19.046 20.8398 24.4805 20.8398C26.4326 20.8398 28.2502 20.2686 29.7803 19.2881C28.7119 24.821 23.8449 29 18 29C11.3726 29 6 23.6274 6 17C6 10.8393 10.6426 5.76349 16.6201 5.0791Z", 5.08, 29],
   lp: ["M32.5175 9.93848C30.0859 13.1616 28.6435 17.1729 28.6434 21.5215C28.6434 32.1541 37.2628 40.7733 47.8954 40.7734C51.7136 40.7734 55.2724 39.6622 58.2655 37.7451C56.1724 48.5666 46.6506 56.7391 35.2177 56.7393C22.251 56.7393 11.7391 46.2274 11.7391 33.2607C11.7393 21.2073 20.8226 11.2776 32.5175 9.93848Z", 9.94, 56.74]
-}, xd = (a, l) => '<path class="' + l + '" d="' + a + '"/>', Nu = (a, l) => ' style="animation-delay:-' + Math.round(a * 137 % l) + 'ms"', Fa = (a, l, o, c) => {
+}, yd = (a, l) => '<path class="' + l + '" d="' + a + '"/>', Nu = (a, l) => ' style="animation-delay:-' + Math.round(a * 137 % l) + 'ms"', Fa = (a, l, o, c) => {
   const h = o * 0.2687;
   return '<path class="wbTwinkle" fill="#fff"' + (c < 1 ? ' opacity="' + c + '"' : "") + Nu(a, 2400) + ' d="M' + a + " " + (l - o) + "L" + (a + h) + " " + (l - h) + "L" + (a + o) + " " + l + "L" + (a + h) + " " + (l + h) + "L" + a + " " + (l + o) + "L" + (a - h) + " " + (l + h) + "L" + (a - o) + " " + l + "L" + (a - h) + " " + (l - h) + 'Z"/>';
 }, bc = ([a, l, o], c) => '<path class="wbMoonPath" d="' + a + '" fill="url(#' + c + ')"/><defs><linearGradient id="' + c + '" x1="0" y1="' + l + '" x2="0" y2="' + o + '" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>', Pu = (a, l) => l ? '<circle class="wbSunDisc" cx="45" cy="45" r="33.26" fill="url(#' + a + ')"/><defs><linearGradient id="' + a + '" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>' : '<circle class="wbSunDisc" cx="23" cy="23" r="17" fill="url(#' + a + ')"/><defs><linearGradient id="' + a + '" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>', Iu = (a) => (a ? ["29.35", "43.04", "56.74"].map((l, o) => '<g class="wbDrop" style="animation-delay:-' + o * 317 + 'ms"><rect class="wbAccent" x="' + l + '" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 ' + l + ' 60.65)"/></g>') : [19, 26, 33].map((l, o) => '<g class="wbDrop" style="animation-delay:-' + o * 317 + 'ms"><rect class="wbAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 ' + l + ' 38)"/></g>')).join(""), Hu = (a) => (a ? [[33.67, 67.67], [47.67, 64.67], [61.67, 67.67], [40.67, 77.67], [54.67, 77.67]] : [[21.2, 42.2], [29.2, 40.2], [37.2, 42.2], [25.2, 48.2], [33.2, 48.2]]).map(([l, o], c) => '<circle class="wbFlake" style="animation-delay:-' + c * 640 + 'ms" cx="' + l + '" cy="' + o + '" r="' + (a ? 3.67 : 2.2) + '" fill="#fff"/>').join("");
 function Fu(a, l, o, c) {
   const h = (v) => '<g filter="url(#' + c + '-sh)">' + v + "</g>";
-  return a === "clear" ? l ? h(bc(o ? Al.l : Al.s, c)) + (o ? Fa(70, 20, 5.83, 1) + Fa(78.33, 41.67, 3.75, 0.8) + Fa(60, 71.67, 3.33, 0.6) : Fa(42, 12, 3.5, 1) + Fa(47, 25, 2.25, 0.8) + Fa(36, 43, 2, 0.6)) : h(Pu(c, o)) : a === "partly" ? h(l ? bc(o ? Al.lp : Al.sp, c) : o ? '<circle class="wbSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>' : '<circle class="wbSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>') + h(xd(o ? Jr.lp : Jr.sp, l ? "wbCloudLight" : "wbBright")) + (l ? o ? Fa(73.33, 16.67, 4.17, 0.9) : Fa(44, 10, 2.5, 0.9) : "") : a === "cloudy" ? h(xd(o ? Jr.lc : Jr.s, l ? "wbCloudLight" : "wbBright")) + (l ? o ? Fa(15, 15, 3.75, 0.8) + Fa(76.67, 13.33, 2.92, 0.6) : Fa(9, 9, 2.25, 0.8) + Fa(46, 8, 1.75, 0.6) : "") : h(xd(o ? Jr.lr : Jr.s, "wbCloudLight")) + (a === "rain" ? Iu(o) : Hu(o));
+  return a === "clear" ? l ? h(bc(o ? Al.l : Al.s, c)) + (o ? Fa(70, 20, 5.83, 1) + Fa(78.33, 41.67, 3.75, 0.8) + Fa(60, 71.67, 3.33, 0.6) : Fa(42, 12, 3.5, 1) + Fa(47, 25, 2.25, 0.8) + Fa(36, 43, 2, 0.6)) : h(Pu(c, o)) : a === "partly" ? h(l ? bc(o ? Al.lp : Al.sp, c) : o ? '<circle class="wbSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>' : '<circle class="wbSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>') + h(yd(o ? Jr.lp : Jr.sp, l ? "wbCloudLight" : "wbBright")) + (l ? o ? Fa(73.33, 16.67, 4.17, 0.9) : Fa(44, 10, 2.5, 0.9) : "") : a === "cloudy" ? h(yd(o ? Jr.lc : Jr.s, l ? "wbCloudLight" : "wbBright")) + (l ? o ? Fa(15, 15, 3.75, 0.8) + Fa(76.67, 13.33, 2.92, 0.6) : Fa(9, 9, 2.25, 0.8) + Fa(46, 8, 1.75, 0.6) : "") : h(yd(o ? Jr.lr : Jr.s, "wbCloudLight")) + (a === "rain" ? Iu(o) : Hu(o));
 }
 const Ou = (a, l) => '<defs><filter id="' + a + '-sh" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="' + (l ? 1.6 : 1) + '" stdDeviation="' + (l ? 1.8 : 1.1) + '" flood-color="#1c1208" flood-opacity=".22"/></filter></defs>';
 function Wu(a, l, o, c) {
@@ -4486,23 +4486,23 @@ const qu = [
 ], _l = (a, l) => (qu[l % 8 * 8 + a % 8] + 0.5) / 64, io = (a) => [parseInt(a.slice(1, 3), 16), parseInt(a.slice(3, 5), 16), parseInt(a.slice(5, 7), 16)], Kn = (a, l, o) => [Math.round(a[0] + (l[0] - a[0]) * o), Math.round(a[1] + (l[1] - a[1]) * o), Math.round(a[2] + (l[2] - a[2]) * o)], js = (a) => a < 0 ? 0 : a > 1 ? 1 : a, wc = (a, l) => {
   let o = a * 374761393 + l * 668265263 ^ 1540483477;
   return o = Math.imul(o ^ o >>> 13, 1274126177), ((o ^ o >>> 16) >>> 0) / 4294967296;
-}, vr = [255, 255, 255], aa = io("#26221e"), yc = io("#0288d1"), zu = io("#01579b"), kd = io(sa.cloudDay), Md = io(sa.cloudNight), El = io(sa.dusk), Sd = io(sa.sunEdge), ju = io(sa.sun), Vu = 10, xc = 0.3, Ko = 56, yp = 21;
+}, vr = [255, 255, 255], aa = io("#26221e"), xc = io("#0288d1"), zu = io("#01579b"), kd = io(sa.cloudDay), Md = io(sa.cloudNight), El = io(sa.dusk), Sd = io(sa.sunEdge), ju = io(sa.sun), Vu = 10, yc = 0.3, Ko = 56, xp = 21;
 function Gu(a) {
-  const l = Array.from({ length: yp }, () => new Array(Ko).fill(void 0)), o = (w, A, x) => {
-    l[A][w] = x;
+  const l = Array.from({ length: xp }, () => new Array(Ko).fill(void 0)), o = (w, A, y) => {
+    l[A][w] = y;
   }, c = Kn(El, aa, 0.35), h = Kn(aa, vr, 0.22);
   for (let w = 0; w <= 6; w++) {
     const A = w < 2 ? Ko - 2 : Ko - 1;
-    for (let x = 6 - w; x <= A; x++) o(x, w, w < 2 ? c : w === 6 ? h : aa);
+    for (let y = 6 - w; y <= A; y++) o(y, w, w < 2 ? c : w === 6 ? h : aa);
   }
   const v = [El, Sd, Md, io(sa.skyRainDay), Kn(El, aa, 0.2), Kn(a, aa, 0.35)];
   [2, 3, 2, 3, 3].forEach((w, A) => {
-    const x = 9 + A * 6;
+    const y = 9 + A * 6;
     for (let R = 0; R < w; R++) {
       const ve = v[(A * 2 + R * 3) % v.length];
-      for (let ie = x; ie < x + 5; ie++)
+      for (let ie = y; ie < y + 5; ie++)
         o(ie, 7 + R * 2, Kn(ve, aa, 0.12)), o(ie, 8 + R * 2, R === w - 1 ? Kn(ve, vr, 0.3) : ve);
-      o(x + 5, 7 + R * 2, aa), o(x + 5, 8 + R * 2, aa);
+      o(y + 5, 7 + R * 2, aa), o(y + 5, 8 + R * 2, aa);
     }
   });
   for (let w = 7; w <= 12; w++) o(5, w, aa);
@@ -4516,27 +4516,27 @@ function Gu(a) {
   return o(44, 20, ju), l;
 }
 function Uu(a, l, o, c) {
-  const h = Math.max(1, Math.round(a)), v = Math.max(1, Math.round(l)), w = new Uint8ClampedArray(h * v * 4), A = io(c.skyClearDay), x = io(c.skyFogDay), R = Gu(A), ve = Math.round(v * 0.55), ie = js(1 - Math.log(o / xc) / Math.log(Vu / xc)), U = Kn(A, x, ie), $ = (W) => js((W - 0.1) / 0.9), ne = js((1 - Math.exp(-2 / o) - 0.2) / 0.8), Y = Math.round(h / 2 - Ko / 2), G = ve + 3;
+  const h = Math.max(1, Math.round(a)), v = Math.max(1, Math.round(l)), w = new Uint8ClampedArray(h * v * 4), A = io(c.skyClearDay), y = io(c.skyFogDay), R = Gu(A), ve = Math.round(v * 0.55), ie = js(1 - Math.log(o / yc) / Math.log(Vu / yc)), U = Kn(A, y, ie), $ = (W) => js((W - 0.1) / 0.9), ne = js((1 - Math.exp(-2 / o) - 0.2) / 0.8), Y = Math.round(h / 2 - Ko / 2), G = ve + 3;
   for (let W = 0; W < v; W++) {
     const pe = G - 1 - W, ee = W - G;
     for (let ue = 0; ue < h; ue++) {
       const J = ue - Y;
       let E, P;
-      const re = pe >= 0 && pe < yp && J >= 0 && J < Ko ? R[pe][J] : void 0;
+      const re = pe >= 0 && pe < xp && J >= 0 && J < Ko ? R[pe][J] : void 0;
       if (re)
         E = re, P = ne;
       else if (pe >= 0 && pe <= 1 && J >= 4 - pe && J <= 5 - pe)
-        E = Kn(vr, yc, 0.15), P = ne;
+        E = Kn(vr, xc, 0.15), P = ne;
       else if (W < ve) {
         const Ie = js(((W + 0.5) / ve - 0.15) / 0.85) * 3, V = Math.min(3, Math.floor(Ie + _l(ue + 2, W + 5)));
         E = Kn(U, vr, V * 0.1), P = ie * 0.95;
       } else {
         const Ie = (W - ve + 0.5) / (v - ve), V = Math.min(1.5, 6e-3 / (Ie * Ie)), qe = js(Ie * 1.4) * 3, k = Math.min(3, Math.floor(qe + _l(ue + 1, W + 6)));
-        E = Kn(yc, zu, k / 3);
+        E = Kn(xc, zu, k / 3);
         const _ = 1 + Math.round(Ie * 7), T = Math.floor(ue / (_ * 3)), I = 0.06 + 0.16 * Ie, me = ue % (_ * 3) < _;
         me && wc(T, W) < I ? E = Kn(E, vr, 0.18 + 0.1 * (1 - Ie)) : me && Ie > 0.5 && wc(T, W - 1) < I && (E = Kn(E, aa, 0.12)), P = $(1 - Math.exp(-V / o)), ee === 0 && J >= 3 && J <= 8 ? (E = Kn(E, vr, J < 6 ? 0.8 : 0.45), P = ne) : ee >= 0 && ee <= 2 && J >= Ko && J < Ko + 40 ? ((1 - (J - Ko) / 40) * (ee === 1 ? 0.9 : 0.5) > _l(ue, W + 3) && (E = Kn(E, vr, 0.5)), P = ne) : ee === 0 && J >= 6 && J < Ko && (E = Kn(E, aa, J % 2 === 0 ? 0.35 : 0.2), P = ne);
       }
-      const Ae = P > _l(ue, W) ? x : E, H = (W * h + ue) * 4;
+      const Ae = P > _l(ue, W) ? y : E, H = (W * h + ue) * 4;
       w[H] = Ae[0], w[H + 1] = Ae[1], w[H + 2] = Ae[2], w[H + 3] = 255;
     }
   }
@@ -4577,9 +4577,9 @@ function Ku(a, l) {
   const c = (v) => Math.abs(Math.log(v[2] / l)), h = o.reduce((v, w) => c(w) < c(v) ? w : v);
   return c(h) <= Math.log(Zu) ? { from: h[0], to: h[1], km: h[2] } : void 0;
 }
-const $u = (a, l) => l === "mi" ? a * 1.609344 : l === "m" ? a / 1e3 : l === "ft" ? a * 3048e-7 : l === "yd" ? a * 9144e-7 : a, Xu = (a) => a < 1 ? "very_poor" : a < 4 ? "poor" : a < 10 ? "moderate" : a < 20 ? "good" : a < 40 ? "very_good" : "excellent", oo = 6e4, Wt = 36e5, xo = 864e5, Us = 1440, Ju = 6, Qu = 10 * oo, kc = 3, ef = 3, Mc = { day: [6, 22], waking: [7, 23], all: [0, 24] }, tf = [[-5, [91, 141, 239]], [5, [79, 195, 230]], [12, [95, 211, 160]], [18, [255, 211, 77]], [24, [255, 159, 67]], [30, [255, 91, 79]]], nf = "M6.5 18.5h11a4 4 0 0 0 .4-7.98 5.5 5.5 0 0 0-10.6-1.1A4.5 4.5 0 0 0 6.5 18.5Z", Sc = (a, l, o, c) => '<circle cx="' + a + '" cy="' + l + '" r="' + o + '"/><path d="' + [0, 45, 90, 135, 180, 225, 270, 315].map((h) => {
-  const v = Math.cos(h * Math.PI / 180), w = Math.sin(h * Math.PI / 180), A = o + 2, x = o + 2 + c;
-  return "M" + (a + v * A).toFixed(2) + " " + (l + w * A).toFixed(2) + "L" + (a + v * x).toFixed(2) + " " + (l + w * x).toFixed(2);
+const $u = (a, l) => l === "mi" ? a * 1.609344 : l === "m" ? a / 1e3 : l === "ft" ? a * 3048e-7 : l === "yd" ? a * 9144e-7 : a, Xu = (a) => a < 1 ? "very_poor" : a < 4 ? "poor" : a < 10 ? "moderate" : a < 20 ? "good" : a < 40 ? "very_good" : "excellent", oo = 6e4, Wt = 36e5, yo = 864e5, Us = 1440, Ju = 6, Qu = 10 * oo, kc = 3, ef = 3, Mc = { day: [6, 22], waking: [7, 23], all: [0, 24] }, tf = [[-5, [91, 141, 239]], [5, [79, 195, 230]], [12, [95, 211, 160]], [18, [255, 211, 77]], [24, [255, 159, 67]], [30, [255, 91, 79]]], nf = "M6.5 18.5h11a4 4 0 0 0 .4-7.98 5.5 5.5 0 0 0-10.6-1.1A4.5 4.5 0 0 0 6.5 18.5Z", Sc = (a, l, o, c) => '<circle cx="' + a + '" cy="' + l + '" r="' + o + '"/><path d="' + [0, 45, 90, 135, 180, 225, 270, 315].map((h) => {
+  const v = Math.cos(h * Math.PI / 180), w = Math.sin(h * Math.PI / 180), A = o + 2, y = o + 2 + c;
+  return "M" + (a + v * A).toFixed(2) + " " + (l + w * A).toFixed(2) + "L" + (a + v * y).toFixed(2) + " " + (l + w * y).toFixed(2);
 }).join("") + '"/>', Vo = (a) => '<path d="' + nf + '"' + (a ? ' transform="' + a + '"' : "") + "/>", Go = (a) => '<path d="' + a + '"/>', Cc = '<path d="M19.5 14.5A7.5 7.5 0 1 1 9.5 4.5a6 6 0 0 0 10 10Z"/>';
 function af(a, l) {
   const o = "translate(0,-3)";
@@ -4615,7 +4615,7 @@ function af(a, l) {
       return '<circle cx="12" cy="12" r="8"/>' + Go("M12 8v5M12 16h.01");
   }
 }
-const Cd = (a, l) => '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + af(a, l) + "</svg>", of = /* @__PURE__ */ new Set(["rainy", "pouring", "lightning", "lightning-rainy", "hail", "snowy", "snowy-rainy"]), rf = 30 * oo, sf = 7, lf = 3, Tc = 1, df = oo, cf = 15 * oo, pf = 5, yn = {
+const Cd = (a, l) => '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + af(a, l) + "</svg>", of = /* @__PURE__ */ new Set(["rainy", "pouring", "lightning", "lightning-rainy", "hail", "snowy", "snowy-rainy"]), rf = 30 * oo, sf = 7, lf = 3, Tc = 1, df = oo, cf = 15 * oo, pf = 5, xn = {
   back: "M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z",
   sunsetUp: "M3,12H7A5,5 0 0,1 12,7A5,5 0 0,1 17,12H21A1,1 0 0,1 22,13A1,1 0 0,1 21,14H3A1,1 0 0,1 2,13A1,1 0 0,1 3,12M15,12A3,3 0 0,0 12,9A3,3 0 0,0 9,12H15M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M12.71,16.3L15.82,19.41C16.21,19.8 16.21,20.43 15.82,20.82C15.43,21.21 14.8,21.21 14.41,20.82L12,18.41L9.59,20.82C9.2,21.21 8.57,21.21 8.18,20.82C7.79,20.43 7.79,19.8 8.18,19.41L11.29,16.3C11.5,16.1 11.74,16 12,16C12.26,16 12.5,16.1 12.71,16.3Z",
   sunsetDown: "M3,12H7A5,5 0 0,1 12,7A5,5 0 0,1 17,12H21A1,1 0 0,1 22,13A1,1 0 0,1 21,14H3A1,1 0 0,1 2,13A1,1 0 0,1 3,12M15,12A3,3 0 0,0 12,9A3,3 0 0,0 9,12H15M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M12.71,20.71L15.82,17.6C16.21,17.21 16.21,16.57 15.82,16.18C15.43,15.79 14.8,15.79 14.41,16.18L12,18.59L9.59,16.18C9.2,15.79 8.57,15.79 8.18,16.18C7.79,16.57 7.79,17.21 8.18,17.6L11.29,20.71C11.5,20.9 11.74,21 12,21C12.26,21 12.5,20.9 12.71,20.71Z",
@@ -4701,16 +4701,16 @@ const Cd = (a, l) => '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" st
   sunny: "Sunny",
   windy: "Windy",
   "windy-variant": "Windy, cloudy"
-}, ff = ["n", "nne", "ne", "ene", "e", "ese", "se", "sse", "s", "ssw", "sw", "wsw", "w", "wnw", "nw", "nnw"], hf = Object.keys(Ye.phases), Dl = { low: "var(--success-color, #43a047)", moderate: "var(--warning-color, #ffa600)", high: "var(--orange-color, #ff9800)", very_high: "var(--error-color, #db4437)" }, mf = { good: "var(--success-color, #43a047)", fair: "var(--lime-color, #cddc39)", moderate: "var(--warning-color, #ffa600)", poor: "var(--orange-color, #ff9800)", very_poor: "var(--error-color, #db4437)", extremely_poor: "var(--purple-color, #926bc7)" }, xp = [["good", 15], ["fair", 25], ["moderate", 37.5], ["poor", 50], ["very_poor", 75], ["extremely_poor", 1 / 0]], Bl = 100, Lc = "µg/m³", gf = "weather_alerts.air_quality_pollen", ql = ["aqi", "pm25", "pm10", "nitrogen_dioxide", "ozone"], vf = { "m/s": 1, "km/h": 1 / 3.6, mph: 0.44704, kn: 0.514444, "ft/s": 0.3048 }, bf = [0.5, 1.6, 3.4, 5.5, 8, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7], wf = { hPa: 1, mbar: 1, kPa: 10, inHg: 33.8639, mmHg: 1.33322 }, yf = { daily: 1, hourly: 2 }, je = (a) => String(a ?? "").replace(/[&<>"']/g, (l) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[l]), qn = (a, l) => a.replace(/\{(\w+)\}/g, (o, c) => l[c] ?? ""), ts = (a) => '<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="' + a + '"/></svg>', Ac = /* @__PURE__ */ new Map();
-function xf(a) {
+}, ff = ["n", "nne", "ne", "ene", "e", "ese", "se", "sse", "s", "ssw", "sw", "wsw", "w", "wnw", "nw", "nnw"], hf = Object.keys(Ye.phases), Dl = { low: "var(--success-color, #43a047)", moderate: "var(--warning-color, #ffa600)", high: "var(--orange-color, #ff9800)", very_high: "var(--error-color, #db4437)" }, mf = { good: "var(--success-color, #43a047)", fair: "var(--lime-color, #cddc39)", moderate: "var(--warning-color, #ffa600)", poor: "var(--orange-color, #ff9800)", very_poor: "var(--error-color, #db4437)", extremely_poor: "var(--purple-color, #926bc7)" }, yp = [["good", 15], ["fair", 25], ["moderate", 37.5], ["poor", 50], ["very_poor", 75], ["extremely_poor", 1 / 0]], Bl = 100, Lc = "µg/m³", gf = "weather_alerts.air_quality_pollen", ql = ["aqi", "pm25", "pm10", "nitrogen_dioxide", "ozone"], vf = { "m/s": 1, "km/h": 1 / 3.6, mph: 0.44704, kn: 0.514444, "ft/s": 0.3048 }, bf = [0.5, 1.6, 3.4, 5.5, 8, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7], wf = { hPa: 1, mbar: 1, kPa: 10, inHg: 33.8639, mmHg: 1.33322 }, xf = { daily: 1, hourly: 2 }, je = (a) => String(a ?? "").replace(/[&<>"']/g, (l) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[l]), qn = (a, l) => a.replace(/\{(\w+)\}/g, (o, c) => l[c] ?? ""), ts = (a) => '<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="' + a + '"/></svg>', Ac = /* @__PURE__ */ new Map();
+function yf(a) {
   let l = Ac.get(a);
   if (l === void 0) {
     const o = "http://www.w3.org/2000/svg", c = document.createElementNS(o, "svg"), h = document.createElementNS(o, "path");
     c.setAttribute("viewBox", "0 0 24 24"), c.style.cssText = "position:absolute;width:24px;height:24px;visibility:hidden;pointer-events:none", h.setAttribute("d", a), c.append(h), document.body.append(c);
     const v = h.getBBox();
     c.remove();
-    const w = Math.max(v.width, v.height), A = w ? 26 * 24 / w : 0, x = A / 24;
-    l = w ? "width:" + A.toFixed(2) + "px;height:" + A.toFixed(2) + "px;translate:" + ((12 - v.x - v.width / 2) * x).toFixed(2) + "px " + ((12 - v.y - v.height / 2) * x).toFixed(2) + "px" : "", Ac.set(a, l);
+    const w = Math.max(v.width, v.height), A = w ? 26 * 24 / w : 0, y = A / 24;
+    l = w ? "width:" + A.toFixed(2) + "px;height:" + A.toFixed(2) + "px;translate:" + ((12 - v.x - v.width / 2) * y).toFixed(2) + "px " + ((12 - v.y - v.height / 2) * y).toFixed(2) + "px" : "", Ac.set(a, l);
   }
   return l ? '<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true" style="' + l + '"><path d="' + a + '"/></svg>' : ts(a);
 }
@@ -4737,16 +4737,16 @@ function fn(a, l, o) {
   const c = Number(a);
   if (Number.isNaN(c)) return String(a);
   const h = (l == null ? void 0 : l.number_format) === "none", v = { maximumFractionDigits: 2, ...o, ...h ? { useGrouping: !1 } : {} }, w = h ? "en-US" : Mf(l), A = JSON.stringify([w, v]);
-  let x = _c.get(A);
-  if (!x) {
+  let y = _c.get(A);
+  if (!y) {
     try {
-      x = new Intl.NumberFormat(w, v);
+      y = new Intl.NumberFormat(w, v);
     } catch {
-      x = new Intl.NumberFormat(void 0, v);
+      y = new Intl.NumberFormat(void 0, v);
     }
-    _c.set(A, x);
+    _c.set(A, y);
   }
-  return x.format(c);
+  return y.format(c);
 }
 const $d = (a) => {
   var l;
@@ -4778,7 +4778,7 @@ function Mp(a, l) {
 const Uo = (a, l) => Mp($d(l), { hour: "numeric", minute: "2-digit", hourCycle: Sf(l == null ? void 0 : l.locale) ? "h12" : "h23", timeZone: kp(l) }).format(a), Dc = (a, l) => Mp($d(l), { weekday: "short", timeZone: kp(l) }).format(a), Cf = (a, l) => a.toLocaleDateString($d(l), { weekday: "narrow" }), un = (a, l) => Jt(l) ? fn(Math.round(Number(l)), a.locale) + "°" : "–", ns = (a) => {
   const l = new Date(a);
   return l.setHours(0, 0, 0, 0), l;
-}, Qr = (a, l) => a.getFullYear() === l.getFullYear() && a.getMonth() === l.getMonth() && a.getDate() === l.getDate(), ga = Math.PI / 180, Tf = 2440588, Lf = 2451545, zl = ga * 23.4397, Af = 149598e3, _f = -0.833 * ga, Ef = 0.133 * ga, Bc = 5 * oo, Sp = (a) => a.getTime() / xo - 0.5 + Tf - Lf, Cp = (a, l) => Math.atan2(Math.sin(a) * Math.cos(zl) - Math.tan(l) * Math.sin(zl), Math.cos(a)), Tp = (a, l) => Math.asin(Math.sin(l) * Math.cos(zl) + Math.cos(l) * Math.sin(zl) * Math.sin(a)), Df = (a, l) => ga * (280.16 + 360.9856235 * a) - l, Bf = (a, l, o) => Math.asin(Math.sin(l) * Math.sin(o) + Math.cos(l) * Math.cos(o) * Math.cos(a));
+}, Qr = (a, l) => a.getFullYear() === l.getFullYear() && a.getMonth() === l.getMonth() && a.getDate() === l.getDate(), ga = Math.PI / 180, Tf = 2440588, Lf = 2451545, zl = ga * 23.4397, Af = 149598e3, _f = -0.833 * ga, Ef = 0.133 * ga, Bc = 5 * oo, Sp = (a) => a.getTime() / yo - 0.5 + Tf - Lf, Cp = (a, l) => Math.atan2(Math.sin(a) * Math.cos(zl) - Math.tan(l) * Math.sin(zl), Math.cos(a)), Tp = (a, l) => Math.asin(Math.sin(l) * Math.cos(zl) + Math.cos(l) * Math.sin(zl) * Math.sin(a)), Df = (a, l) => ga * (280.16 + 360.9856235 * a) - l, Bf = (a, l, o) => Math.asin(Math.sin(l) * Math.sin(o) + Math.cos(l) * Math.cos(o) * Math.cos(a));
 function Lp(a) {
   const l = ga * (357.5291 + 0.98560028 * a), o = ga * (1.9148 * Math.sin(l) + 0.02 * Math.sin(2 * l) + 3e-4 * Math.sin(3 * l)), c = l + o + ga * 102.9372 + Math.PI;
   return { ra: Cp(c, 0), dec: Tp(c, 0), dist: Af };
@@ -4795,18 +4795,18 @@ function Ep(a, l, o, c) {
   const h = {};
   let v = o.getTime(), w = a(o) - l;
   for (let A = v + Bc; A <= c.getTime(); A += Bc) {
-    const x = a(new Date(A)) - l;
-    if (w < 0 != x < 0) {
-      const R = new Date(v + (A - v) * w / (w - x));
-      x > 0 ? h.rise ?? (h.rise = R) : h.set ?? (h.set = R);
+    const y = a(new Date(A)) - l;
+    if (w < 0 != y < 0) {
+      const R = new Date(v + (A - v) * w / (w - y));
+      y > 0 ? h.rise ?? (h.rise = R) : h.set ?? (h.set = R);
     }
-    v = A, w = x;
+    v = A, w = y;
   }
   return h;
 }
 const Dp = (a) => {
   const l = ns(a);
-  return [l, new Date(l.getTime() + xo)];
+  return [l, new Date(l.getTime() + yo)];
 }, Nf = (a, l, o) => Ep((c) => Xd(c, l, o), _f, ...Dp(a)), Pf = (a, l, o) => Ep((c) => Rf(c, l, o), Ef, ...Dp(a));
 function If(a) {
   const l = Sp(a), o = Lp(l), c = Ap(l), h = Math.acos(Math.sin(o.dec) * Math.sin(c.dec) + Math.cos(o.dec) * Math.cos(c.dec) * Math.cos(o.ra - c.ra)), v = Math.atan2(o.dist * Math.sin(h), c.dist - o.dist * Math.cos(h)), w = Math.atan2(Math.cos(o.dec) * Math.sin(o.ra - c.ra), Math.sin(o.dec) * Math.cos(c.dec) - Math.cos(o.dec) * Math.sin(c.dec) * Math.cos(o.ra - c.ra));
@@ -4824,8 +4824,8 @@ function Ld(a, l) {
   const o = jl(a), c = o ? Nf(l, o.lat, o.lon) : {}, h = (R = a == null ? void 0 : a.states) == null ? void 0 : R["sun.sun"], v = ns(l).getTime(), w = (U) => {
     const $ = U ? new Date(U) : null;
     return $ && Number.isFinite($.getTime()) && ns($).getTime() === v ? $ : null;
-  }, A = w((ve = h == null ? void 0 : h.attributes) == null ? void 0 : ve.next_rising), x = w((ie = h == null ? void 0 : h.attributes) == null ? void 0 : ie.next_setting);
-  return A && (c.rise = A), x && (c.set = x), c;
+  }, A = w((ve = h == null ? void 0 : h.attributes) == null ? void 0 : ve.next_rising), y = w((ie = h == null ? void 0 : h.attributes) == null ? void 0 : ie.next_setting);
+  return A && (c.rise = A), y && (c.set = y), c;
 }
 function Ff(a) {
   var c;
@@ -4854,10 +4854,10 @@ const br = (a) => !!a && a.state !== "unavailable" && a.state !== "unknown", as 
   return (h = a.states) == null ? void 0 : h[c];
 }).find((c) => {
   var h;
-  return br(c) && (((h = c.attributes) == null ? void 0 : h.supported_features) == null || Number(c.attributes.supported_features) & yf[o]);
+  return br(c) && (((h = c.attributes) == null ? void 0 : h.supported_features) == null || Number(c.attributes.supported_features) & xf[o]);
 });
 function gr(a, l, o) {
-  var v, w, A, x;
+  var v, w, A, y;
   const c = ((w = (v = a.config) == null ? void 0 : v.unit_system) == null ? void 0 : w.length) || "", h = (l == null ? void 0 : l.attributes) || {};
   switch (o) {
     case "precipitation":
@@ -4870,7 +4870,7 @@ function gr(a, l, o) {
     case "visibility":
       return h.visibility_unit || c;
     default:
-      return h.temperature_unit || ((x = (A = a.config) == null ? void 0 : A.unit_system) == null ? void 0 : x.temperature) || "";
+      return h.temperature_unit || ((y = (A = a.config) == null ? void 0 : A.unit_system) == null ? void 0 : y.temperature) || "";
   }
 }
 function Fl(a, l, o, c) {
@@ -4908,7 +4908,7 @@ function Vs(a, l) {
   }
   return ((o = l.attributes) == null ? void 0 : o.friendly_name) || l.entity_id;
 }
-const zf = (a) => a < 3 ? "low" : a < 6 ? "moderate" : a < 8 ? "high" : a < 11 ? "very_high" : "extreme", Rc = (a) => xp.find(([, l]) => a <= l)[0];
+const zf = (a) => a < 3 ? "low" : a < 6 ? "moderate" : a < 8 ? "high" : a < 11 ? "very_high" : "extreme", Rc = (a) => yp.find(([, l]) => a <= l)[0];
 function jf(a, l) {
   if (l === "Beaufort") return Math.round(a);
   const o = l ? vf[l] : void 0;
@@ -4960,9 +4960,9 @@ function Ic(a, l, o) {
   const c = Math.max(l - a, 1e-6), h = o[o.length - 1], v = o.find((R) => c / R <= 4) ?? h * Math.ceil(c / (4 * h)), w = Math.floor(a / v) * v;
   let A = Math.ceil(l / v) * v;
   A === w && (A = w + v);
-  const x = [];
-  for (let R = w; R <= A + v / 1e3; R += v) x.push(R);
-  return { min: w, max: A, ticks: x };
+  const y = [];
+  for (let R = w; R <= A + v / 1e3; R += v) y.push(R);
+  return { min: w, max: A, ticks: y };
 }
 const Gs = (a, l, o) => {
   const c = (w) => [1, 3, 5].map((A) => parseInt(w.slice(A, A + 2), 16)), h = c(a), v = c(l);
@@ -4970,18 +4970,18 @@ const Gs = (a, l, o) => {
 }, Yf = (a, l, o, c) => {
   const h = o * Math.abs(1 - 2 * c), v = c < 0.5 ? 0 : 1;
   return "M " + a + " " + (l - o) + " A " + o + " " + o + " 0 0 0 " + a + " " + (l + o) + " A " + h + " " + o + " 0 0 " + v + " " + a + " " + (l - o) + " Z";
-}, ma = ({ icon: a, name: l, sub: o, visual: c, double: h, backdrop: v, cls: w }) => '<div class="wbCard wbSquare' + (h ? " wbDouble" : "") + (v ? " wbHasBackdrop" : "") + (w ? " " + w : "") + '">' + (v ? '<div class="wbBackdrop" aria-hidden="true">' + v + "</div>" : "") + '<div class="wbHead"><div class="wbChip wbPlain">' + xf(a) + '</div><div class="wbText"><span class="wbName">' + je(l) + "</span>" + (o ? '<span class="wbSub">' + je(o) + "</span>" : "") + '</div></div><div class="wbVisual">' + c + "</div></div>", _i = (a, l) => '<div class="wbValue"><span class="wbNum">' + je(a) + "</span>" + (l ? '<span class="wbUnitV">' + je(l) + "</span>" : "") + "</div>";
+}, ma = ({ icon: a, name: l, sub: o, visual: c, double: h, backdrop: v, cls: w }) => '<div class="wbCard wbSquare' + (h ? " wbDouble" : "") + (v ? " wbHasBackdrop" : "") + (w ? " " + w : "") + '">' + (v ? '<div class="wbBackdrop" aria-hidden="true">' + v + "</div>" : "") + '<div class="wbHead"><div class="wbChip wbPlain">' + yf(a) + '</div><div class="wbText"><span class="wbName">' + je(l) + "</span>" + (o ? '<span class="wbSub">' + je(o) + "</span>" : "") + '</div></div><div class="wbVisual">' + c + "</div></div>", _i = (a, l) => '<div class="wbValue"><span class="wbNum">' + je(a) + "</span>" + (l ? '<span class="wbUnitV">' + je(l) + "</span>" : "") + "</div>";
 function Zf(a) {
-  const l = a.max - a.min || 1, o = (A) => 100 - (Math.min(a.max, Math.max(a.min, A)) - a.min) / l * 100, c = (A) => A / Us * 100 + "%", h = (A) => A.map((x) => x.t + "," + o(x.v)).join(" "), v = a.kind === "line" ? a.points : [];
-  let w = '<div class="wbDayChart"><div class="wbDcSun">' + a.sun.map((A) => '<span class="wbDcSunMark" style="left:' + c(A.t) + '">' + ts(A.rise ? yn.sunsetUp : yn.sunsetDown) + je(A.label) + "</span>").join("") + "</div>";
-  return w += '<div class="wbDcY">' + a.ticks.map((A) => '<span style="top:' + o(A) + '%">' + je(a.format(A)) + "</span>").join("") + "</div>", w += '<div class="wbDcPlot"><svg viewBox="0 0 ' + Us + ' 100" preserveAspectRatio="none">' + a.night.map(([A, x]) => '<rect class="wbDcNight" x="' + A + '" y="0" width="' + (x - A) + '" height="100"></rect>').join("") + a.ticks.map((A) => '<line class="wbDcGrid" x1="0" x2="' + Us + '" y1="' + o(A) + '" y2="' + o(A) + '" vector-effect="non-scaling-stroke"></line>').join("") + a.sun.map((A) => '<line class="wbDcSunLine" x1="' + A.t + '" x2="' + A.t + '" y1="0" y2="100" vector-effect="non-scaling-stroke"></line>').join("") + (a.past && a.past.length > 1 ? '<polyline class="wbDcPast" points="' + h(a.past) + '" vector-effect="non-scaling-stroke"></polyline>' : "") + (v.length > 1 ? '<polygon class="wbDcArea" points="' + v[0].t + ",100 " + h(v) + " " + v[v.length - 1].t + ',100"></polygon><polyline class="wbDcLine" points="' + h(v) + '" vector-effect="non-scaling-stroke"></polyline>' : "") + (a.now ? '<line class="wbDcNow" x1="' + a.now.t + '" x2="' + a.now.t + '" y1="0" y2="100" vector-effect="non-scaling-stroke"></line>' : "") + "</svg>" + (a.kind === "bars" ? a.points.filter((A) => A.v > 0).map((A) => '<i class="wbDcBar" style="left:' + c(A.t + 12) + ";width:" + c(36) + ";height:" + (100 - o(A.v)) + '%"></i>').join("") : "") + (a.now && a.kind === "line" ? '<i class="wbDcDot" style="left:' + c(a.now.t) + ";top:" + o(a.now.v) + '%"></i>' : "") + (a.peak ? '<span class="wbDcPeak" style="left:' + c(a.peak.t) + ";top:" + o(a.peak.v) + '%">' + je(a.peak.label) + "</span>" : "") + (a.note ? '<span class="wbDcNote">' + je(a.note) + "</span>" : "") + "</div>", w += '<div class="wbDcX">' + a.hours.map((A) => '<span class="' + (A.minor ? "wbMinor" : "") + '" style="left:' + c(A.t) + '">' + je(A.label) + "</span>").join("") + "</div></div>", w;
+  const l = a.max - a.min || 1, o = (A) => 100 - (Math.min(a.max, Math.max(a.min, A)) - a.min) / l * 100, c = (A) => A / Us * 100 + "%", h = (A) => A.map((y) => y.t + "," + o(y.v)).join(" "), v = a.kind === "line" ? a.points : [];
+  let w = '<div class="wbDayChart"><div class="wbDcSun">' + a.sun.map((A) => '<span class="wbDcSunMark" style="left:' + c(A.t) + '">' + ts(A.rise ? xn.sunsetUp : xn.sunsetDown) + je(A.label) + "</span>").join("") + "</div>";
+  return w += '<div class="wbDcY">' + a.ticks.map((A) => '<span style="top:' + o(A) + '%">' + je(a.format(A)) + "</span>").join("") + "</div>", w += '<div class="wbDcPlot"><svg viewBox="0 0 ' + Us + ' 100" preserveAspectRatio="none">' + a.night.map(([A, y]) => '<rect class="wbDcNight" x="' + A + '" y="0" width="' + (y - A) + '" height="100"></rect>').join("") + a.ticks.map((A) => '<line class="wbDcGrid" x1="0" x2="' + Us + '" y1="' + o(A) + '" y2="' + o(A) + '" vector-effect="non-scaling-stroke"></line>').join("") + a.sun.map((A) => '<line class="wbDcSunLine" x1="' + A.t + '" x2="' + A.t + '" y1="0" y2="100" vector-effect="non-scaling-stroke"></line>').join("") + (a.past && a.past.length > 1 ? '<polyline class="wbDcPast" points="' + h(a.past) + '" vector-effect="non-scaling-stroke"></polyline>' : "") + (v.length > 1 ? '<polygon class="wbDcArea" points="' + v[0].t + ",100 " + h(v) + " " + v[v.length - 1].t + ',100"></polygon><polyline class="wbDcLine" points="' + h(v) + '" vector-effect="non-scaling-stroke"></polyline>' : "") + (a.now ? '<line class="wbDcNow" x1="' + a.now.t + '" x2="' + a.now.t + '" y1="0" y2="100" vector-effect="non-scaling-stroke"></line>' : "") + "</svg>" + (a.kind === "bars" ? a.points.filter((A) => A.v > 0).map((A) => '<i class="wbDcBar" style="left:' + c(A.t + 12) + ";width:" + c(36) + ";height:" + (100 - o(A.v)) + '%"></i>').join("") : "") + (a.now && a.kind === "line" ? '<i class="wbDcDot" style="left:' + c(a.now.t) + ";top:" + o(a.now.v) + '%"></i>' : "") + (a.peak ? '<span class="wbDcPeak" style="left:' + c(a.peak.t) + ";top:" + o(a.peak.v) + '%">' + je(a.peak.label) + "</span>" : "") + (a.note ? '<span class="wbDcNote">' + je(a.note) + "</span>" : "") + "</div>", w += '<div class="wbDcX">' + a.hours.map((A) => '<span class="' + (A.minor ? "wbMinor" : "") + '" style="left:' + c(A.t) + '">' + je(A.label) + "</span>").join("") + "</div></div>", w;
 }
 function Kf(a, l) {
-  const w = a.map((G) => G.value), A = Math.min(...w), x = Math.max(...w), R = x - A || 1, ve = (G) => G / (a.length - 1) * 300, ie = (G) => 18 + (1 - (G - A) / R) * 84, U = a.map((G, W) => ve(W) + "," + ie(G.value)).join(" "), $ = w.indexOf(x), ne = w.indexOf(A), Y = (G) => G === 0 ? "start" : G === a.length - 1 ? "end" : "middle";
-  return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true"><polygon class="wbArea" points="0,102 ' + U + ' 300,102"></polygon><polyline class="wbLine" points="' + U + '" vector-effect="non-scaling-stroke"></polyline><text x="' + ve($) + '" y="' + (ie(x) - 6) + '" text-anchor="' + Y($) + '">' + je(l(x)) + '</text><text x="' + ve(ne) + '" y="' + (ie(A) + 14) + '" text-anchor="' + Y(ne) + '">' + je(l(A)) + '</text><text x="0" y="120" text-anchor="start">' + je(a[0].label) + '</text><text x="300" y="120" text-anchor="end">' + je(a[a.length - 1].label) + "</text></svg>";
+  const w = a.map((G) => G.value), A = Math.min(...w), y = Math.max(...w), R = y - A || 1, ve = (G) => G / (a.length - 1) * 300, ie = (G) => 18 + (1 - (G - A) / R) * 84, U = a.map((G, W) => ve(W) + "," + ie(G.value)).join(" "), $ = w.indexOf(y), ne = w.indexOf(A), Y = (G) => G === 0 ? "start" : G === a.length - 1 ? "end" : "middle";
+  return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true"><polygon class="wbArea" points="0,102 ' + U + ' 300,102"></polygon><polyline class="wbLine" points="' + U + '" vector-effect="non-scaling-stroke"></polyline><text x="' + ve($) + '" y="' + (ie(y) - 6) + '" text-anchor="' + Y($) + '">' + je(l(y)) + '</text><text x="' + ve(ne) + '" y="' + (ie(A) + 14) + '" text-anchor="' + Y(ne) + '">' + je(l(A)) + '</text><text x="0" y="120" text-anchor="start">' + je(a[0].label) + '</text><text x="300" y="120" text-anchor="end">' + je(a[a.length - 1].label) + "</text></svg>";
 }
 function $f(a, l) {
-  const v = a.map((ie) => ie.value).concat([]), w = Math.min(...v) - 2, A = Math.max(...v) + 1, x = A - w || 1, R = 300 / a.length, ve = (ie) => (1 - (ie - w) / x) * 104;
+  const v = a.map((ie) => ie.value).concat([]), w = Math.min(...v) - 2, A = Math.max(...v) + 1, y = A - w || 1, R = 300 / a.length, ve = (ie) => (1 - (ie - w) / y) * 104;
   return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true">' + a.map((ie, U) => '<rect class="wbBar' + (ie.now ? " wbNowBar" : "") + '" x="' + (U * R + R * 0.2) + '" y="' + ve(ie.value) + '" width="' + R * 0.6 + '" height="' + (104 - ve(ie.value)) + '" rx="6"></rect><text x="' + (U * R + R / 2) + '" y="120" text-anchor="middle">' + je(ie.label) + "</text>").join("") + "</svg>";
 }
 const Xf = [
@@ -5001,14 +5001,14 @@ const Xf = [
 let eh = 0;
 function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, cards: v, onOpen: w, hoursWindow: A } = {}) {
   var ni, ba;
-  const x = "wb" + ++eh + "-", R = document.createElement("div");
+  const y = "wb" + ++eh + "-", R = document.createElement("div");
   R.className = "wb", R.dataset.style = c;
   const ve = document.createElement("div");
   ve.className = "wbBento", R.appendChild(ve), a.replaceChildren(R);
-  const ie = ["aq_tile", "pollen_tile", "radar_tile"], U = ["current", "hourly", "sun", "moon", "wind", "uv_index", "compared_to_average", "humidity", "pressure", "precipitation", "visibility", "air_quality", ...ie].filter((y) => !v || v.includes(y)), $ = { current: "wide", hourly: "wide", compared_to_average: "double" }, ne = {};
-  U.forEach((y) => {
+  const ie = ["aq_tile", "pollen_tile", "radar_tile"], U = ["current", "hourly", "sun", "moon", "wind", "uv_index", "compared_to_average", "humidity", "pressure", "precipitation", "visibility", "air_quality", ...ie].filter((x) => !v || v.includes(x)), $ = { current: "wide", hourly: "wide", compared_to_average: "double" }, ne = {};
+  U.forEach((x) => {
     const S = document.createElement("div");
-    S.className = "wbItem", S.dataset.card = y, S.dataset.size = $[y] || "tile", S.hidden = !0, ve.appendChild(S), ne[y] = { el: S, html: null };
+    S.className = "wbItem", S.dataset.card = x, S.dataset.size = $[x] || "tile", S.hidden = !0, ve.appendChild(S), ne[x] = { el: S, html: null };
   });
   let Y = !1, G = null, W = 0, pe = -1, ee = !1, ue = null;
   const J = "homecore-next-view", P = { openDay: void 0, opener: void 0, dayMode: "temperature", hourlyMode: "temperature", hourlyView: (() => {
@@ -5019,26 +5019,26 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     }
   })() === "bars" ? "bars" : "strip", aq: void 0 }, re = { todayHistory: void 0, rain: void 0, temperatureHistory: void 0, pressureHistory: void 0, aqHistory: void 0, categories: void 0, lastFetch: 0 };
   let Ae = /* @__PURE__ */ new Date(), H = /* @__PURE__ */ new Date();
-  const Ie = {}, V = {}, qe = {}, k = (y) => {
+  const Ie = {}, V = {}, qe = {}, k = (x) => {
     var S;
-    return ((S = qe[y]) == null ? void 0 : S.forecast) ?? [];
-  }, _ = (y, S) => {
+    return ((S = qe[x]) == null ? void 0 : S.forecast) ?? [];
+  }, _ = (x, S) => {
     var L;
-    return qe[S] ? (L = y.states) == null ? void 0 : L[qe[S].entityId] : void 0;
+    return qe[S] ? (L = x.states) == null ? void 0 : L[qe[S].entityId] : void 0;
   };
-  function T(y) {
-    const S = V[y];
+  function T(x) {
+    const S = V[x];
     S && (S.unsub.then((L) => {
       typeof L == "function" && L();
     }).catch(() => {
-    }), delete V[y]), qe[y] && delete qe[y];
+    }), delete V[x]), qe[x] && delete qe[x];
   }
-  function I(y, S, L) {
+  function I(x, S, L) {
     var Z;
-    if (typeof ((Z = y.connection) == null ? void 0 : Z.subscribeMessage) != "function") return;
+    if (typeof ((Z = x.connection) == null ? void 0 : Z.subscribeMessage) != "function") return;
     const F = { entityId: L };
     try {
-      F.unsub = Promise.resolve(y.connection.subscribeMessage((Q) => {
+      F.unsub = Promise.resolve(x.connection.subscribeMessage((Q) => {
         Y || V[S] !== F || (Q != null && Q.forecast ? qe[S] = { entityId: L, forecast: Q.forecast } : delete qe[S], Un());
       }, { type: "weather/subscribe_forecast", forecast_type: S, entity_id: L }));
     } catch (Q) {
@@ -5048,14 +5048,14 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
       V[S] === F && delete V[S];
     }), V[S] = F;
   }
-  function me(y, S) {
+  function me(x, S) {
     var L;
     for (const F of ["daily", "hourly"]) {
-      const Z = Wf(y, S, F);
-      ((L = V[F]) == null ? void 0 : L.entityId) !== (Z == null ? void 0 : Z.entity_id) && (T(F), Z && I(y, F, Z.entity_id));
+      const Z = Wf(x, S, F);
+      ((L = V[F]) == null ? void 0 : L.entityId) !== (Z == null ? void 0 : Z.entity_id) && (T(F), Z && I(x, F, Z.entity_id));
     }
   }
-  const z = (y, S, L, F = !1) => y.callWS({
+  const z = (x, S, L, F = !1) => x.callWS({
     type: "history/history_during_period",
     start_time: L.toISOString(),
     end_time: (/* @__PURE__ */ new Date()).toISOString(),
@@ -5064,100 +5064,100 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     no_attributes: F,
     significant_changes_only: !1
   });
-  async function le(y, S) {
-    var de, ye, be;
-    const L = ha(y, S, "pressure");
+  async function le(x, S) {
+    var de, xe, be;
+    const L = ha(x, S, "pressure");
     if (!L) return;
-    const F = L.stateObj.entity_id, Z = await z(y, F, new Date(Date.now() - 3 * Wt)), Q = (be = (ye = (de = Z == null ? void 0 : Z[F]) == null ? void 0 : de.find((He) => {
+    const F = L.stateObj.entity_id, Z = await z(x, F, new Date(Date.now() - 3 * Wt)), Q = (be = (xe = (de = Z == null ? void 0 : Z[F]) == null ? void 0 : de.find((He) => {
       var Ce;
       return typeof ((Ce = He.a) == null ? void 0 : Ce.pressure) == "number";
-    })) == null ? void 0 : ye.a) == null ? void 0 : be.pressure;
+    })) == null ? void 0 : xe.a) == null ? void 0 : be.pressure;
     re.pressureHistory = typeof Q == "number" ? { entityId: F, value: Q } : void 0;
   }
-  async function ge(y, S) {
-    var ye;
-    const L = ha(y, S, "temperature");
+  async function ge(x, S) {
+    var xe;
+    const L = ha(x, S, "temperature");
     if (!L) return;
-    const F = L.stateObj.entity_id, Z = ns(/* @__PURE__ */ new Date()), Q = await z(y, F, new Date(Z.getTime() - sf * xo)), de = /* @__PURE__ */ new Map();
+    const F = L.stateObj.entity_id, Z = ns(/* @__PURE__ */ new Date()), Q = await z(x, F, new Date(Z.getTime() - sf * yo)), de = /* @__PURE__ */ new Map();
     for (const be of (Q == null ? void 0 : Q[F]) ?? []) {
-      const He = (ye = be.a) == null ? void 0 : ye.temperature, Ce = new Date((be.lc ?? be.lu) * 1e3);
+      const He = (xe = be.a) == null ? void 0 : xe.temperature, Ce = new Date((be.lc ?? be.lu) * 1e3);
       if (typeof He != "number" || Ce >= Z) continue;
       const De = Ce.toDateString();
       de.set(De, Math.max(de.get(De) ?? -1 / 0, He));
     }
     re.temperatureHistory = { entityId: F, dailyHighs: [...de.values()], days: [...de.entries()].map(([be, He]) => ({ date: new Date(be), high: He })) };
   }
-  async function xe(y) {
-    const S = Ad(y);
+  async function ye(x) {
+    const S = Ad(x);
     if (!S) return;
-    const L = await y.callWS({ type: "recorder/statistic_during_period", statistic_id: S, rolling_window: { duration: { hours: 24 } } });
+    const L = await x.callWS({ type: "recorder/statistic_during_period", statistic_id: S, rolling_window: { duration: { hours: 24 } } });
     re.rain = { entityId: S, change: (L == null ? void 0 : L.change) ?? void 0 };
   }
   function $e() {
-    const y = l == null ? void 0 : l();
-    if (!y || Y || typeof y.callWS != "function") return;
-    const S = zn(y);
-    re.lastFetch = Date.now(), [le(y, S), ge(y, S), xe(y)].forEach((L) => L.then(() => Un(), () => {
+    const x = l == null ? void 0 : l();
+    if (!x || Y || typeof x.callWS != "function") return;
+    const S = zn(x);
+    re.lastFetch = Date.now(), [le(x, S), ge(x, S), ye(x)].forEach((L) => L.then(() => Un(), () => {
     }));
   }
   async function st() {
-    const y = l == null ? void 0 : l();
-    if (!y) return;
-    const S = ha(y, zn(y), "temperature");
+    const x = l == null ? void 0 : l();
+    if (!x) return;
+    const S = ha(x, zn(x), "temperature");
     if (!S) return;
     const L = S.stateObj.entity_id, F = ns(/* @__PURE__ */ new Date());
     try {
-      const Z = await z(y, L, F), Q = (de) => ((Z == null ? void 0 : Z[L]) ?? []).map((ye) => {
+      const Z = await z(x, L, F), Q = (de) => ((Z == null ? void 0 : Z[L]) ?? []).map((xe) => {
         var be;
-        return { time: ye.lu * 1e3, value: (be = ye.a) == null ? void 0 : be[de] };
-      }).filter((ye) => typeof ye.value == "number");
+        return { time: xe.lu * 1e3, value: (be = xe.a) == null ? void 0 : be[de] };
+      }).filter((xe) => typeof xe.value == "number");
       re.todayHistory = { day: F.toDateString(), fetched: Date.now(), temperature: Q("temperature"), humidity: Q("humidity") }, Un();
     } catch {
     }
   }
-  async function At(y) {
+  async function At(x) {
     const S = l == null ? void 0 : l();
     if (S)
       try {
-        const L = await z(S, y, new Date(Date.now() - 24 * Wt), !0), F = ((L == null ? void 0 : L[y]) ?? []).filter((Q) => Jt(Q.s)), Z = Math.max(1, Math.ceil(F.length / 48));
-        re.aqHistory = { entityId: y, points: F.filter((Q, de) => de % Z === 0).map((Q) => ({ label: Uo(new Date(Q.lu * 1e3), S), value: Number(Q.s) })) }, Un();
+        const L = await z(S, x, new Date(Date.now() - 24 * Wt), !0), F = ((L == null ? void 0 : L[x]) ?? []).filter((Q) => Jt(Q.s)), Z = Math.max(1, Math.ceil(F.length / 48));
+        re.aqHistory = { entityId: x, points: F.filter((Q, de) => de % Z === 0).map((Q) => ({ label: Uo(new Date(Q.lu * 1e3), S), value: Number(Q.s) })) }, Un();
       } catch {
       }
   }
-  function Tn(y) {
-    re.categories === void 0 && (re.categories = null, Promise.resolve().then(() => y.callWS({ type: "integration/descriptions" })).then((S) => {
+  function Tn(x) {
+    re.categories === void 0 && (re.categories = null, Promise.resolve().then(() => x.callWS({ type: "integration/descriptions" })).then((S) => {
       re.categories = Vf(S);
     }, () => {
       re.categories = {};
     }).then(() => Un()));
   }
-  function zn(y) {
+  function zn(x) {
     var L;
-    const S = Object.keys(y.states || {}).filter((F) => F.startsWith("weather.") && as(y, F)).sort();
-    return o && ((L = y.states) != null && L[o]) ? [o, ...S.filter((F) => F !== o)] : S;
+    const S = Object.keys(x.states || {}).filter((F) => F.startsWith("weather.") && as(x, F)).sort();
+    return o && ((L = x.states) != null && L[o]) ? [o, ...S.filter((F) => F !== o)] : S;
   }
-  const mt = (y) => re.categories ? { air: Gf(y, re.categories), pollen: Uf(y, re.categories) } : { air: [], pollen: [] };
-  function Xe(y, S, L, F) {
-    if (c === "line") return '<span class="wbWx wbS' + S + ' wbLineIcon" aria-hidden="true">' + Cd(y, L || y === "clear-night") + "</span>";
+  const mt = (x) => re.categories ? { air: Gf(x, re.categories), pollen: Uf(x, re.categories) } : { air: [], pollen: [] };
+  function Xe(x, S, L, F) {
+    if (c === "line") return '<span class="wbWx wbS' + S + ' wbLineIcon" aria-hidden="true">' + Cd(x, L || x === "clear-night") + "</span>";
     if (c === "smooth") {
-      const Z = Wu(y, S === 90, L, x + "g-" + F);
+      const Z = Wu(x, S === 90, L, y + "g-" + F);
       return '<span class="wbWx wbS' + S + " wb" + Z.k[0].toUpperCase() + Z.k.slice(1) + (Z.night ? " wbNight" : "") + '" aria-hidden="true">' + Z.svg + "</span>";
     }
-    return '<span class="wbWx wbS' + S + '" aria-hidden="true"><canvas data-wb-wx="' + je(Vl(y, L)) + '" data-size="' + S + '"></canvas></span>';
+    return '<span class="wbWx wbS' + S + '" aria-hidden="true"><canvas data-wb-wx="' + je(Vl(x, L)) + '" data-size="' + S + '"></canvas></span>';
   }
-  const Lt = () => k("daily").filter((y) => y.templow != null).slice(0, Ju);
-  function Je(y, S) {
+  const Lt = () => k("daily").filter((x) => x.templow != null).slice(0, Ju);
+  function Je(x, S) {
     const L = new Date(S.datetime), F = /* @__PURE__ */ new Date();
-    return Qr(L, F) ? Ye.today : Qr(L, new Date(F.getTime() + xo)) ? Ye.tomorrow : Dc(L, y);
+    return Qr(L, F) ? Ye.today : Qr(L, new Date(F.getTime() + yo)) ? Ye.tomorrow : Dc(L, x);
   }
-  const xn = (y, S, L) => L === 0 ? Je(y, S) : Dc(new Date(S.datetime), y);
-  function Dn(y, S) {
+  const yn = (x, S, L) => L === 0 ? Je(x, S) : Dc(new Date(S.datetime), x);
+  function Dn(x, S) {
     var Ce, De, Be, Fe;
-    const L = Of(y, S);
+    const L = Of(x, S);
     if (!L) return "";
-    const F = Lt(), Z = P.openDay !== void 0 ? F[P.openDay] : void 0, Q = ha(y, S, "temperature"), de = F[0], ye = de && Qr(new Date(de.datetime), /* @__PURE__ */ new Date()), be = ((De = (Ce = y.config) == null ? void 0 : Ce.unit_system) == null ? void 0 : De.temperature) || ((Be = L.attributes) == null ? void 0 : Be.temperature_unit) || "";
-    let He = '<div class="wbCard wbWeather' + (Z ? " wbIsOpen" : "") + '"><div class="wbClosed"' + (Z ? " inert" : "") + '><div class="wbNow">' + (w ? '<button class="wbCurrent wbOpenPage" data-wb="open-page" data-wb-focus="open-page" aria-label="' + je(Ye.openPage) + '">' : '<div class="wbCurrent">') + Xe(L.state, 90, Ff(y), "now") + '<div class="wbTempBlock">' + (Q && Jt(Q.value) ? '<div class="wbTemp"><span class="wbDeg">' + je(fn(Math.round(Number(Q.value)), y.locale)) + '</span><span class="wbUnit">' + je(be) + "</span></div>" : "") + '<div class="wbPlace">' + je(((Fe = y.config) == null ? void 0 : Fe.location_name) ?? "") + "</div></div>" + (w ? "</button>" : "</div>") + '<div class="wbCondition"><div class="wbCondName">' + je(mr(y, L)) + "</div>" + (ye && de.templow != null ? '<div class="wbRange">' + je(qn(Ye.range, { high: un(y, de.temperature), low: un(y, de.templow) })) + "</div>" : "") + "</div></div>";
-    return He += bt(y), F.length && (He += '<div class="wbColumns" role="list">' + F.map((Te, Ve) => '<button class="wbColumn" role="listitem" data-wb="day" data-index="' + Ve + '" data-wb-focus="col-' + Ve + '"><span class="wbDay">' + je(xn(y, Te, Ve)) + "</span>" + Xe(Te.condition ?? "cloudy", 60, !1, "col" + Ve) + '<span class="wbTemps"><span class="wbHi">' + je(un(y, Te.temperature)) + '</span><span class="wbLo">' + je(un(y, Te.templow)) + "</span></span></button>").join("") + "</div>", He += '<div class="wbHalves" role="list">' + F.map((Te, Ve) => '<button class="wbTile" role="listitem" data-wb="day" data-index="' + Ve + '" data-wb-focus="half-' + Ve + '">' + Xe(Te.condition ?? "cloudy", 40, !1, "half" + Ve) + '<span class="wbText"><span class="wbName">' + je(Je(y, Te)) + '</span><span class="wbSub">' + je(qn(Ye.highLow, { high: un(y, Te.temperature), low: un(y, Te.templow) })) + "</span></span></button>").join("") + "</div>"), He + "</div>" + (Z ? Ri(y, S, Z) : "") + "</div>";
+    const F = Lt(), Z = P.openDay !== void 0 ? F[P.openDay] : void 0, Q = ha(x, S, "temperature"), de = F[0], xe = de && Qr(new Date(de.datetime), /* @__PURE__ */ new Date()), be = ((De = (Ce = x.config) == null ? void 0 : Ce.unit_system) == null ? void 0 : De.temperature) || ((Be = L.attributes) == null ? void 0 : Be.temperature_unit) || "";
+    let He = '<div class="wbCard wbWeather' + (Z ? " wbIsOpen" : "") + '"><div class="wbClosed"' + (Z ? " inert" : "") + '><div class="wbNow">' + (w ? '<button class="wbCurrent wbOpenPage" data-wb="open-page" data-wb-focus="open-page" aria-label="' + je(Ye.openPage) + '">' : '<div class="wbCurrent">') + Xe(L.state, 90, Ff(x), "now") + '<div class="wbTempBlock">' + (Q && Jt(Q.value) ? '<div class="wbTemp"><span class="wbDeg">' + je(fn(Math.round(Number(Q.value)), x.locale)) + '</span><span class="wbUnit">' + je(be) + "</span></div>" : "") + '<div class="wbPlace">' + je(((Fe = x.config) == null ? void 0 : Fe.location_name) ?? "") + "</div></div>" + (w ? "</button>" : "</div>") + '<div class="wbCondition"><div class="wbCondName">' + je(mr(x, L)) + "</div>" + (xe && de.templow != null ? '<div class="wbRange">' + je(qn(Ye.range, { high: un(x, de.temperature), low: un(x, de.templow) })) + "</div>" : "") + "</div></div>";
+    return He += bt(x), F.length && (He += '<div class="wbColumns" role="list">' + F.map((Te, Ve) => '<button class="wbColumn" role="listitem" data-wb="day" data-index="' + Ve + '" data-wb-focus="col-' + Ve + '"><span class="wbDay">' + je(yn(x, Te, Ve)) + "</span>" + Xe(Te.condition ?? "cloudy", 60, !1, "col" + Ve) + '<span class="wbTemps"><span class="wbHi">' + je(un(x, Te.temperature)) + '</span><span class="wbLo">' + je(un(x, Te.templow)) + "</span></span></button>").join("") + "</div>", He += '<div class="wbHalves" role="list">' + F.map((Te, Ve) => '<button class="wbTile" role="listitem" data-wb="day" data-index="' + Ve + '" data-wb-focus="half-' + Ve + '">' + Xe(Te.condition ?? "cloudy", 40, !1, "half" + Ve) + '<span class="wbText"><span class="wbName">' + je(Je(x, Te)) + '</span><span class="wbSub">' + je(qn(Ye.highLow, { high: un(x, Te.temperature), low: un(x, Te.templow) })) + "</span></span></button>").join("") + "</div>"), He + "</div>" + (Z ? Ri(x, S, Z) : "") + "</div>";
   }
   const wr = {
     sunny: "sunny",
@@ -5191,52 +5191,52 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     lightning: "storm",
     "lightning-rainy": "storm"
   };
-  function Ze(y) {
+  function Ze(x) {
     const S = Date.now(), L = k("hourly").filter((De) => new Date(De.datetime).getTime() > S - Wt).slice(0, 13);
     if (L.length < 2) return "";
-    const F = (De) => Uo(new Date(De.datetime), y), Z = (De) => wr[De.condition] || "", Q = (De) => lt[De.condition] || De.condition;
+    const F = (De) => Uo(new Date(De.datetime), x), Z = (De) => wr[De.condition] || "", Q = (De) => lt[De.condition] || De.condition;
     let de = Z(L[0]);
     if (!de) return "";
-    let ye = L[0], be = 0;
+    let xe = L[0], be = 0;
     for (const De of L.slice(1))
-      be === 2 || Q(De) === Q(ye) || !Z(De) || (de += (be ? " and " : ", ") + Z(De) + " from " + F(De), ye = De, be++);
+      be === 2 || Q(De) === Q(xe) || !Z(De) || (de += (be ? " and " : ", ") + Z(De) + " from " + F(De), xe = De, be++);
     const He = Number(L[0].temperature), Ce = L.filter((De) => Jt(De.temperature));
     if (Jt(He) && Ce.length) {
       const De = Ce.reduce((Fe, Te) => Number(Te.temperature) < Number(Fe.temperature) ? Te : Fe), Be = Ce.reduce((Fe, Te) => Number(Te.temperature) > Number(Fe.temperature) ? Te : Fe);
-      He - Number(De.temperature) >= 3 ? de += ", down to " + un(y, De.temperature) + " by " + F(De) : Number(Be.temperature) - He >= 3 && (de += ", up to " + un(y, Be.temperature) + " by " + F(Be));
+      He - Number(De.temperature) >= 3 ? de += ", down to " + un(x, De.temperature) + " by " + F(De) : Number(Be.temperature) - He >= 3 && (de += ", up to " + un(x, Be.temperature) + " by " + F(Be));
     }
     return de[0].toUpperCase() + de.slice(1) + ".";
   }
-  const bt = (y) => {
-    const S = Ze(y);
+  const bt = (x) => {
+    const S = Ze(x);
     return S ? '<div class="wbSummary"><p class="wbSummaryText">' + je(S) + "</p></div>" : "";
   };
-  function Mo(y) {
-    const S = y.getTime(), L = Date.now() - Wt;
+  function Mo(x) {
+    const S = x.getTime(), L = Date.now() - Wt;
     return k("hourly").filter((F) => {
       const Z = new Date(F.datetime).getTime();
-      return Z >= S && Z < S + xo && Z > L;
+      return Z >= S && Z < S + yo && Z > L;
     });
   }
-  function yr(y) {
-    if (!y.length) return ["temperature"];
+  function xr(x) {
+    if (!x.length) return ["temperature"];
     const S = ["temperature"];
-    return y.some((L) => L.precipitation != null || L.precipitation_probability != null) && S.push("precipitation"), y.some((L) => L.humidity != null) && S.push("humidity"), S;
+    return x.some((L) => L.precipitation != null || L.precipitation_probability != null) && S.push("precipitation"), x.some((L) => L.humidity != null) && S.push("humidity"), S;
   }
-  function Ri(y, S, L) {
-    const F = ns(new Date(L.datetime)), Z = Mo(F), Q = yr(Z), de = Q.includes(P.dayMode) ? P.dayMode : "temperature", ye = (be) => be === "humidity" ? Ye.humidity : Ye.modes[be];
-    return '<div class="wbOpen" data-wb-open="day"><div class="wbOpenHead">' + Xe(L.condition ?? "cloudy", 40, !1, "open") + '<div class="wbText"><span class="wbName">' + je(Je(y, L)) + '</span><span class="wbSub">' + je(qn(Ye.highLow, { high: un(y, L.temperature), low: un(y, L.templow) })) + '</span></div><button class="wbBack" title="' + je(Ye.back) + '" data-wb="close-day" data-wb-focus="back-day">' + ts(yn.back) + "</button></div>" + (Q.length > 1 ? '<div class="wbDayTabs"><div class="wbSegments" role="group">' + Q.map((be) => '<button aria-pressed="' + (be === de) + '" data-wb="day-mode" data-mode="' + be + '" data-wb-focus="day-mode-' + be + '">' + je(ye(be)) + "</button>").join("") + "</div></div>" : "") + '<div class="wbGraph">' + Zf(Ln(y, S, F, Z, de)) + "</div></div>";
+  function Ri(x, S, L) {
+    const F = ns(new Date(L.datetime)), Z = Mo(F), Q = xr(Z), de = Q.includes(P.dayMode) ? P.dayMode : "temperature", xe = (be) => be === "humidity" ? Ye.humidity : Ye.modes[be];
+    return '<div class="wbOpen" data-wb-open="day"><div class="wbOpenHead">' + Xe(L.condition ?? "cloudy", 40, !1, "open") + '<div class="wbText"><span class="wbName">' + je(Je(x, L)) + '</span><span class="wbSub">' + je(qn(Ye.highLow, { high: un(x, L.temperature), low: un(x, L.templow) })) + '</span></div><button class="wbBack" title="' + je(Ye.back) + '" data-wb="close-day" data-wb-focus="back-day">' + ts(xn.back) + "</button></div>" + (Q.length > 1 ? '<div class="wbDayTabs"><div class="wbSegments" role="group">' + Q.map((be) => '<button aria-pressed="' + (be === de) + '" data-wb="day-mode" data-mode="' + be + '" data-wb-focus="day-mode-' + be + '">' + je(xe(be)) + "</button>").join("") + "</div></div>" : "") + '<div class="wbGraph">' + Zf(Ln(x, S, F, Z, de)) + "</div></div>";
   }
-  function Ln(y, S, L, F, Z) {
+  function Ln(x, S, L, F, Z) {
     var kr;
-    const Q = L.getTime(), de = Date.now(), ye = Qr(L, /* @__PURE__ */ new Date()), be = (ft) => (ft - Q) / oo, He = (ft) => Uo(new Date(ft), y), Ce = (ft) => new Date(ft.datetime).getTime(), De = [0, 3, 6, 9, 12, 15, 18, 21].map((ft) => ({ t: ft * 60, label: He(Q + ft * Wt), minor: ft % 6 !== 0 })), { rise: Be, set: Fe } = Ld(y, L), Te = [], Ve = [];
+    const Q = L.getTime(), de = Date.now(), xe = Qr(L, /* @__PURE__ */ new Date()), be = (ft) => (ft - Q) / oo, He = (ft) => Uo(new Date(ft), x), Ce = (ft) => new Date(ft.datetime).getTime(), De = [0, 3, 6, 9, 12, 15, 18, 21].map((ft) => ({ t: ft * 60, label: He(Q + ft * Wt), minor: ft % 6 !== 0 })), { rise: Be, set: Fe } = Ld(x, L), Te = [], Ve = [];
     Be && (Te.push({ t: be(Be.getTime()), label: He(Be.getTime()), rise: !0 }), Ve.push([0, be(Be.getTime())])), Fe && (Te.push({ t: be(Fe.getTime()), label: He(Fe.getTime()), rise: !1 }), Ve.push([be(Fe.getTime()), Us]));
-    const tt = jl(y);
-    !Be && !Fe && tt && Xd(new Date(Q + xo / 2), tt.lat, tt.lon) < 0 && Ve.push([0, Us]);
-    const Re = ye ? be(de) : void 0, et = { hours: De, sun: Te, night: Ve };
-    if (!F.length && !ye) return { ...et, kind: "line", points: [], min: 0, max: 1, ticks: [], format: String, note: Ye.noHourly };
+    const tt = jl(x);
+    !Be && !Fe && tt && Xd(new Date(Q + yo / 2), tt.lat, tt.lon) < 0 && Ve.push([0, Us]);
+    const Re = xe ? be(de) : void 0, et = { hours: De, sun: Te, night: Ve };
+    if (!F.length && !xe) return { ...et, kind: "line", points: [], min: 0, max: 1, ticks: [], format: String, note: Ye.noHourly };
     if (Z === "precipitation") {
-      const ft = F.some((kn) => kn.precipitation_probability != null), dn = F.map((kn) => ({ t: be(Ce(kn)), v: Number((ft ? kn.precipitation_probability : kn.precipitation) ?? 0) })), Xn = gr(y, _(y, "hourly"), "precipitation"), Ua = Math.max(0, ...dn.map((kn) => kn.v)), Aa = ft ? 100 : Ic(0, Math.max(Ua, 1), [0.5, 1, 2, 5, 10]).max, qi = (kn) => ft ? fn(kn, y.locale) + "%" : fn(kn, y.locale, { maximumFractionDigits: 1 }) + " " + Xn, ai = dn.find((kn) => kn.v === Ua);
+      const ft = F.some((kn) => kn.precipitation_probability != null), dn = F.map((kn) => ({ t: be(Ce(kn)), v: Number((ft ? kn.precipitation_probability : kn.precipitation) ?? 0) })), Xn = gr(x, _(x, "hourly"), "precipitation"), Ua = Math.max(0, ...dn.map((kn) => kn.v)), Aa = ft ? 100 : Ic(0, Math.max(Ua, 1), [0.5, 1, 2, 5, 10]).max, qi = (kn) => ft ? fn(kn, x.locale) + "%" : fn(kn, x.locale, { maximumFractionDigits: 1 }) + " " + Xn, ai = dn.find((kn) => kn.v === Ua);
       return {
         ...et,
         kind: "bars",
@@ -5250,28 +5250,28 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
         note: Ua > 0 ? void 0 : Ye.noRain
       };
     }
-    const nt = Z === "humidity" ? "humidity" : "temperature", Kt = F.filter((ft) => ft[nt] != null && (!ye || Ce(ft) >= de)).map((ft) => ({ t: be(Ce(ft)), v: Number(ft[nt]) }));
+    const nt = Z === "humidity" ? "humidity" : "temperature", Kt = F.filter((ft) => ft[nt] != null && (!xe || Ce(ft) >= de)).map((ft) => ({ t: be(Ce(ft)), v: Number(ft[nt]) }));
     let Pe, Pt = [];
     if (Re !== void 0) {
-      const ft = ha(y, S, nt);
+      const ft = ha(x, S, nt);
       ft && Jt(ft.value) && (Pe = { t: Re, v: Number(ft.value) }, Kt.unshift(Pe)), Pt = (((kr = re.todayHistory) == null ? void 0 : kr.day) === L.toDateString() ? re.todayHistory[nt] : []).filter((Xn) => Xn.time <= de).map((Xn) => ({ t: Math.max(0, be(Xn.time)), v: Xn.value })), Pe && Pt.length && Pt.push(Pe);
     }
     const Vt = [...Pt, ...Kt];
     if (!Vt.length) return { ...et, kind: "line", points: [], min: 0, max: 1, ticks: [], format: String, note: Ye.noHourly };
     const ca = Vt.map((ft) => ft.v), wa = Ic(Math.min(...ca), Math.max(...ca), nt === "humidity" ? [5, 10, 20, 25] : [1, 2, 5, 10]);
     nt === "humidity" && (wa.min = Math.max(0, wa.min), wa.max = Math.min(100, wa.max), wa.ticks = wa.ticks.filter((ft) => ft >= 0 && ft <= 100));
-    const Wi = nt === "humidity" ? (ft) => fn(ft, y.locale) + "%" : (ft) => un(y, ft), ya = nt === "temperature" ? Vt.reduce((ft, dn) => dn.v > ft.v ? dn : ft) : void 0;
-    return { ...et, kind: "line", points: Kt, past: Pt, ...wa, format: Wi, now: Pe, peak: ya ? { ...ya, label: Wi(ya.v) } : void 0 };
+    const Wi = nt === "humidity" ? (ft) => fn(ft, x.locale) + "%" : (ft) => un(x, ft), xa = nt === "temperature" ? Vt.reduce((ft, dn) => dn.v > ft.v ? dn : ft) : void 0;
+    return { ...et, kind: "line", points: Kt, past: Pt, ...wa, format: Wi, now: Pe, peak: xa ? { ...xa, label: Wi(xa.v) } : void 0 };
   }
-  function pt(y) {
+  function pt(x) {
     const S = ["temperature"];
-    return y.some((L) => L.precipitation_probability != null || L.precipitation != null) && S.push("precipitation"), y.some((L) => L.wind_speed != null) && S.push("wind"), S;
+    return x.some((L) => L.precipitation_probability != null || L.precipitation != null) && S.push("precipitation"), x.some((L) => L.wind_speed != null) && S.push("wind"), S;
   }
-  function qt(y, S, L = kc) {
+  function qt(x, S, L = kc) {
     var Q, de;
     const F = k("daily"), Z = [];
-    for (let ye = 0; ye < L; ye++) for (const be of [!1, !0]) {
-      const He = y.getTime() + (ye * 24 + (be ? 12 : 0)) * Wt, Ce = He + 12 * Wt, De = {};
+    for (let xe = 0; xe < L; xe++) for (const be of [!1, !0]) {
+      const He = x.getTime() + (xe * 24 + (be ? 12 : 0)) * Wt, Ce = He + 12 * Wt, De = {};
       S.forEach((Fe) => {
         const Te = new Date(Fe.datetime).getTime();
         Fe.condition && Te >= He && Te < Ce && (De[Fe.condition] = (De[Fe.condition] ?? 0) + (of.has(Fe.condition) ? 2 : 1));
@@ -5285,129 +5285,129 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     }
     return Z;
   }
-  function xr(y, S, L) {
-    const F = _(y, "hourly"), Z = S.precipitation_probability != null ? fn(S.precipitation_probability, y.locale) + "%" : "", Q = S.precipitation ? fn(S.precipitation, y.locale) + " " + gr(y, F, "precipitation") : "";
+  function yr(x, S, L) {
+    const F = _(x, "hourly"), Z = S.precipitation_probability != null ? fn(S.precipitation_probability, x.locale) + "%" : "", Q = S.precipitation ? fn(S.precipitation, x.locale) + " " + gr(x, F, "precipitation") : "";
     switch (L) {
       case "precipitation":
         return Z ? [Z, Q] : [Q || "–", ""];
       case "wind":
-        return S.wind_speed != null ? [fn(Math.round(S.wind_speed), y.locale), gr(y, F, "wind_speed")] : ["–", ""];
+        return S.wind_speed != null ? [fn(Math.round(S.wind_speed), x.locale), gr(x, F, "wind_speed")] : ["–", ""];
       default:
-        return [un(y, S.temperature), (S.precipitation_probability ?? 0) >= 20 ? Z : ""];
+        return [un(x, S.temperature), (S.precipitation_probability ?? 0) >= 20 ? Z : ""];
     }
   }
-  function Xo(y, S, L) {
+  function Xo(x, S, L) {
     const [F, Z] = Mc[A == null ? void 0 : A()] || Mc.day, Q = [];
     for (let de = 0; de < 4 && Q.length < 3; de++) {
-      const ye = /* @__PURE__ */ new Date();
-      ye.setHours(0, 0, 0, 0), ye.setDate(ye.getDate() + de);
-      const be = new Date(ye);
-      be.setHours(Z, 0, 0, 0), ye.setHours(F, 0, 0, 0), !(be.getTime() <= L || !S.some((He) => {
+      const xe = /* @__PURE__ */ new Date();
+      xe.setHours(0, 0, 0, 0), xe.setDate(xe.getDate() + de);
+      const be = new Date(xe);
+      be.setHours(Z, 0, 0, 0), xe.setHours(F, 0, 0, 0), !(be.getTime() <= L || !S.some((He) => {
         const Ce = new Date(He.datetime).getTime();
-        return Ce >= ye.getTime() && Ce <= be.getTime();
-      })) && Q.push({ a: ye.getTime(), b: be.getTime(), label: Je(y, { datetime: ye.toISOString() }) });
+        return Ce >= xe.getTime() && Ce <= be.getTime();
+      })) && Q.push({ a: xe.getTime(), b: be.getTime(), label: Je(x, { datetime: xe.toISOString() }) });
     }
     return Q;
   }
-  function xt(y, S, L, F, Z, Q) {
-    const de = (L.b - S.a) / Wt, ye = (Re) => ((Re - S.a) / Wt).toFixed(3), be = 80, He = 32, Ce = [];
-    for (const Re = new Date(S.a - xo); Re.getTime() < L.b + xo; Re.setDate(Re.getDate() + 1)) {
-      const { rise: et, set: nt } = Ld(y, new Date(Re));
+  function yt(x, S, L, F, Z, Q) {
+    const de = (L.b - S.a) / Wt, xe = (Re) => ((Re - S.a) / Wt).toFixed(3), be = 80, He = 32, Ce = [];
+    for (const Re = new Date(S.a - yo); Re.getTime() < L.b + yo; Re.setDate(Re.getDate() + 1)) {
+      const { rise: et, set: nt } = Ld(x, new Date(Re));
       et && nt && Ce.push({ rise: et.getTime(), set: nt.getTime() });
     }
     const De = (Re, et) => be - (be - He) * Math.sin(Math.PI * (et - Re.rise) / (Re.set - Re.rise)), Be = (Re) => !Ce.some((et) => Re >= et.rise && Re <= et.set);
     let Fe = "", Te = "", Ve = "";
     Ce.forEach((Re, et) => {
       const nt = [];
-      for (let Pe = Re.rise; Pe <= Re.set; Pe += 15 * oo) nt.push(ye(Pe) + "," + De(Re, Pe).toFixed(2));
-      nt.push(ye(Re.set) + "," + be), Fe += '<polyline class="wbLineArc" points="' + nt.join(" ") + '"/>';
+      for (let Pe = Re.rise; Pe <= Re.set; Pe += 15 * oo) nt.push(xe(Pe) + "," + De(Re, Pe).toFixed(2));
+      nt.push(xe(Re.set) + "," + be), Fe += '<polyline class="wbLineArc" points="' + nt.join(" ") + '"/>';
       const Kt = Ce[et + 1];
-      Kt && (Fe += '<rect class="wbLineNight" x="' + ye(Re.set) + '" y="0" width="' + ((Kt.rise - Re.set) / Wt).toFixed(3) + '" height="100"/>'), [[Re.rise, "↑"], [Re.set, "↓"]].forEach(([Pe, Pt]) => {
-        Pe < S.a || Pe > L.b || (Te += '<line class="wbLineEdge" x1="' + ye(Pe) + '" x2="' + ye(Pe) + '" y1="0" y2="100"/>', Ve += '<span class="wbLineTime" style="left:' + Q(Pe) + '">' + Pt + " " + je(Uo(new Date(Pe), y)) + "</span>");
+      Kt && (Fe += '<rect class="wbLineNight" x="' + xe(Re.set) + '" y="0" width="' + ((Kt.rise - Re.set) / Wt).toFixed(3) + '" height="100"/>'), [[Re.rise, "↑"], [Re.set, "↓"]].forEach(([Pe, Pt]) => {
+        Pe < S.a || Pe > L.b || (Te += '<line class="wbLineEdge" x1="' + xe(Pe) + '" x2="' + xe(Pe) + '" y1="0" y2="100"/>', Ve += '<span class="wbLineTime" style="left:' + Q(Pe) + '">' + Pt + " " + je(Uo(new Date(Pe), x)) + "</span>");
       });
     });
     const tt = Ce.find((Re) => Z >= Re.rise && Z <= Re.set);
     return '<svg class="wbLineArt" viewBox="0 0 ' + de + ' 100" preserveAspectRatio="none" aria-hidden="true">' + Fe + Te + '<line class="wbLineHorizon" x1="0" x2="' + de + '" y1="' + be + '" y2="' + be + '"/></svg>' + Ve + (tt ? '<span class="wbLineNow" style="left:' + Q(Z) + ";top:" + De(tt, Z) + '%">' + Cd("sunny", !1) + "</span>" : "") + F.filter((Re) => Re.entry && !Re.now).map((Re) => '<span class="wbLineGlyph' + Re.edge + '" style="left:' + Q(Re.t) + '">' + Cd(Re.entry.condition ?? "cloudy", Be(Re.t)) + "</span>").join("");
   }
-  function ke(y, S) {
+  function ke(x, S) {
     delete Ie.hourly;
     const L = P.hourlyView === "bars" ? "bars" : "strip", F = '<div class="wbHeader"><h2 class="wbTitle">' + je(L === "bars" ? Ye.nextDays : Ye.nextHours) + '</h2><div class="wbSegments wbViews" role="group" aria-label="' + je(Ye.showAs) + '">' + ["strip", "bars"].map((Pe) => '<button aria-pressed="' + (Pe === L) + '" data-wb="hourly-view" data-view="' + Pe + '" data-wb-focus="hourly-view-' + Pe + '">' + je(Ye.views[Pe]) + "</button>").join("") + "</div></div>";
-    if (L === "bars") return Oe(y, S, F);
+    if (L === "bars") return Oe(x, S, F);
     const Z = k("hourly"), Q = Math.floor(Date.now() / oo) * oo, de = Z.filter((Pe) => new Date(Pe.datetime).getTime() > Q - Wt);
     if (!de.length) return "";
-    const ye = pt(de), be = ye.includes(P.hourlyMode) ? P.hourlyMode : "temperature", He = Xo(y, Z, Q);
+    const xe = pt(de), be = xe.includes(P.hourlyMode) ? P.hourlyMode : "temperature", He = Xo(x, Z, Q);
     if (!He.length) return "";
     const Ce = He[0], De = He[He.length - 1], Be = (Ce.b - Ce.a) / Wt, Fe = (Pe) => "calc(var(--wb-u) * " + ((Pe - Ce.a) / Wt).toFixed(3) + ")", Te = new Date(Ce.a);
     Te.setHours(6, 0, 0, 0), Te.getTime() > Ce.a && Te.setDate(Te.getDate() - 1);
-    const Ve = Math.ceil((De.b - Te.getTime()) / xo);
+    const Ve = Math.ceil((De.b - Te.getTime()) / yo);
     c !== "line" && (Ie.hourly = { segs: qt(Te, Z, Ve), seed: Te.getDate(), columns: Ve });
     const tt = (Pe) => Pe === Ce.a ? " wbFirst" : Pe === De.b ? " wbLast" : "", Re = [];
     for (let Pe = Ce.a; Pe < De.b; ) {
       const Pt = new Date(Pe);
       Pt.setHours(24, 0, 0, 0);
       const Vt = Math.min(Pt.getTime(), De.b);
-      Re.push({ a: Pe, b: Vt, label: Je(y, { datetime: new Date(Pe).toISOString() }), page: He.find((ca) => ca.a >= Pe && ca.a < Vt) || He.find((ca) => ca.a < Vt && ca.b > Pe) }), Pe = Vt;
+      Re.push({ a: Pe, b: Vt, label: Je(x, { datetime: new Date(Pe).toISOString() }), page: He.find((ca) => ca.a >= Pe && ca.a < Vt) || He.find((ca) => ca.a < Vt && ca.b > Pe) }), Pe = Vt;
     }
     const et = Q > Ce.a && Q < De.b ? Math.floor((Q - Ce.a) / (2 * Wt)) * 2 : 0, nt = [];
     for (let Pe = Ce.a; Pe <= De.b; Pe += Wt) {
       const Pt = new Date(Pe), Vt = tt(Pe);
-      !Vt && Pt.getHours() % ef || !Vt && (Math.abs(Ce.a - Pe) < 2 * Wt || Math.abs(De.b - Pe) < 2 * Wt) || Q >= Ce.a && Math.abs(Pe - Q) < 1.5 * Wt && !Vt || nt.push({ t: Pe, edge: Vt, label: Uo(Pt, y), entry: Pe >= Q - Wt ? Z.find((ca) => new Date(ca.datetime).getTime() === Pe) : void 0 });
+      !Vt && Pt.getHours() % ef || !Vt && (Math.abs(Ce.a - Pe) < 2 * Wt || Math.abs(De.b - Pe) < 2 * Wt) || Q >= Ce.a && Math.abs(Pe - Q) < 1.5 * Wt && !Vt || nt.push({ t: Pe, edge: Vt, label: Uo(Pt, x), entry: Pe >= Q - Wt ? Z.find((ca) => new Date(ca.datetime).getTime() === Pe) : void 0 });
     }
     Q > Ce.a && Q < Ce.b && nt.push({ t: Q, edge: Q - Ce.a < Wt ? " wbFirst" : Ce.b - Q < Wt ? " wbLast" : "", label: Ye.now, entry: de[0], now: !0 });
     const Kt = (Pe, Pt) => '<span class="wbMark' + Pe.edge + (Pe.now ? " wbNowMark" : "") + '" style="left:' + Fe(Pe.t) + '">' + Pt + "</span>";
-    return '<div class="wbCard wbHc wbHourly">' + F + (ye.length > 1 ? '<div class="wbTabs"><div class="wbSegments" role="group">' + ye.map((Pe) => '<button aria-pressed="' + (Pe === be) + '" data-wb="hourly-mode" data-mode="' + Pe + '" data-wb-focus="hourly-mode-' + Pe + '">' + je(Ye.modes[Pe]) + "</button>").join("") + "</div></div>" : "") + '<div class="wbStripScroll wbPaged" tabindex="0" aria-label="' + je(Ye.nextHours) + '" data-span="' + Be + '" data-start="' + et + '"><div class="wbStrip" style="--wb-u:calc(100cqw / ' + Be + ");width:calc(var(--wb-u) * " + (De.b - Ce.a) / Wt + ')">' + // a stop every two hours (Matt, 1 Nov): a swipe settles on one, a flick runs on past several
+    return '<div class="wbCard wbHc wbHourly">' + F + (xe.length > 1 ? '<div class="wbTabs"><div class="wbSegments" role="group">' + xe.map((Pe) => '<button aria-pressed="' + (Pe === be) + '" data-wb="hourly-mode" data-mode="' + Pe + '" data-wb-focus="hourly-mode-' + Pe + '">' + je(Ye.modes[Pe]) + "</button>").join("") + "</div></div>" : "") + '<div class="wbStripScroll wbPaged" tabindex="0" aria-label="' + je(Ye.nextHours) + '" data-span="' + Be + '" data-start="' + et + '"><div class="wbStrip" style="--wb-u:calc(100cqw / ' + Be + ");width:calc(var(--wb-u) * " + (De.b - Ce.a) / Wt + ')">' + // a stop every two hours (Matt, 1 Nov): a swipe settles on one, a flick runs on past several
     [...Array(Math.floor((De.b - Ce.a) / (2 * Wt)) + 1)].map((Pe, Pt) => '<i class="wbSnap" style="left:' + Fe(Ce.a + Pt * 2 * Wt) + '"></i>').join("") + '<div class="wbDays">' + Re.map((Pe, Pt) => {
       var Vt;
       return '<span class="wbDaySpan" style="width:calc(var(--wb-u) * ' + ((Pe.b - Pe.a) / Wt).toFixed(3) + ')"><button class="wbDayName" data-wb="hours-day" data-hours="' + (Pt === 0 ? et : ((((Vt = Pe.page) == null ? void 0 : Vt.a) ?? Pe.a) - Ce.a) / Wt) + '" data-wb-focus="hours-day-' + Pt + '">' + je(Pe.label) + "</button></span>";
-    }).join("") + '</div><div class="wbRow wbTimes">' + nt.map((Pe) => Kt(Pe, je(Pe.label))).join("") + "</div>" + (c === "line" ? '<div class="wbSky wbLineSky">' + xt(y, Ce, De, nt, Q, Fe) : '<div class="wbSky"><div class="wbSkyArt" style="left:' + Fe(Te.getTime()) + ";width:calc(var(--wb-u) * " + Ve * 24 + ')"><canvas data-wb-strip="hourly"' + (c === "smooth" ? "" : ' class="wbPixels"') + "></canvas></div>") + (Q > Ce.a ? '<i class="wbPast" style="width:' + Fe(Math.min(Q, De.b)) + '"></i><i class="wbNowLine" style="left:' + Fe(Q) + '"></i>' : "") + Re.slice(1).map((Pe) => '<i class="wbMidnight" style="left:' + Fe(Pe.a) + '"></i>').join("") + '</div><div class="wbRow wbValues">' + nt.map((Pe) => {
+    }).join("") + '</div><div class="wbRow wbTimes">' + nt.map((Pe) => Kt(Pe, je(Pe.label))).join("") + "</div>" + (c === "line" ? '<div class="wbSky wbLineSky">' + yt(x, Ce, De, nt, Q, Fe) : '<div class="wbSky"><div class="wbSkyArt" style="left:' + Fe(Te.getTime()) + ";width:calc(var(--wb-u) * " + Ve * 24 + ')"><canvas data-wb-strip="hourly"' + (c === "smooth" ? "" : ' class="wbPixels"') + "></canvas></div>") + (Q > Ce.a ? '<i class="wbPast" style="width:' + Fe(Math.min(Q, De.b)) + '"></i><i class="wbNowLine" style="left:' + Fe(Q) + '"></i>' : "") + Re.slice(1).map((Pe) => '<i class="wbMidnight" style="left:' + Fe(Pe.a) + '"></i>').join("") + '</div><div class="wbRow wbValues">' + nt.map((Pe) => {
       if (!Pe.entry) return "";
-      const [Pt, Vt] = xr(y, Pe.entry, be);
+      const [Pt, Vt] = yr(x, Pe.entry, be);
       return Kt(Pe, '<span class="wbPrimaryV">' + je(Pt) + '</span><span class="wbSecondary">' + je(Vt) + "</span>");
     }).join("") + "</div></div></div></div>";
   }
-  function zt(y) {
-    const S = tf, L = S.findIndex(([be]) => be >= y);
+  function zt(x) {
+    const S = tf, L = S.findIndex(([be]) => be >= x);
     if (L <= 0) return "rgb(" + S[L < 0 ? S.length - 1 : 0][1].join(",") + ")";
-    const [F, Z] = S[L - 1], [Q, de] = S[L], ye = (y - F) / (Q - F);
-    return "rgb(" + Z.map((be, He) => Math.round(be + (de[He] - be) * ye)).join(",") + ")";
+    const [F, Z] = S[L - 1], [Q, de] = S[L], xe = (x - F) / (Q - F);
+    return "rgb(" + Z.map((be, He) => Math.round(be + (de[He] - be) * xe)).join(",") + ")";
   }
-  function Oe(y, S, L) {
+  function Oe(x, S, L) {
     var Fe;
     const F = k("daily").filter((Te) => Jt(Te.templow) && Jt(Te.temperature)).slice(0, 7);
     if (!F.length) return "";
-    const Z = Math.min(...F.map((Te) => Number(Te.templow))), Q = Math.max(...F.map((Te) => Number(Te.temperature))), de = Math.max(1, Q - Z), ye = (Te) => Math.max(0, Math.min(100, (Te - Z) / de * 100)).toFixed(2), be = /F/.test(gr(y, _(y, "daily"), "temperature")), He = (Te) => be ? (Te - 32) / 1.8 : Te, Ce = "linear-gradient(90deg," + [0, 0.25, 0.5, 0.75, 1].map((Te) => zt(He(Z + Te * de)) + " " + Te * 100 + "%").join(",") + ")", De = (Fe = ha(y, S, "temperature")) == null ? void 0 : Fe.value;
+    const Z = Math.min(...F.map((Te) => Number(Te.templow))), Q = Math.max(...F.map((Te) => Number(Te.temperature))), de = Math.max(1, Q - Z), xe = (Te) => Math.max(0, Math.min(100, (Te - Z) / de * 100)).toFixed(2), be = /F/.test(gr(x, _(x, "daily"), "temperature")), He = (Te) => be ? (Te - 32) / 1.8 : Te, Ce = "linear-gradient(90deg," + [0, 0.25, 0.5, 0.75, 1].map((Te) => zt(He(Z + Te * de)) + " " + Te * 100 + "%").join(",") + ")", De = (Fe = ha(x, S, "temperature")) == null ? void 0 : Fe.value;
     return '<div class="wbCard wbHc wbHourly wbBars' + (pt(k("hourly").filter((Te) => new Date(Te.datetime).getTime() > Date.now() - Wt)).length > 1 ? " wbTabbed" : "") + '">' + L + '<div class="wbDayBars" role="list">' + F.map((Te, Ve) => {
-      const tt = Je(y, Te), Re = Qr(new Date(Te.datetime), /* @__PURE__ */ new Date()), et = Number(Te.templow), nt = Number(Te.temperature);
-      return '<div class="wbDayBar" role="listitem" aria-label="' + je(qn(Ye.rangeRow, { day: tt, low: un(y, et), high: un(y, nt) })) + '"><span class="wbRangeDay">' + je(tt) + "</span>" + Xe(Te.condition, 40, !1, "r" + Ve) + '<span class="wbRangeLo">' + je(un(y, et)) + '</span><span class="wbRangeTrack"><i class="wbRangeFill" style="background:' + Ce + ";clip-path:inset(0 " + (100 - ye(nt)) + "% 0 " + ye(et) + '% round 4px)"></i>' + (Re && Jt(De) ? '<i class="wbRangeNow" style="left:' + ye(Number(De)) + '%"></i>' : "") + '</span><span class="wbRangeHi">' + je(un(y, nt)) + "</span></div>";
+      const tt = Je(x, Te), Re = Qr(new Date(Te.datetime), /* @__PURE__ */ new Date()), et = Number(Te.templow), nt = Number(Te.temperature);
+      return '<div class="wbDayBar" role="listitem" aria-label="' + je(qn(Ye.rangeRow, { day: tt, low: un(x, et), high: un(x, nt) })) + '"><span class="wbRangeDay">' + je(tt) + "</span>" + Xe(Te.condition, 40, !1, "r" + Ve) + '<span class="wbRangeLo">' + je(un(x, et)) + '</span><span class="wbRangeTrack"><i class="wbRangeFill" style="background:' + Ce + ";clip-path:inset(0 " + (100 - xe(nt)) + "% 0 " + xe(et) + '% round 4px)"></i>' + (Re && Jt(De) ? '<i class="wbRangeNow" style="left:' + xe(Number(De)) + '%"></i>' : "") + '</span><span class="wbRangeHi">' + je(un(x, nt)) + "</span></div>";
     }).join("") + "</div></div>";
   }
-  function jn(y) {
-    const S = Ae, { rise: L, set: F } = Ld(y, S), Z = L && F ? Math.round((F.getTime() - L.getTime()) / oo) : 0, Q = Math.floor(Z / 60), de = Z % 60, ye = L && F ? (S.getTime() - L.getTime()) / (F.getTime() - L.getTime()) : -1, be = ye >= 0 && ye <= 1, He = Math.PI * (1 - Math.min(1, Math.max(0, ye))), Ce = 100 + 74 * Math.cos(He), De = 100 - 74 * Math.sin(He), Be = be ? Math.sin(Math.PI * ye) : 0, Fe = be ? Gs("#2e0a0d", "#43180a", Be) : "#0e0507", Te = be ? Gs("#7a1d12", "#8f400f", Be) : "#1c0709", Ve = Gs("#f60c08", "#ff8f00", Be), tt = Gs("#fd9b07", "#ffd84a", Be), Re = be ? Gs("#fd9b07", "#ffd84a", Be) : "#6b3a2a", et = (Kt) => Kt ? Uo(Kt, y) : "–", nt = L && F ? new Date((L.getTime() + F.getTime()) / 2) : null;
+  function jn(x) {
+    const S = Ae, { rise: L, set: F } = Ld(x, S), Z = L && F ? Math.round((F.getTime() - L.getTime()) / oo) : 0, Q = Math.floor(Z / 60), de = Z % 60, xe = L && F ? (S.getTime() - L.getTime()) / (F.getTime() - L.getTime()) : -1, be = xe >= 0 && xe <= 1, He = Math.PI * (1 - Math.min(1, Math.max(0, xe))), Ce = 100 + 74 * Math.cos(He), De = 100 - 74 * Math.sin(He), Be = be ? Math.sin(Math.PI * xe) : 0, Fe = be ? Gs("#2e0a0d", "#43180a", Be) : "#0e0507", Te = be ? Gs("#7a1d12", "#8f400f", Be) : "#1c0709", Ve = Gs("#f60c08", "#ff8f00", Be), tt = Gs("#fd9b07", "#ffd84a", Be), Re = be ? Gs("#fd9b07", "#ffd84a", Be) : "#6b3a2a", et = (Kt) => Kt ? Uo(Kt, x) : "–", nt = L && F ? new Date((L.getTime() + F.getTime()) / 2) : null;
     return ma({
-      icon: yn.sunny,
+      icon: xn.sunny,
       name: Ye.sun,
       sub: Z ? qn(Ye.daylightShort, { hours: Q, minutes: de }) : void 0,
-      visual: '<div class="wbSunSky" style="background:linear-gradient(180deg, ' + Fe + ", " + Te + ");--wb-sun-line:" + Re + '"><svg viewBox="0 0 200 124" aria-hidden="true"><defs><radialGradient id="' + x + 'sun-glow"><stop offset="0" stop-color="' + Ve + '"></stop><stop offset="0.45" stop-color="' + Ve + '"></stop><stop offset="1" stop-color="' + tt + '"></stop></radialGradient><clipPath id="' + x + 'above-horizon"><rect x="0" y="0" width="200" height="100"></rect></clipPath></defs><path class="wbSunPath" d="M 26 100 A 74 74 0 0 1 174 100"></path><line class="wbHorizon" x1="0" x2="200" y1="100" y2="100"></line>' + (be ? '<circle cx="' + Ce + '" cy="' + De + '" r="14" fill="url(#' + x + 'sun-glow)" clip-path="url(#' + x + 'above-horizon)"></circle>' : "") + (nt ? '<text class="wbSunTime wbNoon" x="100" y="1">' + je(et(nt)) + "</text>" : "") + '<text class="wbSunTime" x="26" y="117">' + je(et(L)) + '</text><text class="wbSunTime" x="174" y="117">' + je(et(F)) + "</text></svg></div>"
+      visual: '<div class="wbSunSky" style="background:linear-gradient(180deg, ' + Fe + ", " + Te + ");--wb-sun-line:" + Re + '"><svg viewBox="0 0 200 124" aria-hidden="true"><defs><radialGradient id="' + y + 'sun-glow"><stop offset="0" stop-color="' + Ve + '"></stop><stop offset="0.45" stop-color="' + Ve + '"></stop><stop offset="1" stop-color="' + tt + '"></stop></radialGradient><clipPath id="' + y + 'above-horizon"><rect x="0" y="0" width="200" height="100"></rect></clipPath></defs><path class="wbSunPath" d="M 26 100 A 74 74 0 0 1 174 100"></path><line class="wbHorizon" x1="0" x2="200" y1="100" y2="100"></line>' + (be ? '<circle cx="' + Ce + '" cy="' + De + '" r="14" fill="url(#' + y + 'sun-glow)" clip-path="url(#' + y + 'above-horizon)"></circle>' : "") + (nt ? '<text class="wbSunTime wbNoon" x="100" y="1">' + je(et(nt)) + "</text>" : "") + '<text class="wbSunTime" x="26" y="117">' + je(et(L)) + '</text><text class="wbSunTime" x="174" y="117">' + je(et(F)) + "</text></svg></div>"
     });
   }
-  function Wa(y, S, L) {
-    const F = (de) => x + "moon-" + de, Z = y > 0.995 ? "" : '<path class="wbMoonNight" filter="url(#' + F("terminator") + ')" d="' + Yf(61, 61, 57.9, y) + '"' + (S ? ' transform="translate(122 0) scale(-1 1)"' : "") + "></path>", Q = (de, ye, be, He, Ce, De) => '<filter id="' + F(de) + '" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="' + ye + '" numOctaves="' + be + '" seed="' + He + '"></feTurbulence><feColorMatrix values="0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1"></feColorMatrix><feComponentTransfer>' + ["R", "G", "B"].map((Be) => "<feFunc" + Be + ' type="linear" slope="' + Ce + '" intercept="' + De + '"></feFunc' + Be + ">").join("") + "</feComponentTransfer></filter>";
-    return '<svg class="wbMoonArt" width="122" height="122" viewBox="0 0 122 122" aria-hidden="true"><defs><radialGradient id="' + F("fill") + '" cx="0.42" cy="0.38" r="0.68"><stop offset="0" stop-color="#ECECE8"></stop><stop offset="0.7" stop-color="#D2D2CD"></stop><stop offset="1" stop-color="#ACACA7"></stop></radialGradient><clipPath id="' + F("clip") + '"><circle cx="61" cy="61" r="54.9"></circle></clipPath><filter id="' + F("soften") + '" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"></feGaussianBlur></filter><filter id="' + F("glow") + '" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"></feGaussianBlur></filter><filter id="' + F("terminator") + '" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1"></feGaussianBlur></filter>' + Q("mottle", "0.045", 4, 3, 1.8, -0.4) + Q("grain", "1.2", 2, 7, 2, -0.5) + '</defs><g clip-path="url(#' + F("clip") + ')"><circle cx="61" cy="61" r="54.9" fill="url(#' + F("fill") + ')"></circle><g' + (L ? ' transform="rotate(180 61 61)"' : "") + '><g class="wbMaria" filter="url(#' + F("soften") + ')">' + Xf.map(([de, ye, be, He, Ce, De]) => '<ellipse cx="' + de + '" cy="' + ye + '" rx="' + be + '" ry="' + He + '" fill-opacity="' + De + '" transform="rotate(' + Ce + " " + de + " " + ye + ')"></ellipse>').join("") + "</g>" + Jf.map(([de, ye, be]) => '<circle class="wbCrater" cx="' + de + '" cy="' + ye + '" r="' + be + '"></circle>').join("") + '<g class="wbRays" filter="url(#' + F("glow") + ')">' + Qf.map(([de, ye]) => '<line x1="54.4" y1="95" x2="' + de + '" y2="' + ye + '"></line>').join("") + '</g><g class="wbBrightSpots" filter="url(#' + F("glow") + ')">' + Hc.map(([de, ye, be]) => '<circle cx="' + de + '" cy="' + ye + '" r="' + be * 2 + '"></circle>').join("") + "</g>" + Hc.map(([de, ye, be]) => '<circle class="wbBrightCenter" cx="' + de + '" cy="' + ye + '" r="' + be + '"></circle>').join("") + '</g><rect class="wbMottle" width="122" height="122" filter="url(#' + F("mottle") + ')"></rect><rect class="wbGrain" width="122" height="122" filter="url(#' + F("grain") + ')"></rect>' + Z + '</g><circle cx="61" cy="61" r="54.9" fill="none" stroke="#B4B4B4" stroke-width="0.2"></circle></svg>';
+  function Wa(x, S, L) {
+    const F = (de) => y + "moon-" + de, Z = x > 0.995 ? "" : '<path class="wbMoonNight" filter="url(#' + F("terminator") + ')" d="' + Yf(61, 61, 57.9, x) + '"' + (S ? ' transform="translate(122 0) scale(-1 1)"' : "") + "></path>", Q = (de, xe, be, He, Ce, De) => '<filter id="' + F(de) + '" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="' + xe + '" numOctaves="' + be + '" seed="' + He + '"></feTurbulence><feColorMatrix values="0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1"></feColorMatrix><feComponentTransfer>' + ["R", "G", "B"].map((Be) => "<feFunc" + Be + ' type="linear" slope="' + Ce + '" intercept="' + De + '"></feFunc' + Be + ">").join("") + "</feComponentTransfer></filter>";
+    return '<svg class="wbMoonArt" width="122" height="122" viewBox="0 0 122 122" aria-hidden="true"><defs><radialGradient id="' + F("fill") + '" cx="0.42" cy="0.38" r="0.68"><stop offset="0" stop-color="#ECECE8"></stop><stop offset="0.7" stop-color="#D2D2CD"></stop><stop offset="1" stop-color="#ACACA7"></stop></radialGradient><clipPath id="' + F("clip") + '"><circle cx="61" cy="61" r="54.9"></circle></clipPath><filter id="' + F("soften") + '" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"></feGaussianBlur></filter><filter id="' + F("glow") + '" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"></feGaussianBlur></filter><filter id="' + F("terminator") + '" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1"></feGaussianBlur></filter>' + Q("mottle", "0.045", 4, 3, 1.8, -0.4) + Q("grain", "1.2", 2, 7, 2, -0.5) + '</defs><g clip-path="url(#' + F("clip") + ')"><circle cx="61" cy="61" r="54.9" fill="url(#' + F("fill") + ')"></circle><g' + (L ? ' transform="rotate(180 61 61)"' : "") + '><g class="wbMaria" filter="url(#' + F("soften") + ')">' + Xf.map(([de, xe, be, He, Ce, De]) => '<ellipse cx="' + de + '" cy="' + xe + '" rx="' + be + '" ry="' + He + '" fill-opacity="' + De + '" transform="rotate(' + Ce + " " + de + " " + xe + ')"></ellipse>').join("") + "</g>" + Jf.map(([de, xe, be]) => '<circle class="wbCrater" cx="' + de + '" cy="' + xe + '" r="' + be + '"></circle>').join("") + '<g class="wbRays" filter="url(#' + F("glow") + ')">' + Qf.map(([de, xe]) => '<line x1="54.4" y1="95" x2="' + de + '" y2="' + xe + '"></line>').join("") + '</g><g class="wbBrightSpots" filter="url(#' + F("glow") + ')">' + Hc.map(([de, xe, be]) => '<circle cx="' + de + '" cy="' + xe + '" r="' + be * 2 + '"></circle>').join("") + "</g>" + Hc.map(([de, xe, be]) => '<circle class="wbBrightCenter" cx="' + de + '" cy="' + xe + '" r="' + be + '"></circle>').join("") + '</g><rect class="wbMottle" width="122" height="122" filter="url(#' + F("mottle") + ')"></rect><rect class="wbGrain" width="122" height="122" filter="url(#' + F("grain") + ')"></rect>' + Z + '</g><circle cx="61" cy="61" r="54.9" fill="none" stroke="#B4B4B4" stroke-width="0.2"></circle></svg>';
   }
-  function Ni(y) {
-    const S = H, L = jl(y), F = (L == null ? void 0 : L.lat) ?? 0, Z = If(S), Q = Pc(y), de = Q ? y.states[Q] : void 0, ye = br(de) && hf.includes(de.state) ? de.state : Hf(Z.phase), { rise: be, set: He } = L ? Pf(S, L.lat, L.lon) : {}, Ce = Z.phase > 0.5 != F < 0, De = fn(Math.round(Z.fraction * 100), y.locale) + "%", Be = be ?? He, Fe = Be ? Uo(Be, y) : void 0;
+  function Ni(x) {
+    const S = H, L = jl(x), F = (L == null ? void 0 : L.lat) ?? 0, Z = If(S), Q = Pc(x), de = Q ? x.states[Q] : void 0, xe = br(de) && hf.includes(de.state) ? de.state : Hf(Z.phase), { rise: be, set: He } = L ? Pf(S, L.lat, L.lon) : {}, Ce = Z.phase > 0.5 != F < 0, De = fn(Math.round(Z.fraction * 100), x.locale) + "%", Be = be ?? He, Fe = Be ? Uo(Be, x) : void 0;
     return ma({
-      icon: yn.night,
+      icon: xn.night,
       name: Ye.moon,
-      sub: Ye.phases[ye],
+      sub: Ye.phases[xe],
       visual: '<div class="wbMoonBox">' + Wa(Z.fraction, Ce, F < 0) + '</div><div class="wbScaleNote wbMoonCaption"><span>' + (Fe ? je(qn(be ? Ye.moonriseAt : Ye.moonsetAt, { time: Fe })) : "") + "</span><span>" + je(qn(Ye.lit, { illumination: De })) + "</span></div>"
     });
   }
-  function Ge(y, S) {
+  function Ge(x, S) {
     var Te;
-    const L = ha(y, S, "wind_speed");
+    const L = ha(x, S, "wind_speed");
     if (!L || !Jt(L.value)) return "";
-    const F = ha(y, S, "wind_gust_speed"), Z = ha(y, S, "wind_bearing"), Q = Z && Jt(Z.value) ? Number(Z.value) : void 0, de = jf(Number(L.value), (Te = L.stateObj.attributes) == null ? void 0 : Te.wind_speed_unit), ye = Fl(y, L.stateObj, "wind_speed", L.value), be = Q !== void 0 ? Ye.cardinal[ff[((Q + 11.25) / 22.5 | 0) % 16]] : void 0, He = F ? qf(y, F.stateObj, "wind_gust_speed", F.value) : void 0, Ce = [be ? qn(Ye.windFrom, { direction: be }) : void 0, de !== void 0 ? de + " " + Ye.beaufort : void 0].filter(Boolean).join(" · ") || He, De = (Ve, tt) => {
+    const F = ha(x, S, "wind_gust_speed"), Z = ha(x, S, "wind_bearing"), Q = Z && Jt(Z.value) ? Number(Z.value) : void 0, de = jf(Number(L.value), (Te = L.stateObj.attributes) == null ? void 0 : Te.wind_speed_unit), xe = Fl(x, L.stateObj, "wind_speed", L.value), be = Q !== void 0 ? Ye.cardinal[ff[((Q + 11.25) / 22.5 | 0) % 16]] : void 0, He = F ? qf(x, F.stateObj, "wind_gust_speed", F.value) : void 0, Ce = [be ? qn(Ye.windFrom, { direction: be }) : void 0, de !== void 0 ? de + " " + Ye.beaufort : void 0].filter(Boolean).join(" · ") || He, De = (Ve, tt) => {
       const Re = (Ve - 90) * Math.PI / 180;
       return [100 + tt * Math.cos(Re), 100 + tt * Math.sin(Re)];
     }, Be = Array.from({ length: 36 }, (Ve, tt) => tt * 10).map((Ve) => {
@@ -5417,188 +5417,188 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
       const [Re, et] = De(tt, 64);
       return '<text class="wbLetter' + (Ve === "n" ? " wbNorth" : "") + '" x="' + Re + '" y="' + et + '">' + je(Ye.cardinal[Ve]) + "</text>";
     }).join("");
-    return ma({ icon: yn.windy, name: Ye.wind, sub: Ce, cls: "wbWind", visual: '<svg viewBox="0 0 200 200" aria-hidden="true">' + Be + Fe + (Q !== void 0 ? '<path class="wbMarker" transform="rotate(' + Q + ' 100 100)" d="M 100 24 L 91 5 L 109 5 Z"></path>' : "") + '<circle class="wbDisc" cx="100" cy="100" r="46"></circle><text class="wbSpeed" x="100" y="102">' + je(ye.number) + '</text><text class="wbSpeedUnit" x="100" y="124">' + je(ye.unit) + "</text></svg>" });
+    return ma({ icon: xn.windy, name: Ye.wind, sub: Ce, cls: "wbWind", visual: '<svg viewBox="0 0 200 200" aria-hidden="true">' + Be + Fe + (Q !== void 0 ? '<path class="wbMarker" transform="rotate(' + Q + ' 100 100)" d="M 100 24 L 91 5 L 109 5 Z"></path>' : "") + '<circle class="wbDisc" cx="100" cy="100" r="46"></circle><text class="wbSpeed" x="100" y="102">' + je(xe.number) + '</text><text class="wbSpeedUnit" x="100" y="124">' + je(xe.unit) + "</text></svg>" });
   }
-  function ot(y, S) {
-    const L = ha(y, S, "uv_index");
+  function ot(x, S) {
+    const L = ha(x, S, "uv_index");
     if (!L || !Jt(L.value)) return "";
     const F = Number(L.value), Z = Ye.uvLevel[zf(F)], Q = /* @__PURE__ */ new Date();
     Q.setHours(23, 59, 59, 999);
-    const de = k("hourly").filter((Ve) => Ve.uv_index != null && new Date(Ve.datetime) > /* @__PURE__ */ new Date() && new Date(Ve.datetime) <= Q).reduce((Ve, tt) => !Ve || tt.uv_index > Ve.uv ? { uv: tt.uv_index, time: new Date(tt.datetime) } : Ve, void 0), ye = 48, be = 100, He = 130, Ce = (Ve) => -ye + Math.min(Ve, 11) / 11 * 2 * ye, De = (Ve, tt) => {
+    const de = k("hourly").filter((Ve) => Ve.uv_index != null && new Date(Ve.datetime) > /* @__PURE__ */ new Date() && new Date(Ve.datetime) <= Q).reduce((Ve, tt) => !Ve || tt.uv_index > Ve.uv ? { uv: tt.uv_index, time: new Date(tt.datetime) } : Ve, void 0), xe = 48, be = 100, He = 130, Ce = (Ve) => -xe + Math.min(Ve, 11) / 11 * 2 * xe, De = (Ve, tt) => {
       const Re = Ve * Math.PI / 180;
       return [be + tt * Math.sin(Re), He - tt * Math.cos(Re)];
     }, Be = (Ve, tt, Re) => {
       const [et, nt] = De(Ce(Ve), Re), [Kt, Pe] = De(Ce(tt), Re);
       return "M " + et + " " + nt + " A " + Re + " " + Re + " 0 0 1 " + Kt + " " + Pe;
-    }, Te = '<svg class="wbVu" viewBox="0 0 200 134" preserveAspectRatio="xMidYMax meet" aria-hidden="true">' + [[0, 3, Dl.low], [3, 6, Dl.moderate], [6, 8, Dl.high], [8, 11, Dl.very_high]].map(([Ve, tt, Re]) => '<path class="wbVuZone" d="' + Be(Ve, tt, 96) + '" style="stroke:' + Re + '"></path>').join("") + Array.from({ length: 21 }, (Ve, tt) => ({ angle: -ye + tt * (2 * ye / 20), major: tt % 2 === 0 })).map(({ angle: Ve, major: tt }) => {
+    }, Te = '<svg class="wbVu" viewBox="0 0 200 134" preserveAspectRatio="xMidYMax meet" aria-hidden="true">' + [[0, 3, Dl.low], [3, 6, Dl.moderate], [6, 8, Dl.high], [8, 11, Dl.very_high]].map(([Ve, tt, Re]) => '<path class="wbVuZone" d="' + Be(Ve, tt, 96) + '" style="stroke:' + Re + '"></path>').join("") + Array.from({ length: 21 }, (Ve, tt) => ({ angle: -xe + tt * (2 * xe / 20), major: tt % 2 === 0 })).map(({ angle: Ve, major: tt }) => {
       const [Re, et] = De(Ve, 102), [nt, Kt] = De(Ve, tt ? 114 : 108);
       return '<line class="wbVuTick' + (tt ? " wbMajor" : "") + '" x1="' + Re + '" y1="' + et + '" x2="' + nt + '" y2="' + Kt + '"></line>';
-    }).join("") + '<text class="wbVuLabel" x="100" y="70.1">UV</text><g class="wbVuNeedle" style="--wb-angle:' + Ce(F) + 'deg"><line x1="' + be + '" y1="' + He + '" x2="' + be + '" y2="' + (He - 116) + '"></line></g><path class="wbVuHousing" d="M 64 134 L 64 128 A 36 36 0 0 1 136 128 L 136 134 Z"></path><text class="wbVuValue" x="100" y="114.9">' + je(fn(Math.round(F), y.locale)) + "</text></svg>";
+    }).join("") + '<text class="wbVuLabel" x="100" y="70.1">UV</text><g class="wbVuNeedle" style="--wb-angle:' + Ce(F) + 'deg"><line x1="' + be + '" y1="' + He + '" x2="' + be + '" y2="' + (He - 116) + '"></line></g><path class="wbVuHousing" d="M 64 134 L 64 128 A 36 36 0 0 1 136 128 L 136 134 Z"></path><text class="wbVuValue" x="100" y="114.9">' + je(fn(Math.round(F), x.locale)) + "</text></svg>";
     return ma({
-      icon: yn.sunnyAlert,
+      icon: xn.sunnyAlert,
       name: Ye.metrics.uv_index,
-      sub: de && de.uv > F ? qn(Ye.uvPeak, { level: Z, uv_index: fn(Math.round(de.uv), y.locale), time: Uo(de.time, y) }) : Z,
+      sub: de && de.uv > F ? qn(Ye.uvPeak, { level: Z, uv_index: fn(Math.round(de.uv), x.locale), time: Uo(de.time, x) }) : Z,
       visual: Te
     });
   }
-  function jt(y) {
+  function jt(x) {
     const S = k("daily")[0], L = re.temperatureHistory;
     if (!S || new Date(S.datetime).toDateString() !== (/* @__PURE__ */ new Date()).toDateString() || !Jt(S.temperature) || !L || L.dailyHighs.length < lf) return "";
-    const F = Number(S.temperature), Z = L.dailyHighs.reduce((nt, Kt) => nt + Kt, 0) / L.dailyHighs.length, Q = Math.round(F - Z) || 0, de = Q > 0 ? "above" : Q < 0 ? "below" : "same", ye = [...L.days, { date: /* @__PURE__ */ new Date(), high: F, today: !0 }], be = 220, He = 158, Ce = 22, De = 20, Be = ye.map((nt) => nt.high).concat(Z), Fe = Math.min(...Be) - 3, Te = Math.max(...Be) + 1, Ve = (nt) => Ce + (1 - (nt - Fe) / (Te - Fe)) * (He - Ce - De), tt = be / ye.length, Re = Math.min(18, tt * 0.6), et = '<svg class="wbCompareBars" viewBox="0 0 ' + be + " " + He + '" aria-hidden="true"><line class="wbAvgLine" x1="0" x2="' + be + '" y1="' + Ve(Z) + '" y2="' + Ve(Z) + '"></line>' + ye.map((nt, Kt) => {
+    const F = Number(S.temperature), Z = L.dailyHighs.reduce((nt, Kt) => nt + Kt, 0) / L.dailyHighs.length, Q = Math.round(F - Z) || 0, de = Q > 0 ? "above" : Q < 0 ? "below" : "same", xe = [...L.days, { date: /* @__PURE__ */ new Date(), high: F, today: !0 }], be = 220, He = 158, Ce = 22, De = 20, Be = xe.map((nt) => nt.high).concat(Z), Fe = Math.min(...Be) - 3, Te = Math.max(...Be) + 1, Ve = (nt) => Ce + (1 - (nt - Fe) / (Te - Fe)) * (He - Ce - De), tt = be / xe.length, Re = Math.min(18, tt * 0.6), et = '<svg class="wbCompareBars" viewBox="0 0 ' + be + " " + He + '" aria-hidden="true"><line class="wbAvgLine" x1="0" x2="' + be + '" y1="' + Ve(Z) + '" y2="' + Ve(Z) + '"></line>' + xe.map((nt, Kt) => {
       const Pe = Kt * tt + tt / 2, Pt = Ve(nt.high), Vt = nt.today ? " wbToday" : "";
-      return '<rect class="wbAvgBar' + Vt + '" x="' + (Pe - Re / 2) + '" y="' + Pt + '" width="' + Re + '" height="' + (He - De - Pt) + '" rx="5"></rect><text class="wbAvgValue' + Vt + '" x="' + Pe + '" y="' + (Pt - 6) + '">' + je(un(y, nt.high)) + '</text><text class="wbAvgDay' + Vt + '" x="' + Pe + '" y="' + (He - 4) + '">' + je(Cf(nt.date, y)) + "</text>";
+      return '<rect class="wbAvgBar' + Vt + '" x="' + (Pe - Re / 2) + '" y="' + Pt + '" width="' + Re + '" height="' + (He - De - Pt) + '" rx="5"></rect><text class="wbAvgValue' + Vt + '" x="' + Pe + '" y="' + (Pt - 6) + '">' + je(un(x, nt.high)) + '</text><text class="wbAvgDay' + Vt + '" x="' + Pe + '" y="' + (He - 4) + '">' + je(Cf(nt.date, x)) + "</text>";
     }).join("") + "</svg>";
     return ma({
-      icon: yn.chartLine,
+      icon: xn.chartLine,
       name: Ye.metrics.compared_to_average,
       double: !0,
       sub: qn(Ye.highsLastDays, { days: L.days.length }),
-      visual: '<div class="wbCompare"><div class="wbCompareText"><div class="wbCompareNumber">' + (Q > 0 ? "+" : "") + je(un(y, Q)) + '</div><div class="wbCompareWords">' + je(Ye.average[de]) + '</div><div class="wbCompareTemps">' + je(qn(Ye.todayVsAverage, { today: un(y, F), average: un(y, Z) })) + "</div></div>" + et + "</div>"
+      visual: '<div class="wbCompare"><div class="wbCompareText"><div class="wbCompareNumber">' + (Q > 0 ? "+" : "") + je(un(x, Q)) + '</div><div class="wbCompareWords">' + je(Ye.average[de]) + '</div><div class="wbCompareTemps">' + je(qn(Ye.todayVsAverage, { today: un(x, F), average: un(x, Z) })) + "</div></div>" + et + "</div>"
     });
   }
-  function So(y, S) {
-    const L = ha(y, S, "humidity");
+  function So(x, S) {
+    const L = ha(x, S, "humidity");
     if (!L || !Jt(L.value)) return "";
-    const F = ha(y, S, "dew_point"), Z = Math.max(0, Math.min(100, Number(L.value)));
+    const F = ha(x, S, "dew_point"), Z = Math.max(0, Math.min(100, Number(L.value)));
     return ma({
-      icon: yn.waterPercent,
+      icon: xn.waterPercent,
       name: Ye.metrics.humidity,
-      sub: F && Jt(F.value) ? qn(Ye.dewPoint, { dew_point: un(y, F.value) }) : void 0,
+      sub: F && Jt(F.value) ? qn(Ye.dewPoint, { dew_point: un(x, F.value) }) : void 0,
       backdrop: '<div class="wbWater" style="height:' + Z + '%"><div class="wbMist"></div><div class="wbBody"></div><div class="wbHaze wbOne"></div><div class="wbHaze wbTwo"></div></div>',
-      visual: '<div class="wbWaterValue">' + _i(fn(Math.round(Number(L.value)), y.locale), "%") + "</div>"
+      visual: '<div class="wbWaterValue">' + _i(fn(Math.round(Number(L.value)), x.locale), "%") + "</div>"
     });
   }
-  function Vn(y, S) {
+  function Vn(x, S) {
     var He, Ce;
-    const L = ha(y, S, "pressure");
+    const L = ha(x, S, "pressure");
     if (!L || !Jt(L.value)) return "";
     const F = Number(L.value), Z = (He = L.stateObj.attributes) == null ? void 0 : He.pressure_unit, Q = Nc(F, Z), de = ((Ce = re.pressureHistory) == null ? void 0 : Ce.entityId) === L.stateObj.entity_id ? Nc(re.pressureHistory.value, Z) : void 0;
-    let ye;
+    let xe;
     if (Q !== void 0 && de !== void 0) {
       const De = Q - de;
-      ye = De >= Tc ? "rising" : De <= -Tc ? "falling" : "steady";
+      xe = De >= Tc ? "rising" : De <= -Tc ? "falling" : "steady";
     }
-    const be = Fl(y, L.stateObj, "pressure", Math.round(F));
+    const be = Fl(x, L.stateObj, "pressure", Math.round(F));
     return ma({
-      icon: yn.gauge,
+      icon: xn.gauge,
       name: Ye.metrics.pressure,
-      sub: ye ? Ye.pressure[ye] : void 0,
-      visual: '<div class="wbTapeRow"><div class="wbTapeValue">' + _i(be.number) + '<span class="wbTapeUnit">' + je(be.unit) + "</span></div>" + (Q !== void 0 ? tn(y, Q) : "") + "</div>"
+      sub: xe ? Ye.pressure[xe] : void 0,
+      visual: '<div class="wbTapeRow"><div class="wbTapeValue">' + _i(be.number) + '<span class="wbTapeUnit">' + je(be.unit) + "</span></div>" + (Q !== void 0 ? tn(x, Q) : "") + "</div>"
     });
   }
-  function tn(y, S) {
+  function tn(x, S) {
     const Z = Math.floor(S) - 11;
     return '<svg class="wbTape" viewBox="0 0 76 200" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">' + Array.from({ length: 24 }, (Q, de) => Z + de).map((Q) => {
       const de = 100 - (Q - S) * 9;
       if (de < 22 || de > 178) return "";
-      const ye = Q % 5 === 0;
-      return '<g opacity="' + Math.max(0.15, 1 - Math.abs(de - 100) / 100) + '"><line class="wbTapeTick" x1="' + (ye ? 2 : 8) + '" x2="26" y1="' + de + '" y2="' + de + '"></line>' + (ye ? '<text class="wbTapeLabel" x="33" y="' + de + '">' + je(fn(Q, y.locale, { useGrouping: !1 })) + "</text>" : "") + "</g>";
+      const xe = Q % 5 === 0;
+      return '<g opacity="' + Math.max(0.15, 1 - Math.abs(de - 100) / 100) + '"><line class="wbTapeTick" x1="' + (xe ? 2 : 8) + '" x2="26" y1="' + de + '" y2="' + de + '"></line>' + (xe ? '<text class="wbTapeLabel" x="33" y="' + de + '">' + je(fn(Q, x.locale, { useGrouping: !1 })) + "</text>" : "") + "</g>";
     }).join("") + '<text class="wbTapeEnd" x="14" y="8">' + je(Ye.high) + '</text><text class="wbTapeEnd" x="14" y="192">' + je(Ye.low) + '</text><line class="wbTapeMarker" x1="0" x2="30" y1="100" y2="100"></line></svg>';
   }
-  function Jo(y) {
+  function Jo(x) {
     var be, He;
-    const S = Ad(y), L = S ? y.states[S] : void 0;
+    const S = Ad(x), L = S ? x.states[S] : void 0;
     if (!L || ((be = re.rain) == null ? void 0 : be.entityId) !== S || !Jt(re.rain.change)) return "";
-    const F = ((He = L.attributes) == null ? void 0 : He.unit_of_measurement) ?? "", Z = _(y, "hourly"), Q = Date.now() + xo, de = k("hourly").filter((Ce) => Ce.precipitation != null && new Date(Ce.datetime).getTime() <= Q), ye = de.reduce((Ce, De) => Ce + Number(De.precipitation), 0);
+    const F = ((He = L.attributes) == null ? void 0 : He.unit_of_measurement) ?? "", Z = _(x, "hourly"), Q = Date.now() + yo, de = k("hourly").filter((Ce) => Ce.precipitation != null && new Date(Ce.datetime).getTime() <= Q), xe = de.reduce((Ce, De) => Ce + Number(De.precipitation), 0);
     return ma({
-      icon: yn.rainy,
+      icon: xn.rainy,
       name: Ye.metrics.precipitation,
-      sub: Z && de.length ? qn(Ye.rainExpected, { amount: fn(ye, y.locale, { maximumFractionDigits: 1 }) + " " + gr(y, Z, "precipitation") }) : Ye.rainLast24h,
-      visual: _i(fn(re.rain.change, y.locale, { maximumFractionDigits: 1 }), F) + (de.length > 1 ? $f(de.map((Ce) => ({ label: "", value: Number(Ce.precipitation) }))) : "")
+      sub: Z && de.length ? qn(Ye.rainExpected, { amount: fn(xe, x.locale, { maximumFractionDigits: 1 }) + " " + gr(x, Z, "precipitation") }) : Ye.rainLast24h,
+      visual: _i(fn(re.rain.change, x.locale, { maximumFractionDigits: 1 }), F) + (de.length > 1 ? $f(de.map((Ce) => ({ label: "", value: Number(Ce.precipitation) }))) : "")
     });
   }
-  function ln(y, S) {
-    const L = ha(y, S, "visibility");
+  function ln(x, S) {
+    const L = ha(x, S, "visibility");
     if (!L || !Jt(L.value)) return "";
-    const F = Fl(y, L.stateObj, "visibility", L.value), Z = $u(Number(L.value), gr(y, L.stateObj, "visibility"));
+    const F = Fl(x, L.stateObj, "visibility", L.value), Z = $u(Number(L.value), gr(x, L.stateObj, "visibility"));
     return ma({
-      icon: yn.eyeOutline,
+      icon: xn.eyeOutline,
       name: Ye.metrics.visibility,
       sub: Ye.visibilityLevel[Xu(Z)],
-      visual: '<div class="wbSea"><canvas class="wbSeaArt" data-wb-sea="' + Z + '" aria-hidden="true"></canvas><div class="wbSeaFact">' + je(qa(y, Z)) + '</div><div class="wbSeaValue">' + _i(F.number, F.unit) + "</div></div>"
+      visual: '<div class="wbSea"><canvas class="wbSeaArt" data-wb-sea="' + Z + '" aria-hidden="true"></canvas><div class="wbSeaFact">' + je(qa(x, Z)) + '</div><div class="wbSeaValue">' + _i(F.number, F.unit) + "</div></div>"
     });
   }
-  function qa(y, S) {
+  function qa(x, S) {
     var Q;
-    const L = Ku((Q = y.config) == null ? void 0 : Q.country, S);
+    const L = Ku((Q = x.config) == null ? void 0 : Q.country, S);
     if (L) return qn(Ye.visibilityLandmarks, { from: L.from, to: L.to });
     const F = S / pf * 60;
     if (F < 60) {
       const de = F < 5 ? Math.max(1, Math.round(F)) : 5 * Math.round(F / 5);
-      if (de < 60) return qn(Ye.walkMinutes, { minutes: fn(de, y.locale) });
+      if (de < 60) return qn(Ye.walkMinutes, { minutes: fn(de, x.locale) });
     }
     const Z = Math.max(1, Math.round(F / 30) / 2);
-    return Z < 8 ? qn(Ye.walkHours, { hours: fn(Z, y.locale) }) : Ye.walkDay;
+    return Z < 8 ? qn(Ye.walkHours, { hours: fn(Z, x.locale) }) : Ye.walkDay;
   }
-  function za(y) {
-    re.categories === void 0 && Tn(y);
-    const S = mt(y), L = (be) => be.map((He) => y.states[He]).filter(br), F = L(S.air), Z = L(S.pollen);
+  function za(x) {
+    re.categories === void 0 && Tn(x);
+    const S = mt(x), L = (be) => be.map((He) => x.states[He]).filter(br), F = L(S.air), Z = L(S.pollen);
     if (!F.length && !Z.length) return "";
-    const Q = [...F, ...Z], de = (be) => Z.includes(be) ? yn.flower : yn.airFilter, ye = Q.find((be) => be.entity_id === P.aq);
-    return ye ? Co(y, ye, de(ye)) : '<div class="wbCard wbHc wbAq"><div class="wbHeader"><h2 class="wbTitle">' + je(Ye.airQuality) + '</h2></div><div class="wbAqTiles">' + Q.map((be) => '<button class="wbTile" data-wb="aq-open" data-entity="' + je(be.entity_id) + '"><span class="wbChip">' + ts(de(be)) + '</span><span class="wbText"><span class="wbName">' + je(Vs(y, be)) + '</span><span class="wbSub">' + je(mr(y, be)) + "</span></span></button>").join("") + "</div></div>";
+    const Q = [...F, ...Z], de = (be) => Z.includes(be) ? xn.flower : xn.airFilter, xe = Q.find((be) => be.entity_id === P.aq);
+    return xe ? Co(x, xe, de(xe)) : '<div class="wbCard wbHc wbAq"><div class="wbHeader"><h2 class="wbTitle">' + je(Ye.airQuality) + '</h2></div><div class="wbAqTiles">' + Q.map((be) => '<button class="wbTile" data-wb="aq-open" data-entity="' + je(be.entity_id) + '"><span class="wbChip">' + ts(de(be)) + '</span><span class="wbText"><span class="wbName">' + je(Vs(x, be)) + '</span><span class="wbSub">' + je(mr(x, be)) + "</span></span></button>").join("") + "</div></div>";
   }
-  function Co(y, S, L) {
+  function Co(x, S, L) {
     var Ce, De, Be;
-    const F = ((Ce = S.attributes) == null ? void 0 : Ce.unit_of_measurement) ?? "", Z = ((De = S.attributes) == null ? void 0 : De.device_class) === "pm25" && F === Lc && Jt(S.state), Q = Number(S.state), de = Z ? Rc(Q) : void 0, ye = ((Be = re.aqHistory) == null ? void 0 : Be.entityId) === S.entity_id ? re.aqHistory.points : void 0, be = (Fe) => Math.min(100, Math.max(0, Fe / Bl * 100));
+    const F = ((Ce = S.attributes) == null ? void 0 : Ce.unit_of_measurement) ?? "", Z = ((De = S.attributes) == null ? void 0 : De.device_class) === "pm25" && F === Lc && Jt(S.state), Q = Number(S.state), de = Z ? Rc(Q) : void 0, xe = ((Be = re.aqHistory) == null ? void 0 : Be.entityId) === S.entity_id ? re.aqHistory.points : void 0, be = (Fe) => Math.min(100, Math.max(0, Fe / Bl * 100));
     let He;
-    if (ye && ye.length > 1) He = Kf(ye, (Fe) => (fn(Fe, y.locale, { maximumFractionDigits: 1 }) + " " + F).trim());
+    if (xe && xe.length > 1) He = Kf(xe, (Fe) => (fn(Fe, x.locale, { maximumFractionDigits: 1 }) + " " + F).trim());
     else if (de) {
       let Fe = 0;
-      const Te = xp.map(([Ve, tt]) => {
+      const Te = yp.map(([Ve, tt]) => {
         const Re = be(Math.min(tt, Bl)), et = mf[Ve] + " " + Fe + "% " + Re + "%";
         return Fe = Re, et;
       });
       He = '<div class="wbScale" role="meter" aria-label="' + je(Ye.fineParticles) + '" aria-valuemin="0" aria-valuemax="' + Bl + '" aria-valuenow="' + Q + '" style="background:linear-gradient(to right, ' + Te.join(", ") + ')"><i style="left:' + be(Q) + '%"></i></div><div class="wbGraphNote"><span>0</span><span>' + Bl + " " + Lc + "</span></div>";
-    } else He = '<span class="wbGraphNote"><span>' + je(mr(y, S)) + "</span></span>";
-    return '<div class="wbCard wbHc wbAq wbAqOpen"><div class="wbOpen"><div class="wbOpenHead"><span class="wbChip">' + ts(L) + '</span><span class="wbText"><span class="wbName">' + je(Vs(y, S)) + '</span><span class="wbSub">' + je(mr(y, S)) + (de ? " · " + je(Ye.aqLevel[de]) : "") + '</span></span><button class="wbBack" title="' + je(Ye.back) + '" data-wb="aq-close">' + ts(yn.back) + '</button></div><div class="wbGraph">' + He + "</div></div></div>";
+    } else He = '<span class="wbGraphNote"><span>' + je(mr(x, S)) + "</span></span>";
+    return '<div class="wbCard wbHc wbAq wbAqOpen"><div class="wbOpen"><div class="wbOpenHead"><span class="wbChip">' + ts(L) + '</span><span class="wbText"><span class="wbName">' + je(Vs(x, S)) + '</span><span class="wbSub">' + je(mr(x, S)) + (de ? " · " + je(Ye.aqLevel[de]) : "") + '</span></span><button class="wbBack" title="' + je(Ye.back) + '" data-wb="aq-close">' + ts(xn.back) + '</button></div><div class="wbGraph">' + He + "</div></div></div>";
   }
-  const Yt = { good: "Good", fair: "Fair", moderate: "Moderate", poor: "Poor", very_poor: "Very poor", extremely_poor: "Extremely poor" }, ja = (y) => y <= 50 ? "Good" : y <= 100 ? "Moderate" : y <= 150 ? "Unhealthy for some" : y <= 200 ? "Unhealthy" : y <= 300 ? "Very unhealthy" : "Hazardous";
-  function Gn(y) {
+  const Yt = { good: "Good", fair: "Fair", moderate: "Moderate", poor: "Poor", very_poor: "Very poor", extremely_poor: "Extremely poor" }, ja = (x) => x <= 50 ? "Good" : x <= 100 ? "Moderate" : x <= 150 ? "Unhealthy for some" : x <= 200 ? "Unhealthy" : x <= 300 ? "Very unhealthy" : "Hazardous";
+  function Gn(x) {
     const S = /* @__PURE__ */ new Map();
-    return Object.values(y.states || {}).filter((L) => {
+    return Object.values(x.states || {}).filter((L) => {
       var F;
-      return L.entity_id.startsWith("sensor.") && ql.includes(((F = L.attributes) == null ? void 0 : F.device_class) ?? "") && br(L) && as(y, L.entity_id);
+      return L.entity_id.startsWith("sensor.") && ql.includes(((F = L.attributes) == null ? void 0 : F.device_class) ?? "") && br(L) && as(x, L.entity_id);
     }).sort((L, F) => L.entity_id.localeCompare(F.entity_id)).forEach((L) => {
       S.has(L.attributes.device_class) || S.set(L.attributes.device_class, L);
     }), ql.map((L) => S.get(L)).filter(Boolean);
   }
-  const Va = (y) => Object.values(y.states || {}).filter((S) => {
+  const Va = (x) => Object.values(x.states || {}).filter((S) => {
     var L, F;
-    return S.entity_id.startsWith("sensor.") && br(S) && as(y, S.entity_id) && (((F = (L = y.entities) == null ? void 0 : L[S.entity_id]) == null ? void 0 : F.translation_key) ?? S.entity_id).toLowerCase().includes("pollen");
-  }), ro = ["none", "very_low", "low", "moderate", "high", "very_high"], an = (y) => Jt(y.state) ? Number(y.state) : ro.indexOf(String(y.state).toLowerCase().replace(/ /g, "_")), Ga = (y) => {
-    const S = String(y).replace(/_/g, " ");
+    return S.entity_id.startsWith("sensor.") && br(S) && as(x, S.entity_id) && (((F = (L = x.entities) == null ? void 0 : L[S.entity_id]) == null ? void 0 : F.translation_key) ?? S.entity_id).toLowerCase().includes("pollen");
+  }), ro = ["none", "very_low", "low", "moderate", "high", "very_high"], an = (x) => Jt(x.state) ? Number(x.state) : ro.indexOf(String(x.state).toLowerCase().replace(/ /g, "_")), Ga = (x) => {
+    const S = String(x).replace(/_/g, " ");
     return S[0].toUpperCase() + S.slice(1);
-  }, la = (y) => y.length ? '<div class="wbBaseRows">' + y.map(([S, L]) => '<span class="wbBaseRow"><span>' + je(S) + "</span><span>" + je(L) + "</span></span>").join("") + "</div>" : "";
-  function Qo(y) {
-    const S = Gn(y), L = S[0];
-    if (!L) return ma({ icon: yn.airFilter, name: Ye.airQuality, sub: Ye.noAir, visual: _i("–", ""), cls: "wbBase" });
-    const F = L.attributes.device_class, Z = Number(L.state), Q = Jt(L.state), de = F === "aqi" && Q ? ja(Z) : F === "pm25" && Q ? Yt[Rc(Z)] : mr(y, L);
+  }, la = (x) => x.length ? '<div class="wbBaseRows">' + x.map(([S, L]) => '<span class="wbBaseRow"><span>' + je(S) + "</span><span>" + je(L) + "</span></span>").join("") + "</div>" : "";
+  function Qo(x) {
+    const S = Gn(x), L = S[0];
+    if (!L) return ma({ icon: xn.airFilter, name: Ye.airQuality, sub: Ye.noAir, visual: _i("–", ""), cls: "wbBase" });
+    const F = L.attributes.device_class, Z = Number(L.state), Q = Jt(L.state), de = F === "aqi" && Q ? ja(Z) : F === "pm25" && Q ? Yt[Rc(Z)] : mr(x, L);
     return ma({
-      icon: yn.airFilter,
+      icon: xn.airFilter,
       name: Ye.airQuality,
       sub: de,
       cls: "wbBase",
-      visual: _i(Q ? fn(Math.round(Z), y.locale) : String(L.state), F === "aqi" ? "AQI" : L.attributes.unit_of_measurement || "") + la(S.slice(1, 3).map((ye) => [Vs(y, ye), mr(y, ye)]))
+      visual: _i(Q ? fn(Math.round(Z), x.locale) : String(L.state), F === "aqi" ? "AQI" : L.attributes.unit_of_measurement || "") + la(S.slice(1, 3).map((xe) => [Vs(x, xe), mr(x, xe)]))
     });
   }
-  function Pi(y) {
-    const S = Va(y).sort((Z, Q) => an(Q) - an(Z));
-    if (!S.length) return ma({ icon: yn.flower, name: Ye.pollen, sub: Ye.noPollen, visual: _i("–", ""), cls: "wbBase" });
-    const L = S[0], F = (Z) => Jt(Z.state) ? mr(y, Z) : Ga(Z.state);
+  function Pi(x) {
+    const S = Va(x).sort((Z, Q) => an(Q) - an(Z));
+    if (!S.length) return ma({ icon: xn.flower, name: Ye.pollen, sub: Ye.noPollen, visual: _i("–", ""), cls: "wbBase" });
+    const L = S[0], F = (Z) => Jt(Z.state) ? mr(x, Z) : Ga(Z.state);
     return ma({
-      icon: yn.flower,
+      icon: xn.flower,
       name: Ye.pollen,
-      sub: Vs(y, L) + " · " + F(L),
+      sub: Vs(x, L) + " · " + F(L),
       cls: "wbBase",
-      visual: _i(F(L), "") + la(S.slice(1, 3).map((Z) => [Vs(y, Z), F(Z)]))
+      visual: _i(F(L), "") + la(S.slice(1, 3).map((Z) => [Vs(x, Z), F(Z)]))
     });
   }
-  function Ii(y) {
+  function Ii(x) {
     const S = Date.now(), L = k("hourly").filter((Q) => {
       const de = new Date(Q.datetime).getTime();
       return de > S - Wt && de < S + 12 * Wt;
-    }), F = L.find((Q) => (Q.precipitation_probability ?? 0) >= 50 || (Q.precipitation ?? 0) >= 0.2), Z = F ? qn(Ye.rainFrom, { time: Uo(new Date(Math.max(S, new Date(F.datetime).getTime())), y) }) : L.length ? Ye.noRain12 : void 0;
-    return ma({ icon: yn.radar, name: Ye.rainRadar, sub: Z, cls: "wbBase", visual: '<div class="wbRadar" aria-hidden="true"><i class="wbRadarRing"></i><i class="wbRadarHome"></i></div>' });
+    }), F = L.find((Q) => (Q.precipitation_probability ?? 0) >= 50 || (Q.precipitation ?? 0) >= 0.2), Z = F ? qn(Ye.rainFrom, { time: Uo(new Date(Math.max(S, new Date(F.datetime).getTime())), x) }) : L.length ? Ye.noRain12 : void 0;
+    return ma({ icon: xn.radar, name: Ye.rainRadar, sub: Z, cls: "wbBase", visual: '<div class="wbRadar" aria-hidden="true"><i class="wbRadarRing"></i><i class="wbRadarHome"></i></div>' });
   }
   const is = {
     current: Dn,
@@ -5617,7 +5617,7 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     pollen_tile: Pi,
     radar_tile: Ii
   };
-  function kt(y) {
+  function kt(x) {
     var He, Ce, De;
     const S = l == null ? void 0 : l();
     if (!S || Y) return;
@@ -5636,9 +5636,9 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
       S.entities,
       Math.floor(Date.now() / oo)
     ];
-    if (!y && G && de.length === G.length && de.every((Be, Fe) => Be === G[Fe])) return;
+    if (!x && G && de.length === G.length && de.every((Be, Fe) => Be === G[Fe])) return;
     G = de;
-    const ye = R.getRootNode(), be = ye.activeElement || document.activeElement;
+    const xe = R.getRootNode(), be = xe.activeElement || document.activeElement;
     for (const Be of U) {
       const Fe = ne[Be];
       let Te = "";
@@ -5661,54 +5661,54 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     }));
   }
   function Hi() {
-    const y = getComputedStyle(R), S = (de) => y.getPropertyValue(de).trim(), L = {};
-    [["skyClearDay", "--wx-clear"], ["skyClearNight", "--wx-night"], ["skyCloudyDay", "--wx-cloudy"], ["cloudDay", "--wx-cloud-bright"], ["cloudNight", "--wx-cloudy"], ["rain", "--primary"]].forEach(([de, ye]) => {
-      S(ye) && (L[de] = S(ye));
+    const x = getComputedStyle(R), S = (de) => x.getPropertyValue(de).trim(), L = {};
+    [["skyClearDay", "--wx-clear"], ["skyClearNight", "--wx-night"], ["skyCloudyDay", "--wx-cloudy"], ["cloudDay", "--wx-cloud-bright"], ["cloudNight", "--wx-cloudy"], ["rain", "--primary"]].forEach(([de, xe]) => {
+      S(xe) && (L[de] = S(xe));
     });
     const F = S("--color-text-primary") || "#f1f1f1", Z = S("--color-bg-card") || "#222222", Q = !!R.closest(".light");
     return { colors: { ...sa, ...L }, ink: Q ? F : Z, paper: Q ? Z : F };
   }
-  const Fi = (y, S) => {
+  const Fi = (x, S) => {
     var L;
-    y.width !== S.w && (y.width = S.w), y.height !== S.h && (y.height = S.h), (L = y.getContext("2d")) == null || L.putImageData(new ImageData(S.data, S.w, S.h), 0, 0);
+    x.width !== S.w && (x.width = S.w), x.height !== S.h && (x.height = S.h), (L = x.getContext("2d")) == null || L.putImageData(new ImageData(S.data, S.w, S.h), 0, 0);
   }, Bn = () => h && !kf();
-  function Bt(y, S) {
-    R.querySelectorAll("canvas[data-wb-strip]").forEach((L) => on(L, Ie[L.dataset.wbStrip], y, S));
+  function Bt(x, S) {
+    R.querySelectorAll("canvas[data-wb-strip]").forEach((L) => on(L, Ie[L.dataset.wbStrip], x, S));
   }
-  function on(y, S, L, F) {
-    if (!S || !y.getClientRects().length) return;
-    const Z = y.clientWidth, Q = y.clientHeight;
+  function on(x, S, L, F) {
+    if (!S || !x.getClientRects().length) return;
+    const Z = x.clientWidth, Q = x.clientHeight;
     if (!Z || !Q) return;
     const de = { width: Z, height: Q, columns: S.columns || kc, colors: F.colors, clock: L, ambient: Bn(), seed: S.seed, soft: 1.5 };
     if (c === "smooth") {
-      const ye = Math.min(2, window.devicePixelRatio || 1), be = Math.round(Z * ye), He = Math.round(Q * ye);
-      y.width !== be && (y.width = be), y.height !== He && (y.height = He);
-      const Ce = y.getContext("2d");
+      const xe = Math.min(2, window.devicePixelRatio || 1), be = Math.round(Z * xe), He = Math.round(Q * xe);
+      x.width !== be && (x.width = be), x.height !== He && (x.height = He);
+      const Ce = x.getContext("2d");
       if (!Ce) return;
-      Ce.setTransform(ye, 0, 0, ye, 0, 0), Du(Ce, S.segs, de);
-    } else Fi(y, Eu(S.segs, { ...de, px: 2, oneBit: c === "onebit", ink: F.ink, paper: F.paper }));
+      Ce.setTransform(xe, 0, 0, xe, 0, 0), Du(Ce, S.segs, de);
+    } else Fi(x, Eu(S.segs, { ...de, px: 2, oneBit: c === "onebit", ink: F.ink, paper: F.paper }));
   }
-  function St(y) {
+  function St(x) {
     if (Y) return;
     const S = Hi();
     if (c !== "smooth") {
       const L = Bn();
       R.querySelectorAll("canvas[data-wb-wx]").forEach((F) => {
-        F.getClientRects().length && Fi(F, dp(qd(F.dataset.wbWx, S.colors), { size: Number(F.dataset.size) || 40, px: 2, oneBit: c === "onebit", colors: S.colors, ink: S.ink, paper: S.paper, clock: y, idle: L }));
+        F.getClientRects().length && Fi(F, dp(qd(F.dataset.wbWx, S.colors), { size: Number(F.dataset.size) || 40, px: 2, oneBit: c === "onebit", colors: S.colors, ink: S.ink, paper: S.paper, clock: x, idle: L }));
       });
     }
     R.querySelectorAll("canvas[data-wb-sea]").forEach((L) => {
       const F = L.clientWidth, Z = L.clientHeight, Q = Number(L.dataset.wbSea), de = F + "x" + Z + ":" + Q + ":" + S.colors.skyClearDay;
       !F || !Z || !(Q > 0) || L.dataset.painted === de || (L.dataset.painted = de, Fi(L, Uu(F, Z, Q, S.colors)));
-    }), Bt(y, S);
+    }), Bt(x, S);
   }
-  function so(y) {
+  function so(x) {
     if (W = 0, !(Y || !Bn())) {
       if (!document.hidden)
-        if (c === "smooth") Bt(y, Hi());
+        if (c === "smooth") Bt(x, Hi());
         else {
-          const S = Math.floor(y / 100);
-          S !== pe && (pe = S, St(y));
+          const S = Math.floor(x / 100);
+          S !== pe && (pe = S, St(x));
         }
       W = requestAnimationFrame(so);
     }
@@ -5716,9 +5716,9 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
   function La() {
     R.classList.toggle("wbMotion", Bn()), !W && !Y && Bn() && (W = requestAnimationFrame(so));
   }
-  function To(y) {
+  function To(x) {
     var L, F;
-    const S = (F = (L = y.target).closest) == null ? void 0 : F.call(L, "[data-wb]");
+    const S = (F = (L = x.target).closest) == null ? void 0 : F.call(L, "[data-wb]");
     if (!(!S || !R.contains(S))) {
       switch (S.dataset.wb) {
         case "day": {
@@ -5763,31 +5763,31 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
       kt(!0);
     }
   }
-  function Rn(y) {
+  function Rn(x) {
     var S, L;
-    y.key === "Escape" && P.openDay !== void 0 && ((L = (S = y.target).closest) != null && L.call(S, '[data-wb-open="day"]')) && (P.openDay = void 0, ue = P.opener, P.opener = void 0, kt(!0));
+    x.key === "Escape" && P.openDay !== void 0 && ((L = (S = x.target).closest) != null && L.call(S, '[data-wb-open="day"]')) && (P.openDay = void 0, ue = P.opener, P.opener = void 0, kt(!0));
   }
   let Nn = null;
-  function ei(y) {
+  function ei(x) {
     var L, F;
-    const S = (F = (L = y.target).closest) == null ? void 0 : F.call(L, ".wbStripScroll");
-    !S || y.button !== 0 || (Nn = { startX: y.pageX, left: S.scrollLeft, moved: !1 }, S.classList.add("wbHeld"), window.addEventListener("mousemove", ti), window.addEventListener("mouseup", va, { once: !0 }));
+    const S = (F = (L = x.target).closest) == null ? void 0 : F.call(L, ".wbStripScroll");
+    !S || x.button !== 0 || (Nn = { startX: x.pageX, left: S.scrollLeft, moved: !1 }, S.classList.add("wbHeld"), window.addEventListener("mousemove", ti), window.addEventListener("mouseup", va, { once: !0 }));
   }
-  function ti(y) {
+  function ti(x) {
     const S = R.querySelector(".wbStripScroll");
     if (!Nn || !S) return;
-    const L = y.pageX - Nn.startX;
+    const L = x.pageX - Nn.startX;
     !Nn.moved && Math.abs(L) > 1 && (Nn.moved = !0, S.classList.add("wbDragging")), S.scrollLeft = Nn.left - L;
   }
   function va() {
     Nn = null, window.removeEventListener("mousemove", ti);
-    const y = R.querySelector(".wbStripScroll");
-    if (!y) return;
-    y.classList.remove("wbDragging", "wbHeld");
-    const S = [...y.querySelectorAll(".wbSnap")];
+    const x = R.querySelector(".wbStripScroll");
+    if (!x) return;
+    x.classList.remove("wbDragging", "wbHeld");
+    const S = [...x.querySelectorAll(".wbSnap")];
     if (S.length) {
-      const L = S.reduce((F, Z) => Math.abs(Z.offsetLeft - y.scrollLeft) < Math.abs(F.offsetLeft - y.scrollLeft) ? Z : F);
-      y.scrollTo({ left: L.offsetLeft, behavior: "smooth" });
+      const L = S.reduce((F, Z) => Math.abs(Z.offsetLeft - x.scrollLeft) < Math.abs(F.offsetLeft - x.scrollLeft) ? Z : F);
+      x.scrollTo({ left: L.offsetLeft, behavior: "smooth" });
     }
   }
   R.addEventListener("click", To), R.addEventListener("keydown", Rn), R.addEventListener("mousedown", ei);
@@ -5814,12 +5814,12 @@ function Fc(a, { getHass: l, entityId: o, style: c = "bitmap", motion: h = !0, c
     refresh() {
       kt(!0);
     },
-    setStyle(y) {
-      !y || y === c || (c = y, R.dataset.style = c, kt(!0), La());
+    setStyle(x) {
+      !x || x === c || (c = x, R.dataset.style = c, kt(!0), La());
     },
     destroy() {
-      var y;
-      Y = !0, Lo.forEach(clearInterval), W && cancelAnimationFrame(W), W = 0, da == null || da.disconnect(), (y = $n == null ? void 0 : $n.removeEventListener) == null || y.call($n, "change", Oi), va(), R.removeEventListener("click", To), R.removeEventListener("keydown", Rn), R.removeEventListener("mousedown", ei), ["daily", "hourly"].forEach(T), R.remove();
+      var x;
+      Y = !0, Lo.forEach(clearInterval), W && cancelAnimationFrame(W), W = 0, da == null || da.disconnect(), (x = $n == null ? void 0 : $n.removeEventListener) == null || x.call($n, "change", Oi), va(), R.removeEventListener("click", To), R.removeEventListener("keydown", Rn), R.removeEventListener("mousedown", ei), ["daily", "hourly"].forEach(T), R.remove();
     }
   };
 }
@@ -5847,21 +5847,21 @@ function nh(a) {
     o = Ei[A], c = Ei[A + 1];
     break;
   }
-  const h = (l - o[0]) / (c[0] - o[0]), v = h * h * (3 - 2 * h), w = (A, x) => {
-    const R = parseInt(A.slice(1), 16), ve = parseInt(x.slice(1), 16);
+  const h = (l - o[0]) / (c[0] - o[0]), v = h * h * (3 - 2 * h), w = (A, y) => {
+    const R = parseInt(A.slice(1), 16), ve = parseInt(y.slice(1), 16);
     return "#" + [16, 8, 0].map((ie) => Math.round((R >> ie & 255) + ((ve >> ie & 255) - (R >> ie & 255)) * v).toString(16).padStart(2, "0")).join("");
   };
   return { top: w(o[1][0], c[1][0]), bot: w(o[1][1], c[1][1]), warm: w(o[1][2], c[1][2]), cool: w(o[1][3], c[1][3]), op: o[1][4] + (c[1][4] - o[1][4]) * v, t: l };
 }
 function ah(a) {
   const l = parseInt(a.slice(1), 16), o = (l >> 16 & 255) / 255, c = (l >> 8 & 255) / 255, h = (l & 255) / 255, v = Math.max(o, c, h), w = Math.min(o, c, h);
-  let A = 0, x = 0;
+  let A = 0, y = 0;
   const R = (v + w) / 2;
   if (v !== w) {
     const ve = v - w;
-    x = R > 0.5 ? ve / (2 - v - w) : ve / (v + w), A = (v === o ? (c - h) / ve + (c < h ? 6 : 0) : v === c ? (h - o) / ve + 2 : (o - c) / ve + 4) / 6;
+    y = R > 0.5 ? ve / (2 - v - w) : ve / (v + w), A = (v === o ? (c - h) / ve + (c < h ? 6 : 0) : v === c ? (h - o) / ve + 2 : (o - c) / ve + 4) / 6;
   }
-  return [A * 360, x * 100, R * 100];
+  return [A * 360, y * 100, R * 100];
 }
 function Rp(a, l, o) {
   l = ko(l, 0, 100) / 100, o = ko(o, 0, 100) / 100;
@@ -5870,8 +5870,8 @@ function Rp(a, l, o) {
 }
 const [Np, Pp, Ip] = ah(Ys), Wc = Rp(Np, Pp, Math.max(6, Ip - 14)), oh = Rp(Np, Pp, Math.min(96, Ip + 16));
 function ih(a, l, o, c, h) {
-  const v = Dt / 2, w = Dt * 0.12, A = v - (v - w) * a, x = (ne) => ne ** 1.3, R = ko(o, -1.5, 1.5), ve = (ne) => -(Math.abs(R) * 4.6 * ne ** 1.5) * Math.sign(R), ie = a * 1.4, U = (ne, Y) => {
-    const G = Math.min(4.8, Math.abs(o) * 2.6) * (Y ? 1 : -1) * Math.sign(o || 1), W = Y ? ne + A : ne, pe = Y ? ne : ne + A, ee = (Ae) => W + ve(Ae) + G * Math.sin(Ae * Math.PI * 1.2 + c) * x(Ae) * 1.4 + ie * Math.sin(Ae * Math.PI * 2 + c * 0.6) * x(Ae) * (Y ? 1 : -1), ue = [[pe, Tt]];
+  const v = Dt / 2, w = Dt * 0.12, A = v - (v - w) * a, y = (ne) => ne ** 1.3, R = ko(o, -1.5, 1.5), ve = (ne) => -(Math.abs(R) * 4.6 * ne ** 1.5) * Math.sign(R), ie = a * 1.4, U = (ne, Y) => {
+    const G = Math.min(4.8, Math.abs(o) * 2.6) * (Y ? 1 : -1) * Math.sign(o || 1), W = Y ? ne + A : ne, pe = Y ? ne : ne + A, ee = (Ae) => W + ve(Ae) + G * Math.sin(Ae * Math.PI * 1.2 + c) * y(Ae) * 1.4 + ie * Math.sin(Ae * Math.PI * 2 + c * 0.6) * y(Ae) * (Y ? 1 : -1), ue = [[pe, Tt]];
     for (let Ae = 0; Ae <= 12; Ae++) ue.push([ee(Ae / 12), Tt + Dt * Ae / 12]);
     ue.push([pe, Tt + Dt]);
     let J = '<path d="' + Ed(ue) + 'Z" fill="' + Ys + '"/>';
@@ -5880,7 +5880,7 @@ function ih(a, l, o, c, h) {
       const H = Ae / 7, Ie = Y ? 1 - H : H, V = (1 - Ie) ** 1.3, qe = ne + A * H;
       return Array.from({ length: 13 }, (k, _) => {
         const T = _ / 12;
-        return [qe + ve(T) * V + G * E * Math.sin(T * Math.PI * 1.2 + c - Ie * 3.2) * x(T) * 1.4 * V + ie * 1.6 * Math.sin(T * Math.PI * 2 + c * 0.6 - Ie * 2.5) * x(T) * a * (0.4 + 0.6 * V), Tt + Dt * T];
+        return [qe + ve(T) * V + G * E * Math.sin(T * Math.PI * 1.2 + c - Ie * 3.2) * y(T) * 1.4 * V + ie * 1.6 * Math.sin(T * Math.PI * 2 + c * 0.6 - Ie * 2.5) * y(T) * a * (0.4 + 0.6 * V), Tt + Dt * T];
       });
     }, re = [1, 2, 3, 4, 5, 6].map(P);
     for (let Ae = 0; Ae < 6; Ae += 2) J += '<path d="' + Ed(re[Ae]) + Ed(re[Ae + 1].slice().reverse()).replace("M", "L") + 'Z" fill="#fff"/>';
@@ -5896,7 +5896,7 @@ function rh(a, l, o) {
   return { body: h, rails: [{ x: Tt, y: Tt + Dt * (1 - l) - 7, w: Dt, h: 11 }], head: 10.4 };
 }
 function sh(a, l, o, c) {
-  const h = 9 - 7 * (o / 100), v = Tt + Dt * (1 - a), w = Math.ceil(Dt / 10) + 1, A = Tt + h / 2, x = (Tt + Dt - h / 2 - A) / (w - 1), R = 0.8, ve = 0.6, ie = Array.from({ length: w }, (ne, Y) => Math.max(A + Y * ve, Math.min(A + Y * x, v - h / 2 - (w - 1 - Y) * ve))), U = ie.slice(0, -1).map((ne, Y) => ko((ie[Y + 1] - ne - ve) / (x - ve), 0, 1));
+  const h = 9 - 7 * (o / 100), v = Tt + Dt * (1 - a), w = Math.ceil(Dt / 10) + 1, A = Tt + h / 2, y = (Tt + Dt - h / 2 - A) / (w - 1), R = 0.8, ve = 0.6, ie = Array.from({ length: w }, (ne, Y) => Math.max(A + Y * ve, Math.min(A + Y * y, v - h / 2 - (w - 1 - Y) * ve))), U = ie.slice(0, -1).map((ne, Y) => ko((ie[Y + 1] - ne - ve) / (y - ve), 0, 1));
   U.push(U[w - 2]);
   let $ = "";
   return ie.forEach((ne, Y) => {
@@ -5912,13 +5912,13 @@ function lh(a, l) {
   return l.forEach((h) => {
     const v = h.w > h.h, w = ko(v ? Tt + Dt / 2 : h.x + h.w / 2, 17, 183), A = ko(v ? h.y + h.h / 2 : Tt + Dt / 2, 17, 183);
     o += v ? $o(Tt, ko(h.y + h.h / 2, Tt, Tt + Dt) - 1, Dt, 2, _d) : $o(ko(h.x + h.w / 2, Tt, Tt + Dt) - 1, Tt, 2, Dt, _d);
-    const x = v ? "M" + Qt(w - 4) + " " + Qt(A - 3) + "l4 -3l4 3M" + Qt(w - 4) + " " + Qt(A + 3) + "l4 3l4 -3" : "M" + Qt(w - 3) + " " + Qt(A - 4) + "l-3 4l3 4M" + Qt(w + 3) + " " + Qt(A - 4) + "l3 4l-3 4";
-    c += '<circle cx="' + Qt(w) + '" cy="' + Qt(A) + '" r="11" fill="' + _d + '" filter="url(#' + a + 's)"/><path d="' + x + '" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
+    const y = v ? "M" + Qt(w - 4) + " " + Qt(A - 3) + "l4 -3l4 3M" + Qt(w - 4) + " " + Qt(A + 3) + "l4 3l4 -3" : "M" + Qt(w - 3) + " " + Qt(A - 4) + "l-3 4l3 4M" + Qt(w + 3) + " " + Qt(A - 4) + "l3 4l-3 4";
+    c += '<circle cx="' + Qt(w) + '" cy="' + Qt(A) + '" r="11" fill="' + _d + '" filter="url(#' + a + 's)"/><path d="' + y + '" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
   }), { lines: o, knobs: c };
 }
 function dh(a, l) {
-  const o = /* @__PURE__ */ new Date(), c = nh(o.getHours() + o.getMinutes() / 60), h = 42 + 18 * Math.sin(c.t * 0.5), v = c.t >= 5 && c.t <= 20 ? 40 - 48 * Math.sin(Math.PI * (c.t - 5) / 15) : 80, w = qc(l.kind, l.pos / 100, l.bar / 100, l.tilt, l.vel, l.ph, !1), A = l.ghostAlpha > 4e-3 && l.ghost != null ? qc(l.kind, l.ghost / 100, l.ghost / 100, l.tilt, 0, 0, !0).body : "", x = l.grip > 4e-3 ? lh(a, w.rails) : null, R = (ve) => $o(Tt, Tt, Dt, Dt, ve);
-  return '<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><clipPath id="' + a + 'c"><rect x="14" y="14" width="172" height="172" rx="8"/></clipPath><linearGradient id="' + a + 'l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c.top + '"/><stop offset="1" stop-color="' + c.bot + '"/></linearGradient><radialGradient id="' + a + 'w" cx="' + Qt(h) + '%" cy="' + Qt(v) + '%" r="58%"><stop offset="0" stop-color="' + c.warm + '" stop-opacity="' + Qt(c.op * 0.8) + '"/><stop offset="1" stop-color="' + c.warm + '" stop-opacity="0"/></radialGradient><radialGradient id="' + a + 'k" cx="' + Qt(100 - h * 0.8) + '%" cy="' + Qt(100 - v * 0.6) + '%" r="62%"><stop offset="0" stop-color="' + c.cool + '" stop-opacity="' + Qt(c.op * 0.64) + '"/><stop offset="1" stop-color="' + c.cool + '" stop-opacity="0"/></radialGradient><filter id="' + a + 's" x="-5%" y="-50%" width="110%" height="300%"><feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000" flood-opacity=".18"/></filter></defs><rect x="6" y="6" width="188" height="188" rx="16" fill="' + Oc + '" stroke="#E3E3E3" stroke-width=".4"/><g clip-path="url(#' + a + 'c)">' + R("url(#" + a + "l)") + R("url(#" + a + "w)") + R("url(#" + a + "k)") + (A ? '<g opacity="' + Qt(l.ghostAlpha) + '">' + A + "</g>" : "") + w.body + '<rect x="14" y="14" width="172" height="' + w.head + '" fill="' + Ys + '" filter="url(#' + a + 's)"/></g>' + (x ? '<g clip-path="url(#' + a + 'c)" opacity="' + Qt(l.grip) + '">' + x.lines + "</g>" : "") + '<rect x="13.5" y="13.5" width="173" height="173" rx="8.5" fill="none" stroke="' + Oc + '" stroke-width="3"/>' + (x ? '<g opacity="' + Qt(l.grip) + '">' + x.knobs + "</g>" : "") + "</svg>";
+  const o = /* @__PURE__ */ new Date(), c = nh(o.getHours() + o.getMinutes() / 60), h = 42 + 18 * Math.sin(c.t * 0.5), v = c.t >= 5 && c.t <= 20 ? 40 - 48 * Math.sin(Math.PI * (c.t - 5) / 15) : 80, w = qc(l.kind, l.pos / 100, l.bar / 100, l.tilt, l.vel, l.ph, !1), A = l.ghostAlpha > 4e-3 && l.ghost != null ? qc(l.kind, l.ghost / 100, l.ghost / 100, l.tilt, 0, 0, !0).body : "", y = l.grip > 4e-3 ? lh(a, w.rails) : null, R = (ve) => $o(Tt, Tt, Dt, Dt, ve);
+  return '<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><clipPath id="' + a + 'c"><rect x="14" y="14" width="172" height="172" rx="8"/></clipPath><linearGradient id="' + a + 'l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c.top + '"/><stop offset="1" stop-color="' + c.bot + '"/></linearGradient><radialGradient id="' + a + 'w" cx="' + Qt(h) + '%" cy="' + Qt(v) + '%" r="58%"><stop offset="0" stop-color="' + c.warm + '" stop-opacity="' + Qt(c.op * 0.8) + '"/><stop offset="1" stop-color="' + c.warm + '" stop-opacity="0"/></radialGradient><radialGradient id="' + a + 'k" cx="' + Qt(100 - h * 0.8) + '%" cy="' + Qt(100 - v * 0.6) + '%" r="62%"><stop offset="0" stop-color="' + c.cool + '" stop-opacity="' + Qt(c.op * 0.64) + '"/><stop offset="1" stop-color="' + c.cool + '" stop-opacity="0"/></radialGradient><filter id="' + a + 's" x="-5%" y="-50%" width="110%" height="300%"><feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000" flood-opacity=".18"/></filter></defs><rect x="6" y="6" width="188" height="188" rx="16" fill="' + Oc + '" stroke="#E3E3E3" stroke-width=".4"/><g clip-path="url(#' + a + 'c)">' + R("url(#" + a + "l)") + R("url(#" + a + "w)") + R("url(#" + a + "k)") + (A ? '<g opacity="' + Qt(l.ghostAlpha) + '">' + A + "</g>" : "") + w.body + '<rect x="14" y="14" width="172" height="' + w.head + '" fill="' + Ys + '" filter="url(#' + a + 's)"/></g>' + (y ? '<g clip-path="url(#' + a + 'c)" opacity="' + Qt(l.grip) + '">' + y.lines + "</g>" : "") + '<rect x="13.5" y="13.5" width="173" height="173" rx="8.5" fill="none" stroke="' + Oc + '" stroke-width="3"/>' + (y ? '<g opacity="' + Qt(l.grip) + '">' + y.knobs + "</g>" : "") + "</svg>";
 }
 function ch({ onMove: a, onSet: l }) {
   var J;
@@ -5927,8 +5927,8 @@ function ch({ onMove: a, onSet: l }) {
   const h = (J = window.matchMedia) == null ? void 0 : J.call(window, "(pointer: coarse)").matches;
   let v = null;
   const w = { pos: 0, tilt: 0, vel: 0, ph: 0, grip: 0, ghost: 0, gpos: null, last: 0 };
-  let A = 0, x = !1, R = !1, ve = null, ie = 0, U = 0;
-  const $ = () => (v == null ? void 0 : v.kind) === "curtain" ? "x" : "y", ne = () => ve || x || R || v.moving || v.target != null ? 1 : h ? performance.now() < U ? 1 : 0.4 : 0, Y = () => {
+  let A = 0, y = !1, R = !1, ve = null, ie = 0, U = 0;
+  const $ = () => (v == null ? void 0 : v.kind) === "curtain" ? "x" : "y", ne = () => ve || y || R || v.moving || v.target != null ? 1 : h ? performance.now() < U ? 1 : 0.4 : 0, Y = () => {
     c.innerHTML = dh(o, { kind: v.kind, pos: w.pos, bar: v.target ?? w.pos, tilt: w.tilt, vel: w.vel, ph: w.ph, ghost: w.gpos, ghostAlpha: w.ghost, grip: w.grip });
   };
   function G(E) {
@@ -5978,9 +5978,9 @@ function ch({ onMove: a, onSet: l }) {
     ve = null, E != null && l(Math.round(E)), W();
   };
   return c.addEventListener("pointerup", ue), c.addEventListener("pointercancel", ue), c.addEventListener("lostpointercapture", ue), c.addEventListener("pointerenter", () => {
-    x = !0, W();
+    y = !0, W();
   }), c.addEventListener("pointerleave", () => {
-    x = !1, W();
+    y = !1, W();
   }), c.addEventListener("focus", () => {
     R = c.matches(":focus-visible"), W();
   }), c.addEventListener("blur", () => {
@@ -6036,11 +6036,11 @@ const zc = "move-assistant-density", Di = {
   media_players: { name: "Media players", icon: "mdi:multimedia", colour: "#2196f3" },
   maintenance: { name: "Maintenance", icon: "mdi:wrench", colour: "#9e9e9e" },
   energy: { name: "Energy", icon: "mdi:lightning-bolt", colour: "#ffc107" }
-}, Xc = "move_assistant_house", Jc = "move-assistant-house-used", yh = ["switch", "fan", "input_boolean", "automation"], Qc = "move-assistant-house-look", xh = [["popup", "Popup"], ["sheet", "Sheet"]], kh = [["auto", "Automatic"], ["cut", "Cut short"], ["wrap", "Two lines"], ["scroll", "Scroll"]], Mh = [["day", "Daytime 06–22"], ["waking", "Waking 07–23"], ["all", "All day"]], Sh = [["bitmap", "Pixel"], ["onebit", "1-bit"], ["smooth", "Smooth"], ["line", "Line"]], Nd = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>', Ch = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>', Th = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>', ep = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/></svg>', tp = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>', np = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>', Hp = (a) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + a.map((l) => '<path d="' + l + '"/>').join("") + "</svg>", ap = Hp(["M12 20H21", "M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z"]), Lh = Hp(["M20 6L9 17L4 12"]), yo = (a, l = "") => '<span class="tfAreaGlyph" data-icon-for="' + se(a || "") + '"' + (l ? ' data-icon-name="' + se(l) + '"' : "") + "></span>", Ah = (a) => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 6 6.6.6-5 4.4 1.5 6.5L12 17l-5.9 3.3 1.5-6.5-5-4.4 6.6-.6z" fill="' + (a ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>', _h = 1, Eh = [["disarmed", "Off", "alarm_disarm", 0], ["armed_home", "Home", "alarm_arm_home", 1], ["armed_away", "Away", "alarm_arm_away", 2], ["armed_night", "Night", "alarm_arm_night", 4]], op = { disarmed: "Disarmed", armed_home: "Armed home", armed_away: "Armed away", armed_night: "Armed night", armed_vacation: "Armed vacation", arming: "Arming", pending: "Pending", triggered: "Triggered", disarming: "Disarming" }, Pd = ["hs", "xy", "rgb", "rgbw", "rgbww"], Nl = ["door", "window", "garage_door", "opening"], ip = { moisture: ["detected water", "dry"], smoke: ["detected smoke", "clear"], gas: ["detected gas", "clear"], carbon_monoxide: ["detected carbon monoxide", "clear"], safety: ["became unsafe", "safe"] }, Pl = ["light", "climate", "cover", "humidifier", "media_player", "vacuum", "lock", "alarm_control_panel", "valve"], Dh = ["light", "switch", "fan", "lock", "cover", "climate", "humidifier", "media_player", "alarm_control_panel", "vacuum", "valve", "binary_sensor"], Bh = 10, Rh = 20, Nh = { electricity: "mdi:lightning-bolt", solar: "mdi:solar-power-variant", gas: "mdi:fire", water: "mdi:water" }, Ph = ["living room", "bedroom", "office"];
+}, Xc = "move_assistant_house", Jc = "move-assistant-house-used", xh = ["switch", "fan", "input_boolean", "automation"], Qc = "move-assistant-house-look", yh = [["popup", "Popup"], ["sheet", "Sheet"]], kh = [["auto", "Automatic"], ["cut", "Cut short"], ["wrap", "Two lines"], ["scroll", "Scroll"]], Mh = [["day", "Daytime 06–22"], ["waking", "Waking 07–23"], ["all", "All day"]], Sh = [["bitmap", "Pixel"], ["onebit", "1-bit"], ["smooth", "Smooth"], ["line", "Line"]], Nd = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>', Ch = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>', Th = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>', ep = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/></svg>', tp = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>', np = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>', Hp = (a) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + a.map((l) => '<path d="' + l + '"/>').join("") + "</svg>", ap = Hp(["M12 20H21", "M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z"]), Lh = Hp(["M20 6L9 17L4 12"]), xo = (a, l = "") => '<span class="tfAreaGlyph" data-icon-for="' + se(a || "") + '"' + (l ? ' data-icon-name="' + se(l) + '"' : "") + "></span>", Ah = (a) => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 6 6.6.6-5 4.4 1.5 6.5L12 17l-5.9 3.3 1.5-6.5-5-4.4 6.6-.6z" fill="' + (a ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>', _h = 1, Eh = [["disarmed", "Off", "alarm_disarm", 0], ["armed_home", "Home", "alarm_arm_home", 1], ["armed_away", "Away", "alarm_arm_away", 2], ["armed_night", "Night", "alarm_arm_night", 4]], op = { disarmed: "Disarmed", armed_home: "Armed home", armed_away: "Armed away", armed_night: "Armed night", armed_vacation: "Armed vacation", arming: "Arming", pending: "Pending", triggered: "Triggered", disarming: "Disarming" }, Pd = ["hs", "xy", "rgb", "rgbw", "rgbww"], Nl = ["door", "window", "garage_door", "opening"], ip = { moisture: ["detected water", "dry"], smoke: ["detected smoke", "clear"], gas: ["detected gas", "clear"], carbon_monoxide: ["detected carbon monoxide", "clear"], safety: ["became unsafe", "safe"] }, Pl = ["light", "climate", "cover", "humidifier", "media_player", "vacuum", "lock", "alarm_control_panel", "valve"], Dh = ["light", "switch", "fan", "lock", "cover", "climate", "humidifier", "media_player", "alarm_control_panel", "vacuum", "valve", "binary_sensor"], Bh = 10, Rh = 20, Nh = { electricity: "mdi:lightning-bolt", solar: "mdi:solar-power-variant", gas: "mdi:fire", water: "mdi:water" }, Ph = ["living room", "bedroom", "office"];
 function Ih(a, { config: l, getHass: o }) {
   var wo, Ws, nn;
   const c = (e) => a.getElementById(e), h = c("app"), w = String((l || {}).layout || "").toLowerCase().replace("_", "-") === "test-focus";
-  let A = Di.get(zc) === "1", x = {};
+  let A = Di.get(zc) === "1", y = {};
   const R = (e) => {
     var n;
     return (n = o()) == null ? void 0 : n.callWS(e);
@@ -6053,7 +6053,7 @@ function Ih(a, { config: l, getHass: o }) {
   }));
   const U = [
     ["weather", "Weather", "The forecast under Home.", (e) => e.startsWith("weather.")],
-    ["grid", "Energy", "Power from the grid, for Energy.", (e) => e.startsWith("sensor.") && xt(e).device_class === "power" && /^(W|kW)$/.test(xt(e).unit_of_measurement || "")],
+    ["grid", "Energy", "Power from the grid, for Energy.", (e) => e.startsWith("sensor.") && yt(e).device_class === "power" && /^(W|kW)$/.test(yt(e).unit_of_measurement || "")],
     ["alarm", "Alarm", "The alarm in the Security popup.", (e) => e.startsWith("alarm_control_panel.")]
   ], $ = (e, n, i, d) => '<div class="themeChoice" id="' + e + '" role="group" aria-label="' + n + '">' + d.map(([u, m]) => '<button class="wxLayoutBtn" type="button" aria-pressed="false" ' + i + '="' + u + '">' + m + "</button>").join("") + "</div>", ne = (e, n, i, d) => '<div class="toggleRow"' + (d ? ' id="' + d + '"' : "") + "><div><strong>" + e + "</strong>" + (n ? '<div class="status">' + n + "</div>" : "") + "</div>" + i + "</div>";
   function Y() {
@@ -6108,7 +6108,7 @@ function Ih(a, { config: l, getHass: o }) {
     e.querySelectorAll("[data-lights]").forEach((D) => D.setAttribute("aria-pressed", String(D.dataset.lights === mt.lights))), c("lightsRow").querySelector(".status").textContent = n || !nt() ? "How lights show on the house page." : Ve === "failed" ? "The Dual Axis Controller didn't load. Check the connection, or install it from HACS." : "Getting the Dual Axis Controller…", e.querySelectorAll("[data-dac-pad]").forEach((D) => D.setAttribute("aria-pressed", String(D.dataset.dacPad === mt.dacPad))), c("dacPadRow").hidden = !nt();
     for (const D of e.querySelectorAll("[data-source]")) {
       if (D === a.activeElement) continue;
-      const [N] = U.find(([ce]) => ce === D.dataset.source), O = Object.keys(x).filter(U.find(([ce]) => ce === N)[3]).sort((ce, Se) => ke(ce).localeCompare(ke(Se)));
+      const [N] = U.find(([ce]) => ce === D.dataset.source), O = Object.keys(y).filter(U.find(([ce]) => ce === N)[3]).sort((ce, Se) => ke(ce).localeCompare(ke(Se)));
       D.dataset.sig !== O.join(",") && (D.innerHTML = '<option value="">Automatic</option>' + O.map((ce) => '<option value="' + se(ce) + '">' + se(ke(ce)) + "</option>").join(""), D.dataset.sig = O.join(",")), D.value = O.includes((b = z.sources) == null ? void 0 : b[N]) ? z.sources[N] : "";
     }
     e.querySelectorAll("[data-sum-toggle]").forEach((D) => {
@@ -6117,7 +6117,7 @@ function Ih(a, { config: l, getHass: o }) {
     });
     const i = c("lightRows"), d = i != null && i.contains(a.activeElement) ? a.activeElement : null;
     if (!i || d != null && d.matches("select")) return;
-    const u = new Set(Pn()), m = (D, N, O, ce) => '<option value="' + D + '"' + (D === O ? " selected" : "") + ">" + N + "</option>", f = Object.keys(x).filter((D) => D.startsWith("light.")).sort((D, N) => !At.get(D) - !At.get(N) || (At.get(D) || "").localeCompare(At.get(N) || "") || ke(D).localeCompare(ke(N))).map((D) => {
+    const u = new Set(Pn()), m = (D, N, O, ce) => '<option value="' + D + '"' + (D === O ? " selected" : "") + ">" + N + "</option>", f = Object.keys(y).filter((D) => D.startsWith("light.")).sort((D, N) => !At.get(D) - !At.get(N) || (At.get(D) || "").localeCompare(At.get(N) || "") || ke(D).localeCompare(ke(N))).map((D) => {
       const N = mt.lightStyles[D] || "", O = mt.lightPads[D] || "", ce = u.has(D), Se = se(ke(D));
       return "<tr><td><strong>" + Se + "</strong></td><td>" + se(At.get(D) || "—") + "</td><td>" + se(an(D)) + '</td><td class="metaSwitchCol"><button class="switch' + (ce ? " on" : "") + '" type="button" role="switch" aria-checked="' + ce + '" data-light-fav="' + se(D) + '" aria-label="' + Se + ' is a favourite"></button></td><td><select class="settingsSelect" data-light-style="' + se(D) + '" aria-label="' + Se + ' tile">' + m("", "Default", N) + m("tile", "HomeCore tile", N) + m("dac", "Dual Axis Controller", N) + '</select></td><td><select class="settingsSelect" data-light-pad="' + se(D) + '" aria-label="' + Se + ' pad"' + (et(D) ? "" : " disabled") + ">" + m("", "Default", O) + m("temperature", "Temperature", O) + m("colour", "Colour", O) + "</select></td></tr>";
     }).join("");
@@ -6151,7 +6151,7 @@ function Ih(a, { config: l, getHass: o }) {
   const Ie = /* @__PURE__ */ new Map(), V = /* @__PURE__ */ new Map(), qe = /* @__PURE__ */ new Map(), k = 6;
   let _ = null;
   const T = /* @__PURE__ */ new Map(), I = /* @__PURE__ */ new Map(), me = /* @__PURE__ */ new Map();
-  let z = { favourites: null }, le = {}, ge = {}, xe = [], $e = null;
+  let z = { favourites: null }, le = {}, ge = {}, ye = [], $e = null;
   const st = (() => {
     try {
       return JSON.parse(Di.get(Jc)) || {};
@@ -6187,7 +6187,7 @@ function Ih(a, { config: l, getHass: o }) {
   };
   w && ie && !c("moreInfoChoice") && (c("densityToggle").closest(".toggleRow").insertAdjacentHTML(
     "afterend",
-    '<div class="toggleRow"><div><strong>More info</strong><div class="status">How a device opens on the house page.</div></div><div class="themeChoice" id="moreInfoChoice" role="group" aria-label="More info">' + xh.map(([e, n]) => '<button class="wxLayoutBtn" type="button" aria-pressed="' + (mt.more === e) + '" data-more-style="' + e + '">' + n + "</button>").join("") + "</div></div>"
+    '<div class="toggleRow"><div><strong>More info</strong><div class="status">How a device opens on the house page.</div></div><div class="themeChoice" id="moreInfoChoice" role="group" aria-label="More info">' + yh.map(([e, n]) => '<button class="wxLayoutBtn" type="button" aria-pressed="' + (mt.more === e) + '" data-more-style="' + e + '">' + n + "</button>").join("") + "</div></div>"
   ), c("moreInfoChoice").addEventListener("click", (e) => {
     const n = e.target.closest("[data-more-style]");
     n && (mt.more = n.dataset.moreStyle, Xe(), Lt(), c("moreInfoChoice").querySelectorAll("[data-more-style]").forEach((i) => i.setAttribute("aria-pressed", String(i === n))));
@@ -6211,13 +6211,13 @@ function Ih(a, { config: l, getHass: o }) {
     n && (mt.wxStyle = n.dataset.wxStyle, Xe(), Ze == null || Ze.setStyle(mt.wxStyle), qt == null || qt.forEach((i) => i.setStyle(mt.wxStyle)), c("wxStyleChoice").querySelectorAll("[data-wx-style]").forEach((i) => i.setAttribute("aria-pressed", String(i === n))));
   })), Y();
   let Je = { rooms: [], vacuums: [], homeVacuums: [], grid: null, security: { alarms: [], locks: [], openings: [] } };
-  const xn = /* @__PURE__ */ new Map();
+  const yn = /* @__PURE__ */ new Map();
   let Dn = "";
   const wr = w ? mu({ onChange: () => cn() }) : null;
   w && h.classList.add("house");
   const lt = Object.assign(document.createElement("div"), { className: "tfBento" });
   let Ze = null, bt = null, Mo = !1;
-  function yr(e) {
+  function xr(e) {
     const n = ka();
     if (h.classList.toggle("houseBento", !!n), Ze && (bt !== n || e == null) && (Ze.destroy(), Ze = null), !n || e == null) {
       lt.remove();
@@ -6226,18 +6226,18 @@ function Ih(a, { config: l, getHass: o }) {
     lt.isConnected || E.append(lt), lt.style.order = e, !Ze && !Mo && (Ze = Fc(lt, { getHass: o, entityId: n, style: mt.wxStyle, hoursWindow: () => mt.hoursWindow }), bt = n);
   }
   const Ri = [["wx", ["current"]], ["avg", ["compared_to_average"]], ["aq", ["aq_tile"]], ["pollen", ["pollen_tile"]], ["radar", ["radar_tile"]]], Ln = ["aq", "pollen", "radar"], pt = Object.fromEntries(Ri.map(([e]) => [e, Object.assign(document.createElement("div"), { className: "tfDashBento tfDash-" + e })]));
-  let qt = null, xr = null;
+  let qt = null, yr = null;
   function Xo(e) {
     const n = ka();
-    qt && xr !== n && (qt.forEach((i) => i.destroy()), qt = null), Object.values(pt).forEach((i) => n ? !i.isConnected && E.append(i) : i.remove()), n && !qt && !Mo && (qt = Ri.map(([i, d]) => Fc(pt[i], { getHass: o, entityId: n, style: mt.wxStyle, cards: d, onOpen: i === "wx" ? () => vl("weather") : void 0 })), xr = n);
+    qt && yr !== n && (qt.forEach((i) => i.destroy()), qt = null), Object.values(pt).forEach((i) => n ? !i.isConnected && E.append(i) : i.remove()), n && !qt && !Mo && (qt = Ri.map(([i, d]) => Fc(pt[i], { getHass: o, entityId: n, style: mt.wxStyle, cards: d, onOpen: i === "wx" ? () => vl("weather") : void 0 })), yr = n);
   }
-  const xt = (e) => {
+  const yt = (e) => {
     var n;
-    return ((n = x[e]) == null ? void 0 : n.attributes) || {};
-  }, ke = (e) => xt(e).friendly_name || e, zt = (e, n) => hr(e) || (Number(xt(e).supported_features) & n) === n, Oe = (e) => {
+    return ((n = y[e]) == null ? void 0 : n.attributes) || {};
+  }, ke = (e) => yt(e).friendly_name || e, zt = (e, n) => hr(e) || (Number(yt(e).supported_features) & n) === n, Oe = (e) => {
     const n = String(e ?? "").replace(/_/g, " ");
     return n.charAt(0).toUpperCase() + n.slice(1);
-  }, jn = (e, n = 1) => Number(e).toLocaleString(void 0, { minimumFractionDigits: n, maximumFractionDigits: n }), Wa = (e) => (e == null ? void 0 : e.state) === "on" ? e.attributes.brightness != null ? Math.max(1, Math.round(e.attributes.brightness / 2.55)) : 100 : 0, Ni = (e) => xt(e).supported_color_modes || [], Ge = (e) => {
+  }, jn = (e, n = 1) => Number(e).toLocaleString(void 0, { minimumFractionDigits: n, maximumFractionDigits: n }), Wa = (e) => (e == null ? void 0 : e.state) === "on" ? e.attributes.brightness != null ? Math.max(1, Math.round(e.attributes.brightness / 2.55)) : 100 : 0, Ni = (e) => yt(e).supported_color_modes || [], Ge = (e) => {
     const n = e / 100;
     return [n <= 66 ? 255 : 329.7 * Math.pow(n - 60, -0.1332), n <= 66 ? 99.47 * Math.log(n) - 161.12 : 288.12 * Math.pow(n - 60, -0.0755), n >= 66 ? 255 : n <= 19 ? 0 : 138.52 * Math.log(n - 10) - 305.04];
   }, ot = (e, n) => [5, 3, 1].map((i) => {
@@ -6258,16 +6258,16 @@ function Ih(a, { config: l, getHass: o }) {
     return i ? "#26221e" : "#ffffff";
   };
   function ln(e) {
-    const n = xt(e), i = (n.rgb_color || (n.hs_color && n.color_mode !== "color_temp" ? ot(...n.hs_color) : n.color_temp_kelvin ? Ge(n.color_temp_kelvin) : [255, 170, 0])).map((d) => Math.round(Math.max(0, Math.min(255, d))));
+    const n = yt(e), i = (n.rgb_color || (n.hs_color && n.color_mode !== "color_temp" ? ot(...n.hs_color) : n.color_temp_kelvin ? Ge(n.color_temp_kelvin) : [255, 170, 0])).map((d) => Math.round(Math.max(0, Math.min(255, d))));
     return "--light:rgb(" + i.join(",") + ");--light-ink:" + Jo(i, 3.5);
   }
   const qa = (e) => {
     var n;
-    return e.startsWith("light.") && ((n = x[e]) == null ? void 0 : n.state) === "on" ? ' data-light style="' + ln(e) + '"' : "";
+    return e.startsWith("light.") && ((n = y[e]) == null ? void 0 : n.state) === "on" ? ' data-light style="' + ln(e) + '"' : "";
   }, za = (e) => {
     const n = Ni(e);
-    return n.length ? n.some((i) => i !== "onoff") : xt(e).brightness != null;
-  }, Co = (e) => [xt(e).min_color_temp_kelvin || 2e3, xt(e).max_color_temp_kelvin || 6500], Yt = (e) => new Date(e).toLocaleTimeString(void 0, { hour: "2-digit", minute: "2-digit" });
+    return n.length ? n.some((i) => i !== "onoff") : yt(e).brightness != null;
+  }, Co = (e) => [yt(e).min_color_temp_kelvin || 2e3, yt(e).max_color_temp_kelvin || 6500], Yt = (e) => new Date(e).toLocaleTimeString(void 0, { hour: "2-digit", minute: "2-digit" });
   function ja(e) {
     const n = Math.max(1, Math.round((Date.now() - e) / 1e3));
     if (n < 10) return "Just now";
@@ -6281,17 +6281,17 @@ function Ih(a, { config: l, getHass: o }) {
   }
   const Gn = (e) => {
     var n;
-    return xt(e).current_position ?? (((n = x[e]) == null ? void 0 : n.state) === "closed" ? 0 : 100);
+    return yt(e).current_position ?? (((n = y[e]) == null ? void 0 : n.state) === "closed" ? 0 : 100);
   }, Va = (e) => {
     var n;
     return ft("pos", e, ((n = T.get(e)) == null ? void 0 : n.pos) ?? Gn(e));
   }, ro = (e) => {
     var n;
-    return ft("tilt", e, ((n = T.get(e)) == null ? void 0 : n.tilt) ?? xt(e).current_tilt_position);
+    return ft("tilt", e, ((n = T.get(e)) == null ? void 0 : n.tilt) ?? yt(e).current_tilt_position);
   };
   function an(e) {
     var f;
-    const n = x[e];
+    const n = y[e];
     if (!n) return "Not found";
     if (n.state === "unavailable") return "Unavailable";
     const i = n.attributes, d = e.split(".")[0];
@@ -6334,7 +6334,7 @@ function Ih(a, { config: l, getHass: o }) {
     const n = o();
     e.querySelectorAll("[data-icon-for]").forEach((u) => {
       var b;
-      const m = x[u.dataset.iconFor], f = u.dataset.iconName || "";
+      const m = y[u.dataset.iconFor], f = u.dataset.iconName || "";
       if (customElements.get("ha-state-icon") && m && !f) {
         let M = u.firstElementChild;
         (!M || M.localName !== "ha-state-icon") && (u.textContent = "", M = document.createElement("ha-state-icon"), u.appendChild(M)), M.hass = n, M.stateObj = m;
@@ -6386,17 +6386,17 @@ function Ih(a, { config: l, getHass: o }) {
   }
   const Bn = (e) => {
     var n, i, d;
-    return e.startsWith("light.") && x[e] && !xt(e).icon && !((d = (i = (n = o()) == null ? void 0 : n.entities) == null ? void 0 : i[e]) != null && d.icon) ? "mdi:lightbulb" : "";
-  }, Bt = (e, n, i) => (n = n || Bn(e), ' data-icon-for="' + se(e) + '"' + (n ? ' data-icon-name="' + se(n) + '"' : "") + (i ? ' data-letter="' + se(i) + '"' : "")), on = (e) => e.endsWith("_solar_power") ? "mdi:solar-power-variant" : xt(e).rang ? "mdi:doorbell" : "", St = (e, n, i, d) => se([e, n, i, d ? JSON.stringify(d) : ""].join("|")), so = (e) => se(JSON.stringify(e));
+    return e.startsWith("light.") && y[e] && !yt(e).icon && !((d = (i = (n = o()) == null ? void 0 : n.entities) == null ? void 0 : i[e]) != null && d.icon) ? "mdi:lightbulb" : "";
+  }, Bt = (e, n, i) => (n = n || Bn(e), ' data-icon-for="' + se(e) + '"' + (n ? ' data-icon-name="' + se(n) + '"' : "") + (i ? ' data-letter="' + se(i) + '"' : "")), on = (e) => e.endsWith("_solar_power") ? "mdi:solar-power-variant" : yt(e).rang ? "mdi:doorbell" : "", St = (e, n, i, d) => se([e, n, i, d ? JSON.stringify(d) : ""].join("|")), so = (e) => se(JSON.stringify(e));
   function La(e, n) {
     var u, m;
     const i = se(ke(n) + ", " + an(n));
-    return '<div class="activityRow' + (Number.isFinite(Number((u = x[n]) == null ? void 0 : u.state)) && ((m = x[n]) == null ? void 0 : m.state) !== "" ? ' tap" role="button" tabindex="0" data-open="' + se(e + "|" + n) + '" aria-label="' + i + '. Show the last 24 hours"' : '" aria-label="' + i + '"') + '><div class="tfIcon" aria-hidden="true"' + Bt(n, on(n)) + '></div><div><div class="activityRowName">' + se(ke(n)) + '</div><div class="activityRowMeta">' + se(an(n)) + "</div></div></div>";
+    return '<div class="activityRow' + (Number.isFinite(Number((u = y[n]) == null ? void 0 : u.state)) && ((m = y[n]) == null ? void 0 : m.state) !== "" ? ' tap" role="button" tabindex="0" data-open="' + se(e + "|" + n) + '" aria-label="' + i + '. Show the last 24 hours"' : '" aria-label="' + i + '"') + '><div class="tfIcon" aria-hidden="true"' + Bt(n, on(n)) + '></div><div><div class="activityRowName">' + se(ke(n)) + '</div><div class="activityRowMeta">' + se(an(n)) + "</div></div></div>";
   }
   const To = (e, n, i) => '<div class="activityRow" aria-label="' + se(e + ", " + n) + '"><div class="tfIcon" aria-hidden="true"' + Bt("", i, e) + '></div><div><div class="activityRowName">' + se(e) + '</div><div class="activityRowMeta">' + se(n) + "</div></div></div>";
   function Rn(e) {
     var i;
-    const n = ((i = x[e]) == null ? void 0 : i.state) === "on";
+    const n = ((i = y[e]) == null ? void 0 : i.state) === "on";
     return '<div class="activityRow tfPlug' + (n ? " on" : "") + '"><button class="tfIcon" type="button" data-act="' + St("switch", "toggle", e) + '" aria-label="Turn ' + se(ke(e)) + (n ? " off" : " on") + '"' + Bt(e) + '></button><button class="tfName" type="button" data-more="' + se(e) + '" aria-label="' + se(ke(e) + ", " + an(e) + ". More info") + '"><span class="activityRowName">' + se(ke(e)) + '</span><span class="activityRowMeta">' + se(an(e)) + "</span></button></div>";
   }
   const Nn = (e) => {
@@ -6413,7 +6413,7 @@ function Ih(a, { config: l, getHass: o }) {
   }
   function va(e, n, i, d, u = "", m = null, f = "") {
     const b = P && P.key === e;
-    return '<section class="card tfCard' + (f ? " " + f : "") + (b ? " open" : "") + '" data-tf data-k="' + se(e) + '" style="order:' + n + (b && P.h ? ";min-height:" + P.h + "px" : "") + '" aria-label="' + se(i) + '"><div class="activityHeader">' + (m ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + se(m) + '" aria-label="' + se(i + (x[m] ? ", " + an(m) : "") + ". More info") + '">' + se(i) + "</button>" : '<div class="activityTitle">' + se(i) + "</div>") + "</div>" + (b ? ti(P.id) : '<div class="activityRows">' + d.join("") + "</div>" + u) + "</section>";
+    return '<section class="card tfCard' + (f ? " " + f : "") + (b ? " open" : "") + '" data-tf data-k="' + se(e) + '" style="order:' + n + (b && P.h ? ";min-height:" + P.h + "px" : "") + '" aria-label="' + se(i) + '"><div class="activityHeader">' + (m ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + se(m) + '" aria-label="' + se(i + (y[m] ? ", " + an(m) : "") + ". More info") + '">' + se(i) + "</button>" : '<div class="activityTitle">' + se(i) + "</div>") + "</div>" + (b ? ti(P.id) : '<div class="activityRows">' + d.join("") + "</div>" + u) + "</section>";
   }
   function da(e, n) {
     const i = "readings:" + e.id, d = e.readings.map((u) => La(i, u));
@@ -6421,8 +6421,8 @@ function Ih(a, { config: l, getHass: o }) {
   }
   function $n(e, n) {
     var b;
-    const i = "energy:" + e.id, [d, u] = [e.solar.find((M) => M.endsWith("_power")), e.solar.find((M) => M.endsWith("_today"))], m = [d, u].filter(Boolean).map((M) => La(i, M)), f = Number(((b = x[d]) == null ? void 0 : b.state) || 0) * 1e3;
-    return Je.grid && (m.push(La(i, Je.grid)), m.push(To("House use", Ga(f + Number(x[Je.grid].state)), "mdi:home-lightning-bolt"))), va(i, n, "Energy", m, '<div class="tfCardGraph"><svg class="tfGraph" data-solar role="img" aria-label="Solar, last 24 hours"></svg></div>');
+    const i = "energy:" + e.id, [d, u] = [e.solar.find((M) => M.endsWith("_power")), e.solar.find((M) => M.endsWith("_today"))], m = [d, u].filter(Boolean).map((M) => La(i, M)), f = Number(((b = y[d]) == null ? void 0 : b.state) || 0) * 1e3;
+    return Je.grid && (m.push(La(i, Je.grid)), m.push(To("House use", Ga(f + Number(y[Je.grid].state)), "mdi:home-lightning-bolt"))), va(i, n, "Energy", m, '<div class="tfCardGraph"><svg class="tfGraph" data-solar role="img" aria-label="Solar, last 24 hours"></svg></div>');
   }
   const Oi = (e, n) => va("plant:" + e.id, n, ke(e.id), e.readings.map((i) => La("plant:" + e.id, i)), "", e.id);
   function Lo(e, n, i, d, u, m, f = null) {
@@ -6436,11 +6436,11 @@ function Ih(a, { config: l, getHass: o }) {
       return {};
     }
   })();
-  let y = 0;
+  let x = 0;
   const S = (e, n) => {
-    !n || ba[e] === n || (ba[e] = n, clearTimeout(y), y = setTimeout(() => Di.set(ni, JSON.stringify(ba)), 500));
+    !n || ba[e] === n || (ba[e] = n, clearTimeout(x), x = setTimeout(() => Di.set(ni, JSON.stringify(ba)), 500));
   }, L = (e, n, i, d) => '<div class="tfStep" role="group" aria-label="' + se(e) + '"><button type="button" data-act="' + i + '" aria-label="Lower ' + se(e.toLowerCase()) + '">' + Vc.down + "</button><output>" + se(n) + '</output><button type="button" data-act="' + d + '" aria-label="Raise ' + se(e.toLowerCase()) + '">' + Vc.up + "</button></div>", F = (e, n, i) => '<div class="' + e + '" role="group" aria-label="' + se(n) + '">' + i.filter(Boolean).map((d) => '<button type="button" data-act="' + d.act + '"' + (d.pressed != null ? ' aria-pressed="' + d.pressed + '"' : "") + (d.disabled ? " disabled" : "") + (d.aria ? ' aria-label="' + se(d.aria) + '"' : "") + ">" + (d.html || se(d.label)) + "</button>").join("") + "</div>", Z = (e, n) => "width:" + Math.round(Math.max(0, Math.min(1, (e - n * 25) / 25)) * 1e3) / 10 + "%;opacity:" + (0.6 + 0.4 * n / 3).toFixed(2), Q = (e) => "left:calc(4px + " + e / 100 + " * (100% - 8px))", de = (e, n) => '<div class="tfBlocks" role="slider" tabindex="0" aria-label="' + se(ke(e)) + ' position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(n) + '" aria-valuetext="' + Math.round(n) + '% open" data-blocks="' + se(e) + '">' + [0, 1, 2, 3].map((i) => '<span><i style="' + Z(n, i) + '"></i><b' + (n >= (i + 1) * 25 - 12 ? ' class="lit"' : "") + ">" + (i + 1) * 25 + "<small>%</small></b></span>").join("") + '<output class="tfTip" aria-hidden="true" style="' + Q(n) + '">' + Math.round(n) + "%</output></div>";
-  function ye(e, n) {
+  function xe(e, n) {
     e.querySelectorAll(":scope>span").forEach((d, u) => {
       d.firstElementChild.setAttribute("style", Z(n, u)), d.lastElementChild.classList.toggle("lit", n >= (u + 1) * 25 - 12);
     });
@@ -6485,7 +6485,7 @@ function Ih(a, { config: l, getHass: o }) {
     const i = n.parentElement;
     !i || !n.offsetHeight || (i.style.removeProperty("min-height"), wa.set(i.dataset.dac, i.offsetHeight));
   }));
-  function ya(e) {
+  function xa(e) {
     e.querySelectorAll("[data-dac]").forEach((n) => {
       const i = n.dataset.dac;
       let d = Re.get(i);
@@ -6508,7 +6508,7 @@ function Ih(a, { config: l, getHass: o }) {
   const ft = (e, n, i) => qe.has(e + "|" + n) ? qe.get(e + "|" + n) : i;
   function dn(e) {
     var m;
-    const n = x[e], i = n.attributes, d = e.split(".")[0], u = (f, b) => ({ act: St(f, "toggle", e), label: b });
+    const n = y[e], i = n.attributes, d = e.split(".")[0], u = (f, b) => ({ act: St(f, "toggle", e), label: b });
     if (d === "light") {
       const f = n.state === "on", b = Ni(e), [M, D] = Co(e), N = ft("bright", e, Wa(n));
       f && S(e, Wa(n));
@@ -6593,30 +6593,30 @@ function Ih(a, { config: l, getHass: o }) {
   const Xn = (e) => (Number.isInteger(Number(e)) ? String(Number(e)) : jn(e)) + "°";
   function Ua(e) {
     var we;
-    const n = (j) => e.readings.find((fe) => xt(fe).device_class === j), i = n("temperature"), d = n("humidity"), u = (j) => {
+    const n = (j) => e.readings.find((fe) => yt(fe).device_class === j), i = n("temperature"), d = n("humidity"), u = (j) => {
       var fe;
-      return Number((fe = x[j]) == null ? void 0 : fe.state);
+      return Number((fe = y[j]) == null ? void 0 : fe.state);
     }, m = (j) => e.actions.filter((fe) => j.test(fe)), f = e.lights.filter((j) => {
       var fe;
-      return ((fe = x[j]) == null ? void 0 : fe.state) === "on";
+      return ((fe = y[j]) == null ? void 0 : fe.state) === "on";
     }), b = m(/^cover\./), M = b.filter((j) => {
       var fe;
-      return ((fe = x[j]) == null ? void 0 : fe.state) !== "closed";
-    }), D = [...new Set(b.map((j) => Dd(x[j])))], N = m(/^climate\./)[0], O = m(/^humidifier\./)[0], ce = m(/^media_player\./), Se = ce.find((j) => {
+      return ((fe = y[j]) == null ? void 0 : fe.state) !== "closed";
+    }), D = [...new Set(b.map((j) => Dd(y[j])))], N = m(/^climate\./)[0], O = m(/^humidifier\./)[0], ce = m(/^media_player\./), Se = ce.find((j) => {
       var fe;
-      return ((fe = x[j]) == null ? void 0 : fe.state) === "playing";
+      return ((fe = y[j]) == null ? void 0 : fe.state) === "playing";
     }) || ce.find((j) => {
       var fe;
-      return ((fe = x[j]) == null ? void 0 : fe.state) === "paused";
+      return ((fe = y[j]) == null ? void 0 : fe.state) === "paused";
     }), Ne = e.plugs.filter((j) => {
       var fe;
-      return ((fe = x[j]) == null ? void 0 : fe.state) === "on";
+      return ((fe = y[j]) == null ? void 0 : fe.state) === "on";
     }), X = [];
-    if (i && Number.isFinite(u(i)) && X.push({ key: "temp", id: i, kind: "reading", icon: yo(i), label: "Temperature", value: jn(u(i)) + "°" }), d && Number.isFinite(u(d)) && X.push({ key: "hum", id: d, kind: "reading", icon: yo(d), label: "Humidity", value: Math.round(u(d)) + "%" }), e.lights.length && X.push({
+    if (i && Number.isFinite(u(i)) && X.push({ key: "temp", id: i, kind: "reading", icon: xo(i), label: "Temperature", value: jn(u(i)) + "°" }), d && Number.isFinite(u(d)) && X.push({ key: "hum", id: d, kind: "reading", icon: xo(d), label: "Humidity", value: Math.round(u(d)) + "%" }), e.lights.length && X.push({
       key: "lights",
       kind: "control",
       tone: "light",
-      icon: yo("", "mdi:lightbulb"),
+      icon: xo("", "mdi:lightbulb"),
       label: "Lights",
       value: f.length ? f.length + " of " + e.lights.length + " on" : "All off",
       short: f.length ? f.length + " on" : "Off",
@@ -6630,7 +6630,7 @@ function Ih(a, { config: l, getHass: o }) {
         key: "covers",
         kind: "control",
         tone: "blue",
-        icon: yo("", ((we = $c[D[0]]) == null ? void 0 : we[M.length ? 0 : 1]) || "mdi:window-shutter"),
+        icon: xo("", ((we = $c[D[0]]) == null ? void 0 : we[M.length ? 0 : 1]) || "mdi:window-shutter"),
         label: Oe(j),
         value: fe <= 0 ? "Closed" : fe >= 100 ? "Open" : fe + "% open",
         short: fe <= 0 ? "Closed" : fe + "%",
@@ -6640,14 +6640,14 @@ function Ih(a, { config: l, getHass: o }) {
       });
     }
     if (N) {
-      const j = xt(N), fe = x[N].state === "off";
+      const j = yt(N), fe = y[N].state === "off";
       X.push({
         key: "climate",
         kind: "control",
         tone: j.hvac_action === "cooling" ? "cool" : "heat",
-        icon: yo(N),
+        icon: xo(N),
         label: ke(N),
-        value: fe ? "Off" : Oe(j.hvac_action || x[N].state) + " · " + Xn(j.temperature),
+        value: fe ? "Off" : Oe(j.hvac_action || y[N].state) + " · " + Xn(j.temperature),
         short: fe ? "Off" : Xn(j.temperature),
         on: !fe,
         acts: [["climate", "toggle", N]],
@@ -6655,27 +6655,27 @@ function Ih(a, { config: l, getHass: o }) {
       });
     }
     if (O) {
-      const j = x[O].state === "on";
+      const j = y[O].state === "on";
       X.push({
         key: "humidifier",
         kind: "control",
         tone: "blue",
-        icon: yo("", "mdi:air-humidifier"),
+        icon: xo("", "mdi:air-humidifier"),
         label: ke(O),
-        value: j ? "On · " + xt(O).humidity + "%" : "Off",
-        short: j ? xt(O).humidity + "%" : "Off",
+        value: j ? "On · " + yt(O).humidity + "%" : "Off",
+        short: j ? yt(O).humidity + "%" : "Off",
         on: j,
         acts: [["humidifier", "toggle", O]],
         aria: "Turn " + ke(O) + (j ? " off" : " on")
       });
     }
     if (ce.length) {
-      const j = Se || ce[0], fe = x[j], K = fe.state === "playing";
+      const j = Se || ce[0], fe = y[j], K = fe.state === "playing";
       X.push({
         key: "media",
         kind: "control",
         tone: "blue",
-        icon: yo(j),
+        icon: xo(j),
         label: ke(j),
         value: an(j),
         short: K ? "Playing" : fe.state === "paused" ? "Paused" : Oe(fe.state),
@@ -6688,14 +6688,14 @@ function Ih(a, { config: l, getHass: o }) {
       key: "plugs",
       kind: "control",
       tone: "blue",
-      icon: yo("", "mdi:power-plug"),
+      icon: xo("", "mdi:power-plug"),
       label: "Plugs",
       value: Ne.length ? Ne.length + " of " + e.plugs.length + " on" : "All off",
       short: Ne.length ? Ne.length + " on" : "Off",
       on: Ne.length > 0,
       acts: e.plugs.map((j) => ["switch", Ne.length ? "turn_off" : "turn_on", j]),
       aria: (Ne.length ? "Turn off" : "Turn on") + " the plugs in " + e.name
-    }), e.alerts.forEach((j) => X.push(xt(j).device_class === "moisture" ? { key: "alert:" + j, kind: "alert", icon: yo(j), label: "Water leak" } : { key: "note:" + j, kind: "note", icon: yo(j), label: ke(j) + " " + an(j).toLowerCase() })), X;
+    }), e.alerts.forEach((j) => X.push(yt(j).device_class === "moisture" ? { key: "alert:" + j, kind: "alert", icon: xo(j), label: "Water leak" } : { key: "note:" + j, kind: "note", icon: xo(j), label: ke(j) + " " + an(j).toLowerCase() })), X;
   }
   const Aa = (e, n) => {
     const i = (d) => e.actions.filter((u) => d.test(u));
@@ -6709,10 +6709,10 @@ function Ih(a, { config: l, getHass: o }) {
         const d = i(/^media_player\./);
         return [d.find((u) => {
           var m;
-          return ((m = x[u]) == null ? void 0 : m.state) === "playing";
+          return ((m = y[u]) == null ? void 0 : m.state) === "playing";
         }) || d.find((u) => {
           var m;
-          return ((m = x[u]) == null ? void 0 : m.state) === "paused";
+          return ((m = y[u]) == null ? void 0 : m.state) === "paused";
         }) || d[0]].filter(Boolean);
       })()
     }[n] || [];
@@ -6721,12 +6721,12 @@ function Ih(a, { config: l, getHass: o }) {
     const d = n.find((b) => b.key === "lights"), u = !!(d != null && d.on), m = "", f = '<span class="tfAreaGlyph"' + Bt("area:" + e.id, e.icon || "mdi:texture-box", e.name) + "></span>";
     return i || !d ? '<span class="tfIcon tfAreaIcon' + (u ? " on" : "") + '"' + m + ' aria-hidden="true">' + f + "</span>" : '<button class="tfIcon tfAreaIcon' + (u ? " on" : "") + '" type="button"' + m + ' data-acts="' + so(d.acts) + '" aria-label="' + se(d.aria) + '" aria-pressed="' + u + '">' + f + "</button>";
   }
-  const rs = (e) => e.filter((n) => n.kind === "alert" || n.kind === "note").map((n) => '<span class="sourceTag">' + se(n.label) + "</span>").join(" "), Gt = (e) => e.readings.find((n) => xt(n).device_class === "temperature") || [...e.readings, ...e.solar, ...e.openings, ...e.actions, ...e.plugs].find((n) => x[n]) || null, Zs = (e, n) => {
+  const rs = (e) => e.filter((n) => n.kind === "alert" || n.kind === "note").map((n) => '<span class="sourceTag">' + se(n.label) + "</span>").join(" "), Gt = (e) => e.readings.find((n) => yt(n).device_class === "temperature") || [...e.readings, ...e.solar, ...e.openings, ...e.actions, ...e.plugs].find((n) => y[n]) || null, Zs = (e, n) => {
     const i = ke(n);
     return i.toLowerCase().startsWith(e.name.toLowerCase() + " ") ? Oe(i.slice(e.name.length + 1)) : i;
   };
   function Ks(e) {
-    const n = x[e], i = xt(e), d = e.split(".")[0], u = Number(n.state);
+    const n = y[e], i = yt(e), d = e.split(".")[0], u = Number(n.state);
     if (n.state === "unavailable") return { text: "Unavailable" };
     if (d === "sensor" && Number.isFinite(u)) {
       if (i.device_class === "temperature") return { text: Xn(u) };
@@ -6742,8 +6742,8 @@ function Ih(a, { config: l, getHass: o }) {
     return d === "humidifier" ? { text: n.state === "on" ? i.humidity + "%" : "Off" } : d === "media_player" ? { text: n.state === "playing" ? "Playing" : n.state === "paused" ? "Paused" : Oe(n.state) } : { text: an(e) };
   }
   const $s = (e, n, i) => {
-    const d = i.find((b) => b.key === "temp"), u = i.find((b) => b.key === "hum"), m = xt(n), f = x[n].state === "off";
-    return n.startsWith("climate.") ? [Zs(e, n), f ? "Off" : Oe(m.hvac_action || x[n].state) + (m.temperature != null ? " · " + Xn(m.temperature) : ""), u && u.value + " humidity"].filter(Boolean).join(" · ") : [!(d && d.id === n) && Zs(e, n), d && d.id !== n && d.value, u && u.id !== n && u.value + " humidity"].filter(Boolean).join(" · ");
+    const d = i.find((b) => b.key === "temp"), u = i.find((b) => b.key === "hum"), m = yt(n), f = y[n].state === "off";
+    return n.startsWith("climate.") ? [Zs(e, n), f ? "Off" : Oe(m.hvac_action || y[n].state) + (m.temperature != null ? " · " + Xn(m.temperature) : ""), u && u.value + " humidity"].filter(Boolean).join(" · ") : [!(d && d.id === n) && Zs(e, n), d && d.id !== n && d.value, u && u.id !== n && u.value + " humidity"].filter(Boolean).join(" · ");
   };
   function oi(e, n, i) {
     const d = i && Ks(i), u = i ? $s(e, i, n) : "", m = (b) => {
@@ -6760,24 +6760,24 @@ function Ih(a, { config: l, getHass: o }) {
   const Ya = (e) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + e + '"><section class="workoutGallery tfAreaGallery" aria-label="Areas">' + It.map(Gl).join("") + "</section></div>", ii = () => [
     { key: "home", name: "Home", ids: Je.homeVacuums },
     ...Je.rooms.map((e) => ({ key: "room:" + e.id, name: e.name, room: e, ids: e.actions }))
-  ], zi = (e, n, i) => e + " " + (e === 1 ? n : i), Pn = () => (z.favourites ?? le.favorite_entities ?? []).filter((e) => x[e]);
+  ], zi = (e, n, i) => e + " " + (e === 1 ? n : i), Pn = () => (z.favourites ?? le.favorite_entities ?? []).filter((e) => y[e]);
   function Mr() {
     if (!$e) {
       const n = Object.entries(st).sort((d, u) => u[1] - d[1]).map(([d]) => d), i = Je.rooms.flatMap((d) => d.actions);
-      $e = [.../* @__PURE__ */ new Set([...xe, ...n, ...i.filter((d) => dn(d).on), ...i])];
+      $e = [.../* @__PURE__ */ new Set([...ye, ...n, ...i.filter((d) => dn(d).on), ...i])];
     }
     const e = Pn();
-    return $e.filter((n) => x[n] && x[n].state !== "unavailable" && !e.includes(n));
+    return $e.filter((n) => y[n] && y[n].state !== "unavailable" && !e.includes(n));
   }
   let ji = !1;
   function Za() {
     if (!ji || z.favSeeded || !Je.rooms.length) return;
-    const e = (i) => Object.keys(x).find((d) => hr(d) && i(d)), n = [e((i) => i.startsWith("climate.")), e((i) => i.startsWith("cover.") && /curtain/.test(i)), e((i) => i.startsWith("valve.")), Je.security.locks[0]];
+    const e = (i) => Object.keys(y).find((d) => hr(d) && i(d)), n = [e((i) => i.startsWith("climate.")), e((i) => i.startsWith("cover.") && /curtain/.test(i)), e((i) => i.startsWith("valve.")), Je.security.locks[0]];
     z = { ...z, favourites: [.../* @__PURE__ */ new Set([...z.favourites ?? le.favorite_entities ?? [], ...n.filter(Boolean)])], favSeeded: !0 }, zn();
   }
-  const xa = () => z.suggest ?? !le.hide_suggested_entities;
+  const ya = () => z.suggest ?? !le.hide_suggested_entities;
   function Ul() {
-    const e = new Set(z.favHidden || []), n = Pn().filter((d) => !e.has(d)), i = xa() ? Mr().filter((d) => !e.has(d) && us(d)) : [];
+    const e = new Set(z.favHidden || []), n = Pn().filter((d) => !e.has(d)), i = ya() ? Mr().filter((d) => !e.has(d) && us(d)) : [];
     return [...n, ...i].slice(0, Bh);
   }
   const lo = (e) => {
@@ -6786,17 +6786,17 @@ function Ih(a, { config: l, getHass: o }) {
   };
   function Sr(e, { area: n = !1, star: i = !1, plain: d = !1, say: u = null, alert: m = !1 } = {}) {
     var Ne, X, we, j, fe, K;
-    const f = d && ((fe = (Ne = o()) == null ? void 0 : Ne.devices) == null ? void 0 : fe[(j = (we = (X = o()) == null ? void 0 : X.entities) == null ? void 0 : we[e]) == null ? void 0 : j.device_id]), b = f && (f.name_by_user || f.name) || ke(e), M = e.split(".")[0], D = !d && Pl.includes(M) ? dn(e) : null, N = D ? D.on : ["on", "open", "playing"].includes((K = x[e]) == null ? void 0 : K.state), O = d ? null : D ? D.button : yh.includes(M) ? { act: St(M, "toggle", e), label: "Turn " + ke(e) + (N ? " off" : " on") } : M === "scene" || M === "script" ? { act: St(M, "turn_on", e), label: "Run " + ke(e) } : null, ce = (u ?? an(e)) + (n && At.get(e) ? " · " + At.get(e) : ""), Se = (D == null ? void 0 : D.icon) || on(e);
+    const f = d && ((fe = (Ne = o()) == null ? void 0 : Ne.devices) == null ? void 0 : fe[(j = (we = (X = o()) == null ? void 0 : X.entities) == null ? void 0 : we[e]) == null ? void 0 : j.device_id]), b = f && (f.name_by_user || f.name) || ke(e), M = e.split(".")[0], D = !d && Pl.includes(M) ? dn(e) : null, N = D ? D.on : ["on", "open", "playing"].includes((K = y[e]) == null ? void 0 : K.state), O = d ? null : D ? D.button : xh.includes(M) ? { act: St(M, "toggle", e), label: "Turn " + ke(e) + (N ? " off" : " on") } : M === "scene" || M === "script" ? { act: St(M, "turn_on", e), label: "Run " + ke(e) } : null, ce = (u ?? an(e)) + (n && At.get(e) ? " · " + At.get(e) : ""), Se = (D == null ? void 0 : D.icon) || on(e);
     return '<div class="activityRow' + (O ? " tfPlug" : "") + (N ? " on" : "") + (i ? " tfPick" : "") + (m ? " alert" : "") + '" data-k="' + se((n ? "fav:" : "row:") + e) + '" data-tone="' + (M === "light" ? "light" : (D == null ? void 0 : D.tone) || "blue") + '"' + qa(e) + ">" + (O && !i ? '<button class="tfIcon" type="button" data-act="' + O.act + '" aria-label="' + se(O.label) + '"' + Bt(e, Se) + "></button>" : '<div class="tfIcon" aria-hidden="true"' + Bt(e, Se) + "></div>") + '<button class="tfName" type="button" data-more="' + se(e) + '" aria-label="' + se(b + ", " + ce + ". More info") + '"><span class="activityRowName">' + se(b) + '</span><span class="activityRowMeta">' + se(ce) + "</span></button>" + (i ? lo(e) : "") + "</div>";
   }
   const ka = () => {
     var e;
-    return x[(e = z.sources) == null ? void 0 : e.weather] ? z.sources.weather : x["weather.forecast_home"] ? "weather.forecast_home" : Object.keys(x).find((n) => n.startsWith("weather."));
+    return y[(e = z.sources) == null ? void 0 : e.weather] ? z.sources.weather : y["weather.forecast_home"] ? "weather.forecast_home" : Object.keys(y).find((n) => n.startsWith("weather."));
   };
   function Xs() {
     var i;
-    const e = (d) => Object.keys(x).filter((u) => u.startsWith("binary_sensor.") && d.includes(xt(u).device_class));
-    return ((i = ge.alert_entities) != null && i.length ? ge.alert_entities : [...e(["moisture", "smoke", "gas"]).map((d) => ({ entity: d, severity: "alert" })), ...e(Nl).map((d) => ({ entity: d, severity: "warning" }))]).filter((d) => x[d.entity]).map((d) => ({ ...d, on: ["on", "open", "unlocked", "triggered", "problem"].includes(x[d.entity].state) }));
+    const e = (d) => Object.keys(y).filter((u) => u.startsWith("binary_sensor.") && d.includes(yt(u).device_class));
+    return ((i = ge.alert_entities) != null && i.length ? ge.alert_entities : [...e(["moisture", "smoke", "gas"]).map((d) => ({ entity: d, severity: "alert" })), ...e(Nl).map((d) => ({ entity: d, severity: "warning" }))]).filter((d) => y[d.entity]).map((d) => ({ ...d, on: ["on", "open", "unlocked", "triggered", "problem"].includes(y[d.entity].state) }));
   }
   function Yl() {
     const e = Object.keys(Rd), n = /* @__PURE__ */ new Set(), i = [];
@@ -6812,22 +6812,22 @@ function Ih(a, { config: l, getHass: o }) {
   }
   function ss() {
     var we;
-    const e = ((we = o()) == null ? void 0 : we.entities) || {}, n = (j) => xt(j).device_class, i = Object.keys(x).filter((j) => j.startsWith("sensor.") && n(j) === "battery" || j.startsWith("binary_sensor.") && ["battery", "problem"].includes(n(j))), d = Je.rooms.flatMap((j) => j.plants.map((fe) => fe.id));
+    const e = ((we = o()) == null ? void 0 : we.entities) || {}, n = (j) => yt(j).device_class, i = Object.keys(y).filter((j) => j.startsWith("sensor.") && n(j) === "battery" || j.startsWith("binary_sensor.") && ["battery", "problem"].includes(n(j))), d = Je.rooms.flatMap((j) => j.plants.map((fe) => fe.id));
     if (!i.length && !d.length) return null;
     const u = (j) => {
       var K;
       const fe = (K = e[j]) == null ? void 0 : K.device_id;
-      return !!fe && Object.keys(x).some((Ue) => {
+      return !!fe && Object.keys(y).some((Ue) => {
         var Rt;
-        return Ue.startsWith("binary_sensor.") && ((Rt = e[Ue]) == null ? void 0 : Rt.device_id) === fe && n(Ue) === "battery_charging" && x[Ue].state === "on";
+        return Ue.startsWith("binary_sensor.") && ((Rt = e[Ue]) == null ? void 0 : Rt.device_id) === fe && n(Ue) === "battery_charging" && y[Ue].state === "on";
       });
-    }, m = (j) => j.startsWith("vacuum.") ? xt(j).battery_level <= 20 && x[j].state !== "docked" : j.startsWith("binary_sensor.") ? n(j) === "battery" && x[j].state === "on" : parseFloat(x[j].state) <= 20 && !u(j), f = [...i, ...Je.vacuums].filter((j) => x[j] && m(j)), b = [...i.filter((j) => n(j) === "problem" && x[j].state === "on"), ...d.filter((j) => {
+    }, m = (j) => j.startsWith("vacuum.") ? yt(j).battery_level <= 20 && y[j].state !== "docked" : j.startsWith("binary_sensor.") ? n(j) === "battery" && y[j].state === "on" : parseFloat(y[j].state) <= 20 && !u(j), f = [...i, ...Je.vacuums].filter((j) => y[j] && m(j)), b = [...i.filter((j) => n(j) === "problem" && y[j].state === "on"), ...d.filter((j) => {
       var fe;
-      return ((fe = x[j]) == null ? void 0 : fe.state) === "problem";
-    })], M = i.filter((j) => x[j].state === "unavailable"), D = [.../* @__PURE__ */ new Set([...f, ...b, ...M])], N = (j) => {
-      const fe = parseFloat(x[j].state);
+      return ((fe = y[j]) == null ? void 0 : fe.state) === "problem";
+    })], M = i.filter((j) => y[j].state === "unavailable"), D = [.../* @__PURE__ */ new Set([...f, ...b, ...M])], N = (j) => {
+      const fe = parseFloat(y[j].state);
       return n(j) === "battery" && Number.isFinite(fe) ? fe : 101;
-    }, O = [...d, ...Je.vacuums, ...[...i].sort((j, fe) => N(j) - N(fe))].filter((j) => x[j] && !D.includes(j)), ce = /* @__PURE__ */ new Map();
+    }, O = [...d, ...Je.vacuums, ...[...i].sort((j, fe) => N(j) - N(fe))].filter((j) => y[j] && !D.includes(j)), ce = /* @__PURE__ */ new Map();
     O.forEach((j) => {
       var K;
       const fe = ((K = Je.areaOf) == null ? void 0 : K.call(Je, j)) || "";
@@ -6838,7 +6838,7 @@ function Ih(a, { config: l, getHass: o }) {
       return j === "" ? 1 / 0 : fe < 0 ? Je.rooms.length : fe;
     }, Ne = [...ce.keys()].sort((j, fe) => Se(j) - Se(fe)), X = (j) => {
       var fe, K, Ue, Rt;
-      return ((fe = Je.rooms.find((yt) => yt.id === j)) == null ? void 0 : fe.name) || ((Rt = (Ue = (K = o()) == null ? void 0 : K.areas) == null ? void 0 : Ue[j]) == null ? void 0 : Rt.name) || j;
+      return ((fe = Je.rooms.find((xt) => xt.id === j)) == null ? void 0 : fe.name) || ((Rt = (Ue = (K = o()) == null ? void 0 : K.areas) == null ? void 0 : Ue[j]) == null ? void 0 : Rt.name) || j;
     };
     return {
       value: [f.length && zi(f.length, "low battery", "low batteries"), b.length && zi(b.length, "problem", "problems"), M.length && zi(M.length, "unavailable device", "unavailable devices")].filter(Boolean).join(", ") || "All good",
@@ -6850,25 +6850,25 @@ function Ih(a, { config: l, getHass: o }) {
     var Cn;
     const e = Je.rooms, n = Je.security, i = (Ke, Ht) => Ke.actions.filter((Kr) => Ht.test(Kr)), d = (Ke) => e.map((Ht) => ({ name: Ht.name, ids: Ke(Ht) })).filter((Ht) => Ht.ids.length), u = e.flatMap((Ke) => Ke.lights), m = u.filter((Ke) => {
       var Ht;
-      return ((Ht = x[Ke]) == null ? void 0 : Ht.state) === "on";
-    }).length, f = e.map((Ke) => Ke.readings.find((Ht) => xt(Ht).device_class === "temperature")).filter(Boolean).map((Ke) => Number(x[Ke].state)).filter(Number.isFinite), [b, M] = [jn(Math.min(...f)), jn(Math.max(...f))], D = e.flatMap((Ke) => i(Ke, /^media_player\./)), N = D.filter((Ke) => {
+      return ((Ht = y[Ke]) == null ? void 0 : Ht.state) === "on";
+    }).length, f = e.map((Ke) => Ke.readings.find((Ht) => yt(Ht).device_class === "temperature")).filter(Boolean).map((Ke) => Number(y[Ke].state)).filter(Number.isFinite), [b, M] = [jn(Math.min(...f)), jn(Math.max(...f))], D = e.flatMap((Ke) => i(Ke, /^media_player\./)), N = D.filter((Ke) => {
       var Ht;
-      return ((Ht = x[Ke]) == null ? void 0 : Ht.state) === "playing";
+      return ((Ht = y[Ke]) == null ? void 0 : Ht.state) === "playing";
     }).length, O = Xs(), ce = O.filter((Ke) => Ke.severity === "warning" && Ke.on).length, Se = n.locks.filter((Ke) => {
       var Ht;
-      return ["unlocked", "jammed", "open"].includes((Ht = x[Ke]) == null ? void 0 : Ht.state);
+      return ["unlocked", "jammed", "open"].includes((Ht = y[Ke]) == null ? void 0 : Ht.state);
     }).length, Ne = n.alarms.filter((Ke) => {
       var Ht;
-      return ((Ht = x[Ke]) == null ? void 0 : Ht.state) === "disarmed";
+      return ((Ht = y[Ke]) == null ? void 0 : Ht.state) === "disarmed";
     }).length, X = ce ? zi(ce, "warning", "warnings") : null, we = Se ? Se + " unlocked" : Ne ? Ne + " disarmed" : X ? null : "All secure", j = ss(), fe = e.flatMap((Ke) => Ke.solar), K = fe.find((Ke) => Ke.endsWith("_power")), Ue = {
       light: u.length && { value: m ? m + " on" : "All off", groups: d((Ke) => Ke.lights) },
-      climate: f.length && { value: b === M ? b + "°" : b + " - " + M + "°", groups: d((Ke) => [...Ke.readings.filter((Ht) => ["temperature", "humidity"].includes(xt(Ht).device_class)), ...i(Ke, /^(climate|humidifier)\./)]) },
+      climate: f.length && { value: b === M ? b + "°" : b + " - " + M + "°", groups: d((Ke) => [...Ke.readings.filter((Ht) => ["temperature", "humidity"].includes(yt(Ht).device_class)), ...i(Ke, /^(climate|humidifier)\./)]) },
       security: (n.alarms.length || n.locks.length) && { value: [X, we].filter(Boolean).join(", "), groups: [{ name: "Alarm and locks", ids: [...n.alarms, ...n.locks] }, { name: "Doors and windows", ids: n.openings }].filter((Ke) => Ke.ids.length) },
       media_players: D.length && { value: N ? N + " playing" : "No media playing", groups: d((Ke) => i(Ke, /^media_player\./)) },
       maintenance: j,
-      energy: Je.grid && { value: Ga(Number(((Cn = x[K]) == null ? void 0 : Cn.state) || 0) * 1e3 + Number(x[Je.grid].state)) + " now", groups: [{ name: "Energy", ids: [...fe, Je.grid] }] }
-    }, Rt = [], yt = O.filter((Ke) => Ke.severity !== "warning" && Ke.on);
-    return yt.length && Rt.push({ key: "alerts", name: "Alerts", icon: "mdi:alarm-plus", colour: "#f44336", value: zi(yt.length, "active alert", "active alerts"), groups: [{ name: "Active", ids: yt.map((Ke) => Ke.entity) }] }), Yl().forEach((Ke) => {
+      energy: Je.grid && { value: Ga(Number(((Cn = y[K]) == null ? void 0 : Cn.state) || 0) * 1e3 + Number(y[Je.grid].state)) + " now", groups: [{ name: "Energy", ids: [...fe, Je.grid] }] }
+    }, Rt = [], xt = O.filter((Ke) => Ke.severity !== "warning" && Ke.on);
+    return xt.length && Rt.push({ key: "alerts", name: "Alerts", icon: "mdi:alarm-plus", colour: "#f44336", value: zi(xt.length, "active alert", "active alerts"), groups: [{ name: "Active", ids: xt.map((Ke) => Ke.entity) }] }), Yl().forEach((Ke) => {
       Ke.type !== "summary" ? Rt.push({ key: "path:" + Ke.path, name: Ke.label || Ke.path, icon: Ke.icon || "mdi:link-variant", colour: "", value: "" }) : !Ke.hidden && Ue[Ke.key] && !(z.hiddenSums || []).includes(Ke.key) && Rt.push({ key: Ke.key, ...Rd[Ke.key], ...Ue[Ke.key] });
     }), Rt;
   }
@@ -6894,7 +6894,7 @@ function Ih(a, { config: l, getHass: o }) {
       e({ type: "frontend/get_system_data", key: "security" }),
       e({ type: "usage_prediction/common_control" })
     ]), m = (n == null ? void 0 : n.value) || {};
-    z = { favourites: m.favourites ?? null, sources: m.sources, hiddenSums: m.hiddenSums, dash: m.dash, named: m.named, favHidden: m.favHidden, suggest: m.suggest, favSeeded: m.favSeeded }, le = (i == null ? void 0 : i.value) || {}, ge = (d == null ? void 0 : d.value) || {}, xe = Array.isArray(u == null ? void 0 : u.entities) ? u.entities : [], $e = null, Object.keys(x).length && cn(), Ui(), ji = !0, Za();
+    z = { favourites: m.favourites ?? null, sources: m.sources, hiddenSums: m.hiddenSums, dash: m.dash, named: m.named, favHidden: m.favHidden, suggest: m.suggest, favSeeded: m.favSeeded }, le = (i == null ? void 0 : i.value) || {}, ge = (d == null ? void 0 : d.value) || {}, ye = Array.isArray(u == null ? void 0 : u.entities) ? u.entities : [], $e = null, Object.keys(y).length && cn(), Ui(), ji = !0, Za();
   }
   const el = "HomeCore";
   async function Ui() {
@@ -6919,9 +6919,9 @@ function Ih(a, { config: l, getHass: o }) {
   }
   let Ma = null, Yi = 0, ri = !1;
   const si = (e) => {
-    const n = e.split(".")[0], i = xt(e).device_class;
+    const n = e.split(".")[0], i = yt(e).device_class;
     return Dh.includes(n) && (n !== "binary_sensor" || Nl.includes(i) || !!ip[i]);
-  }, li = (e) => e.startsWith("binary_sensor.") ? ip[xt(e).device_class] : null;
+  }, li = (e) => e.startsWith("binary_sensor.") ? ip[yt(e).device_class] : null;
   async function Zi() {
     var e;
     if (!(ri || Date.now() - Yi < 30 * 1e3)) {
@@ -6937,7 +6937,7 @@ function Ih(a, { config: l, getHass: o }) {
   }
   function ds() {
     const e = /* @__PURE__ */ new Map(), n = /* @__PURE__ */ new Map(), i = (u) => {
-      if (!x[u.entity_id] || !si(u.entity_id) || !us(u.entity_id) || ["unavailable", "unknown"].includes(u.state)) return;
+      if (!y[u.entity_id] || !si(u.entity_id) || !us(u.entity_id) || ["unavailable", "unknown"].includes(u.state)) return;
       if (li(u.entity_id)) {
         const f = n.get(u.entity_id);
         u.state === "on" ? (!f || u.when > f.when + 1) && n.set(u.entity_id, { ...u, alarm: !0, cleared: null }) : f && !f.cleared && u.when > f.when && (f.cleared = u.when);
@@ -6948,15 +6948,15 @@ function Ih(a, { config: l, getHass: o }) {
     };
     [...Ma || []].sort((u, m) => u.when - m.when).forEach(i);
     const d = Ma ? Yi / 1e3 - 5 : 0;
-    return Object.keys(x).forEach((u) => {
+    return Object.keys(y).forEach((u) => {
       var b;
-      const m = x[u], f = m.last_changed ? Date.parse(m.last_changed) / 1e3 : 0;
+      const m = y[u], f = m.last_changed ? Date.parse(m.last_changed) / 1e3 : 0;
       f > d && i({ entity_id: u, state: m.state, when: f, context_user_id: (b = m.context) == null ? void 0 : b.user_id });
     }), [...e.values(), ...n.values()].sort((u, m) => m.when - u.when).slice(0, Rh);
   }
   function _a(e) {
     var d;
-    const n = e.context_user_id && Object.keys(x).find((u) => u.startsWith("person.") && xt(u).user_id === e.context_user_id);
+    const n = e.context_user_id && Object.keys(y).find((u) => u.startsWith("person.") && yt(u).user_id === e.context_user_id);
     if (n) return ke(n);
     const i = (d = o()) == null ? void 0 : d.user;
     return i && e.context_user_id === i.id ? i.name : ["automation", "script"].includes(e.context_domain) || e.context_event_type === "automation_triggered" ? e.context_name || "Home Assistant" : "";
@@ -6981,7 +6981,7 @@ function Ih(a, { config: l, getHass: o }) {
       for (const [u, m, f] of [["electricity", "Electricity", d("grid")], ["solar", "Solar", d("solar")], ["gas", "Gas", d("gas")], ["water", "Water", d("water")]]) {
         if (!f.length) continue;
         const b = await Promise.all(f.map((M) => Promise.resolve(R({ type: "recorder/statistic_during_period", statistic_id: M, calendar: { period: "day" }, types: ["change"] })).then((D) => Number(D == null ? void 0 : D.change) || 0, () => 0)));
-        e.push({ key: u, name: m, id: f[0], ids: f, value: b.reduce((M, D) => M + D, 0), unit: xt(f[0]).unit_of_measurement || (u === "gas" || u === "water" ? "m³" : "kWh") });
+        e.push({ key: u, name: m, id: f[0], ids: f, value: b.reduce((M, D) => M + D, 0), unit: yt(f[0]).unit_of_measurement || (u === "gas" || u === "water" ? "m³" : "kWh") });
       }
     } catch {
     }
@@ -6992,7 +6992,7 @@ function Ih(a, { config: l, getHass: o }) {
     var m;
     const e = tl = Ki != null && Ki.length ? Ki : $i.map(([f, b, M, D]) => {
       const N = "sensor.made_up_energy_" + f;
-      return x[N] = { entity_id: N, state: String(M), last_changed: (/* @__PURE__ */ new Date()).toISOString(), attributes: { friendly_name: b + " today", unit_of_measurement: D, state_class: "total_increasing" } }, { key: f, name: b, id: N, value: M, unit: D };
+      return y[N] = { entity_id: N, state: String(M), last_changed: (/* @__PURE__ */ new Date()).toISOString(), attributes: { friendly_name: b + " today", unit_of_measurement: D, state_class: "total_increasing" } }, { key: f, name: b, id: N, value: M, unit: D };
     });
     V.clear(), e.some((f) => f.id === co) || (co = e[0].id);
     const n = e.map((f) => {
@@ -7006,7 +7006,7 @@ function Ih(a, { config: l, getHass: o }) {
     !i || e === co || (co = e, n.querySelectorAll("[data-energy-pick]").forEach((d) => {
       const u = d.dataset.energyPick === e;
       d.classList.toggle("picked", u), d.setAttribute("aria-pressed", String(u));
-    }), i.dataset.graph = e, i.dataset.drawn = "", xn.set("dash:energy", Lr()), Ts(!0));
+    }), i.dataset.graph = e, i.dataset.drawn = "", yn.set("dash:energy", Lr()), Ts(!0));
   }
   const Xi = {
     electricity: [15, 12, 10, 10, 10, 12, 25, 45, 40, 30, 25, 30, 35, 30, 25, 25, 35, 60, 80, 70, 55, 45, 30, 20],
@@ -7058,22 +7058,22 @@ function Ih(a, { config: l, getHass: o }) {
   }, nl = (e) => Qi(e).slice(0, Da(e) - 1);
   function er(e) {
     const n = Ft().tiles;
-    if (n) return n.filter((d) => x[d]);
+    if (n) return n.filter((d) => y[d]);
     if (!_r) {
       const d = (u) => {
         var m;
-        return (((m = x[u]) == null ? void 0 : m.state) === "on" ? 1e6 : 0) + (st[u] || 0);
+        return (((m = y[u]) == null ? void 0 : m.state) === "on" ? 1e6 : 0) + (st[u] || 0);
       };
       _r = {
         lights: Je.rooms.flatMap((u) => u.lights).filter((u) => {
           var m;
-          return us(u) && ((m = x[u]) == null ? void 0 : m.state) !== "unavailable";
+          return us(u) && ((m = y[u]) == null ? void 0 : m.state) !== "unavailable";
         }).sort((u, m) => d(m) - d(u) || ke(u).localeCompare(ke(m))),
         climates: Je.rooms.flatMap((u) => u.actions.filter((m) => m.startsWith("climate.")))
       };
     }
-    const i = _r.climates.filter((d) => x[d]).slice(0, e > 3 ? 2 : 1);
-    return [..._r.lights.filter((d) => x[d]).slice(0, Math.max(0, e - i.length)), ...i];
+    const i = _r.climates.filter((d) => y[d]).slice(0, e > 3 ? 2 : 1);
+    return [..._r.lights.filter((d) => y[d]).slice(0, Math.max(0, e - i.length)), ...i];
   }
   const Er = (e, n, i, d) => (u) => '<section class="card tfCard tfDashCard ' + e + '" data-tf data-k="' + n + '" aria-label="' + i + '">' + (d ? '<div class="activityHeader">' + (n === "favs" ? '<button class="activityTitle tfTitleBtn" type="button" data-more="favourites" aria-label="Favourites. More info">' + i + "</button>" : '<div class="activityTitle">' + i + "</div>") + "</div>" : "") + '<div class="activityRows">' + u + "</div></section>";
   function Ka(e, n) {
@@ -7227,7 +7227,7 @@ function Ih(a, { config: l, getHass: o }) {
       K.el.classList.add("tfBoardItem"), Object.assign(K.el.style, { width: e + "px", height: "", left: "0px", top: O + "px" });
       const Ue = K.key === "sums" && K.el.querySelector(".tfDash-bar"), Rt = Ue ? Ue.querySelectorAll(".activityRow").length : 0;
       Ue && (Ue.style.maxWidth = "none");
-      for (let yt = 1; Ue && yt <= Rt && (Ue.style.setProperty("--bar-cols", String(Math.ceil(Rt / yt))), !(Ue.offsetWidth <= e)); yt++)
+      for (let xt = 1; Ue && xt <= Rt && (Ue.style.setProperty("--bar-cols", String(Math.ceil(Rt / xt))), !(Ue.offsetWidth <= e)); xt++)
         ;
       Ue && (Ue.style.maxWidth = ""), O += K.el.offsetHeight + Xt;
     }), Xa = O;
@@ -7240,9 +7240,9 @@ function Ih(a, { config: l, getHass: o }) {
       const Ue = we.get(K.key);
       K.el.style.height = Ue.h + "px", K.el.dataset.rows = Da(K.key), K.el.classList.contains("tfDac") && K.el.style.setProperty("--tf-dac-pad", Ue.h - nr + "px"), !(K === Se && !wt.fromTray) && (K.el.style.left = Ue.x + "px", K.el.style.top = Ue.y + "px");
     }), n || (pa = we), rl([...N.filter((K) => Do.includes(K.key)), ...ce.slice().sort((K, Ue) => we.get(K.key).row - we.get(Ue.key).row || we.get(K.key).col - we.get(Ue.key).col)].map((K) => K.el)), [["favs", ".tfDash-favs"], ["act", ".tfDash-act"]].forEach(([K, Ue]) => {
-      const Rt = we.get(K), yt = Rt && E.querySelector(Ue), Cn = yt == null ? void 0 : yt.querySelector(":scope > .activityRows"), Ke = yt == null ? void 0 : yt.querySelector(":scope > .activityHeader");
+      const Rt = we.get(K), xt = Rt && E.querySelector(Ue), Cn = xt == null ? void 0 : xt.querySelector(":scope > .activityRows"), Ke = xt == null ? void 0 : xt.querySelector(":scope > .activityHeader");
       if (!Cn || !Ke) return;
-      const Ht = Rt.rows === 1 ? Rt.h : Rt.h - (Ke.offsetTop + Ke.offsetHeight + 10) - parseFloat(getComputedStyle(yt).paddingBottom), Kr = Math.max(1, Math.floor(Ht / fi));
+      const Ht = Rt.rows === 1 ? Rt.h : Rt.h - (Ke.offsetTop + Ke.offsetHeight + 10) - parseFloat(getComputedStyle(xt).paddingBottom), Kr = Math.max(1, Math.floor(Ht / fi));
       Cn.style.setProperty("--fill-row", (Ht / Kr).toFixed(2) + "px"), Cn.style.maxHeight = Ht + "px";
     }), Dr = Math.max(0, ...[...we.values()].map((K) => K.row + K.rows));
     let j = Xa + Dr * uo - Xt;
@@ -7312,7 +7312,7 @@ function Ih(a, { config: l, getHass: o }) {
       return;
     }
     const i = z, d = Ft(), u = ho(), m = u[e] || { col: 0, row: 0 };
-    n === "size" && (d.spans = { ...d.spans, [e]: (d.spans[e] ?? 2) === 1 ? 2 : 1 }), n.startsWith("h:") && (d.opts = { ...d.opts, [e]: { ...d.opts[e] || {}, h: Number(n.slice(2)), tall: void 0 } }), n === "graph" && (d.opts = { ...d.opts, energy: { ...d.opts.energy || {}, graph: (((f = d.opts.energy) == null ? void 0 : f.graph) || "above") === "above" ? "below" : "above" } }), n === "left" && (u[e] = { ...m, col: m.col - 1 }), n === "right" && (u[e] = { ...m, col: m.col + 1 }), n === "up" && (u[e] = { ...m, row: m.row - 1 }), n === "down" && (u[e] = { ...m, row: m.row + 1 }), n === "hide" && (d.hidden = [.../* @__PURE__ */ new Set([...d.hidden, e])]), ["left", "right", "up", "down"].includes(n) && (wt = { key: e, col: u[e].col, row: u[e].row }), mi(d, u), wt && (Sn(), wt = null, mi(Ft(), ho())), ua(), n === "graph" && (xn.delete("dash:energy"), cn()), n.startsWith("h:") && e.includes(".") && cn(), Sn(), n !== "hide" ? (b = E.querySelector('[data-board-more="' + CSS.escape(e) + '"]')) == null || b.focus() : Sa(Mn(e) + " hidden", Ir(i));
+    n === "size" && (d.spans = { ...d.spans, [e]: (d.spans[e] ?? 2) === 1 ? 2 : 1 }), n.startsWith("h:") && (d.opts = { ...d.opts, [e]: { ...d.opts[e] || {}, h: Number(n.slice(2)), tall: void 0 } }), n === "graph" && (d.opts = { ...d.opts, energy: { ...d.opts.energy || {}, graph: (((f = d.opts.energy) == null ? void 0 : f.graph) || "above") === "above" ? "below" : "above" } }), n === "left" && (u[e] = { ...m, col: m.col - 1 }), n === "right" && (u[e] = { ...m, col: m.col + 1 }), n === "up" && (u[e] = { ...m, row: m.row - 1 }), n === "down" && (u[e] = { ...m, row: m.row + 1 }), n === "hide" && (d.hidden = [.../* @__PURE__ */ new Set([...d.hidden, e])]), ["left", "right", "up", "down"].includes(n) && (wt = { key: e, col: u[e].col, row: u[e].row }), mi(d, u), wt && (Sn(), wt = null, mi(Ft(), ho())), ua(), n === "graph" && (yn.delete("dash:energy"), cn()), n.startsWith("h:") && e.includes(".") && cn(), Sn(), n !== "hide" ? (b = E.querySelector('[data-board-more="' + CSS.escape(e) + '"]')) == null || b.focus() : Sa(Mn(e) + " hidden", Ir(i));
   }
   const dl = (e) => {
     var n;
@@ -7350,12 +7350,12 @@ function Ih(a, { config: l, getHass: o }) {
   const cl = 700, fa = 1e3, hn = Object.assign(document.createElement("div"), { className: "tfTooltip", hidden: !0 });
   hn.setAttribute("role", "tooltip"), hn.setAttribute("aria-hidden", "true"), h.appendChild(hn);
   let gi = null, Ra = 0, No = 0, go = -1 / 0;
-  const ys = (e) => {
+  const xs = (e) => {
     if (e.nodeType !== 1) return !1;
     const n = getComputedStyle(e);
     return n.textOverflow === "ellipsis" && e.scrollWidth > e.clientWidth + 1 || n.webkitLineClamp !== "none" && e.scrollHeight > e.clientHeight + 1;
   }, Ja = (e) => {
-    for (let n = e; n && n !== h; n = n.parentElement) if (ys(n)) return n;
+    for (let n = e; n && n !== h; n = n.parentElement) if (xs(n)) return n;
     return null;
   };
   function ir(e, n) {
@@ -7391,7 +7391,7 @@ function Ih(a, { config: l, getHass: o }) {
     var d;
     const n = e.target;
     if (!((d = n.matches) != null && d.call(n, ":focus-visible"))) return;
-    let i = [n, ...n.querySelectorAll("*")].filter(ys);
+    let i = [n, ...n.querySelectorAll("*")].filter(xs);
     mt.names === "scroll" && (i.filter((u) => u.matches(vi)).forEach(rr), i = i.filter((u) => !u.matches(vi))), i.length && ir(n, i.map((u) => u.textContent.trim()).join(" · "));
   }), a.addEventListener("focusout", (e) => {
     e.target === gi && Pr();
@@ -7400,14 +7400,14 @@ function Ih(a, { config: l, getHass: o }) {
   }, !0), window.addEventListener("scroll", () => {
     (!hn.hidden || Ra) && Pr();
   }, { capture: !0, passive: !0 });
-  const vi = ".activityRowName,.activityRowMeta", xs = /* @__PURE__ */ new WeakSet();
+  const vi = ".activityRowName,.activityRowMeta", ys = /* @__PURE__ */ new WeakSet();
   function rr(e) {
     var m;
-    if (mt.names !== "scroll" || xs.has(e) || (m = window.matchMedia) != null && m.call(window, "(prefers-reduced-motion: reduce)").matches) return;
+    if (mt.names !== "scroll" || ys.has(e) || (m = window.matchMedia) != null && m.call(window, "(prefers-reduced-motion: reduce)").matches) return;
     const n = e.scrollWidth - e.clientWidth;
     if (n < 2) return;
     const i = n / 30 * 1e3, d = 600 + i + 1e3 + i;
-    xs.add(e), e.style.textOverflow = "clip";
+    ys.add(e), e.style.textOverflow = "clip";
     const u = e.animate([
       { textIndent: "0px", offset: 0 },
       { textIndent: "0px", offset: 600 / d, easing: "ease-in-out" },
@@ -7416,7 +7416,7 @@ function Ih(a, { config: l, getHass: o }) {
       { textIndent: "0px", offset: 1 }
     ], { duration: d });
     u.onfinish = u.oncancel = () => {
-      e.style.textOverflow = "", xs.delete(e);
+      e.style.textOverflow = "", ys.delete(e);
     };
   }
   const Na = new IntersectionObserver((e) => e.forEach((n) => {
@@ -7426,7 +7426,7 @@ function Ih(a, { config: l, getHass: o }) {
   new MutationObserver(() => {
     ks || mt.names !== "scroll" || (ks = !0, setTimeout(() => {
       ks = !1, a.querySelectorAll(vi).forEach((e) => {
-        !e.dataset.glided && ys(e) && (e.dataset.glided = "1", Na.observe(e));
+        !e.dataset.glided && xs(e) && (e.dataset.glided = "1", Na.observe(e));
       });
     }, 300));
   }).observe(a, { childList: !0, subtree: !0 });
@@ -7474,7 +7474,7 @@ function Ih(a, { config: l, getHass: o }) {
   }, Hr = (e, n) => '<span class="tfTrayName"><span class="activityRowName">' + se(ke(e)) + '</span><span class="activityRowMeta">' + se(n) + "</span></span>", Fn = (e, n, i) => '<li class="tfTrayFav' + (n ? " off" : "") + '" data-tray-fav="' + se(e) + '"><span class="tfTrayGrip" aria-hidden="true">' + Nd + '</span><span class="tfIcon"' + Bt(e, on(e)) + "></span>" + Hr(e, n ? "Hidden" + (At.get(e) ? " · " + At.get(e) : "") : At.get(e) || an(e)) + '<button class="tfTrayBtn" type="button" data-fav-eye="' + se(e) + '" aria-pressed="' + !n + '" aria-label="' + (n ? "Show " : "Hide ") + se(ke(e)) + ' on the dashboard">' + (n ? ep : Th) + "</button>" + (i ? '<button class="tfTrayBtn" type="button" data-fav-remove="' + se(e) + '" aria-label="Remove ' + se(ke(e)) + ' from favourites">' + tp + "</button>" : "<span></span>") + "</li>";
   function Fr(e, n, i, d) {
     const u = e.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    return Object.keys(x).filter((f) => n(f) && !i.has(f) && x[f].state !== "unavailable").filter((f) => {
+    return Object.keys(y).filter((f) => n(f) && !i.has(f) && y[f].state !== "unavailable").filter((f) => {
       const b = (ke(f) + " " + (At.get(f) || "") + " " + f).toLowerCase();
       return u.every((M) => b.includes(M));
     }).sort((f, b) => (At.get(f) || "~").localeCompare(At.get(b) || "~") || ke(f).localeCompare(ke(b))).slice(0, 40).map((f) => '<li><button class="tfTrayPickItem" type="button" ' + d + '="' + se(f) + '"><span class="tfIcon"' + Bt(f, on(f)) + "></span>" + Hr(f, At.get(f) || "—") + "</button></li>").join("") || '<li class="tfTrayNote">Nothing matches.</li>';
@@ -7486,8 +7486,8 @@ function Ih(a, { config: l, getHass: o }) {
     n.innerHTML = Pa ? jc : np, n.setAttribute("aria-expanded", String(!Pa)), n.setAttribute("aria-label", Pa ? "Show the edit tray" : "Tuck the edit tray away");
     const i = Ft().hidden.filter((f) => Jn().some((b) => b.key === f));
     Qa("cards", '<div class="sectionLabel">Hidden and new cards</div>' + (i.length ? '<div class="tfTrayCards">' + i.map((f) => '<button class="tfTrayCard" type="button" data-tray-card="' + se(f) + '" aria-label="' + se(Mn(f)) + ': drag it onto the board, or press to put it back"><span class="tfTrayGrip" aria-hidden="true">' + Nd + "</span>" + se(Mn(f)) + "</button>").join("") + "</div>" : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>')), Qa("phone", '<div class="sectionLabel">Phone</div><p class="tfTrayNote">' + (Ft().phone ? "Phones have an order of their own." : "Phones follow the board's order.") + '</p><button class="pill tfTrayAdd" type="button" data-phone-toggle aria-pressed="' + Ct + '">' + (Ct ? "Hide the phone" : "Show the phone") + "</button>");
-    const d = new Set(z.favHidden || []), u = Pn(), m = [...u, ...[...d].filter((f) => !u.includes(f) && x[f])];
-    Qa("favs", m.map((f) => Fn(f, d.has(f), u.includes(f))).join("") || '<li class="tfTrayNote">No favourites yet.</li>'), _t.querySelector('[data-pick="tiles"]').hidden = !Zn, _t.querySelector("[data-tile-add]").setAttribute("aria-expanded", String(Zn)), Zn && Qa("tilepick", Fr(_t.querySelector("[data-tile-search]").value, (f) => Pl.includes(f.split(".")[0]), new Set(Nr()), "data-tile-pick")), _t.querySelector('[data-pick="favs"]').hidden = !Ia, _t.querySelector("[data-fav-add]").setAttribute("aria-expanded", String(Ia)), Ia && Qa("pick", Fr(_t.querySelector("[data-fav-search]").value, (f) => ed.test(f), new Set(Pn()), "data-fav-pick")), Qa("suggest", '<div><strong>Show suggestions</strong><div class="status">Fills the card after your favourites.</div></div><button class="switch' + (xa() ? " on" : "") + '" type="button" role="switch" aria-checked="' + xa() + '" data-fav-suggest aria-label="Show suggestions"></button>');
+    const d = new Set(z.favHidden || []), u = Pn(), m = [...u, ...[...d].filter((f) => !u.includes(f) && y[f])];
+    Qa("favs", m.map((f) => Fn(f, d.has(f), u.includes(f))).join("") || '<li class="tfTrayNote">No favourites yet.</li>'), _t.querySelector('[data-pick="tiles"]').hidden = !Zn, _t.querySelector("[data-tile-add]").setAttribute("aria-expanded", String(Zn)), Zn && Qa("tilepick", Fr(_t.querySelector("[data-tile-search]").value, (f) => Pl.includes(f.split(".")[0]), new Set(Nr()), "data-tile-pick")), _t.querySelector('[data-pick="favs"]').hidden = !Ia, _t.querySelector("[data-fav-add]").setAttribute("aria-expanded", String(Ia)), Ia && Qa("pick", Fr(_t.querySelector("[data-fav-search]").value, (f) => ed.test(f), new Set(Pn()), "data-fav-pick")), Qa("suggest", '<div><strong>Show suggestions</strong><div class="status">Fills the card after your favourites.</div></div><button class="switch' + (ya() ? " on" : "") + '" type="button" role="switch" aria-checked="' + ya() + '" data-fav-suggest aria-label="Show suggestions"></button>');
   }
   const Po = (e) => {
     z = { ...z, ...e }, zn(), cn(), mn();
@@ -7505,7 +7505,7 @@ function Ih(a, { config: l, getHass: o }) {
   _t.addEventListener("click", (e) => {
     var i;
     const n = e.target.closest("button");
-    n && (n.hasAttribute("data-tray-done") ? or(!1) : n.hasAttribute("data-tray-tuck") ? (Pa = !Pa, mn()) : n.hasAttribute("data-phone-toggle") ? (Ct = !Ct, mn(), Ct && ((i = On.querySelector("[data-phone-key]")) == null || i.focus({ preventScroll: !0 }))) : n.dataset.trayCard ? e.detail === 0 && (bs(n.dataset.trayCard), mn()) : n.dataset.favEye ? Ms(n.dataset.favEye, n.getAttribute("aria-pressed") !== "true") : n.dataset.favRemove ? td(n.dataset.favRemove) : n.hasAttribute("data-fav-add") ? (Ia = !Ia, mn(), Ia && _t.querySelector("[data-fav-search]").focus({ preventScroll: !0 })) : n.dataset.favPick ? nd(n.dataset.favPick) : n.hasAttribute("data-tile-add") ? (Zn = !Zn, mn(), Zn && _t.querySelector("[data-tile-search]").focus({ preventScroll: !0 })) : n.dataset.tilePick ? Ba(n.dataset.tilePick) : n.hasAttribute("data-fav-suggest") && Po({ suggest: !xa() }));
+    n && (n.hasAttribute("data-tray-done") ? or(!1) : n.hasAttribute("data-tray-tuck") ? (Pa = !Pa, mn()) : n.hasAttribute("data-phone-toggle") ? (Ct = !Ct, mn(), Ct && ((i = On.querySelector("[data-phone-key]")) == null || i.focus({ preventScroll: !0 }))) : n.dataset.trayCard ? e.detail === 0 && (bs(n.dataset.trayCard), mn()) : n.dataset.favEye ? Ms(n.dataset.favEye, n.getAttribute("aria-pressed") !== "true") : n.dataset.favRemove ? td(n.dataset.favRemove) : n.hasAttribute("data-fav-add") ? (Ia = !Ia, mn(), Ia && _t.querySelector("[data-fav-search]").focus({ preventScroll: !0 })) : n.dataset.favPick ? nd(n.dataset.favPick) : n.hasAttribute("data-tile-add") ? (Zn = !Zn, mn(), Zn && _t.querySelector("[data-tile-search]").focus({ preventScroll: !0 })) : n.dataset.tilePick ? Ba(n.dataset.tilePick) : n.hasAttribute("data-fav-suggest") && Po({ suggest: !ya() }));
   }), _t.addEventListener("input", (e) => {
     e.target.matches("[data-fav-search],[data-tile-search]") && mn();
   }), _t.addEventListener("keydown", (e) => {
@@ -7689,8 +7689,8 @@ function Ih(a, { config: l, getHass: o }) {
   }
   function Ho() {
     var b, M, D;
-    Je = wr.model(o()), Za(), x = Je.states, x[(b = z.sources) == null ? void 0 : b.grid] && (Je.grid = z.sources.grid), x[(M = z.sources) == null ? void 0 : M.alarm] && (Je.security.alarms = [z.sources.alarm]), T.forEach((N, O) => {
-      const ce = x[O], Se = (ce == null ? void 0 : ce.attributes) || {};
+    Je = wr.model(o()), Za(), y = Je.states, y[(b = z.sources) == null ? void 0 : b.grid] && (Je.grid = z.sources.grid), y[(M = z.sources) == null ? void 0 : M.alarm] && (Je.security.alarms = [z.sources.alarm]), T.forEach((N, O) => {
+      const ce = y[O], Se = (ce == null ? void 0 : ce.attributes) || {};
       if (!ce || Date.now() - N.at > 2 * 60 * 1e3) {
         T.delete(O);
         return;
@@ -7709,14 +7709,14 @@ function Ih(a, { config: l, getHass: o }) {
     return f != null && f.solar.length && e.push({ key: "energy:" + f.id, html: $n(f, ++n) }), f && (f.readings.length || f.plugs.length || f.power != null) && e.push({ key: "readings:" + f.id, html: da(f, ++n) }), f == null || f.plants.forEach((N) => e.push({ key: "plant:" + N.id, html: Oi(N, ++n) })), u.length && e.push({ key: "block:" + m, order: ++n, tiles: u.map((N) => ({ key: N, html: Be(N) })) }), e;
   }
   const od = (e, n) => '<div class="settingsHeader tfAreaHead" data-tf data-k="areahead" style="order:' + n + '"><button class="back" type="button" data-area-back aria-label="Back to the house">' + jc + '</button><div class="settingsTitle">' + se(e.name) + "</div></div>";
-  let yi = 0, gl = null;
+  let xi = 0, gl = null;
   const Fo = (e) => e === "weather" ? pt.wx : E.querySelector(".tfAreas");
   function vl(e) {
     var n, i;
-    Ae || (yi = Ha().scrollTop, gl = ((n = Fo(e)) == null ? void 0 : n.getBoundingClientRect().top) ?? null), Ae = e, e.startsWith("room:") && (re = e.slice(5)), sn(), Ha().scrollTop = 0, (i = E.querySelector("[data-area-back]")) == null || i.focus({ preventScroll: !0 });
+    Ae || (xi = Ha().scrollTop, gl = ((n = Fo(e)) == null ? void 0 : n.getBoundingClientRect().top) ?? null), Ae = e, e.startsWith("room:") && (re = e.slice(5)), sn(), Ha().scrollTop = 0, (i = E.querySelector("[data-area-back]")) == null || i.focus({ preventScroll: !0 });
   }
   let Oo = null;
-  function xi(e, n) {
+  function yi(e, n) {
     if (Oo == null || Oo(), n == null) return;
     const i = Ha(), d = performance.now() + 1500, u = ["wheel", "touchstart", "pointerdown", "keydown"];
     let m = 0;
@@ -7735,7 +7735,7 @@ function Ih(a, { config: l, getHass: o }) {
   function Wo() {
     var i;
     const e = Ae;
-    Ae = null, sn(), Ha().scrollTop = yi, xi(() => Fo(e), gl);
+    Ae = null, sn(), Ha().scrollTop = xi, yi(() => Fo(e), gl);
     const n = e.startsWith("room:") ? E.querySelector('.tfAreaPanel[data-area="' + CSS.escape(e.slice(5)) + '"]') : e === "weather" ? pt.wx.querySelector(".wbOpenPage") : E.querySelector('[data-k="sum:' + CSS.escape(e) + '"]');
     (i = (n == null ? void 0 : n.querySelector("[data-go]")) || n) == null || i.focus({ preventScroll: !0 });
   }
@@ -7759,9 +7759,9 @@ function Ih(a, { config: l, getHass: o }) {
   function sn() {
     if (!w || !E) return;
     const e = Ho();
-    E.querySelectorAll("[data-tf]").forEach((i) => i.remove()), xn.clear();
+    E.querySelectorAll("[data-tf]").forEach((i) => i.remove()), yn.clear();
     const n = document.createElement("div");
-    n.innerHTML = e.map((i) => i.tiles ? Ls(i) : i.html).join(""), e.forEach((i) => i.tiles ? i.tiles.forEach((d) => xn.set(d.key, d.html)) : xn.set(i.key, i.html)), Dn = qr(e), E.append(...n.children), yr(e.weather), Xo(), Yn.disconnect(), Sn(), la(E), Ur(E), ya(E), G(), P && Yr(P.id), xl(), cr(), Ns(), requestAnimationFrame(ee);
+    n.innerHTML = e.map((i) => i.tiles ? Ls(i) : i.html).join(""), e.forEach((i) => i.tiles ? i.tiles.forEach((d) => yn.set(d.key, d.html)) : yn.set(i.key, i.html)), Dn = qr(e), E.append(...n.children), xr(e.weather), Xo(), Yn.disconnect(), Sn(), la(E), Ur(E), xa(E), G(), P && Yr(P.id), yl(), cr(), Ns(), requestAnimationFrame(ee);
   }
   const As = (e) => {
     var i;
@@ -7789,7 +7789,7 @@ function Ih(a, { config: l, getHass: o }) {
     const i = document.createElement("div");
     i.innerHTML = n;
     const d = As(e), u = lr(e, i.firstElementChild);
-    la(u), Ur(u), ya(u), zr(u, d);
+    la(u), Ur(u), xa(u), zr(u, d);
   }
   function cn() {
     !w || !E || wt || qo(_s);
@@ -7809,14 +7809,14 @@ function Ih(a, { config: l, getHass: o }) {
       return i === u || i.endsWith(":" + u);
     });
     e.forEach((i) => (i.tiles || [i]).forEach((d) => {
-      if (xn.get(d.key) === d.html || n(d.key)) return;
+      if (yn.get(d.key) === d.html || n(d.key)) return;
       const u = E.querySelector('[data-k="' + CSS.escape(d.key) + '"]');
       if (u) {
-        if (xn.set(d.key, d.html), P && P.key === d.key && u.querySelector(".tfOpen")) {
+        if (yn.set(d.key, d.html), P && P.key === d.key && u.querySelector(".tfOpen")) {
           u.querySelector(".tfOpen .activityRowMeta").textContent = ei(P.id);
           return;
         }
-        id(u, d.html), P && P.key === d.key && Yr(P.id), d.key.startsWith("energy:") && xl();
+        id(u, d.html), P && P.key === d.key && Yr(P.id), d.key.startsWith("energy:") && yl();
       }
     })), cr(), Ns(), kr(), G(), Ze == null || Ze.update(), qt == null || qt.forEach((i) => i.update()), h.classList.contains("tfDash") && _n(), requestAnimationFrame(ee);
   }
@@ -7834,7 +7834,7 @@ function Ih(a, { config: l, getHass: o }) {
     weather: (e) => [["Temperature", e.temperature != null ? e.temperature + " " + (e.temperature_unit || "°C") : null], ["Humidity", e.humidity != null ? e.humidity + "%" : null], ["Wind", e.wind_speed != null ? e.wind_speed + " " + (e.wind_speed_unit || "km/h") : null], ["Pressure", e.pressure != null ? e.pressure + " " + (e.pressure_unit || "hPa") : null]]
   }, Es = (e) => {
     var i;
-    const n = (((i = ki[e.split(".")[0]]) == null ? void 0 : i.call(ki, xt(e))) || []).filter(([, d]) => d != null && d !== "");
+    const n = (((i = ki[e.split(".")[0]]) == null ? void 0 : i.call(ki, yt(e))) || []).filter(([, d]) => d != null && d !== "");
     return n.length ? '<div class="tfMoreRows">' + n.map(([d, u]) => '<div class="tfMoreRow"><span>' + se(d) + "</span><span>" + se(u) + "</span></div>").join("") + "</div>" : "";
   }, Mi = (e) => hr(e) ? '<div class="tfMoreNote">Made up for this page</div>' : "";
   function bl(e, n = {}, i = !1) {
@@ -7874,7 +7874,7 @@ function Ih(a, { config: l, getHass: o }) {
       return [n("Favourites"), i(M.length ? M.length + " starred" : "None starred"), d(N, { star: !0 }, !0)];
     }
     const u = (M, { name: D = "", alert: N = !1, plain: O = !1 } = {}) => {
-      const ce = O ? [] : M.filter((X) => Pl.includes(X.split(".")[0])), Se = M.filter((X) => !ce.includes(X)), Ne = (X) => X.startsWith("vacuum.") && xt(X).battery_level != null ? xt(X).battery_level + "%" : null;
+      const ce = O ? [] : M.filter((X) => Pl.includes(X.split(".")[0])), Se = M.filter((X) => !ce.includes(X)), Ne = (X) => X.startsWith("vacuum.") && yt(X).battery_level != null ? yt(X).battery_level + "%" : null;
       return '<div class="tfMoreGroup">' + (D ? '<div class="tfMoreGroupName">' + se(D) + "</div>" : "") + '<div class="tfMoreActions">' + ce.map((X) => Be(X, !0)).join("") + Se.map((X) => Sr(X, { plain: O, alert: N, say: O ? Ne(X) : null })).join("") + "</div></div>";
     };
     if (e.startsWith("summary:")) {
@@ -7882,7 +7882,7 @@ function Ih(a, { config: l, getHass: o }) {
       if (!M) return null;
       const D = M.key === "light" ? (M.groups || []).flatMap((ce) => ce.ids) : [], N = D.some((ce) => {
         var Se;
-        return ((Se = x[ce]) == null ? void 0 : Se.state) === "on";
+        return ((Se = y[ce]) == null ? void 0 : Se.state) === "on";
       }), O = D.length ? '<button class="primary" type="button" data-acts="' + so(D.map((ce) => ["light", N ? "turn_off" : "turn_on", ce])) + '">' + (N ? "Turn all off" : "Turn all on") + "</button>" : "";
       return [n(M.name), '<div class="tfMoreNowRow">' + i(M.value) + O + "</div>", ...(M.groups || []).map((ce) => u(ce.ids, { name: ce.name === M.name ? "" : ce.name, alert: ce.alert, plain: M.plain }))];
     }
@@ -7892,7 +7892,7 @@ function Ih(a, { config: l, getHass: o }) {
       const ce = O.acts ? '<button class="primary" type="button" data-acts="' + so(O.acts) + '">' + (O.on ? "Turn all off" : "Turn all on") + "</button>" : "";
       return [n(N.name + " " + O.label.toLowerCase()), '<div class="tfMoreNowRow">' + i(O.value) + ce + "</div>", u(Aa(N, D))];
     }
-    const m = e.split(".")[0], f = x[e], b = Pl.includes(m) ? dn(e) : { sections: [] };
+    const m = e.split(".")[0], f = y[e], b = Pl.includes(m) ? dn(e) : { sections: [] };
     return [
       n(ke(e)),
       i(an(e), f.last_changed && ja(Date.parse(f.last_changed))),
@@ -7909,7 +7909,7 @@ function Ih(a, { config: l, getHass: o }) {
     H && (H.details = e, cr(), (n = ut.querySelector(e ? "[data-details-close]" : "[data-details]")) == null || n.focus({ preventScroll: !0 }));
   }
   const dr = (e) => {
-    const n = x[e], i = Gn(e), d = Va(e);
+    const n = y[e], i = Gn(e), d = Va(e);
     return { kind: Dd(n), name: ke(e), text: an(e), pos: i, target: Math.abs(d - i) > 0.5 ? d : null, moving: n.state === "opening" || n.state === "closing", tilt: ro(e) ?? 100, canSet: zt(e, Kc) };
   };
   function Ur(e) {
@@ -7922,7 +7922,7 @@ function Ih(a, { config: l, getHass: o }) {
     });
   }
   const Rs = (e) => [...I.values()].filter((n) => n.coverId === e), eo = () => I.forEach((e) => {
-    x[e.coverId] && e.update(dr(e.coverId));
+    y[e.coverId] && e.update(dr(e.coverId));
   }), Ns = () => {
     I.forEach((e, n) => {
       e.el.isConnected || (e.destroy(), I.delete(n));
@@ -7930,7 +7930,7 @@ function Ih(a, { config: l, getHass: o }) {
   };
   function cr() {
     var m, f;
-    if (!H || !(Vr(H.id) || x[H.id])) {
+    if (!H || !(Vr(H.id) || y[H.id])) {
       ut.hidden = !0;
       return;
     }
@@ -7946,7 +7946,7 @@ function Ih(a, { config: l, getHass: o }) {
     const i = As(ut), d = Ds(H.id), u = H.frame ? H.frame.wide : H.id.startsWith("summary:") || H.id.startsWith("group:");
     if (ut.hidden || !n || e.length !== Ut.length || n.classList.contains("wide") !== u) {
       const b = pr ? H.scroll || 0 : !ut.hidden && n ? n.scrollTop : 0;
-      ut.innerHTML = '<div class="tfMorePair' + (ut.hidden ? "" : " still") + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (u ? " wide" : "") + '"' + (H.frame ? ' style="height:' + H.frame.h + 'px"' : "") + ">" + e.join("") + "</section>" + (d ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + Bd + '</button><div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + d + "</div></div></aside>" : "") + "</div>", Bs = d, ut.classList.toggle("wide", u), ut.hidden = !1, Wn(), Ur(ut), ya(ut), la(ut), ut.querySelectorAll("[data-day]").forEach((M) => dd(M.dataset.day, M, H.at)), b && (ut.querySelector(".tfMore").scrollTop = b), zr(ut, i), ut.contains(a.activeElement) || (m = ut.querySelector("[data-more-close]")) == null || m.focus({ preventScroll: !0 });
+      ut.innerHTML = '<div class="tfMorePair' + (ut.hidden ? "" : " still") + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (u ? " wide" : "") + '"' + (H.frame ? ' style="height:' + H.frame.h + 'px"' : "") + ">" + e.join("") + "</section>" + (d ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + Bd + '</button><div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + d + "</div></div></aside>" : "") + "</div>", Bs = d, ut.classList.toggle("wide", u), ut.hidden = !1, Wn(), Ur(ut), xa(ut), la(ut), ut.querySelectorAll("[data-day]").forEach((M) => dd(M.dataset.day, M, H.at)), b && (ut.querySelector(".tfMore").scrollTop = b), zr(ut, i), ut.contains(a.activeElement) || (m = ut.querySelector("[data-more-close]")) == null || m.focus({ preventScroll: !0 });
     } else {
       if (e.forEach((b, M) => {
         var O, ce;
@@ -7954,7 +7954,7 @@ function Ih(a, { config: l, getHass: o }) {
         const D = document.createElement("div");
         D.innerHTML = b;
         const N = lr(n.children[M], D.firstElementChild);
-        la(N), ya(N);
+        la(N), xa(N);
       }), d !== Bs) {
         const b = ut.querySelector(".tfMoreSideBody");
         b && (b.innerHTML = d), Bs = d;
@@ -7998,10 +7998,10 @@ function Ih(a, { config: l, getHass: o }) {
     const i = e.split(".")[0];
     return Ps[i] ? Ps[i].includes(n) : i === "alarm_control_panel" || i === "climate" || i === "media_player" ? !["off", "standby", "disarmed", "unavailable", "unknown"].includes(n) : n === "on";
   }, sd = (e) => {
-    const n = e.split(".")[0], i = xt(e).device_class;
+    const n = e.split(".")[0], i = yt(e).device_class;
     return n === "binary_sensor" ? { moisture: "Wet", smoke: "Smoke", gas: "Gas", carbon_monoxide: "Carbon monoxide", safety: "Unsafe" }[i] || (Nl.includes(i) ? "Open" : "On") : { lock: "Unlocked", cover: "Open", valve: "Open", vacuum: "Cleaning", alarm_control_panel: "Armed" }[n] || "On";
   }, Qn = /* @__PURE__ */ new Map();
-  let yl = 0;
+  let xl = 0;
   async function ld(e) {
     let n = Qn.get(e);
     if (!n || Date.now() - n.at > 60 * 1e3) {
@@ -8013,7 +8013,7 @@ function Ih(a, { config: l, getHass: o }) {
       }
       u.length || (u = (Ma || []).filter((m) => m.entity_id === e).map((m) => [m.when * 1e3, String(m.state)])), n = { at: Date.now(), pts: u }, Qn.set(e, n);
     }
-    const i = x[e], d = n.pts.slice().sort((u, m) => u[0] - m[0]);
+    const i = y[e], d = n.pts.slice().sort((u, m) => u[0] - m[0]);
     return i && (!d.length || d[d.length - 1][1] !== i.state) && d.push([Date.parse(i.last_changed) || Date.now(), i.state]), d;
   }
   async function dd(e, n, i) {
@@ -8030,11 +8030,11 @@ function Ih(a, { config: l, getHass: o }) {
       const Rt = Is(e, Ue);
       Rt && O == null ? O = Math.max(K, f) : !Rt && O != null && (N.push([O, Math.max(K, f)]), O = null);
     }), O != null && N.push([O, m]);
-    const ce = li(e) ? "var(--danger)" : e.startsWith("light.") ? "#ffaa00" : "var(--primary)", Se = sd(e), Ne = "tfDayClip" + ++yl, X = N.map(([K, Ue]) => Se + (Ue >= m - 1e3 && K <= f + 1e3 ? " all day" : Ue >= m - 1e3 ? " since " + Yt(K) : K <= f + 1e3 ? " until " + Yt(Ue) : " " + Yt(K) + "–" + Yt(Ue)));
+    const ce = li(e) ? "var(--danger)" : e.startsWith("light.") ? "#ffaa00" : "var(--primary)", Se = sd(e), Ne = "tfDayClip" + ++xl, X = N.map(([K, Ue]) => Se + (Ue >= m - 1e3 && K <= f + 1e3 ? " all day" : Ue >= m - 1e3 ? " since " + Yt(K) : K <= f + 1e3 ? " until " + Yt(Ue) : " " + Yt(K) + "–" + Yt(Ue)));
     let we = "", j = -1 / 0;
     N.forEach(([K], Ue) => {
-      const Rt = X[Ue].length * 5.4, yt = Math.min(D(K), b - Rt);
-      yt < j + 8 || (we += '<text x="' + yt.toFixed(1) + '" y="10">' + se(X[Ue]) + "</text>", j = yt + Rt);
+      const Rt = X[Ue].length * 5.4, xt = Math.min(D(K), b - Rt);
+      xt < j + 8 || (we += '<text x="' + xt.toFixed(1) + '" y="10">' + se(X[Ue]) + "</text>", j = xt + Rt);
     });
     let fe = '<text x="' + b + '" y="' + (M - 2) + '" text-anchor="end">Now</text>';
     [0, 6, 12, 18].forEach((K) => {
@@ -8044,8 +8044,8 @@ function Ih(a, { config: l, getHass: o }) {
   }
   function cd(e) {
     var d;
-    const n = Number((d = x[e]) == null ? void 0 : d.state), i = Date.now();
-    if (xt(e).state_class === "total_increasing") {
+    const n = Number((d = y[e]) == null ? void 0 : d.state), i = Date.now();
+    if (yt(e).state_class === "total_increasing") {
       const u = (/* @__PURE__ */ new Date()).setHours(0, 0, 0, 0), m = Math.max(1, i - u);
       return [...Array(49)].map((f, b) => u + m * b / 48).map((f) => [f, Math.round(n * Math.pow((f - u) / m, 1.3) * 100) / 100]);
     }
@@ -8067,7 +8067,7 @@ function Ih(a, { config: l, getHass: o }) {
     }
     const d = n || E.querySelector('[data-graph="' + CSS.escape(e) + '"]');
     if (!d) return;
-    const u = x[e], m = ((Se = u == null ? void 0 : u.attributes) == null ? void 0 : Se.unit_of_measurement) || "", f = i.points.slice(), b = Number(u == null ? void 0 : u.state);
+    const u = y[e], m = ((Se = u == null ? void 0 : u.attributes) == null ? void 0 : Se.unit_of_measurement) || "", f = i.points.slice(), b = Number(u == null ? void 0 : u.state);
     if (Number.isFinite(b) && !e.endsWith("_solar_power") && f.push([Date.now(), b]), f.length < 2) {
       d.setAttribute("aria-label", ke(e) + ": no history for the last 24 hours"), d.innerHTML = '<text x="0" y="16">No history for the last 24 hours</text>';
       return;
@@ -8075,7 +8075,7 @@ function Ih(a, { config: l, getHass: o }) {
     const M = f.map((X) => X[1]), D = Math.min(...M), N = Math.max(...M), O = (X) => X.toLocaleString(void 0, { maximumFractionDigits: Math.abs(X) >= 100 ? 0 : 1 }), ce = ((Ne = u == null ? void 0 : u.attributes) == null ? void 0 : Ne.state_class) === "total_increasing";
     Ci(d, f, ke(e) + ", last 24 hours: " + (ce ? "+" + O(M[M.length - 1] - M[0]) : D === N ? O(D) : O(D) + " to " + O(N)) + (m ? " " + m : ""), { smooth: e.endsWith("_solar_power"), zero: e.endsWith("_solar_power") });
   }
-  function xl() {
+  function yl() {
     const e = E == null ? void 0 : E.querySelector("[data-solar]");
     if (!e) return;
     const n = hc();
@@ -8088,7 +8088,7 @@ function Ih(a, { config: l, getHass: o }) {
   function Hs(e, n, i) {
     var u;
     const d = i == null ? void 0 : i.entity_id;
-    return e !== "light" || typeof d != "string" || !ba[d] || !za(d) || i.brightness_pct != null || i.brightness != null ? [n, i] : n !== "turn_on" && !(n === "toggle" && ((u = x[d]) == null ? void 0 : u.state) !== "on") ? [n, i] : ["turn_on", { ...i, brightness_pct: ba[d] }];
+    return e !== "light" || typeof d != "string" || !ba[d] || !za(d) || i.brightness_pct != null || i.brightness != null ? [n, i] : n !== "turn_on" && !(n === "toggle" && ((u = y[d]) == null ? void 0 : u.state) !== "on") ? [n, i] : ["turn_on", { ...i, brightness_pct: ba[d] }];
   }
   function Zr(e, n, i, d) {
     let u = { entity_id: i, ...d || {} };
@@ -8100,7 +8100,7 @@ function Ih(a, { config: l, getHass: o }) {
     });
   }
   function no(e, n) {
-    qe.set("pos|" + e, n), xn.delete(e), Ut = Ut.map(() => ""), [E, ut].forEach((d) => d.querySelectorAll('[data-blocks="' + CSS.escape(e) + '"]').forEach((u) => ye(u, n)));
+    qe.set("pos|" + e, n), yn.delete(e), Ut = Ut.map(() => ""), [E, ut].forEach((d) => d.querySelectorAll('[data-blocks="' + CSS.escape(e) + '"]').forEach((u) => xe(u, n)));
     const i = E.querySelector('.tfAction[data-k="' + CSS.escape(e) + '"] .tfName .activityRowMeta');
     if (i && (i.textContent = Math.round(n) + "%"), (H == null ? void 0 : H.id) === e) {
       const d = ut.querySelector(".tfMoreState"), u = ut.querySelector(".tfMoreSub");
@@ -8135,7 +8135,7 @@ function Ih(a, { config: l, getHass: o }) {
   function ur(e) {
     var u;
     const [n, i] = e.dataset.open.split("|"), d = e.closest(".tfCard");
-    P = { key: n, id: i, h: d ? Math.round(d.getBoundingClientRect().height) : 0 }, xn.delete(n), cn(), (u = E.querySelector(".tfOpen [data-close]")) == null || u.focus({ preventScroll: !0 });
+    P = { key: n, id: i, h: d ? Math.round(d.getBoundingClientRect().height) : 0 }, yn.delete(n), cn(), (u = E.querySelector(".tfOpen [data-close]")) == null || u.focus({ preventScroll: !0 });
   }
   function fr(e) {
     var n;
@@ -8143,7 +8143,7 @@ function Ih(a, { config: l, getHass: o }) {
       var u;
       const d = i === e;
       i.classList.toggle("active", d), i.setAttribute("aria-expanded", String(d)), (u = i.querySelector(".panelExpanded")) == null || u.toggleAttribute("inert", !d);
-    }), xn.set("areas", Ya(((n = E.querySelector('[data-k="areas"]')) == null ? void 0 : n.style.order) || 1));
+    }), yn.set("areas", Ya(((n = E.querySelector('[data-k="areas"]')) == null ? void 0 : n.style.order) || 1));
   }
   const ao = {
     bright: { value: (e, n) => Math.round(n * 100), text: (e, n) => n ? n + "%" : "Off", send: (e, n) => n > 0 ? ["light", "turn_on", { brightness_pct: n }] : ["light", "turn_off", {}] },
@@ -8153,7 +8153,7 @@ function Ih(a, { config: l, getHass: o }) {
     }, text: (e, n) => n.toLocaleString() + "k", send: (e, n) => ["light", "turn_on", { color_temp_kelvin: n }] },
     hue: { value: (e, n) => Math.round(n * 360), text: () => "Colour", send: (e, n) => {
       var i;
-      return ["light", "turn_on", { hs_color: [n, Math.max(60, ((i = xt(e).hs_color) == null ? void 0 : i[1]) || 100)] }];
+      return ["light", "turn_on", { hs_color: [n, Math.max(60, ((i = yt(e).hs_color) == null ? void 0 : i[1]) || 100)] }];
     } },
     pos: { value: (e, n) => Math.round(n * 100), text: (e, n) => Math.round(n) + "%", send: (e, n) => ["cover", "set_cover_position", { position: Math.round(n) }] },
     tilt: { value: (e, n) => Math.round(n * 100), text: (e, n) => "Tilt " + n + "%", send: (e, n) => ["cover", "set_cover_tilt_position", { tilt_position: n }] },
@@ -8167,7 +8167,7 @@ function Ih(a, { config: l, getHass: o }) {
     if (n === "tilt") {
       f.style.width = "calc((100% - 8px) * " + d + ")";
       const [D, N] = e.querySelectorAll("span");
-      D.classList.toggle("lit", d > 0.08), N.classList.toggle("lit", d > 0.92), xn.delete(i), Ut = Ut.map(() => ""), Rs(i).forEach((O) => O.update(dr(i)));
+      D.classList.toggle("lit", d > 0.08), N.classList.toggle("lit", d > 0.92), yn.delete(i), Ut = Ut.map(() => ""), Rs(i).forEach((O) => O.update(dr(i)));
     } else if (f) f.style.width = m;
     else {
       let D = e.querySelector("b");
@@ -8212,7 +8212,7 @@ function Ih(a, { config: l, getHass: o }) {
         else if (i.dataset.open) ur(i);
         else if (i.hasAttribute("data-close")) {
           const m = P;
-          P = null, xn.delete(m.key), cn(), (u = E.querySelector('[data-open="' + CSS.escape(m.key + "|" + m.id) + '"]')) == null || u.focus({ preventScroll: !0 });
+          P = null, yn.delete(m.key), cn(), (u = E.querySelector('[data-open="' + CSS.escape(m.key + "|" + m.id) + '"]')) == null || u.focus({ preventScroll: !0 });
         } else i.classList.contains("tfAreaPanel") && !i.classList.contains("active") && fr(i);
     }), e.addEventListener("keydown", (n) => {
       var d, u, m, f, b, M, D;
@@ -8250,12 +8250,12 @@ function Ih(a, { config: l, getHass: o }) {
         zo(St("light", "toggle", m));
         return;
       }
-      const M = u === "bright" && ((Rt = x[m]) == null ? void 0 : Rt.state) !== "on", D = u === "tilt" ? 4 : 0, N = () => d.getBoundingClientRect().width - D * 2, O = (yt) => {
+      const M = u === "bright" && ((Rt = y[m]) == null ? void 0 : Rt.state) !== "on", D = u === "tilt" ? 4 : 0, N = () => d.getBoundingClientRect().width - D * 2, O = (xt) => {
         const Cn = d.getBoundingClientRect();
-        return Math.max(0, Math.min(1, (yt.clientX - Cn.left - D) / N()));
+        return Math.max(0, Math.min(1, (xt.clientX - Cn.left - D) / N()));
       };
       let ce = b ? "waiting" : M ? "pressed" : "dragging", Se = 0;
-      const Ne = n.clientX, X = n.clientY, we = (yt, Cn) => Math.hypot(yt.clientX - Ne, yt.clientY - X) > Cn, j = () => {
+      const Ne = n.clientX, X = n.clientY, we = (xt, Cn) => Math.hypot(xt.clientX - Ne, xt.clientY - X) > Cn, j = () => {
         try {
           d.setPointerCapture(n.pointerId);
         } catch {
@@ -8263,12 +8263,12 @@ function Ih(a, { config: l, getHass: o }) {
       };
       b || (n.preventDefault(), j()), ce === "dragging" && jo(d, u, m, O(n));
       const fe = () => {
-        var yt, Cn;
-        ce = "sliding", _ = d, d.classList.add("held"), j(), (yt = navigator.userActivation) != null && yt.hasBeenActive && ((Cn = navigator.vibrate) == null || Cn.call(navigator, 8)), Se = M ? (ba[m] ?? 100) / 100 : Number(d.getAttribute("aria-valuenow")) / 100;
-      }, K = (yt) => {
-        ce === "waiting" && we(yt, k) ? !f && Math.abs(yt.clientX - Ne) > Math.abs(yt.clientY - X) ? fe() : ce = "gone" : ce === "pressed" && we(yt, 4) && (ce = "dragging"), ce === "sliding" ? jo(d, u, m, Math.max(0, Math.min(1, Se + (yt.clientX - Ne) / N()))) : ce === "dragging" && jo(d, u, m, O(yt));
-      }, Ue = (yt) => {
-        ["pointermove", "pointerup", "pointercancel"].forEach((Cn, Ke) => d.removeEventListener(Cn, Ke ? Ue : K)), d.classList.remove("held"), _ === d && (_ = null), ce === "sliding" || ce === "dragging" ? Ti(u, m) : yt.type === "pointerup" && f ? zo(St("light", "toggle", m)) : yt.type === "pointerup" && M && (ce === "waiting" || ce === "pressed") && Zr("light", "turn_on", m).catch(() => {
+        var xt, Cn;
+        ce = "sliding", _ = d, d.classList.add("held"), j(), (xt = navigator.userActivation) != null && xt.hasBeenActive && ((Cn = navigator.vibrate) == null || Cn.call(navigator, 8)), Se = M ? (ba[m] ?? 100) / 100 : Number(d.getAttribute("aria-valuenow")) / 100;
+      }, K = (xt) => {
+        ce === "waiting" && we(xt, k) ? !f && Math.abs(xt.clientX - Ne) > Math.abs(xt.clientY - X) ? fe() : ce = "gone" : ce === "pressed" && we(xt, 4) && (ce = "dragging"), ce === "sliding" ? jo(d, u, m, Math.max(0, Math.min(1, Se + (xt.clientX - Ne) / N()))) : ce === "dragging" && jo(d, u, m, O(xt));
+      }, Ue = (xt) => {
+        ["pointermove", "pointerup", "pointercancel"].forEach((Cn, Ke) => d.removeEventListener(Cn, Ke ? Ue : K)), d.classList.remove("held"), _ === d && (_ = null), ce === "sliding" || ce === "dragging" ? Ti(u, m) : xt.type === "pointerup" && f ? zo(St("light", "toggle", m)) : xt.type === "pointerup" && M && (ce === "waiting" || ce === "pressed") && Zr("light", "turn_on", m).catch(() => {
         });
       };
       d.addEventListener("pointermove", K), d.addEventListener("pointerup", Ue), d.addEventListener("pointercancel", Ue);
@@ -8287,9 +8287,9 @@ function Ih(a, { config: l, getHass: o }) {
   })), J(), {
     update(e) {
       if (!w) return;
-      const n = !Object.keys(x).length;
-      x = e || {};
-      for (const i in x) i.startsWith("light.") && x[i].state === "on" && za(i) && S(i, Wa(x[i]));
+      const n = !Object.keys(y).length;
+      y = e || {};
+      for (const i in y) i.startsWith("light.") && y[i].state === "on" && za(i) && S(i, Wa(y[i]));
       n ? sn() : cn();
     },
     // the bento's animation runs while it's mounted, so it goes while the card is away
@@ -8297,11 +8297,11 @@ function Ih(a, { config: l, getHass: o }) {
       Mo = !0, Ze == null || Ze.destroy(), Ze = null, qt == null || qt.forEach((e) => e.destroy()), qt = null;
     },
     resume() {
-      Mo = !1, !(!w || !(E != null && E.querySelector("[data-tf]"))) && (lt.isConnected && yr(lt.style.order), Xo());
+      Mo = !1, !(!w || !(E != null && E.querySelector("[data-tf]"))) && (lt.isConnected && xr(lt.style.order), Xo());
     }
   };
 }
-const Hh = "0.62.0", Id = "move_assistant", Fh = "move_assistant", rp = "move_assistant_checkin_reminder";
+const Hh = "0.62.1", Id = "move_assistant", Fh = "move_assistant", rp = "move_assistant_checkin_reminder";
 function Oh() {
   if (document.getElementById("move-assistant-inter")) return;
   const a = document.createElement("link");
