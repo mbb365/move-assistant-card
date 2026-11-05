@@ -1480,7 +1480,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // up a row for each control it has (a light of bars to L, a thermostat to M)
   const SIZE_NAMES = ['XS', 'S', 'M', 'L', 'XL'], ROWS_MOST = SIZE_NAMES.length;
   const SIZES = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 };
-  const mostRows = (key) => (!key.includes('.') || (key.startsWith('light.') && wantsDac(key)) ? ROWS_MOST : Math.min(ROWS_MOST, controlsOf(key).length + 1));
+  // a tile whose entity isn't in the states yet keeps its saved height (it can't be measured, and must never stop the board)
+  const mostRows = (key) => (!key.includes('.') || !states[key] || (key.startsWith('light.') && wantsDac(key)) ? ROWS_MOST : Math.min(ROWS_MOST, controlsOf(key).length + 1));
   const sizeOf = (key) => {
     const o = dashPrefs().opts[key] || {}, most = mostRows(key), h = Number(o.h) || (o.tall ? 5 : SIZES[key] || (most === ROWS_MOST ? 4 : 2));
     return Math.max(1, Math.min(most, h));
@@ -1681,7 +1682,9 @@ export function mountTestFocus(root, { config, getHass }) {
       const p = placed.get(key), card = p && grid.querySelector(sel), list = card?.querySelector(':scope > .activityRows'), head = card?.querySelector(':scope > .activityHeader');
       if (!list || !head) return;
       // at XS a card has no title: its one row of tiles is the card
-      const space = p.rows === 1 ? p.h : p.h - (head.offsetTop + head.offsetHeight + 10) - parseFloat(getComputedStyle(card).paddingBottom), n = Math.max(1, Math.floor(space / FILL_MIN));
+      // measured to the list's real top, rounded down: whole pixels (offsetTop) overshot by a fraction and made it scroll
+      const below = list.getBoundingClientRect().top - card.getBoundingClientRect().top;
+      const space = p.rows === 1 ? p.h : Math.floor(p.h - below - parseFloat(getComputedStyle(card).paddingBottom)), n = Math.max(1, Math.floor(space / FILL_MIN));
       list.style.setProperty('--fill-row', (space / n).toFixed(2) + 'px');
       list.style.maxHeight = space + 'px';
     });
@@ -3143,7 +3146,10 @@ export function mountTestFocus(root, { config, getHass }) {
     update(next) {
       if (!testFocus) return;
       const first = !Object.keys(states).length;
-      states = next || {};
+      // the made-up entities live only in the house model: keep them until the next layout draws them again, or a drag
+      // in between finds a made-up tile with no state and the board's layout stops halfway (Matt, 5 Nov)
+      const madeUp = Object.fromEntries(Object.entries(states).filter(([id]) => isMadeUp(id)));
+      states = { ...madeUp, ...(next || {}) };
       // every dimmable light that's on, remembered at its brightness for when it next comes on (not only those drawn)
       for (const id in states) if (id.startsWith('light.') && states[id].state === 'on' && dimmable(id)) noteBright(id, brightnessOf(states[id]));
       if (first) render(); else refresh();
