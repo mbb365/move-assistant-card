@@ -555,6 +555,9 @@ button.tfAreaIcon{cursor:pointer}
 .tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}
 .tfBoardMenu .tfHeightTabs button[aria-checked="true"]{background:var(--text);color:var(--card)}
 .tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}
+.tfWidth{padding-top:0}
+.tfWidth .tfHeightTabs{grid-template-columns:repeat(3,auto)}
+.tfBoardMenu .tfWidth .tfHeightTabs button{white-space:nowrap}
 /* what each height shows (Matt, 2 Nov): a smaller one shows fewer of the same things, never part of one. At XS
    (one row, 60) every element is one tile: 10 in, its icon, name and line, no title and no controls */
 #app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows{grid-auto-rows:var(--fill-row,60px);margin-top:0}
@@ -574,9 +577,42 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfDash-wx[data-rows="1"] .wbPlace{font-size:13px;line-height:18px}
 #app.tfBoard .tfDash-wx[data-rows="1"] .wbTempBlock{gap:0}
 #app.tfBoard .tfDash-wx[data-rows="1"] .wbUnit{font-size:14px;line-height:22px}
+/* at S the art and the temperature fill the card's inside, 100 tall (Matt, 6 Nov) */
+#app.tfBoard .tfDash-wx[data-rows="2"] .wbWx.wbS90{width:100px;height:100px;border-radius:31px}
+#app.tfBoard .tfDash-wx[data-rows="2"] .wbDeg{font-size:80px;line-height:80px}
+#app.tfBoard .tfDash-wx[data-rows="2"] .wbUnit{font-size:30px;line-height:38px}
+#app.tfBoard .tfDash-wx[data-rows="2"] .wbTempBlock{gap:0}
+/* S: the next four hours beside Now, in the room it leaves (Matt, 6 Nov) */
+#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbWeather{flex-direction:row;align-items:center;gap:16px}
+#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbNow{flex:none}
+#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbNextHours{display:flex;flex:1 1 0}
+/* M: only the days, filling the card, today's as Now with the temperature it is (Matt, 6 Nov) */
+#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbWeather{justify-content:center;padding-top:0;padding-bottom:0}
+#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) :is(.wbNow,.wbSummary){display:none}
+#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbColumns{display:flex;flex:none;height:185px}
+#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbAsDay{display:none}
+#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbAsNow{display:inline}
+/* narrow (one column, 252): Now smaller, art 64; M adds three hours under it, L three days (art 40), XL the sentence
+   and three days (Matt, 6 Nov); the phone's halves aren't used on the board */
+#app.tfBoard .tfDash-wx[data-narrow] .wbCard.wbWeather{gap:12px;padding:18px}
+#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbWx.wbS90{width:64px;height:64px;border-radius:20px}
+#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbDeg{font-size:46px;line-height:46px;letter-spacing:-.92px}
+#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbUnit{font-size:20px;line-height:26px}
+#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbTempBlock{gap:0}
+#app.tfBoard .tfDash-wx[data-narrow] .wbHalves{display:none}
+#app.tfBoard .tfDash-wx[data-narrow][data-rows="3"] .wbNextHours{display:flex;margin-top:auto}
+#app.tfBoard .tfDash-wx[data-narrow] .wbHour:nth-child(n+4){display:none}
+#app.tfBoard .tfDash-wx[data-narrow]:is([data-rows="4"],[data-rows="5"]) .wbColumns{display:flex;flex:none;height:auto;margin-top:auto}
+#app.tfBoard .tfDash-wx[data-narrow]:is([data-rows="4"],[data-rows="5"]) .wbColumn:nth-child(n+4){display:none}
+#app.tfBoard .tfDash-wx[data-narrow][data-rows="5"] .wbSummary{display:block}
 #app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="4"]) .wbSummary{display:none}
 #app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) :is(.wbColumns,.wbHalves){display:none}
-#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:12px}
+#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:0}
+/* at L (and narrow L, XL) the days are Figma's Forecast day · Compact: 12 above the name, then 8, art 40, 8, high, 4, low,
+   16 below (Matt, 6 Nov: the numbers were jammed against the art) */
+#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbColumn{justify-content:flex-start;gap:8px;padding:12px 0 16px}
+#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbColumn .wbWx{width:40px;height:40px;border-radius:16px}
+#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbTemps{gap:4px}
 #app.tfBoard .tfDash-wx[data-rows="4"] .wbHalves>:nth-child(n+5){display:none}
 /* Energy today: XS and S its sources in one row (XS without its title), M a short graph, L and XL taller */
 #app.tfBoard .tfDash-energy[data-rows="2"] .tfDashGraph{display:none}
@@ -600,7 +636,13 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:center;padding:0}
 #app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed .tfAreaIcon{grid-row:span 2}
 #app.tfBoard .tfAreas[data-rows="1"] :is(.tfACName,.tfACMain){margin:0;font-size:14px;line-height:18px;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfABig{display:none}
+#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"]) .tfABig{display:none}
+/* L: the room's big reading (temperature and humidity, or its main reading) in the room between its name and its tiles
+   (Matt, 6 Nov: there's space for it) */
+#app.tfBoard .tfAreas[data-rows="4"] .tfABig{flex:none;margin-top:auto;margin-bottom:auto}
+#app.tfBoard .tfAreas[data-rows="4"] .tfATiles{margin-top:0}
+#app.tfBoard .tfAreas[data-rows="4"] .tfABigMain{font-size:52px}
+#app.tfBoard .tfAreas[data-rows="4"] .panelExpanded{row-gap:12px}
 #app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfATiles{margin-top:auto}
 #app.tfBoard .tfAreas[data-rows="2"] .tfATile:nth-child(n+3),#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfATile:nth-child(n+5){display:none}
 #app.tfBoard .tfAreas[data-rows="2"] .tfACTiles{display:none}

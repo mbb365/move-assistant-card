@@ -546,11 +546,15 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       '<div class="wbPlace">'+esc(h.config?.location_name??'')+'</div></div>'+(onOpen?'</button>':'</div>')+
       '<div class="wbCondition"><div class="wbCondName">'+esc(stateText(h,primary))+'</div>'+
       (hasToday&&today.templow!=null?'<div class="wbRange">'+esc(fill(T.range,{high:deg(h,today.temperature),low:deg(h,today.templow)}))+'</div>':'')+'</div></div>';
-    s+=forecastSentence(h);
+    s+=forecastSentence(h)+nextHours(h);
     if(list.length){
+      // today's column can stand for Now (the medium card, Matt, 6 Nov: only the days, the first one Now): its name and
+      // high have a Now form the board shows there
+      const nowT=hasToday&&temperature&&num(temperature.value)?deg(h,temperature.value):'';
+      const alt=(i,a,b)=>i===0&&nowT?'<span class="wbAsDay">'+esc(a)+'</span><span class="wbAsNow">'+esc(b)+'</span>':esc(a);
       s+='<div class="wbColumns" role="list">'+list.map((e,i)=>'<button class="wbColumn" role="listitem" data-wb="day" data-index="'+i+'" data-wb-focus="col-'+i+'">'+
-        '<span class="wbDay">'+esc(shortName(h,e,i))+'</span>'+wxIcon(e.condition??'cloudy',60,false,'col'+i)+
-        '<span class="wbTemps"><span class="wbHi">'+esc(deg(h,e.temperature))+'</span><span class="wbLo">'+esc(deg(h,e.templow))+'</span></span></button>').join('')+'</div>';
+        '<span class="wbDay">'+alt(i,shortName(h,e,i),T.now)+'</span>'+wxIcon(e.condition??'cloudy',60,false,'col'+i)+
+        '<span class="wbTemps"><span class="wbHi">'+alt(i,deg(h,e.temperature),nowT)+'</span><span class="wbLo">'+esc(deg(h,e.templow))+'</span></span></button>').join('')+'</div>';
       s+='<div class="wbHalves" role="list">'+list.map((e,i)=>'<button class="wbTile" role="listitem" data-wb="day" data-index="'+i+'" data-wb-focus="half-'+i+'">'+
         wxIcon(e.condition??'cloudy',40,false,'half'+i)+'<span class="wbText"><span class="wbName">'+esc(dayName(h,e))+'</span>'+
         '<span class="wbSub">'+esc(fill(T.highLow,{high:deg(h,e.temperature),low:deg(h,e.templow)}))+'</span></span></button>').join('')+'</div>';
@@ -587,6 +591,15 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     return line[0].toUpperCase()+line.slice(1)+'.';
   }
   const forecastSentence=h=>{const t=forecastLine(h);return t?'<div class="wbSummary"><p class="wbSummaryText">'+esc(t)+'</p></div>':''};
+  /* the next four hours beside Now on a small card, three under it on a narrow one (Matt, 6 Nov): each its time, its sky
+     and its temperature, the hours in the Next hours setting's window only; the card shows them where there's room */
+  function nextHours(h){
+    const [ws,we]=WINDOWS[hoursWindow?.()]||WINDOWS.day,now=Date.now();
+    const list=forecast('hourly').filter(e=>{const d=new Date(e.datetime),hr=d.getHours();return d.getTime()>now-HOUR/2&&hr>=ws&&hr<we&&num(e.temperature)}).slice(0,4);
+    if(!list.length)return '';
+    return '<div class="wbNextHours" role="list">'+list.map((e,i)=>'<div class="wbHour" role="listitem"><span class="wbHourTime">'+esc(fmtTime(new Date(e.datetime),h))+'</span>'+
+      wxIcon(e.condition??'cloudy',40,e.is_daytime===false,'hr'+i)+'<span class="wbHourTemp">'+esc(deg(h,e.temperature))+'</span></div>').join('')+'</div>';
+  }
   // The hourly forecast for a day, from the current hour on
   function hoursOf(dayStart){
     const from=dayStart.getTime(),earliest=Date.now()-HOUR;

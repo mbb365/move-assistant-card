@@ -1475,15 +1475,17 @@ export function mountTestFocus(root, { config, getHass }) {
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
   // five heights, picked in an element's ⋯ (Matt, 2 Nov), each a whole number of rows: XS 1 (60, one tile), S 2 (136),
   // M 3 (212), L 4 (288), XL 5 (364). Each element starts at its kind's own (the weather, the areas, Favourites and
-  // Activity XL; Energy today, Compared to average and the weather tiles L; a Dual Axis Controller L, XL if it was made
-  // taller before; a light or thermostat tile S), and one with nothing to fill a height doesn't offer it: a tile goes
-  // up a row for each control it has (a light of bars to L, a thermostat to M)
+  // Activity XL; Energy today, Compared to average and the weather tiles L; every tile S, a Dual Axis Controller too:
+  // it's an action tile like the others, whatever its control (Matt, 6 Nov); XL if it was made taller before), and one
+  // with nothing to fill a height doesn't offer it: a tile goes up a row for each control it has (a light of bars to L,
+  // a thermostat to M)
   const SIZE_NAMES = ['XS', 'S', 'M', 'L', 'XL'], ROWS_MOST = SIZE_NAMES.length;
+  const WIDTH_NAMES = ['Narrow', 'Wide', 'Really wide'];
   const SIZES = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 };
   // a tile whose entity isn't in the states yet keeps its saved height (it can't be measured, and must never stop the board)
   const mostRows = (key) => (!key.includes('.') || !states[key] || (key.startsWith('light.') && wantsDac(key)) ? ROWS_MOST : Math.min(ROWS_MOST, controlsOf(key).length + 1));
   const sizeOf = (key) => {
-    const o = dashPrefs().opts[key] || {}, most = mostRows(key), h = Number(o.h) || (o.tall ? 5 : SIZES[key] || (most === ROWS_MOST ? 4 : 2));
+    const o = dashPrefs().opts[key] || {}, most = mostRows(key), h = Number(o.h) || (o.tall ? 5 : SIZES[key] || TILE_ROWS);
     return Math.max(1, Math.min(most, h));
   };
   const TILE_ROWS = 2, DAC_CHROME = 90; // a tile's padding (18 and 18), head (40) and gap (14) around the controller's pad
@@ -1669,6 +1671,8 @@ export function mountTestFocus(root, { config, getHass }) {
       const p = placed.get(it.key);
       it.el.style.height = p.h + 'px';
       it.el.dataset.rows = sizeOf(it.key);
+      // one column wide on a board of more (not a phone's single column): the card's narrow version (Matt, 6 Nov)
+      it.el.toggleAttribute('data-narrow', !phone && p.cols === 1 && n > 1);
       // a DAC's pad takes what its cells leave under its name
       if (it.el.classList.contains('tfDac')) it.el.style.setProperty('--tf-dac-pad', (p.h - DAC_CHROME) + 'px');
       if (it === dragged && !drag.fromTray) return; // the dragged card follows the pointer; where it lands shows instead
@@ -1766,7 +1770,11 @@ export function mountTestFocus(root, { config, getHass }) {
     // its height first: XS to XL side by side, one not offered greyed out (Matt, 2 Nov)
     const height = '<div class="tfHeight" role="group" aria-label="Height"><span class="tfHeightLabel" aria-hidden="true">Height</span><div class="tfHeightTabs">' +
       SIZE_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === now) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' rows' : ' row') + '" data-board-act="h:' + (i + 1) + '"' + (i < most ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>';
-    menu.innerHTML = height + (RESIZABLE.includes(key) ? item('size', span === 1 ? 'Card size' : 'Tile size') : '') +
+    // then its width, for the cards that have one: narrow (a column), wide (two) or really wide (three), one the board
+    // hasn't the columns for greyed out (Matt, 6 Nov: not "Card size" / "Tile size")
+    const width = RESIZABLE.includes(key) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
+      WIDTH_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === Math.min(span, n)) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' columns' : ' column') + '" data-board-act="w:' + (i + 1) + '"' + (i < n ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>' : '';
+    menu.innerHTML = height + width +
       (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
       item('left', 'Move left', full || p.col === 0) + item('right', 'Move right', full || p.col + p.cols >= n) +
       item('up', 'Move up', p.row <= 0) + item('down', 'Move down') + (tile ? item('remove', 'Remove') : item('hide', 'Hide'));
@@ -1788,7 +1796,7 @@ export function mountTestFocus(root, { config, getHass }) {
   function boardAct(key, act) {
     if (act === 'remove') { closeBoardMenu(); removeTile(key); return; }
     const before = prefs, dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
-    if (act === 'size') dash.spans = { ...dash.spans, [key]: (dash.spans[key] ?? 2) === 1 ? 2 : 1 };
+    if (act.startsWith('w:')) dash.spans = { ...dash.spans, [key]: Number(act.slice(2)) };
     if (act.startsWith('h:')) dash.opts = { ...dash.opts, [key]: { ...(dash.opts[key] || {}), h: Number(act.slice(2)), tall: undefined } };
     if (act === 'graph') dash.opts = { ...dash.opts, energy: { ...(dash.opts.energy || {}), graph: (dash.opts.energy?.graph || 'above') === 'above' ? 'below' : 'above' } };
     if (act === 'left') cells[key] = { ...here, col: here.col - 1 };
