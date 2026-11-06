@@ -166,6 +166,14 @@
 .tfSeg button:not([aria-pressed]){color:var(--text)}
 .tfSeg button:disabled{opacity:.4;cursor:default}
 .tfSeg svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}
+/* every pick of one from a few is this segmented control (Matt, 6 Nov; Figma Control · Segmented 623:1593): Settings'
+   choices, the ⋯ menu's height and width and the Weather page's modes. Its track 4 in, segments 38 tall, the picked
+   one in the bright fill. (Settings' sources stay lists: they pick from your entities) */
+#housePane .themeChoice,.tfBoardMenu .tfHeightTabs,.wb .wbSegments{gap:4px;padding:4px;border:0;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}
+#housePane .themeChoice{display:inline-flex;flex-wrap:nowrap;max-width:100%}
+:is(#housePane .themeChoice :is(.wxLayoutBtn,.themeBtn),.tfBoardMenu .tfHeightTabs button,.wb .wbSegments button){height:38px;min-width:0;min-height:0;padding:0 12px;border:0;border-radius:12px!important;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile)!important;white-space:nowrap;cursor:pointer}
+:is(#housePane .themeChoice :is(.wxLayoutBtn,.themeBtn),.tfBoardMenu .tfHeightTabs button,.wb .wbSegments button):hover:not(:disabled):not([aria-pressed="true"]):not([aria-checked="true"]):not(.active){background:transparent;color:var(--text)}
+:is(#housePane .themeChoice :is(.wxLayoutBtn[aria-pressed="true"],.themeBtn.active),.tfBoardMenu .tfHeightTabs button[aria-checked="true"],.wb .wbSegments button[aria-pressed="true"]){background:var(--bright);color:var(--on-bright)}
 /* rooms to clean: chips that wrap */
 .tfChips{display:flex;flex-wrap:wrap;gap:8px}
 .tfChips button{height:40px;min-height:0;padding:0 14px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer;box-shadow:var(--hc-hair-all)}
@@ -551,9 +559,8 @@ button.tfAreaIcon{cursor:pointer}
    nothing to fill greyed out */
 .tfHeight{display:grid;gap:6px;padding:6px 6px 8px}
 .tfHeightLabel{padding:0 6px;color:var(--muted);font:500 12px/16px var(--font)}
-.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--tile)}
-.tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}
-.tfBoardMenu .tfHeightTabs button[aria-checked="true"]{background:var(--text);color:var(--card)}
+.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr)}
+.tfBoardMenu .tfHeightTabs button{justify-content:center}
 .tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}
 .tfWidth{padding-top:0}
 .tfWidth .tfHeightTabs{grid-template-columns:repeat(3,auto)}
