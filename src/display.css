@@ -584,6 +584,24 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfRoomSub{display:block}
 #app.tfBoard .tfRoomTile[data-rows="4"] .tfRoomBig{font-size:52px;line-height:52px;letter-spacing:-1.92px}
 #app.tfBoard .tfRoomTile[data-rows="5"] .tfRoomBig{font-size:64px;line-height:64px;letter-spacing:-1.92px}
+/* a room's tile wide (2 columns) or really wide (3+; Matt, 6 Nov; Figma 954:6297): its devices as heads (icon, name,
+   state) in place of buttons, wide two by two, really wide in one row. XS the buttons on the right of the head; wide S
+   (its first two) and M, and really wide S, have the reading in the head */
+.tfRoomHeads{display:none;gap:12px 16px}
+.tfRoomDev{display:flex;align-items:center;gap:12px;min-width:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.tfRoomDev .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.tfRoomDev .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}
+.tfRoomDevName{display:flex;flex-direction:column;min-width:0}
+.tfRoomDevName>span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+#app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"]){flex-direction:row;align-items:center;gap:12px}
+#app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"])>.tfActionHead{flex:1;margin-bottom:0}
+#app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"]) .tfRoomDevices{display:flex}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-rows="1"]) .tfRoomDevices{display:none}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-rows="1"]) .tfRoomHeads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-cols="2"]):not([data-rows="1"]) .tfRoomHeads{grid-template-columns:repeat(4,minmax(0,1fr))}
+#app.tfBoard .tfRoomTile[data-cols="2"][data-rows="2"] .tfRoomDev:nth-child(n+3){display:none}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]) .tfRoomInline{display:inline}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]) .tfRoomReading{display:none}
 #app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}
 #app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}
 /* the weather: XS now as a tile; S now; M now and a sentence; L now and the days; XL all three */

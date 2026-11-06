@@ -1,4 +1,4 @@
-const jp = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;--color-fill-bright:#f1f1f1;--color-text-primary:#d9d9d9;--color-text-muted:#969696;--color-text-on-bright:#090909;--color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;--color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;--color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;--color-state-hover:rgba(255,255,255,.08);--color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;--color-bg-segment-selected:#2b2b2b;--wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;--wx-cloud-bright:#f1f1f1;--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}#app{--bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);--tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);--segment:var(--color-bg-tile);--seg-on:var(--color-bg-segment-selected);--scroll-thumb:var(--color-bg-tile);--control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-chip);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);--border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);--bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);--hover:var(--color-state-hover);--wash-2:var(--color-state-hover);--danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);--primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:var(--color-bg-resting)}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,var(--color-bg-card))}#app.light{--color-bg-ground:#eeebe8;--color-bg-card:#fbf9f6;--color-bg-tile:#f3efea;--color-fill-bright:#26221e;--color-text-primary:#26221e;--color-text-muted:#6a625a;--color-text-on-bright:#fbf9f6;--color-text-on-accent:#26221e;--color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-accent-secondary:#03a9f4;--color-bg-resting:#7dbb98;--color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#b42a2a;--color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);--color-bg-chip:#fbf9f6;--color-fill-selected:#26221e;--color-text-on-selected:#fbf9f6;--color-bg-segment-selected:#fbf9f6;--color-accent-primary:#0288d1;--color-border-focus:#0288d1;--scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}:host(.lightBody){background:#eeebe8;color-scheme:light}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.activityCard,.weekly{grid-column:span 6}.activityCard,.weekly{min-height:288px}.sourceTag{display:inline-flex;margin-top:11.2px;padding:4px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:inherit;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:var(--color-text-on-accent)!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:var(--inset);margin-bottom:var(--inset)}.activityIcon{display:grid;place-items:center}.icon{width:var(--glyph-size);height:var(--glyph-size);flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon *{vector-effect:non-scaling-stroke}.addPanelPlus .icon,.addFab .icon{width:24px;height:24px}.checkinTabIcon .icon{width:18px;height:18px}.weekTick .icon{width:1em;height:1em}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 16px}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:42px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 16px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:42px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}.switch.on{background:var(--color-accent-primary);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.wxLayoutBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.wxLayoutBtn[aria-pressed=true]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 12px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--color-fill-selected);color:var(--color-text-on-selected)}@media (max-width:900px){.weekCopy{white-space:normal}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}}:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary,.wxStyleBtn,.tfSeg>button){border-radius:var(--r-inner)!important}.card,.panel,.tile,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#fbf9f638}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis;field-sizing:content}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.insightCard{display:grid;gap:22.4px}.day{display:grid;gap:6.4px;justify-items:center}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:var(--inset);border:0}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px;border:.32px solid var(--line);border-right:0;border-radius:var(--r-fine) 0 0 var(--r-fine)!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{box-shadow:0 0 0 2.4px var(--color-bg-ground),0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}}.insightCard{grid-column:span 9;align-content:start}@media (max-width:1200px){.insightCard{grid-column:span 8}}@media (max-width:900px){.insightCard{grid-column:auto}}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:4px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-tile:Geist,var(--font);--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:52px;--t-title:22px;--t-card-title:18px;--t-value:16px;--t-section:18px;--t-strong:14px;--t-body:12px;--t-caption:12px;--lh-display:1.05;--lh-title:1;--t-wx-temp:64px;--t-wx-range:24px;--t-tile-title:14px;--lh-tile-title:20px;--t-tile-detail:16px;--lh-tile-detail:20px;--inset:10px;--r-card:34px;--r-tile:24px;--r-inner:16px;--r-fine:12px;--tile-min:60px;--chip-size:40px;--glyph-size:34px;--gutter:22px;--grid-gap:16px}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}:where(#app) strong,:where(#app) b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.feelHeadline,.settingsTitle{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.activityTitle{font-size:var(--t-card-title);font-weight:var(--w-medium);font-style:italic;line-height:1.1;letter-spacing:-.02em;text-box:trim-both cap alphabetic}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.timeLabel,.moveItemName,.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.moveMeta,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.wxLayoutBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.routineSummary,.helpSteps li,.helpNote,.createStepSummary{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.scaleEnds,.peekAt,.upcomingMeta,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.fieldError,.globalTimingValue,.createStepNumber,.feelMeterTop,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}.insightCard{display:flex;flex-direction:column;gap:0}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#26221e;--muted:rgba(38,34,30,.85);--accent-text:#26221e;--line:rgba(38,34,30,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable :is(th,td):first-child{padding-left:4px}.metaTable :is(th,td):last-child{padding-right:4px}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:var(--r-card) var(--r-card) 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--inset)}.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}.upcomingCard{padding:var(--inset)}.workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}.workoutPanel.active{border-radius:var(--r-tile)}.workoutPanel.addPanel{padding:var(--inset)}.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--inset);gap:var(--inset)}.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}.activityRows{gap:12px}.timeTile{padding:var(--inset);gap:var(--inset)}.timeHeader{gap:var(--inset)}.createPresetBtn,.createExtraToggle{padding:var(--inset)}.moveMeta,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}.createPresetBtn.active span{color:var(--on-bright)}.moveMeta,.activityRowMeta{margin-top:0}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);font-size:20px}.navBtn,.back{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);min-height:0;padding:0;border-radius:var(--r-inner)}.moveRow.editing{padding:var(--inset)}.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--inset)}.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-inner);background:var(--icon-bg);color:var(--muted)}.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}.moveRow.restItem .dragHandle{background:transparent}.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}.moveRow.restItem .dragHandle:hover{background:var(--hover)}.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer}.segBtn:hover{background:var(--hover)}.moveActions.seg{gap:4px}.moveActions .segBtn{min-width:100px}.moveActions .editBtn{background:var(--seg-on)}.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}.moveActions .removeBtn svg{display:block;width:24px;height:24px}.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}.moveActions .removeBtn.holding{color:#fff}@media (max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}.tabs.rubberTabs{padding:4px;gap:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-fine);background:var(--seg-on)}.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}.tabs.rubberTabs .tab.active{color:var(--text)}#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;transition:background .16s ease,opacity .16s ease}.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--color-accent-primary);opacity:1}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}@media (max-width:900px){.workoutPanel:not(.addPanel){border-radius:var(--r-tile);padding:var(--inset)}}@media (max-width:620px){:host{--gutter:0px;--grid-gap:8px}}@media (max-width:620px){.modalBackdrop{padding:0}.modal,.modal:not(.createMode){width:100%;height:100%;max-height:none;border-radius:0;border:0}.modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}.modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}}#app{--group-bg:var(--card)}.modal,.sheet{--group-bg:var(--tile)}.view{padding-left:var(--gutter);padding-right:var(--gutter)}.grid{gap:var(--grid-gap)}.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow):before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}.setupText{display:grid;gap:2px;min-width:0}.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}.setupRow .rangeTrack[hidden]{display:none}.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}.rangeTrack.setupSlider:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}.setupSlider .rangeFill:after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}.setupSlider:focus-within{outline:0}.setupSlider:focus-within .rangeFill:after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}.stepBtn:hover:not(:disabled){background:var(--hover)}.stepBtn:disabled{opacity:.35;cursor:default}.stepCount{min-width:24px;text-align:center;font:600 var(--t-strong)/1 var(--font);font-variant-numeric:tabular-nums}.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}.editNameLabel{padding:0 4px}.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}#settingsView .card+.card{margin-top:36px}#settingsView .paneTitle{margin:0 4px}#settingsView .note{margin:0 4px 4px}#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}#settingsView .helpSteps{gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}#settingsView .helpSteps li{border-radius:0;background:transparent}#settingsView .helpSteps li+li:after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}.activityCard,.insightCard{grid-column:span 3}.weatherCard,.grid.noWeather .activityCard,.grid.noWeather .insightCard,.grid.noActivity .insightCard{grid-column:span 6}.grid.noActivity.noWeather .insightCard{grid-column:span 12}@media (max-width:1199px) and (min-width:901px){.activityCard,.insightCard{grid-column:span 6}.weatherCard,.grid.noActivity .insightCard{grid-column:span 12}}@media (max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}.jointRows{gap:0;padding:4px 0;border-radius:var(--r-tile);background:var(--tile)}.jointRows>.activityRow{background:transparent}.insightCard .jointRows{flex:1;align-content:space-evenly}.weatherCard{display:flex;flex-direction:column}.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--inset)}.wxNow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wxTempBlock{display:grid;gap:4px;min-width:0}.wxTemp{display:flex;align-items:flex-start;gap:2px}.wxPlace{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}.wxIcon{position:relative;display:block;flex:0 0 auto;width:54px;height:54px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wxIcon>svg,.wxLayer>svg{display:block;width:100%;height:100%}:is(.wxIcon,.wxLayer).clear,:is(.wxIcon,.wxLayer).partly{background:var(--wx-clear)}:is(.wxIcon,.wxLayer).cloudy{background:var(--wx-cloudy)}:is(.wxIcon,.wxLayer).rain,:is(.wxIcon,.wxLayer).snow{background:var(--color-text-muted)}:is(.wxIcon,.wxLayer).night{background:var(--wx-night)}.wxIcon .wxBright{fill:var(--wx-cloud-bright)}.wxIcon .wxCloudLight{fill:var(--wx-cloudy)}.wxIcon .wxAccent{fill:var(--color-accent-primary)}.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}.wxIcon>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxIcon :is(.wxSunDisc,.wxMoonPath,.wxBright,.wxCloudLight,.wxDrop,.wxFlake,.wxTwinkle){transform-box:fill-box;transform-origin:center}#app.wxMotion .wxIcon .wxSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}#app.wxMotion .wxIcon .wxMoonPath{animation:wxBob 5.2s ease-in-out infinite}#app.wxMotion .wxIcon :is(.wxBright,.wxCloudLight){animation:wxDrift 6.4s ease-in-out infinite}#app.wxMotion .wxIcon .wxDrop{animation:wxFall .95s linear infinite}#app.wxMotion .wxIcon .wxFlake{animation:wxSnow 3.2s linear infinite}#app.wxMotion .wxIcon .wxTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}@keyframes wxBreathe{50%{transform:scale(1.03)}}@keyframes wxBob{50%{transform:translateY(-1px)}}@keyframes wxDrift{0%,to{transform:translate(-1.5px)}50%{transform:translate(1.5px)}}@keyframes wxFall{0%{transform:translateY(-5px);opacity:0}18%,72%{opacity:1}to{transform:translateY(9px);opacity:0}}@keyframes wxSnow{0%{transform:translateY(-6px);opacity:0}20%,75%{opacity:1}to{transform:translate(1.5px,8px);opacity:0}}@keyframes wxTwinkle{50%{opacity:.35}}.wxLayer{position:absolute;top:0;right:0;bottom:0;left:0;display:block}.wxLayer.wxOut{animation:wxFadeOut .7s cubic-bezier(.3,0,1,1) forwards}@keyframes wxFadeOut{to{opacity:0}}.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}.wxPlace,.wxCondName{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxNow[role=button],.wxDayTile{cursor:pointer;border-radius:var(--r-tile)}:is(.wxNow,.wxDayTile,.wxStripDay):focus-visible{outline:2px solid var(--color-border-focus);outline-offset:2px}.wxStrip{position:relative;flex:1;display:flex}.wxStripDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}.wxStripDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);cursor:pointer}@media (hover:hover){.wxStripDay:hover{background:var(--color-state-hover)}}.wxStripGap{align-self:stretch;height:90px}.wxStripDay .wxTemps{display:grid;justify-items:center;gap:8px}.wxStripSky{position:absolute;left:0;top:calc(var(--inset) * 2 + var(--lh-tile-detail));width:100%;height:90px;border-radius:var(--r-inner);pointer-events:none;image-rendering:pixelated}.wxStripDay .wxDayName,.wxStripDay .wxHigh,.wxGraphDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxStripDay .wxLow{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);color:var(--muted)}.wxBackdrop{z-index:170}.wxDialogCard{width:min(860px,100%);display:grid;gap:var(--inset)}.wxDialogHead{display:flex;align-items:center;justify-content:space-between;gap:var(--inset);padding-left:var(--inset)}.wxDialogHead .activityTitle{margin:0}.wxDialogClose{background:transparent}.wxGraph{display:grid;gap:8px;touch-action:pan-y;cursor:ew-resize;border-radius:var(--r-tile);user-select:none;-webkit-user-select:none}.wxGraph:focus{outline:none}.wxGraph:focus-visible{outline:2px solid var(--color-border-focus);outline-offset:4px}.wxGraphDays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));text-align:center;color:var(--muted)}.wxGraphSky{position:relative;height:200px;border-radius:var(--r-tile);overflow:hidden;background:var(--tile)}.wxGraphSky>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxGraphLine{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none}.wxLineLabel{font-family:var(--font-tile);font-size:14px;font-weight:var(--w-semibold);text-anchor:middle;paint-order:stroke;stroke-width:3px;stroke-linejoin:round}@media (max-width:620px){.wxGraphSky{height:160px}.wxDialogNow{flex-wrap:wrap}}.segBtn{transition:background .15s ease,transform .18s cubic-bezier(.34,1.46,.64,1),box-shadow .15s ease,color .15s ease}.segBtn:hover{background:transparent}@media (hover:hover){.segBtn:hover{background:var(--color-state-hover)}}.tabs.rubberTabs .tab.active:hover{background:transparent}.segBtn:active{background:var(--color-state-pressed);transform:scale(.97)}.segBtn:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--color-border-focus)}.segBtn:disabled{opacity:.4;cursor:default}.moveActions.seg{background:transparent;transition:background .18s ease}.moveActions.seg:focus-within{background:var(--seg-bg)}@media (hover:hover){.moveActions.seg:hover{background:var(--seg-bg)}}.moveActions .editBtn,.moveActions .editBtn:hover{background:transparent}.moveActions .removeBtn,.moveActions .removeBtn:hover{background:transparent;color:var(--text)}@media (hover:hover){.moveActions .editBtn:hover{background:var(--color-state-hover)}.moveActions .removeBtn:hover{background:var(--danger-fill);color:var(--color-text-on-danger)}}.moveActions .removeBtn:active{background:linear-gradient(var(--color-state-pressed-on-bright),var(--color-state-pressed-on-bright)),var(--danger-fill);color:var(--color-text-on-danger)}.moveActions .removeBtn.holding{background:var(--danger-bg);color:var(--color-text-on-danger)}.moveActions .removeFill{background:var(--danger-fill)}.activityIcon{color:var(--muted)}.activityRowIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--text)}.wxTempBlock{padding-top:6px}.motionRangeWrap input[type=range]{accent-color:var(--bright);background:transparent}', zp = '#app{--hc-on-accent:#f4f3f3;--hc-open-edge:rgba(255,255,255,.1);--hc-hair:inset 0 0 0 .2px var(--line),inset 0 -.2px 0 var(--line);--hc-hair-all:inset 0 0 0 .4px var(--line)}#app.light{--hc-open-edge:#e3e3e3}#homeView .card{padding:var(--inset);border-radius:var(--r-card);box-shadow:var(--hc-hair)}#homeView .card:has(>.activityHeader){padding-top:14px;box-shadow:var(--hc-hair-all)}#homeView .activityCard{min-height:0}#homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}#homeView .activityHeader .activityIcon{display:none}:is(#homeView,.tfMoreBackdrop,.tfEditTray,.tfMiniPhone) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}#homeView .card .activityRows{gap:0}#homeView .card .jointRows{padding:0;background:transparent}#homeView .card .activityRow{min-height:var(--tile-min);padding:var(--inset);gap:12px;border-radius:var(--r-tile);grid-template-columns:var(--chip-size) minmax(0,1fr);background:transparent}#homeView .activityRowIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent)}#homeView .activityRowName{font:600 14px/20px var(--font-tile)}#homeView .activityRowMeta{font:400 16px/1.15 var(--font);margin:0}#homeView .card .activityRow.tap{cursor:pointer}#homeView .card .activityRow:is(.tap,:has(.tfName)){transition:background .15s ease,box-shadow .15s ease}#homeView .card .activityRow:is(.tap,:has(.tfName)):hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}#homeView .weatherCard{padding:20px}#homeView .wxWide{gap:16px}#homeView .wxIcon.large{border-radius:28px}#homeView .wxCondition{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:10px 16px;border-radius:28px}#homeView .wxCondName{font:400 18px/1.2 var(--font)}#homeView .weatherCard .activityRow .wxIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}@media (max-width:620px){#homeView .weatherCard{padding:var(--inset)}#homeView .wxIcon.large{width:60px;height:60px;border-radius:20px}#homeView .wxDeg{font-size:46px}#homeView .wxRange{font-size:20px}}.tfLabel{grid-column:1/-1}.tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}.tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--muted)}#app.house.light{--hc-icon:#e6e6e6}#app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}@media (max-width:620px){#app.house{--grid-gap:16px}#app.house .settingsTitle{font-size:32px}#app.house .tfAreaHead .back{margin-block:calc((32px * .92 - 40px) / 2)}#app.house .tfAreaHead .back svg{width:24px;height:24px}}@container wb-bento (width < 652px){#app.house .wbBento{gap:var(--grid-gap)}#app.house .wbItem[data-size=tile]{width:calc((100% - var(--grid-gap)) / 2)}}#app.house #homeView{overflow-anchor:none}:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfCard .activityRow{display:grid;align-items:center}#homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}.tfCard.open>.activityHeader{display:none}.tfOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.tfOpenHead{display:flex;align-items:center;gap:12px}.tfOpenHead>div:nth-child(2){flex:1;min-width:0}.tfBack{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}.tfBack .icon{width:34px;height:34px}.tfGraph{display:block;width:100%;flex:1;min-height:80px}.tfGraph text{fill:var(--muted);font:400 11px var(--font)}.tfAction{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}.tfAction>.tfActionHead{margin-bottom:auto}.tfActionHead>:is(div,.tfName){min-width:0}.tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}:is(.tfBar,.tfTilt).held{outline:2px solid var(--primary);outline-offset:-2px}.tfBar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#ffc247,#fa0)}.tfBar .was{position:absolute;top:12px;bottom:12px;width:2px;margin-left:-1px;border-radius:1px;background:var(--text);opacity:.22}.tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}.tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.tfAction{grid-column:span 2}@container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction{grid-column:auto}}.tfBar:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}.tfAction :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.house .moveSection{display:none}#app.house #settingsView :is(.rubberTabs:not(.houseTabs),.settingsPane:not(#housePane)){display:none}#app.house #housePane{display:block}#housePane .houseTab{display:none}#housePane .houseTab.active{display:block}#housePane .toggleRow:has(>.switch){flex-direction:row-reverse;justify-content:flex-end}#housePane .toggleRow:has(>.switch)>div:first-child{flex:1}#housePane .settingsSelect{flex:none;width:220px}@media (max-width:620px){#housePane .settingsSelect{width:150px}}#housePane .wxLayoutBtn:disabled{opacity:.4;cursor:default}.tfTableNote{margin:0 0 12px;padding:10px 14px;border-radius:var(--r-inner);background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--text)}.tfLightTable td{white-space:nowrap}.tfLightTable td strong{font:600 14px/20px var(--font-tile)}.tfLightTable .settingsSelect{min-width:150px}.tfLightTable .settingsSelect:disabled{opacity:.4}.tfDacPad{min-width:0}.tfDacPad>dual-controller-v3{display:block}#app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}#app.house .checkinTab,#app.houseBento #weatherCard{display:none}.tfBento{grid-column:1/-1;min-width:0}.tfIcon.art{background-size:cover;background-position:center}.tfBar.ct{background:linear-gradient(90deg,#ff9e45,#ffd3a3 32%,#fff7ee 55%,#d7e7ff)}.tfBar.hue{background:linear-gradient(90deg,red,#ff0 17%,#0f0 33%,#0ff,#00f 67%,#f0f 83%,red)}.tfBar b{position:absolute;top:8px;bottom:8px;width:4px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 0 .5px #0006,0 1px 3px #00000040}.tfAction:not(.on) .tfBar:is(.ct,.hue){opacity:.45}.tfBar:is(.pos,.vol) i{background:var(--primary)}:is(.tfStep,.tfSeg,.tfBlocks,.tfTilt,.tfChips){font-family:var(--font-tile)}.tfStep{display:flex;align-items:center;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);cursor:pointer}.tfStep svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfStep output{flex:1 0 auto;white-space:nowrap;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}.tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfSeg button{flex:1;min-width:0;min-height:0;padding:0 6px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSeg button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfSeg button:not([aria-pressed]){color:var(--text)}.tfSeg button:disabled{opacity:.4;cursor:default}.tfSeg svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfChips{display:flex;flex-wrap:wrap;gap:8px}.tfChips button{height:40px;min-height:0;padding:0 14px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer;box-shadow:var(--hc-hair-all)}.tfChips button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfCard .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfCardGraph{height:120px;padding:0 var(--inset)}.tfCardGraph .tfGraph{height:100%}.tfAction.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfName{flex:1;display:block;min-width:0;min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}.tfName>span{display:block}.tfTitleBtn{min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;text-align:left;cursor:pointer}.tfAreas{grid-column:1/-1;min-width:0}.tfAreaPanel .workoutPanelTop>div{min-width:0}.tfAreaPanel .sourceTag{margin-right:4px}.tfBlocks{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;container:blocks/inline-size}.tfBlocks>span{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:4px;transition:background .12s}.tfBlocks>span:first-child{border-radius:12px 4px 4px 12px}.tfBlocks>span:nth-child(4){border-radius:4px 12px 12px 4px}.tfBlocks:not(.fine)>span:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}.tfBlocks i{position:absolute;inset:0 auto 0 0;border-radius:inherit;background:var(--primary)}.tfBlocks b{position:relative;color:var(--text);font:600 14px/1 var(--font-tile);transition:opacity .15s}.tfBlocks b small{font:inherit}@container blocks (width < 164px){.tfBlocks b small{display:none}}.tfBlocks b.lit{color:#fff}.tfBlocks.fine b{opacity:0}.tfTip{position:absolute;bottom:calc(100% + 8px);z-index:2;transform:translate(-50%);padding:3px 8px;border-radius:7px;background:var(--text);color:var(--card);font:700 12px/16px var(--font-tile);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s}.tfBlocks.fine .tfTip{opacity:1}.tfTilt{position:relative;display:flex;align-items:center;justify-content:space-between;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.tfTilt i{position:absolute;top:4px;bottom:4px;left:4px;border-radius:12px;background:var(--primary)}.tfTilt span{position:relative;padding:0 16px;color:var(--text);font:600 14px/1 var(--font-tile)}.tfTilt span.lit{color:#fff}:is(.tfBlocks,.tfTilt):focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfCoverBtns svg{fill:none}.tfCoverArt{align-self:center;width:min(294px,100%,max(150px,100vh - 520px));aspect-ratio:1;border-radius:24px;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.tfCoverArt.x{cursor:ew-resize}.tfCoverArt.y{cursor:ns-resize}.tfCoverArt:focus-visible{outline:none;box-shadow:0 0 0 3px var(--primary)}.tfCoverArt svg{display:block;width:100%;height:100%}.tfSide{grid-column:1/-1;align-self:start;min-width:0}.tfSideLabel{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-right:22.4px}#homeView .tfSide.tfSums .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(150px,calc(50% - 10px)),1fr))}#homeView .tfSide.tfFavs .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(240px,calc(50% - 10px)),1fr))}#homeView .tfSum .tfIcon{background:var(--sum,var(--hc-icon));color:var(--sum-ink,var(--hc-icon-ink))}.tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSide .activityRow>div{min-width:0}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfMoreList{display:flex;flex-direction:column;gap:14px}.tfMoreGroupName{margin:0 0 4px 10px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tfMoreTiles.single{grid-template-columns:1fr}.tfMoreList .activityRow{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile);transition:background .15s ease}.tfMoreList .activityRow:hover{background:var(--tile)}.tfMoreList .activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreList .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreList .tfPick{grid-template-columns:var(--chip-size) minmax(0,1fr) auto}.tfMoreList :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfStar{display:grid;place-items:center;width:34px;height:34px;min-height:0;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}.tfStar[aria-pressed=true]{color:#fa0}.tfStar svg{width:24px;height:24px}.tfMoreHead .activityTitle{flex:1;min-width:0}.tfMoreBackdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:180;display:grid;place-items:center;padding:16px;background:#00000073}.tfMoreBackdrop,.tfMore,.tfMoreSideInner,.tfMoreSideBody{overscroll-behavior:contain}.tfMoreBackdrop[hidden]{display:none}.tfMore{flex:none;width:440px;max-width:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreHead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}.tfMoreState{font:500 28px/1.15 var(--font-tile);letter-spacing:-.01em}.tfMoreSub{margin-top:3px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreState.live{color:var(--primary)}.tfMoreRows{display:flex;flex-direction:column}.tfMoreRow{display:flex;justify-content:space-between;gap:16px;padding:10px 0;box-shadow:inset 0 -.4px 0 var(--line);font:400 14px/20px var(--font)}.tfMoreRow span:first-child{color:var(--muted)}.tfMoreNote{color:var(--muted);font:400 12px/16px var(--font)}@media (max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}}@media (max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}@media (max-width:900px){.tfCard,.tfBlock{grid-column:auto}}#app.showDensity #homeView :is(.card,.tfAction){position:relative;outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}#app.showDensity #homeView :is(.card,.tfAction):after{content:attr(data-h);position:absolute;top:6px;right:12px;z-index:5;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;font:600 11px/16px var(--font);pointer-events:none}.densityBadge{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;transform:translate(-50%);display:flex;align-items:center;gap:10px;padding:8px 16px;border-radius:99px;background:var(--bright);color:var(--on-bright);font:600 13px/18px var(--font);box-shadow:0 6px 20px #00000040;pointer-events:none;white-space:nowrap}.densityBadge[hidden]{display:none}.densityBadge b{font-variant-numeric:tabular-nums}.densityBadge small{font-weight:400;opacity:.75}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard){container-type:inline-size}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard) .activityRows{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}@container (max-width:279px){#homeView .card .activityRows{grid-template-columns:1fr}}@media (min-width:1200px){#homeView .grid>.card:is(.activityCard,.insightCard){grid-column:span 6}#homeView .grid>.weatherCard{grid-column:span 6}}.tfMorePair{position:relative;display:flex;align-items:stretch;max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}#app[data-more=sheet] .tfMoreBackdrop{place-items:end center;padding:0}#app[data-more=sheet] .tfMorePair{max-height:85vh;animation:tfSheetIn .28s cubic-bezier(.2,.7,.3,1)}#app[data-more=sheet] .tfMorePair.still{animation:none}#app[data-more=sheet] .tfMore{width:min(640px,100vw)}#app[data-more=sheet] :is(.tfMore,.tfMoreSideInner){border-radius:var(--r-card) var(--r-card) 0 0}@keyframes tfSheetIn{0%{transform:translateY(100%)}}.tfDetailsBtn{display:flex;flex:none;align-items:center;justify-content:space-between;gap:12px;width:100%;height:46px;min-height:0;padding:0 12px 0 16px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer}.tfDetailsBtn svg{width:20px;height:20px;transition:transform .2s ease}.tfDetailsBtn[aria-expanded=true] svg{transform:rotate(180deg)}.tfMoreSide{position:absolute;top:0;bottom:0;left:100%;width:0;overflow:hidden;visibility:hidden;transition:width .28s cubic-bezier(.2,.7,.3,1),visibility 0s linear .28s}.tfMorePair.details .tfMoreSide{width:312px;visibility:visible;transition:width .28s cubic-bezier(.2,.7,.3,1)}.tfMoreSideInner{box-sizing:border-box;display:flex;flex-direction:column;gap:14px;width:300px;height:100%;margin-left:12px;padding:20px;overflow:auto;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreSideInner .tfMoreHead{justify-content:flex-start}.tfMorePair.over .tfMoreSide{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;width:auto;transform:translate(24px);opacity:0;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease,visibility 0s linear .25s}.tfMorePair.over.details .tfMoreSide{width:auto;transform:none;opacity:1;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease}.tfMorePair.over .tfMoreSideInner{width:100%;margin:0}@media (max-width:620px){.tfMoreSideInner{border-radius:var(--r-card) var(--r-card) 0 0}}@media (prefers-reduced-motion:reduce){.tfMorePair,.tfMoreSide{animation:none!important;transition:none!important}}#homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}.tfAreaPanel .workoutPanelTop{justify-content:flex-start;gap:14px;padding:0}.tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}.tfAreaPanel .icon{width:22px;height:22px}.tfATitle{display:flex;flex-direction:column;align-items:flex-start;min-width:0}#app .tfAName{max-width:100%;min-height:0;padding:0;border:0;border-radius:6px;background:none;color:var(--text);font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.tfAreaIcon{flex:none;border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}button.tfAreaIcon{cursor:pointer}.tfAreaGlyph{display:grid;place-items:center}.tfAreaHead{grid-column:1/-1;margin-bottom:0}#app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{margin:0;padding:0;justify-content:flex-start}#app.tfWeatherOpen .tfBento.tfPegs .wbBento{display:grid;grid-template-columns:repeat(var(--peg-n),var(--peg-w));grid-auto-rows:60px;grid-auto-flow:row dense;align-items:stretch;gap:16px;max-width:none}#app.tfWeatherOpen .tfBento.tfPegs .wbItem{width:auto;min-height:0;align-self:stretch;display:flex;flex-direction:column}#app.tfWeatherOpen .tfBento.tfPegs .wbItem>*{flex:1;min-height:0}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=wide]{grid-column:span 2;grid-row:span 5}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=double]{grid-column:span 2;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=tile]{grid-column:span 1;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbCard.wbSquare{aspect-ratio:auto}#app.tfWeatherOpen .tfBento.tfPegs .wbWeather .wbNow{margin-bottom:auto}#app.tfWeatherOpen .tfBento.tfPegs :is(.wbStripScroll,.wbBars .wbDayBars,.wbBars.wbTabbed .wbDayBars){min-height:0}.tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}.tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}.tfABigMain.long{font-size:40px}.tfABigUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}.tfABigSub{max-width:100%;overflow:hidden;color:var(--muted);font:400 16px/1.2 var(--font);white-space:nowrap;text-overflow:ellipsis}.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:calc(2 * var(--tile-min));align-content:end}.tfABig{max-width:100%}.panelExpanded:not(:has(.tfATiles)) .tfABig{margin-bottom:calc(2 * var(--tile-min) + 16px)}#app.tfBoard .tfAreas[data-rows="5"] .tfACMain{position:absolute;left:10px;right:10px;bottom:170.3px;max-width:none;text-align:center}.tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}.tfATile>:is(div,.tfName):last-child{min-width:0}.tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACollapsed{flex-direction:column;justify-content:space-between;padding:18px 0 10px;container-type:inline-size}.tfACTop{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:calc(100% - 20px)}.tfACMain{max-width:calc(100% - 20px);font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACTiles{display:grid;grid-template-columns:repeat(2,60px);min-height:60px}.tfACTiles:has(>:nth-child(3)){margin-top:-60px}.tfACTile{display:grid;place-items:center;width:60px;height:60px}.tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}.tfACTile .tfIcon.alert{background:#e53935;color:#fff}@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}.tfACTiles:has(>:nth-child(2)){margin-top:-60px}}.tfMore.wide{width:min(1040px,100vw - 32px);padding:40px;gap:28px;background:var(--bg)}#app[data-more=sheet] .tfMore.wide{width:min(1040px,100vw)}.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{gap:28px;padding:40px;background:var(--bg)}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:-20px -20px 0 0}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead) .activityTitle{font-size:24px}@media (max-width:620px){#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:0}}@media (min-width:621px){#app:not([data-more=sheet]) .tfMoreBackdrop.wide{place-items:start center}}.tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}.tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}.tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}.tfMoreActions .tfAction{grid-column:auto}.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfMoreActions>.activityRow.alert .activityRowMeta{color:var(--danger)}@media (max-width:620px){.tfMore.wide,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{width:100%;padding:20px 16px;gap:20px}}#app.tfDash #homeView{max-width:none;container:tfdash/inline-size}#app.tfDash #homeView .grid{display:flex;flex-wrap:wrap;align-items:flex-start;align-content:flex-start}#app.tfDash .tfDashTitle{order:1!important;flex:0 0 100%;margin:0}#app.tfDash .tfDashBarRow{order:2!important;flex:0 0 100%;display:flex;min-width:0}#app.tfDash .tfDash-wx{order:var(--o,3)!important}#app.tfDash .tfAreas{order:var(--o,4)!important}#app.tfDash .tfDash-favs{order:var(--o,5)!important}#app.tfDash .tfDash-act{order:var(--o,6)!important}#app.tfDash .tfDash-energy{order:var(--o,7)!important}#app.tfDash .tfDash-avg{order:var(--o,8)!important}#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar){order:var(--o,8)!important}#app.tfDash .tfDashTiles>*{order:var(--o,9)}#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}#app .tfNotAdded{display:none!important}#app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}@media (min-width:901px){#app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}#app.tfDash .tfAreaGallery::-webkit-scrollbar{display:none}#app.tfDash .tfAreaPanel.active{flex:1 0 409px}#app.tfDash .tfAreaPanel:not(.active){flex:0 0 128px}}#app.tfDash .tfDash-bar{flex:none;max-width:100%}#app.tfDash #homeView .card.tfDash-bar{container-type:normal}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(var(--bar-cols,6),auto)}#homeView .card.tfDash-bar .activityRow{min-width:200px}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:visible;text-overflow:clip}@container tfdash (width < 640px){#app.tfDash .tfDash-bar{width:100%}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#homeView .card.tfDash-bar .activityRow{min-width:0}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:hidden;text-overflow:ellipsis}#app.tfDash .tfDashTitle{padding:0 16px;box-sizing:border-box}}#app.tfDash .tfDashCard:not(.tfDash-bar){container-type:inline-size}#homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}#homeView .card.tfDash-act>.activityRows{flex:none;margin-top:auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}#homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}#homeView .card.tfDash-energy .activityRows{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}.tfDashCard :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfDashCard .activityRow>*{min-width:0}.tfDashNone{margin:0;padding:var(--inset) 18px;color:var(--muted)}.tfDashBento{display:flex;flex-direction:column;min-width:0}#app:not(.tfDash) .tfDashBento{display:none}.tfDashBento:not(:has(.wbItem:not([hidden]))){display:none}.tfDashBento .wb{flex:1;display:flex;flex-direction:column;min-width:0}.tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}#app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}#app.house .tfDashBento .wbItem[data-size]{width:100%}#app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}.tfDash-wx .wbCondition{display:none}#app.tfDash .tfDashTiles{display:contents}.tfDashTiles>:is(.tfAction,.tfDac){flex:none;align-self:stretch;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}#app.tfBoard #homeView .grid{display:block;position:relative}#app.tfBoard .tfBoardItem{position:absolute;z-index:1;margin:0;max-width:none;min-height:0;box-sizing:border-box}#app.tfEditing.tfBoardReady .tfBoardItem{transition:left .25s cubic-bezier(.2,.7,.3,1),top .25s cubic-bezier(.2,.7,.3,1),height .25s cubic-bezier(.2,.7,.3,1)}#app.tfBoard .tfBoardHidden{display:none!important}#app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}#app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%;min-height:0}.tfBoardCells{position:absolute;top:0;left:0;z-index:0;display:grid;grid-auto-rows:60px;gap:16px;pointer-events:none}.tfBoardCells i{border-radius:var(--r-inner);background:color-mix(in srgb,var(--text) 7%,transparent)}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfDashBento){outline:1.5px solid var(--primary);outline-offset:-1.5px;border-radius:var(--r-card)}#app.tfEditing .tfBoardItem:is(.tfAction,.tfDac){border-radius:28px}#app.tfEditing .tfAreas{border-radius:24px}#app.tfEditing .tfDashBento .wbCard{outline:1.5px solid var(--primary);outline-offset:-1.5px}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;overflow:visible;-webkit-user-select:none;user-select:none;touch-action:none}.tfEditChips{position:absolute;inset:-8px -8px auto -8px;z-index:5;height:40px;display:flex;justify-content:flex-end;pointer-events:none}.tfEditGrip{position:absolute;top:-10px;left:50%;display:grid;place-items:center;width:80px;height:40px;border-radius:var(--r-inner);background:var(--text);color:var(--card);transform:translate(-50%);pointer-events:auto;cursor:grab}.tfEditGrip svg{width:24px;height:24px;fill:currentColor}.tfEditChip{display:grid;place-items:center;width:28px;height:28px;min-height:0;padding:0;border:0;border-radius:50%;background:var(--text);color:var(--card);pointer-events:auto;cursor:pointer}.tfEditChip svg{width:18px;height:18px;fill:currentColor}.tfEditChip:focus-visible{outline:2px solid var(--primary);outline-offset:2px}#app.tfEditing .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}.tfBoardLand{position:absolute;z-index:1;box-sizing:border-box;border:1.5px dashed var(--primary);border-radius:28px;background:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;transition:left .2s,top .2s,width .2s,height .2s}.tfBoardMenu{position:absolute;z-index:30;display:grid;gap:2px;min-width:200px;padding:6px;border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px #00000059}.tfBoardMenu button{display:flex;align-items:center;min-height:40px;padding:0 12px;border:0;border-radius:var(--r-inner);background:transparent;color:var(--text);font:500 14px/20px var(--font);text-align:start;cursor:pointer}.tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}.tfBoardMenu button:disabled{opacity:.4;cursor:default}.tfHeight{display:grid;gap:6px;padding:6px 6px 8px}.tfHeightLabel{padding:0 6px;color:var(--muted);font:500 12px/16px var(--font)}.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--tile)}.tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}.tfBoardMenu .tfHeightTabs button[aria-checked=true]{background:var(--text);color:var(--card)}.tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}.tfWidth{padding-top:0}.tfWidth .tfHeightTabs{grid-template-columns:repeat(3,auto)}.tfBoardMenu .tfWidth .tfHeightTabs button{white-space:nowrap}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows{grid-auto-rows:var(--fill-row,60px);margin-top:0}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows>.activityRow{min-height:0;height:var(--fill-row,60px);box-sizing:border-box}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]{padding:0;gap:0}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityHeader,#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.tfDashGraph{display:none}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityRows{margin:0;flex:1}#app.tfBoard .tfBoardItem.tfAction[data-rows="1"]{padding:10px;border-radius:24px}.tfRoomTile{cursor:pointer}.tfRoomTile .tfRoomIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfRoomInline,.tfRoomSub{display:none}.tfRoomReading{display:flex;flex-direction:column;gap:4px;min-width:0}.tfRoomBig{overflow:hidden;color:var(--text);font:500 46px/46px var(--font-tile);letter-spacing:-.92px;white-space:nowrap;text-overflow:ellipsis}.tfRoomSub{overflow:hidden;color:var(--muted);font:400 16px/19px var(--font);white-space:nowrap;text-overflow:ellipsis}.tfRoomDevices{display:flex;gap:12px}.tfRoomDevices .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfRoomDevices .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}#app.tfBoard .tfRoomTile[data-rows="1"] .tfRoomInline{display:inline}#app.tfBoard .tfRoomTile[data-rows="1"] :is(.tfRoomReading,.tfRoomDevices),#app.tfBoard .tfRoomTile[data-rows="2"] .tfRoomDevices{display:none}#app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfActionHead .activityRowMeta{display:none}#app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfRoomSub{display:block}#app.tfBoard .tfRoomTile[data-rows="4"] .tfRoomBig{font-size:52px;line-height:52px;letter-spacing:-1.92px}#app.tfBoard .tfRoomTile[data-rows="5"] .tfRoomBig{font-size:64px;line-height:64px;letter-spacing:-1.92px}#app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}#app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}#app.tfBoard .tfDash-wx[data-rows="1"] .wbNow{margin:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbWx.wbS90{width:40px;height:40px;border-radius:12px}#app.tfBoard .tfDashBento[data-rows] :is(.wb,.wbBento,.wbItem){height:100%;min-height:0}#app.tfBoard .tfDashBento[data-rows] .wbCard{height:100%;min-height:0;box-sizing:border-box;aspect-ratio:auto}#app.tfBoard .tfDash-wx[data-rows="1"] .wbDeg{font-size:20px;letter-spacing:0;line-height:22px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbPlace{font-size:13px;line-height:18px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbUnit{font-size:14px;line-height:22px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbWx.wbS90{width:100px;height:100px;border-radius:31px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbDeg{font-size:80px;line-height:80px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbUnit{font-size:30px;line-height:38px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbWeather{flex-direction:row;align-items:center;gap:16px}#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbNow{flex:none}#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbNextHours{display:flex;flex:1 1 0}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbWeather{justify-content:center;padding-top:0;padding-bottom:0}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) :is(.wbNow,.wbSummary){display:none}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbColumns{display:flex;flex:none;height:185px}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbAsDay{display:none}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbAsNow{display:inline}#app.tfBoard .tfDash-wx[data-narrow] .wbCard.wbWeather{gap:12px;padding:18px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbWx.wbS90{width:64px;height:64px;border-radius:20px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbDeg{font-size:46px;line-height:46px;letter-spacing:-.92px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbUnit{font-size:20px;line-height:26px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-narrow] .wbHalves{display:none}#app.tfBoard .tfDash-wx[data-narrow][data-rows="3"] .wbNextHours{display:flex;margin-top:auto}#app.tfBoard .tfDash-wx[data-narrow] .wbHour:nth-child(n+4){display:none}#app.tfBoard .tfDash-wx[data-narrow]:is([data-rows="4"],[data-rows="5"]) .wbColumns{display:flex;flex:none;height:auto;margin-top:auto}#app.tfBoard .tfDash-wx[data-narrow]:is([data-rows="4"],[data-rows="5"]) .wbColumn:nth-child(n+4){display:none}#app.tfBoard .tfDash-wx[data-narrow][data-rows="5"] .wbSummary{display:block}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="4"]) .wbSummary{display:none}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) :is(.wbColumns,.wbHalves){display:none}#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:0}#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbColumn{justify-content:flex-start;gap:8px;padding:12px 0 16px}#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbColumn .wbWx{width:40px;height:40px;border-radius:16px}#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbTemps{gap:4px}#app.tfBoard .tfDash-wx[data-rows="4"] .wbHalves>:nth-child(n+5){display:none}#app.tfBoard .tfDash-energy[data-rows="2"] .tfDashGraph{display:none}#app.tfBoard .tfDash-energy:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) .activityRows{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}#app.tfBoard .tfDash-energy[data-rows="3"] .tfDashGraph{min-height:0}#app.tfBoard .tfDashBento[data-rows="2"] .wbBaseRows{display:none}#app.tfBoard .tfDashBento[data-rows="2"] :is(.wbRadar,.wbCompareBars,.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfDashBento[data-rows="3"] :is(.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfAreas[data-rows="1"] .workoutPanel.tfAreaPanel{padding:10px}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 12px;align-content:center}#app.tfBoard .tfAreas[data-rows="1"] :is(.panelExpanded>.workoutPanelTop,.tfACTop){display:contents}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] .tfATitle .tfAName{font-size:14px;line-height:20px;height:auto}#app.tfBoard .tfAreas[data-rows="1"] .tfABig{margin:0;flex-direction:row}#app.tfBoard .tfAreas[data-rows="1"] .tfABigMain{font-size:14px;line-height:18px;letter-spacing:0}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigUnit){font-size:14px}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigSub,.tfATiles,.tfACTiles,.sourceTag){display:none}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:center;padding:0}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfACName,.tfACMain){margin:0;font-size:14px;line-height:18px;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"]) .tfABig{display:none}#app.tfBoard .tfAreas[data-rows="4"] .tfABig{flex:none;margin-top:auto;margin-bottom:auto}#app.tfBoard .tfAreas[data-rows="4"] .tfATiles{margin-top:0}#app.tfBoard .tfAreas[data-rows="4"] .tfABigMain{font-size:52px}#app.tfBoard .tfAreas[data-rows="4"] .panelExpanded{row-gap:12px}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfATiles{margin-top:auto}#app.tfBoard .tfAreas[data-rows="2"] .tfATile:nth-child(n+3),#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfATile:nth-child(n+5){display:none}#app.tfBoard .tfAreas[data-rows="2"] .tfACTiles{display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTile:nth-child(n+3){display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACollapsed{justify-content:flex-start;gap:10px}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTiles{margin-top:auto}.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:360px;max-width:calc(100vw - 56px);transform:translate(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfEditTray.open{transform:none}.tfEditTray.open.tucked{transform:translate(100%)}.tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}.tfTrayTuck{position:absolute;top:20px;left:-40px;display:grid;place-items:center;width:40px;height:56px;min-height:0;padding:0;border:0;border-radius:16px 0 0 16px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}.tfTrayTuck svg{width:22px;height:22px}.tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}.tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d}.tfTrayHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.tfTraySection{display:flex;flex-direction:column;gap:8px}.tfTraySection .sectionLabel{margin:0}.tfTrayNote{margin:0;color:var(--muted);font:400 14px/1.3 var(--font)}.tfTrayCards{display:flex;flex-direction:column;gap:6px}.tfTrayCard{display:flex;align-items:center;gap:10px;min-height:var(--tile-min);padding:0 14px 0 10px;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none}.tfTrayList{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}.tfTrayFav{display:grid;grid-template-columns:22px var(--chip-size) minmax(0,1fr) 36px 36px;align-items:center;gap:8px;min-height:var(--tile-min);padding:0 4px 0 6px;border-radius:var(--r-tile)}.tfTrayFav.off{cursor:grab;touch-action:none}.tfTrayFav.off :is(.tfIcon,.tfTrayName){opacity:.5}.tfTrayFav.moving{background:var(--tile)}.tfTrayGrip{display:grid;place-items:center;color:var(--muted);cursor:grab;touch-action:none}.tfTrayGrip svg{width:20px;height:20px;fill:currentColor}:is(.tfTrayFav,.tfTrayPickItem) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfTrayName{display:flex;flex-direction:column;min-width:0}.tfTrayName>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfTrayBtn{display:grid;place-items:center;width:36px;height:36px;min-height:0;padding:0;border:0;border-radius:12px;background:none;color:var(--text);cursor:pointer}.tfTrayBtn svg{width:20px;height:20px;fill:currentColor}.tfTrayBtn:hover{background:var(--tile)}.tfTrayAdd{align-self:flex-start}.tfTrayPick{display:flex;flex-direction:column;gap:6px}.tfTrayPick[hidden]{display:none}.tfTrayPickItem{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;width:100%;min-height:var(--tile-min);padding:0 10px;border:0;border-radius:var(--r-tile);background:none;color:var(--text);text-align:start;cursor:pointer}.tfTrayPickItem:hover{background:var(--tile)}.tfTraySuggest{margin-top:8px}.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(360px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d;opacity:0;transform:translate(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfMiniPhone.open{opacity:1;transform:none;pointer-events:auto}.tfPhoneHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px 0 12px}.tfMiniPhone>.tfTrayNote{padding:0 12px 4px}.tfLinkBtn{min-height:0;padding:0;border:0;background:none;color:var(--primary);font:inherit;text-decoration:underline;cursor:pointer}.tfPhoneScreen{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border-radius:34px;background:var(--bg);box-shadow:var(--hc-hair-all);padding:14px 0 24px}.tfPhoneList{display:flex;flex-wrap:wrap;gap:12.8px}.tfPhoneTitle{width:100%;padding:0 12.8px;color:var(--text);font:800 25.6px/1 var(--font);letter-spacing:-.055em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfPhoneBlock{display:flex;align-items:flex-start;gap:10px;width:100%;min-height:0;padding:12px;border:0;border-radius:27px;background:var(--card);box-shadow:var(--hc-hair);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}.tfPhoneBlock.tile{width:calc((100% - 12.8px)/2);border-radius:22.4px}.tfPhoneBlock.fixed{align-items:center;color:var(--muted);cursor:default}.tfPhoneBlock.moving{box-shadow:var(--hc-hair),0 0 0 2px var(--primary);cursor:grabbing}.tfPhoneBlock:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfPhoneBlock .tfIcon{width:32px;height:32px;border-radius:13px;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}.tfPhoneName{min-width:0;padding-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.tfTrayGhost{position:fixed;top:0;left:0;z-index:200;margin:0;pointer-events:none;opacity:.9;background:var(--tile);border-radius:var(--r-tile);box-shadow:0 8px 24px #00000059}.tfFavDrop{position:fixed;z-index:200;width:4px;border-radius:2px;background:var(--primary);pointer-events:none}.tfFavHides{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;pointer-events:none}.tfFavHide{position:absolute;display:grid;place-items:center;width:32px;height:32px;min-height:0;padding:0;border:0;border-radius:12px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;pointer-events:auto}.tfFavHide svg{width:18px;height:18px;fill:currentColor}.tfDash-energy .tfDashGraph{flex:1;min-height:80px;height:auto;margin:var(--inset) 0 0}.tfDash-energy.graphAbove>.activityHeader{order:-2}.tfDash-energy.graphAbove>.tfDashGraph{order:-1;margin:0 0 var(--inset)}#homeView .card.tfDash-energy .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.toast.tfToast{top:auto;right:auto;max-width:calc(100vw - 32px);transform:translate(-50%,6px)}.toast.tfToast.show{transform:translate(-50%)}.tfDash-act .activityRow.alert .activityRowName{color:var(--danger)}.activityRow .tfIcon.alert{background:#e53935;color:#fff}.tfGraph.tfDay{flex:none;height:62px;min-height:0}.tfGraph.tfDay text{font-size:10px}#housePane .rubberIndicator{background:var(--bright)}#housePane .tab.active{color:var(--on-bright)}#app.light .tfBar i{box-shadow:inset -2px 0 0 var(--text)}#app.house :is(.settingsSelect,.addInput){border:1px solid var(--muted)}#app.house .addInput::placeholder{color:var(--muted);opacity:1}#app .activityRows :focus-visible{outline-offset:-2.4px}#app.house :is(button,a,input,select,[tabindex]){scroll-margin-bottom:96px}@media (max-width:620px){#app.house :is(.activityRowName,.activityRowMeta){white-space:normal;text-overflow:clip;overflow:visible;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}}.tfTooltip{position:fixed;z-index:500;max-width:min(320px,calc(100vw - 16px));padding:6px 10px;border-radius:10px;background:var(--bright);color:var(--on-bright);font:500 14px/18px var(--font);overflow-wrap:break-word;box-shadow:0 4px 16px #00000040}.tfTooltip[hidden]{display:none}.tfDashGraph rect{transform-box:fill-box;transform-origin:50% 100%}#app.house:is([data-names=cut],[data-names=scroll]) :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#app.house[data-names=wrap] :is(.activityRowName,.activityRowMeta){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}#app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}', Vp = `.wb{container:wb-bento/inline-size;display:block;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}.wbBento{box-sizing:content-box;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:16px;max-width:1056px;margin:0 auto;padding:10px}.wbItem{container:wb-card/inline-size;min-width:0}.wbItem[hidden]{display:none!important}.wbItem[data-size=wide]{width:520px;align-self:stretch;display:flex;flex-direction:column}.wbItem[data-size=wide]>*{flex:1}.wbItem[data-size=wide]>.wbWeather{flex:none}.wbItem[data-size=tile]{width:252px}.wbItem[data-size=double]{width:520px}@container wb-bento (width < 652px){.wbBento{gap:10px;padding:10px}.wbItem:is([data-size=wide],[data-size=double]){width:100%}.wbItem[data-size=tile]{width:calc(50% - 5px)}}.wbCard{position:relative;display:block;box-sizing:border-box;border:0;border-radius:var(--r-card);background:var(--card);color:var(--text);font-family:var(--font);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line);transition:all .3s ease-out}.wbCard.wbHc{display:flex;flex-direction:column;gap:10px;padding:14px var(--inset) var(--inset);box-shadow:var(--hc-hair-all)}.wbHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;padding:0 18px}.wbTitle{margin:0;font:500 18px/1.2 var(--font-tile);letter-spacing:-.18px;color:var(--text);white-space:nowrap}.wbIcon{display:block;flex:none;width:var(--wb-icon,24px);height:var(--wb-icon,24px);fill:currentColor;pointer-events:none}.wbTile{display:flex;align-items:center;gap:12px;min-width:0;min-height:var(--tile-min);box-sizing:border-box;padding:var(--inset);border:0;border-radius:var(--r-tile);background:transparent;color:inherit;font:inherit;text-align:start}.wb button.wbTile{border-radius:var(--r-tile)!important;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease}.wb button.wbTile:hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.wb button.wbTile:focus-visible{outline:2px solid var(--primary)!important;outline-offset:2px!important}.wbChip{flex:none;display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent);--wb-icon:24px}.wbChip.wbPlain{background:var(--icon-bg);color:var(--text)}.wbText{display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0;align-self:stretch;overflow:hidden;white-space:nowrap}.wbName{font:600 14px/20px var(--font-tile);overflow:hidden;text-overflow:ellipsis}.wbSub{font:400 16px/1.15 var(--font);letter-spacing:-.32px;overflow:hidden;text-overflow:ellipsis}.wbCard.wbSquare{display:flex;flex-direction:column;gap:14px;aspect-ratio:1;--wb-k:1;box-sizing:border-box;padding:18px;border-radius:28px;overflow:hidden}.wbHead{display:flex;align-items:flex-start;gap:12px;min-width:0}.wbSquare .wbChip{width:40px;height:40px;border-radius:16px}.wbSquare .wbName{font-size:14px;line-height:1.4}.wbSquare .wbSub{font-size:16px}.wbVisual{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:10px}.wbCard.wbSquare.wbDouble{aspect-ratio:520/252;--wb-k:.4846;border-radius:34px}.wbVisual>svg{display:block;width:100%;height:100%;min-height:0}.wbVisual svg text{font-family:var(--font-tile)}.wbValue{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbValue .wbNum{font:500 clamp(30px,calc(17.5cqw * var(--wb-k,1)),44px)/1 var(--font-tile);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.wbValue .wbUnitV{font:300 clamp(13px,calc(7.1cqw * var(--wb-k,1)),18px)/1.25 var(--font-tile);color:var(--muted)}.wbScaleNote{display:flex;justify-content:space-between;color:var(--muted);font:400 clamp(10px,calc(4.4cqw * var(--wb-k,1)),12px)/1.3 var(--font)}.wbCard.wbSquare.wbHasBackdrop{position:relative;isolation:isolate}.wbBackdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;overflow:hidden;border-radius:inherit;pointer-events:none}.wbBackdrop~*{position:relative;z-index:1}.wbGraph{position:relative;display:flex;flex-direction:column;justify-content:center;height:120px;box-sizing:border-box;padding:12px 16px;border-radius:10px 10px 18px 18px;background:var(--tile);overflow:hidden;--wb-scale-edge:var(--tile)}.wbChart{display:block;width:100%;height:100%;overflow:visible}.wbChart .wbLine{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbChart .wbArea{fill:var(--primary);opacity:.14}.wbChart .wbBar{fill:var(--muted);opacity:.45}.wbChart .wbBar.wbNowBar{fill:var(--primary);opacity:1}.wbChart .wbGuide{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 4}.wbChart text{fill:var(--muted);font:400 11px var(--font)}.wbGraphNote{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:400 12px/1.4 var(--font)}.wbDayChart{flex:1;min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:20px minmax(0,1fr) 18px;grid-template-areas:". sun" "y plot" ". x";column-gap:6px;color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums}.wbDcSun,.wbDcX,.wbDcY,.wbDcPlot{position:relative;min-width:0}.wbDcSun{grid-area:sun}.wbDcY{grid-area:y}.wbDcPlot{grid-area:plot}.wbDcX{grid-area:x}.wbDcSunMark,.wbDcX span{position:absolute;bottom:0;transform:translate(-50%);white-space:nowrap}.wbDcSunMark{display:flex;align-items:center;gap:2px;bottom:4px;--wb-icon:14px}.wbDcSunMark .wbIcon{fill:#fea916}.wbDcX span{top:4px;bottom:auto}.wbDcY span{position:absolute;right:0;transform:translateY(-50%);white-space:nowrap}.wbDcPlot svg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbDcNight{fill:var(--page);opacity:.6}.wbDcGrid{stroke:var(--line);stroke-width:1}.wbDcSunLine{stroke:#fea916;stroke-width:1;stroke-dasharray:2 4;opacity:.7}.wbDcNow{stroke:var(--text);stroke-width:1;opacity:.4}.wbDcLine,.wbDcPast{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbDcPast{stroke:var(--muted);stroke-width:2}.wbDcArea{fill:var(--primary);opacity:.14}.wbDcBar{position:absolute;bottom:0;min-height:3px;border-radius:4px 4px 1px 1px;background:var(--primary)}.wbDcDot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--card)}.wbDcPeak{position:absolute;transform:translate(-50%,calc(-100% - 6px));color:var(--text);font-weight:500;white-space:nowrap}.wbDcNote{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;place-items:center;padding:0 8px;text-align:center;color:var(--muted);font:400 13px/1.4 var(--font)}.wbOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.wbOpenHead{display:flex;align-items:center;gap:12px}.wbBack{flex:none;display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer;--wb-icon:24px}.wb button.wbBack{border-radius:var(--r-fine)!important}.wbBack:hover{background:var(--hover)}.wbOpen .wbGraph{flex:1;height:auto;min-height:152.2px;background:var(--card);--wb-scale-edge:var(--tile)}.wbSegments{display:inline-flex;gap:0;padding:4px;border-radius:var(--r-inner);background:var(--page)}.wbSegments button{padding:4px 12px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer}.wb .wbSegments button{border-radius:var(--r-fine)!important;font-family:var(--font-tile)!important}.wbSegments button[aria-pressed=true]{background:var(--tile);color:var(--text)}.wbWx{position:relative;display:block;flex:none;width:40px;height:40px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wbWx>svg,.wbWx>canvas{display:block;width:100%;height:100%}.wbWx>canvas{image-rendering:pixelated}.wbWx.wbS60{width:60px;height:60px;border-radius:20px}.wbWx.wbS90{width:90px;height:90px;border-radius:28px}.wb[data-style=smooth] :is(.wbWx,.wbSky):after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;border-radius:inherit;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.3 0 0 0 -.15 1.3 0 0 0 -.15 1.3 0 0 0 -.15 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;mix-blend-mode:overlay;opacity:.3}.wbBaseRows{display:flex;flex-direction:column;gap:4px;width:100%}.wbBaseRow{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font:400 14px/20px var(--font)}.wbBaseRow>span:last-child{color:var(--text);white-space:nowrap}.wbBaseRow>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbRadar{position:relative;flex:1;align-self:stretch;min-height:80px;border-radius:var(--r-inner);overflow:hidden;background-color:var(--tile);background-image:linear-gradient(color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px);background-size:24px 24px;background-position:center}.wbRadarRing{position:absolute;left:50%;top:50%;width:64%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 20%,transparent)}.wbRadarRing:after{content:"";position:absolute;top:25%;right:25%;bottom:25%;left:25%;border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 14%,transparent)}.wbRadarHome{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px var(--tile)}.wbWx.wbLineIcon{display:grid;place-items:center;background:var(--tile);color:var(--text)}.wbWx.wbLineIcon>svg{width:64%;height:64%}.wbWx.wbClear,.wbWx.wbPartly{background:var(--wx-clear)}.wbWx.wbCloudy{background:var(--wx-cloudy)}.wbWx.wbRain,.wbWx.wbSnow{background:#969696}.wbWx.wbNight{background:var(--wx-night)}.wbWx .wbBright{fill:var(--wx-cloud-bright)}.wbWx .wbCloudLight{fill:var(--wx-cloudy)}.wbWx .wbAccent{fill:var(--primary)}.wbWx :is(.wbSunDisc,.wbMoonPath,.wbBright,.wbCloudLight,.wbDrop,.wbFlake,.wbTwinkle){transform-box:fill-box;transform-origin:center}.wbMotion .wbWx .wbSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}.wbMotion .wbWx .wbMoonPath{animation:wxBob 5.2s ease-in-out infinite}.wbMotion .wbWx :is(.wbBright,.wbCloudLight){animation:wxDrift 6.4s ease-in-out infinite}.wbMotion .wbWx .wbDrop{animation:wxFall .95s linear infinite}.wbMotion .wbWx .wbFlake{animation:wxSnow 3.2s linear infinite}.wbMotion .wbWx .wbTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}.wbCard.wbWeather{position:relative;display:flex;flex-direction:column;gap:12px;padding:18px}.wbClosed{display:contents}.wbWeather.wbIsOpen .wbClosed{visibility:hidden}.wbWeather .wbOpen{position:absolute;top:10px;right:10px;bottom:10px;left:10px;min-height:0}.wbWeather .wbOpen .wbGraph{min-height:0;padding:8px 14px 6px 8px}.wbDayTabs{display:flex}.wbNow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.wbCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wb button.wbOpenPage{padding:0;border:0;border-radius:var(--r-tile)!important;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}.wb button.wbOpenPage:focus-visible{outline:2px solid var(--primary)!important;outline-offset:4px!important}.wbTempBlock{display:flex;flex-direction:column;gap:4px;min-width:0}.wbTemp{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbDeg{font:500 64px/1 var(--font-tile);letter-spacing:-1.28px}.wbUnit,.wbRange{font:300 24px/1.25 var(--font-tile);white-space:nowrap}.wbPlace{color:var(--muted);font:600 14px/20px var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wbCondition{flex:none;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;padding:10px 16px;border-radius:var(--r-tile);background:var(--tile)}.wbCondName{font:400 18px/1.2 var(--font);letter-spacing:-.18px;white-space:nowrap}.wbColumns{display:flex;height:185px;border-radius:28px;overflow:hidden}.wbColumn{flex:1 0 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 0;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:inherit;cursor:pointer}.wb button.wbColumn{border-radius:var(--r-tile)!important}.wbColumn:hover{background:var(--hover);box-shadow:inset 0 0 0 .4px var(--line)}.wb button.wbColumn:focus-visible{outline:2px solid var(--primary)!important;outline-offset:-2px!important}.wbDay{font:400 14px/1.4 var(--font);white-space:nowrap}.wbTemps{display:flex;flex-direction:column;align-items:center;gap:8px}.wbHi{font:400 18px/20px var(--font-tile)}.wbLo{color:var(--muted);font:400 18px/1.2 var(--font);letter-spacing:-.18px}.wbAsNow{display:none}.wbHalves{display:none;grid-template-columns:repeat(2,minmax(0,1fr))}.wbNextHours{display:none;justify-content:space-between;align-items:center;gap:8px;min-width:0}.wbHour{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}.wbHourTime{color:var(--muted);font:400 14px/20px var(--font);white-space:nowrap}.wbHourTemp{font:400 18px/20px var(--font-tile);white-space:nowrap}.wbHour .wbWx.wbS40{width:40px;height:40px;border-radius:16px}.wbSummary{position:relative;flex:1 1 0;min-height:0;margin-top:-12px;container:wbsum/size}.wbSummaryText{position:absolute;top:12px;left:0;right:0;margin:0;color:var(--text);font:400 16px/22px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}@container wbsum (height < 56px){.wbSummaryText{-webkit-line-clamp:1}}@container wbsum (height < 34px){.wbSummaryText{display:none}}@container wb-card (width < 480px){.wbColumn .wbWx.wbS60{width:48px;height:48px;border-radius:16px}}@container wb-card (width < 400px){.wbSummary{display:none}.wbCard.wbWeather{gap:16px;padding:18px 18px 10px}.wbWeather .wbWx.wbS90{width:60px;height:60px;border-radius:20px}.wbDeg{font-size:46px;letter-spacing:-.92px}.wbRange{font-size:20px}.wbCondition{align-self:flex-start;gap:0;border-radius:28px}.wbColumns{display:none}.wbHalves{display:grid}.wbWeather .wbDcX .wbMinor{display:none}}@container wb-card (width < 280px){.wbHalves{grid-template-columns:1fr}}.wbCard.wbHourly{flex:1}.wbTabs{padding:0 18px}.wbStripScroll{flex:1;min-height:160px;display:flex;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border-radius:var(--r-tile);-webkit-user-select:none;user-select:none}.wbStripScroll::-webkit-scrollbar{display:none}.wbStripScroll.wbDragging{cursor:grabbing}.wbStrip{flex:none;display:flex;flex-direction:column;gap:8px;min-width:100%;box-sizing:border-box;padding:0 10px}.wbRow{position:relative;flex:none}.wbTimes{height:20px}.wbValues{height:44px}.wbMark{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;transform:translate(-50%);white-space:nowrap}.wbMark.wbFirst{align-items:flex-start;transform:none}.wbTimes .wbMark{font:400 14px/20px var(--font);font-variant-numeric:tabular-nums}.wbTimes .wbMark.wbFirst{font:600 14px/20px var(--font-tile)}.wbSky{position:relative;flex:1;min-height:72px;border-radius:var(--r-inner);overflow:hidden}.wbStripScroll.wbPaged{container-type:inline-size;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}.wbStripScroll.wbPaged.wbHeld{scroll-snap-type:none}.wbPaged .wbStrip{position:relative;min-width:0;padding:0}.wbSnap{position:absolute;top:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}.wbMark.wbLast{align-items:flex-end;transform:translate(-100%)}.wbPaged .wbTimes .wbMark.wbFirst{font:400 14px/20px var(--font)}.wbPaged .wbTimes .wbMark.wbNowMark{font:600 14px/20px var(--font-tile)}.wbSky .wbPast{position:absolute;top:0;bottom:0;left:0;background:var(--card);opacity:.45;pointer-events:none}.wbSky .wbNowLine{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--text);opacity:.55;pointer-events:none}.wbSky.wbLineSky{background:var(--tile);color:var(--text)}.wbLineArt{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbLineArt .wbLineArc{fill:none;stroke:var(--text);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}.wbLineArt .wbLineHorizon{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.35}.wbLineArt .wbLineNight{fill:var(--text);opacity:.07}.wbLineArt .wbLineEdge{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.3}.wbLineTime{position:absolute;top:calc(80% + 4px);transform:translate(-50%);color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none}.wbLineNow{position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);border-radius:50%;background:var(--tile);pointer-events:none}.wbLineNow>svg,.wbLineGlyph>svg{display:block;width:100%;height:100%}.wbLineGlyph{position:absolute;top:calc(50% - 14px);width:28px;height:28px;transform:translate(-50%);pointer-events:none}.wbLineGlyph.wbFirst{transform:none}.wbLineGlyph.wbLast{transform:translate(-100%)}.wbSky .wbMidnight{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--text);opacity:.5;pointer-events:none}.wbDays{position:absolute;top:36px;left:0;z-index:1;display:flex;pointer-events:none}.wbDaySpan{flex:none;min-width:0}.wbDayName{position:sticky;left:8px;margin-left:8px;height:26px;min-height:0;padding:0 10px;border:0;background:color-mix(in srgb,var(--card) 82%,transparent);color:var(--text);font:600 13px/26px var(--font-tile);white-space:nowrap;cursor:pointer;pointer-events:auto}.wb .wbDayName{border-radius:13px!important;font-family:var(--font-tile)!important}.wbViews button{padding:2px 10px;font-size:13px}.wbBars .wbDayBars{flex:1 1 0;min-height:160px;display:flex;flex-direction:column;padding:0 18px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}.wbBars.wbTabbed .wbDayBars{min-height:206px}.wbDayBar{flex:1 0 auto;display:grid;grid-template-columns:minmax(56px,auto) 40px 36px minmax(0,1fr) 36px;align-items:center;column-gap:12px;min-height:48px;box-shadow:inset 0 -.4px 0 var(--line)}.wbDayBar:last-child{box-shadow:none}.wbRangeDay{color:var(--text);font:600 14px/20px var(--font-tile);white-space:nowrap}.wbRangeLo{color:var(--muted);text-align:right;font:400 16px/20px var(--font);font-variant-numeric:tabular-nums}.wbRangeHi{color:var(--text);text-align:right;font:400 16px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbRangeTrack{position:relative;height:6px;border-radius:3px;background:var(--tile)}.wbRangeFill{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:3px}.wbRangeNow{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--card)}.wbSkyArt{position:absolute;top:0;height:100%}.wbSkyArt>canvas{display:block;width:100%;height:100%}.wbSkyArt>canvas.wbPixels{image-rendering:pixelated}.wbPrimaryV{font:400 18px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbSecondary{min-height:20px;color:var(--muted);font:400 15px/20px var(--font)}@container wb-card (width < 480px){.wbHourly :is(.wbHeader,.wbTabs){padding:0 8px}.wbBars .wbDayBars{padding:0 8px;min-height:380px}.wbBars.wbTabbed .wbDayBars{min-height:426px}.wbDayBar{column-gap:8px}.wbStripScroll{min-height:380px}}.wbSunSky{flex:1;min-height:0;display:flex;border-radius:16px;overflow:hidden;transition:background 1s ease}.wbSunSky svg{display:block;width:100%;height:100%;overflow:visible}.wbSunPath{fill:none;stroke:var(--wb-sun-line);stroke-opacity:.4;stroke-width:28.3}.wbHorizon{stroke:var(--wb-sun-line);stroke-opacity:.3;stroke-width:1}.wbSunTime{fill:var(--wb-sun-line);font-size:13px;font-weight:600;text-anchor:middle}.wbSunTime.wbNoon{dominant-baseline:central}.wbMoonBox{flex:1;min-height:0;display:flex;justify-content:center}.wbMoonArt{display:block;flex:none;width:auto;height:100%;max-width:100%}.wbMoonCaption{gap:8px}.wbMoonCaption span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbMoonCaption span:last-child{flex:none}.wbMaria{fill:#7d7d78}.wbCrater{fill:#00000017}.wbRays{stroke:#fff;stroke-width:1.2;stroke-linecap:round;opacity:.16}.wbBrightSpots{fill:#fff;opacity:.25}.wbBrightCenter{fill:#f6f6f2;opacity:.75}.wbMottle{opacity:.3;mix-blend-mode:multiply}.wbGrain{opacity:.12;mix-blend-mode:multiply}.wbMoonNight{fill:#0a0a0ebf}.wbWind .wbVisual>svg{overflow:visible}.wbTick{stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}.wbTick.wbMajor{stroke:var(--text);stroke-width:3}.wbLetter{fill:var(--muted);font-size:15px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbLetter.wbNorth{fill:var(--text)}.wbMarker{fill:var(--primary)}.wbDisc{fill:var(--text)}.wbSpeed{fill:var(--card);font-size:34px;font-weight:500;letter-spacing:-.5px;text-anchor:middle;dominant-baseline:central}.wbSpeedUnit{fill:var(--card);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central;opacity:.7}.wbWater{position:absolute;left:0;right:0;bottom:0;transition:height 1.2s ease}.wbWater .wbBody{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,#b2e5fc2e,#81d4fa52,#4fc3f76b 70%,#03a9f48c);-webkit-mask-image:linear-gradient(180deg,transparent,#000 26px);mask-image:linear-gradient(180deg,transparent,#000 26px)}.wbWater .wbMist{position:absolute;left:-10%;right:-10%;bottom:calc(100% - 26px);height:60px;background:radial-gradient(ellipse at 50% 100%,#b2e5fc4d,#b2e5fc00 70%);filter:blur(8px)}.wbWater .wbHaze{position:absolute;width:80%;height:45%;border-radius:50%;background:radial-gradient(closest-side,#ffffff38,#fff0);filter:blur(10px);animation:wbDrift 16s ease-in-out infinite alternate}.wbWater .wbHaze.wbOne{left:-15%;top:8%}.wbWater .wbHaze.wbTwo{right:-20%;top:40%;animation-duration:21s;animation-direction:alternate-reverse}@keyframes wbDrift{0%{transform:translate(-12%)}to{transform:translate(18%)}}.wbWaterValue{flex:1;display:flex;align-items:flex-end}.wbSea{position:relative;flex:1;min-height:0;border-radius:16px;overflow:hidden;--wb-sea-inset:clamp(8.88px,calc(4.76cqw * var(--wb-k,1)),12px)}.wbSeaArt{position:absolute;top:0;right:0;bottom:0;left:0;display:block;width:100%;height:100%;image-rendering:pixelated}.wbSeaFact{position:absolute;top:clamp(7px,calc(3.97cqw * var(--wb-k,1)),10px);inset-inline:var(--wb-sea-inset);color:#26221e;font:600 clamp(9.44px,calc(5.47cqw * var(--wb-k,1)),13.78px)/1.23 var(--font-tile)}.wbSeaValue{position:absolute;bottom:var(--wb-sea-inset);inset-inline-start:var(--wb-sea-inset);color:#fff;text-shadow:0 0 2px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}.wbSeaValue .wbUnitV{color:inherit}.wbVu{display:block;width:100%;height:100%;min-height:0;overflow:visible}.wbVuZone{fill:none;stroke-width:12.3;stroke-linecap:butt}.wbVuTick{stroke:var(--muted);stroke-width:.95;stroke-linecap:round}.wbVuTick.wbMajor{stroke:var(--text);stroke-width:1.9}.wbVisual svg text.wbVuLabel{fill:var(--muted);font-family:"Alfarn",var(--font-tile);font-size:18.9px;font-weight:600;letter-spacing:.08em;text-anchor:middle;dominant-baseline:central}.wbVuNeedle{transform-box:view-box;transform-origin:100px 130px;transform:rotate(var(--wb-angle));animation:wbSwing 1.4s cubic-bezier(.3,1.6,.5,1);transition:transform 1s cubic-bezier(.3,1.6,.5,1)}.wbVuNeedle line{stroke:#e0574d;stroke-width:2;stroke-linecap:round}@keyframes wbSwing{0%{transform:rotate(-48deg)}}.wbVuHousing{fill:var(--tile)}.wbVuValue{fill:var(--text);font-size:30.2px;font-weight:600;text-anchor:middle;dominant-baseline:central}@media (prefers-reduced-motion:reduce){.wbWater .wbHaze,.wbVuNeedle{animation:none}}.wbTapeRow{flex:1;min-height:0;display:flex;align-items:stretch;gap:8px}.wbTapeValue{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}.wbTapeUnit{color:var(--muted);font:300 clamp(13px,7.1cqw,18px)/1.25 var(--font-tile)}.wbTape{flex:none;width:40%;height:100%}.wbTapeTick{stroke:var(--text);stroke-width:2;stroke-linecap:round}.wbTapeLabel{fill:var(--text);font-size:15px;dominant-baseline:central}.wbTapeEnd{fill:var(--muted);font-size:14px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbTapeMarker{stroke:#e0574d;stroke-width:4;stroke-linecap:round}.wbCompare{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) calc(50% - 28px * var(--wb-k));grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch}.wbCompareText{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0}.wbCompareNumber{font:500 calc(26.4cqw * var(--wb-k)) / 1 var(--font-tile);letter-spacing:-.02em;white-space:nowrap}.wbCompareWords{color:var(--muted);font:300 clamp(14px,calc(7.1cqw * var(--wb-k)),18px) / 1.25 var(--font-tile)}.wbCompareTemps{margin-top:6px;font:400 clamp(12px,calc(5.6cqw * var(--wb-k)),14px) / 1.4 var(--font)}.wbCompareBars{display:block;width:100%;height:100%;min-height:0}.wbAvgValue{fill:var(--muted);font-size:10px;text-anchor:middle}.wbAvgValue.wbToday{fill:var(--text);font-size:12px;font-weight:600}.wbAvgBar{fill:var(--muted);opacity:.45}.wbAvgBar.wbToday{fill:var(--primary);opacity:1}.wbAvgDay{fill:var(--muted);font-size:11px;text-anchor:middle}.wbAvgDay.wbToday{fill:var(--text);font-weight:600}.wbAvgLine{stroke:var(--text);stroke-width:1;stroke-dasharray:3 4;opacity:.6}.wbCard.wbHc.wbAqOpen{padding:var(--inset);min-height:243px}.wbAqTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@container wb-card (width < 280px){.wbAqTiles{grid-template-columns:1fr}}.wbAq .wbGraph{gap:10px}.wbScale{position:relative;height:4px;border-radius:9999px}.wbScale i{position:absolute;top:50%;box-sizing:content-box;width:10px;height:10px;border-radius:50%;background-color:var(--text);border:2px solid var(--wb-scale-edge);transform:translate(-50%,-50%)}`, Gp = `<main id="app"><div class="shell">
+const jp = ':host{display:flex;flex-direction:column;min-height:calc(100dvh - var(--header-height,0px));position:relative;background:#050505;color-scheme:dark;--color-bg-ground:#090909;--color-bg-card:#222222;--color-bg-tile:#2b2b2b;--color-fill-bright:#f1f1f1;--color-text-primary:#d9d9d9;--color-text-muted:#969696;--color-text-on-bright:#090909;--color-line:rgba(255,255,255,.14);--color-border-focus:#03a9f4;--color-accent-primary:#03a9f4;--color-accent-secondary:#d0ff00;--color-text-accent:#d0ff00;--color-text-on-accent:#090909;--color-bg-resting:#1f7a4d;--color-bg-danger:#311313;--color-bg-danger-fill:#d53d3d;--color-border-danger:#8c2e2e;--color-text-danger:#ff7777;--color-text-on-danger:#ffffff;--color-state-hover:rgba(255,255,255,.08);--color-bg-chip:#090909;--color-fill-selected:#f1f1f1;--color-text-on-selected:#090909;--color-bg-segment-selected:#2b2b2b;--wx-clear:#03a9f4;--wx-cloudy:#d8d6d6;--wx-night:#1d2b4f;--wx-cloud-bright:#f1f1f1;--color-state-pressed:rgba(255,255,255,.14);--color-state-hover-on-bright:rgba(0,0,0,.06);--color-state-pressed-on-bright:rgba(0,0,0,.12);--scrim:rgba(0,0,0,.66);--lift:rgba(0,0,0,.5)}*{box-sizing:border-box}#app{color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button,input{font:inherit}#app{flex:1;display:flex;flex-direction:column;width:100%;margin:0;padding:0;background:var(--bg);text-align:left}#app{--bg:var(--color-bg-ground);--page:var(--color-bg-ground);--card:var(--color-bg-card);--card2:var(--color-bg-card);--modal:var(--color-bg-card);--timer:var(--color-bg-ground);--tile:var(--color-bg-tile);--tile-2:var(--color-bg-tile);--row:var(--color-bg-tile);--row-rest:var(--color-bg-tile);--raised:var(--color-bg-tile);--chip:var(--color-bg-tile);--segment:var(--color-bg-tile);--seg-on:var(--color-bg-segment-selected);--scroll-thumb:var(--color-bg-tile);--control:var(--color-bg-ground);--control-2:var(--color-bg-ground);--sunken:var(--color-bg-ground);--input:var(--color-bg-ground);--track:var(--color-bg-ground);--icon-bg:var(--color-bg-chip);--seg-bg:var(--color-bg-ground);--switch-off:var(--color-bg-ground);--stage:var(--color-bg-ground);--text:var(--color-text-primary);--soft:var(--color-text-primary);--muted:var(--color-text-muted);--accent-text:var(--color-text-accent);--border-hover:var(--color-text-muted);--knob-off:var(--color-text-muted);--today-ring:var(--color-text-muted);--line:var(--color-line);--lineb:var(--color-line);--field-line:var(--color-line);--divider:var(--color-line);--bright:var(--color-fill-bright);--slider-fill:var(--color-fill-bright);--segment-fill:var(--color-fill-bright);--timer-fill:var(--color-fill-bright);--on-bright:var(--color-text-on-bright);--hover:var(--color-state-hover);--wash-2:var(--color-state-hover);--danger:var(--color-text-danger);--danger-bg:var(--color-bg-danger);--danger-line:var(--color-border-danger);--danger-fill:var(--color-bg-danger-fill);--on-danger-fill:var(--color-text-on-danger);--primary:var(--color-accent-primary);--secondary:var(--color-accent-secondary)}.shell{flex:1;display:flex;flex-direction:column;position:relative;width:100%;background:var(--page);border-radius:0;overflow:visible;transition:background .28s ease}#app.resting .shell{background:var(--color-bg-resting)}#app.paused .shell{background:var(--primary)}#app.light.paused .shell{background:color-mix(in srgb,var(--primary) 55%,var(--color-bg-card))}#app.light{--color-bg-ground:#eeebe8;--color-bg-card:#fbf9f6;--color-bg-tile:#f3efea;--color-fill-bright:#26221e;--color-text-primary:#26221e;--color-text-muted:#6a625a;--color-text-on-bright:#fbf9f6;--color-text-on-accent:#26221e;--color-line:rgba(38,34,30,.12);--color-text-accent:#26221e;--color-accent-secondary:#03a9f4;--color-bg-resting:#7dbb98;--color-bg-danger:#f5dede;--color-border-danger:#e3a0a0;--color-text-danger:#b42a2a;--color-state-hover:rgba(38,34,30,.06);--color-state-pressed:rgba(38,34,30,.12);--color-bg-chip:#fbf9f6;--color-fill-selected:#26221e;--color-text-on-selected:#fbf9f6;--color-bg-segment-selected:#fbf9f6;--color-accent-primary:#0288d1;--color-border-focus:#0288d1;--scrim:rgba(38,34,30,.32);--lift:rgba(38,34,30,.16)}:host(.lightBody){background:#eeebe8;color-scheme:light}.view{display:none;width:100%;max-width:1184px;margin:0 auto;padding:22px 22px 76.8px}.view.active{display:block;flex:1 0 auto}.card,.panel,.tile{position:relative;background:var(--card);border-radius:36px;padding:22px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.eyebrow{text-transform:uppercase;color:var(--muted)}.sub{color:var(--muted);margin-top:6.4px}.pill,.primary,.navBtn,.tab,.back,.hideBtn,.addBtn{cursor:pointer}.pill{min-height:0;padding:3.2px 0;border:0;border-radius:0;background:transparent;color:var(--text);text-decoration-line:underline;text-decoration-thickness:.8px;text-underline-offset:3.2px}.tab,.back{border-radius:799.2px;min-height:41.6px;padding:0 16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.primary{border-radius:799.2px;min-height:41.6px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.activityCard,.weekly{grid-column:span 6}.activityCard,.weekly{min-height:288px}.sourceTag{display:inline-flex;margin-top:11.2px;padding:4px;border-radius:799.2px;background:var(--chip);color:var(--soft)}.workoutFooter{display:flex;justify-content:space-between;align-items:end;gap:22.4px;flex-wrap:wrap;margin-top:22.4px;width:100%;box-sizing:border-box}.workoutGallery{grid-column:span 12;display:flex;gap:16px;height:288px;overflow:hidden}.workoutPanel{position:relative;height:288px;flex:1 1 72px;min-width:70.4px;background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;box-sizing:border-box;transition:flex .32s ease;cursor:pointer}.workoutPanel.active{flex:7 1 0;min-width:0;cursor:default}.workoutPanel.addPanel{flex:0 0 73.6px;min-width:73.6px;display:flex;align-items:center;justify-content:center;padding:14.4px}.workoutPanel{--edge-proximity:0;--cursor-angle:45deg;--edge-sensitivity:36;--color-sensitivity:56;--cone-spread:25;--fill-opacity:.18;--glow-color-60:hsl(199deg 97% 68% / 60%);--glow-color-40:hsl(199deg 97% 68% / 40%);--glow-color-30:hsl(199deg 97% 68% / 30%);--glow-color-20:hsl(199deg 97% 68% / 20%);--glow-color-10:hsl(199deg 97% 68% / 10%);--gradient-one:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%);--gradient-two:radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%);--gradient-three:radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%);--gradient-four:radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%);--gradient-five:radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%);--gradient-six:radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%);--gradient-seven:radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%);isolation:isolate}.workoutPanel:before,.workoutPanel:after,.workoutPanel>.edgeLight{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;pointer-events:none;transition:opacity .18s ease-out}.workoutPanel:before{z-index:2;border:.8px solid transparent;background:linear-gradient(var(--card) 0 100%) padding-box,linear-gradient(#fff0 0,#fff0) border-box,var(--gradient-one) border-box,var(--gradient-two) border-box,var(--gradient-three) border-box,var(--gradient-four) border-box,var(--gradient-five) border-box,var(--gradient-six) border-box,var(--gradient-seven) border-box;opacity:clamp(0,calc(.72 * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.72);-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%));mask-image:conic-gradient(from var(--cursor-angle) at center,black calc(var(--cone-spread) * 1%),transparent calc((var(--cone-spread) + 15) * 1%),transparent calc((100 - var(--cone-spread) - 15) * 1%),black calc((100 - var(--cone-spread)) * 1%))}.workoutPanel:after{z-index:1;border:.8px solid transparent;background:var(--gradient-one) padding-box,var(--gradient-two) padding-box,var(--gradient-three) padding-box,var(--gradient-four) padding-box,var(--gradient-five) padding-box,var(--gradient-six) padding-box,var(--gradient-seven) padding-box;opacity:clamp(0,calc(var(--fill-opacity) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity))),.18);mix-blend-mode:soft-light;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%);mask-image:conic-gradient(from var(--cursor-angle) at center,transparent 5%,black 15%,black 85%,transparent 95%)}.workoutPanel>.edgeLight{top:-19.2px;right:-19.2px;bottom:-19.2px;left:-19.2px;z-index:3;opacity:clamp(0,calc(.62 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity))),.62);mix-blend-mode:plus-lighter;-webkit-mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%);mask-image:conic-gradient(from var(--cursor-angle) at center,black 2.5%,transparent 10%,transparent 90%,black 97.5%)}.workoutPanel>.edgeLight:before{content:"";position:absolute;top:19.2px;right:19.2px;bottom:19.2px;left:19.2px;border-radius:inherit;box-shadow:inset 0 0 0 .8px var(--glow-color-60),inset 0 0 2.4px 0 var(--glow-color-40),inset 0 0 6.4px 0 var(--glow-color-30),inset 0 0 12.8px 0 var(--glow-color-20),0 0 2.4px 0 var(--glow-color-40),0 0 6.4px 0 var(--glow-color-30),0 0 12.8px 0 var(--glow-color-20),0 0 22.4px 1.6px var(--glow-color-10)}.workoutPanel:not(.borderGlowActive):before,.workoutPanel:not(.borderGlowActive):after,.workoutPanel:not(.borderGlowActive)>.edgeLight{opacity:0;transition:opacity .35s ease-out}#app.light .workoutPanel{--glow-color-40:hsl(199deg 97% 48% / 40%);--glow-color-30:hsl(199deg 97% 48% / 30%);--glow-color-20:hsl(199deg 97% 48% / 20%);--glow-color-10:hsl(199deg 97% 48% / 10%)}.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:0;filter:blur(8px);pointer-events:none}.workoutPanel:not(.active):not(.addPanel) .panelCollapsed{opacity:1;filter:blur(0)}.workoutPanel.active .panelExpanded{opacity:1;filter:blur(0);pointer-events:auto}.workoutPanel.active .panelCollapsed{opacity:0;filter:blur(6.4px);pointer-events:none}.panelExpanded{position:relative;z-index:4;width:100%;height:100%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transition:opacity .22s ease,filter .22s ease}.panelCollapsed{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;filter:blur(6.4px);transition:opacity .22s ease,filter .22s ease}.panelCollapsedText{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}.workoutPanelTop{display:flex;justify-content:space-between;align-items:flex-start;gap:22.4px;width:100%;min-width:0;box-sizing:border-box}.workoutPanelActions{display:flex;gap:22.4px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-left:auto}.startWorkoutBtn{background:var(--primary)!important;color:var(--color-text-on-accent)!important}.startWorkoutBtn:hover{filter:brightness(1.04)}.addPanelPlus{position:relative;z-index:4;font-size:27.2px;line-height:1}.addPanelLabel{position:absolute;z-index:4;bottom:16px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted)}@media (max-height:820px) and (min-width:621px){.modalStatic{padding:17.6px 22.4px}.timeTile{min-height:124.8px}}@media (max-width:900px){.weekCopy{white-space:normal}.workoutGallery{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:3.2px}.workoutPanel,.workoutPanel.active{height:288px;flex:0 0 min(68.8vw,544px);min-width:min(68.8vw,544px);scroll-snap-align:start}.workoutPanel.addPanel{flex-basis:80px;min-width:80px}.panelCollapsed{display:none}}.moveActions{display:flex;gap:22.4px;flex-wrap:wrap}@keyframes feelingWarp{0%{transform:scale(1.03) skew(-2deg) translate(-1.5%);filter:saturate(1.02) blur(.8px)}50%{transform:scale(1.12) skew(1deg) translate(1%);filter:saturate(1.22) blur(1.5px)}to{transform:scale(1.06) skew(3deg) translate(-.5%);filter:saturate(1.1) blur(.6px)}}@keyframes feelingScan{0%{background-position:0 0,-80% 0}to{background-position:0 8px,180% 0}}.tempoExperiment{margin-top:14.4px;padding-top:16px;border-top:.32px solid var(--line)}.tempoEstimate{white-space:nowrap}.tempoQuad{position:relative;width:min(288px,100%);aspect-ratio:1/1;border-radius:28.8px;background:#ffffff06;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden;touch-action:none;cursor:crosshair}.tempoCross{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background:linear-gradient(to right,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(255,255,255,.12) 50%,transparent calc(50% + .4px))}.tempoDot{position:absolute;left:50%;top:50%;width:17.6px;height:17.6px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 0 4.8px #ffffff12}.tempoPole{position:absolute;pointer-events:none;color:var(--muted)}.tempoFast{top:9.6px;left:50%;transform:translate(-50%)}.tempoSlow{bottom:9.6px;left:50%;transform:translate(-50%)}.tempoHard{right:9.6px;top:50%;transform:translateY(-50%)}.tempoLow{left:9.6px;top:50%;transform:translateY(-50%)}.tempoReadout{margin-top:9.6px;color:var(--muted)}.tempoRevealRow{margin-top:11.2px}.tempoRevealBtn{color:var(--muted);text-decoration-color:var(--muted)}.editTempoExperiment{margin-top:11.2px}.editTempoExperiment[hidden]{display:none}.testingZone{position:relative;overflow:hidden;border-radius:22.4px;background:#202226;border:.8px solid #4a4f58;box-shadow:none;--text:#d6d9df;--soft:#c7ccd5;--muted:#9ea5b0;--line:#4a4f58;--lineb:#4a4f58;--field-line:#4a4f58;color:var(--text)}.testingZoneInner{position:relative;padding:19.2px;background:linear-gradient(rgba(176,186,199,.045) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.045) .8px,transparent .8px),#202226;background-size:16px 16px}.testingZoneTitleBlock{max-width:608px;margin-bottom:19.2px}.testingZoneTitleRow{display:flex;justify-content:space-between;align-items:center;gap:16px}.testingZoneTitleRow strong{color:#d6d9df}.testingZone .tempoEstimate{color:#aeb4bf}.testingZoneExplanation{margin:8px 0 0;color:#9ea5b0;text-align:left}.testingZoneLayout{display:grid;grid-template-columns:minmax(224px,288px) minmax(0,1fr);grid-template-areas:"controller feedback";gap:25.6px;align-items:start}.testingFeedbackForm{grid-area:feedback;display:grid;gap:14.4px;min-width:0;padding:16px;border:.32px solid var(--line);border-radius:16px;background:#252525}.testingFeedbackHeading{color:#d6d9df}.testingFeedbackField{display:grid;gap:6.4px;color:#9ea5b0}.testingFeedbackField select,.testingFeedbackField textarea{width:100%;border:.32px solid var(--line);background:#171717;color:#d6d9df;border-radius:11.2px;padding:8px 9.6px;font:inherit}.testingFeedbackField textarea{resize:vertical;min-height:65.6px}.testingRating{display:grid;grid-template-columns:repeat(5,1fr);gap:4.8px}.testingRating button{min-height:30.4px;border-radius:9.6px;border:.32px solid var(--line);background:#171717;color:#c7ccd5;cursor:pointer}.testingRating button.selected{border-color:#c7ccd5;background:#343434}.testingFeedbackSubmit{justify-self:start;min-height:33.6px;padding:0 12.8px;border-radius:11.2px;border:0;background:#ffffffe0;color:#111;cursor:pointer}.testingZoneControllerWrap{grid-area:controller;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.tempoQuadFrame{width:min(256px,100%);aspect-ratio:1/1;padding:0;background:linear-gradient(rgba(176,186,199,.075) .8px,transparent .8px),linear-gradient(90deg,rgba(176,186,199,.075) .8px,transparent .8px),#202226;background-size:16px 16px,16px 16px,auto;border-radius:16px}.testingZone .tempoQuad{width:100%;height:100%;border-radius:16px;background:#202226;border:.8px solid #5a606a;box-shadow:none}.testingZone .tempoCross{background:linear-gradient(to right,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px)),linear-gradient(to bottom,transparent calc(50% - .4px),rgba(176,186,199,.2) 50%,transparent calc(50% + .4px))}.testingZone .tempoDot{width:14.4px;height:14.4px;background:transparent;border:.8px solid #c4cad4;box-shadow:0 0 0 3.2px #c4cad40d}.testingZone .tempoPole{color:#8e96a2}.testingZone .tempoReadout{width:min(256px,100%);color:#9ea5b0;text-align:center;margin-top:9.6px}.testingZone button,.testingZone input,.testingZone select,.testingZone textarea{transition:opacity .14s ease,border-color .14s ease,color .14s ease,background .14s ease}.testingZone button:hover,.testingZone button:focus-visible{filter:none;opacity:.88}@media (max-width:900px){.testingZoneLayout{grid-template-columns:1fr;grid-template-areas:"controller" "feedback"}}.activityHeader{display:flex;align-items:center;gap:var(--inset);margin-bottom:var(--inset)}.activityIcon{display:grid;place-items:center}.icon{width:var(--glyph-size);height:var(--glyph-size);flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon *{vector-effect:non-scaling-stroke}.addPanelPlus .icon,.addFab .icon{width:24px;height:24px}.checkinTabIcon .icon{width:18px;height:18px}.weekTick .icon{width:1em;height:1em}.activityRows{display:grid;gap:9.6px}.activityRow{display:grid;grid-template-columns:43.2px minmax(0,1fr);align-items:center;gap:11.2px;background:var(--tile-2);border-radius:24px;padding:12px 14px}.activityRowIcon{width:43.2px;height:43.2px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.activityRowMeta{color:var(--soft);margin-top:2.4px}.toast{position:absolute;right:20.8px;top:20.8px;z-index:60;background:var(--bright);color:var(--on-bright);border-radius:799.2px;padding:8.8px 12.8px;opacity:0;transform:translateY(-6.4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:none}.weekCopy{color:var(--muted);margin-top:9.6px;max-width:none;white-space:nowrap}.weekChip{background:var(--tile-2);border-radius:12.8px;min-height:60.8px;padding:9.6px 11.2px;display:flex;flex-direction:column;justify-content:space-between;gap:6.4px}.weekChipTop{display:flex;justify-content:space-between;align-items:center;gap:6.4px}.weekTick{font-size:11.2px;font-weight:800;line-height:1}.weekChip.total{background:var(--card2)}.workoutSurface{position:relative;overflow:hidden;isolation:isolate}.workoutContent{position:relative;z-index:2}.pixelTrailCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}#app.light .pixelTrailCanvas{opacity:.46}.sessionHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.sessionActions{display:flex;gap:22.4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.holdEnd{position:relative;overflow:hidden;min-width:110.4px;min-height:41.6px;padding:0 16px;border-radius:799.2px;border:.32px solid var(--line);background:var(--control);text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:none}.holdEndFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bright);pointer-events:none}.holdEndLabel{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}.holdEnd.holding{border-color:var(--muted)}.exerciseTitle{margin-top:4.8px;color:var(--accent-text)}.meta{color:var(--muted);margin-top:4.8px}.progress{height:46.4px;padding:0;background:transparent;border-radius:17.6px;display:flex;gap:3.2px;margin-top:19.2px;overflow:hidden}.progressSegment{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;padding:0;display:block;flex:1;min-width:0;background:var(--segment);border-radius:17.6px;position:relative;overflow:hidden;cursor:default}.progressSegment:after{content:"";position:absolute;inset:0 auto 0 0;width:0;background:var(--segment-fill);transition:width .2s linear}.progressSegment.done{background:transparent;opacity:0;pointer-events:none}.progressSegment.done:after{display:none}.progressSegment.active:after{width:var(--segment-progress,0%)}#app.resting .progressSegment:not(.done):not(.active),#app.paused .progressSegment:not(.done):not(.active){background:#fff}.progressSegment.rewindable{cursor:pointer}.progressSegment.rewindable:hover{filter:brightness(1.08)}.progressSegment:focus-visible{outline:1.6px solid var(--primary);outline-offset:-2.4px}.workGrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:16px;margin-top:16px}.timerCard,.movementCard,.nextCard{position:relative;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.timerCard{min-height:344px;background:var(--timer);overflow:hidden}.fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--timer-fill);transition:width .2s linear}.digits{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;font-size:clamp(152px,22.4vw,312px);font-weight:850;letter-spacing:-.11em;color:#fff;mix-blend-mode:difference;font-variant-numeric:tabular-nums}.movementCard{background:var(--stage);min-height:344px;display:grid;place-items:center;padding:22.4px}.movementCard{overflow:hidden}.movementRippleCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:0}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:116.8px}.nextIcon{width:52.8px;height:52.8px;border-radius:19.2px;background:var(--icon-bg);display:grid;place-items:center;font-size:20.8px;flex:0 0 auto}.sectionLabel{margin:0 0 8px 22.4px}.moveSection{grid-column:span 12}.moveSection .workoutGallery{width:100%}.nextWrap{margin-top:16px}.nextLabel{margin:0 0 8px 22.4px}.nextCard{background:var(--card);padding:22.4px;display:flex;justify-content:space-between;align-items:center;gap:22.4px;min-height:86.4px;border-radius:28.8px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.nextMain{display:flex;align-items:center;gap:14.4px;min-width:0}.nextIcon{width:43.2px;height:43.2px;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px;flex:0 0 auto}.sessionControlRow{display:flex;justify-content:flex-end;gap:22.4px;align-items:center;margin-top:16px}.skipBtn{min-width:120px;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text);text-decoration:none}.pause{min-width:120px;min-height:41.6px;padding:0 16px}.upcomingList{display:grid;gap:9.6px;margin-top:9.6px}.upcomingCard{--future-opacity:1;display:flex;align-items:center;justify-content:space-between;gap:22.4px;min-height:86.4px;padding:22.4px;border-radius:28.8px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);opacity:var(--future-opacity);transition:opacity .22s ease}.upcomingCard:nth-child(-n+3){--future-opacity:1}.upcomingCard:nth-child(4){--future-opacity:.72}.upcomingCard:nth-child(5){--future-opacity:.48}.upcomingCard:nth-child(6){--future-opacity:.3}.upcomingCard:nth-child(n+7){--future-opacity:.16}.upcomingCard.sessionHidden{--future-opacity:.24!important;filter:saturate(.15)}.upcomingCard.sessionHidden .upcomingName{text-decoration:line-through}.upcomingCard.sessionHidden .upcomingIcon{opacity:.45}.upcomingCard.sessionHidden .upcomingMeta{opacity:.55}.upcomingInfo{display:flex;align-items:center;gap:14.4px;min-width:0}.upcomingIcon{width:43.2px;height:43.2px;flex:0 0 auto;border-radius:12.8px;background:var(--icon-bg);display:grid;place-items:center;font-size:16px}.upcomingMeta{color:var(--muted);margin-top:4px}.skipSessionBtn{flex:0 0 auto;min-height:41.6px;padding:0 14.4px;border:.8px solid var(--line);background:transparent;color:var(--text)}@media (max-width:900px){.weekCopy{white-space:normal}.nextCard{align-items:flex-start;flex-direction:column}.sessionControlRow{width:100%}.skipBtn,.pause{flex:1;min-width:0}.upcomingCard{align-items:flex-start;flex-direction:column}.skipSessionBtn{width:100%}}.countdown{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;background:var(--page);z-index:300;align-items:center;justify-content:center;flex-direction:column;text-align:center;overflow:hidden}.countdown.active{display:flex}.pixelCanvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;display:block;z-index:1}.countdown:before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle at center,color-mix(in srgb,var(--primary) 16%,transparent),transparent 58%);pointer-events:none}.countNum{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}.countNum{font-size:clamp(144px,25.6vw,344px);font-weight:850;line-height:.75;letter-spacing:-.1em}.modalBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100dvh;z-index:145;background:var(--scrim);padding:28px;box-sizing:border-box;align-items:center;justify-content:center}.modalBackdrop.open{display:flex}.modal{width:min(1184px,100%);height:100%;max-width:1184px;max-height:none;overflow:hidden;background:var(--modal);border-radius:28.8px;padding:0;display:flex;flex-direction:column;box-sizing:border-box;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.modalStatic{flex:0 0 auto;padding:22.4px;background:var(--modal);border-bottom:.32px solid var(--divider)}.modalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12.8px}.modalHeaderActions{display:flex;gap:22.4px;align-items:center;flex:0 0 auto}.modalHead h2{margin:2.4px 0 0}.editNameRow{display:grid;gap:6.4px;margin-bottom:11.2px}.editNameLabel{color:var(--muted)}.editNameInput{min-height:42px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 16px}.timeTiles{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:11.2px;margin-bottom:11.2px}.timeTile{background:var(--tile);min-height:148.8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}.timeHeader{display:flex;align-items:center;gap:14.4px}.timeIcon{width:46.4px;height:46.4px;border-radius:16px;background:var(--icon-bg);display:grid;place-items:center;flex:0 0 auto;font-size:17.6px;font-weight:760}.timeCopy{min-width:0}.rangeTrack{height:46.4px;border-radius:17.6px;background:var(--track);overflow:hidden;position:relative;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.rangeFill{position:absolute;inset:0 auto 0 0;background:var(--slider-fill);border-radius:17.6px 0 0 17.6px}.rangeInput{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}.exerciseScroller{min-height:0;overflow-y:auto;padding:3.2px 16px 17.6px 22.4px;border-top:.16px solid var(--divider);scrollbar-gutter:stable}.exerciseScroller::-webkit-scrollbar{width:6.4px}.exerciseScroller::-webkit-scrollbar-track{background:transparent}.exerciseScroller::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:799.2px}.sectionTitle{text-transform:uppercase;color:var(--muted);margin:14.4px 0 8px}.moveList{display:grid;gap:8px}.moveRow{display:flex;justify-content:space-between;align-items:center;gap:22.4px;background:var(--row);border-radius:20.8px;padding:22.4px}.moveRow.hidden{opacity:.46}.moveRow.hidden .moveItemName{text-decoration:line-through}.moveMeta{color:var(--muted);margin-top:4px}.hideBtn{border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.removeBtn{position:relative;overflow:hidden;border-radius:799.2px;min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.removeFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none;transition:width 0s linear}.addInput{min-height:41.6px;border-radius:799.2px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);padding:0 14.4px}.addBtn{border-radius:799.2px;min-height:42px;padding:0 16px;border:0;background:var(--bright);color:var(--on-bright)}.routineSummary{margin-top:14.4px;background:var(--sunken);border-radius:20.8px;padding:12.8px 14.4px;color:var(--soft)}.settingsHeader{display:flex;align-items:center;gap:12.8px;margin-bottom:24px}.back{width:46.4px;padding:0;font-size:24px}.tabs.rubberTabs{position:relative;display:inline-flex;gap:0;padding:3.2px;margin-bottom:17.6px;border-radius:12.8px;background:var(--control);border:.32px solid var(--line);overflow:hidden}.rubberIndicator{position:absolute;top:3.2px;left:3.2px;height:calc(100% - 6.4px);width:0;border-radius:12.8px;background:var(--bright);transition:left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease;transform-origin:center;z-index:0}.tabs.rubberTabs .tab{position:relative;z-index:1;min-height:41.6px;padding:0 16px;border:0;background:transparent;color:var(--text)}.tabs.rubberTabs .tab.active{color:var(--on-bright)}.settingsPane{display:none}.settingsPane.active{display:block}.integrationList,.toggleList{display:grid;gap:9.6px}.integration,.toggleRow{display:flex;justify-content:space-between;align-items:center;gap:14.4px;background:var(--raised);border-radius:22.4px;padding:14.4px 16px}.status{color:var(--muted);margin-top:3.2px}.note{color:var(--muted);line-height:1.5;max-width:688px}.switch{position:relative;width:50px;height:28px;padding:0;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;flex:0 0 auto;cursor:pointer;transition:background .18s ease,opacity .18s ease}.switch:after{content:"";position:absolute;width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .18s ease,border-radius .18s ease,background .18s ease}.switch.on{background:var(--color-accent-primary);opacity:1}.switch.on:after{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}.themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}.themeBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.wxLayoutBtn{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}.wxLayoutBtn[aria-pressed=true]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.settingsSelect{min-width:96px;min-height:32px;padding:0 27.2px 0 12px;border-radius:var(--r-inner);border:.32px solid var(--field-line);background:var(--control-2);color:var(--text);font:inherit}.motionControlRow{align-items:center}.motionRangeWrap{display:flex;align-items:center;justify-content:flex-end;gap:9.6px;min-width:184px}.motionRangeWrap input{width:128px}.motionRangeWrap span{color:var(--muted);min-width:51.2px;text-align:right}.dangerText{color:var(--danger)}.confirmBackdrop{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;padding:22.4px;background:var(--scrim);align-items:center;justify-content:center}.confirmBackdrop.open{display:flex}.confirmCard{width:min(448px,100%);background:var(--card);border-radius:28.8px;padding:22.4px;border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.confirmActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px;margin-top:22.4px}.holdDelete{position:relative;overflow:hidden;min-width:88px;min-height:41.6px;padding:0 17.6px;border:.8px solid var(--danger-line);border-radius:12.8px;background:var(--danger-bg);color:var(--text);cursor:pointer}.holdDeleteFill{position:absolute;inset:0 auto 0 0;width:0;background:var(--danger-fill);pointer-events:none}.holdDeleteLabel{position:relative;z-index:1;color:var(--text)}.holdDelete.holding .holdDeleteLabel,.removeBtn.holding .removeLabel{color:#fff}.bottomNav{position:sticky;bottom:22.4px;display:flex;gap:22.4px;z-index:100;width:max-content;margin:-65.6px 0 0 22.4px}.navBtn{width:43.2px;height:43.2px;padding:0;border-radius:16px;background:var(--control);border:.32px solid var(--line);color:var(--text)}.navBtn.active{background:var(--color-fill-selected);color:var(--color-text-on-selected)}@media (max-width:900px){.weekCopy{white-space:normal}.grid{grid-template-columns:1fr}.moveSection,.activityCard,.weekly{grid-column:auto}.workGrid{grid-template-columns:1fr}.timerCard,.movementCard{min-height:256px}.timeTiles{grid-auto-flow:row;grid-template-columns:1fr}}@media (max-width:620px){.modal{width:100%;height:100%;max-height:100%}#app{padding:0}.shell{border-radius:0}.view{padding:14.4px 14.4px 75.2px}.timerCard{min-height:224px}.digits{font-size:144px}.modalBackdrop{padding:9.6px}.modal{height:100%}.modalStatic{padding:14.4px}.exerciseScroller{padding:3.2px 9.6px 14.4px 14.4px}}:is(button,.primary,.tab,.back,.navBtn,.themeBtn,.energyBtn,.hideBtn,.addBtn,.removeBtn,.skipBtn,.holdEnd,.editNameInput,.addInput,.rangeTrack,.progress,.progressSegment):not(.segBtn,.stepBtn,.checkinTab,.switch,.dragHandle,.navBtn,.createPresetBtn,.sheetChoice,.setupSummary,.wxStyleBtn,.tfSeg>button){border-radius:var(--r-inner)!important}.card,.panel,.tile,.timerCard,.movementCard,.nextCard,.modal{border-radius:var(--r-card)}.movementCreatorLaunch{display:flex;gap:9.6px;align-items:center;margin:3.2px 0 14.4px}.movementCreatorOpen,.restAddBtn{min-height:35.2px;padding:0 12.8px;border-radius:12.8px;cursor:pointer}.movementCreatorOpen{border:0;background:var(--bright);color:var(--on-bright)}.restAddBtn{border:.32px solid var(--field-line);background:var(--control-2);color:var(--text)}.movementCreator{position:relative;margin:0 0 14.4px;padding:19.2px 22.4px;border-radius:22.4px;background:var(--card);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb)}.movementCreator[hidden]{display:none}.movementCreatorHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17.6px}.movementCreatorHead h3{margin:0}.movementCreatorClose{position:static}.movementCreatorFields{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:16px 19.2px}.movementCreatorFields[hidden]{display:none!important}.movementCreatorFields>label{display:grid;gap:6.4px;min-width:0;color:var(--text)}.movementTimingRow{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,352px) minmax(208px,1fr) auto;gap:17.6px;align-items:end}.durationStack{display:grid;gap:6.4px;color:var(--text)}.creatorDurationRow{display:grid;grid-template-columns:minmax(96px,1fr) minmax(104px,1fr);gap:12.8px;align-items:center}.creatorNumber{width:100%;min-width:0}.creatorUnitSelect{min-height:41.6px;width:100%;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}.globalTimingToggle{display:flex!important;align-items:center;gap:8px!important;min-height:41.6px;cursor:pointer;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{position:absolute;opacity:0;pointer-events:none}.toggleTrack{position:relative;width:38.4px;height:22.4px;border-radius:799.2px;background:var(--switch-off);border:.32px solid var(--field-line);flex:0 0 auto;transition:background .16s ease}.toggleThumb{position:absolute;width:17.6px;height:17.6px;top:1.6px;left:1.6px;border-radius:50%;background:var(--knob-off);transition:left .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--bright)}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:17.6px;background:var(--on-bright)}.toggleLabel{color:var(--soft)}.creatorAddButton{min-width:97.6px;min-height:41.6px;align-self:end}@media (max-width:900px){.movementCreatorFields{grid-template-columns:1fr}.movementTimingRow{grid-column:auto;grid-template-columns:1fr;align-items:stretch}.globalTimingToggle{min-height:35.2px}.creatorAddButton{width:100%}}.moveRow.restItem{background:var(--row-rest)}.moveKindBadge{display:inline-flex;margin-left:6.4px;padding:2.4px 5.6px;border:.8px solid var(--field-line);border-radius:799.2px;color:var(--muted);vertical-align:middle}@media (max-width:900px){.movementCreatorFields,.movementCreatorFields.restFields{grid-template-columns:1fr;padding-right:0}.movementCreatorClose{position:static;margin-left:auto;display:block;margin-bottom:12.8px}}.createMoveOptions{margin:0 0 14.4px;padding:14.4px;border-radius:19.2px;background:var(--card2);border:.32px solid var(--line)}.createMoveOptions[hidden]{display:none}.createOptionLabel{text-transform:uppercase;color:var(--muted);margin-bottom:8px}.createPresetChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.createPresetBtn{min-height:60.8px;padding:11.2px 12.8px;border-radius:14.4px;border:.8px solid var(--field-line);background:transparent;color:var(--text);text-align:left;cursor:pointer}.createPresetBtn strong{display:block}.createPresetBtn span{display:block;color:var(--muted);margin-top:3.2px}.createPresetBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.createPresetBtn.active span{color:var(--on-bright);opacity:.68}.createExtras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9.6px}.createExtraToggle{display:flex;align-items:flex-start;gap:8px;padding:9.6px 11.2px;border:.8px solid var(--field-line);border-radius:14.4px;cursor:pointer}.createExtraToggle input{margin-top:2.4px}.createExtraToggle span{display:grid;gap:2.4px}.createExtraToggle small{color:var(--muted)}.creatorUnitSelect{min-height:41.6px;padding:0 9.6px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--input);color:var(--text);font:inherit}@media (max-width:900px){.createPresetChoice,.createExtras{grid-template-columns:1fr}}.globalTimingToggle{display:inline-flex!important;grid-template-columns:none!important;align-items:center;gap:5.6px!important;color:var(--text)!important;white-space:nowrap}.globalTimingToggle input{margin:0}.globalTimingValue{min-height:41.6px;display:flex;align-items:center;padding:0 11.2px;border-radius:12.8px;border:.32px solid var(--field-line);background:var(--control-2);color:var(--muted)}.createFlow{display:grid;gap:9.6px;padding:3.2px 0 8px}.createFlow[hidden]{display:none}.createStep{border-radius:22.4px;background:var(--tile);border-top:.32px solid var(--line);border-left:.32px solid var(--line);border-right:.32px solid var(--line);border-bottom:.16px solid var(--lineb);overflow:hidden}.createStepHeader{width:100%;min-height:57.6px;padding:14.4px 17.6px;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:19.2px;text-align:left;cursor:pointer}.createStepHeader:disabled{cursor:not-allowed;opacity:.42}.createStepIdentity{display:flex;align-items:center;gap:9.6px}.createStepNumber{width:22.4px;height:22.4px;border-radius:799.2px;display:grid;place-items:center;border:.32px solid var(--line);color:var(--muted)}.createStepSummary{min-width:0;color:var(--muted);text-align:right}.createStepBody{display:none;padding:0 14.4px 14.4px}.createStep.active .createStepBody{display:block}.createStep.active .createStepHeader{border-bottom:.32px solid var(--divider)}.createStepSlot{display:grid;gap:11.2px}.createStepFooter{display:flex;justify-content:flex-end;margin-top:14.4px}.createStepFooter .primary:disabled{opacity:.35;cursor:not-allowed}.modal.createMode .movementTimingRow{display:none}.modal.createMode .movementCreator{margin-bottom:8px}.modal.createMode .movementCreatorFields{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.modal.createMode .movementCreatorFields.restFields{grid-template-columns:1fr}.modal.createMode .movementCreatorLaunch{margin-top:0}.modal.createMode .sectionTitle{margin-top:9.6px}.modal.createMode .modalStatic{padding-bottom:14.4px}.modal:not(.createMode) .createFlow{display:none!important}#app.resting .movementCard{background:#ffffff0e}#app.resting .movementRippleCanvas{opacity:1}#app.light.resting .movementCard{background:#fbf9f638}.nextCard .skipSessionBtn{margin-left:auto}.modal:not(.createMode) .movementCreatorLaunch{margin-top:25.6px}.testingFeedbackThanks{grid-area:feedback;min-height:176px;padding:19.2px;border:.32px solid var(--line);border-radius:16px;background:#252525;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6.4px}.testingFeedbackThanks[hidden]{display:none}.testingFeedbackThanks strong{color:#f0f0f0}.testingFeedbackThanks p{margin:0;color:#9ea5b0}.testingFeedbackThanks a{color:#d6d9df;text-underline-offset:2.4px}:host(:fullscreen){overflow:auto;width:100vw;height:100vh}.entitySelect{max-width:min(256px,36.8vw);text-overflow:ellipsis;field-sizing:content}.integration .status code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.integration .pill[disabled]{cursor:default;opacity:.7}#app :focus{outline:none}#app :focus-visible{outline:2.4px solid var(--primary);outline-offset:2.4px}#app .workoutPanel:focus-visible{outline-offset:-2.4px}@media (max-width:620px){.bottomNav{margin-left:14.4px}}.shell:has(.countdown.active) .bottomNav{visibility:hidden}@media (max-width:900px){.workoutPanel:not(.active):not(.addPanel) .panelExpanded{opacity:1;filter:none;pointer-events:auto}}.grid>*{min-width:0}.insightCard{display:grid;gap:22.4px}.day{display:grid;gap:6.4px;justify-items:center}.checkinBackdrop{z-index:160}.checkinCard{width:min(576px,100%)}.checkinCard .sub{margin-top:8px}.checkinSliders{display:grid;gap:11.2px;margin-top:19.2px}.checkinTile{min-height:0;gap:var(--inset);border:0}.scaleEnds{display:flex;justify-content:space-between;margin-top:6.4px;color:var(--muted)}.rangeTrack:focus-within{outline:2.4px solid var(--primary);outline-offset:2.4px}.checkinTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 4px;border:.32px solid var(--line);border-right:0;border-radius:var(--r-fine) 0 0 var(--r-fine)!important;background:var(--control);color:var(--text);cursor:pointer;transition:padding .18s ease,background .18s ease}.checkinTab:hover{padding-right:12.8px}.checkinTabIcon{font-size:16px;line-height:1}.checkinTabLabel{writing-mode:vertical-rl;transform:rotate(180deg)}.checkinBadge{position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--secondary);box-shadow:0 0 0 2.4px var(--control),0 0 9.6px color-mix(in srgb,var(--secondary) 70%,transparent);animation:checkinPulse 1.8s ease-in-out infinite}@keyframes checkinPulse{50%{box-shadow:0 0 0 3px var(--control),0 0 2px color-mix(in srgb,var(--secondary) 20%,transparent)}}@media (prefers-reduced-motion: reduce){.checkinBadge{animation:none}}.shell:has(#workoutView.active) .checkinTab,.shell:has(.countdown.active) .checkinTab{display:none}#app.light .checkinBadge{box-shadow:0 0 0 2.4px var(--color-bg-ground),0 0 9.6px color-mix(in srgb,var(--primary) 50%,transparent)}.feelSection{grid-column:span 12;margin-top:16px}.feelCard{display:grid;gap:19.2px}.feelTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(208px,336px);gap:22.4px;align-items:end}.feelDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.feelDay{min-height:0;gap:9.6px}.feelDay.future{opacity:.4}.feelDay.today{box-shadow:inset 0 0 0 .8px var(--today-ring)}.feelDots{font-size:6.4px;letter-spacing:1.6px;color:var(--muted)}.feelMeter{display:grid;gap:4.8px}.feelMeterTop{display:flex;justify-content:space-between;gap:6.4px;color:var(--muted)}.feelMeterTop span:last-child{color:var(--text)}.feelTrack{height:6.4px;border-radius:799.2px;background:var(--wash-2);overflow:hidden}.feelTrack span{display:block;height:100%;border-radius:799.2px}@media (max-width:900px){.feelSection{grid-column:auto}.feelTop{grid-template-columns:1fr}.feelDays{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:620px){.feelDays{grid-template-columns:repeat(2,minmax(0,1fr))}}.checkinTile .timeHeader{align-items:center}.checkinTab:not(.due){opacity:.6}.checkinTab:not(.due):hover{opacity:1}.activityCard{grid-column:span 3}.weekly{grid-column:span 9;cursor:pointer;transition:border-color .18s ease,background .18s ease}.weekly:hover{border-color:var(--border-hover)}@media (max-width:1200px){.activityCard{grid-column:span 4}.weekly{grid-column:span 8}}@media (max-width:900px){.activityCard,.weekly{grid-column:auto}}.insightCard{grid-column:span 9;align-content:start}@media (max-width:1200px){.insightCard{grid-column:span 8}}@media (max-width:900px){.insightCard{grid-column:auto}}.helpCard .helpSteps,.helpCard .helpNote{max-width:688px}.helpCard .note{margin:0}.helpSteps{margin:19.2px 0 0;padding:0;list-style:none;counter-reset:help;display:grid;gap:9.6px}.helpSteps li{counter-increment:help;display:grid;gap:4.8px;position:relative;padding:14.4px 16px 14.4px 52.8px;border-radius:20.8px;background:var(--tile);color:var(--muted)}.helpSteps li:before{content:counter(help);position:absolute;left:14.4px;top:12.8px;width:25.6px;height:25.6px;border-radius:9.6px;display:grid;place-items:center;background:var(--icon-bg);color:var(--text)}.helpSteps strong,.helpSteps b,.helpNote b{color:var(--text)}.helpCard code{padding:.8px 4.8px;border-radius:4.8px;background:var(--wash-2)}.helpNote{display:grid;gap:3.2px;margin-top:9.6px;padding:12.8px 16px;border-radius:17.6px;border:.32px solid var(--field-line);color:var(--muted)}.helpNote strong{color:var(--text)}.rowLabel{grid-column:1/-1;margin-top:16px;margin-bottom:-8px}.checkinTab{flex-direction:row;align-items:center;gap:0}.checkinTabMain{display:flex;flex-direction:column;align-items:center;gap:4px}.checkinPeek{display:grid;gap:3.2px;justify-items:start;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-right:0;transition:max-width .32s cubic-bezier(.2,1.2,.4,1),opacity .2s ease,margin-right .32s ease}.checkinTab.peek{padding-left:17.6px;opacity:1}.checkinTab.peek .checkinPeek{max-width:176px;opacity:1;margin-right:14.4px}.peekCountdown{font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.peekAt{color:var(--muted)}@media (prefers-reduced-motion: reduce){.checkinPeek{transition:none}}.activityRowMeta{color:var(--text);margin-top:1.6px;font-variant-numeric:tabular-nums}.feelTop{grid-template-columns:1fr}:host{--primary:#03A9F4;--secondary:#D0FF00;--font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-tile:Geist,var(--font);--w-regular:400;--w-medium:500;--w-semibold:600;--w-bold:700;--w-heavy:800;--t-display:52px;--t-title:22px;--t-card-title:18px;--t-value:16px;--t-section:18px;--t-strong:14px;--t-body:12px;--t-caption:12px;--lh-display:1.05;--lh-title:1;--t-wx-temp:64px;--t-wx-range:24px;--t-tile-title:14px;--lh-tile-title:20px;--t-tile-detail:16px;--lh-tile-detail:20px;--inset:10px;--r-card:34px;--r-tile:24px;--r-inner:16px;--r-fine:12px;--tile-min:60px;--chip-size:40px;--glyph-size:34px;--gutter:22px;--grid-gap:16px}@media (max-width:620px){:host{--t-display:46px;--t-title:20px;--t-value:20px;--t-section:16px;--t-strong:15px;--t-body:14px;--t-caption:11px;--lh-display:.92;--lh-title:1.05}}#app{font-family:var(--font);font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4}#app button,#app input,#app select,#app textarea{font-family:inherit}:where(#app) strong,:where(#app) b{font-weight:var(--w-bold)}.title,.workoutName,.exerciseTitle,.feelHeadline,.settingsTitle{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-display);letter-spacing:-.055em}.confirmTitle,.sheetTitle,.modalHead h2,.paneTitle,.movementCreatorHead h3,.testingFeedbackThanks strong{font-size:var(--t-title);font-weight:var(--w-medium);font-style:italic;line-height:var(--lh-title);letter-spacing:-.03em}.activityTitle{font-size:var(--t-card-title);font-weight:var(--w-medium);font-style:italic;line-height:1.1;letter-spacing:-.02em;text-box:trim-both cap alphabetic}.paneTitle{margin:0 0 10px}.activityRowMeta,.nextName,.upcomingName,.editNameInput,.videoClock{font-size:var(--t-value);font-weight:var(--w-regular);line-height:1.15;letter-spacing:-.02em}.sectionLabel,.nextLabel{font-size:var(--t-section);font-weight:var(--w-regular);line-height:1.2;letter-spacing:-.01em}.activityRowName,.timeLabel,.moveItemName,.setupSummaryText strong,.sheetChoice strong,.createPresetBtn strong,.createExtraToggle strong{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.moveMeta,.setupSummaryText small,.sheetChoice small,.createPresetBtn span,.createExtraToggle small{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.wxLayoutBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}.status,.setupValue,.sub,.meta,.note,.weekCopy,.addInput,.settingsSelect,.pill,.routineSummary,.helpSteps li,.helpNote,.createStepSummary{font-size:var(--t-body);font-weight:var(--w-regular);line-height:1.4;letter-spacing:0}.setupCaption,.moveEditForm label>span,.addGhostText small,.setupSummaryAction,.metaTable th,.metaSub,.eyebrow,#stepLabel,.sourceTag,.addPanelLabel,.motionRangeWrap span,.sectionTitle,.editNameLabel,.scaleEnds,.peekAt,.upcomingMeta,.tempoPole,.tempoReadout,.tempoRevealBtn,.testingFeedbackField,.testingZoneExplanation,.testingFeedbackThanks p,.movementCreatorClose,.movementCreatorFields>label,.durationStack,.globalTimingToggle,.toggleLabel,.moveKindBadge,.createOptionLabel,.fieldError,.globalTimingValue,.createStepNumber,.feelMeterTop,#app code{font-size:var(--t-caption);font-weight:var(--w-regular);line-height:1.35;letter-spacing:0}.eyebrow,#stepLabel,.sectionTitle,.setupCaption{letter-spacing:.1em}.globalTimingToggle{font-size:var(--t-caption)!important}.workoutGallery,.workoutPanel{height:340px}@media (max-width:900px){.workoutPanel,.workoutPanel.active{height:320px}}@media (max-width:900px){.workoutGallery{height:auto}.workoutPanel,.workoutPanel.active{height:auto;min-height:320px}}@media (max-width:620px){.view{padding-left:0;padding-right:0}.settingsHeader,.sessionHead,.sessionControlRow{margin-left:16px;margin-right:16px}.tabs.rubberTabs,.sectionLabel,.rowLabel{margin-left:16px}.grid{gap:8px}.rowLabel,.feelSection{margin-top:16px}.rowLabel{margin-bottom:-4px}.sectionLabel{margin-bottom:8px}.workoutGallery{gap:8px}.workoutPanel,.workoutPanel.active{flex:0 0 100%;min-width:100%}.workoutPanel.addPanel{flex:0 0 100%;min-width:100%;min-height:120px}.card,.workoutPanel,.timerCard,.movementCard,.nextCard,.upcomingCard,.confirmCard{padding:16px}.activityRows,.insightCard,.feelCard{gap:8px}.activityRow,.weekChip{padding:10px 12px}.feelDays{gap:8px}.workGrid{gap:8px;margin-top:8px}.nextWrap,.sessionControlRow{margin-top:8px}.upcomingList{gap:8px}}.tabs.rubberTabs .tab{white-space:nowrap}@media (max-width:620px){.tabs.rubberTabs{display:flex;width:max-content;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none}.tabs.rubberTabs::-webkit-scrollbar{display:none}.tabs.rubberTabs .tab{flex:0 0 auto}}.insightCard{display:flex;flex-direction:column;gap:0}@media (max-width:1200px) and (min-width:901px){.timeTiles{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}#stepLabel{margin-top:9.6px}#exerciseMeta{margin-top:4px}.moveRow{justify-content:flex-start;gap:12.8px}.moveText{flex:1;min-width:0}.moveActions{display:flex;gap:6.4px;flex:0 0 auto}.dragHandle{flex:0 0 auto;display:grid;place-items:center;width:32px;height:40px;margin:-8px 0 -8px -9.6px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:grab;touch-action:none}.dragHandle:hover{background:var(--hover);color:var(--text)}.moveRow.dragging{box-shadow:0 10px 30px var(--lift),inset 0 0 0 1.5px var(--primary);position:relative;z-index:2}.moveRow.dragging .dragHandle{cursor:grabbing;color:var(--text)}.removeBtn:hover,.hideBtn:hover{border-color:var(--muted)}.toast{position:fixed;z-index:400;display:flex;align-items:center;gap:12.8px}.toast.withAction{pointer-events:auto}.toastAction{border:0;padding:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.modalTop{flex:0 0 auto;padding:22px 22px 0}.modalTop .modalHead{margin-bottom:0;padding-bottom:16px}@media (min-width:901px){.modal:not(.createMode){display:grid;grid-template-columns:minmax(340px,420px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}.modal:not(.createMode) .modalTop{grid-column:1/-1;border-bottom:.32px solid var(--divider)}.modal:not(.createMode) .modalStatic{grid-column:1;grid-row:2;overflow-y:auto;border-bottom:0;border-right:.32px solid var(--divider)}.modal:not(.createMode) .exerciseScroller{grid-column:2;grid-row:2;border-top:0;padding-top:12px}.modal:not(.createMode) .timeTiles{grid-auto-flow:row;grid-template-columns:minmax(0,1fr)}}.timeTiles{align-items:start}.removeLabel{position:relative;z-index:1}.removeBtn.holding{border-color:var(--danger-fill)}#deleteMoveConfirm{z-index:200}.moveRow{will-change:transform}.moveRow.dragging{box-shadow:0 18px 40px var(--lift),inset 0 0 0 1.5px var(--primary);z-index:3;transform-origin:center}.moveRow.editing{display:block;padding:16px;box-shadow:inset 0 0 0 1.5px var(--primary)}.moveEditForm{display:grid;gap:14.4px}.moveEditFields{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12.8px}.moveEditForm label:not(.globalTimingToggle){display:grid;gap:6.4px;min-width:0}.moveEditForm .addInput{width:100%;min-width:0}.moveEditTiming{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12.8px}.moveEditTiming .creatorDurationRow{display:grid;grid-template-columns:96px 128px;gap:9.6px}.creatorDurationRow.isDisabled{opacity:.38}.moveEditActions{display:flex;justify-content:flex-end;align-items:center;gap:22.4px}@media (max-width:620px){.moveEditFields{grid-template-columns:1fr}}.integration .status code{color:var(--soft)}#app.resting :is(.sessionHead,.nextLabel,.sessionControlRow){--muted:#f4f4f4;color:var(--text)}#app.paused :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#090909;--muted:rgba(9,9,9,.8);--accent-text:#090909;--line:rgba(9,9,9,.3);color:var(--text)}#app.light:is(.resting,.paused) :is(.sessionHead,.nextLabel,.sessionControlRow){--text:#26221e;--muted:rgba(38,34,30,.85);--accent-text:#26221e;--line:rgba(38,34,30,.25);color:var(--text)}.moveList{display:flex;flex-direction:column}.movementCreatorOpen,.restAddBtn{display:inline-flex;align-items:center;gap:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:transform .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.movementCreatorOpen svg,.restAddBtn svg{width:14px;height:14px;margin-left:-3px;opacity:.55;flex:0 0 auto}.movementCreatorOpen.lifting,.restAddBtn.lifting{transform:scale(.92);opacity:.4;cursor:grabbing;transition:transform .16s ease,opacity .16s ease}.addGhost{position:fixed;left:0;top:0;z-index:20;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12.8px;overflow:hidden;white-space:nowrap;border-radius:12px;background:var(--bright);color:var(--on-bright);box-shadow:0 12px 30px var(--lift);will-change:transform;transition:width .4s cubic-bezier(.34,1.46,.64,1),height .4s cubic-bezier(.34,1.46,.64,1),border-radius .3s ease,padding .3s ease,background .2s ease,color .2s ease,box-shadow .25s ease,opacity .18s ease}.addGhost.rest{background:var(--control-2);color:var(--text);box-shadow:inset 0 0 0 .5px var(--field-line),0 12px 30px var(--lift)}.addGhostGrip{display:grid;place-items:center;flex:0 0 auto;opacity:.55}.addGhostGrip svg{width:14px;height:14px;transition:width .3s ease,height .3s ease}.addGhostText{display:grid;min-width:0}.addGhostText small{color:var(--muted);max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease}.addGhost.overList{border-radius:20.8px;gap:12.8px;padding:0 22.4px 0 12.8px;background:var(--row);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--primary),0 16px 36px var(--lift)}.addGhost.overList .addGhostGrip svg{width:18px;height:18px}.addGhost.overList .addGhostText small{max-height:20px;opacity:1;margin-top:4px}.addGhost.leaving{opacity:0}.dropSlot{flex:0 0 auto;height:0;margin-top:-8px;border-radius:20.8px;background:color-mix(in srgb,var(--primary) 9%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--primary) 40%,transparent);transition:height .42s cubic-bezier(.34,1.46,.64,1),margin-top .42s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.dropSlot.leaving{opacity:0;transition:height .26s cubic-bezier(.4,0,.2,1),margin-top .26s cubic-bezier(.4,0,.2,1),opacity .16s ease}@media (prefers-reduced-motion: reduce){.addGhost,.dropSlot,.movementCreatorOpen,.restAddBtn{transition:none}}.exerciseScroller,.modalStatic,.createFlow{overflow-anchor:none}.videoStage{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity .3s ease}#app.videoStep .videoStage{opacity:1;pointer-events:auto}.videoStage{container-type:size}.videoFrame{width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9}.videoFrame>*{display:block;width:100%;height:100%;border:0}.videoSound{position:absolute;left:50%;bottom:16px;transform:translate(-50%);z-index:2}.videoProbe{position:fixed;left:-10000px;top:0;width:320px;height:180px;opacity:0;pointer-events:none}.digits.long{font-size:clamp(96px,12.8vw,200px)}.moveEditFields.videoFields{grid-template-columns:minmax(0,1fr)}.fieldError{margin:0;color:var(--danger)}.addInput.invalid{border-color:var(--danger)}@media (prefers-reduced-motion: reduce){.videoStage{transition:none}}.workGrid{transition:grid-template-columns .55s cubic-bezier(.2,.8,.2,1),gap .55s cubic-bezier(.2,.8,.2,1)}.timerCard{transition:opacity .25s ease}#app.videoStep .timerCard{opacity:0;min-width:0;pointer-events:none}.workGrid{container-type:inline-size}#app.videoStep .movementCard{height:min(56.25cqw,var(--theater-h,60vh));min-height:240px;padding:0}#app.videoStep .exerciseTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (min-width:901px){#app.videoStep .workGrid{grid-template-columns:minmax(0,0fr) minmax(240px,1fr);gap:0}}@media (max-width:900px){#app.videoStep .timerCard{display:none}#app.videoStep .movementCard{min-height:0}}.videoClock{display:none;margin-right:auto;font-variant-numeric:tabular-nums}#app.videoStep .videoClock{display:block}@media (prefers-reduced-motion: reduce){.workGrid,.timerCard{transition:none}}.metaCard{margin-top:16px}.metaFilters{display:flex;flex-wrap:wrap;gap:9.6px;align-items:center;margin:14.4px 0 11.2px}.metaSearch{flex:1 1 200px;min-width:0}.metaKinds{display:flex;flex-wrap:wrap;gap:6.4px}.kindChip{min-height:32px;padding:0 11.2px;border:.32px solid var(--field-line);border-radius:12px;background:var(--control-2);color:var(--text);cursor:pointer}.kindChip.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}.metaTableWrap{overflow-x:auto}.metaTable{width:100%;border-collapse:collapse}.metaTable th{text-align:left;color:var(--muted);padding:12px 16px;border-bottom:.32px solid var(--divider);text-transform:uppercase;letter-spacing:.1em}.metaTable td{padding:12px 16px;border-top:.32px solid var(--divider);vertical-align:middle;color:var(--soft)}.metaTable tbody tr:first-child td{border-top:0}.metaTable :is(th,td):first-child{padding-left:4px}.metaTable :is(th,td):last-child{padding-right:4px}.metaTable .metaSwitchCol{width:1%;white-space:nowrap;text-align:right}.metaTable .metaSwitchCol .switch{display:inline-block;vertical-align:middle}.metaType{color:var(--text)}.metaTable tr.off .metaType{color:var(--muted)}.metaSub{display:none;margin-top:2px;color:var(--muted)}.metaEmpty td{text-align:center;color:var(--muted)}.metaBulk{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:11.2px}.metaBulkActions{display:flex;gap:22.4px}@media (max-width:620px){.metaKindCol,.metaUsedCol{display:none}.metaSub{display:block}}@media (max-width:620px){.moveRow.noMeta .moveMeta,.upcomingCard.noMeta .upcomingMeta,.nextCard.noMeta #nextMeta{display:none}}.setupSummary,.addFab{display:none}.modal{position:relative}.setupSummary{align-items:center;justify-content:space-between;gap:12px;width:100%;margin:6.4px 0 4px;padding:12px 14px;border:0;border-radius:20.8px;background:var(--tile);color:var(--text);text-align:left;cursor:pointer}.setupSummaryText{display:grid;gap:2px;min-width:0}.setupSummaryText small{color:var(--muted)}.setupSummaryAction{flex:0 0 auto;color:var(--muted)}.rowChevron{flex:0 0 auto;color:var(--muted);font-size:22px;line-height:1}.addFab{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;place-items:center;width:56px;height:56px;padding:0;border:0;background:var(--bright);color:var(--on-bright);font-size:30px;font-weight:300;line-height:1;box-shadow:0 10px 24px var(--lift);cursor:pointer}.sheetScrim{position:absolute;top:0;right:0;bottom:0;left:0;z-index:30;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .25s ease}.sheetScrim.open{opacity:1;pointer-events:auto}.sheet{position:absolute;left:0;right:0;bottom:0;z-index:31;display:grid;gap:14px;max-height:88%;overflow-y:auto;overscroll-behavior:contain;padding:10px 16px calc(22px + env(safe-area-inset-bottom,0px));border-radius:var(--r-card) var(--r-card) 0 0;background:var(--modal);box-shadow:0 -.5px 0 var(--divider),0 -18px 40px var(--lift);transform:translateY(105%);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1.06),visibility 0s linear .42s}.sheet.open{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.2,.9,.25,1.06)}.sheetGrab{justify-self:center;width:38px;height:5px;border-radius:99px;background:var(--field-line)}.sheetTitle{margin:0}.sheet .moveRow.editing{display:block;padding:0;background:none;box-shadow:none;border-radius:0}.sheetActions{justify-content:space-between;flex-wrap:wrap;gap:12.8px}.sheetSecondary,.sheetPrimary{display:flex;align-items:center;gap:6.4px}.sheetPrimary{gap:22.4px;margin-left:auto}.sheetChoices{display:grid;gap:8px}.sheetChoice{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border:0;border-radius:20.8px;background:var(--row);color:var(--text);text-align:left;cursor:pointer}.sheetChoice small{display:block;margin-top:2px;color:var(--muted)}.sheetSetup .modalStatic{padding:0;background:none;border:0;overflow:visible}.sheetDone{width:100%;margin-top:14.4px}.addGhostActions{display:none;align-items:center;gap:6.4px;margin-left:auto;flex:0 0 auto}.addGhost.hovering{pointer-events:auto;cursor:grab;touch-action:none;animation:ghostWait 1.8s ease-in-out infinite}.addGhost.held{pointer-events:auto;cursor:grabbing;touch-action:none}.addGhost.hovering .addGhostActions{display:flex}.addGhost.rising{transition:transform .6s cubic-bezier(.34,1.46,.64,1),opacity .2s ease}.ghostDiscard{padding:0 10px}@keyframes ghostWait{50%{box-shadow:inset 0 0 0 1.5px var(--primary),0 22px 44px var(--lift),0 0 0 5px color-mix(in srgb,var(--primary) 22%,transparent)}}@media (max-width:620px){.modal:not(.createMode)>.modalStatic{display:none}.modal:not(.createMode) .setupSummary{display:flex}.addFab{display:grid}.movementCreatorLaunch{display:none}.exerciseScroller{padding-bottom:104px}.moveRow.phoneRow{gap:8px;min-height:60px;padding:12px 12px 12px 14px;cursor:pointer}}@media (prefers-reduced-motion: reduce){.sheet,.sheetScrim{transition:none}.addGhost.hovering{animation:none}}.modal{overflow:clip}.moveList.reordering>.moveRow:not(.dragging){transition:transform .44s cubic-bezier(.34,1.46,.64,1)}.moveRow.dragging.willReturn{opacity:.62;box-shadow:0 10px 24px var(--lift),inset 0 0 0 1.5px var(--field-line)}@media (prefers-reduced-motion: reduce){.moveList.reordering>.moveRow{transition:none}}.card,.panel,.confirmCard,.nextCard,.workoutPanel.active{padding:var(--inset)}.confirmCard,.nextCard,.upcomingCard{border-radius:var(--r-card)}.upcomingCard{padding:var(--inset)}.workoutPanel{border-radius:var(--r-tile);padding:var(--inset)}.workoutPanel.active{border-radius:var(--r-tile)}.workoutPanel.addPanel{padding:var(--inset)}.activityRow,.moveRow,.timeTile,.createPresetBtn,.createExtraToggle,.sheetChoice,.setupSummary{border-radius:var(--r-tile)}.activityRow,.moveRow{min-height:var(--tile-min);padding:var(--inset);gap:var(--inset)}.activityRow{grid-template-columns:var(--chip-size) minmax(0,1fr)}.activityRows{gap:12px}.timeTile{padding:var(--inset);gap:var(--inset)}.timeHeader{gap:var(--inset)}.createPresetBtn,.createExtraToggle{padding:var(--inset)}.moveMeta,.activityRowMeta,.setupSummaryText small,.sheetChoice small,.createExtraToggle small{color:var(--text)}.createPresetBtn.active span{color:var(--on-bright)}.moveMeta,.activityRowMeta{margin-top:0}.activityRowIcon,.activityIcon,.timeIcon,.nextIcon,.upcomingIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);font-size:20px}.navBtn,.back{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);min-height:0;padding:0;border-radius:var(--r-inner)}.moveRow.editing{padding:var(--inset)}.moveRow.phoneRow{min-height:0;padding:var(--inset);gap:var(--inset)}.dragHandle{width:var(--chip-size);height:var(--chip-size);margin:0;border-radius:var(--r-inner);background:var(--icon-bg);color:var(--muted)}.dragHandle svg{width:var(--glyph-size);height:var(--glyph-size)}.moveRow.restItem .dragHandle{background:transparent}.dragHandle:hover{background:color-mix(in srgb,var(--icon-bg) 80%,var(--text))}.moveRow.restItem .dragHandle:hover{background:var(--hover)}.addGhost.overList,.dropSlot{border-radius:var(--r-tile)}.seg{display:flex;align-items:center;gap:4px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.segBtn{min-height:38px;padding:0 20px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer}.segBtn:hover{background:var(--hover)}.moveActions.seg{gap:4px}.moveActions .segBtn{min-width:100px}.moveActions .editBtn{background:var(--seg-on)}.moveActions .editBtn:hover{background:color-mix(in srgb,var(--seg-on) 88%,var(--text))}.moveActions .removeBtn{display:grid;place-items:center;width:40px;min-width:40px;padding:0;border:0;background:var(--danger-fill);color:var(--on-danger-fill)}.moveActions .removeBtn:hover{background:color-mix(in srgb,var(--danger-fill) 88%,white);border:0}.moveActions .removeBtn svg{display:block;width:24px;height:24px}.moveActions .removeFill{background:color-mix(in srgb,var(--on-danger-fill) 45%,transparent)}.moveActions .removeBtn.holding{color:#fff}@media (max-width:1100px){.moveActions .segBtn:not(.removeBtn){min-width:0;padding:0 14px}}.tabs.rubberTabs{padding:4px;gap:4px;border:0;border-radius:var(--r-inner);background:var(--seg-bg)}.rubberIndicator{top:4px;left:4px;height:calc(100% - 8px);border-radius:var(--r-fine);background:var(--seg-on)}.tabs.rubberTabs .tab{min-height:38px;padding:0 20px}.tabs.rubberTabs .tab.active{color:var(--text)}#app.light .rubberIndicator{box-shadow:0 1px 3px var(--lift)}.toggleTrack{width:50px;height:28px;border-radius:var(--r-inner);background:var(--line);border:.4px solid var(--line);opacity:1;transition:background .16s ease,opacity .16s ease}.toggleThumb{width:24px;height:24px;top:50%;left:1.6px;border-radius:12px 4px 4px 12px;background:var(--text);transform:translateY(-50%);transition:left .16s ease,border-radius .16s ease,background .16s ease}.globalTimingToggle input:checked+.toggleTrack{background:var(--color-accent-primary);opacity:1}.globalTimingToggle input:checked+.toggleTrack .toggleThumb{left:calc(100% - 25.6px);border-radius:4px 12px 12px 4px;background:var(--color-text-on-accent)}@media (max-width:900px){.workoutPanel:not(.addPanel){border-radius:var(--r-tile);padding:var(--inset)}}@media (max-width:620px){:host{--gutter:0px;--grid-gap:8px}}@media (max-width:620px){.modalBackdrop{padding:0}.modal,.modal:not(.createMode){width:100%;height:100%;max-height:none;border-radius:0;border:0}.modalTop{padding-top:calc(16px + env(safe-area-inset-top,0px))}.modal:not(.createMode) .exerciseScroller{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}}#app{--group-bg:var(--card)}.modal,.sheet{--group-bg:var(--tile)}.view{padding-left:var(--gutter);padding-right:var(--gutter)}.grid{gap:var(--grid-gap)}.setupCaption{display:block;padding:0 4px 8px;color:var(--muted);text-transform:uppercase}.setupGroup,#settingsView .integrationList,#settingsView .toggleList{display:grid;gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}.setupRow,#settingsView .integration,#settingsView .toggleRow{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px;border-radius:0;background:transparent}:is(.setupRow,#settingsView .integration,#settingsView .toggleRow):not([hidden])~:is(.setupRow,.integration,.toggleRow):before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--divider)}.setupRow.withSlider{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:stretch}.setupRowTop{display:flex;justify-content:space-between;align-items:center;gap:16px}.setupText{display:grid;gap:2px;min-width:0}.setupValue,#settingsView .status{color:var(--muted);margin-top:0;font-variant-numeric:tabular-nums}.setupRow .rangeTrack[hidden]{display:none}.rangeTrack.setupSlider{height:28px;margin:0 2px;border:0;border-radius:0!important;background:transparent;overflow:visible}.rangeTrack.setupSlider:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:99px;background:var(--track);transform:translateY(-50%)}.setupSlider .rangeFill{top:50%;bottom:auto;height:6px;border-radius:99px;transform:translateY(-50%)}.setupSlider .rangeFill:after{content:"";position:absolute;right:-11px;top:50%;width:22px;height:22px;border-radius:50%;background:var(--slider-fill);box-shadow:0 1px 4px var(--lift);transform:translateY(-50%)}.setupSlider:focus-within{outline:0}.setupSlider:focus-within .rangeFill:after{box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent)}.stepper{display:flex;align-items:center;gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--seg-bg);flex:0 0 auto}.stepBtn{width:36px;height:32px;padding:0;border:0;border-radius:var(--r-fine)!important;background:transparent;color:var(--text);font:600 18px/1 var(--font);cursor:pointer}.stepBtn:hover:not(:disabled){background:var(--hover)}.stepBtn:disabled{opacity:.35;cursor:default}.stepCount{min-width:24px;text-align:center;font:600 var(--t-strong)/1 var(--font);font-variant-numeric:tabular-nums}.timeTiles.setupBlock,.modal:not(.createMode) .timeTiles.setupBlock{display:block;margin-bottom:12px}.editNameLabel{padding:0 4px}.routineSummary{margin:0 0 4px;padding:0 4px;background:none;border-radius:0;color:var(--muted)}#settingsView .card{display:grid;gap:12px;padding:0;border:0;border-radius:0;background:none}#settingsView .card+.card{margin-top:36px}#settingsView .paneTitle{margin:0 4px}#settingsView .note{margin:0 4px 4px}#settingsView .integration>div:first-child,#settingsView .toggleRow>div:first-child{display:grid;gap:2px;min-width:0}#settingsView .helpSteps{gap:0;border-radius:var(--r-tile);background:var(--group-bg);overflow:hidden}#settingsView .helpSteps li{border-radius:0;background:transparent}#settingsView .helpSteps li+li:after{content:"";position:absolute;top:0;left:52.8px;right:0;border-top:.5px solid var(--divider)}.activityCard,.insightCard{grid-column:span 3}.weatherCard,.grid.noWeather .activityCard,.grid.noWeather .insightCard,.grid.noActivity .insightCard{grid-column:span 6}.grid.noActivity.noWeather .insightCard{grid-column:span 12}@media (max-width:1199px) and (min-width:901px){.activityCard,.insightCard{grid-column:span 6}.weatherCard,.grid.noActivity .insightCard{grid-column:span 12}}@media (max-width:900px){.activityCard,.insightCard,.weatherCard,.grid .insightCard{grid-column:auto}}.jointRows{gap:0;padding:4px 0;border-radius:var(--r-tile);background:var(--tile)}.jointRows>.activityRow{background:transparent}.insightCard .jointRows{flex:1;align-content:space-evenly}.weatherCard{display:flex;flex-direction:column}.wxWide{flex:1;display:flex;flex-direction:column;gap:var(--inset)}.wxNow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.wxCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wxTempBlock{display:grid;gap:4px;min-width:0}.wxTemp{display:flex;align-items:flex-start;gap:2px}.wxPlace{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wxCondition{display:grid;gap:2px;padding:var(--inset);border-radius:var(--r-tile);background:var(--tile);flex:0 0 auto}.wxNoDays{flex:1;display:grid;place-items:center;padding:16px;border-radius:var(--r-tile);background:var(--tile);color:var(--muted)}.wxIcon{position:relative;display:block;flex:0 0 auto;width:54px;height:54px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wxIcon>svg,.wxLayer>svg{display:block;width:100%;height:100%}:is(.wxIcon,.wxLayer).clear,:is(.wxIcon,.wxLayer).partly{background:var(--wx-clear)}:is(.wxIcon,.wxLayer).cloudy{background:var(--wx-cloudy)}:is(.wxIcon,.wxLayer).rain,:is(.wxIcon,.wxLayer).snow{background:var(--color-text-muted)}:is(.wxIcon,.wxLayer).night{background:var(--wx-night)}.wxIcon .wxBright{fill:var(--wx-cloud-bright)}.wxIcon .wxCloudLight{fill:var(--wx-cloudy)}.wxIcon .wxAccent{fill:var(--color-accent-primary)}.wxIcon.large{width:90px;height:90px;border-radius:var(--r-tile)}.wxIcon>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxIcon :is(.wxSunDisc,.wxMoonPath,.wxBright,.wxCloudLight,.wxDrop,.wxFlake,.wxTwinkle){transform-box:fill-box;transform-origin:center}#app.wxMotion .wxIcon .wxSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}#app.wxMotion .wxIcon .wxMoonPath{animation:wxBob 5.2s ease-in-out infinite}#app.wxMotion .wxIcon :is(.wxBright,.wxCloudLight){animation:wxDrift 6.4s ease-in-out infinite}#app.wxMotion .wxIcon .wxDrop{animation:wxFall .95s linear infinite}#app.wxMotion .wxIcon .wxFlake{animation:wxSnow 3.2s linear infinite}#app.wxMotion .wxIcon .wxTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}@keyframes wxBreathe{50%{transform:scale(1.03)}}@keyframes wxBob{50%{transform:translateY(-1px)}}@keyframes wxDrift{0%,to{transform:translate(-1.5px)}50%{transform:translate(1.5px)}}@keyframes wxFall{0%{transform:translateY(-5px);opacity:0}18%,72%{opacity:1}to{transform:translateY(9px);opacity:0}}@keyframes wxSnow{0%{transform:translateY(-6px);opacity:0}20%,75%{opacity:1}to{transform:translate(1.5px,8px);opacity:0}}@keyframes wxTwinkle{50%{opacity:.35}}.wxLayer{position:absolute;top:0;right:0;bottom:0;left:0;display:block}.wxLayer.wxOut{animation:wxFadeOut .7s cubic-bezier(.3,0,1,1) forwards}@keyframes wxFadeOut{to{opacity:0}}.wxDeg{font-family:var(--font-tile);font-size:var(--t-wx-temp);font-weight:var(--w-medium);line-height:1;letter-spacing:-.02em}.wxUnit,.wxRange{font-family:var(--font-tile);font-size:var(--t-wx-range);font-weight:300;line-height:1.25;letter-spacing:0}.wxPlace,.wxCondName{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);letter-spacing:0}.wxNoDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxNow[role=button],.wxDayTile{cursor:pointer;border-radius:var(--r-tile)}:is(.wxNow,.wxDayTile,.wxStripDay):focus-visible{outline:2px solid var(--color-border-focus);outline-offset:2px}.wxStrip{position:relative;flex:1;display:flex}.wxStripDays{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}.wxStripDay{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:var(--inset);min-width:0;padding:var(--inset) 0;border-radius:var(--r-tile);cursor:pointer}@media (hover:hover){.wxStripDay:hover{background:var(--color-state-hover)}}.wxStripGap{align-self:stretch;height:90px}.wxStripDay .wxTemps{display:grid;justify-items:center;gap:8px}.wxStripSky{position:absolute;left:0;top:calc(var(--inset) * 2 + var(--lh-tile-detail));width:100%;height:90px;border-radius:var(--r-inner);pointer-events:none;image-rendering:pixelated}.wxStripDay .wxDayName,.wxStripDay .wxHigh,.wxGraphDays{font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}.wxStripDay .wxLow{font-family:var(--font-tile);font-size:var(--t-tile-title);font-weight:var(--w-semibold);line-height:var(--lh-tile-title);color:var(--muted)}.wxBackdrop{z-index:170}.wxDialogCard{width:min(860px,100%);display:grid;gap:var(--inset)}.wxDialogHead{display:flex;align-items:center;justify-content:space-between;gap:var(--inset);padding-left:var(--inset)}.wxDialogHead .activityTitle{margin:0}.wxDialogClose{background:transparent}.wxGraph{display:grid;gap:8px;touch-action:pan-y;cursor:ew-resize;border-radius:var(--r-tile);user-select:none;-webkit-user-select:none}.wxGraph:focus{outline:none}.wxGraph:focus-visible{outline:2px solid var(--color-border-focus);outline-offset:4px}.wxGraphDays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));text-align:center;color:var(--muted)}.wxGraphSky{position:relative;height:200px;border-radius:var(--r-tile);overflow:hidden;background:var(--tile)}.wxGraphSky>canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.wxGraphLine{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none}.wxLineLabel{font-family:var(--font-tile);font-size:14px;font-weight:var(--w-semibold);text-anchor:middle;paint-order:stroke;stroke-width:3px;stroke-linejoin:round}@media (max-width:620px){.wxGraphSky{height:160px}.wxDialogNow{flex-wrap:wrap}}.segBtn{transition:background .15s ease,transform .18s cubic-bezier(.34,1.46,.64,1),box-shadow .15s ease,color .15s ease}.segBtn:hover{background:transparent}@media (hover:hover){.segBtn:hover{background:var(--color-state-hover)}}.tabs.rubberTabs .tab.active:hover{background:transparent}.segBtn:active{background:var(--color-state-pressed);transform:scale(.97)}.segBtn:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--color-border-focus)}.segBtn:disabled{opacity:.4;cursor:default}.moveActions.seg{background:transparent;transition:background .18s ease}.moveActions.seg:focus-within{background:var(--seg-bg)}@media (hover:hover){.moveActions.seg:hover{background:var(--seg-bg)}}.moveActions .editBtn,.moveActions .editBtn:hover{background:transparent}.moveActions .removeBtn,.moveActions .removeBtn:hover{background:transparent;color:var(--text)}@media (hover:hover){.moveActions .editBtn:hover{background:var(--color-state-hover)}.moveActions .removeBtn:hover{background:var(--danger-fill);color:var(--color-text-on-danger)}}.moveActions .removeBtn:active{background:linear-gradient(var(--color-state-pressed-on-bright),var(--color-state-pressed-on-bright)),var(--danger-fill);color:var(--color-text-on-danger)}.moveActions .removeBtn.holding{background:var(--danger-bg);color:var(--color-text-on-danger)}.moveActions .removeFill{background:var(--danger-fill)}.activityIcon{color:var(--muted)}.activityRowIcon,.timeIcon,.nextIcon,.upcomingIcon{color:var(--text)}.wxTempBlock{padding-top:6px}.motionRangeWrap input[type=range]{accent-color:var(--bright);background:transparent}', zp = '#app{--hc-on-accent:#f4f3f3;--hc-open-edge:rgba(255,255,255,.1);--hc-hair:inset 0 0 0 .2px var(--line),inset 0 -.2px 0 var(--line);--hc-hair-all:inset 0 0 0 .4px var(--line)}#app.light{--hc-open-edge:#e3e3e3}#homeView .card{padding:var(--inset);border-radius:var(--r-card);box-shadow:var(--hc-hair)}#homeView .card:has(>.activityHeader){padding-top:14px;box-shadow:var(--hc-hair-all)}#homeView .activityCard{min-height:0}#homeView .activityHeader{height:28px;padding:0 18px;gap:22px;margin-bottom:10px}#homeView .activityHeader .activityIcon{display:none}:is(#homeView,.tfMoreBackdrop,.tfEditTray,.tfMiniPhone) .activityTitle{font:500 18px/1.2 var(--font-tile);font-style:normal;letter-spacing:-.01em;text-box:none}#homeView .card .activityRows{gap:0}#homeView .card .jointRows{padding:0;background:transparent}#homeView .card .activityRow{min-height:var(--tile-min);padding:var(--inset);gap:12px;border-radius:var(--r-tile);grid-template-columns:var(--chip-size) minmax(0,1fr);background:transparent}#homeView .activityRowIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent)}#homeView .activityRowName{font:600 14px/20px var(--font-tile)}#homeView .activityRowMeta{font:400 16px/1.15 var(--font);margin:0}#homeView .card .activityRow.tap{cursor:pointer}#homeView .card .activityRow:is(.tap,:has(.tfName)){transition:background .15s ease,box-shadow .15s ease}#homeView .card .activityRow:is(.tap,:has(.tfName)):hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}#homeView .weatherCard{padding:20px}#homeView .wxWide{gap:16px}#homeView .wxIcon.large{border-radius:28px}#homeView .wxCondition{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:10px 16px;border-radius:28px}#homeView .wxCondName{font:400 18px/1.2 var(--font)}#homeView .weatherCard .activityRow .wxIcon{width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner)}@media (max-width:620px){#homeView .weatherCard{padding:var(--inset)}#homeView .wxIcon.large{width:60px;height:60px;border-radius:20px}#homeView .wxDeg{font-size:46px}#homeView .wxRange{font-size:20px}}.tfLabel{grid-column:1/-1}.tfCard{grid-column:span 6;align-self:start;display:flex;flex-direction:column}.tfIcon{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);flex:none;--mdc-icon-size:var(--glyph-size)}#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--muted)}#app.house.light{--hc-icon:#e6e6e6}#app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}@media (max-width:620px){#app.house{--grid-gap:16px}#app.house .settingsTitle{font-size:32px}#app.house .tfAreaHead .back{margin-block:calc((32px * .92 - 40px) / 2)}#app.house .tfAreaHead .back svg{width:24px;height:24px}}@container wb-bento (width < 652px){#app.house .wbBento{gap:var(--grid-gap)}#app.house .wbItem[data-size=tile]{width:calc((100% - var(--grid-gap)) / 2)}}#app.house #homeView{overflow-anchor:none}:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfCard .activityRow{display:grid;align-items:center}#homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}.tfCard.open>.activityHeader{display:none}.tfOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.tfOpenHead{display:flex;align-items:center;gap:12px}.tfOpenHead>div:nth-child(2){flex:1;min-width:0}.tfBack{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}.tfBack .icon{width:34px;height:34px}.tfGraph{display:block;width:100%;flex:1;min-height:80px}.tfGraph text{fill:var(--muted);font:400 11px var(--font)}.tfAction{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfActionHead{display:flex;align-items:center;gap:12px;min-width:0}.tfAction>.tfActionHead{margin-bottom:auto}.tfActionHead>:is(div,.tfName){min-width:0}.tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}:is(.tfBar,.tfTilt).held{outline:2px solid var(--primary);outline-offset:-2px}.tfBar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#ffc247,#fa0)}.tfBar .was{position:absolute;top:12px;bottom:12px;width:2px;margin-left:-1px;border-radius:1px;background:var(--text);opacity:.22}.tfBar:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfBlock{grid-column:span 6;align-self:start;display:grid;align-content:start;min-width:0;container-type:inline-size}.tfActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.tfAction{grid-column:span 2}@container (max-width:289px){.tfActions{grid-template-columns:1fr}.tfAction{grid-column:auto}}.tfBar:after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:inherit;box-shadow:var(--hc-hair-all);pointer-events:none}.tfAction :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.house .moveSection{display:none}#app.house #settingsView :is(.rubberTabs:not(.houseTabs),.settingsPane:not(#housePane)){display:none}#app.house #housePane{display:block}#housePane .houseTab{display:none}#housePane .houseTab.active{display:block}#housePane .toggleRow:has(>.switch){flex-direction:row-reverse;justify-content:flex-end}#housePane .toggleRow:has(>.switch)>div:first-child{flex:1}#housePane .settingsSelect{flex:none;width:220px}@media (max-width:620px){#housePane .settingsSelect{width:150px}}#housePane .wxLayoutBtn:disabled{opacity:.4;cursor:default}.tfTableNote{margin:0 0 12px;padding:10px 14px;border-radius:var(--r-inner);background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--text)}.tfLightTable td{white-space:nowrap}.tfLightTable td strong{font:600 14px/20px var(--font-tile)}.tfLightTable .settingsSelect{min-width:150px}.tfLightTable .settingsSelect:disabled{opacity:.4}.tfDacPad{min-width:0}.tfDacPad>dual-controller-v3{display:block}#app.house #homeView .grid>:is(#movementLabel,.activityCard,.insightCard,.feelSection){display:none}#app.house .checkinTab,#app.houseBento #weatherCard{display:none}.tfBento{grid-column:1/-1;min-width:0}.tfIcon.art{background-size:cover;background-position:center}.tfBar.ct{background:linear-gradient(90deg,#ff9e45,#ffd3a3 32%,#fff7ee 55%,#d7e7ff)}.tfBar.hue{background:linear-gradient(90deg,red,#ff0 17%,#0f0 33%,#0ff,#00f 67%,#f0f 83%,red)}.tfBar b{position:absolute;top:8px;bottom:8px;width:4px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 0 .5px #0006,0 1px 3px #00000040}.tfAction:not(.on) .tfBar:is(.ct,.hue){opacity:.45}.tfBar:is(.pos,.vol) i{background:var(--primary)}:is(.tfStep,.tfSeg,.tfBlocks,.tfTilt,.tfChips){font-family:var(--font-tile)}.tfStep{display:flex;align-items:center;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfStep button{flex:0 1 46px;min-width:32px;height:46px;min-height:0;padding:0;border:0;border-radius:16px;background:transparent;color:var(--text);cursor:pointer}.tfStep svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfStep output{flex:1 0 auto;white-space:nowrap;text-align:center;font:500 20px/1.2 var(--font-tile);font-variant-numeric:tabular-nums}.tfSeg{display:flex;gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all)}.tfSeg button{flex:1;min-width:0;min-height:0;padding:0 6px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSeg button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfSeg button:not([aria-pressed]){color:var(--text)}.tfSeg button:disabled{opacity:.4;cursor:default}.tfSeg svg{display:block;width:22px;height:22px;margin:auto;fill:currentColor}.tfChips{display:flex;flex-wrap:wrap;gap:8px}.tfChips button{height:40px;min-height:0;padding:0 14px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer;box-shadow:var(--hc-hair-all)}.tfChips button[aria-pressed=true]{background:var(--bright);color:var(--on-bright)}.tfCard .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfCardGraph{height:120px;padding:0 var(--inset)}.tfCardGraph .tfGraph{height:100%}.tfAction.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfName{flex:1;display:block;min-width:0;min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}.tfName>span{display:block}.tfTitleBtn{min-height:0;padding:0;border:0;border-radius:0;background:none;color:inherit;text-align:left;cursor:pointer}.tfAreas{grid-column:1/-1;min-width:0}.tfAreaPanel .workoutPanelTop>div{min-width:0}.tfAreaPanel .sourceTag{margin-right:4px}.tfBlocks{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;height:46px;padding:4px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;container:blocks/inline-size}.tfBlocks>span{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:4px;transition:background .12s}.tfBlocks>span:first-child{border-radius:12px 4px 4px 12px}.tfBlocks>span:nth-child(4){border-radius:4px 12px 12px 4px}.tfBlocks:not(.fine)>span:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}.tfBlocks i{position:absolute;inset:0 auto 0 0;border-radius:inherit;background:var(--primary)}.tfBlocks b{position:relative;color:var(--text);font:600 14px/1 var(--font-tile);transition:opacity .15s}.tfBlocks b small{font:inherit}@container blocks (width < 164px){.tfBlocks b small{display:none}}.tfBlocks b.lit{color:#fff}.tfBlocks.fine b{opacity:0}.tfTip{position:absolute;bottom:calc(100% + 8px);z-index:2;transform:translate(-50%);padding:3px 8px;border-radius:7px;background:var(--text);color:var(--card);font:700 12px/16px var(--font-tile);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s}.tfBlocks.fine .tfTip{opacity:1}.tfTilt{position:relative;display:flex;align-items:center;justify-content:space-between;height:46px;border-radius:16px;background:var(--tile);box-shadow:var(--hc-hair-all);cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.tfTilt i{position:absolute;top:4px;bottom:4px;left:4px;border-radius:12px;background:var(--primary)}.tfTilt span{position:relative;padding:0 16px;color:var(--text);font:600 14px/1 var(--font-tile)}.tfTilt span.lit{color:#fff}:is(.tfBlocks,.tfTilt):focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfCoverBtns svg{fill:none}.tfCoverArt{align-self:center;width:min(294px,100%,max(150px,100vh - 520px));aspect-ratio:1;border-radius:24px;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.tfCoverArt.x{cursor:ew-resize}.tfCoverArt.y{cursor:ns-resize}.tfCoverArt:focus-visible{outline:none;box-shadow:0 0 0 3px var(--primary)}.tfCoverArt svg{display:block;width:100%;height:100%}.tfSide{grid-column:1/-1;align-self:start;min-width:0}.tfSideLabel{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-right:22.4px}#homeView .tfSide.tfSums .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(150px,calc(50% - 10px)),1fr))}#homeView .tfSide.tfFavs .card .activityRows{grid-template-columns:repeat(auto-fill,minmax(min(240px,calc(50% - 10px)),1fr))}#homeView .tfSum .tfIcon{background:var(--sum,var(--hc-icon));color:var(--sum-ink,var(--hc-icon-ink))}.tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfSide .activityRow>div{min-width:0}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-tone=alarm] .tfIcon{background:#e53935;color:#fff}.tfMoreList{display:flex;flex-direction:column;gap:14px}.tfMoreGroupName{margin:0 0 4px 10px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tfMoreTiles.single{grid-template-columns:1fr}.tfMoreList .activityRow{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile);transition:background .15s ease}.tfMoreList .activityRow:hover{background:var(--tile)}.tfMoreList .activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreList .tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreList .tfPick{grid-template-columns:var(--chip-size) minmax(0,1fr) auto}.tfMoreList :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfStar{display:grid;place-items:center;width:34px;height:34px;min-height:0;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}.tfStar[aria-pressed=true]{color:#fa0}.tfStar svg{width:24px;height:24px}.tfMoreHead .activityTitle{flex:1;min-width:0}.tfMoreBackdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:180;display:grid;place-items:center;padding:16px;background:#00000073}.tfMoreBackdrop,.tfMore,.tfMoreSideInner,.tfMoreSideBody{overscroll-behavior:contain}.tfMoreBackdrop[hidden]{display:none}.tfMore{flex:none;width:440px;max-width:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreHead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}.tfMoreState{font:500 28px/1.15 var(--font-tile);letter-spacing:-.01em}.tfMoreSub{margin-top:3px;color:var(--muted);font:500 13px/18px var(--font)}.tfMoreState.live{color:var(--primary)}.tfMoreRows{display:flex;flex-direction:column}.tfMoreRow{display:flex;justify-content:space-between;gap:16px;padding:10px 0;box-shadow:inset 0 -.4px 0 var(--line);font:400 14px/20px var(--font)}.tfMoreRow span:first-child{color:var(--muted)}.tfMoreNote{color:var(--muted);font:400 12px/16px var(--font)}@media (max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}}@media (max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}@media (max-width:900px){.tfCard,.tfBlock{grid-column:auto}}#app.showDensity #homeView :is(.card,.tfAction){position:relative;outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}#app.showDensity #homeView :is(.card,.tfAction):after{content:attr(data-h);position:absolute;top:6px;right:12px;z-index:5;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;font:600 11px/16px var(--font);pointer-events:none}.densityBadge{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;transform:translate(-50%);display:flex;align-items:center;gap:10px;padding:8px 16px;border-radius:99px;background:var(--bright);color:var(--on-bright);font:600 13px/18px var(--font);box-shadow:0 6px 20px #00000040;pointer-events:none;white-space:nowrap}.densityBadge[hidden]{display:none}.densityBadge b{font-variant-numeric:tabular-nums}.densityBadge small{font-weight:400;opacity:.75}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard){container-type:inline-size}#homeView .card:is(.activityCard,.insightCard,.tfCard,.weatherCard) .activityRows{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}@container (max-width:279px){#homeView .card .activityRows{grid-template-columns:1fr}}@media (min-width:1200px){#homeView .grid>.card:is(.activityCard,.insightCard){grid-column:span 6}#homeView .grid>.weatherCard{grid-column:span 6}}.tfMorePair{position:relative;display:flex;align-items:stretch;max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}#app[data-more=sheet] .tfMoreBackdrop{place-items:end center;padding:0}#app[data-more=sheet] .tfMorePair{max-height:85vh;animation:tfSheetIn .28s cubic-bezier(.2,.7,.3,1)}#app[data-more=sheet] .tfMorePair.still{animation:none}#app[data-more=sheet] .tfMore{width:min(640px,100vw)}#app[data-more=sheet] :is(.tfMore,.tfMoreSideInner){border-radius:var(--r-card) var(--r-card) 0 0}@keyframes tfSheetIn{0%{transform:translateY(100%)}}.tfDetailsBtn{display:flex;flex:none;align-items:center;justify-content:space-between;gap:12px;width:100%;height:46px;min-height:0;padding:0 12px 0 16px;border:0;border-radius:16px;background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);cursor:pointer}.tfDetailsBtn svg{width:20px;height:20px;transition:transform .2s ease}.tfDetailsBtn[aria-expanded=true] svg{transform:rotate(180deg)}.tfMoreSide{position:absolute;top:0;bottom:0;left:100%;width:0;overflow:hidden;visibility:hidden;transition:width .28s cubic-bezier(.2,.7,.3,1),visibility 0s linear .28s}.tfMorePair.details .tfMoreSide{width:312px;visibility:visible;transition:width .28s cubic-bezier(.2,.7,.3,1)}.tfMoreSideInner{box-sizing:border-box;display:flex;flex-direction:column;gap:14px;width:300px;height:100%;margin-left:12px;padding:20px;overflow:auto;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}.tfMoreSideInner .tfMoreHead{justify-content:flex-start}.tfMorePair.over .tfMoreSide{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;width:auto;transform:translate(24px);opacity:0;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease,visibility 0s linear .25s}.tfMorePair.over.details .tfMoreSide{width:auto;transform:none;opacity:1;transition:transform .25s cubic-bezier(.2,.7,.3,1),opacity .2s ease}.tfMorePair.over .tfMoreSideInner{width:100%;margin:0}@media (max-width:620px){.tfMoreSideInner{border-radius:var(--r-card) var(--r-card) 0 0}}@media (prefers-reduced-motion:reduce){.tfMorePair,.tfMoreSide{animation:none!important;transition:none!important}}#homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}.tfAreaPanel .workoutPanelTop{justify-content:flex-start;gap:14px;padding:0}.tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}.tfAreaPanel .icon{width:22px;height:22px}.tfATitle{display:flex;flex-direction:column;align-items:flex-start;min-width:0}#app .tfAName{max-width:100%;min-height:0;padding:0;border:0;border-radius:6px;background:none;color:var(--text);font:700 24px/1.2 var(--font-tile);letter-spacing:-.01em;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.tfAreaIcon{flex:none;border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}button.tfAreaIcon{cursor:pointer}.tfAreaGlyph{display:grid;place-items:center}.tfAreaHead{grid-column:1/-1;margin-bottom:0}#app.tfAreaOpen:not(.tfWeatherOpen) #homeView .grid>.tfBento{display:none}#app.tfWeatherOpen #homeView .grid>.tfBento .wbBento{margin:0;padding:0;justify-content:flex-start}#app.tfWeatherOpen .tfBento.tfPegs .wbBento{display:grid;grid-template-columns:repeat(var(--peg-n),var(--peg-w));grid-auto-rows:60px;grid-auto-flow:row dense;align-items:stretch;gap:16px;max-width:none}#app.tfWeatherOpen .tfBento.tfPegs .wbItem{width:auto;min-height:0;align-self:stretch;display:flex;flex-direction:column}#app.tfWeatherOpen .tfBento.tfPegs .wbItem>*{flex:1;min-height:0}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=wide]{grid-column:span 2;grid-row:span 5}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=double]{grid-column:span 2;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-size=tile]{grid-column:span 1;grid-row:span 4}#app.tfWeatherOpen .tfBento.tfPegs .wbCard.wbSquare{aspect-ratio:auto}#app.tfWeatherOpen .tfBento.tfPegs .wbWeather .wbNow{margin-bottom:auto}#app.tfWeatherOpen .tfBento.tfPegs :is(.wbStripScroll,.wbBars .wbDayBars,.wbBars.wbTabbed .wbDayBars){min-height:0}.tfABig{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;min-height:0;height:auto;padding:0;border:0;border-radius:8px;background:none;color:var(--text);text-align:start;cursor:pointer}.tfABigMain{font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}.tfABigMain.long{font-size:40px}.tfABigUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}.tfABigSub{max-width:100%;overflow:hidden;color:var(--muted);font:400 16px/1.2 var(--font);white-space:nowrap;text-overflow:ellipsis}.tfATiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:calc(2 * var(--tile-min));align-content:end}.tfABig{max-width:100%}.panelExpanded:not(:has(.tfATiles)) .tfABig{margin-bottom:calc(2 * var(--tile-min) + 16px)}#app.tfBoard .tfAreas[data-rows="5"] .tfACMain{position:absolute;left:10px;right:10px;bottom:170.3px;max-width:none;text-align:center}.tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}.tfATile>:is(div,.tfName):last-child{min-width:0}.tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}.tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACollapsed{flex-direction:column;justify-content:space-between;padding:18px 0 10px;container-type:inline-size}.tfACTop{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:calc(100% - 20px)}.tfACMain{max-width:calc(100% - 20px);font:200 32px/1.2 var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACName{max-width:100%;font:600 16px/17.5px var(--font);letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfACTiles{display:grid;grid-template-columns:repeat(2,60px);min-height:60px}.tfACTiles:has(>:nth-child(3)){margin-top:-60px}.tfACTile{display:grid;place-items:center;width:60px;height:60px}.tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}.tfACTile .tfIcon.alert{background:#e53935;color:#fff}@container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}.tfACTiles:has(>:nth-child(2)){margin-top:-60px}}.tfMore.wide{width:min(1040px,100vw - 32px);padding:40px;gap:28px;background:var(--bg)}#app[data-more=sheet] .tfMore.wide{width:min(1040px,100vw)}.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{gap:28px;padding:40px;background:var(--bg)}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:-20px -20px 0 0}#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead) .activityTitle{font-size:24px}@media (max-width:620px){#app :is(.tfMore.wide>.tfMoreHead,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreHead){margin:0}}@media (min-width:621px){#app:not([data-more=sheet]) .tfMoreBackdrop.wide{place-items:start center}}.tfMoreNowRow{display:flex;align-items:center;justify-content:space-between;gap:16px}.tfMore.wide .tfMoreGroup{display:flex;flex-direction:column;gap:14px}.tfMore.wide .tfMoreGroupName{margin:0;color:var(--text);font:400 18px/1.2 var(--font);letter-spacing:-.01em}.tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}.tfMoreActions .tfAction{grid-column:auto}.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}.tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}.tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfMoreActions>.activityRow.alert .activityRowMeta{color:var(--danger)}@media (max-width:620px){.tfMore.wide,.tfMorePair.over .tfMore.wide+.tfMoreSide .tfMoreSideInner{width:100%;padding:20px 16px;gap:20px}}#app.tfDash #homeView{max-width:none;container:tfdash/inline-size}#app.tfDash #homeView .grid{display:flex;flex-wrap:wrap;align-items:flex-start;align-content:flex-start}#app.tfDash .tfDashTitle{order:1!important;flex:0 0 100%;margin:0}#app.tfDash .tfDashBarRow{order:2!important;flex:0 0 100%;display:flex;min-width:0}#app.tfDash .tfDash-wx{order:var(--o,3)!important}#app.tfDash .tfAreas{order:var(--o,4)!important}#app.tfDash .tfDash-favs{order:var(--o,5)!important}#app.tfDash .tfDash-act{order:var(--o,6)!important}#app.tfDash .tfDash-energy{order:var(--o,7)!important}#app.tfDash .tfDash-avg{order:var(--o,8)!important}#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar){order:var(--o,8)!important}#app.tfDash .tfDashTiles>*{order:var(--o,9)}#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex:1 1 460px;max-width:520px;min-width:0}@container tfdash (width < 640px){#app.tfDash :is(.tfDash-wx,.tfDash-favs,.tfDash-act,.tfDash-energy,.tfDash-avg){flex-basis:100%;max-width:none}}#app .tfNotAdded{display:none!important}#app.tfDash .tfAreas{flex:none;width:min(var(--areas-w,1131px),100%)}@media (min-width:901px){#app.tfDash .tfAreaGallery{overflow-x:auto;scrollbar-width:none}#app.tfDash .tfAreaGallery::-webkit-scrollbar{display:none}#app.tfDash .tfAreaPanel.active{flex:1 0 409px}#app.tfDash .tfAreaPanel:not(.active){flex:0 0 128px}}#app.tfDash .tfDash-bar{flex:none;max-width:100%}#app.tfDash #homeView .card.tfDash-bar{container-type:normal}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(var(--bar-cols,6),auto)}#homeView .card.tfDash-bar .activityRow{min-width:200px}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:visible;text-overflow:clip}@container tfdash (width < 640px){#app.tfDash .tfDash-bar{width:100%}#homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#homeView .card.tfDash-bar .activityRow{min-width:0}#app.tfDash .tfDash-bar :is(.activityRowName,.activityRowMeta){overflow:hidden;text-overflow:ellipsis}#app.tfDash .tfDashTitle{padding:0 16px;box-sizing:border-box}}#app.tfDash .tfDashCard:not(.tfDash-bar){container-type:inline-size}#homeView .card.tfDash-act .activityRows{grid-template-columns:minmax(0,1fr)}#homeView .card.tfDash-act>.activityRows{flex:none;margin-top:auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 25%,transparent) transparent}#homeView .card.tfDash-act>.activityRows>.activityRow{scroll-snap-align:start}#homeView .card.tfDash-energy .activityRows{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}.tfDashCard :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfDashCard .activityRow>*{min-width:0}.tfDashNone{margin:0;padding:var(--inset) 18px;color:var(--muted)}.tfDashBento{display:flex;flex-direction:column;min-width:0}#app:not(.tfDash) .tfDashBento{display:none}.tfDashBento:not(:has(.wbItem:not([hidden]))){display:none}.tfDashBento .wb{flex:1;display:flex;flex-direction:column;min-width:0}.tfDashBento .wbBento{flex:1;max-width:none;margin:0;padding:0;display:flex;align-items:stretch}#app .tfDashBento .wbItem{width:100%;align-self:stretch;display:flex;flex-direction:column}#app.house .tfDashBento .wbItem[data-size]{width:100%}#app .tfDashBento .wbItem>.wbCard{flex:1;min-height:0}.tfDash-wx .wbCondition{display:none}#app.tfDash .tfDashTiles{display:contents}.tfDashTiles>:is(.tfAction,.tfDac){flex:none;align-self:stretch;width:calc((100% - var(--grid-gap,8px)) / 2);min-width:0;grid-column:auto}#app.tfBoard #homeView .grid{display:block;position:relative}#app.tfBoard .tfBoardItem{position:absolute;z-index:1;margin:0;max-width:none;min-height:0;box-sizing:border-box}#app.tfEditing.tfBoardReady .tfBoardItem{transition:left .25s cubic-bezier(.2,.7,.3,1),top .25s cubic-bezier(.2,.7,.3,1),height .25s cubic-bezier(.2,.7,.3,1)}#app.tfBoard .tfBoardHidden{display:none!important}#app.tfBoard .tfDashBento .wbWeather .wbNow{margin-bottom:auto}#app.tfBoard .tfDashBento .wbCard.wbSquare{aspect-ratio:auto}#app.tfBoard .tfAreas .workoutGallery,#app.tfBoard .tfAreas .workoutPanel{height:100%;min-height:0}.tfBoardCells{position:absolute;top:0;left:0;z-index:0;display:grid;grid-auto-rows:60px;gap:16px;pointer-events:none}.tfBoardCells i{border-radius:var(--r-inner);background:color-mix(in srgb,var(--text) 7%,transparent)}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfDashBento){outline:1.5px solid var(--primary);outline-offset:-1.5px;border-radius:var(--r-card)}#app.tfEditing .tfBoardItem:is(.tfAction,.tfDac){border-radius:28px}#app.tfEditing .tfAreas{border-radius:24px}#app.tfEditing .tfDashBento .wbCard{outline:1.5px solid var(--primary);outline-offset:-1.5px}#app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;overflow:visible;-webkit-user-select:none;user-select:none;touch-action:none}.tfEditChips{position:absolute;inset:-8px -8px auto -8px;z-index:5;height:40px;display:flex;justify-content:flex-end;pointer-events:none}.tfEditGrip{position:absolute;top:-10px;left:50%;display:grid;place-items:center;width:80px;height:40px;border-radius:var(--r-inner);background:var(--text);color:var(--card);transform:translate(-50%);pointer-events:auto;cursor:grab}.tfEditGrip svg{width:24px;height:24px;fill:currentColor}.tfEditChip{display:grid;place-items:center;width:28px;height:28px;min-height:0;padding:0;border:0;border-radius:50%;background:var(--text);color:var(--card);pointer-events:auto;cursor:pointer}.tfEditChip svg{width:18px;height:18px;fill:currentColor}.tfEditChip:focus-visible{outline:2px solid var(--primary);outline-offset:2px}#app.tfEditing .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}.tfBoardLand{position:absolute;z-index:1;box-sizing:border-box;border:1.5px dashed var(--primary);border-radius:28px;background:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;transition:left .2s,top .2s,width .2s,height .2s}.tfBoardMenu{position:absolute;z-index:30;display:grid;gap:2px;min-width:200px;padding:6px;border-radius:var(--r-tile);background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px #00000059}.tfBoardMenu button{display:flex;align-items:center;min-height:40px;padding:0 12px;border:0;border-radius:var(--r-inner);background:transparent;color:var(--text);font:500 14px/20px var(--font);text-align:start;cursor:pointer}.tfBoardMenu button:hover:not(:disabled),.tfBoardMenu button:focus-visible{background:var(--tile);outline:none}.tfBoardMenu button:disabled{opacity:.4;cursor:default}.tfHeight{display:grid;gap:6px;padding:6px 6px 8px}.tfHeightLabel{padding:0 6px;color:var(--muted);font:500 12px/16px var(--font)}.tfHeightTabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px;border-radius:var(--r-inner);background:var(--tile)}.tfBoardMenu .tfHeightTabs button{justify-content:center;min-height:32px;padding:0 4px;border-radius:12px;font-size:13px}.tfBoardMenu .tfHeightTabs button[aria-checked=true]{background:var(--text);color:var(--card)}.tfBoardMenu .tfHeightTabs button:disabled{opacity:.35}.tfWidth{padding-top:0}.tfWidth .tfHeightTabs{grid-template-columns:repeat(3,auto)}.tfBoardMenu .tfWidth .tfHeightTabs button{white-space:nowrap}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows{grid-auto-rows:var(--fill-row,60px);margin-top:0}#app.tfBoard .tfBoardItem:is(.tfDash-favs,.tfDash-act)>.activityRows>.activityRow{min-height:0;height:var(--fill-row,60px);box-sizing:border-box}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]{padding:0;gap:0}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityHeader,#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.tfDashGraph{display:none}#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityRows{margin:0;flex:1}#app.tfBoard .tfBoardItem.tfAction[data-rows="1"]{padding:10px;border-radius:24px}.tfRoomTile{cursor:pointer}.tfRoomTile .tfRoomIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfRoomInline,.tfRoomSub{display:none}.tfRoomReading{display:flex;flex-direction:column;gap:4px;min-width:0}.tfRoomBig{overflow:hidden;color:var(--text);font:500 46px/46px var(--font-tile);letter-spacing:-.92px;white-space:nowrap;text-overflow:ellipsis}.tfRoomSub{overflow:hidden;color:var(--muted);font:400 16px/19px var(--font);white-space:nowrap;text-overflow:ellipsis}.tfRoomDevices{display:flex;gap:12px}.tfRoomDevices .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}.tfRoomDevices .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}#app.tfBoard .tfRoomTile[data-rows="1"] .tfRoomInline{display:inline}#app.tfBoard .tfRoomTile[data-rows="1"] :is(.tfRoomReading,.tfRoomDevices),#app.tfBoard .tfRoomTile[data-rows="2"] .tfRoomDevices{display:none}#app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfActionHead .activityRowMeta{display:none}#app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfRoomSub{display:block}#app.tfBoard .tfRoomTile[data-rows="4"] .tfRoomBig{font-size:52px;line-height:52px;letter-spacing:-1.92px}#app.tfBoard .tfRoomTile[data-rows="5"] .tfRoomBig{font-size:64px;line-height:64px;letter-spacing:-1.92px}.tfRoomHeads{display:none;gap:12px 16px}.tfRoomDev{display:flex;align-items:center;gap:12px;min-width:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}.tfRoomDev .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfRoomDev .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}.tfRoomDevName{display:flex;flex-direction:column;min-width:0}.tfRoomDevName>span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}#app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"]){flex-direction:row;align-items:center;gap:12px}#app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"])>.tfActionHead{flex:1;margin-bottom:0}#app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"]) .tfRoomDevices{display:flex}#app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-rows="1"]) .tfRoomDevices{display:none}#app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-rows="1"]) .tfRoomHeads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-cols="2"]):not([data-rows="1"]) .tfRoomHeads{grid-template-columns:repeat(4,minmax(0,1fr))}#app.tfBoard .tfRoomTile[data-cols="2"][data-rows="2"] .tfRoomDev:nth-child(n+3){display:none}#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]) .tfRoomInline{display:inline}#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]) .tfRoomReading{display:none}#app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}#app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}#app.tfBoard .tfDash-wx[data-rows="1"] .wbNow{margin:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbWx.wbS90{width:40px;height:40px;border-radius:12px}#app.tfBoard .tfDashBento[data-rows] :is(.wb,.wbBento,.wbItem){height:100%;min-height:0}#app.tfBoard .tfDashBento[data-rows] .wbCard{height:100%;min-height:0;box-sizing:border-box;aspect-ratio:auto}#app.tfBoard .tfDash-wx[data-rows="1"] .wbDeg{font-size:20px;letter-spacing:0;line-height:22px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbPlace{font-size:13px;line-height:18px}#app.tfBoard .tfDash-wx[data-rows="1"] .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-rows="1"] .wbUnit{font-size:14px;line-height:22px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbWx.wbS90{width:100px;height:100px;border-radius:31px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbDeg{font-size:80px;line-height:80px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbUnit{font-size:30px;line-height:38px}#app.tfBoard .tfDash-wx[data-rows="2"] .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbWeather{flex-direction:row;align-items:center;gap:16px}#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbNow{flex:none}#app.tfBoard .tfDash-wx[data-rows="2"]:not([data-narrow]) .wbNextHours{display:flex;flex:1 1 0}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbWeather{justify-content:center;padding-top:0;padding-bottom:0}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) :is(.wbNow,.wbSummary){display:none}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbColumns{display:flex;flex:none;height:185px}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbAsDay{display:none}#app.tfBoard .tfDash-wx[data-rows="3"]:not([data-narrow]) .wbAsNow{display:inline}#app.tfBoard .tfDash-wx[data-narrow] .wbCard.wbWeather{gap:12px;padding:18px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbWx.wbS90{width:64px;height:64px;border-radius:20px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbDeg{font-size:46px;line-height:46px;letter-spacing:-.92px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbUnit{font-size:20px;line-height:26px}#app.tfBoard .tfDash-wx[data-narrow]:not([data-rows="1"]) .wbTempBlock{gap:0}#app.tfBoard .tfDash-wx[data-narrow] .wbHalves{display:none}#app.tfBoard .tfDash-wx[data-narrow][data-rows="3"] .wbNextHours{display:flex;margin-top:auto}#app.tfBoard .tfDash-wx[data-narrow] .wbHour:nth-child(n+4){display:none}#app.tfBoard .tfDash-wx[data-narrow]:is([data-rows="4"],[data-rows="5"]) .wbColumns{display:flex;flex:none;height:auto;margin-top:auto}#app.tfBoard .tfDash-wx[data-narrow]:is([data-rows="4"],[data-rows="5"]) .wbColumn:nth-child(n+4){display:none}#app.tfBoard .tfDash-wx[data-narrow][data-rows="5"] .wbSummary{display:block}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="4"]) .wbSummary{display:none}#app.tfBoard .tfDash-wx:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) :is(.wbColumns,.wbHalves){display:none}#app.tfBoard .tfDash-wx[data-rows="4"] .wbColumns{flex:1 1 0;height:auto;min-height:0;margin-top:0}#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbColumn{justify-content:flex-start;gap:8px;padding:12px 0 16px}#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbColumn .wbWx{width:40px;height:40px;border-radius:16px}#app.tfBoard .tfDash-wx:is([data-rows="4"],[data-narrow][data-rows="5"]) .wbTemps{gap:4px}#app.tfBoard .tfDash-wx[data-rows="4"] .wbHalves>:nth-child(n+5){display:none}#app.tfBoard .tfDash-energy[data-rows="2"] .tfDashGraph{display:none}#app.tfBoard .tfDash-energy:is([data-rows="1"],[data-rows="2"],[data-rows="3"]) .activityRows{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}#app.tfBoard .tfDash-energy[data-rows="3"] .tfDashGraph{min-height:0}#app.tfBoard .tfDashBento[data-rows="2"] .wbBaseRows{display:none}#app.tfBoard .tfDashBento[data-rows="2"] :is(.wbRadar,.wbCompareBars,.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfDashBento[data-rows="3"] :is(.wbCompareWords,.wbCompareTemps){display:none}#app.tfBoard .tfAreas[data-rows="1"] .workoutPanel.tfAreaPanel{padding:10px}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 12px;align-content:center}#app.tfBoard .tfAreas[data-rows="1"] :is(.panelExpanded>.workoutPanelTop,.tfACTop){display:contents}#app.tfBoard .tfAreas[data-rows="1"] .panelExpanded .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] .tfATitle .tfAName{font-size:14px;line-height:20px;height:auto}#app.tfBoard .tfAreas[data-rows="1"] .tfABig{margin:0;flex-direction:row}#app.tfBoard .tfAreas[data-rows="1"] .tfABigMain{font-size:14px;line-height:18px;letter-spacing:0}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigUnit){font-size:14px}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfABigSub,.tfATiles,.tfACTiles,.sourceTag){display:none}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:12px;align-content:center;padding:0}#app.tfBoard .tfAreas[data-rows="1"] .tfACollapsed .tfAreaIcon{grid-row:span 2}#app.tfBoard .tfAreas[data-rows="1"] :is(.tfACName,.tfACMain){margin:0;font-size:14px;line-height:18px;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"]) .tfABig{display:none}#app.tfBoard .tfAreas[data-rows="4"] .tfABig{flex:none;margin-top:auto;margin-bottom:auto}#app.tfBoard .tfAreas[data-rows="4"] .tfATiles{margin-top:0}#app.tfBoard .tfAreas[data-rows="4"] .tfABigMain{font-size:52px}#app.tfBoard .tfAreas[data-rows="4"] .panelExpanded{row-gap:12px}#app.tfBoard .tfAreas:is([data-rows="2"],[data-rows="3"],[data-rows="4"]) .tfATiles{margin-top:auto}#app.tfBoard .tfAreas[data-rows="2"] .tfATile:nth-child(n+3),#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfATile:nth-child(n+5){display:none}#app.tfBoard .tfAreas[data-rows="2"] .tfACTiles{display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTile:nth-child(n+3){display:none}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACollapsed{justify-content:flex-start;gap:10px}#app.tfBoard .tfAreas:is([data-rows="3"],[data-rows="4"]) .tfACTiles{margin-top:auto}.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:360px;max-width:calc(100vw - 56px);transform:translate(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfEditTray.open{transform:none}.tfEditTray.open.tucked{transform:translate(100%)}.tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}.tfTrayTuck{position:absolute;top:20px;left:-40px;display:grid;place-items:center;width:40px;height:56px;min-height:0;padding:0;border:0;border-radius:16px 0 0 16px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}.tfTrayTuck svg{width:22px;height:22px}.tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}.tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d}.tfTrayHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.tfTraySection{display:flex;flex-direction:column;gap:8px}.tfTraySection .sectionLabel{margin:0}.tfTrayNote{margin:0;color:var(--muted);font:400 14px/1.3 var(--font)}.tfTrayCards{display:flex;flex-direction:column;gap:6px}.tfTrayCard{display:flex;align-items:center;gap:10px;min-height:var(--tile-min);padding:0 14px 0 10px;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none}.tfTrayList{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}.tfTrayFav{display:grid;grid-template-columns:22px var(--chip-size) minmax(0,1fr) 36px 36px;align-items:center;gap:8px;min-height:var(--tile-min);padding:0 4px 0 6px;border-radius:var(--r-tile)}.tfTrayFav.off{cursor:grab;touch-action:none}.tfTrayFav.off :is(.tfIcon,.tfTrayName){opacity:.5}.tfTrayFav.moving{background:var(--tile)}.tfTrayGrip{display:grid;place-items:center;color:var(--muted);cursor:grab;touch-action:none}.tfTrayGrip svg{width:20px;height:20px;fill:currentColor}:is(.tfTrayFav,.tfTrayPickItem) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}.tfTrayName{display:flex;flex-direction:column;min-width:0}.tfTrayName>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfTrayBtn{display:grid;place-items:center;width:36px;height:36px;min-height:0;padding:0;border:0;border-radius:12px;background:none;color:var(--text);cursor:pointer}.tfTrayBtn svg{width:20px;height:20px;fill:currentColor}.tfTrayBtn:hover{background:var(--tile)}.tfTrayAdd{align-self:flex-start}.tfTrayPick{display:flex;flex-direction:column;gap:6px}.tfTrayPick[hidden]{display:none}.tfTrayPickItem{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;width:100%;min-height:var(--tile-min);padding:0 10px;border:0;border-radius:var(--r-tile);background:none;color:var(--text);text-align:start;cursor:pointer}.tfTrayPickItem:hover{background:var(--tile)}.tfTraySuggest{margin-top:8px}.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(360px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px #0000004d;opacity:0;transform:translate(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}.tfMiniPhone.open{opacity:1;transform:none;pointer-events:auto}.tfPhoneHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px 0 12px}.tfMiniPhone>.tfTrayNote{padding:0 12px 4px}.tfLinkBtn{min-height:0;padding:0;border:0;background:none;color:var(--primary);font:inherit;text-decoration:underline;cursor:pointer}.tfPhoneScreen{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border-radius:34px;background:var(--bg);box-shadow:var(--hc-hair-all);padding:14px 0 24px}.tfPhoneList{display:flex;flex-wrap:wrap;gap:12.8px}.tfPhoneTitle{width:100%;padding:0 12.8px;color:var(--text);font:800 25.6px/1 var(--font);letter-spacing:-.055em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tfPhoneBlock{display:flex;align-items:flex-start;gap:10px;width:100%;min-height:0;padding:12px;border:0;border-radius:27px;background:var(--card);box-shadow:var(--hc-hair);color:var(--text);font:600 14px/20px var(--font-tile);text-align:start;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}.tfPhoneBlock.tile{width:calc((100% - 12.8px)/2);border-radius:22.4px}.tfPhoneBlock.fixed{align-items:center;color:var(--muted);cursor:default}.tfPhoneBlock.moving{box-shadow:var(--hc-hair),0 0 0 2px var(--primary);cursor:grabbing}.tfPhoneBlock:focus-visible{outline:2px solid var(--primary);outline-offset:2px}.tfPhoneBlock .tfIcon{width:32px;height:32px;border-radius:13px;background:var(--hc-icon);color:var(--hc-icon-ink);--mdc-icon-size:22px}.tfPhoneName{min-width:0;padding-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.tfTrayGhost{position:fixed;top:0;left:0;z-index:200;margin:0;pointer-events:none;opacity:.9;background:var(--tile);border-radius:var(--r-tile);box-shadow:0 8px 24px #00000059}.tfFavDrop{position:fixed;z-index:200;width:4px;border-radius:2px;background:var(--primary);pointer-events:none}.tfFavHides{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;pointer-events:none}.tfFavHide{position:absolute;display:grid;place-items:center;width:32px;height:32px;min-height:0;padding:0;border:0;border-radius:12px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;pointer-events:auto}.tfFavHide svg{width:18px;height:18px;fill:currentColor}.tfDash-energy .tfDashGraph{flex:1;min-height:80px;height:auto;margin:var(--inset) 0 0}.tfDash-energy.graphAbove>.activityHeader{order:-2}.tfDash-energy.graphAbove>.tfDashGraph{order:-1;margin:0 0 var(--inset)}#homeView .card.tfDash-energy .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.toast.tfToast{top:auto;right:auto;max-width:calc(100vw - 32px);transform:translate(-50%,6px)}.toast.tfToast.show{transform:translate(-50%)}.tfDash-act .activityRow.alert .activityRowName{color:var(--danger)}.activityRow .tfIcon.alert{background:#e53935;color:#fff}.tfGraph.tfDay{flex:none;height:62px;min-height:0}.tfGraph.tfDay text{font-size:10px}#housePane .rubberIndicator{background:var(--bright)}#housePane .tab.active{color:var(--on-bright)}#app.light .tfBar i{box-shadow:inset -2px 0 0 var(--text)}#app.house :is(.settingsSelect,.addInput){border:1px solid var(--muted)}#app.house .addInput::placeholder{color:var(--muted);opacity:1}#app .activityRows :focus-visible{outline-offset:-2.4px}#app.house :is(button,a,input,select,[tabindex]){scroll-margin-bottom:96px}@media (max-width:620px){#app.house :is(.activityRowName,.activityRowMeta){white-space:normal;text-overflow:clip;overflow:visible;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}}.tfTooltip{position:fixed;z-index:500;max-width:min(320px,calc(100vw - 16px));padding:6px 10px;border-radius:10px;background:var(--bright);color:var(--on-bright);font:500 14px/18px var(--font);overflow-wrap:break-word;box-shadow:0 4px 16px #00000040}.tfTooltip[hidden]{display:none}.tfDashGraph rect{transform-box:fill-box;transform-origin:50% 100%}#app.house:is([data-names=cut],[data-names=scroll]) :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#app.house[data-names=wrap] :is(.activityRowName,.activityRowMeta){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}#app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}', Vp = `.wb{container:wb-bento/inline-size;display:block;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}.wbBento{box-sizing:content-box;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:16px;max-width:1056px;margin:0 auto;padding:10px}.wbItem{container:wb-card/inline-size;min-width:0}.wbItem[hidden]{display:none!important}.wbItem[data-size=wide]{width:520px;align-self:stretch;display:flex;flex-direction:column}.wbItem[data-size=wide]>*{flex:1}.wbItem[data-size=wide]>.wbWeather{flex:none}.wbItem[data-size=tile]{width:252px}.wbItem[data-size=double]{width:520px}@container wb-bento (width < 652px){.wbBento{gap:10px;padding:10px}.wbItem:is([data-size=wide],[data-size=double]){width:100%}.wbItem[data-size=tile]{width:calc(50% - 5px)}}.wbCard{position:relative;display:block;box-sizing:border-box;border:0;border-radius:var(--r-card);background:var(--card);color:var(--text);font-family:var(--font);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line);transition:all .3s ease-out}.wbCard.wbHc{display:flex;flex-direction:column;gap:10px;padding:14px var(--inset) var(--inset);box-shadow:var(--hc-hair-all)}.wbHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;padding:0 18px}.wbTitle{margin:0;font:500 18px/1.2 var(--font-tile);letter-spacing:-.18px;color:var(--text);white-space:nowrap}.wbIcon{display:block;flex:none;width:var(--wb-icon,24px);height:var(--wb-icon,24px);fill:currentColor;pointer-events:none}.wbTile{display:flex;align-items:center;gap:12px;min-width:0;min-height:var(--tile-min);box-sizing:border-box;padding:var(--inset);border:0;border-radius:var(--r-tile);background:transparent;color:inherit;font:inherit;text-align:start}.wb button.wbTile{border-radius:var(--r-tile)!important;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease}.wb button.wbTile:hover{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}.wb button.wbTile:focus-visible{outline:2px solid var(--primary)!important;outline-offset:2px!important}.wbChip{flex:none;display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);border-radius:var(--r-inner);background:var(--primary);color:var(--hc-on-accent);--wb-icon:24px}.wbChip.wbPlain{background:var(--icon-bg);color:var(--text)}.wbText{display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0;align-self:stretch;overflow:hidden;white-space:nowrap}.wbName{font:600 14px/20px var(--font-tile);overflow:hidden;text-overflow:ellipsis}.wbSub{font:400 16px/1.15 var(--font);letter-spacing:-.32px;overflow:hidden;text-overflow:ellipsis}.wbCard.wbSquare{display:flex;flex-direction:column;gap:14px;aspect-ratio:1;--wb-k:1;box-sizing:border-box;padding:18px;border-radius:28px;overflow:hidden}.wbHead{display:flex;align-items:flex-start;gap:12px;min-width:0}.wbSquare .wbChip{width:40px;height:40px;border-radius:16px}.wbSquare .wbName{font-size:14px;line-height:1.4}.wbSquare .wbSub{font-size:16px}.wbVisual{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:10px}.wbCard.wbSquare.wbDouble{aspect-ratio:520/252;--wb-k:.4846;border-radius:34px}.wbVisual>svg{display:block;width:100%;height:100%;min-height:0}.wbVisual svg text{font-family:var(--font-tile)}.wbValue{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbValue .wbNum{font:500 clamp(30px,calc(17.5cqw * var(--wb-k,1)),44px)/1 var(--font-tile);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.wbValue .wbUnitV{font:300 clamp(13px,calc(7.1cqw * var(--wb-k,1)),18px)/1.25 var(--font-tile);color:var(--muted)}.wbScaleNote{display:flex;justify-content:space-between;color:var(--muted);font:400 clamp(10px,calc(4.4cqw * var(--wb-k,1)),12px)/1.3 var(--font)}.wbCard.wbSquare.wbHasBackdrop{position:relative;isolation:isolate}.wbBackdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;overflow:hidden;border-radius:inherit;pointer-events:none}.wbBackdrop~*{position:relative;z-index:1}.wbGraph{position:relative;display:flex;flex-direction:column;justify-content:center;height:120px;box-sizing:border-box;padding:12px 16px;border-radius:10px 10px 18px 18px;background:var(--tile);overflow:hidden;--wb-scale-edge:var(--tile)}.wbChart{display:block;width:100%;height:100%;overflow:visible}.wbChart .wbLine{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbChart .wbArea{fill:var(--primary);opacity:.14}.wbChart .wbBar{fill:var(--muted);opacity:.45}.wbChart .wbBar.wbNowBar{fill:var(--primary);opacity:1}.wbChart .wbGuide{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 4}.wbChart text{fill:var(--muted);font:400 11px var(--font)}.wbGraphNote{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:400 12px/1.4 var(--font)}.wbDayChart{flex:1;min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:20px minmax(0,1fr) 18px;grid-template-areas:". sun" "y plot" ". x";column-gap:6px;color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums}.wbDcSun,.wbDcX,.wbDcY,.wbDcPlot{position:relative;min-width:0}.wbDcSun{grid-area:sun}.wbDcY{grid-area:y}.wbDcPlot{grid-area:plot}.wbDcX{grid-area:x}.wbDcSunMark,.wbDcX span{position:absolute;bottom:0;transform:translate(-50%);white-space:nowrap}.wbDcSunMark{display:flex;align-items:center;gap:2px;bottom:4px;--wb-icon:14px}.wbDcSunMark .wbIcon{fill:#fea916}.wbDcX span{top:4px;bottom:auto}.wbDcY span{position:absolute;right:0;transform:translateY(-50%);white-space:nowrap}.wbDcPlot svg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbDcNight{fill:var(--page);opacity:.6}.wbDcGrid{stroke:var(--line);stroke-width:1}.wbDcSunLine{stroke:#fea916;stroke-width:1;stroke-dasharray:2 4;opacity:.7}.wbDcNow{stroke:var(--text);stroke-width:1;opacity:.4}.wbDcLine,.wbDcPast{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.wbDcPast{stroke:var(--muted);stroke-width:2}.wbDcArea{fill:var(--primary);opacity:.14}.wbDcBar{position:absolute;bottom:0;min-height:3px;border-radius:4px 4px 1px 1px;background:var(--primary)}.wbDcDot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--card)}.wbDcPeak{position:absolute;transform:translate(-50%,calc(-100% - 6px));color:var(--text);font-weight:500;white-space:nowrap}.wbDcNote{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;place-items:center;padding:0 8px;text-align:center;color:var(--muted);font:400 13px/1.4 var(--font)}.wbOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}.wbOpenHead{display:flex;align-items:center;gap:12px}.wbBack{flex:none;display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:var(--r-fine);background:transparent;color:var(--text);cursor:pointer;--wb-icon:24px}.wb button.wbBack{border-radius:var(--r-fine)!important}.wbBack:hover{background:var(--hover)}.wbOpen .wbGraph{flex:1;height:auto;min-height:152.2px;background:var(--card);--wb-scale-edge:var(--tile)}.wbSegments{display:inline-flex;gap:0;padding:4px;border-radius:var(--r-inner);background:var(--page)}.wbSegments button{padding:4px 12px;border:0;border-radius:var(--r-fine);background:transparent;color:var(--muted);font:600 14px/20px var(--font-tile);cursor:pointer}.wb .wbSegments button{border-radius:var(--r-fine)!important;font-family:var(--font-tile)!important}.wbSegments button[aria-pressed=true]{background:var(--tile);color:var(--text)}.wbWx{position:relative;display:block;flex:none;width:40px;height:40px;border-radius:var(--r-inner);background:var(--icon-bg);overflow:hidden}.wbWx>svg,.wbWx>canvas{display:block;width:100%;height:100%}.wbWx>canvas{image-rendering:pixelated}.wbWx.wbS60{width:60px;height:60px;border-radius:20px}.wbWx.wbS90{width:90px;height:90px;border-radius:28px}.wb[data-style=smooth] :is(.wbWx,.wbSky):after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;border-radius:inherit;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.3 0 0 0 -.15 1.3 0 0 0 -.15 1.3 0 0 0 -.15 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;mix-blend-mode:overlay;opacity:.3}.wbBaseRows{display:flex;flex-direction:column;gap:4px;width:100%}.wbBaseRow{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font:400 14px/20px var(--font)}.wbBaseRow>span:last-child{color:var(--text);white-space:nowrap}.wbBaseRow>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbRadar{position:relative;flex:1;align-self:stretch;min-height:80px;border-radius:var(--r-inner);overflow:hidden;background-color:var(--tile);background-image:linear-gradient(color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--text) 7%,transparent) 1px,transparent 1px);background-size:24px 24px;background-position:center}.wbRadarRing{position:absolute;left:50%;top:50%;width:64%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 20%,transparent)}.wbRadarRing:after{content:"";position:absolute;top:25%;right:25%;bottom:25%;left:25%;border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--text) 14%,transparent)}.wbRadarHome{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px var(--tile)}.wbWx.wbLineIcon{display:grid;place-items:center;background:var(--tile);color:var(--text)}.wbWx.wbLineIcon>svg{width:64%;height:64%}.wbWx.wbClear,.wbWx.wbPartly{background:var(--wx-clear)}.wbWx.wbCloudy{background:var(--wx-cloudy)}.wbWx.wbRain,.wbWx.wbSnow{background:#969696}.wbWx.wbNight{background:var(--wx-night)}.wbWx .wbBright{fill:var(--wx-cloud-bright)}.wbWx .wbCloudLight{fill:var(--wx-cloudy)}.wbWx .wbAccent{fill:var(--primary)}.wbWx :is(.wbSunDisc,.wbMoonPath,.wbBright,.wbCloudLight,.wbDrop,.wbFlake,.wbTwinkle){transform-box:fill-box;transform-origin:center}.wbMotion .wbWx .wbSunDisc{animation:wxBreathe 3.6s ease-in-out infinite}.wbMotion .wbWx .wbMoonPath{animation:wxBob 5.2s ease-in-out infinite}.wbMotion .wbWx :is(.wbBright,.wbCloudLight){animation:wxDrift 6.4s ease-in-out infinite}.wbMotion .wbWx .wbDrop{animation:wxFall .95s linear infinite}.wbMotion .wbWx .wbFlake{animation:wxSnow 3.2s linear infinite}.wbMotion .wbWx .wbTwinkle{animation:wxTwinkle 2.4s ease-in-out infinite}.wbCard.wbWeather{position:relative;display:flex;flex-direction:column;gap:12px;padding:18px}.wbClosed{display:contents}.wbWeather.wbIsOpen .wbClosed{visibility:hidden}.wbWeather .wbOpen{position:absolute;top:10px;right:10px;bottom:10px;left:10px;min-height:0}.wbWeather .wbOpen .wbGraph{min-height:0;padding:8px 14px 6px 8px}.wbDayTabs{display:flex}.wbNow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.wbCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}.wb button.wbOpenPage{padding:0;border:0;border-radius:var(--r-tile)!important;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}.wb button.wbOpenPage:focus-visible{outline:2px solid var(--primary)!important;outline-offset:4px!important}.wbTempBlock{display:flex;flex-direction:column;gap:4px;min-width:0}.wbTemp{display:flex;align-items:flex-start;gap:2px;white-space:nowrap}.wbDeg{font:500 64px/1 var(--font-tile);letter-spacing:-1.28px}.wbUnit,.wbRange{font:300 24px/1.25 var(--font-tile);white-space:nowrap}.wbPlace{color:var(--muted);font:600 14px/20px var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wbCondition{flex:none;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;padding:10px 16px;border-radius:var(--r-tile);background:var(--tile)}.wbCondName{font:400 18px/1.2 var(--font);letter-spacing:-.18px;white-space:nowrap}.wbColumns{display:flex;height:185px;border-radius:28px;overflow:hidden}.wbColumn{flex:1 0 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 0;border:0;border-radius:var(--r-tile);background:var(--tile);color:var(--text);font:inherit;cursor:pointer}.wb button.wbColumn{border-radius:var(--r-tile)!important}.wbColumn:hover{background:var(--hover);box-shadow:inset 0 0 0 .4px var(--line)}.wb button.wbColumn:focus-visible{outline:2px solid var(--primary)!important;outline-offset:-2px!important}.wbDay{font:400 14px/1.4 var(--font);white-space:nowrap}.wbTemps{display:flex;flex-direction:column;align-items:center;gap:8px}.wbHi{font:400 18px/20px var(--font-tile)}.wbLo{color:var(--muted);font:400 18px/1.2 var(--font);letter-spacing:-.18px}.wbAsNow{display:none}.wbHalves{display:none;grid-template-columns:repeat(2,minmax(0,1fr))}.wbNextHours{display:none;justify-content:space-between;align-items:center;gap:8px;min-width:0}.wbHour{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}.wbHourTime{color:var(--muted);font:400 14px/20px var(--font);white-space:nowrap}.wbHourTemp{font:400 18px/20px var(--font-tile);white-space:nowrap}.wbHour .wbWx.wbS40{width:40px;height:40px;border-radius:16px}.wbSummary{position:relative;flex:1 1 0;min-height:0;margin-top:-12px;container:wbsum/size}.wbSummaryText{position:absolute;top:12px;left:0;right:0;margin:0;color:var(--text);font:400 16px/22px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}@container wbsum (height < 56px){.wbSummaryText{-webkit-line-clamp:1}}@container wbsum (height < 34px){.wbSummaryText{display:none}}@container wb-card (width < 480px){.wbColumn .wbWx.wbS60{width:48px;height:48px;border-radius:16px}}@container wb-card (width < 400px){.wbSummary{display:none}.wbCard.wbWeather{gap:16px;padding:18px 18px 10px}.wbWeather .wbWx.wbS90{width:60px;height:60px;border-radius:20px}.wbDeg{font-size:46px;letter-spacing:-.92px}.wbRange{font-size:20px}.wbCondition{align-self:flex-start;gap:0;border-radius:28px}.wbColumns{display:none}.wbHalves{display:grid}.wbWeather .wbDcX .wbMinor{display:none}}@container wb-card (width < 280px){.wbHalves{grid-template-columns:1fr}}.wbCard.wbHourly{flex:1}.wbTabs{padding:0 18px}.wbStripScroll{flex:1;min-height:160px;display:flex;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border-radius:var(--r-tile);-webkit-user-select:none;user-select:none}.wbStripScroll::-webkit-scrollbar{display:none}.wbStripScroll.wbDragging{cursor:grabbing}.wbStrip{flex:none;display:flex;flex-direction:column;gap:8px;min-width:100%;box-sizing:border-box;padding:0 10px}.wbRow{position:relative;flex:none}.wbTimes{height:20px}.wbValues{height:44px}.wbMark{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;transform:translate(-50%);white-space:nowrap}.wbMark.wbFirst{align-items:flex-start;transform:none}.wbTimes .wbMark{font:400 14px/20px var(--font);font-variant-numeric:tabular-nums}.wbTimes .wbMark.wbFirst{font:600 14px/20px var(--font-tile)}.wbSky{position:relative;flex:1;min-height:72px;border-radius:var(--r-inner);overflow:hidden}.wbStripScroll.wbPaged{container-type:inline-size;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}.wbStripScroll.wbPaged.wbHeld{scroll-snap-type:none}.wbPaged .wbStrip{position:relative;min-width:0;padding:0}.wbSnap{position:absolute;top:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}.wbMark.wbLast{align-items:flex-end;transform:translate(-100%)}.wbPaged .wbTimes .wbMark.wbFirst{font:400 14px/20px var(--font)}.wbPaged .wbTimes .wbMark.wbNowMark{font:600 14px/20px var(--font-tile)}.wbSky .wbPast{position:absolute;top:0;bottom:0;left:0;background:var(--card);opacity:.45;pointer-events:none}.wbSky .wbNowLine{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--text);opacity:.55;pointer-events:none}.wbSky.wbLineSky{background:var(--tile);color:var(--text)}.wbLineArt{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;overflow:visible}.wbLineArt .wbLineArc{fill:none;stroke:var(--text);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}.wbLineArt .wbLineHorizon{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.35}.wbLineArt .wbLineNight{fill:var(--text);opacity:.07}.wbLineArt .wbLineEdge{stroke:var(--text);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.3}.wbLineTime{position:absolute;top:calc(80% + 4px);transform:translate(-50%);color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none}.wbLineNow{position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);border-radius:50%;background:var(--tile);pointer-events:none}.wbLineNow>svg,.wbLineGlyph>svg{display:block;width:100%;height:100%}.wbLineGlyph{position:absolute;top:calc(50% - 14px);width:28px;height:28px;transform:translate(-50%);pointer-events:none}.wbLineGlyph.wbFirst{transform:none}.wbLineGlyph.wbLast{transform:translate(-100%)}.wbSky .wbMidnight{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--text);opacity:.5;pointer-events:none}.wbDays{position:absolute;top:36px;left:0;z-index:1;display:flex;pointer-events:none}.wbDaySpan{flex:none;min-width:0}.wbDayName{position:sticky;left:8px;margin-left:8px;height:26px;min-height:0;padding:0 10px;border:0;background:color-mix(in srgb,var(--card) 82%,transparent);color:var(--text);font:600 13px/26px var(--font-tile);white-space:nowrap;cursor:pointer;pointer-events:auto}.wb .wbDayName{border-radius:13px!important;font-family:var(--font-tile)!important}.wbViews button{padding:2px 10px;font-size:13px}.wbBars .wbDayBars{flex:1 1 0;min-height:160px;display:flex;flex-direction:column;padding:0 18px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}.wbBars.wbTabbed .wbDayBars{min-height:206px}.wbDayBar{flex:1 0 auto;display:grid;grid-template-columns:minmax(56px,auto) 40px 36px minmax(0,1fr) 36px;align-items:center;column-gap:12px;min-height:48px;box-shadow:inset 0 -.4px 0 var(--line)}.wbDayBar:last-child{box-shadow:none}.wbRangeDay{color:var(--text);font:600 14px/20px var(--font-tile);white-space:nowrap}.wbRangeLo{color:var(--muted);text-align:right;font:400 16px/20px var(--font);font-variant-numeric:tabular-nums}.wbRangeHi{color:var(--text);text-align:right;font:400 16px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbRangeTrack{position:relative;height:6px;border-radius:3px;background:var(--tile)}.wbRangeFill{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:3px}.wbRangeNow{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--card)}.wbSkyArt{position:absolute;top:0;height:100%}.wbSkyArt>canvas{display:block;width:100%;height:100%}.wbSkyArt>canvas.wbPixels{image-rendering:pixelated}.wbPrimaryV{font:400 18px/20px var(--font-tile);font-variant-numeric:tabular-nums}.wbSecondary{min-height:20px;color:var(--muted);font:400 15px/20px var(--font)}@container wb-card (width < 480px){.wbHourly :is(.wbHeader,.wbTabs){padding:0 8px}.wbBars .wbDayBars{padding:0 8px;min-height:380px}.wbBars.wbTabbed .wbDayBars{min-height:426px}.wbDayBar{column-gap:8px}.wbStripScroll{min-height:380px}}.wbSunSky{flex:1;min-height:0;display:flex;border-radius:16px;overflow:hidden;transition:background 1s ease}.wbSunSky svg{display:block;width:100%;height:100%;overflow:visible}.wbSunPath{fill:none;stroke:var(--wb-sun-line);stroke-opacity:.4;stroke-width:28.3}.wbHorizon{stroke:var(--wb-sun-line);stroke-opacity:.3;stroke-width:1}.wbSunTime{fill:var(--wb-sun-line);font-size:13px;font-weight:600;text-anchor:middle}.wbSunTime.wbNoon{dominant-baseline:central}.wbMoonBox{flex:1;min-height:0;display:flex;justify-content:center}.wbMoonArt{display:block;flex:none;width:auto;height:100%;max-width:100%}.wbMoonCaption{gap:8px}.wbMoonCaption span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbMoonCaption span:last-child{flex:none}.wbMaria{fill:#7d7d78}.wbCrater{fill:#00000017}.wbRays{stroke:#fff;stroke-width:1.2;stroke-linecap:round;opacity:.16}.wbBrightSpots{fill:#fff;opacity:.25}.wbBrightCenter{fill:#f6f6f2;opacity:.75}.wbMottle{opacity:.3;mix-blend-mode:multiply}.wbGrain{opacity:.12;mix-blend-mode:multiply}.wbMoonNight{fill:#0a0a0ebf}.wbWind .wbVisual>svg{overflow:visible}.wbTick{stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}.wbTick.wbMajor{stroke:var(--text);stroke-width:3}.wbLetter{fill:var(--muted);font-size:15px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbLetter.wbNorth{fill:var(--text)}.wbMarker{fill:var(--primary)}.wbDisc{fill:var(--text)}.wbSpeed{fill:var(--card);font-size:34px;font-weight:500;letter-spacing:-.5px;text-anchor:middle;dominant-baseline:central}.wbSpeedUnit{fill:var(--card);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central;opacity:.7}.wbWater{position:absolute;left:0;right:0;bottom:0;transition:height 1.2s ease}.wbWater .wbBody{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,#b2e5fc2e,#81d4fa52,#4fc3f76b 70%,#03a9f48c);-webkit-mask-image:linear-gradient(180deg,transparent,#000 26px);mask-image:linear-gradient(180deg,transparent,#000 26px)}.wbWater .wbMist{position:absolute;left:-10%;right:-10%;bottom:calc(100% - 26px);height:60px;background:radial-gradient(ellipse at 50% 100%,#b2e5fc4d,#b2e5fc00 70%);filter:blur(8px)}.wbWater .wbHaze{position:absolute;width:80%;height:45%;border-radius:50%;background:radial-gradient(closest-side,#ffffff38,#fff0);filter:blur(10px);animation:wbDrift 16s ease-in-out infinite alternate}.wbWater .wbHaze.wbOne{left:-15%;top:8%}.wbWater .wbHaze.wbTwo{right:-20%;top:40%;animation-duration:21s;animation-direction:alternate-reverse}@keyframes wbDrift{0%{transform:translate(-12%)}to{transform:translate(18%)}}.wbWaterValue{flex:1;display:flex;align-items:flex-end}.wbSea{position:relative;flex:1;min-height:0;border-radius:16px;overflow:hidden;--wb-sea-inset:clamp(8.88px,calc(4.76cqw * var(--wb-k,1)),12px)}.wbSeaArt{position:absolute;top:0;right:0;bottom:0;left:0;display:block;width:100%;height:100%;image-rendering:pixelated}.wbSeaFact{position:absolute;top:clamp(7px,calc(3.97cqw * var(--wb-k,1)),10px);inset-inline:var(--wb-sea-inset);color:#26221e;font:600 clamp(9.44px,calc(5.47cqw * var(--wb-k,1)),13.78px)/1.23 var(--font-tile)}.wbSeaValue{position:absolute;bottom:var(--wb-sea-inset);inset-inline-start:var(--wb-sea-inset);color:#fff;text-shadow:0 0 2px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}.wbSeaValue .wbUnitV{color:inherit}.wbVu{display:block;width:100%;height:100%;min-height:0;overflow:visible}.wbVuZone{fill:none;stroke-width:12.3;stroke-linecap:butt}.wbVuTick{stroke:var(--muted);stroke-width:.95;stroke-linecap:round}.wbVuTick.wbMajor{stroke:var(--text);stroke-width:1.9}.wbVisual svg text.wbVuLabel{fill:var(--muted);font-family:"Alfarn",var(--font-tile);font-size:18.9px;font-weight:600;letter-spacing:.08em;text-anchor:middle;dominant-baseline:central}.wbVuNeedle{transform-box:view-box;transform-origin:100px 130px;transform:rotate(var(--wb-angle));animation:wbSwing 1.4s cubic-bezier(.3,1.6,.5,1);transition:transform 1s cubic-bezier(.3,1.6,.5,1)}.wbVuNeedle line{stroke:#e0574d;stroke-width:2;stroke-linecap:round}@keyframes wbSwing{0%{transform:rotate(-48deg)}}.wbVuHousing{fill:var(--tile)}.wbVuValue{fill:var(--text);font-size:30.2px;font-weight:600;text-anchor:middle;dominant-baseline:central}@media (prefers-reduced-motion:reduce){.wbWater .wbHaze,.wbVuNeedle{animation:none}}.wbTapeRow{flex:1;min-height:0;display:flex;align-items:stretch;gap:8px}.wbTapeValue{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}.wbTapeUnit{color:var(--muted);font:300 clamp(13px,7.1cqw,18px)/1.25 var(--font-tile)}.wbTape{flex:none;width:40%;height:100%}.wbTapeTick{stroke:var(--text);stroke-width:2;stroke-linecap:round}.wbTapeLabel{fill:var(--text);font-size:15px;dominant-baseline:central}.wbTapeEnd{fill:var(--muted);font-size:14px;font-weight:600;text-anchor:middle;dominant-baseline:central}.wbTapeMarker{stroke:#e0574d;stroke-width:4;stroke-linecap:round}.wbCompare{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) calc(50% - 28px * var(--wb-k));grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch}.wbCompareText{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0}.wbCompareNumber{font:500 calc(26.4cqw * var(--wb-k)) / 1 var(--font-tile);letter-spacing:-.02em;white-space:nowrap}.wbCompareWords{color:var(--muted);font:300 clamp(14px,calc(7.1cqw * var(--wb-k)),18px) / 1.25 var(--font-tile)}.wbCompareTemps{margin-top:6px;font:400 clamp(12px,calc(5.6cqw * var(--wb-k)),14px) / 1.4 var(--font)}.wbCompareBars{display:block;width:100%;height:100%;min-height:0}.wbAvgValue{fill:var(--muted);font-size:10px;text-anchor:middle}.wbAvgValue.wbToday{fill:var(--text);font-size:12px;font-weight:600}.wbAvgBar{fill:var(--muted);opacity:.45}.wbAvgBar.wbToday{fill:var(--primary);opacity:1}.wbAvgDay{fill:var(--muted);font-size:11px;text-anchor:middle}.wbAvgDay.wbToday{fill:var(--text);font-weight:600}.wbAvgLine{stroke:var(--text);stroke-width:1;stroke-dasharray:3 4;opacity:.6}.wbCard.wbHc.wbAqOpen{padding:var(--inset);min-height:243px}.wbAqTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@container wb-card (width < 280px){.wbAqTiles{grid-template-columns:1fr}}.wbAq .wbGraph{gap:10px}.wbScale{position:relative;height:4px;border-radius:9999px}.wbScale i{position:absolute;top:50%;box-sizing:content-box;width:10px;height:10px;border-radius:50%;background-color:var(--text);border:2px solid var(--wb-scale-edge);transform:translate(-50%,-50%)}`, Gp = `<main id="app"><div class="shell">
 <div class="toast" id="toast" aria-live="polite"></div>
 
 <!-- HOME -->
@@ -736,8 +736,8 @@ function Vd(n, l = rn) {
     rain: jd.map(() => ({ o: 0, dy: -16 })),
     snow: zd.map(() => ({ o: 0, dy: -16 })),
     bolt: { o: 0, dy: -10 }
-  }, R = (vt) => qd.map(() => ({ o: vt }));
-  return b === "clear" ? w ? (y.moon.o = 1, y.stars = R(1)) : y.sun.o = 1 : b === "partly" ? (y.cloud = { x: 52.83, y: 52.83, w: 58.7, o: 1, f: w ? 1 : 0 }, w ? (y.moon = { x: 34, y: 33, d: 48, o: 1 }, y.stars = R(0.7)) : y.sun = { x: 35.22, y: 33.26, r: 23.48, o: 1 }) : b === "cloudy" || b === "fog" ? (y.cloud = { x: 45, y: 42.99, w: 66.52, o: 1, f: w ? 1 : 0 }, w ? y.moon = { x: 40, y: 36, d: 40, o: 0 } : y.sun = { x: 40, y: 36, r: 20, o: 0 }) : (y.cloud = { x: 45, y: 33.26, w: 58.7, o: 1, f: 1 }, w ? y.moon = { x: 38, y: 28, d: 36, o: 0 } : y.sun = { x: 38, y: 28, r: 18, o: 0 }, b === "snow" ? y.snow = zd.map(() => ({ o: 1, dy: 0 })) : y.rain = jd.map((vt, rt) => ({ o: b === "storm" && rt === 1 ? 0 : 1, dy: 0 })), b === "storm" && (y.bolt = { o: 1, dy: 0 })), y;
+  }, B = (vt) => qd.map(() => ({ o: vt }));
+  return b === "clear" ? w ? (y.moon.o = 1, y.stars = B(1)) : y.sun.o = 1 : b === "partly" ? (y.cloud = { x: 52.83, y: 52.83, w: 58.7, o: 1, f: w ? 1 : 0 }, w ? (y.moon = { x: 34, y: 33, d: 48, o: 1 }, y.stars = B(0.7)) : y.sun = { x: 35.22, y: 33.26, r: 23.48, o: 1 }) : b === "cloudy" || b === "fog" ? (y.cloud = { x: 45, y: 42.99, w: 66.52, o: 1, f: w ? 1 : 0 }, w ? y.moon = { x: 40, y: 36, d: 40, o: 0 } : y.sun = { x: 40, y: 36, r: 20, o: 0 }) : (y.cloud = { x: 45, y: 33.26, w: 58.7, o: 1, f: 1 }, w ? y.moon = { x: 38, y: 28, d: 36, o: 0 } : y.sun = { x: 38, y: 28, r: 18, o: 0 }, b === "snow" ? y.snow = zd.map(() => ({ o: 1, dy: 0 })) : y.rain = jd.map((vt, st) => ({ o: b === "storm" && st === 1 ? 0 : 1, dy: 0 })), b === "storm" && (y.bolt = { o: 1, dy: 0 })), y;
 }
 const hc = {
   cloud: { enter: [0, 0.55, "dec"], leave: [0.25, 0.8, "acc"], stay: [0.1, 0.75, "std"] },
@@ -746,34 +746,34 @@ const hc = {
   sky: [0.1, 0.8, "std"]
 };
 function Zp(n, l, o, c = rn, m = !1) {
-  const b = { ...rn, ...c }, w = (Y, $) => Y > 0.01 && $ > 0.01 ? "stay" : Y > 0.01 ? "leave" : $ > 0.01 ? "enter" : "none", L = (Y, $, nt, K) => {
-    const U = Y[0] + $ * K, W = Y[1] - (nt - 1 - $) * K;
+  const b = { ...rn, ...c }, w = (Y, X) => Y > 0.01 && X > 0.01 ? "stay" : Y > 0.01 ? "leave" : X > 0.01 ? "enter" : "none", L = (Y, X, ot, K) => {
+    const U = Y[0] + X * K, W = Y[1] - (ot - 1 - X) * K;
     return Yp[Y[2]](on((o - U) / Math.max(1e-3, W - U)));
-  }, y = (Y, $, nt, K = 0, U = 1, W = 0) => {
-    const ut = w(Y.o, $.o);
-    if (ut === "none") return { ...$, o: 0 };
-    const tt = L(hc[nt][ut], K, U, W), ft = {};
-    for (const J in $) ft[J] = m && ut !== "stay" && J !== "o" ? ut === "leave" ? Y[J] : $[J] : pc(Y[J], $[J], tt);
+  }, y = (Y, X, ot, K = 0, U = 1, W = 0) => {
+    const ut = w(Y.o, X.o);
+    if (ut === "none") return { ...X, o: 0 };
+    const et = L(hc[ot][ut], K, U, W), ft = {};
+    for (const tt in X) ft[tt] = m && ut !== "stay" && tt !== "o" ? ut === "leave" ? Y[tt] : X[tt] : pc(Y[tt], X[tt], et);
     return ft;
-  }, R = L(hc.sky, 0, 1, 0);
-  let vt, rt;
+  }, B = L(hc.sky, 0, 1, 0);
+  let vt, st;
   if (n.night !== l.night) {
-    const Y = Math.min(n.clearness, l.clearness), $ = ta(ta(n.sky, l.sky, 0.5), b.dusk, 0.6 * Y);
-    vt = R < 0.5 ? ta(n.sky, $, R * 2) : ta($, l.sky, R * 2 - 1), rt = Y > 0.5 ? [n.sky, b.dusk, l.sky] : [n.sky, l.sky];
+    const Y = Math.min(n.clearness, l.clearness), X = ta(ta(n.sky, l.sky, 0.5), b.dusk, 0.6 * Y);
+    vt = B < 0.5 ? ta(n.sky, X, B * 2) : ta(X, l.sky, B * 2 - 1), st = Y > 0.5 ? [n.sky, b.dusk, l.sky] : [n.sky, l.sky];
   } else
-    vt = ta(n.sky, l.sky, R), rt = [n.sky, l.sky];
+    vt = ta(n.sky, l.sky, B), st = [n.sky, l.sky];
   return {
     night: o < 0.5 ? n.night : l.night,
     clearness: pc(n.clearness, l.clearness, o),
     sky: vt,
-    skyStops: rt,
-    skyT: R,
+    skyStops: st,
+    skyT: B,
     sun: y(n.sun, l.sun, "body"),
     moon: y(n.moon, l.moon, "body"),
     cloud: y(n.cloud, l.cloud, "cloud"),
-    stars: l.stars.map((Y, $) => y(n.stars[$], Y, "fx", $, l.stars.length, 0.05)),
-    rain: l.rain.map((Y, $) => y(n.rain[$], Y, "fx", $, l.rain.length, 0.05)),
-    snow: l.snow.map((Y, $) => y(n.snow[$], Y, "fx", $, l.snow.length, 0.05)),
+    stars: l.stars.map((Y, X) => y(n.stars[X], Y, "fx", X, l.stars.length, 0.05)),
+    rain: l.rain.map((Y, X) => y(n.rain[X], Y, "fx", X, l.rain.length, 0.05)),
+    snow: l.snow.map((Y, X) => y(n.snow[X], Y, "fx", X, l.snow.length, 0.05)),
     bolt: y(n.bolt, l.bolt, "fx")
   };
 }
@@ -851,9 +851,9 @@ const Kp = [
   return c;
 };
 function dp(n, { size: l = 90, px: o = 2, oneBit: c = !1, colors: m = rn, ink: b = "#26221e", paper: w = "#fbf9f6", clock: L = 0, idle: y = !1 } = {}) {
-  const R = { ...rn, ...m }, vt = Math.sin, rt = Math.PI * 2, Y = Math.max(6, Math.round(l / o)), $ = Y / 90, nt = y ? Math.floor(L / 100) * 100 : 0, K = y ? vt(rt * nt / 3600) : 0, U = y ? 1.8 * vt(rt * nt / 6400) : 0, W = y ? 0.9 * vt(rt * nt / 4100) : 0, ut = y ? 0.8 * vt(rt * nt / 5200) : 0, tt = nt / 3400 % 1, ft = y && n.bolt.o > 0.5 && (tt < 0.04 || tt > 0.08 && tt < 0.11), J = new Array(Y * Y), _ = new Uint8Array(Y * Y), P = (M, E, A, I, mt) => {
-    A == null || M < 0 || E < 0 || M >= Y || E >= Y || (I >= 1 || I > nn(M + 5, E + 3)) && (J[E * Y + M] = A, _[E * Y + M] = mt);
-  }, st = (M, E, A, I) => {
+  const B = { ...rn, ...m }, vt = Math.sin, st = Math.PI * 2, Y = Math.max(6, Math.round(l / o)), X = Y / 90, ot = y ? Math.floor(L / 100) * 100 : 0, K = y ? vt(st * ot / 3600) : 0, U = y ? 1.8 * vt(st * ot / 6400) : 0, W = y ? 0.9 * vt(st * ot / 4100) : 0, ut = y ? 0.8 * vt(st * ot / 5200) : 0, et = ot / 3400 % 1, ft = y && n.bolt.o > 0.5 && (et < 0.04 || et > 0.08 && et < 0.11), tt = new Array(Y * Y), _ = new Uint8Array(Y * Y), P = (M, E, A, I, mt) => {
+    A == null || M < 0 || E < 0 || M >= Y || E >= Y || (I >= 1 || I > nn(M + 5, E + 3)) && (tt[E * Y + M] = A, _[E * Y + M] = mt);
+  }, lt = (M, E, A, I) => {
     for (let mt = Math.max(0, Math.floor(E - A) - 1); mt <= Math.min(Y - 1, E + A + 1); mt++) for (let j = Math.max(0, Math.floor(M - A) - 1); j <= Math.min(Y - 1, M + A + 1); j++) I(j, mt, j + 0.5 - M, mt + 0.5 - E);
   }, _t = n.skyStops || [n.sky], H = n.skyT || 0;
   for (let M = 0; M < Y; M++) {
@@ -864,104 +864,104 @@ function dp(n, { size: l = 90, px: o = 2, oneBit: c = !1, colors: m = rn, ink: b
         const mt = H * (_t.length - 1), j = Math.min(_t.length - 2, Math.floor(mt));
         I = mt - j > nn(A, M) ? _t[j + 1] : _t[j];
       }
-      E > nn(A + 2, M + 5) && (I = n.night ? ta(I, "#000000", 0.28) : ta(I, "#ffffff", 0.2)), J[M * Y + A] = ft ? ta(I, "#ffffff", 0.25) : I;
+      E > nn(A + 2, M + 5) && (I = n.night ? ta(I, "#000000", 0.28) : ta(I, "#ffffff", 0.2)), tt[M * Y + A] = ft ? ta(I, "#ffffff", 0.25) : I;
     }
   }
   if (n.sun.o > 0.01) {
-    const M = n.sun.x * $, E = n.sun.y * $, A = Math.max(1, n.sun.r * $);
+    const M = n.sun.x * X, E = n.sun.y * X, A = Math.max(1, n.sun.r * X);
     if (y) {
-      const I = A * (1.45 + 0.06 * K), mt = ta(R.sun, "#ffffff", 0.55);
-      if (st(M, E, I, (j, dt, gt, yt) => {
+      const I = A * (1.45 + 0.06 * K), mt = ta(B.sun, "#ffffff", 0.55);
+      if (lt(M, E, I, (j, ct, gt, yt) => {
         const $t = Math.sqrt(gt * gt + yt * yt);
-        $t > A && $t < I && P(j, dt, mt, 0.26 * (1 - ($t - A) / (I - A)) * n.sun.o, $p);
+        $t > A && $t < I && P(j, ct, mt, 0.26 * (1 - ($t - A) / (I - A)) * n.sun.o, $p);
       }), n.sun.o > 0.5) {
-        const j = Math.floor(nt / 500) % 2, dt = Math.max(1, A * 0.22);
-        for (let gt = 0; gt < 8; gt++) if (gt % 2 === j) for (let yt = A + 1.5; yt < A + 1.5 + dt; yt += 0.7) P(Math.floor(M + Math.cos(gt * Math.PI / 4) * yt), Math.floor(E + Math.sin(gt * Math.PI / 4) * yt), R.sun, n.sun.o, Xd);
+        const j = Math.floor(ot / 500) % 2, ct = Math.max(1, A * 0.22);
+        for (let gt = 0; gt < 8; gt++) if (gt % 2 === j) for (let yt = A + 1.5; yt < A + 1.5 + ct; yt += 0.7) P(Math.floor(M + Math.cos(gt * Math.PI / 4) * yt), Math.floor(E + Math.sin(gt * Math.PI / 4) * yt), B.sun, n.sun.o, Xd);
       }
     }
-    st(M, E, A, (I, mt, j, dt) => {
-      if (j * j + dt * dt > A * A) return;
-      const gt = ((j * 0.643 + dt * 0.766) / A + 1) / 2;
-      P(I, mt, on((gt - 0.62) / 0.38) > nn(I, mt) ? R.sunEdge : R.sun, n.sun.o, Yd);
+    lt(M, E, A, (I, mt, j, ct) => {
+      if (j * j + ct * ct > A * A) return;
+      const gt = ((j * 0.643 + ct * 0.766) / A + 1) / 2;
+      P(I, mt, on((gt - 0.62) / 0.38) > nn(I, mt) ? B.sunEdge : B.sun, n.sun.o, Yd);
     });
   }
   if (qd.forEach((M, E) => {
     const A = n.stars[E].o;
     if (A < 0.01) return;
-    const I = Math.floor(M[0] * $), mt = Math.floor(M[1] * $), j = y ? (Math.floor(nt / 300) + E * 3) % 6 : 0;
+    const I = Math.floor(M[0] * X), mt = Math.floor(M[1] * X), j = y ? (Math.floor(ot / 300) + E * 3) % 6 : 0;
     if (j === 5) return;
-    const dt = Math.round(M[2] * $ * (j === 4 ? 0.3 : j < 2 ? 1 : 0.6));
-    P(I, mt, R.star, A, Gi);
-    for (let gt = 1; gt <= dt; gt++) {
-      const yt = gt === dt && dt > 1 ? ta(R.star, n.sky, 0.5) : R.star;
+    const ct = Math.round(M[2] * X * (j === 4 ? 0.3 : j < 2 ? 1 : 0.6));
+    P(I, mt, B.star, A, Gi);
+    for (let gt = 1; gt <= ct; gt++) {
+      const yt = gt === ct && ct > 1 ? ta(B.star, n.sky, 0.5) : B.star;
       P(I - gt, mt, yt, A, Gi), P(I + gt, mt, yt, A, Gi), P(I, mt - gt, yt, A, Gi), P(I, mt + gt, yt, A, Gi);
     }
   }), n.moon.o > 0.01) {
-    const M = Math.max(1.5, n.moon.d * $ * 0.37), E = n.moon.x * $, A = n.moon.y * $ + (y && ut > 0.4 ? -1 : 0), I = E + 0.547 * M, mt = A - 0.503 * M, j = 0.82 * M, dt = ta(R.moon, "#ffffff", 0.6);
-    st(E, A, M, (gt, yt, $t, le) => {
+    const M = Math.max(1.5, n.moon.d * X * 0.37), E = n.moon.x * X, A = n.moon.y * X + (y && ut > 0.4 ? -1 : 0), I = E + 0.547 * M, mt = A - 0.503 * M, j = 0.82 * M, ct = ta(B.moon, "#ffffff", 0.6);
+    lt(E, A, M, (gt, yt, $t, le) => {
       if ($t * $t + le * le > M * M) return;
       const Ae = gt + 0.5 - I, Ca = yt + 0.5 - mt;
-      Ae * Ae + Ca * Ca <= j * j || P(gt, yt, on((le + M) / (2 * M) * 1.1 - 0.1) > nn(gt, yt) ? R.moon : dt, n.moon.o, Zd);
+      Ae * Ae + Ca * Ca <= j * j || P(gt, yt, on((le + M) / (2 * M) * 1.1 - 0.1) > nn(gt, yt) ? B.moon : ct, n.moon.o, Zd);
     });
   }
-  const It = Math.max(2, Math.round(15.65 * $)), G = Math.max(1, Math.round(5.87 * $ * 0.5));
+  const It = Math.max(2, Math.round(15.65 * X)), G = Math.max(1, Math.round(5.87 * X * 0.5));
   jd.forEach((M, E) => {
     const A = n.rain[E];
     let I = A.dy, mt = A.o;
     if (mt < 0.01) return;
     if (y) {
-      const gt = (nt / 950 + E / 3) % 1;
+      const gt = (ot / 950 + E / 3) % 1;
       I += -5 + gt * 14, mt *= gt < 0.18 ? gt / 0.18 : gt > 0.72 ? (1 - gt) / 0.28 : 1;
     }
-    const j = (M[0] + 3 + U) * $, dt = (M[1] + I) * $;
-    for (let gt = 0; gt < It; gt++) for (let yt = 0; yt < G; yt++) P(Math.floor(j - 0.208 * gt) + yt, Math.floor(dt) + gt, R.rain, mt, $d);
+    const j = (M[0] + 3 + U) * X, ct = (M[1] + I) * X;
+    for (let gt = 0; gt < It; gt++) for (let yt = 0; yt < G; yt++) P(Math.floor(j - 0.208 * gt) + yt, Math.floor(ct) + gt, B.rain, mt, $d);
   });
-  const Wt = Math.max(0, Math.round(7.34 * $ / 2.6));
+  const Wt = Math.max(0, Math.round(7.34 * X / 2.6));
   if (zd.forEach((M, E) => {
     const A = n.snow[E];
     let I = A.dy, mt = 0, j = A.o;
     if (j < 0.01) return;
     if (y) {
-      const yt = (nt / 3200 + E / 5) % 1;
-      I += -6 + yt * 14, mt = 1.5 * vt(rt * (yt * 1.5 + E / 5)), j *= yt < 0.2 ? yt / 0.2 : yt > 0.75 ? (1 - yt) / 0.25 : 1;
+      const yt = (ot / 3200 + E / 5) % 1;
+      I += -6 + yt * 14, mt = 1.5 * vt(st * (yt * 1.5 + E / 5)), j *= yt < 0.2 ? yt / 0.2 : yt > 0.75 ? (1 - yt) / 0.25 : 1;
     }
-    const dt = Math.floor((M[0] + 3.67 + mt + U) * $), gt = Math.floor((M[1] + 3.67 + I) * $);
-    P(dt, gt, R.snow, j, an);
+    const ct = Math.floor((M[0] + 3.67 + mt + U) * X), gt = Math.floor((M[1] + 3.67 + I) * X);
+    P(ct, gt, B.snow, j, an);
     for (let yt = 1; yt <= Wt; yt++)
-      P(dt - yt, gt, R.snow, j, an), P(dt + yt, gt, R.snow, j, an), P(dt, gt - yt, R.snow, j, an), P(dt, gt + yt, R.snow, j, an), Wt > 1 && yt < Wt && (P(dt - yt, gt - yt, R.snow, j, an), P(dt + yt, gt - yt, R.snow, j, an), P(dt - yt, gt + yt, R.snow, j, an), P(dt + yt, gt + yt, R.snow, j, an));
+      P(ct - yt, gt, B.snow, j, an), P(ct + yt, gt, B.snow, j, an), P(ct, gt - yt, B.snow, j, an), P(ct, gt + yt, B.snow, j, an), Wt > 1 && yt < Wt && (P(ct - yt, gt - yt, B.snow, j, an), P(ct + yt, gt - yt, B.snow, j, an), P(ct - yt, gt + yt, B.snow, j, an), P(ct + yt, gt + yt, B.snow, j, an));
   }), n.bolt.o > 0.01)
     if (Y >= 30) {
       const M = 39 + U, E = 50 + n.bolt.dy;
-      for (let A = Math.floor(E * $); A <= (E + 28) * $; A++) for (let I = Math.floor(M * $); I <= (M + 13) * $; I++)
-        lp(Jp, (I + 0.5) / $ - M, (A + 0.5) / $ - E) && P(I, A, R.sun, n.bolt.o, fs);
+      for (let A = Math.floor(E * X); A <= (E + 28) * X; A++) for (let I = Math.floor(M * X); I <= (M + 13) * X; I++)
+        lp(Jp, (I + 0.5) / X - M, (A + 0.5) / X - E) && P(I, A, B.sun, n.bolt.o, fs);
     } else {
       const M = Y / 18, E = 7, A = 10 + Math.round(n.bolt.dy * 0.2);
-      Xp.forEach((I, mt) => I.split("").forEach((j, dt) => {
+      Xp.forEach((I, mt) => I.split("").forEach((j, ct) => {
         if (j !== "#") return;
-        const gt = Math.floor((E + dt) * M), yt = Math.floor((A + mt) * M);
-        for (let $t = yt; $t < Math.max(yt + 1, Math.floor((A + mt + 1) * M)); $t++) for (let le = gt; le < Math.max(gt + 1, Math.floor((E + dt + 1) * M)); le++) P(le, $t, R.sun, n.bolt.o, fs);
+        const gt = Math.floor((E + ct) * M), yt = Math.floor((A + mt) * M);
+        for (let $t = yt; $t < Math.max(yt + 1, Math.floor((A + mt + 1) * M)); $t++) for (let le = gt; le < Math.max(gt + 1, Math.floor((E + ct + 1) * M)); le++) P(le, $t, B.sun, n.bolt.o, fs);
       }));
     }
   if (n.cloud.o > 0.01) {
-    const M = Math.max(3, n.cloud.w * $), E = M * 0.6665, A = (n.cloud.x + U) * $ - M / 2, I = (n.cloud.y + W) * $ - E / 2, mt = ta(R.cloudDay, R.cloudNight, Math.round(n.cloud.f * 4) / 4), j = ta(mt, "#000000", 0.16);
-    for (let dt = Math.max(0, Math.floor(I) - 1); dt <= Math.min(Y - 1, I + E + 1); dt++) for (let gt = Math.max(0, Math.floor(A) - 1); gt <= Math.min(Y - 1, A + M + 1); gt++) {
-      const yt = (gt + 0.5 - A) / M, $t = (dt + 0.5 - I) / M;
-      ql(yt, $t) && P(gt, dt, !ql(yt, $t + 1 / M) || on(($t - 0.42) / 0.25) * 0.8 > nn(gt, dt) ? j : mt, n.cloud.o, Kd);
+    const M = Math.max(3, n.cloud.w * X), E = M * 0.6665, A = (n.cloud.x + U) * X - M / 2, I = (n.cloud.y + W) * X - E / 2, mt = ta(B.cloudDay, B.cloudNight, Math.round(n.cloud.f * 4) / 4), j = ta(mt, "#000000", 0.16);
+    for (let ct = Math.max(0, Math.floor(I) - 1); ct <= Math.min(Y - 1, I + E + 1); ct++) for (let gt = Math.max(0, Math.floor(A) - 1); gt <= Math.min(Y - 1, A + M + 1); gt++) {
+      const yt = (gt + 0.5 - A) / M, $t = (ct + 0.5 - I) / M;
+      ql(yt, $t) && P(gt, ct, !ql(yt, $t + 1 / M) || on(($t - 0.42) / 0.25) * 0.8 > nn(gt, ct) ? j : mt, n.cloud.o, Kd);
     }
   }
-  return cp(J, _, Y, Y, { oneBit: c, ink: b, paper: w, snowInk: !n.night });
+  return cp(tt, _, Y, Y, { oneBit: c, ink: b, paper: w, snowInk: !n.night });
 }
 function cp(n, l, o, c, { oneBit: m, ink: b, paper: w, snowInk: L }) {
-  const y = new Uint8ClampedArray(o * c * 4), R = Fl(b), vt = Fl(w);
-  for (let rt = 0; rt < c; rt++) for (let Y = 0; Y < o; Y++) {
-    const $ = rt * o + Y, nt = l[$];
-    if (n[$] == null) continue;
-    let K = Fl(n[$]);
+  const y = new Uint8ClampedArray(o * c * 4), B = Fl(b), vt = Fl(w);
+  for (let st = 0; st < c; st++) for (let Y = 0; Y < o; Y++) {
+    const X = st * o + Y, ot = l[X];
+    if (n[X] == null) continue;
+    let K = Fl(n[X]);
     if (m) {
       let U;
-      nt === $d || nt === Xd ? U = !0 : nt === an ? U = L : nt === Gi || nt === fs ? U = !1 : U = Math.round((0.2126 * K[0] + 0.7152 * K[1] + 0.0722 * K[2]) / 255 * 4) / 4 <= nn(Y, rt), (nt === Yd || nt === Zd || nt === Kd || nt === fs) && (Y > 0 && l[$ - 1] !== nt || Y < o - 1 && l[$ + 1] !== nt || rt > 0 && l[$ - o] !== nt || rt < c - 1 && l[$ + o] !== nt) && (U = !0), K = U ? R : vt;
+      ot === $d || ot === Xd ? U = !0 : ot === an ? U = L : ot === Gi || ot === fs ? U = !1 : U = Math.round((0.2126 * K[0] + 0.7152 * K[1] + 0.0722 * K[2]) / 255 * 4) / 4 <= nn(Y, st), (ot === Yd || ot === Zd || ot === Kd || ot === fs) && (Y > 0 && l[X - 1] !== ot || Y < o - 1 && l[X + 1] !== ot || st > 0 && l[X - o] !== ot || st < c - 1 && l[X + o] !== ot) && (U = !0), K = U ? B : vt;
     }
-    y[$ * 4] = K[0], y[$ * 4 + 1] = K[1], y[$ * 4 + 2] = K[2], y[$ * 4 + 3] = 255;
+    y[X * 4] = K[0], y[X * 4 + 1] = K[1], y[X * 4 + 2] = K[2], y[X * 4 + 3] = 255;
   }
   return { w: o, h: c, data: y };
 }
@@ -971,181 +971,181 @@ const Qp = { clear: 0, partly: 0.35, cloudy: 0.85, fog: 0.9, rain: 1, storm: 1, 
   return l = l + Math.imul(l ^ l >>> 7, 61 | l) ^ l, ((l ^ l >>> 14) >>> 0) / 4294967296;
 }, eu = "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", au = "M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z", nu = "M0 -1L0.2687 -0.2687L1 0L0.2687 0.2687L0 1L-0.2687 0.2687L-1 0L-0.2687 -0.2687Z", ou = "M7 0L0 13L5 13L2 24L11 9L6 9L9 0Z", iu = [[7, 0], [0, 13], [5, 13], [2, 24], [11, 9], [6, 9], [9, 0]], ru = [".##", "##.", ".#.", "#.."];
 function pp(n, { width: l, height: o, colors: c, wave: m = 0.38, soft: b = 6, glow: w = 0.6 }) {
-  const L = { ...rn, dawn: "#e5a77e", ...c }, y = sp(L), R = l, vt = o, rt = R / 6, Y = rt / 2, $ = Math.PI * 2, nt = n.length ? n : [{ cond: "cloudy", night: !1 }], K = [...Array(12)].map((tt, ft) => {
-    const J = nt[Math.min(ft, nt.length - 1)], _ = tu(J.cond), P = ft % 2 === 1;
-    return { cond: J.cond, k: _, night: P, sky: y[_][P ? 1 : 0], cover: Qp[_] };
-  }), U = (tt) => vt * (0.5 - m * Math.cos($ * (tt / rt - 0.25)));
-  return { C: L, S: K, W: R, H: vt, cw: rt, sw: Y, TAU: $, yb: U, side: (tt, ft, J) => {
-    const _ = (tt ? U(ft) - J : J - U(ft)) / Math.max(3, b * 1.4) + 0.5;
+  const L = { ...rn, dawn: "#e5a77e", ...c }, y = sp(L), B = l, vt = o, st = B / 6, Y = st / 2, X = Math.PI * 2, ot = n.length ? n : [{ cond: "cloudy", night: !1 }], K = [...Array(12)].map((et, ft) => {
+    const tt = ot[Math.min(ft, ot.length - 1)], _ = tu(tt.cond), P = ft % 2 === 1;
+    return { cond: tt.cond, k: _, night: P, sky: y[_][P ? 1 : 0], cover: Qp[_] };
+  }), U = (et) => vt * (0.5 - m * Math.cos(X * (et / st - 0.25)));
+  return { C: L, S: K, W: B, H: vt, cw: st, sw: Y, TAU: X, yb: U, side: (et, ft, tt) => {
+    const _ = (et ? U(ft) - tt : tt - U(ft)) / Math.max(3, b * 1.4) + 0.5;
     return _ <= 0 ? 0 : _ >= 1 ? 1 : _;
-  }, glowAt: (tt) => {
-    const ft = ((tt / rt - 0.25) % 1 + 1) % 1, J = Math.max(0, Math.min(5, Math.round(tt / rt - 0.25))), _ = Math.max(0, Math.min(5, Math.round(tt / rt - 0.75))), P = 1 - (K[2 * J].cover + K[2 * _ + 1].cover) / 2, st = Math.sin(Math.PI * Math.min(1, Math.max(0, U(tt) / vt)));
-    return { c: ft < 0.5 ? L.dusk : L.dawn, a: w * (0.2 + 0.8 * P) * st * st };
-  }, soft: b, tw: rt * 0.3, sy: vt / 90 };
+  }, glowAt: (et) => {
+    const ft = ((et / st - 0.25) % 1 + 1) % 1, tt = Math.max(0, Math.min(5, Math.round(et / st - 0.25))), _ = Math.max(0, Math.min(5, Math.round(et / st - 0.75))), P = 1 - (K[2 * tt].cover + K[2 * _ + 1].cover) / 2, lt = Math.sin(Math.PI * Math.min(1, Math.max(0, U(et) / vt)));
+    return { c: ft < 0.5 ? L.dusk : L.dawn, a: w * (0.2 + 0.8 * P) * lt * lt };
+  }, soft: b, tw: st * 0.3, sy: vt / 90 };
 }
 function up(n, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
-  const { S: m, sw: b, side: w, C: L, TAU: y, sy: R } = n, vt = l, rt = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
-  return m.forEach((Y, $) => {
-    const nt = kd(c * 977 + $ * 131 + 7), K = ($ + 0.5) * b, U = Y.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[Y.k] : 0;
+  const { S: m, sw: b, side: w, C: L, TAU: y, sy: B } = n, vt = l, st = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
+  return m.forEach((Y, X) => {
+    const ot = kd(c * 977 + X * 131 + 7), K = (X + 0.5) * b, U = Y.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[Y.k] : 0;
     for (let W = 0; W < U; W++) {
-      const ut = K + (nt() - 0.5) * b * 1.6, tt = (6 + nt() * 76) * R, ft = nt() < 0.35, J = 1.8 + nt() * 1.6, _ = w(!0, ut, tt) * (ft ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(y * vt / 2600 + W * 1.7 + $) : 1);
-      _ >= 0.03 && rt.stars.push({ x: ut, y: tt, big: ft, size: J, o: _ });
+      const ut = K + (ot() - 0.5) * b * 1.6, et = (6 + ot() * 76) * B, ft = ot() < 0.35, tt = 1.8 + ot() * 1.6, _ = w(!0, ut, et) * (ft ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(y * vt / 2600 + W * 1.7 + X) : 1);
+      _ >= 0.03 && st.stars.push({ x: ut, y: et, big: ft, size: tt, o: _ });
     }
     if (!Y.night && (Y.k === "clear" || Y.k === "partly")) {
-      const W = K + (nt() - 0.5) * b * 0.3, ut = Math.min(15, b * 0.29);
-      rt.suns.push({ x: W, y: 32 * R, rad: ut, halo: ut * 2.8 * (o ? 1 + 0.07 * Math.sin(y * vt / 3600 + $) : 1) });
+      const W = K + (ot() - 0.5) * b * 0.3, ut = Math.min(15, b * 0.29);
+      st.suns.push({ x: W, y: 32 * B, rad: ut, halo: ut * 2.8 * (o ? 1 + 0.07 * Math.sin(y * vt / 3600 + X) : 1) });
     }
     if (Y.night && (Y.k === "clear" || Y.k === "partly")) {
-      const W = Math.min(0.78, b * 0.55 / 34), ut = K - 23 * W + (nt() - 0.5) * b * 0.2;
-      rt.moons.push({ x: ut + 23 * W, y: (4 + (o ? 0.8 * Math.sin(y * vt / 5200 + $) : 0)) * R + 23 * W, d: 46 * W });
+      const W = Math.min(0.78, b * 0.55 / 34), ut = K - 23 * W + (ot() - 0.5) * b * 0.2;
+      st.moons.push({ x: ut + 23 * W, y: (4 + (o ? 0.8 * Math.sin(y * vt / 5200 + X) : 0)) * B + 23 * W, d: 46 * W });
     }
-  }), m.forEach((Y, $) => {
-    const nt = { clear: 0, partly: 1, cloudy: 3, fog: 0, rain: 3, storm: 3, snow: 2 }[Y.k];
-    if (!nt) return;
-    const K = kd(c * 577 + $ * 71 + 3), U = ($ + 0.5) * b, W = Y.k === "rain" || Y.k === "storm" || Y.night ? L.cloudNight : L.cloudDay, ut = Y.night ? 0.82 : Y.k === "storm" ? 0.75 : 1;
-    for (let tt = 0; tt < nt; tt++) {
-      const ft = b / 46 * (Y.k === "partly" ? 0.85 : 0.75 + K() * 0.55), J = U + (Y.k === "partly" ? b * 0.12 : (K() - 0.5) * b * 1.05), _ = (Y.k === "partly" ? 40 : 6 + K() * 26) * R, P = o ? 2.5 * Math.sin(y * vt / 9e3 + $ * 1.3 + tt * 2.1) : 0, st = o ? 0.9 * Math.sin(y * vt / 6100 + $ + tt) : 0;
-      rt.clouds.push({ x: J - 23 * ft + P, y: _ - 15.33 * ft + st, w: 46 * ft, h: 30.66 * ft, fill: W, o: ut * (nt > 1 && tt === 0 ? 0.85 : 1) });
+  }), m.forEach((Y, X) => {
+    const ot = { clear: 0, partly: 1, cloudy: 3, fog: 0, rain: 3, storm: 3, snow: 2 }[Y.k];
+    if (!ot) return;
+    const K = kd(c * 577 + X * 71 + 3), U = (X + 0.5) * b, W = Y.k === "rain" || Y.k === "storm" || Y.night ? L.cloudNight : L.cloudDay, ut = Y.night ? 0.82 : Y.k === "storm" ? 0.75 : 1;
+    for (let et = 0; et < ot; et++) {
+      const ft = b / 46 * (Y.k === "partly" ? 0.85 : 0.75 + K() * 0.55), tt = U + (Y.k === "partly" ? b * 0.12 : (K() - 0.5) * b * 1.05), _ = (Y.k === "partly" ? 40 : 6 + K() * 26) * B, P = o ? 2.5 * Math.sin(y * vt / 9e3 + X * 1.3 + et * 2.1) : 0, lt = o ? 0.9 * Math.sin(y * vt / 6100 + X + et) : 0;
+      st.clouds.push({ x: tt - 23 * ft + P, y: _ - 15.33 * ft + lt, w: 46 * ft, h: 30.66 * ft, fill: W, o: ut * (ot > 1 && et === 0 ? 0.85 : 1) });
     }
-  }), m.forEach((Y, $) => {
-    const nt = kd(c * 313 + $ * 29 + 11), K = ($ + 0.5) * b, U = Y.cond === "pouring" ? 16 : Y.cond === "rainy" || Y.cond === "hail" ? 9 : Y.cond === "lightning-rainy" ? 12 : Y.cond === "snowy-rainy" ? 5 : 0;
+  }), m.forEach((Y, X) => {
+    const ot = kd(c * 313 + X * 29 + 11), K = (X + 0.5) * b, U = Y.cond === "pouring" ? 16 : Y.cond === "rainy" || Y.cond === "hail" ? 9 : Y.cond === "lightning-rainy" ? 12 : Y.cond === "snowy-rainy" ? 5 : 0;
     for (let ut = 0; ut < U; ut++) {
-      let tt = K + (nt() - 0.5) * b * 1.05, ft = 44 + nt() * 36, J = 1;
+      let et = K + (ot() - 0.5) * b * 1.05, ft = 44 + ot() * 36, tt = 1;
       if (o) {
         const P = ((ft - 44 + vt * 0.04) % 36 + 36) % 36;
-        tt -= 0.21 * (P - (ft - 44)), ft = 44 + P, J = Math.min(1, P / 6, (36 - P) / 6);
+        et -= 0.21 * (P - (ft - 44)), ft = 44 + P, tt = Math.min(1, P / 6, (36 - P) / 6);
       }
-      ft *= R;
-      const _ = w(Y.night, tt, ft) * J;
-      _ >= 0.05 && rt.drops.push({ x: tt, y: ft, o: _ });
+      ft *= B;
+      const _ = w(Y.night, et, ft) * tt;
+      _ >= 0.05 && st.drops.push({ x: et, y: ft, o: _ });
     }
     const W = Y.cond === "snowy" ? 11 : Y.cond === "snowy-rainy" ? 6 : 0;
     for (let ut = 0; ut < W; ut++) {
-      let tt = K + (nt() - 0.5) * b * 1.05, ft = 40 + nt() * 44, J = 1;
+      let et = K + (ot() - 0.5) * b * 1.05, ft = 40 + ot() * 44, tt = 1;
       if (o) {
         const P = ((ft - 40 + vt * 9e-3) % 44 + 44) % 44;
-        ft = 40 + P, tt += 1.6 * Math.sin(y * vt / 2800 + ut * 1.9 + $), J = Math.min(1, P / 6, (44 - P) / 6);
+        ft = 40 + P, et += 1.6 * Math.sin(y * vt / 2800 + ut * 1.9 + X), tt = Math.min(1, P / 6, (44 - P) / 6);
       }
-      ft *= R;
-      const _ = w(Y.night, tt, ft) * J;
-      _ >= 0.05 && rt.flakes.push({ x: tt, y: ft, o: _ });
+      ft *= B;
+      const _ = w(Y.night, et, ft) * tt;
+      _ >= 0.05 && st.flakes.push({ x: et, y: ft, o: _ });
     }
     if (Y.k === "fog") {
-      const ut = Y.night ? "#c8ccd6" : "#ffffff", tt = Y.night ? 0.28 : 0.62, ft = o ? 4 * Math.sin(y * vt / 8e3 + $) : 0;
-      for (let J = 0; J < 4; J++) rt.fogs.push({ x: K - b * 0.75 + J % 2 * b * 0.18 + (J % 2 ? ft : -ft), y: (30 + J * 13) * R, w: b * 1.3, c: ut, a: tt });
+      const ut = Y.night ? "#c8ccd6" : "#ffffff", et = Y.night ? 0.28 : 0.62, ft = o ? 4 * Math.sin(y * vt / 8e3 + X) : 0;
+      for (let tt = 0; tt < 4; tt++) st.fogs.push({ x: K - b * 0.75 + tt % 2 * b * 0.18 + (tt % 2 ? ft : -ft), y: (30 + tt * 13) * B, w: b * 1.3, c: ut, a: et });
     }
     if (Y.k === "storm") {
-      const ut = (vt / 3400 + $ * 0.37) % 1;
-      rt.bolts.push({ x: K + (nt() - 0.5) * b * 0.3 - 5, y: 36 * R, o: o && !(ut < 0.05 || ut > 0.09 && ut < 0.12) ? 0.8 : 1 });
+      const ut = (vt / 3400 + X * 0.37) % 1;
+      st.bolts.push({ x: K + (ot() - 0.5) * b * 0.3 - 5, y: 36 * B, o: o && !(ut < 0.05 || ut > 0.09 && ut < 0.12) ? 0.8 : 1 });
     }
-  }), rt;
+  }), st;
 }
 function su(n, l, o, c, m, b, w, L) {
-  const { S: y, C: R, cw: vt, yb: rt, glowAt: Y, soft: $, tw: nt, sy: K } = n, U = new Array(o * c), W = new Uint8Array(o * c), ut = new Uint8Array(o * c), tt = (M, E, A, I, mt) => {
+  const { S: y, C: B, cw: vt, yb: st, glowAt: Y, soft: X, tw: ot, sy: K } = n, U = new Array(o * c), W = new Uint8Array(o * c), ut = new Uint8Array(o * c), et = (M, E, A, I, mt) => {
     A == null || M < 0 || E < 0 || M >= o || E >= c || (I >= 1 || I > nn(M + 5, E + 3)) && (U[E * o + M] = A, W[E * o + M] = mt);
   }, ft = (M, E, A, I) => {
     for (let mt = Math.max(0, Math.floor(E - A) - 1); mt <= Math.min(c - 1, E + A + 1); mt++) for (let j = Math.max(0, Math.floor(M - A) - 1); j <= Math.min(o - 1, M + A + 1); j++) I(j, mt, j + 0.5 - M, mt + 0.5 - E);
-  }, J = (M, E, A) => {
+  }, tt = (M, E, A) => {
     for (let mt = 0; mt < M.length - 1; mt++) {
       const j = (mt + E) * vt;
-      if (A < j - nt / 2) return [M[mt], M[mt], 0];
-      if (A <= j + nt / 2) return [M[mt], M[mt + 1], (A - j + nt / 2) / nt];
+      if (A < j - ot / 2) return [M[mt], M[mt], 0];
+      if (A <= j + ot / 2) return [M[mt], M[mt + 1], (A - j + ot / 2) / ot];
     }
     const I = M[M.length - 1];
     return [I, I, 0];
-  }, _ = y.filter((M) => !M.night).map((M) => M.sky), P = y.filter((M) => M.night).map((M) => M.sky), st = $ / b, _t = 16 * K / b;
+  }, _ = y.filter((M) => !M.night).map((M) => M.sky), P = y.filter((M) => M.night).map((M) => M.sky), lt = X / b, _t = 16 * K / b;
   for (let M = 0; M < o; M++) {
-    const E = (M + 0.5) * m, A = rt(E) / b, I = J(_, 0.75, E), mt = J(P, 1.25, E), j = Y(E);
-    for (let dt = 0; dt < c; dt++) {
-      const gt = nn(M, dt), yt = dt + 0.5 - A, $t = (st > 0.01 ? on(0.5 + yt / st) : yt > 0 ? 1 : 0) > gt;
+    const E = (M + 0.5) * m, A = st(E) / b, I = tt(_, 0.75, E), mt = tt(P, 1.25, E), j = Y(E);
+    for (let ct = 0; ct < c; ct++) {
+      const gt = nn(M, ct), yt = ct + 0.5 - A, $t = (lt > 0.01 ? on(0.5 + yt / lt) : yt > 0 ? 1 : 0) > gt;
       let le = $t ? I[2] > gt ? I[1] : I[0] : mt[2] > gt ? mt[1] : mt[0];
-      ($t ? on(((dt + 0.5) / c - 0.45) / 0.55) * 0.7 : on(1 - (dt + 0.5) / (c * 0.55)) * 0.7) > nn(M + 2, dt + 5) && (le = $t ? ta(le, "#ffffff", 0.18) : ta(le, "#000000", 0.25)), $t && yt >= 0 && yt < _t && j.a * 1.3 * (1 - yt / _t) > nn(M + 6, dt + 1) && (le = j.c), U[dt * o + M] = le, ut[dt * o + M] = $t ? 0 : 1;
+      ($t ? on(((ct + 0.5) / c - 0.45) / 0.55) * 0.7 : on(1 - (ct + 0.5) / (c * 0.55)) * 0.7) > nn(M + 2, ct + 5) && (le = $t ? ta(le, "#ffffff", 0.18) : ta(le, "#000000", 0.25)), $t && yt >= 0 && yt < _t && j.a * 1.3 * (1 - yt / _t) > nn(M + 6, ct + 1) && (le = j.c), U[ct * o + M] = le, ut[ct * o + M] = $t ? 0 : 1;
     }
   }
-  const H = ta(R.sun, "#ffffff", 0.55), It = ta(R.moon, "#ffffff", 0.6);
+  const H = ta(B.sun, "#ffffff", 0.55), It = ta(B.moon, "#ffffff", 0.6);
   l.stars.forEach((M) => {
     const E = Math.floor(M.x / m), A = Math.floor(M.y / b);
     if (E < 0 || A < 0 || E >= o || A >= c || !ut[A * o + E] || M.o < 0.15) return;
-    const I = M.o > 0.45 ? R.star : ta(R.star, U[A * o + E], 0.5), mt = M.big && M.o > 0.6 ? Math.floor(M.size / m) : 0;
-    tt(E, A, I, 1, Gi);
-    for (let j = 1; j <= mt; j++) [[E - j, A], [E + j, A], [E, A - j], [E, A + j]].forEach((dt) => {
-      dt[0] >= 0 && dt[1] >= 0 && dt[0] < o && dt[1] < c && ut[dt[1] * o + dt[0]] && tt(dt[0], dt[1], I, 1, Gi);
+    const I = M.o > 0.45 ? B.star : ta(B.star, U[A * o + E], 0.5), mt = M.big && M.o > 0.6 ? Math.floor(M.size / m) : 0;
+    et(E, A, I, 1, Gi);
+    for (let j = 1; j <= mt; j++) [[E - j, A], [E + j, A], [E, A - j], [E, A + j]].forEach((ct) => {
+      ct[0] >= 0 && ct[1] >= 0 && ct[0] < o && ct[1] < c && ut[ct[1] * o + ct[0]] && et(ct[0], ct[1], I, 1, Gi);
     });
   }), l.suns.forEach((M) => {
     const E = Math.max(1.5, M.rad / m), A = M.x / m, I = M.y / b, mt = M.halo / m * 0.85;
-    if (ft(A, I, mt, (j, dt, gt, yt) => {
+    if (ft(A, I, mt, (j, ct, gt, yt) => {
       const $t = Math.sqrt(gt * gt + yt * yt);
-      $t > E && $t < mt && !ut[dt * o + j] && tt(j, dt, H, 0.3 * (1 - ($t - E) / (mt - E)), 0);
+      $t > E && $t < mt && !ut[ct * o + j] && et(j, ct, H, 0.3 * (1 - ($t - E) / (mt - E)), 0);
     }), L) {
-      const j = Math.floor(w / 500) % 2, dt = Math.max(1, E * 0.3);
-      for (let gt = 0; gt < 8; gt++) if (gt % 2 === j) for (let yt = E + 1.2; yt < E + 1.2 + dt; yt += 0.7) tt(Math.floor(A + Math.cos(gt * Math.PI / 4) * yt), Math.floor(I + Math.sin(gt * Math.PI / 4) * yt), R.sun, 1, Xd);
+      const j = Math.floor(w / 500) % 2, ct = Math.max(1, E * 0.3);
+      for (let gt = 0; gt < 8; gt++) if (gt % 2 === j) for (let yt = E + 1.2; yt < E + 1.2 + ct; yt += 0.7) et(Math.floor(A + Math.cos(gt * Math.PI / 4) * yt), Math.floor(I + Math.sin(gt * Math.PI / 4) * yt), B.sun, 1, Xd);
     }
-    ft(A, I, E, (j, dt, gt, yt) => {
-      gt * gt + yt * yt <= E * E && tt(j, dt, on(((yt / E + 1) / 2 - 0.6) / 0.4) > nn(j, dt) ? R.sunEdge : R.sun, 1, Yd);
+    ft(A, I, E, (j, ct, gt, yt) => {
+      gt * gt + yt * yt <= E * E && et(j, ct, on(((yt / E + 1) / 2 - 0.6) / 0.4) > nn(j, ct) ? B.sunEdge : B.sun, 1, Yd);
     });
   }), l.moons.forEach((M) => {
-    const E = Math.max(1.5, M.d * 0.37 / m), A = M.x / m, I = M.y / b, mt = A + 0.547 * E, j = I - 0.503 * E, dt = 0.82 * E;
+    const E = Math.max(1.5, M.d * 0.37 / m), A = M.x / m, I = M.y / b, mt = A + 0.547 * E, j = I - 0.503 * E, ct = 0.82 * E;
     ft(A, I, E, (gt, yt, $t, le) => {
       if ($t * $t + le * le > E * E) return;
       const Ae = gt + 0.5 - mt, Ca = yt + 0.5 - j;
-      Ae * Ae + Ca * Ca > dt * dt && tt(gt, yt, on((le + E) / (2 * E) * 1.1 - 0.1) > nn(gt, yt) ? R.moon : It, 1, Zd);
+      Ae * Ae + Ca * Ca > ct * ct && et(gt, yt, on((le + E) / (2 * E) * 1.1 - 0.1) > nn(gt, yt) ? B.moon : It, 1, Zd);
     });
   }), l.clouds.forEach((M) => {
     const E = Math.max(3, M.w / m), A = E * 0.6665, I = M.x / m, mt = M.y / b, j = ta(M.fill, "#000000", 0.16);
-    for (let dt = Math.max(0, Math.floor(mt) - 1); dt <= Math.min(c - 1, mt + A + 1); dt++) for (let gt = Math.max(0, Math.floor(I) - 1); gt <= Math.min(o - 1, I + E + 1); gt++) {
-      const yt = (gt + 0.5 - I) / E, $t = (dt + 0.5 - mt) / E;
-      ql(yt, $t) && tt(gt, dt, !ql(yt, $t + 1 / E) || on(($t - 0.42) / 0.25) * 0.8 > nn(gt, dt) ? j : M.fill, M.o, Kd);
+    for (let ct = Math.max(0, Math.floor(mt) - 1); ct <= Math.min(c - 1, mt + A + 1); ct++) for (let gt = Math.max(0, Math.floor(I) - 1); gt <= Math.min(o - 1, I + E + 1); gt++) {
+      const yt = (gt + 0.5 - I) / E, $t = (ct + 0.5 - mt) / E;
+      ql(yt, $t) && et(gt, ct, !ql(yt, $t + 1 / E) || on(($t - 0.42) / 0.25) * 0.8 > nn(gt, ct) ? j : M.fill, M.o, Kd);
     }
   }), l.fogs.forEach((M) => {
     const E = Math.floor(M.y / b), A = Math.max(E, Math.floor((M.y + 6 * K) / b) - 1), I = Math.floor(M.x / m), mt = Math.floor((M.x + M.w) / m);
-    for (let j = E; j <= A; j++) for (let dt = I; dt <= mt; dt++) {
-      const gt = (dt - I) / Math.max(1, mt - I);
-      tt(dt, j, M.c, M.a * (gt < 0.25 ? gt / 0.25 : gt > 0.75 ? (1 - gt) / 0.25 : 1), 0);
+    for (let j = E; j <= A; j++) for (let ct = I; ct <= mt; ct++) {
+      const gt = (ct - I) / Math.max(1, mt - I);
+      et(ct, j, M.c, M.a * (gt < 0.25 ? gt / 0.25 : gt > 0.75 ? (1 - gt) / 0.25 : 1), 0);
     }
   });
   const G = Math.max(2, Math.round(9 / b));
   l.drops.forEach((M) => {
     const E = M.x / m, A = Math.floor(M.y / b);
-    for (let I = 0; I < G; I++) tt(Math.floor(E - 0.208 * I * b / m), A + I, R.rain, M.o, $d);
+    for (let I = 0; I < G; I++) et(Math.floor(E - 0.208 * I * b / m), A + I, B.rain, M.o, $d);
   });
   const Wt = Math.max(0, Math.round(4.4 / m / 2.6));
   return l.flakes.forEach((M) => {
     const E = Math.floor(M.x / m), A = Math.floor(M.y / b);
-    tt(E, A, R.snow, M.o, an);
+    et(E, A, B.snow, M.o, an);
     for (let I = 1; I <= Wt; I++)
-      tt(E - I, A, R.snow, M.o, an), tt(E + I, A, R.snow, M.o, an), tt(E, A - I, R.snow, M.o, an), tt(E, A + I, R.snow, M.o, an);
+      et(E - I, A, B.snow, M.o, an), et(E + I, A, B.snow, M.o, an), et(E, A - I, B.snow, M.o, an), et(E, A + I, B.snow, M.o, an);
   }), l.bolts.forEach((M) => {
     if (m <= 3.5)
       for (let E = Math.floor(M.y / b); E <= (M.y + 24) / b; E++) for (let A = Math.floor(M.x / m); A <= (M.x + 11) / m; A++)
-        lp(iu, (A + 0.5) * m - M.x, (E + 0.5) * b - M.y) && tt(A, E, R.sun, 1, fs);
+        lp(iu, (A + 0.5) * m - M.x, (E + 0.5) * b - M.y) && et(A, E, B.sun, 1, fs);
     else {
       const E = Math.round(M.x / m), A = Math.round(M.y / b);
-      ru.forEach((I, mt) => I.split("").forEach((j, dt) => {
-        j === "#" && tt(E + dt, A + mt, R.sun, 1, fs);
+      ru.forEach((I, mt) => I.split("").forEach((j, ct) => {
+        j === "#" && et(E + ct, A + mt, B.sun, 1, fs);
       }));
     }
   }), { col: U, ids: W };
 }
 function lu(n, l) {
-  const o = l.px, c = Math.max(6, Math.round(l.width / o)), m = Math.max(6, Math.round(l.height / o)), b = l.width / c, w = l.height / m, L = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, y = ($) => {
-    const nt = pp($, l);
-    return su(nt, up(nt, { clock: L, ambient: l.ambient, seed: l.seed }), c, m, b, w, L, l.ambient);
-  }, R = y(n), vt = l.reveal == null ? 1 : on(l.reveal);
-  let rt = R.col, Y = R.ids;
+  const o = l.px, c = Math.max(6, Math.round(l.width / o)), m = Math.max(6, Math.round(l.height / o)), b = l.width / c, w = l.height / m, L = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, y = (X) => {
+    const ot = pp(X, l);
+    return su(ot, up(ot, { clock: L, ambient: l.ambient, seed: l.seed }), c, m, b, w, L, l.ambient);
+  }, B = y(n), vt = l.reveal == null ? 1 : on(l.reveal);
+  let st = B.col, Y = B.ids;
   if (vt < 1) {
-    const $ = l.prev ? y(l.prev) : null, nt = vt * (c + 12);
-    rt = new Array(c * m), Y = new Uint8Array(c * m);
+    const X = l.prev ? y(l.prev) : null, ot = vt * (c + 12);
+    st = new Array(c * m), Y = new Uint8Array(c * m);
     for (let K = 0; K < c * m; K++) {
       const U = K % c, W = K / c | 0;
-      (l.reduce ? vt : on((nt - U) / 12)) > nn(U, W) ? (rt[K] = R.col[K], Y[K] = R.ids[K]) : $ ? (rt[K] = $.col[K], Y[K] = $.ids[K]) : (rt[K] = null, Y[K] = 255);
+      (l.reduce ? vt : on((ot - U) / 12)) > nn(U, W) ? (st[K] = B.col[K], Y[K] = B.ids[K]) : X ? (st[K] = X.col[K], Y[K] = X.ids[K]) : (st[K] = null, Y[K] = 255);
     }
   }
-  return cp(rt, Y, c, m, { oneBit: l.oneBit, ink: l.ink, paper: l.paper, snowInk: !1 });
+  return cp(st, Y, c, m, { oneBit: l.oneBit, ink: l.ink, paper: l.paper, snowInk: !1 });
 }
 function du(n, l, o) {
-  const c = o.width, m = o.height, b = o.reveal == null ? 1 : on(o.reveal), w = (Y, $) => {
-    const nt = pp($, o);
-    cu(Y, nt, up(nt, o));
+  const c = o.width, m = o.height, b = o.reveal == null ? 1 : on(o.reveal), w = (Y, X) => {
+    const ot = pp(X, o);
+    cu(Y, ot, up(ot, o));
   };
   if (n.clearRect(0, 0, c, m), b >= 1) {
     w(n, l);
@@ -1157,20 +1157,20 @@ function du(n, l, o) {
   }
   const L = n.canvas, y = L.__wxOff || (L.__wxOff = document.createElement("canvas"));
   (y.width !== L.width || y.height !== L.height) && (y.width = L.width, y.height = L.height);
-  const R = y.getContext("2d");
-  R.setTransform(n.getTransform()), R.clearRect(0, 0, c, m), w(R, l);
-  const vt = b * (c + 64) - 64, rt = R.createLinearGradient(vt, 0, vt + 64, 0);
-  rt.addColorStop(0, "rgba(0,0,0,1)"), rt.addColorStop(1, "rgba(0,0,0,0)"), R.globalCompositeOperation = "destination-in", R.fillStyle = rt, R.fillRect(0, 0, c, m), R.globalCompositeOperation = "source-over", n.save(), n.setTransform(1, 0, 0, 1, 0, 0), n.drawImage(y, 0, 0), n.restore();
+  const B = y.getContext("2d");
+  B.setTransform(n.getTransform()), B.clearRect(0, 0, c, m), w(B, l);
+  const vt = b * (c + 64) - 64, st = B.createLinearGradient(vt, 0, vt + 64, 0);
+  st.addColorStop(0, "rgba(0,0,0,1)"), st.addColorStop(1, "rgba(0,0,0,0)"), B.globalCompositeOperation = "destination-in", B.fillStyle = st, B.fillRect(0, 0, c, m), B.globalCompositeOperation = "source-over", n.save(), n.setTransform(1, 0, 0, 1, 0, 0), n.drawImage(y, 0, 0), n.restore();
 }
 function cu(n, l, o) {
-  const { W: c, H: m, S: b, C: w, cw: L, yb: y, glowAt: R, soft: vt, tw: rt, sy: Y } = l, $ = (H, It) => {
+  const { W: c, H: m, S: b, C: w, cw: L, yb: y, glowAt: B, soft: vt, tw: st, sy: Y } = l, X = (H, It) => {
     const G = Fl(H);
     return "rgba(" + G[0] + "," + G[1] + "," + G[2] + "," + Math.max(0, Math.min(1, It)).toFixed(3) + ")";
-  }, nt = (H, It) => {
+  }, ot = (H, It) => {
     const G = n.createLinearGradient(0, 0, c, 0);
     G.addColorStop(0, H[0]);
     for (let Wt = 0; Wt < H.length - 1; Wt++) {
-      const M = (Wt + It) * L, E = (M - rt / 2) / c, A = (M + rt / 2) / c;
+      const M = (Wt + It) * L, E = (M - st / 2) / c, A = (M + st / 2) / c;
       E > 0 && E < 1 && G.addColorStop(E, H[Wt]), A > 0 && A < 1 && G.addColorStop(A, H[Wt + 1]);
     }
     return G.addColorStop(1, H[H.length - 1]), G;
@@ -1186,29 +1186,29 @@ function cu(n, l, o) {
     }
     n.closePath(), n.fill();
   };
-  n.save(), n.fillStyle = nt(b.filter((H) => !H.night).map((H) => H.sky), 0.75), n.fillRect(0, 0, c, m);
+  n.save(), n.fillStyle = ot(b.filter((H) => !H.night).map((H) => H.sky), 0.75), n.fillRect(0, 0, c, m);
   const W = n.createLinearGradient(0, 0, c, 0);
   for (let H = 0; H <= 64; H++) {
-    const It = R(c * H / 64);
-    W.addColorStop(H / 64, $(It.c, Math.min(1, It.a)));
+    const It = B(c * H / 64);
+    W.addColorStop(H / 64, X(It.c, Math.min(1, It.a)));
   }
   n.fillStyle = W;
   for (let H = 0; H < 8; H++)
     n.globalAlpha = 1 - H / 8, U(H * 2 * Y, (H + 1) * 2 * Y);
-  n.fillStyle = nt(b.filter((H) => H.night).map((H) => H.sky), 1.25);
-  const ut = Math.max(0.5, vt), tt = 6;
+  n.fillStyle = ot(b.filter((H) => H.night).map((H) => H.sky), 1.25);
+  const ut = Math.max(0.5, vt), et = 6;
   n.globalAlpha = 1, U(null, -ut);
-  for (let H = 0; H < tt; H++)
-    n.globalAlpha = 1 - (H + 0.5) / tt, U(-ut + 2 * ut * H / tt, -ut + 2 * ut * (H + 1) / tt);
+  for (let H = 0; H < et; H++)
+    n.globalAlpha = 1 - (H + 0.5) / et, U(-ut + 2 * ut * H / et, -ut + 2 * ut * (H + 1) / et);
   n.globalAlpha = 1;
-  const ft = new Path2D(nu), J = new Path2D(au), _ = new Path2D(eu), P = new Path2D(ou);
+  const ft = new Path2D(nu), tt = new Path2D(au), _ = new Path2D(eu), P = new Path2D(ou);
   n.fillStyle = w.star, o.stars.forEach((H) => {
     n.globalAlpha = H.o, H.big ? (n.save(), n.translate(H.x, H.y), n.scale(H.size, H.size), n.fill(ft), n.restore()) : (n.beginPath(), n.arc(H.x, H.y, 0.8, 0, Math.PI * 2), n.fill());
   }), n.globalAlpha = 1;
-  const st = ta(w.sun, "#ffffff", 0.55);
+  const lt = ta(w.sun, "#ffffff", 0.55);
   o.suns.forEach((H) => {
     const It = n.createRadialGradient(H.x, H.y, 0, H.x, H.y, H.halo);
-    It.addColorStop(0, $(st, 0.42)), It.addColorStop(0.7, $(st, 0)), n.fillStyle = It, n.beginPath(), n.arc(H.x, H.y, H.halo, 0, Math.PI * 2), n.fill();
+    It.addColorStop(0, X(lt, 0.42)), It.addColorStop(0.7, X(lt, 0)), n.fillStyle = It, n.beginPath(), n.arc(H.x, H.y, H.halo, 0, Math.PI * 2), n.fill();
     const G = n.createLinearGradient(0, H.y - H.rad, 0, H.y + H.rad);
     G.addColorStop(0.6, w.sun), G.addColorStop(1, w.sunEdge), n.fillStyle = G, n.beginPath(), n.arc(H.x, H.y, H.rad, 0, Math.PI * 2), n.fill();
   });
@@ -1216,12 +1216,12 @@ function cu(n, l, o) {
   o.moons.forEach((H) => {
     n.save(), n.translate(H.x - H.d / 2, H.y - H.d / 2), n.scale(H.d / 46, H.d / 46);
     const It = n.createLinearGradient(0, 6, 0, 40);
-    It.addColorStop(0, _t), It.addColorStop(1, w.moon), n.fillStyle = It, n.fill(J), n.restore();
+    It.addColorStop(0, _t), It.addColorStop(1, w.moon), n.fillStyle = It, n.fill(tt), n.restore();
   }), o.clouds.forEach((H) => {
     n.save(), n.globalAlpha = H.o, n.translate(H.x, H.y), n.scale(H.w / 46, H.h / 30.66), n.translate(-4, -9.67), n.fillStyle = H.fill, n.fill(_), n.restore();
   }), o.fogs.forEach((H) => {
     const It = n.createLinearGradient(H.x, 0, H.x + H.w, 0);
-    It.addColorStop(0, $(H.c, 0)), It.addColorStop(0.25, $(H.c, H.a)), It.addColorStop(0.75, $(H.c, H.a)), It.addColorStop(1, $(H.c, 0)), n.fillStyle = It, n.fillRect(H.x, H.y, H.w, 6 * Y);
+    It.addColorStop(0, X(H.c, 0)), It.addColorStop(0.25, X(H.c, H.a)), It.addColorStop(0.75, X(H.c, H.a)), It.addColorStop(1, X(H.c, 0)), n.fillStyle = It, n.fillRect(H.x, H.y, H.w, 6 * Y);
   }), n.fillStyle = w.rain, o.drops.forEach((H) => {
     n.save(), n.globalAlpha = H.o, n.translate(H.x, H.y), n.rotate(12 * Math.PI / 180), n.fillRect(-1.5, 0, 3, 9), n.restore();
   }), n.fillStyle = w.snow, o.flakes.forEach((H) => {
@@ -1239,40 +1239,40 @@ function pu(n, l) {
     w && (w.textContent = new Intl.DateTimeFormat(void 0, { hour: "2-digit", minute: "2-digit" }).format(/* @__PURE__ */ new Date()));
   }
   L(), setInterval(L, 15e3);
-  const y = o("createFlow"), R = o("createMovementsSlot"), vt = o("createTimingSlot"), rt = o("createFinishSlot"), Y = o("movementStepSummary"), $ = o("timingStepSummary"), nt = o("finishStepSummary"), K = o("continueToTiming"), U = o("continueToFinish"), W = o("finishMoveButton");
-  let ut = !1, tt = [];
+  const y = o("createFlow"), B = o("createMovementsSlot"), vt = o("createTimingSlot"), st = o("createFinishSlot"), Y = o("movementStepSummary"), X = o("timingStepSummary"), ot = o("finishStepSummary"), K = o("continueToTiming"), U = o("continueToFinish"), W = o("finishMoveButton");
+  let ut = !1, et = [];
   function ft(e) {
-    !e || tt.some((r) => r.node === e) || tt.push({ node: e, parent: e.parentNode, next: e.nextSibling });
+    !e || et.some((r) => r.node === e) || et.push({ node: e, parent: e.parentNode, next: e.nextSibling });
   }
-  function J(e, r) {
+  function tt(e, r) {
     e && (ft(e), r.appendChild(e));
   }
   function _() {
-    [...tt].reverse().forEach(({ node: e, parent: r, next: s }) => {
+    [...et].reverse().forEach(({ node: e, parent: r, next: s }) => {
       r && (s && s.parentNode === r ? r.insertBefore(e, s) : r.appendChild(e));
-    }), tt = [];
+    }), et = [];
   }
   function P(e) {
     n.querySelectorAll(".createStep").forEach((r) => {
       r.classList.toggle("active", r.dataset.createStep === e);
-    }), e === "timing" && (ut = !0), st();
+    }), e === "timing" && (ut = !0), lt();
   }
-  function st() {
-    var ot, ht;
+  function lt() {
+    var it, ht;
     if (!St) return;
     Kt[we];
-    const e = Qt.filter((it) => !it.hidden), r = e.filter((it) => it.kind !== "rest").length, s = e.filter((it) => it.kind === "rest").length;
+    const e = Qt.filter((rt) => !rt.hidden), r = e.filter((rt) => rt.kind !== "rest").length, s = e.filter((rt) => rt.kind === "rest").length;
     Y.textContent = r ? r + " movement" + (r === 1 ? "" : "s") + (s ? " · " + s + " rest" + (s === 1 ? "" : "s") : "") : "No movements yet";
     const p = r > 0, g = n.querySelector('[data-open-step="timing"]'), T = n.querySelector('[data-open-step="finish"]');
-    g.disabled = !p, K.disabled = !p, $.textContent = p ? Gn(E.value) + " · " + Ye(A.value) + " movement · " + Ye(I.value) + " rest" : "Add a movement first", T.disabled = !(p && ut);
-    const B = ((m == null ? void 0 : m.value) || "").trim(), q = [];
-    (ot = o("includeWarmupPreset")) != null && ot.checked && q.push("warm-up"), (ht = o("includeCooldownPreset")) != null && ht.checked && q.push("cooldown"), nt.textContent = B ? B + (q.length ? " · " + q.join(" + ") : "") : q.length ? q.join(" + ") : "Name and optional extras";
+    g.disabled = !p, K.disabled = !p, X.textContent = p ? Gn(E.value) + " · " + Ye(A.value) + " movement · " + Ye(I.value) + " rest" : "Add a movement first", T.disabled = !(p && ut);
+    const R = ((m == null ? void 0 : m.value) || "").trim(), q = [];
+    (it = o("includeWarmupPreset")) != null && it.checked && q.push("warm-up"), (ht = o("includeCooldownPreset")) != null && ht.checked && q.push("cooldown"), ot.textContent = R ? R + (q.length ? " · " + q.join(" + ") : "") : q.length ? q.join(" + ") : "Name and optional extras";
   }
   function _t() {
-    var Bt, te, Ot;
+    var Rt, te, Ot;
     y.hidden = !1, ut = !1;
-    const e = n.querySelector(".editNameRow"), r = o("createMoveOptions"), s = n.querySelector(".timeTiles"), p = o("routineSummaryModal"), g = n.querySelector(".tempoRevealRow"), T = o("tempoExperiment"), B = (Bt = o("warmupList")) == null ? void 0 : Bt.closest("section"), q = o("movementCreatorLaunch"), ot = o("movementCreator"), ht = (te = o("strengthList")) == null ? void 0 : te.closest("section"), it = (Ot = o("cooldownList")) == null ? void 0 : Ot.closest("section");
-    [r == null ? void 0 : r.querySelector(".createExtras"), B, q, ot, ht, it].forEach((Et) => Et && J(Et, R)), [r, s, p, g, T].forEach((Et) => J(Et, vt)), J(e, rt), P("movements"), st();
+    const e = n.querySelector(".editNameRow"), r = o("createMoveOptions"), s = n.querySelector(".timeTiles"), p = o("routineSummaryModal"), g = n.querySelector(".tempoRevealRow"), T = o("tempoExperiment"), R = (Rt = o("warmupList")) == null ? void 0 : Rt.closest("section"), q = o("movementCreatorLaunch"), it = o("movementCreator"), ht = (te = o("strengthList")) == null ? void 0 : te.closest("section"), rt = (Ot = o("cooldownList")) == null ? void 0 : Ot.closest("section");
+    [r == null ? void 0 : r.querySelector(".createExtras"), R, q, it, ht, rt].forEach((Et) => Et && tt(Et, B)), [r, s, p, g, T].forEach((Et) => tt(Et, vt)), tt(e, st), P("movements"), lt();
   }
   function H() {
     _(), y.hidden = !0, n.querySelectorAll(".createStep").forEach((e) => e.classList.remove("active"));
@@ -1284,9 +1284,9 @@ function pu(n, l) {
   }), U.addEventListener("click", () => P("finish")), W.addEventListener("click", () => o("saveWorkoutEdit").click());
   const It = { home: o("homeView"), workout: o("workoutView"), settings: o("settingsView") }, G = o("homeNav"), Wt = o("settingsNav");
   function M(e) {
-    Object.entries(It).forEach(([r, s]) => s.classList.toggle("active", r === e)), G.classList.toggle("active", e === "home"), Wt.classList.toggle("active", e === "settings"), e === "home" && setTimeout(Lr, 400), e === "settings" && (requestAnimationFrame(() => Bi(n.querySelector(".tab.active"), !1)), Ni());
+    Object.entries(It).forEach(([r, s]) => s.classList.toggle("active", r === e)), G.classList.toggle("active", e === "home"), Wt.classList.toggle("active", e === "settings"), e === "home" && setTimeout(Lr, 400), e === "settings" && (requestAnimationFrame(() => Ri(n.querySelector(".tab.active"), !1)), Ni());
   }
-  const E = o("totalTime"), A = o("workTime"), I = o("restTime"), mt = o("totalOut"), j = o("workOut"), dt = o("restOut"), gt = o("totalFill"), yt = o("workFill"), $t = o("restFill"), le = o("roundsInput"), Ae = o("roundsFill"), Ca = o("roundsOut"), Pa = o("totalLabel"), me = o("routineSummaryModal"), Xt = [
+  const E = o("totalTime"), A = o("workTime"), I = o("restTime"), mt = o("totalOut"), j = o("workOut"), ct = o("restOut"), gt = o("totalFill"), yt = o("workFill"), $t = o("restFill"), le = o("roundsInput"), Ae = o("roundsFill"), Ca = o("roundsOut"), Pa = o("totalLabel"), me = o("routineSummaryModal"), Xt = [
     { id: "standing-reach", name: "Standing reach", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "arm-circles", name: "Arm circles", group: "Warm-up", kind: "warmup", hidden: !1 },
     { id: "hip-hinge", name: "Hip hinge drill", group: "Warm-up", kind: "warmup", hidden: !1 }
@@ -1359,9 +1359,9 @@ function pu(n, l) {
         ["glute-bridge", "Glute bridge with kettlebell", "Glutes + core"]
       ]
     }
-  }, de = Do(l.data), Kt = de.profiles;
+  }, de = Ro(l.data), Kt = de.profiles;
   let we = Kt[de.selected] ? de.selected : de.order.find((e) => Kt[e]) || "kettlebell";
-  function Do(e) {
+  function Ro(e) {
     const r = e && typeof e == "object" ? JSON.parse(JSON.stringify(e)) : {}, s = r.profiles && Object.keys(r.profiles).length ? r.profiles : JSON.parse(JSON.stringify(xr)), p = (Array.isArray(r.order) ? r.order : Object.keys(s)).filter((g) => s[g]);
     return Object.keys(s).forEach((g) => {
       p.includes(g) || p.push(g);
@@ -1381,10 +1381,10 @@ function pu(n, l) {
     return e.forEach((p) => {
       const g = new Date(p.at);
       if (isNaN(g)) return;
-      const T = g.getFullYear() + "-" + String(g.getMonth() + 1).padStart(2, "0") + "-" + String(g.getDate()).padStart(2, "0"), B = g.getHours() < 14 ? "morning" : "evening";
-      if (s.some((ot) => ot.date === T && ot.slot === B)) return;
+      const T = g.getFullYear() + "-" + String(g.getMonth() + 1).padStart(2, "0") + "-" + String(g.getDate()).padStart(2, "0"), R = g.getHours() < 14 ? "morning" : "evening";
+      if (s.some((it) => it.date === T && it.slot === R)) return;
       const q = r.indexOf(p.value) + 1;
-      q > 0 && s.push({ date: T, slot: B, mood: null, energy: q, at: p.at });
+      q > 0 && s.push({ date: T, slot: R, mood: null, energy: q, at: p.at });
     }), s;
   }
   function Ui(e) {
@@ -1404,26 +1404,26 @@ function pu(n, l) {
     we = e;
     const s = o("workoutNameInput");
     if (s && (s.value = r.name), E.value = r.total, A.value = r.work, I.value = r.rest, le.value = r.rounds || 1, r.customSequence) {
-      const p = (r.sequence || []).map((T) => ({ ...T })), g = (T) => p.filter((B) => B.presetRole === T).map(({ presetRole: B, ...q }) => q);
-      Te = (r.warmup || g("warmup")).map((T) => ({ ...T })), Ea = (r.cooldown || g("cooldown")).map((T) => ({ ...T })), Qt = p.filter((T) => !T.presetRole), No(r.preset || "movement", !1);
+      const p = (r.sequence || []).map((T) => ({ ...T })), g = (T) => p.filter((R) => R.presetRole === T).map(({ presetRole: R, ...q }) => q);
+      Te = (r.warmup || g("warmup")).map((T) => ({ ...T })), Ea = (r.cooldown || g("cooldown")).map((T) => ({ ...T })), Qt = p.filter((T) => !T.presetRole), Po(r.preset || "movement", !1);
     } else
-      E.min = 3, E.max = 40, E.step = 1, A.min = 20, A.max = 60, A.step = 5, I.min = 5, I.max = 30, I.step = 5, Te = (r.warmup || Xt).map((p) => ({ ...p })), Ea = (r.cooldown || Ma).map((p) => ({ ...p })), Qt = r.strength.map((p) => Array.isArray(p) ? (([g, T, B, q = !1]) => ({ id: g, name: T, group: B, kind: "work", hidden: !!q }))(p) : { ...p });
-    n.querySelectorAll(".workoutPanel[data-workout]").forEach((p) => p.classList.toggle("active", p.dataset.workout === e)), Re();
+      E.min = 3, E.max = 40, E.step = 1, A.min = 20, A.max = 60, A.step = 5, I.min = 5, I.max = 30, I.step = 5, Te = (r.warmup || Xt).map((p) => ({ ...p })), Ea = (r.cooldown || Ma).map((p) => ({ ...p })), Qt = r.strength.map((p) => Array.isArray(p) ? (([g, T, R, q = !1]) => ({ id: g, name: T, group: R, kind: "work", hidden: !!q }))(p) : { ...p });
+    n.querySelectorAll(".workoutPanel[data-workout]").forEach((p) => p.classList.toggle("active", p.dataset.workout === e)), Be();
   }
   function kr(e, r, s) {
-    const p = e.getBoundingClientRect(), g = p.width / 2, T = p.height / 2, B = r - g, q = s - T;
-    let ot = 1 / 0, ht = 1 / 0;
-    B !== 0 && (ot = g / Math.abs(B)), q !== 0 && (ht = T / Math.abs(q));
-    const it = Math.min(Math.max(1 / Math.min(ot, ht), 0), 1);
-    let et = Math.atan2(q, B) * (180 / Math.PI) + 90;
-    return et < 0 && (et += 360), { edge: it, angle: et };
+    const p = e.getBoundingClientRect(), g = p.width / 2, T = p.height / 2, R = r - g, q = s - T;
+    let it = 1 / 0, ht = 1 / 0;
+    R !== 0 && (it = g / Math.abs(R)), q !== 0 && (ht = T / Math.abs(q));
+    const rt = Math.min(Math.max(1 / Math.min(it, ht), 0), 1);
+    let at = Math.atan2(q, R) * (180 / Math.PI) + 90;
+    return at < 0 && (at += 360), { edge: rt, angle: at };
   }
-  function si(e, r, s = !1) {
-    const p = e.getBoundingClientRect(), g = r.clientX - p.left, T = r.clientY - p.top, { edge: B, angle: q } = kr(e, g, T), ot = s ? 100 : B * 100;
-    e.style.setProperty("--edge-proximity", ot.toFixed(3)), e.style.setProperty("--cursor-angle", q.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", s || ot >= 30);
+  function li(e, r, s = !1) {
+    const p = e.getBoundingClientRect(), g = r.clientX - p.left, T = r.clientY - p.top, { edge: R, angle: q } = kr(e, g, T), it = s ? 100 : R * 100;
+    e.style.setProperty("--edge-proximity", it.toFixed(3)), e.style.setProperty("--cursor-angle", q.toFixed(3) + "deg"), e.classList.toggle("borderGlowActive", s || it >= 30);
   }
   function xe(e) {
-    e.addEventListener("pointermove", (s) => si(e, s, !1)), e.addEventListener("pointerenter", (s) => si(e, s, !1)), e.addEventListener("pointerdown", (s) => si(e, s, !0));
+    e.addEventListener("pointermove", (s) => li(e, s, !1)), e.addEventListener("pointerenter", (s) => li(e, s, !1)), e.addEventListener("pointerdown", (s) => li(e, s, !0));
     const r = () => {
       e.classList.remove("borderGlowActive"), e.style.setProperty("--edge-proximity", "0");
     };
@@ -1444,14 +1444,14 @@ function pu(n, l) {
     const p = r.activityCount ?? (((T = r.sequence) == null ? void 0 : T.length) || 0);
     s.innerHTML = '<span class="edgeLight" aria-hidden="true"></span><div class="panelExpanded"><div><div class="workoutPanelTop"><div><div class="workoutName">' + Ht(r.name) + '</div><div class="sub">' + Ht(Ia(r)) + '</div><span class="sourceTag">' + Ht(r.source || "Custom move") + '</span></div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div><div class="workoutFooter"><div><strong class="activityCount">' + (p ? p + " activities" + ((r.rounds || 1) > 1 ? " × " + r.rounds : "") : "—") + '</strong></div><div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div><div class="panelCollapsed"><div class="panelCollapsedText">' + Ht(r.name) + "</div></div>";
     const g = o("addWorkoutPanel");
-    return o("workoutGallery").insertBefore(s, g), xe(s), s.addEventListener("click", (B) => {
-      B.target.closest("button") || Oe(e);
-    }), s.addEventListener("keydown", (B) => {
-      (B.key === "Enter" || B.key === " ") && !B.target.closest("button") && (B.preventDefault(), Oe(e));
-    }), s.querySelector(".seeWorkoutBtn").addEventListener("click", (B) => {
-      B.stopPropagation(), Oe(e), el(!1);
-    }), s.querySelector(".startWorkoutBtn").addEventListener("click", (B) => {
-      B.stopPropagation(), Oe(e), sl();
+    return o("workoutGallery").insertBefore(s, g), xe(s), s.addEventListener("click", (R) => {
+      R.target.closest("button") || Oe(e);
+    }), s.addEventListener("keydown", (R) => {
+      (R.key === "Enter" || R.key === " ") && !R.target.closest("button") && (R.preventDefault(), Oe(e));
+    }), s.querySelector(".seeWorkoutBtn").addEventListener("click", (R) => {
+      R.stopPropagation(), Oe(e), el(!1);
+    }), s.querySelector(".startWorkoutBtn").addEventListener("click", (R) => {
+      R.stopPropagation(), Oe(e), sl();
     }), s;
   }
   function Yi() {
@@ -1476,8 +1476,8 @@ function pu(n, l) {
       strength: []
     }, Oe(ze), el(!0);
   });
-  let Ut = [], ne = 0, Ve = 0, Bo = 1, Ha = !1, ea = null, li = null, ra = !1, zn = de.settings.upcomingCount ?? "all", Vn = "movement";
-  function Ro(e, r, s) {
+  let Ut = [], ne = 0, Ve = 0, Bo = 1, Ha = !1, ea = null, di = null, ra = !1, zn = de.settings.upcomingCount ?? "all", Vn = "movement";
+  function No(e, r, s) {
     return (Number(e) - r) / (s - r) * 100;
   }
   function Ye(e) {
@@ -1489,9 +1489,9 @@ function pu(n, l) {
     return r >= 60 && r % 60 === 0 ? r / 60 + " hr" : r >= 60 ? Math.floor(r / 60) + " hr " + r % 60 + " min" : r + " min";
   }
   function Ga() {
-    gt.style.width = Ro(E.value, Number(E.min), Number(E.max)) + "%", yt.style.width = Ro(A.value, Number(A.min), Number(A.max)) + "%", $t.style.width = Ro(I.value, Number(I.min), Number(I.max)) + "%", j.textContent = Ye(A.value), dt.textContent = Ye(I.value);
+    gt.style.width = No(E.value, Number(E.min), Number(E.max)) + "%", yt.style.width = No(A.value, Number(A.min), Number(A.max)) + "%", $t.style.width = No(I.value, Number(I.min), Number(I.max)) + "%", j.textContent = Ye(A.value), ct.textContent = Ye(I.value);
     const e = Number(le.value) || 1;
-    Ae.style.width = Ro(e, 1, 10) + "%", Pa.textContent = e > 1 ? "Time per round" : "Total time";
+    Ae.style.width = No(e, 1, 10) + "%", Pa.textContent = e > 1 ? "Time per round" : "Total time";
   }
   function Un(e) {
     return e.filter((r) => !r.hidden);
@@ -1520,10 +1520,10 @@ function pu(n, l) {
     const g = (q) => {
       if (!q) return 0;
       if (/^\d+$/.test(q)) return Number(q);
-      const ot = q.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/);
-      return ot ? (Number(ot[1]) || 0) * 3600 + (Number(ot[2]) || 0) * 60 + (Number(ot[3]) || 0) : 0;
-    }, T = g(r.searchParams.get("t") || r.searchParams.get("start")), B = g(r.searchParams.get("end"));
-    return { id: p, start: T, end: B > T ? B : null };
+      const it = q.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/);
+      return it ? (Number(it[1]) || 0) * 3600 + (Number(it[2]) || 0) * 60 + (Number(it[3]) || 0) : 0;
+    }, T = g(r.searchParams.get("t") || r.searchParams.get("start")), R = g(r.searchParams.get("end"));
+    return { id: p, start: T, end: R > T ? R : null };
   }
   function Ln(e, r) {
     if (e.useVideoLength === !1) return Math.max(5, Number(e.duration) || r || 300);
@@ -1534,7 +1534,7 @@ function pu(n, l) {
     const s = Math.max(0, Number(e) || 0);
     return Math.round(r === "hour" ? s * 3600 : r === "min" ? s * 60 : s);
   }
-  function No(e, r = !0) {
+  function Po(e, r = !0) {
     Vn = e, n.querySelectorAll(".createPresetBtn").forEach((p) => p.classList.toggle("active", p.dataset.movePreset === e));
     const s = Kt[we];
     s && (s.preset = e), e === "work" ? (E.min = 30, E.max = 480, E.step = 30, A.min = 300, A.max = 7200, A.step = 300, I.min = 60, I.max = 1800, I.step = 60, r && (E.value = 60, A.value = 1500, I.value = 300), o("addMovementUnit").value = "min", o("addMovementDuration").value = 25, o("addRestUnit").value = "min", o("addRestDuration").value = 5) : (E.min = 3, E.max = 40, E.step = 1, A.min = 20, A.max = 60, A.step = 5, I.min = 5, I.max = 30, I.step = 5, r && (E.value = 20, A.value = 45, I.value = 15), o("addMovementUnit").value = "sec", o("addMovementDuration").value = 45, o("addRestUnit").value = "sec", o("addRestDuration").value = 30), Ga();
@@ -1545,7 +1545,7 @@ function pu(n, l) {
   }
   function Ki() {
     const e = Kt[we];
-    e != null && e.customSequence && (e.includeWarmup = o("includeWarmupPreset").checked, e.includeCooldown = o("includeCooldownPreset").checked, e.includeWarmup && !Te.length && (Te = Zi(Xt, "warm")), e.includeCooldown && !Ea.length && (Ea = Zi(Ma, "cool")), Re());
+    e != null && e.customSequence && (e.includeWarmup = o("includeWarmupPreset").checked, e.includeCooldown = o("includeCooldownPreset").checked, e.includeWarmup && !Te.length && (Te = Zi(Xt, "warm")), e.includeCooldown && !Ea.length && (Ea = Zi(Ma, "cool")), Be());
   }
   function hs() {
     const e = o("upcomingCountSetting");
@@ -1553,19 +1553,19 @@ function pu(n, l) {
     const r = Math.max(1, Ut.length - 1), s = zn;
     e.innerHTML = "";
     for (let T = 1; T <= r; T++) {
-      const B = document.createElement("option");
-      B.value = String(T), B.textContent = String(T), e.appendChild(B);
+      const R = document.createElement("option");
+      R.value = String(T), R.textContent = String(T), e.appendChild(R);
     }
     const p = document.createElement("option");
     p.value = "all", p.textContent = "All", e.appendChild(p);
     const g = s === "all" ? "all" : String(Math.min(Number(s) || 1, r));
     e.value = g, zn = g === "all" ? "all" : Number(g);
   }
-  function Re() {
+  function Be() {
     Number(E.value) * 60;
-    const e = Number(A.value), r = Number(I.value), s = Kt[we], p = !!(s != null && s.customSequence), g = (p ? !s.includeWarmup : s != null && s.warmupOff) ? [] : Un(Te), T = Un(Qt), B = p && !s.includeCooldown ? [] : Un(Ea);
+    const e = Number(A.value), r = Number(I.value), s = Kt[we], p = !!(s != null && s.customSequence), g = (p ? !s.includeWarmup : s != null && s.warmupOff) ? [] : Un(Te), T = Un(Qt), R = p && !s.includeCooldown ? [] : Un(Ea);
     if (s && (s.total = Number(E.value), s.work = e, s.rest = r, s.rounds = Number(le.value) || 1, s.customSequence ? (s.sequence = Qt.map((At) => ({ ...At })), s.warmup = Te.map((At) => ({ ...At })), s.cooldown = Ea.map((At) => ({ ...At }))) : (s.strength = Qt.map((At) => ({ ...At })), s.warmup = Te.map((At) => ({ ...At })), s.cooldown = Ea.map((At) => ({ ...At })))), s != null && s.customSequence) {
-      const At = [...g.map((pe) => ({ ...pe, section: "warmup" })), ...T, ...B.map((pe) => ({ ...pe, section: "cooldown" }))].map((pe) => {
+      const At = [...g.map((pe) => ({ ...pe, section: "warmup" })), ...T, ...R.map((pe) => ({ ...pe, section: "cooldown" }))].map((pe) => {
         if (pe.kind === "video") return { ...pe, duration: Ln(pe, e), rest: 0 };
         if (pe.kind === "rest") {
           const wa = pe.useGlobalTiming === !0 ? r : Number(pe.duration) || r;
@@ -1589,14 +1589,14 @@ function pu(n, l) {
         });
       })) : Ut = At;
     } else
-      Ut = [...g.map((At) => ({ ...At, section: "warmup" })), ...T, ...B.map((At) => ({ ...At, section: "cooldown" }))].map((At) => At.kind === "video" ? { ...At, duration: Ln(At, e), rest: 0 } : At.kind === "rest" ? { ...At, duration: At.useGlobalTiming === !0 ? r : Number(At.duration) || r, rest: 0 } : { ...At, duration: At.useGlobalTiming === !1 && Number(At.duration) || e, rest: r }), Ut.forEach((At, pe) => {
+      Ut = [...g.map((At) => ({ ...At, section: "warmup" })), ...T, ...R.map((At) => ({ ...At, section: "cooldown" }))].map((At) => At.kind === "video" ? { ...At, duration: Ln(At, e), rest: 0 } : At.kind === "rest" ? { ...At, duration: At.useGlobalTiming === !0 ? r : Number(At.duration) || r, rest: 0 } : { ...At, duration: At.useGlobalTiming === !1 && Number(At.duration) || e, rest: r }), Ut.forEach((At, pe) => {
         var ba;
         ((ba = Ut[pe + 1]) == null ? void 0 : ba.kind) === "rest" && (At.rest = 0);
       }), Ut.length && (Ut[Ut.length - 1].rest = 0);
-    const q = Math.max(1, Math.min(10, Number(le.value) || 1)), ot = Ut, ht = (At) => q <= 1 ? null : At.section === "warmup" || At.presetRole === "warmup" ? "first" : At.section === "cooldown" || At.presetRole === "cooldown" ? "last" : At.kind === "video" && (At.videoRounds === "first" || At.videoRounds === "last") ? At.videoRounds : null, it = (At) => !!ht(At), et = ot.filter((At) => !it(At)), Bt = ot.filter(it), te = et.length, Ot = et.reduce((At, pe) => At + pe.duration + pe.rest, 0), Et = Bt.reduce((At, pe) => At + pe.duration + pe.rest, 0), Ct = [
-      Bt.some((At) => At.section === "warmup" || At.presetRole === "warmup") && "warm-up",
-      Bt.some((At) => At.section === "cooldown" || At.presetRole === "cooldown") && "cooldown",
-      Bt.some((At) => At.kind === "video" && !At.section && !At.presetRole) && "video"
+    const q = Math.max(1, Math.min(10, Number(le.value) || 1)), it = Ut, ht = (At) => q <= 1 ? null : At.section === "warmup" || At.presetRole === "warmup" ? "first" : At.section === "cooldown" || At.presetRole === "cooldown" ? "last" : At.kind === "video" && (At.videoRounds === "first" || At.videoRounds === "last") ? At.videoRounds : null, rt = (At) => !!ht(At), at = it.filter((At) => !rt(At)), Rt = it.filter(rt), te = at.length, Ot = at.reduce((At, pe) => At + pe.duration + pe.rest, 0), Et = Rt.reduce((At, pe) => At + pe.duration + pe.rest, 0), Ct = [
+      Rt.some((At) => At.section === "warmup" || At.presetRole === "warmup") && "warm-up",
+      Rt.some((At) => At.section === "cooldown" || At.presetRole === "cooldown") && "cooldown",
+      Rt.some((At) => At.kind === "video" && !At.section && !At.presetRole) && "video"
     ].filter(Boolean), he = Ct.length > 1 ? Ct.slice(0, -1).join(", ") + " & " + Ct[Ct.length - 1] : Ct[0] || "";
     Ut = [];
     const ve = (At, pe) => {
@@ -1604,7 +1604,7 @@ function pu(n, l) {
       return !ba || (ba === "first" ? pe === 1 : pe === q);
     };
     for (let At = 1; At <= q; At++)
-      if (ot.filter((pe) => ve(pe, At)).forEach((pe, ba) => Ut.push({ ...pe, id: pe.id + (q > 1 ? "-r" + At : ""), round: At, roundIndex: ba })), At < q && te)
+      if (it.filter((pe) => ve(pe, At)).forEach((pe, ba) => Ut.push({ ...pe, id: pe.id + (q > 1 ? "-r" + At : ""), round: At, roundIndex: ba })), At < q && te)
         if (s != null && s.customSequence)
           Ut.push({ id: "round-break-" + At, name: "Rest", group: "Round " + (At + 1) + " next", kind: "rest", hidden: !1, duration: r, rest: 0, round: At, roundIndex: te, roundBreak: !0 });
         else {
@@ -1612,14 +1612,14 @@ function pu(n, l) {
           pe.rest = r, pe.roundBreakAfter = !0;
         }
     Ga();
-    const zt = Ut.reduce((At, pe) => At + pe.duration + pe.rest, 0), be = Math.round(Ot / 60), Ee = Math.round(zt / 60), se = q > 1 ? Gn(be) + " × " + q + " rounds" + (Et ? " + " + Ye(Et) + " " + he : "") + " (" + Gn(Ee) + ")" : Gn(Ee), ae = [g.length ? "warm-up" : "", B.length ? "cooldown" : ""].filter(Boolean), ua = s != null && s.customSequence ? se + " · " + te + " items" + (ae.length && !(q > 1 && Et) ? " · " + ae.join(" + ") : "") : se + " · " + Ye(e) + " / " + Ye(r) + (ae.length && !(q > 1 && Et) ? " · " + ae.join(" + ") : "");
+    const zt = Ut.reduce((At, pe) => At + pe.duration + pe.rest, 0), be = Math.round(Ot / 60), Ee = Math.round(zt / 60), se = q > 1 ? Gn(be) + " × " + q + " rounds" + (Et ? " + " + Ye(Et) + " " + he : "") + " (" + Gn(Ee) + ")" : Gn(Ee), ae = [g.length ? "warm-up" : "", R.length ? "cooldown" : ""].filter(Boolean), ua = s != null && s.customSequence ? se + " · " + te + " items" + (ae.length && !(q > 1 && Et) ? " · " + ae.join(" + ") : "") : se + " · " + Ye(e) + " / " + Ye(r) + (ae.length && !(q > 1 && Et) ? " · " + ae.join(" + ") : "");
     mt.textContent = Ye(Ot);
     const _a = Ut.filter((At) => !At.roundBreak).length, Ze = q > 1 ? _a + " activities · " + q + " rounds" : te + " activities";
     Ca.textContent = q > 1 ? q + " rounds · " + Gn(Ee) + " total" : "1 round", o("roundsCount").textContent = q, n.querySelectorAll("[data-rounds-step]").forEach((At) => {
       At.disabled = Number(At.dataset.roundsStep) < 0 ? q <= 1 : q >= 10;
     }), s && (s.summary = ua, s.activityCount = te);
     const Oi = n.querySelector(".workoutPanel.active .sub");
-    Oi && (Oi.textContent = ua), me.textContent = ua, Ge(), n.querySelectorAll(".workoutPanel.active .activityCount").forEach((At) => At.textContent = Ze), Ga(), di(), sn(), ln(), hs(), St && st(), It.workout.classList.contains("active") && !ea && zr();
+    Oi && (Oi.textContent = ua), me.textContent = ua, Ge(), n.querySelectorAll(".workoutPanel.active .activityCount").forEach((At) => At.textContent = Ze), Ga(), ci(), sn(), ln(), hs(), St && lt(), It.workout.classList.contains("active") && !ea && zr();
   }
   const ha = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>', uo = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>', Mr = {
     activity: '<path d="M22 12H18L15 21L9 3L6 12H2"/>',
@@ -1652,13 +1652,13 @@ function pu(n, l) {
     r && (r.focus({ preventScroll: !0 }), e && r.select());
   }
   function Zn(e, r, s = {}) {
-    const p = e.kind === "rest", g = e.kind === "video", T = g ? e.useVideoLength !== !1 : p ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, B = Number(p ? I.value : A.value), q = Le(g ? e.useVideoLength === !1 ? e.duration : Ln({ ...e, useVideoLength: !0 }) : T ? B : e.duration || B), ot = g && (Number(e.videoDuration) > 0 || Number(e.end) > 0), ht = g ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + Ht(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + Ht(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([zt, be]) => '<option value="' + zt + '"' + ((e.videoRounds || "every") === zt ? " selected" : "") + ">" + be + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + Ht(e.name) + '" placeholder="' + (p ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + Ht(e.group) + '" placeholder="' + (p ? "Rest" : "e.g. Glutes + legs") + '"></label>', it = g ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (ot ? " · " + Yn(Ln({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + Ye(B), et = document.createElement("div");
-    et.className = "moveRow editing" + (s.sheet ? " inSheet" : ""), et.dataset.index = r, et.dataset.id = e.id;
-    const Bt = s.isNew ?? (na == null ? void 0 : na.item) === e, te = s.sheet ? '<div class="moveEditActions sheetActions">' + (Bt ? "" : '<div class="sheetSecondary"><button class="hideBtn" type="button" data-a="hide">' + (e.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" data-a="remove" aria-label="Hold to remove ' + Ht(e.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>') + '<div class="sheetPrimary"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">' + (Bt ? "Add" : "Save") + "</button></div></div>" : '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>';
-    et.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (g ? " videoFields" : "") + '">' + ht + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (T ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + Ht(it) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + q.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((zt) => '<option value="' + zt + '"' + (zt === q.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[zt] + "</option>").join("") + "</select></div></div>" + te + "</div>";
-    const Ot = (zt) => et.querySelector("[data-f=" + zt + "]"), Et = () => {
+    const p = e.kind === "rest", g = e.kind === "video", T = g ? e.useVideoLength !== !1 : p ? e.useGlobalTiming === !0 : e.useGlobalTiming !== !1, R = Number(p ? I.value : A.value), q = Le(g ? e.useVideoLength === !1 ? e.duration : Ln({ ...e, useVideoLength: !0 }) : T ? R : e.duration || R), it = g && (Number(e.videoDuration) > 0 || Number(e.end) > 0), ht = g ? '<label class="moveEditWide"><span>YouTube link</span><input class="addInput" data-f="url" type="url" inputmode="url" autocomplete="off" value="' + Ht(e.url || "") + '" placeholder="Paste a YouTube link"></label><label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + Ht(e.autoName ? "" : e.name) + '" placeholder="Uses the video’s title"></label><label><span>Plays in</span><select class="creatorUnitSelect" data-f="rounds">' + [["every", "Every round"], ["first", "The first round only"], ["last", "The last round only"]].map(([zt, be]) => '<option value="' + zt + '"' + ((e.videoRounds || "every") === zt ? " selected" : "") + ">" + be + "</option>").join("") + '</select></label><p class="fieldError" data-f="urlError" hidden>That isn’t a YouTube link. Copy it from the Share button on YouTube.</p>' : '<label><span>Name</span><input class="addInput" data-f="name" type="text" value="' + Ht(e.name) + '" placeholder="' + (p ? "Rest" : "Name this movement") + '"></label><label><span>Type / group</span><input class="addInput" data-f="group" type="text" value="' + Ht(e.group) + '" placeholder="' + (p ? "Rest" : "e.g. Glutes + legs") + '"></label>', rt = g ? "Play the whole " + (Number(e.start) > 0 || Number(e.end) > 0 ? "clip" : "video") + (it ? " · " + Yn(Ln({ ...e, useVideoLength: !0 })) : "") : "Use global timing · " + Ye(R), at = document.createElement("div");
+    at.className = "moveRow editing" + (s.sheet ? " inSheet" : ""), at.dataset.index = r, at.dataset.id = e.id;
+    const Rt = s.isNew ?? (na == null ? void 0 : na.item) === e, te = s.sheet ? '<div class="moveEditActions sheetActions">' + (Rt ? "" : '<div class="sheetSecondary"><button class="hideBtn" type="button" data-a="hide">' + (e.hidden ? "Show" : "Hide") + '</button><button class="removeBtn" type="button" data-a="remove" aria-label="Hold to remove ' + Ht(e.name) + '"><span class="removeFill"></span><span class="removeLabel">Remove</span></button></div>') + '<div class="sheetPrimary"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">' + (Rt ? "Add" : "Save") + "</button></div></div>" : '<div class="moveEditActions"><button class="pill" type="button" data-a="cancel">Cancel</button><button class="primary" type="button" data-a="save">Save</button></div>';
+    at.innerHTML = '<div class="moveEditForm"><div class="moveEditFields' + (g ? " videoFields" : "") + '">' + ht + '</div><div class="moveEditTiming"><label class="globalTimingToggle"><input type="checkbox" data-f="global"' + (T ? " checked" : "") + '><span class="toggleTrack" aria-hidden="true"><span class="toggleThumb"></span></span><span class="toggleLabel">' + Ht(rt) + '</span></label><div class="creatorDurationRow"><input class="addInput creatorNumber" data-f="dur" type="number" min="1" max="3600" step="1" value="' + q.value + '" aria-label="Duration"><select class="creatorUnitSelect" data-f="unit" aria-label="Duration unit">' + ["sec", "min", "hour"].map((zt) => '<option value="' + zt + '"' + (zt === q.unit ? " selected" : "") + ">" + { sec: "seconds", min: "minutes", hour: "hours" }[zt] + "</option>").join("") + "</select></div></div>" + te + "</div>";
+    const Ot = (zt) => at.querySelector("[data-f=" + zt + "]"), Et = () => {
       const zt = Ot("global").checked;
-      Ot("dur").disabled = zt, Ot("unit").disabled = zt, et.querySelector(".creatorDurationRow").classList.toggle("isDisabled", zt);
+      Ot("dur").disabled = zt, Ot("unit").disabled = zt, at.querySelector(".creatorDurationRow").classList.toggle("isDisabled", zt);
     };
     Ot("global").addEventListener("change", Et), Et();
     const Ct = () => {
@@ -1667,7 +1667,7 @@ function pu(n, l) {
         (zt = s.onCancel) == null || zt.call(s);
         return;
       }
-      Bt && xn(), ye = null, Re();
+      Rt && xn(), ye = null, Be();
     }, he = () => {
       var Ee;
       if (g) {
@@ -1685,7 +1685,7 @@ function pu(n, l) {
         (Ee = s.onSaved) == null || Ee.call(s);
         return;
       }
-      Bt && (na = null), ye = null, Re(), We(Bt ? p ? "Rest added" : "Movement added" : "Movement updated");
+      Rt && (na = null), ye = null, Be(), We(Rt ? p ? "Rest added" : "Movement added" : "Movement updated");
     }, ve = () => {
       var ae;
       const zt = Ot("url").value.trim(), be = sa(zt);
@@ -1696,24 +1696,24 @@ function pu(n, l) {
       const Ee = be.id !== e.videoId;
       e.url = zt, e.videoId = be.id, e.start = be.start, e.end = be.end, Ee && (e.videoDuration = null, e.videoError = null);
       const se = Ot("name").value.trim();
-      e.autoName = !se, e.name = se || (Ee ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = Ot("rounds").value, e.useVideoLength = Ot("global").checked, e.useVideoLength || (e.duration = Math.max(5, bn(Ot("dur").value, Ot("unit").value))), s.sheet ? (ae = s.onSaved) == null || ae.call(s) : (Bt && (na = null), ye = null, Re(), We(Bt ? "Video added" : "Video updated")), (Ee || !e.videoDuration || e.autoName && !e.videoTitle) && cd(e);
+      e.autoName = !se, e.name = se || (Ee ? "" : e.name) || e.videoTitle || "YouTube video", e.group = "Video", e.videoRounds = Ot("rounds").value, e.useVideoLength = Ot("global").checked, e.useVideoLength || (e.duration = Math.max(5, bn(Ot("dur").value, Ot("unit").value))), s.sheet ? (ae = s.onSaved) == null || ae.call(s) : (Rt && (na = null), ye = null, Be(), We(Rt ? "Video added" : "Video updated")), (Ee || !e.videoDuration || e.autoName && !e.videoTitle) && cd(e);
     };
     if (g && Ot("url").addEventListener("input", () => {
       Ot("urlError").hidden = !0, Ot("url").classList.remove("invalid");
-    }), et.querySelector("[data-a=cancel]").addEventListener("click", Ct), et.querySelector("[data-a=save]").addEventListener("click", he), s.sheet && !Bt) {
-      et.querySelector("[data-a=hide]").addEventListener("click", () => {
+    }), at.querySelector("[data-a=cancel]").addEventListener("click", Ct), at.querySelector("[data-a=save]").addEventListener("click", he), s.sheet && !Rt) {
+      at.querySelector("[data-a=hide]").addEventListener("click", () => {
         var be;
         return (be = s.onHide) == null ? void 0 : be.call(s);
       });
-      const zt = et.querySelector("[data-a=remove]");
+      const zt = at.querySelector("[data-a=remove]");
       pr(zt, zt.querySelector(".removeFill"), 1200, () => {
         var be;
         return (be = s.onRemove) == null ? void 0 : be.call(s);
       });
     }
-    return et.addEventListener("keydown", (zt) => {
+    return at.addEventListener("keydown", (zt) => {
       zt.key === "Escape" && (zt.preventDefault(), zt.stopPropagation(), Ct()), zt.key === "Enter" && zt.target.matches("input") && (zt.preventDefault(), he());
-    }), et;
+    }), at;
   }
   function fo(e, r) {
     const s = o(r);
@@ -1723,38 +1723,38 @@ function pu(n, l) {
         return;
       }
       const T = document.createElement("div");
-      T.className = "moveRow" + (p.hidden ? " hidden" : "") + (p.kind === "rest" ? " restItem" : "") + (p.kind === "video" ? " videoItem" : "") + ($o(p) ? " noMeta" : ""), T.dataset.index = g, T.dataset.id = p.id;
-      const B = p.kind === "rest" ? p.useGlobalTiming === !0 ? "Global timing" : Ye(p.duration) : p.useGlobalTiming === !1 ? Ye(p.duration) : "Global timing", q = p.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", ot = p.kind === "video" ? p.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (p.useVideoLength === !1 ? "stops after " + Ye(p.duration) : Number(p.videoDuration) > 0 || Number(p.end) > 0 ? Yn(Ln(p)) : "plays to the end") + (p.videoRounds === "first" ? " · first round only" : p.videoRounds === "last" ? " · last round only" : "") : p.group + " · " + B, ht = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + Ht(p.name) + '. Drag, or use the up and down arrow keys">' + ha + "</button>", it = '<div class="moveText"><div class="moveItemName">' + Ht(p.name) + q + '</div><div class="moveMeta">' + Ht(ot) + "</div></div>", et = (Ot) => Ot.addEventListener("keydown", (Et) => {
+      T.className = "moveRow" + (p.hidden ? " hidden" : "") + (p.kind === "rest" ? " restItem" : "") + (p.kind === "video" ? " videoItem" : "") + (Xo(p) ? " noMeta" : ""), T.dataset.index = g, T.dataset.id = p.id;
+      const R = p.kind === "rest" ? p.useGlobalTiming === !0 ? "Global timing" : Ye(p.duration) : p.useGlobalTiming === !1 ? Ye(p.duration) : "Global timing", q = p.kind === "video" ? '<span class="moveKindBadge">Video</span>' : "", it = p.kind === "video" ? p.videoError ? "YouTube · can’t play outside YouTube" : "YouTube · " + (p.useVideoLength === !1 ? "stops after " + Ye(p.duration) : Number(p.videoDuration) > 0 || Number(p.end) > 0 ? Yn(Ln(p)) : "plays to the end") + (p.videoRounds === "first" ? " · first round only" : p.videoRounds === "last" ? " · last round only" : "") : p.group + " · " + R, ht = '<button class="dragHandle" type="button" title="Drag to reorder" aria-label="Reorder ' + Ht(p.name) + '. Drag, or use the up and down arrow keys">' + ha + "</button>", rt = '<div class="moveText"><div class="moveItemName">' + Ht(p.name) + q + '</div><div class="moveMeta">' + Ht(it) + "</div></div>", at = (Ot) => Ot.addEventListener("keydown", (Et) => {
         var ve, zt;
         if (Et.key !== "ArrowUp" && Et.key !== "ArrowDown") return;
         Et.preventDefault();
         const Ct = e.indexOf(p), he = Ct + (Et.key === "ArrowUp" ? -1 : 1);
-        he < 0 || he >= e.length || (e.splice(Ct, 1), e.splice(he, 0, p), Re(), (zt = (ve = o(r).children[he]) == null ? void 0 : ve.querySelector(".dragHandle")) == null || zt.focus());
+        he < 0 || he >= e.length || (e.splice(Ct, 1), e.splice(he, 0, p), Be(), (zt = (ve = o(r).children[he]) == null ? void 0 : ve.querySelector(".dragHandle")) == null || zt.focus());
       });
       if (bt()) {
-        T.classList.add("phoneRow"), T.tabIndex = 0, T.setAttribute("role", "button"), T.setAttribute("aria-label", "Edit " + (p.name || "step")), T.innerHTML = ht + it + '<span class="rowChevron" aria-hidden="true">›</span>';
+        T.classList.add("phoneRow"), T.tabIndex = 0, T.setAttribute("role", "button"), T.setAttribute("aria-label", "Edit " + (p.name || "step")), T.innerHTML = ht + rt + '<span class="rowChevron" aria-hidden="true">›</span>';
         const Ot = T.querySelector(".dragHandle");
-        Ot.addEventListener("pointerdown", (Et) => wn(Et, T, s, e)), et(Ot), T.addEventListener("click", (Et) => {
+        Ot.addEventListener("pointerdown", (Et) => wn(Et, T, s, e)), at(Ot), T.addEventListener("click", (Et) => {
           Et.target.closest(".dragHandle") || Ft(p, e);
         }), T.addEventListener("keydown", (Et) => {
           Et.key === "Enter" && Et.target === T && (Et.preventDefault(), Ft(p, e));
         }), s.appendChild(T);
         return;
       }
-      T.innerHTML = ht + it + '<div class="moveActions seg"><button class="hideBtn editBtn segBtn" type="button" aria-label="Edit ' + Ht(p.name) + '">Edit</button><button class="hideBtn segBtn" type="button">' + (p.hidden ? "Show" : "Hide") + '</button><button class="removeBtn segBtn" type="button" title="Hold to remove" aria-label="Hold to remove ' + Ht(p.name) + '"><span class="removeFill"></span><span class="removeLabel">' + uo + "</span></button></div>", T.querySelector(".editBtn").addEventListener("click", () => {
-        xn(), ye = p, Re(), _n();
+      T.innerHTML = ht + rt + '<div class="moveActions seg"><button class="hideBtn editBtn segBtn" type="button" aria-label="Edit ' + Ht(p.name) + '">Edit</button><button class="hideBtn segBtn" type="button">' + (p.hidden ? "Show" : "Hide") + '</button><button class="removeBtn segBtn" type="button" title="Hold to remove" aria-label="Hold to remove ' + Ht(p.name) + '"><span class="removeFill"></span><span class="removeLabel">' + uo + "</span></button></div>", T.querySelector(".editBtn").addEventListener("click", () => {
+        xn(), ye = p, Be(), _n();
       }), T.querySelector(".hideBtn:not(.editBtn)").addEventListener("click", () => {
-        p.hidden = !p.hidden, Re();
+        p.hidden = !p.hidden, Be();
       });
-      const Bt = T.querySelector(".removeBtn");
-      pr(Bt, Bt.querySelector(".removeFill"), 1200, () => {
+      const Rt = T.querySelector(".removeBtn");
+      pr(Rt, Rt.querySelector(".removeFill"), 1200, () => {
         const Ot = e.indexOf(p);
-        Ot < 0 || (e.splice(Ot, 1), Re(), We("Removed " + p.name, { label: "Undo", run: () => {
-          e.splice(Math.min(Ot, e.length), 0, p), Re();
+        Ot < 0 || (e.splice(Ot, 1), Be(), We("Removed " + p.name, { label: "Undo", run: () => {
+          e.splice(Math.min(Ot, e.length), 0, p), Be();
         } }));
       });
       const te = T.querySelector(".dragHandle");
-      te.addEventListener("pointerdown", (Ot) => wn(Ot, T, s, e)), et(te), s.appendChild(T);
+      te.addEventListener("pointerdown", (Ot) => wn(Ot, T, s, e)), at(te), s.appendChild(T);
     });
   }
   const Da = () => {
@@ -1770,46 +1770,46 @@ function pu(n, l) {
   function wn(e, r, s, p) {
     if (e.button !== void 0 && e.button !== 0) return;
     e.preventDefault();
-    const g = e.currentTarget, T = e.pointerId, B = !Da();
+    const g = e.currentTarget, T = e.pointerId, R = !Da();
     try {
       g.setPointerCapture(T);
     } catch {
     }
-    const q = r.closest(".exerciseScroller") || Po(r), ot = s.style.position;
+    const q = r.closest(".exerciseScroller") || Io(r), it = s.style.position;
     s.style.position = "relative";
-    const ht = [...s.children].filter((ue) => ue.classList.contains("moveRow")), it = ht.indexOf(r), et = parseFloat(getComputedStyle(s).rowGap) || 8, Bt = r.offsetHeight, te = Bt + et, Ot = ht.map((ue) => ue.offsetTop), Et = ht.map((ue) => ue.offsetHeight), Ct = () => s.getBoundingClientRect().top, he = s.getBoundingClientRect().width, ve = e.clientY - (Ct() + Ot[it]), zt = e.clientX;
-    let be = e.clientY, Ee = e.clientX, se = Ct() + Ot[it], ae = 0, ua = 0, _a = 0, Ze = 1, Oi = 0, At = it, pe = !1, ba = 0, wa = !1, Cl = !1, is = Ot[it];
+    const ht = [...s.children].filter((ue) => ue.classList.contains("moveRow")), rt = ht.indexOf(r), at = parseFloat(getComputedStyle(s).rowGap) || 8, Rt = r.offsetHeight, te = Rt + at, Ot = ht.map((ue) => ue.offsetTop), Et = ht.map((ue) => ue.offsetHeight), Ct = () => s.getBoundingClientRect().top, he = s.getBoundingClientRect().width, ve = e.clientY - (Ct() + Ot[rt]), zt = e.clientX;
+    let be = e.clientY, Ee = e.clientX, se = Ct() + Ot[rt], ae = 0, ua = 0, _a = 0, Ze = 1, Oi = 0, At = rt, pe = !1, ba = 0, wa = !1, Cl = !1, is = Ot[rt];
     s.classList.add("reordering"), r.classList.add("dragging"), r.style.transition = "none", En(8);
     const Tl = () => {
-      const ue = be - ve + Bt / 2 - Ct();
+      const ue = be - ve + Rt / 2 - Ct();
       let ke = 0;
       return ht.forEach((je, tn) => {
-        tn !== it && ue > Ot[tn] + Et[tn] / 2 && ke++;
+        tn !== rt && ue > Ot[tn] + Et[tn] / 2 && ke++;
       }), ke;
     }, Al = () => {
       ht.forEach((ue, ke) => {
-        if (ke === it) return;
-        const je = it < At && ke > it && ke <= At ? -te : it > At && ke >= At && ke < it ? te : 0;
+        if (ke === rt) return;
+        const je = rt < At && ke > rt && ke <= At ? -te : rt > At && ke >= At && ke < rt ? te : 0;
         ue.style.transform = je ? "translateY(" + je + "px)" : "";
       });
     }, qs = () => {
       const ue = s.getBoundingClientRect(), ke = Math.abs(Ee - zt) > Math.max(80, he * 0.3) || Ee < ue.left - 24 || Ee > ue.right + 24;
       ke !== pe && (pe = ke, r.classList.toggle("willReturn", ke), En(ke ? 10 : 4));
-      const je = pe ? it : Tl();
+      const je = pe ? rt : Tl();
       je !== At && (At = je, Al(), pe || En(4));
     }, Wi = () => {
-      if (At === it) return Ot[it];
-      const ue = ht.filter((je, tn) => tn !== it);
+      if (At === rt) return Ot[rt];
+      const ue = ht.filter((je, tn) => tn !== rt);
       let ke = Ot[0];
-      for (let je = 0; je < At; je++) ke += ue[je].offsetHeight + et;
+      for (let je = 0; je < At; je++) ke += ue[je].offsetHeight + at;
       return ke;
     }, rs = () => {
-      const ue = B ? Math.min(Math.abs(ae) / 40, 1) : 0, ke = B && !wa ? Math.max(-3, Math.min(3, _a * 0.6)) : 0;
-      r.style.transform = "translate(" + ua.toFixed(2) + "px," + (se - (Ct() + Ot[it])).toFixed(2) + "px) rotate(" + ke.toFixed(2) + "deg) scale(" + (Ze * (1 - 0.04 * ue)).toFixed(4) + "," + (Ze * (1 + 0.06 * ue)).toFixed(4) + ")";
+      const ue = R ? Math.min(Math.abs(ae) / 40, 1) : 0, ke = R && !wa ? Math.max(-3, Math.min(3, _a * 0.6)) : 0;
+      r.style.transform = "translate(" + ua.toFixed(2) + "px," + (se - (Ct() + Ot[rt])).toFixed(2) + "px) rotate(" + ke.toFixed(2) + "deg) scale(" + (Ze * (1 - 0.04 * ue)).toFixed(4) + "," + (Ze * (1 + 0.06 * ue)).toFixed(4) + ")";
     }, oe = () => {
       ba = requestAnimationFrame(oe);
       const ue = Ee - zt, ke = wa ? Ct() + is : be - ve, je = wa ? 0 : pe ? ue * 0.9 : Math.max(-22, Math.min(22, ue * 0.22)), tn = wa ? 1 : pe ? 0.97 : 1.035;
-      if (!B) {
+      if (!R) {
         se = ke, ua = wa ? 0 : je, Ze = 1, rs(), wa && Je();
         return;
       }
@@ -1823,16 +1823,16 @@ function pu(n, l) {
     function Je() {
       if (Cl) return;
       Cl = !0, cancelAnimationFrame(ba);
-      const ue = At !== it, ke = r.dataset.id;
+      const ue = At !== rt, ke = r.dataset.id;
       if (s.classList.remove("reordering"), ht.forEach((tn) => {
         tn.style.transition = "none", tn.style.transform = "";
-      }), r.classList.remove("dragging", "willReturn"), s.style.position = ot, ue) {
-        const [tn] = p.splice(it, 1);
+      }), r.classList.remove("dragging", "willReturn"), s.style.position = it, ue) {
+        const [tn] = p.splice(rt, 1);
         p.splice(At, 0, tn);
       }
-      Re();
+      Be();
       const je = ke && s.querySelector('.moveRow[data-id="' + ke + '"]');
-      je && B && je.animate([{ transform: "scale(1.02,.95)" }, { transform: "scale(.995,1.012)" }, { transform: "none" }], { duration: 340, easing: "ease-out" }), ue && We("Order saved");
+      je && R && je.animate([{ transform: "scale(1.02,.95)" }, { transform: "scale(.995,1.012)" }, { transform: "none" }], { duration: 340, easing: "ease-out" }), ue && We("Order saved");
     }
     const xa = (ue) => {
       if (ue.pointerId === T) {
@@ -1846,13 +1846,13 @@ function pu(n, l) {
       ue.pointerId === T && An();
     };
     function An() {
-      wa || (window.removeEventListener("pointermove", xa, !0), window.removeEventListener("pointerup", Qa, !0), window.removeEventListener("pointercancel", Qa, !0), g.removeEventListener("lostpointercapture", An), clearInterval(Ne), pe && At !== it && (At = it, Al()), is = Wi(), wa = !0, En(6), setTimeout(Je, 800));
+      wa || (window.removeEventListener("pointermove", xa, !0), window.removeEventListener("pointerup", Qa, !0), window.removeEventListener("pointercancel", Qa, !0), g.removeEventListener("lostpointercapture", An), clearInterval(Ne), pe && At !== rt && (At = rt, Al()), is = Wi(), wa = !0, En(6), setTimeout(Je, 800));
     }
     window.addEventListener("pointermove", xa, !0), window.addEventListener("pointerup", Qa, !0), window.addEventListener("pointercancel", Qa, !0), g.addEventListener("lostpointercapture", An), ba = requestAnimationFrame(oe), rs();
   }
-  function di() {
-    var g, T, B, q;
-    const e = Kt[we], r = (g = o("warmupList")) == null ? void 0 : g.closest("section"), s = (T = o("cooldownList")) == null ? void 0 : T.closest("section"), p = (q = (B = o("strengthList")) == null ? void 0 : B.closest("section")) == null ? void 0 : q.querySelector(".sectionTitle");
+  function ci() {
+    var g, T, R, q;
+    const e = Kt[we], r = (g = o("warmupList")) == null ? void 0 : g.closest("section"), s = (T = o("cooldownList")) == null ? void 0 : T.closest("section"), p = (q = (R = o("strengthList")) == null ? void 0 : R.closest("section")) == null ? void 0 : q.querySelector(".sectionTitle");
     e != null && e.customSequence ? (r && (r.hidden = !e.includeWarmup), s && (s.hidden = !e.includeCooldown), p && (p.textContent = "Move sequence")) : (r && (r.hidden = !!(e != null && e.warmupOff)), s && (s.hidden = !1), p && (p.textContent = "Kettlebell work")), fo(Te, "warmupList"), fo(Qt, "strengthList"), fo(Ea, "cooldownList");
   }
   function xn() {
@@ -1876,13 +1876,13 @@ function pu(n, l) {
       return;
     }
     const s = (T) => {
-      var B;
-      return ((B = T.dataset) == null ? void 0 : B.id) || T;
+      var R;
+      return ((R = T.dataset) == null ? void 0 : R.id) || T;
     }, p = () => [...e.querySelectorAll(".moveRow,.sectionTitle,.movementCreatorLaunch")], g = new Map(p().map((T) => [s(T), T.getBoundingClientRect().top]));
     r(), p().forEach((T) => {
-      const B = g.get(s(T));
-      if (B === void 0) return;
-      const q = B - T.getBoundingClientRect().top;
+      const R = g.get(s(T));
+      if (R === void 0) return;
+      const q = R - T.getBoundingClientRect().top;
       Math.abs(q) < 0.5 || T.animate([{ transform: "translateY(" + q + "px)" }, { transform: "none" }], { duration: 440, easing: Ya });
     });
   }
@@ -1893,11 +1893,11 @@ function pu(n, l) {
   }
   function yn(e, r, s, p) {
     const { arr: g } = ho(r), T = Kn(e, r);
-    g.splice(Math.max(0, Math.min(s, g.length)), 0, T), na = { item: T, arr: g }, ye = T, mo(r.closest(".exerciseScroller,.createStepSlot") || r, () => Re());
-    const B = r.querySelector(".moveRow.editing");
-    return $i(B, p), _n(e === "rest"), B;
+    g.splice(Math.max(0, Math.min(s, g.length)), 0, T), na = { item: T, arr: g }, ye = T, mo(r.closest(".exerciseScroller,.createStepSlot") || r, () => Be());
+    const R = r.querySelector(".moveRow.editing");
+    return $i(R, p), _n(e === "rest"), R;
   }
-  function Po(e) {
+  function Io(e) {
     for (let r = e; r && r.nodeType === 1; r = r.parentElement) {
       const s = getComputedStyle(r).overflowY;
       if (/(auto|scroll)/.test(s) && r.scrollHeight > r.clientHeight) return r;
@@ -1913,41 +1913,41 @@ function pu(n, l) {
     e.classList.add("leaving"), setTimeout(() => e.remove(), 180);
   }
   function O(e, r, s, p) {
-    (ye || na) && (xn(), ye = null, Re());
+    (ye || na) && (xn(), ye = null, Be());
     const g = e.getBoundingClientRect(), T = S(r, x[r]);
     T.setAttribute("aria-hidden", "true"), T.style.width = g.width + "px", T.style.height = g.height + "px", T.style.transform = "translate(" + g.left + "px," + g.top + "px)", e.classList.add("lifting");
-    const B = Po(e);
+    const R = Io(e);
     return Z({
       ghost: T,
       origin: g,
       sx: s,
       sy: p,
-      scroller: B,
-      column: e.closest(".exerciseScroller,.createFlow") || B,
+      scroller: R,
+      column: e.closest(".exerciseScroller,.createFlow") || R,
       home: () => e.getBoundingClientRect(),
-      onDrop: (q, ot, ht) => {
-        C(T), e.classList.remove("lifting"), yn(r, q, ot, ht);
+      onDrop: (q, it, ht) => {
+        C(T), e.classList.remove("lifting"), yn(r, q, it, ht);
       },
       onReturn: () => {
         C(T), e.classList.remove("lifting");
       }
     });
   }
-  function Z({ ghost: e, origin: r, sx: s, sy: p, scroller: g, column: T, home: B, onDrop: q, onReturn: ot, rowLook: ht = !1 }) {
+  function Z({ ghost: e, origin: r, sx: s, sy: p, scroller: g, column: T, home: R, onDrop: q, onReturn: it, rowLook: ht = !1 }) {
     var rs;
-    const it = !Da(), et = ((rs = n.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : rs.offsetHeight) || 80, Bt = s - r.left, te = p - r.top, Ot = 44;
-    let Et = s, Ct = p, he = r.left, ve = r.top, zt = 0, be = 0, Ee = !it, se = null, ae = null, ua = -1, _a = 0, Ze = null;
+    const rt = !Da(), at = ((rs = n.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : rs.offsetHeight) || 80, Rt = s - r.left, te = p - r.top, Ot = 44;
+    let Et = s, Ct = p, he = r.left, ve = r.top, zt = 0, be = 0, Ee = !rt, se = null, ae = null, ua = -1, _a = 0, Ze = null;
     const Oi = () => ["warmupList", "strengthList", "cooldownList"].map((oe) => o(oe)).filter((oe) => oe && oe.getClientRects().length && !oe.closest("[hidden]")), At = (oe) => {
       if (oe === se) return;
       se = oe, e.classList.toggle("overList", !!oe || ht);
       const Ne = oe ? oe.getBoundingClientRect().width : r.width;
-      e.style.width = Ne + "px", e.style.height = (oe ? et : r.height) + "px";
+      e.style.width = Ne + "px", e.style.height = (oe ? at : r.height) + "px";
     }, pe = (oe) => {
-      oe.classList.add("leaving"), oe.style.height = "0px", oe.style.marginTop = "-8px", setTimeout(() => oe.remove(), it ? 320 : 0);
+      oe.classList.add("leaving"), oe.style.height = "0px", oe.style.marginTop = "-8px", setTimeout(() => oe.remove(), rt ? 320 : 0);
     }, ba = (oe, Ne, Je) => {
       if (ae && ae.parentNode === oe && ua === Je || (ae && (pe(ae), ae = null, ua = -1), !oe)) return;
       const xa = document.createElement("div");
-      xa.className = "dropSlot", oe.insertBefore(xa, Ne), ae = xa, ua = Je, xa.getBoundingClientRect(), xa.style.height = et + "px", xa.style.marginTop = "0px";
+      xa.className = "dropSlot", oe.insertBefore(xa, Ne), ae = xa, ua = Je, xa.getBoundingClientRect(), xa.style.height = at + "px", xa.style.marginTop = "0px";
     }, wa = () => {
       let oe = null, Ne = 1 / 0;
       for (const An of Oi()) {
@@ -1970,10 +1970,10 @@ function pu(n, l) {
       if (Ze) return Ze.aim();
       if (se) {
         const oe = se.getBoundingClientRect();
-        let Ne = Ct - et / 2;
+        let Ne = Ct - at / 2;
         return ae && (Ne = Ne * 0.6 + ae.getBoundingClientRect().top * 0.4), { x: oe.left, y: Ne };
       }
-      return { x: Et - Bt, y: Ct - te };
+      return { x: Et - Rt, y: Ct - te };
     }, is = (oe, Ne, Je, xa) => {
       e.style.transform = "translate(" + he + "px," + ve + "px) rotate(" + oe + "deg) rotate(" + Ne + "rad) scale(" + Je + "," + xa + ") rotate(" + -Ne + "rad)";
     }, Tl = () => {
@@ -1983,7 +1983,7 @@ function pu(n, l) {
         return;
       }
       const oe = Cl();
-      if (!it) {
+      if (!rt) {
         he = oe.x, ve = oe.y, is(0, 0, 1, 1), Ze && (cancelAnimationFrame(_a), Ze.done());
         return;
       }
@@ -2001,8 +2001,8 @@ function pu(n, l) {
     const Wi = (oe, Ne) => {
       if (qs) return;
       qs = !0, cancelAnimationFrame(_a);
-      const Je = ae ? ae.offsetHeight : et;
-      !oe && ae && (ae.remove(), ae = null), oe ? q(oe, Ne, Je) : ot();
+      const Je = ae ? ae.offsetHeight : at;
+      !oe && ae && (ae.remove(), ae = null), oe ? q(oe, Ne, Je) : it();
     };
     return {
       move(oe, Ne) {
@@ -2016,17 +2016,17 @@ function pu(n, l) {
           Ze = { k: 0.24, d: 0.62, aim: () => {
             const Qa = xa.getBoundingClientRect();
             return { x: Qa.left, y: Qa.top };
-          }, done: () => Wi(Ne, Je) }, setTimeout(() => Wi(Ne, Je), 650), it || (cancelAnimationFrame(_a), Wi(Ne, Je));
+          }, done: () => Wi(Ne, Je) }, setTimeout(() => Wi(Ne, Je), 650), rt || (cancelAnimationFrame(_a), Wi(Ne, Je));
           return;
         }
         ba(null), At(null), Ze = { k: 0.2, d: 0.66, aim: () => {
-          const xa = B();
+          const xa = R();
           return { x: xa.left, y: xa.top };
-        }, done: () => Wi(null) }, setTimeout(() => Wi(null), 650), it || (cancelAnimationFrame(_a), Wi(null));
+        }, done: () => Wi(null) }, setTimeout(() => Wi(null), 650), rt || (cancelAnimationFrame(_a), Wi(null));
       }
     };
   }
-  function X(e, r) {
+  function J(e, r) {
     let s = !1;
     e.addEventListener("click", (p) => {
       if (s) {
@@ -2041,8 +2041,8 @@ function pu(n, l) {
       T == null || T.scrollIntoView({ block: "nearest", behavior: Da() ? "auto" : "smooth" });
     }), e.addEventListener("pointerdown", (p) => {
       if (p.button !== void 0 && p.button !== 0) return;
-      const g = p.pointerId, T = p.clientX, B = p.clientY;
-      let q = null, ot = !1;
+      const g = p.pointerId, T = p.clientX, R = p.clientY;
+      let q = null, it = !1;
       try {
         e.setPointerCapture(g);
       } catch {
@@ -2054,30 +2054,30 @@ function pu(n, l) {
             return;
           }
           if (!q) {
-            if (Math.hypot(Ct.clientX - T, Ct.clientY - B) < 6) return;
-            q = O(e, r, T, B);
+            if (Math.hypot(Ct.clientX - T, Ct.clientY - R) < 6) return;
+            q = O(e, r, T, R);
           }
           q.move(Ct.clientX, Ct.clientY);
         }
-      }, it = (Ct) => {
+      }, rt = (Ct) => {
         Ct.pointerId === g && Et(!1);
-      }, et = (Ct) => {
+      }, at = (Ct) => {
         Ct.pointerId === g && Et(!0);
-      }, Bt = () => Et(!1), te = () => Et(!0), Ot = (Ct) => {
+      }, Rt = () => Et(!1), te = () => Et(!0), Ot = (Ct) => {
         Ct.key === "Escape" && q && (Ct.preventDefault(), Ct.stopPropagation(), Et(!0));
       };
       function Et(Ct) {
-        if (!ot && (ot = !0, window.removeEventListener("pointermove", ht, !0), window.removeEventListener("pointerup", it, !0), window.removeEventListener("pointercancel", et, !0), window.removeEventListener("keydown", Ot, !0), window.removeEventListener("blur", te), e.removeEventListener("lostpointercapture", Bt), q)) {
+        if (!it && (it = !0, window.removeEventListener("pointermove", ht, !0), window.removeEventListener("pointerup", rt, !0), window.removeEventListener("pointercancel", at, !0), window.removeEventListener("keydown", Ot, !0), window.removeEventListener("blur", te), e.removeEventListener("lostpointercapture", Rt), q)) {
           const he = q;
           q = null, s = !0, setTimeout(() => {
             s = !1;
           }, 0), he.drop(Ct);
         }
       }
-      window.addEventListener("pointermove", ht, !0), window.addEventListener("pointerup", it, !0), window.addEventListener("pointercancel", et, !0), window.addEventListener("keydown", Ot, !0), window.addEventListener("blur", te), e.addEventListener("lostpointercapture", Bt);
+      window.addEventListener("pointermove", ht, !0), window.addEventListener("pointerup", rt, !0), window.addEventListener("pointercancel", at, !0), window.addEventListener("keydown", Ot, !0), window.addEventListener("blur", te), e.addEventListener("lostpointercapture", Rt);
     });
   }
-  const lt = (oc = window.matchMedia) == null ? void 0 : oc.call(window, "(max-width: 620px)");
+  const dt = (oc = window.matchMedia) == null ? void 0 : oc.call(window, "(max-width: 620px)");
   function bt() {
     var e;
     return !!((e = window.matchMedia) != null && e.call(window, "(max-width: 620px)").matches);
@@ -2085,7 +2085,7 @@ function pu(n, l) {
   const wt = (e) => e.charAt(0).toUpperCase() + e.slice(1), Pt = (e) => e.kind === "rest" ? "rest" : e.kind === "video" ? "video" : "movement";
   let Lt = null, kt = null;
   function Gt(e, r, s, p) {
-    Rt(), o("sheetTitle").textContent = e;
+    Bt(), o("sheetTitle").textContent = e;
     const g = o("sheetBody");
     g.innerHTML = "", g.appendChild(r), Lt = s || null, o("sheet").setAttribute("aria-hidden", "false"), o("sheetScrim").classList.add("open"), o("sheet").classList.add("open"), setTimeout(() => {
       if (!o("sheet").classList.contains("open") || !g.contains(r)) return;
@@ -2093,32 +2093,32 @@ function pu(n, l) {
       T == null || T.focus({ preventScroll: !0 });
     }, Da() ? 0 : 360);
   }
-  function Rt() {
+  function Bt() {
     const e = o("sheet");
     if (!e.classList.contains("open")) return;
     e.classList.remove("open"), o("sheetScrim").classList.remove("open"), e.setAttribute("aria-hidden", "true"), e.contains(n.activeElement) && n.activeElement.blur();
     const r = Lt;
     Lt = null, r == null || r(), setTimeout(ce, 0);
   }
-  o("sheetScrim").addEventListener("click", Rt), o("sheet").addEventListener("keydown", (e) => {
-    e.key === "Escape" && (e.preventDefault(), Rt());
+  o("sheetScrim").addEventListener("click", Bt), o("sheet").addEventListener("keydown", (e) => {
+    e.key === "Escape" && (e.preventDefault(), Bt());
   });
   function Ft(e, r) {
     const s = Zn(e, r.indexOf(e), {
       sheet: !0,
       isNew: !1,
       onSaved() {
-        Rt(), Re(), We(wt(Pt(e)) + " updated");
+        Bt(), Be(), We(wt(Pt(e)) + " updated");
       },
-      onCancel: Rt,
+      onCancel: Bt,
       onHide() {
-        e.hidden = !e.hidden, Rt(), Re(), We((e.hidden ? "Hidden: " : "Showing: ") + e.name);
+        e.hidden = !e.hidden, Bt(), Be(), We((e.hidden ? "Hidden: " : "Showing: ") + e.name);
       },
       onRemove() {
-        Rt();
+        Bt();
         const p = r.indexOf(e);
-        p < 0 || (r.splice(p, 1), Re(), We("Removed " + e.name, { label: "Undo", run: () => {
-          r.splice(Math.min(p, r.length), 0, e), Re();
+        p < 0 || (r.splice(p, 1), Be(), We("Removed " + e.name, { label: "Undo", run: () => {
+          r.splice(Math.min(p, r.length), 0, e), Be();
         } }));
       }
     });
@@ -2132,14 +2132,14 @@ function pu(n, l) {
     }), Gt("Add to the move", e, null, !1);
   }
   function Vt(e) {
-    kt && Bn();
+    kt && Rn();
     const r = Kn(e, o("strengthList")), s = Zn(r, -1, {
       sheet: !0,
       isNew: !0,
       onSaved() {
-        Rt(), $e(r, e);
+        Bt(), $e(r, e);
       },
-      onCancel: Rt
+      onCancel: Bt
     });
     Gt("New " + Pt(r), s, null, !0);
   }
@@ -2148,7 +2148,7 @@ function pu(n, l) {
     const e = document.createElement("div");
     e.className = "sheetSetup", e.appendChild(Tt);
     const r = document.createElement("button");
-    r.type = "button", r.className = "primary sheetDone", r.textContent = "Done", r.addEventListener("click", Rt), e.appendChild(r), Gt("Setup", e, () => {
+    r.type = "button", r.className = "primary sheetDone", r.textContent = "Done", r.addEventListener("click", Bt), e.appendChild(r), Gt("Setup", e, () => {
       ee.parent.insertBefore(Tt, ee.next), Ge();
     }, !1);
   }
@@ -2160,7 +2160,7 @@ function pu(n, l) {
   o("setupSummary").addEventListener("click", ie), o("addFab").addEventListener("click", Zt);
   function Nt() {
     const e = o("strengthList");
-    return Po(e) || e.closest(".exerciseScroller");
+    return Io(e) || e.closest(".exerciseScroller");
   }
   function Pe() {
     const e = o("strengthList").getBoundingClientRect(), r = (Nt() || o("strengthList")).getBoundingClientRect(), s = (kt == null ? void 0 : kt.ghost.offsetHeight) || 64;
@@ -2174,8 +2174,8 @@ function pu(n, l) {
     p.className = "addGhostActions", p.innerHTML = '<button class="hideBtn" type="button" data-a="end">Add at end</button><button class="hideBtn ghostDiscard" type="button" data-a="discard" aria-label="Discard ' + Ht(e.name) + '">✕</button>', s.appendChild(p), kt = { item: e, type: r, ghost: s };
     const g = ((q = n.querySelector(".moveList .moveRow:not(.editing)")) == null ? void 0 : q.offsetHeight) || 64;
     s.style.width = o("strengthList").getBoundingClientRect().width + "px", s.style.height = g + "px";
-    const T = Pe(), B = La.querySelector(".modal").getBoundingClientRect().bottom;
-    s.style.transform = "translate(" + T.left + "px," + B + "px)", s.getBoundingClientRect(), Da() || (s.classList.add("rising"), setTimeout(() => s.classList.remove("rising"), 650)), s.style.transform = "translate(" + T.left + "px," + T.top + "px)", p.querySelector("[data-a=end]").addEventListener("click", Bn), p.querySelector("[data-a=discard]").addEventListener("click", Xi), s.addEventListener("pointerdown", Fa);
+    const T = Pe(), R = La.querySelector(".modal").getBoundingClientRect().bottom;
+    s.style.transform = "translate(" + T.left + "px," + R + "px)", s.getBoundingClientRect(), Da() || (s.classList.add("rising"), setTimeout(() => s.classList.remove("rising"), 650)), s.style.transform = "translate(" + T.left + "px," + T.top + "px)", p.querySelector("[data-a=end]").addEventListener("click", Rn), p.querySelector("[data-a=discard]").addEventListener("click", Xi), s.addEventListener("pointerdown", Fa);
   }
   function Fa(e) {
     if (!kt || e.target.closest("button") || e.button !== void 0 && e.button !== 0) return;
@@ -2186,7 +2186,7 @@ function pu(n, l) {
     } catch {
     }
     s.classList.remove("hovering", "rising"), s.classList.add("held");
-    const g = s.getBoundingClientRect(), T = Nt(), B = Z({
+    const g = s.getBoundingClientRect(), T = Nt(), R = Z({
       ghost: s,
       origin: { left: g.left, top: g.top, width: g.width, height: g.height },
       sx: e.clientX,
@@ -2203,31 +2203,31 @@ function pu(n, l) {
       }
     });
     let q = !1;
-    const ot = (Et) => {
+    const it = (Et) => {
       if (Et.pointerId === p) {
         if (Et.pointerType === "mouse" && Et.buttons === 0) {
           Ot(!1);
           return;
         }
-        B.move(Et.clientX, Et.clientY);
+        R.move(Et.clientX, Et.clientY);
       }
     }, ht = (Et) => {
       Et.pointerId === p && Ot(!1);
-    }, it = (Et) => {
+    }, rt = (Et) => {
       Et.pointerId === p && Ot(!0);
-    }, et = () => Ot(!1), Bt = () => Ot(!0), te = (Et) => {
+    }, at = () => Ot(!1), Rt = () => Ot(!0), te = (Et) => {
       Et.key === "Escape" && (Et.preventDefault(), Ot(!0));
     };
     function Ot(Et) {
-      q || (q = !0, window.removeEventListener("pointermove", ot, !0), window.removeEventListener("pointerup", ht, !0), window.removeEventListener("pointercancel", it, !0), window.removeEventListener("keydown", te, !0), window.removeEventListener("blur", Bt), s.removeEventListener("lostpointercapture", et), B.drop(Et));
+      q || (q = !0, window.removeEventListener("pointermove", it, !0), window.removeEventListener("pointerup", ht, !0), window.removeEventListener("pointercancel", rt, !0), window.removeEventListener("keydown", te, !0), window.removeEventListener("blur", Rt), s.removeEventListener("lostpointercapture", at), R.drop(Et));
     }
-    window.addEventListener("pointermove", ot, !0), window.addEventListener("pointerup", ht, !0), window.addEventListener("pointercancel", it, !0), window.addEventListener("keydown", te, !0), window.addEventListener("blur", Bt), s.addEventListener("lostpointercapture", et);
+    window.addEventListener("pointermove", it, !0), window.addEventListener("pointerup", ht, !0), window.addEventListener("pointercancel", rt, !0), window.addEventListener("keydown", te, !0), window.addEventListener("blur", Rt), s.addEventListener("lostpointercapture", at);
   }
   function Dn(e, r, s, p) {
     const g = ho(r);
-    e.kind !== "rest" && e.kind !== "video" && (e.kind = g.kind, g.group && (!e.group || e.group === "Movement") && (e.group = g.group)), g.arr.splice(Math.max(0, Math.min(s, g.arr.length)), 0, e), mo(r.closest(".exerciseScroller,.createStepSlot") || r, () => Re()), $i(r.querySelector('.moveRow[data-id="' + e.id + '"]'), p), We(wt(Pt(e)) + " added");
+    e.kind !== "rest" && e.kind !== "video" && (e.kind = g.kind, g.group && (!e.group || e.group === "Movement") && (e.group = g.group)), g.arr.splice(Math.max(0, Math.min(s, g.arr.length)), 0, e), mo(r.closest(".exerciseScroller,.createStepSlot") || r, () => Be()), $i(r.querySelector('.moveRow[data-id="' + e.id + '"]'), p), We(wt(Pt(e)) + " added");
   }
-  function Bn() {
+  function Rn() {
     var p;
     if (!kt) return;
     const { item: e, ghost: r } = kt;
@@ -2240,7 +2240,7 @@ function pu(n, l) {
     const e = kt.ghost;
     kt = null, C(e), We("Discarded");
   }
-  function Rn() {
+  function Bn() {
     kt && (kt.ghost.remove(), kt = null);
   }
   window.addEventListener("resize", () => {
@@ -2248,8 +2248,8 @@ function pu(n, l) {
       const e = Pe();
       kt.ghost.style.width = e.width + "px", kt.ghost.style.transform = "translate(" + e.left + "px," + e.top + "px)";
     }
-  }), (ic = lt == null ? void 0 : lt.addEventListener) == null || ic.call(lt, "change", () => {
-    Rt(), kt && !bt() && Bn(), di();
+  }), (ic = dt == null ? void 0 : dt.addEventListener) == null || ic.call(dt, "change", () => {
+    Bt(), kt && !bt() && Rn(), ci();
   });
   {
     const e = o("workoutModal").querySelector(".modal");
@@ -2265,8 +2265,8 @@ function pu(n, l) {
     }
     const s = r ? r.offsetTop : 0, p = r ? r.offsetLeft : 0, g = r ? r.width : window.innerWidth, T = r ? r.height : window.innerHeight;
     Object.assign(e.style, { right: "auto", bottom: "auto", width: g + "px", height: T + "px", top: s + "px", left: p + "px" });
-    const B = e.getBoundingClientRect();
-    Math.abs(B.top - s) > 0.5 && (e.style.top = 2 * s - B.top + "px"), Math.abs(B.left - p) > 0.5 && (e.style.left = 2 * p - B.left + "px");
+    const R = e.getBoundingClientRect();
+    Math.abs(R.top - s) > 0.5 && (e.style.top = 2 * s - R.top + "px"), Math.abs(R.left - p) > 0.5 && (e.style.left = 2 * p - R.left + "px");
   }
   function Oa() {
     ["top", "left", "right", "bottom", "width", "height"].forEach((e) => o("workoutModal").style.removeProperty(e));
@@ -2285,9 +2285,9 @@ function pu(n, l) {
     const p = o("useGlobalRestTiming").checked, g = o("addRestDuration"), T = o("addRestUnit");
     g.disabled = p, T.disabled = p, g.parentElement.style.opacity = p ? ".38" : "1", o("globalRestTimingValue").textContent = "Use global timing · " + Ye(I.value);
   }
-  let ci = "movement";
+  let pi = "movement";
   function Sr(e) {
-    ci = e;
+    pi = e;
     const r = o("movementFields"), s = o("restFields");
     r.hidden = e !== "movement", s.hidden = e !== "rest", o("movementCreatorHeading").textContent = "Add movement", o("movementCreator").setAttribute("aria-label", "Create movement"), ln();
   }
@@ -2300,7 +2300,7 @@ function pu(n, l) {
       o("addRestDuration").value,
       o("addRestUnit").value
     );
-    if (ci === "rest") {
+    if (pi === "rest") {
       const g = o("addRestTitle").value.trim() || "Rest", T = o("addRestGroup").value.trim() || "Rest";
       Qt.push({
         id: "rest-" + Date.now(),
@@ -2310,7 +2310,7 @@ function pu(n, l) {
         hidden: !1,
         useGlobalTiming: s,
         duration: Math.max(5, p || Number(I.value))
-      }), Re(), o("movementCreator").hidden = !0, o("addRestTitle").value = "Rest", o("addRestGroup").value = "Rest", We("Rest added"), St && (P("movements"), st());
+      }), Be(), o("movementCreator").hidden = !0, o("addRestTitle").value = "Rest", o("addRestGroup").value = "Rest", We("Rest added"), St && (P("movements"), lt());
     } else {
       const g = o("addMovementInput").value.trim();
       if (!g) return;
@@ -2323,7 +2323,7 @@ function pu(n, l) {
         hidden: !1,
         useGlobalTiming: e,
         duration: Math.max(5, r || Number(A.value))
-      }), o("addMovementInput").value = "", o("addMovementGroup").value = "", Re(), o("movementCreator").hidden = !0, We("Movement added"), St && (P("movements"), st());
+      }), o("addMovementInput").value = "", o("addMovementGroup").value = "", Be(), o("movementCreator").hidden = !0, We("Movement added"), St && (P("movements"), lt());
     }
     sn();
   }
@@ -2344,25 +2344,25 @@ function pu(n, l) {
   function gs(e) {
     return Math.max(0, Math.min(5, Math.floor(Number(e) / 100 * 6)));
   }
-  function pi(e, r) {
+  function ui(e, r) {
     return Zs[gs(r)];
   }
   function Yl(e) {
     return ms[gs(e)];
   }
-  function Be(e) {
+  function Re(e) {
     return e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0");
   }
   function Xn() {
     return { morning: fe().morningTime || "08:00", evening: fe().eveningTime || "19:00" };
   }
-  function ui(e) {
+  function go(e) {
     const [r, s] = String(e).split(":").map(Number);
     return (r || 0) * 60 + (s || 0);
   }
   function Ks(e) {
     const r = Xn();
-    return e.getHours() * 60 + e.getMinutes() >= ui(r.evening) ? "evening" : "morning";
+    return e.getHours() * 60 + e.getMinutes() >= go(r.evening) ? "evening" : "morning";
   }
   function Cr(e, r) {
     return de.checkins.find((s) => s.date === e && s.slot === r);
@@ -2370,50 +2370,50 @@ function pu(n, l) {
   function Tr(e) {
     return !!(e && e.mood != null && e.energy != null);
   }
-  function go() {
-    const e = /* @__PURE__ */ new Date(), r = Be(e), s = Ks(e), p = Xn(), g = e.getHours() * 60 + e.getMinutes();
-    return s === "morning" && g < ui(p.morning) || Tr(Cr(r, s)) ? null : s;
+  function vo() {
+    const e = /* @__PURE__ */ new Date(), r = Re(e), s = Ks(e), p = Xn(), g = e.getHours() * 60 + e.getMinutes();
+    return s === "morning" && g < go(p.morning) || Tr(Cr(r, s)) ? null : s;
   }
-  const la = o("checkinModal"), vo = o("checkinTab"), $s = o("checkinBadge"), Jn = { mood: { input: o("moodInput"), fill: o("moodFill") }, energy: { input: o("energyLevelInput"), fill: o("energyLevelFill") } };
+  const la = o("checkinModal"), bo = o("checkinTab"), $s = o("checkinBadge"), Jn = { mood: { input: o("moodInput"), fill: o("moodFill") }, energy: { input: o("energyLevelInput"), fill: o("energyLevelFill") } };
   function Ji(e) {
     const { input: r, fill: s } = Jn[e];
-    s.style.width = r.value + "%", r.setAttribute("aria-valuetext", pi(e, r.value));
+    s.style.width = r.value + "%", r.setAttribute("aria-valuetext", ui(e, r.value));
   }
   Object.keys(Jn).forEach((e) => Jn[e].input.addEventListener("input", () => Ji(e)));
   let Nn = null;
   function Xs() {
     const e = Xn(), r = /* @__PURE__ */ new Date(), s = r.getHours() * 60 + r.getMinutes();
-    return s < ui(e.morning) ? "Next check-in at " + e.morning : s < ui(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
+    return s < go(e.morning) ? "Next check-in at " + e.morning : s < go(e.evening) ? "Next check-in at " + e.evening : "Next check-in tomorrow at " + e.morning;
   }
   function vs() {
     const e = Xn(), r = /* @__PURE__ */ new Date(), s = r.getHours() * 60 + r.getMinutes(), p = (g, T) => {
-      const [B, q] = g.split(":").map(Number);
-      return new Date(r.getFullYear(), r.getMonth(), r.getDate() + (T ? 1 : 0), B, q);
+      const [R, q] = g.split(":").map(Number);
+      return new Date(r.getFullYear(), r.getMonth(), r.getDate() + (T ? 1 : 0), R, q);
     };
-    return s < ui(e.morning) ? { date: p(e.morning), time: e.morning } : s < ui(e.evening) ? { date: p(e.evening), time: e.evening } : { date: p(e.morning, !0), time: e.morning };
+    return s < go(e.morning) ? { date: p(e.morning), time: e.morning } : s < go(e.evening) ? { date: p(e.evening), time: e.evening } : { date: p(e.morning, !0), time: e.morning };
   }
   let Ar = null, bs = null;
   function Js() {
-    if (go()) {
-      fi(), Io();
+    if (vo()) {
+      fi(), Ho();
       return;
     }
     const e = vs(), r = Math.max(0, Math.round((e.date - Date.now()) / 1e3)), s = Math.floor(r / 3600), p = Math.floor(r % 3600 / 60), g = r % 60;
     o("peekCountdown").textContent = s + ":" + String(p).padStart(2, "0") + ":" + String(g).padStart(2, "0"), o("peekAt").textContent = "Available at " + e.time;
   }
   function Zl() {
-    Js(), vo.classList.add("peek"), clearInterval(bs), bs = setInterval(Js, 1e3), clearTimeout(Ar), Ar = setTimeout(fi, 6e3);
+    Js(), bo.classList.add("peek"), clearInterval(bs), bs = setInterval(Js, 1e3), clearTimeout(Ar), Ar = setTimeout(fi, 6e3);
   }
   function fi() {
-    vo.classList.remove("peek"), clearInterval(bs), clearTimeout(Ar);
+    bo.classList.remove("peek"), clearInterval(bs), clearTimeout(Ar);
   }
   function Qs() {
-    const e = go();
+    const e = vo();
     if (!e) {
-      vo.classList.contains("peek") ? fi() : Zl();
+      bo.classList.contains("peek") ? fi() : Zl();
       return;
     }
-    Nn = { date: Be(/* @__PURE__ */ new Date()), slot: e };
+    Nn = { date: Re(/* @__PURE__ */ new Date()), slot: e };
     const s = Cr(Nn.date, e), p = de.checkins.find((g) => Tr(g));
     Object.keys(Jn).forEach((g) => {
       Jn[g].input.value = (s == null ? void 0 : s[g]) ?? (p == null ? void 0 : p[g]) ?? 50, Ji(g);
@@ -2425,7 +2425,7 @@ function pu(n, l) {
       localStorage.setItem("move-assistant-dismissed", mi);
     } catch {
     }
-    Nn = null, Io();
+    Nn = null, Ho();
   }
   function Kl() {
     if (!Nn) return;
@@ -2435,91 +2435,91 @@ function pu(n, l) {
     }
     const { date: e, slot: r } = Nn;
     let s = Cr(e, r);
-    s || (s = { date: e, slot: r }, de.checkins.unshift(s), de.checkins = de.checkins.slice(0, 2e3)), s.mood = Number(Jn.mood.input.value), s.energy = Number(Jn.energy.input.value), s.scale = 100, s.at = (/* @__PURE__ */ new Date()).toISOString(), Ta(), l.fire("checkin", { slot: r, mood: s.mood, energy: s.energy, mood_label: pi("mood", s.mood), energy_label: pi("energy", s.energy) }), We((r === "morning" ? "Morning" : "Evening") + " check-in saved"), hi(), _r(), Qn(), lo(), Cn();
+    s || (s = { date: e, slot: r }, de.checkins.unshift(s), de.checkins = de.checkins.slice(0, 2e3)), s.mood = Number(Jn.mood.input.value), s.energy = Number(Jn.energy.input.value), s.scale = 100, s.at = (/* @__PURE__ */ new Date()).toISOString(), Ta(), l.fire("checkin", { slot: r, mood: s.mood, energy: s.energy, mood_label: ui("mood", s.mood), energy_label: ui("energy", s.energy) }), We((r === "morning" ? "Morning" : "Evening") + " check-in saved"), hi(), _r(), Qn(), lo(), Cn();
   }
   let mi = "";
   try {
     mi = localStorage.getItem("move-assistant-dismissed") || "";
   } catch {
   }
-  function Io() {
-    const e = go();
-    $s.hidden = !e, vo.hidden = !e, e || fi(), vo.classList.toggle("due", !!e), vo.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : Xs()), vo.title = e ? "Check in now" : Xs();
+  function Ho() {
+    const e = vo();
+    $s.hidden = !e, bo.hidden = !e, e || fi(), bo.classList.toggle("due", !!e), bo.setAttribute("aria-label", e ? (e === "morning" ? "Morning" : "Evening") + " check-in is due" : Xs()), bo.title = e ? "Check in now" : Xs();
   }
   function Lr() {
-    Io();
-    const e = go();
-    !e || la.classList.contains("open") || fe().checkinAutoOpen !== !1 && (o("app").classList.contains("house") || !It.home.classList.contains("active") || La.classList.contains("open") || mi !== Be(/* @__PURE__ */ new Date()) + "-" + e && Qs());
+    Ho();
+    const e = vo();
+    !e || la.classList.contains("open") || fe().checkinAutoOpen !== !1 && (o("app").classList.contains("house") || !It.home.classList.contains("active") || La.classList.contains("open") || mi !== Re(/* @__PURE__ */ new Date()) + "-" + e && Qs());
   }
-  vo.addEventListener("click", Qs), o("checkinLater").addEventListener("click", hi), o("checkinSave").addEventListener("click", Kl), la.addEventListener("click", (e) => {
+  bo.addEventListener("click", Qs), o("checkinLater").addEventListener("click", hi), o("checkinSave").addEventListener("click", Kl), la.addEventListener("click", (e) => {
     e.target === la && hi();
   }), la.addEventListener("keydown", (e) => {
     e.key === "Escape" && (e.preventDefault(), hi());
   }), setInterval(Lr, 3e4);
   function _r() {
-    const e = Be(/* @__PURE__ */ new Date()), r = (s) => de.checkins.find((p) => p.date === e && p[s] != null);
+    const e = Re(/* @__PURE__ */ new Date()), r = (s) => de.checkins.find((p) => p.date === e && p[s] != null);
     [["mood", "moodMeta"], ["energy", "energyLevelMeta"]].forEach(([s, p]) => {
       const g = r(s);
-      o(p).textContent = g ? pi(s, g[s]) : "—";
+      o(p).textContent = g ? ui(s, g[s]) : "—";
     });
   }
   function Qn() {
     const e = o("feelCard");
     if (!e) return;
-    const r = /* @__PURE__ */ new Date(), s = new Date(r.getFullYear(), r.getMonth(), r.getDate() - (r.getDay() + 6) % 7), p = [...Array(7)].map((ht, it) => {
-      const et = new Date(s.getFullYear(), s.getMonth(), s.getDate() + it), Bt = Be(et), te = de.checkins.filter((Et) => Et.date === Bt), Ot = (Et) => {
+    const r = /* @__PURE__ */ new Date(), s = new Date(r.getFullYear(), r.getMonth(), r.getDate() - (r.getDay() + 6) % 7), p = [...Array(7)].map((ht, rt) => {
+      const at = new Date(s.getFullYear(), s.getMonth(), s.getDate() + rt), Rt = Re(at), te = de.checkins.filter((Et) => Et.date === Rt), Ot = (Et) => {
         const Ct = te.map((he) => he[Et]).filter((he) => he != null);
         return Ct.length ? Ct.reduce((he, ve) => he + ve, 0) / Ct.length : null;
       };
-      return { d: et, key: Bt, mood: Ot("mood"), energy: Ot("energy"), count: te.filter(Tr).length, future: et > r && Bt !== Be(r) };
+      return { d: at, key: Rt, mood: Ot("mood"), energy: Ot("energy"), count: te.filter(Tr).length, future: at > r && Rt !== Re(r) };
     }), g = (ht) => {
-      const it = p.map((et) => et[ht]).filter((et) => et != null);
-      return it.length ? it.reduce((et, Bt) => et + Bt, 0) / it.length : null;
-    }, T = g("mood"), B = g("energy"), q = (ht, it) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + ht + "</span><span>" + (it == null ? "—" : Ht(pi("", it))) + '</span></div><div class="feelTrack"><span style="width:' + (it == null ? 0 : Math.max(4, it)) + "%;background:" + (it == null ? "transparent" : Yl(it)) + '"></span></div></div>', ot = p.filter((ht) => ht.mood != null && ht.energy != null).sort((ht, it) => it.mood + it.energy - (ht.mood + ht.energy))[0];
-    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (T == null ? "No check-ins yet" : Ht(pi("", (T + B) / 2))) + '</div><div class="weekCopy">' + (T == null ? "Your first check-in will appear here." : "on average this week" + (ot ? " · best day " + Ht(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(ot.d)) : "")) + '</div></div></div><div class="feelDays">' + p.map(
-      (ht) => '<div class="weekChip feelDay' + (ht.future ? " future" : "") + (ht.key === Be(r) ? " today" : "") + '"><div class="weekChipTop"><strong>' + Ht(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(ht.d)) + "</strong>" + (ht.count >= 2 ? '<span class="weekTick">' + Ua("check") + "</span>" : '<span class="feelDots">' + "●".repeat(ht.count) + "</span>") + "</div>" + q("Mood", ht.mood) + q("Energy", ht.energy) + "</div>"
+      const rt = p.map((at) => at[ht]).filter((at) => at != null);
+      return rt.length ? rt.reduce((at, Rt) => at + Rt, 0) / rt.length : null;
+    }, T = g("mood"), R = g("energy"), q = (ht, rt) => '<div class="feelMeter"><div class="feelMeterTop"><span>' + ht + "</span><span>" + (rt == null ? "—" : Ht(ui("", rt))) + '</span></div><div class="feelTrack"><span style="width:' + (rt == null ? 0 : Math.max(4, rt)) + "%;background:" + (rt == null ? "transparent" : Yl(rt)) + '"></span></div></div>', it = p.filter((ht) => ht.mood != null && ht.energy != null).sort((ht, rt) => rt.mood + rt.energy - (ht.mood + ht.energy))[0];
+    e.innerHTML = '<div class="feelTop"><div class="feelSummary"><div class="feelHeadline">' + (T == null ? "No check-ins yet" : Ht(ui("", (T + R) / 2))) + '</div><div class="weekCopy">' + (T == null ? "Your first check-in will appear here." : "on average this week" + (it ? " · best day " + Ht(new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(it.d)) : "")) + '</div></div></div><div class="feelDays">' + p.map(
+      (ht) => '<div class="weekChip feelDay' + (ht.future ? " future" : "") + (ht.key === Re(r) ? " today" : "") + '"><div class="weekChipTop"><strong>' + Ht(new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(ht.d)) + "</strong>" + (ht.count >= 2 ? '<span class="weekTick">' + Ua("check") + "</span>" : '<span class="feelDots">' + "●".repeat(ht.count) + "</span>") + "</div>" + q("Mood", ht.mood) + q("Energy", ht.energy) + "</div>"
     ).join("") + "</div>";
   }
   const gi = o("upcomingCountSetting");
   gi.addEventListener("change", () => {
-    zn = gi.value === "all" ? "all" : Number(gi.value), yo();
+    zn = gi.value === "all" ? "all" : Number(gi.value), ko();
   });
-  const Ho = o("tempoRevealBtn"), Er = o("tempoExperiment"), dn = o("tempoQuad"), vi = o("tempoDot"), $l = o("tempoEstimate"), Xl = o("tempoReadout");
-  let bi = { x: 0.5, y: 0.5 }, Qi = !1, bo = { total: 20, work: 45, rest: 15 };
+  const Fo = o("tempoRevealBtn"), Er = o("tempoExperiment"), dn = o("tempoQuad"), vi = o("tempoDot"), $l = o("tempoEstimate"), Xl = o("tempoReadout");
+  let bi = { x: 0.5, y: 0.5 }, Qi = !1, wo = { total: 20, work: 45, rest: 15 };
   function Dr(e, r, s, p) {
     const g = Math.max(r, Math.min(s, e));
     return Math.round((g - r) / p) * p + r;
   }
   function Jl(e, r) {
     const s = (e - 0.5) * 2, p = (r - 0.5) * 2, g = Dr(
-      bo.total + s * 5 + p * 8,
+      wo.total + s * 5 + p * 8,
       Number(E.min),
       Number(E.max),
       Number(E.step)
     ), T = Dr(
-      bo.work + s * 10 + p * 8,
+      wo.work + s * 10 + p * 8,
       Number(A.min),
       Number(A.max),
       Number(A.step)
-    ), B = Dr(
-      bo.rest + s * 6 + p * 6,
+    ), R = Dr(
+      wo.rest + s * 6 + p * 6,
       Number(I.min),
       Number(I.max),
       Number(I.step)
     );
-    return E.value = g, A.value = T, I.value = B, j.textContent = T + " sec", dt.textContent = B + " sec", Ga(), { total: g, work: T, rest: B };
+    return E.value = g, A.value = T, I.value = R, j.textContent = T + " sec", ct.textContent = R + " sec", Ga(), { total: g, work: T, rest: R };
   }
   function ws(e, r) {
     const s = e < 0.34 ? "Low" : e > 0.66 ? "Hard" : "Medium", p = r < 0.34 ? "Fast" : r > 0.66 ? "Slow" : "Balanced", g = Jl(e, r);
     Xl.textContent = s + " + " + p, $l.textContent = g.total + " min", dn.setAttribute("aria-valuetext", s + " and " + p + ", estimated " + g.total + " minutes");
   }
-  function wo(e) {
+  function xo(e) {
     const r = dn.getBoundingClientRect(), s = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)), p = Math.max(0, Math.min(1, (e.clientY - r.top) / r.height));
     bi = { x: s, y: p }, vi.style.left = s * 100 + "%", vi.style.top = p * 100 + "%", ws(s, p);
   }
-  Ho.addEventListener("click", () => {
+  Fo.addEventListener("click", () => {
     const e = Er.hidden;
-    Er.hidden = !e, Ho.setAttribute("aria-expanded", e ? "true" : "false"), Ho.textContent = e ? "Now close this" : "Don’t try this!", e && (bo = {
+    Er.hidden = !e, Fo.setAttribute("aria-expanded", e ? "true" : "false"), Fo.textContent = e ? "Now close this" : "Don’t try this!", e && (wo = {
       total: Number(E.value),
       work: Number(A.value),
       rest: Number(I.value)
@@ -2534,18 +2534,18 @@ function pu(n, l) {
     e.preventDefault(), tr.reset(), n.querySelectorAll("[data-feedback-rating]").forEach((r) => r.classList.remove("selected")), xs.hidden = !0, tr.hidden = !1;
   }), dn.addEventListener("pointerdown", (e) => {
     var r;
-    Qi = !0, wo(e);
+    Qi = !0, xo(e);
     try {
       (r = dn.setPointerCapture) == null || r.call(dn, e.pointerId);
     } catch {
     }
   }), dn.addEventListener("pointermove", (e) => {
-    Qi && wo(e);
+    Qi && xo(e);
   }), dn.addEventListener("pointerup", (e) => {
-    Qi && (Qi = !1, wo(e), Re());
+    Qi && (Qi = !1, xo(e), Be());
   }), dn.addEventListener("pointercancel", () => Qi = !1), dn.addEventListener("keydown", (e) => {
     let { x: r, y: s } = bi, p = !0;
-    e.key === "ArrowLeft" ? r -= 0.05 : e.key === "ArrowRight" ? r += 0.05 : e.key === "ArrowUp" ? s -= 0.05 : e.key === "ArrowDown" ? s += 0.05 : p = !1, p && (e.preventDefault(), r = Math.max(0, Math.min(1, r)), s = Math.max(0, Math.min(1, s)), bi = { x: r, y: s }, vi.style.left = r * 100 + "%", vi.style.top = s * 100 + "%", ws(r, s), Re());
+    e.key === "ArrowLeft" ? r -= 0.05 : e.key === "ArrowRight" ? r += 0.05 : e.key === "ArrowUp" ? s -= 0.05 : e.key === "ArrowDown" ? s += 0.05 : p = !1, p && (e.preventDefault(), r = Math.max(0, Math.min(1, r)), s = Math.max(0, Math.min(1, s)), bi = { x: r, y: s }, vi.style.left = r * 100 + "%", vi.style.top = s * 100 + "%", ws(r, s), Be());
   });
   const La = o("workoutModal");
   let wi = null;
@@ -2567,7 +2567,7 @@ function pu(n, l) {
     };
   }
   function el(e = !1) {
-    St = !!e, ye = null, na = null, Rt(), Rn(), wi = Ql(), o("moveEditorTitle").textContent = St ? "Create new move" : "Edit move", o("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", o("moveEditorSubtitle").hidden = !St, o("warmupRow").hidden = St, o("deleteMoveOpen").hidden = St;
+    St = !!e, ye = null, na = null, Bt(), Bn(), wi = Ql(), o("moveEditorTitle").textContent = St ? "Create new move" : "Edit move", o("moveEditorSubtitle").textContent = "Build the sequence first, then set timing, then finish the move.", o("moveEditorSubtitle").hidden = !St, o("warmupRow").hidden = St, o("deleteMoveOpen").hidden = St;
     const r = o("createMoveOptions");
     r.hidden = !St;
     {
@@ -2577,9 +2577,9 @@ function pu(n, l) {
     if (er(), St) {
       o("useGlobalTiming").checked = !0, o("useGlobalRestTiming").checked = !0;
       const s = Kt[we];
-      No((s == null ? void 0 : s.preset) || "movement", !1);
+      Po((s == null ? void 0 : s.preset) || "movement", !1);
     }
-    o("movementCreator").hidden = !0, Sr("movement"), sn(), ln(), Er.hidden = !0, Ho.setAttribute("aria-expanded", "false"), Ho.textContent = "Don’t try this!", La.classList.toggle("createMode", St), La.querySelector(".modal").classList.toggle("createMode", St), La.classList.add("open"), La.setAttribute("aria-hidden", "false"), ce(), St && _t();
+    o("movementCreator").hidden = !0, Sr("movement"), sn(), ln(), Er.hidden = !0, Fo.setAttribute("aria-expanded", "false"), Fo.textContent = "Don’t try this!", La.classList.toggle("createMode", St), La.querySelector(".modal").classList.toggle("createMode", St), La.classList.add("open"), La.setAttribute("aria-hidden", "false"), ce(), St && _t();
   }
   function td() {
     const e = Kt[we];
@@ -2591,12 +2591,12 @@ function pu(n, l) {
   }
   o("warmupSwitch").addEventListener("click", () => {
     const e = Kt[we];
-    e && (e.customSequence ? (o("includeWarmupPreset").checked = !e.includeWarmup, Ki()) : (e.warmupOff = !e.warmupOff, Re()), er());
+    e && (e.customSequence ? (o("includeWarmupPreset").checked = !e.includeWarmup, Ki()) : (e.warmupOff = !e.warmupOff, Be()), er());
   });
   function ar() {
-    Rt(), Rn(), Oa(), na = null, ye = null, La.classList.contains("createMode") && H(), La.classList.remove("createMode"), La.querySelector(".modal").classList.remove("createMode"), La.classList.remove("open"), La.setAttribute("aria-hidden", "true");
+    Bt(), Bn(), Oa(), na = null, ye = null, La.classList.contains("createMode") && H(), La.classList.remove("createMode"), La.querySelector(".modal").classList.remove("createMode"), La.classList.remove("open"), La.setAttribute("aria-hidden", "true");
   }
-  function Br() {
+  function Rr() {
     if (!wi) return;
     const e = wi;
     e.profile && (Kt[e.key] = JSON.parse(JSON.stringify(e.profile))), we = e.key, Te = xi(e.warmup), Qt = xi(e.strength), Ea = xi(e.cooldown), E.value = e.total, A.value = e.work, I.value = e.rest, le.value = e.rounds || 1;
@@ -2614,19 +2614,19 @@ function pu(n, l) {
       }
       m.value = r.name;
     }
-    Re();
+    Be();
   }
   o("cancelWorkoutEdit").addEventListener("click", () => {
     if (St) {
       const e = we;
       delete Kt[e], St = !1, ze = null, Oe(de.order.find((r) => Kt[r]) || Object.keys(Kt)[0]);
     } else
-      Br();
+      Rr();
     ar();
   }), o("saveWorkoutEdit").addEventListener("click", () => {
-    Rt(), kt && Bn();
+    Bt(), kt && Rn();
     const e = Kt[we], r = m.value.trim() || "New move";
-    if (e && (e.name = r), xn(), ye = null, Re(), St && e)
+    if (e && (e.name = r), xn(), ye = null, Be(), St && e)
       jn(we, e), n.querySelectorAll(".workoutPanel[data-workout]").forEach((s) => s.classList.toggle("active", s.dataset.workout === we)), St = !1, ze = null, de.order.includes(we) || de.order.push(we), We("Move created");
     else {
       const s = n.querySelector(".workoutPanel.active");
@@ -2645,21 +2645,21 @@ function pu(n, l) {
         const r = we;
         delete Kt[r], St = !1, ze = null, Oe(de.order.find((s) => Kt[s]) || Object.keys(Kt)[0]);
       } else
-        Br();
+        Rr();
       ar();
     }
-  }), X(o("addMovementBtn"), "movement"), X(o("addRestBtn"), "rest"), X(o("addVideoBtn"), "video"), o("closeMovementCreator").addEventListener("click", () => {
+  }), J(o("addMovementBtn"), "movement"), J(o("addRestBtn"), "rest"), J(o("addVideoBtn"), "video"), o("closeMovementCreator").addEventListener("click", () => {
     o("movementCreator").hidden = !0;
   }), o("useGlobalTiming").addEventListener("change", ln), o("useGlobalRestTiming").addEventListener("change", ln), n.querySelectorAll(".createPresetBtn").forEach((e) => e.addEventListener("click", () => {
-    No(e.dataset.movePreset, !0), Re();
-  })), o("includeWarmupPreset").addEventListener("change", Ki), o("includeCooldownPreset").addEventListener("change", Ki), o("includeWarmupPreset").addEventListener("change", st), o("includeCooldownPreset").addEventListener("change", st), m.addEventListener("input", st), m.addEventListener("input", Ge), o("confirmAddMovement").addEventListener("click", $n), o("confirmAddRest").addEventListener("click", $n), o("addMovementInput").addEventListener("keydown", (e) => {
+    Po(e.dataset.movePreset, !0), Be();
+  })), o("includeWarmupPreset").addEventListener("change", Ki), o("includeCooldownPreset").addEventListener("change", Ki), o("includeWarmupPreset").addEventListener("change", lt), o("includeCooldownPreset").addEventListener("change", lt), m.addEventListener("input", lt), m.addEventListener("input", Ge), o("confirmAddMovement").addEventListener("click", $n), o("confirmAddRest").addEventListener("click", $n), o("addMovementInput").addEventListener("keydown", (e) => {
     e.key === "Enter" && $n();
   });
-  const yi = o("countdown"), Rr = o("countNum"), to = o("countdownPixelCanvas");
+  const yi = o("countdown"), Br = o("countNum"), to = o("countdownPixelCanvas");
   let nr = null, Nr = "appear";
   class ed {
-    constructor(r, s, p, g, T, B, q) {
-      this.width = r.width, this.height = r.height, this.ctx = s, this.x = p, this.y = g, this.color = T, this.speed = (Math.random() * 0.8 + 0.1) * B, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = q, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
+    constructor(r, s, p, g, T, R, q) {
+      this.width = r.width, this.height = r.height, this.ctx = s, this.x = p, this.y = g, this.color = T, this.speed = (Math.random() * 0.8 + 0.1) * R, this.size = 0, this.sizeStep = Math.random() * 0.4, this.minSize = 0.5, this.maxSizeInteger = 2, this.maxSize = Math.random() * (this.maxSizeInteger - this.minSize) + this.minSize, this.delay = q, this.counter = 0, this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01, this.isIdle = !1, this.isReverse = !1, this.isShimmer = !1;
     }
     draw() {
       const r = this.maxSizeInteger * 0.5 - this.size * 0.5;
@@ -2684,28 +2684,28 @@ function pu(n, l) {
     }
   }
   let ki = [], aa = 1, al = 1;
-  function Fo() {
+  function Oo() {
     const e = parseFloat(getComputedStyle(o("app")).zoom);
     return Number.isFinite(e) && e > 0 ? e : 1;
   }
   function ad() {
     var ht;
     if (!to) return;
-    const e = Fo(), r = Math.max(1, window.innerWidth / e), s = Math.max(1, window.innerHeight / e);
+    const e = Oo(), r = Math.max(1, window.innerWidth / e), s = Math.max(1, window.innerHeight / e);
     aa = r, al = s;
     const p = Math.min(window.devicePixelRatio || 1, 2);
     to.width = Math.floor(r * p), to.height = Math.floor(s * p), to.style.width = r + "px", to.style.height = s + "px";
     const g = to.getContext("2d");
     g.setTransform(p, 0, 0, p, 0, 0);
-    const T = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], B = 12, q = (ht = window.matchMedia) == null ? void 0 : ht.call(window, "(prefers-reduced-motion: reduce)").matches, ot = q ? 0 : 0.055;
+    const T = ["#f2fbff", "#d4effc", "#a9e0fa", "#6cc8f6"], R = 12, q = (ht = window.matchMedia) == null ? void 0 : ht.call(window, "(prefers-reduced-motion: reduce)").matches, it = q ? 0 : 0.055;
     ki = [];
-    for (let it = 0; it < r; it += B)
-      for (let et = 0; et < s; et += B) {
-        const Bt = it - r / 2, te = et - s / 2, Ot = Math.sqrt(Bt * Bt + te * te), Et = q ? 0 : Math.random() * 75 + Ot * 0.05, Ct = new ed({ width: r, height: s }, g, it, et, T[Math.floor(Math.random() * T.length)], ot, Et);
+    for (let rt = 0; rt < r; rt += R)
+      for (let at = 0; at < s; at += R) {
+        const Rt = rt - r / 2, te = at - s / 2, Ot = Math.sqrt(Rt * Rt + te * te), Et = q ? 0 : Math.random() * 75 + Ot * 0.05, Ct = new ed({ width: r, height: s }, g, rt, at, T[Math.floor(Math.random() * T.length)], it, Et);
         Ct.maxSizeInteger = 4, Ct.maxSize = Math.random() * 3.2 + 0.8, Ct.sizeStep = 0.35 + Math.random() * 0.45, ki.push(Ct);
       }
   }
-  function xo(e) {
+  function yo(e) {
     cancelAnimationFrame(nr), Nr = e;
     const r = to == null ? void 0 : to.getContext("2d");
     if (!r) return;
@@ -2719,15 +2719,15 @@ function pu(n, l) {
     nr = requestAnimationFrame(s);
   }
   function Pr() {
-    cancelAnimationFrame(nr), ad(), xo("appear"), setTimeout(() => xo("disappear"), 560);
+    cancelAnimationFrame(nr), ad(), yo("appear"), setTimeout(() => yo("disappear"), 560);
   }
   window.addEventListener("resize", () => {
     yi.classList.contains("active") && Pr();
   });
   const or = o("pixelTrailCanvas"), Mi = or.getContext("2d");
-  let Pn = !0, Oo = 0.7, Si = 600, ir = [], Wo = null, cn = { x: 0, y: 0, ready: !1 };
+  let Pn = !0, Wo = 0.7, Si = 600, ir = [], qo = null, cn = { x: 0, y: 0, ready: !1 };
   function ys() {
-    const e = c.getBoundingClientRect(), r = Fo(), s = Math.min(window.devicePixelRatio || 1, 2), p = Math.max(1, e.width / r), g = Math.max(1, e.height / r);
+    const e = c.getBoundingClientRect(), r = Oo(), s = Math.min(window.devicePixelRatio || 1, 2), p = Math.max(1, e.width / r), g = Math.max(1, e.height / r);
     or.width = Math.max(1, Math.floor(p * s)), or.height = Math.max(1, Math.floor(g * s)), or.style.width = p + "px", or.style.height = g + "px", Mi.setTransform(s, 0, 0, s, 0, 0);
   }
   function nd(e, r) {
@@ -2746,55 +2746,55 @@ function pu(n, l) {
     cn = { x: e, y: r, ready: !0 };
   }
   function Ir(e) {
-    if (Wo = null, !b) return;
+    if (qo = null, !b) return;
     if (!It.workout.classList.contains("active")) {
-      Wo = requestAnimationFrame(Ir);
+      qo = requestAnimationFrame(Ir);
       return;
     }
-    const r = c.getBoundingClientRect(), s = Fo();
+    const r = c.getBoundingClientRect(), s = Oo();
     Mi.clearRect(0, 0, r.width / s, r.height / s), Pn && (ir = ir.filter((g) => e - g.born < Si), Mi.fillStyle = o("app").classList.contains("light") ? "#03A9F4" : "#f4f4f4", ir.forEach((g) => {
-      const T = (e - g.born) / Si, B = (1 - T) * Oo, q = Math.round(g.x / 14) * 14, ot = Math.round(g.y / 14) * 14;
-      Mi.globalAlpha = Math.max(0, B);
-      const ht = 2 + 5 * (1 - T) * Oo;
-      Mi.fillRect(q - ht / 2, ot - ht / 2, ht, ht);
-    }), Mi.globalAlpha = 1), Wo = requestAnimationFrame(Ir);
+      const T = (e - g.born) / Si, R = (1 - T) * Wo, q = Math.round(g.x / 14) * 14, it = Math.round(g.y / 14) * 14;
+      Mi.globalAlpha = Math.max(0, R);
+      const ht = 2 + 5 * (1 - T) * Wo;
+      Mi.fillRect(q - ht / 2, it - ht / 2, ht, ht);
+    }), Mi.globalAlpha = 1), qo = requestAnimationFrame(Ir);
   }
   c.addEventListener("pointermove", (e) => {
-    const r = c.getBoundingClientRect(), s = Fo();
+    const r = c.getBoundingClientRect(), s = Oo();
     nd((e.clientX - r.left) / s, (e.clientY - r.top) / s);
-  }), c.addEventListener("pointerleave", () => cn.ready = !1), new ResizeObserver(ys).observe(c), ys(), Wo = requestAnimationFrame(Ir);
+  }), c.addEventListener("pointerleave", () => cn.ready = !1), new ResizeObserver(ys).observe(c), ys(), qo = requestAnimationFrame(Ir);
   const da = o("movementRippleCanvas"), Ci = da.getContext("2d");
-  let qo = !0, ma = null, _e = performance.now();
+  let jo = !0, ma = null, _e = performance.now();
   function kn() {
-    const e = da.parentElement.getBoundingClientRect(), r = Fo(), s = Math.max(1, e.width / r), p = Math.max(1, e.height / r), g = Math.min(window.devicePixelRatio || 1, 2);
+    const e = da.parentElement.getBoundingClientRect(), r = Oo(), s = Math.max(1, e.width / r), p = Math.max(1, e.height / r), g = Math.min(window.devicePixelRatio || 1, 2);
     da.width = Math.max(1, Math.floor(s * g)), da.height = Math.max(1, Math.floor(p * g)), da.style.width = s + "px", da.style.height = p + "px", Ci.setTransform(g, 0, 0, g, 0, 0);
   }
   function Hr() {
     var e;
     return ra || ((e = Ut[ne]) == null ? void 0 : e.kind) === "rest";
   }
-  function jo() {
+  function zo() {
     const e = Ut[ne];
     return Hr() ? 2200 : e ? e.kind === "warmup" || e.kind === "cooldown" ? 2400 : 1350 : 1600;
   }
-  function zo(e) {
+  function Vo(e) {
     if (ma = null, !b) return;
     if (!It.workout.classList.contains("active")) {
-      ma = requestAnimationFrame(zo);
+      ma = requestAnimationFrame(Vo);
       return;
     }
-    const r = da.parentElement.getBoundingClientRect(), s = Fo(), p = Math.max(1, r.width / s), g = Math.max(1, r.height / s);
-    if (Ci.clearRect(0, 0, p, g), qo) {
-      const T = jo(), B = (e - _e) % T / T, q = 15, ot = Math.max(8, Math.round(q * g / Math.max(1, p))), ht = p / (q + 1), it = g / (ot + 1), et = p * 0.5, Bt = g * 0.52, te = Math.hypot(et, Bt), Et = o("app").classList.contains("light") ? "34,34,34" : "244,244,244";
-      for (let Ct = 1; Ct <= ot; Ct++)
+    const r = da.parentElement.getBoundingClientRect(), s = Oo(), p = Math.max(1, r.width / s), g = Math.max(1, r.height / s);
+    if (Ci.clearRect(0, 0, p, g), jo) {
+      const T = zo(), R = (e - _e) % T / T, q = 15, it = Math.max(8, Math.round(q * g / Math.max(1, p))), ht = p / (q + 1), rt = g / (it + 1), at = p * 0.5, Rt = g * 0.52, te = Math.hypot(at, Rt), Et = o("app").classList.contains("light") ? "34,34,34" : "244,244,244";
+      for (let Ct = 1; Ct <= it; Ct++)
         for (let he = 1; he <= q; he++) {
-          const ve = he * ht, zt = Ct * it, be = Math.hypot(ve - et, zt - Bt) / te, Ee = Hr(), se = Ee ? Math.exp(-Math.pow((be - (B * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, ae = Math.exp(-Math.pow((be - B * 1.25) * 7, 2)), ua = Ee ? se : ae, _a = Ee ? 0.5 + 0.5 * Math.sin(B * Math.PI * 2 - be * 3) ** 2 : 0.35 + 0.65 * Math.sin(B * Math.PI * 2 - be * 5) ** 2, Ze = Ee ? 1.4 + ua * 4.2 * _a : 1.2 + ua * 5 * _a;
+          const ve = he * ht, zt = Ct * rt, be = Math.hypot(ve - at, zt - Rt) / te, Ee = Hr(), se = Ee ? Math.exp(-Math.pow((be - (R * 0.82 + 0.08) % 1 * 1.18) * 5.5, 2)) : 0, ae = Math.exp(-Math.pow((be - R * 1.25) * 7, 2)), ua = Ee ? se : ae, _a = Ee ? 0.5 + 0.5 * Math.sin(R * Math.PI * 2 - be * 3) ** 2 : 0.35 + 0.65 * Math.sin(R * Math.PI * 2 - be * 5) ** 2, Ze = Ee ? 1.4 + ua * 4.2 * _a : 1.2 + ua * 5 * _a;
           Ci.beginPath(), Ci.arc(ve, zt, Ze, 0, Math.PI * 2), Ci.fillStyle = `rgba(${Et},${Ee ? 0.08 + ua * 0.48 : 0.05 + ua * 0.55})`, Ci.fill();
         }
     }
-    ma = requestAnimationFrame(zo);
+    ma = requestAnimationFrame(Vo);
   }
-  new ResizeObserver(kn).observe(da.parentElement), kn(), ma = requestAnimationFrame(zo);
+  new ResizeObserver(kn).observe(da.parentElement), kn(), ma = requestAnimationFrame(Vo);
   const pn = o("exerciseTitle"), Wa = o("exerciseMeta"), eo = o("stepLabel"), qe = o("digits"), rr = o("fill"), In = o("progress"), Fr = o("pause"), nl = o("nextName"), ol = o("nextMeta"), od = o("nextIcon"), Ti = o("skipNextSession");
   let Za = null;
   function qa(e) {
@@ -2847,25 +2847,25 @@ function pu(n, l) {
   }
   function ao(e) {
     const r = Ut.indexOf(e);
-    r < 0 || r <= ne || (e.sessionHidden = !e.sessionHidden, Vo(), We((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
+    r < 0 || r <= ne || (e.sessionHidden = !e.sessionHidden, Go(), We((e.sessionHidden ? "Hidden " : "Included ") + e.name + " for this session"));
   }
-  function yo() {
+  function ko() {
     const e = o("upcomingList");
     if (!e) return;
     e.innerHTML = "";
     const r = ja(), s = Ut.slice(r);
     (zn === "all" ? s : s.slice(0, Math.max(1, Number(zn) || 1))).forEach((g) => {
       const T = document.createElement("section");
-      T.className = "upcomingCard" + (g.sessionHidden ? " sessionHidden" : "") + ($o(g) ? " noMeta" : ""), T.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + Ua(Li(g)) + '</div><div><div class="upcomingName">' + Ht(g.name) + '</div><div class="upcomingMeta">' + Ht(Or(g)) + (sr() > 1 ? " · round " + g.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (g.sessionHidden ? "Include this session" : "Skip this session") + "</button>", T.querySelector(".skipSessionBtn").addEventListener("click", () => ao(g)), e.appendChild(T);
+      T.className = "upcomingCard" + (g.sessionHidden ? " sessionHidden" : "") + (Xo(g) ? " noMeta" : ""), T.innerHTML = '<div class="upcomingInfo"><div class="upcomingIcon" aria-hidden="true">' + Ua(Li(g)) + '</div><div><div class="upcomingName">' + Ht(g.name) + '</div><div class="upcomingMeta">' + Ht(Or(g)) + (sr() > 1 ? " · round " + g.round : "") + '</div></div></div><button class="skipSessionBtn" type="button">' + (g.sessionHidden ? "Include this session" : "Skip this session") + "</button>", T.querySelector(".skipSessionBtn").addEventListener("click", () => ao(g)), e.appendChild(T);
     });
   }
-  function Vo() {
+  function Go() {
     var r;
     const e = Ai();
     nl.textContent = e.name, ol.textContent = e.meta, od.innerHTML = Ua(e.icon);
     {
       const s = ra ? Ut[qa(ne + 1)] : ((r = Ut[ne]) == null ? void 0 : r.rest) > 0 ? { kind: "rest" } : Ut[qa(ne + 1)];
-      n.querySelector(".nextCard").classList.toggle("noMeta", !!(s && $o(s)));
+      n.querySelector(".nextCard").classList.toggle("noMeta", !!(s && Xo(s)));
     }
     if (Za = null, ra) {
       const s = qa(ne + 1);
@@ -2879,13 +2879,13 @@ function pu(n, l) {
         p >= 0 && (Za = Ut[p]);
       }
     }
-    Ti && (Ti.hidden = !Za, Ti.textContent = Za != null && Za.sessionHidden ? "Include this session" : "Skip this session"), yo();
+    Ti && (Ti.hidden = !Za, Ti.textContent = Za != null && Za.sessionHidden ? "Include this session" : "Skip this session"), ko();
   }
   Ti.addEventListener("click", () => {
-    Za && (Za.sessionHidden = !Za.sessionHidden, We((Za.sessionHidden ? "Hidden " : "Included ") + Za.name + " for this session"), Vo());
+    Za && (Za.sessionHidden = !Za.sessionHidden, We((Za.sessionHidden ? "Hidden " : "Included ") + Za.name + " for this session"), Go());
   });
   let Mn = null, lr = null;
-  function ko(e, r = {}) {
+  function Mo(e, r = {}) {
     const s = Kt[we];
     l.fire(e, { move: (s == null ? void 0 : s.name) || "", move_id: we, ...r });
   }
@@ -2893,14 +2893,14 @@ function pu(n, l) {
     const e = Kt[we];
     Mn = { key: we, name: (e == null ? void 0 : e.name) || "Move", startedAt: Date.now(), active: 0 }, clearInterval(lr), lr = setInterval(() => {
       Mn && !Ha && Mn.active++;
-    }, 1e3), ko("started", { steps: Ut.length });
+    }, 1e3), Mo("started", { steps: Ut.length });
   }
   function ks(e) {
     if (clearInterval(lr), !Mn) return;
     const r = Mn;
-    Mn = null, ko(e ? "completed" : "ended", { seconds: r.active }), !(r.active < 30) && (de.history.unshift({ id: "h-" + r.startedAt, move_id: r.key, name: r.name, start: new Date(r.startedAt).toISOString(), seconds: r.active, completed: e }), de.history = de.history.slice(0, 1e3), Ta(), lo(), Cn());
+    Mn = null, Mo(e ? "completed" : "ended", { seconds: r.active }), !(r.active < 30) && (de.history.unshift({ id: "h-" + r.startedAt, move_id: r.key, name: r.name, start: new Date(r.startedAt).toISOString(), seconds: r.active, completed: e }), de.history = de.history.slice(0, 1e3), Ta(), lo(), Cn());
   }
-  let un = null, Go = null, Ka = !1;
+  let un = null, Uo = null, Ka = !1;
   function _i() {
     return fe().sounds !== !1;
   }
@@ -2913,8 +2913,8 @@ function pu(n, l) {
       }
   }
   function ia(e, r, s, { to: p = e, vol: g = 0.25, type: T = "sine" } = {}) {
-    const B = un.currentTime + r, q = un.createOscillator(), ot = un.createGain();
-    q.type = T, q.frequency.setValueAtTime(e, B), p !== e && q.frequency.exponentialRampToValueAtTime(p, B + s), ot.gain.setValueAtTime(1e-4, B), ot.gain.exponentialRampToValueAtTime(g, B + 0.01), ot.gain.exponentialRampToValueAtTime(1e-4, B + s), q.connect(ot).connect(un.destination), q.start(B), q.stop(B + s + 0.02);
+    const R = un.currentTime + r, q = un.createOscillator(), it = un.createGain();
+    q.type = T, q.frequency.setValueAtTime(e, R), p !== e && q.frequency.exponentialRampToValueAtTime(p, R + s), it.gain.setValueAtTime(1e-4, R), it.gain.exponentialRampToValueAtTime(g, R + 0.01), it.gain.exponentialRampToValueAtTime(1e-4, R + s), q.connect(it).connect(un.destination), q.start(R), q.stop(R + s + 0.02);
   }
   const jr = {
     tick: () => ia(880, 0, 0.07, { vol: 0.18 }),
@@ -2934,7 +2934,7 @@ function pu(n, l) {
       }
   }
   function no() {
-    Ve >= 1 && Ve <= 3 && Ve !== Go && (Go = Ve, $a("tick"));
+    Ve >= 1 && Ve <= 3 && Ve !== Uo && (Uo = Ve, $a("tick"));
   }
   function sl() {
     rl(), M("workout"), rd();
@@ -2942,13 +2942,13 @@ function pu(n, l) {
     e >= 0 && Ut[e].kind === "video" && Cs(Ut[e]);
   }
   function dr() {
-    Yr(), ks(!1), clearInterval(ea), clearInterval(li), ra = !1, fn(!1), o("app").classList.remove("resting"), yi.classList.remove("active"), M("home");
+    Yr(), ks(!1), clearInterval(ea), clearInterval(di), ra = !1, fn(!1), o("app").classList.remove("resting"), yi.classList.remove("active"), M("home");
   }
   function rd() {
     yi.classList.add("active");
     let e = 5;
-    Rr.textContent = e, $a("tick"), requestAnimationFrame(Pr), clearInterval(li), li = setInterval(() => {
-      e--, e > 0 ? (Rr.textContent = e, $a("tick"), Pr()) : (clearInterval(li), Rr.textContent = "GO", $a("move"), Ka = !0, Pr(), setTimeout(() => {
+    Br.textContent = e, $a("tick"), requestAnimationFrame(Pr), clearInterval(di), di = setInterval(() => {
+      e--, e > 0 ? (Br.textContent = e, $a("tick"), Pr()) : (clearInterval(di), Br.textContent = "GO", $a("move"), Ka = !0, Pr(), setTimeout(() => {
         yi.classList.remove("active"), cancelAnimationFrame(nr), Ms();
       }, 650));
     }, 1e3);
@@ -2973,7 +2973,7 @@ function pu(n, l) {
         e ? Me.pauseVideo() : Me.playVideo();
       } catch {
       }
-    r && Mn && ko(e ? "paused" : "resumed");
+    r && Mn && Mo(e ? "paused" : "resumed");
   }
   function Vr(e) {
     e < 0 || e >= Ut.length || e > ne || (clearInterval(ea), ra = !1, o("app").classList.remove("resting"), ne = e, fn(!1), ca(), ea = setInterval(ro, 1e3));
@@ -2985,8 +2985,8 @@ function pu(n, l) {
     }
     il(), ca(), clearInterval(ea), ea = setInterval(ro, 1e3);
   }
-  const Gr = o("videoStage"), Uo = o("videoSound"), Ss = 0, oo = 1, sd = 2;
-  let ll = 0, Ei = null, Se = null, Me = null, za = null, hn = 0, Yo = !1, Ie = null, Sn = null;
+  const Gr = o("videoStage"), Yo = o("videoSound"), Ss = 0, oo = 1, sd = 2;
+  let ll = 0, Ei = null, Se = null, Me = null, za = null, hn = 0, Zo = !1, Ie = null, Sn = null;
   function Ur() {
     var e;
     return (e = window.YT) != null && e.Player ? Promise.resolve(window.YT) : Ei || (Ei = new Promise((r, s) => {
@@ -2998,20 +2998,20 @@ function pu(n, l) {
         }
       };
       const g = setInterval(() => {
-        var B;
-        (B = window.YT) != null && B.Player && (clearInterval(g), clearTimeout(T), r(window.YT));
+        var R;
+        (R = window.YT) != null && R.Player && (clearInterval(g), clearTimeout(T), r(window.YT));
       }, 100), T = setTimeout(() => {
         clearInterval(g), Ei = null, s(new Error("YouTube did not load"));
       }, 15e3);
       if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-        const B = document.createElement("script");
-        B.src = "https://www.youtube.com/iframe_api", B.async = !0, B.onerror = () => {
+        const R = document.createElement("script");
+        R.src = "https://www.youtube.com/iframe_api", R.async = !0, R.onerror = () => {
           clearInterval(g), clearTimeout(T), Ei = null, s(new Error("YouTube did not load"));
-        }, document.head.appendChild(B);
+        }, document.head.appendChild(R);
       }
     }), Ei);
   }
-  function Mo() {
+  function So() {
     return Se || (Se = Ur().then((e) => new Promise((r) => {
       const s = document.createElement("div");
       o("videoFrame").appendChild(s), Me = new e.Player(s, {
@@ -3025,8 +3025,8 @@ function pu(n, l) {
     }), Se);
   }
   function Cs(e) {
-    !(e != null && e.videoId) || e.videoError || Mo().then((r) => {
-      Ie || za === e.videoId || (za = e.videoId, hn = Number(e.start) || 0, Yo = !1, r.mute(), r.loadVideoById({ videoId: e.videoId, startSeconds: hn }));
+    !(e != null && e.videoId) || e.videoError || So().then((r) => {
+      Ie || za === e.videoId || (za = e.videoId, hn = Number(e.start) || 0, Zo = !1, r.mute(), r.loadVideoById({ videoId: e.videoId, startSeconds: hn }));
     }).catch(() => {
     });
   }
@@ -3036,7 +3036,7 @@ function pu(n, l) {
   }
   function dl(e) {
     if (!Ie) {
-      e === oo && !Yo && (Yo = !0, Me.pauseVideo(), Me.seekTo(hn, !0));
+      e === oo && !Zo && (Zo = !0, Me.pauseVideo(), Me.seekTo(hn, !0));
       return;
     }
     Gr.classList.toggle("playing", e === oo), Ut[ne] === Ie && performance.now() > ll && (e === oo && Ha ? fn(!1) : e === sd && !Ha && fn(!0)), e === oo && Ls(Ie.videoId, Me.getDuration()) && Ta(), e === Ss && cr();
@@ -3050,16 +3050,16 @@ function pu(n, l) {
     e === 101 || e === 150 ? (dd(r.videoId), We("That video can’t play outside YouTube, so it was skipped")) : We("The video couldn’t play, so it was skipped"), cr();
   }
   function Di(e) {
-    if (o("app").classList.add("videoStep"), Uo.hidden = !0, Ie = e, clearTimeout(Sn), !e.videoId) {
+    if (o("app").classList.add("videoStep"), Yo.hidden = !0, Ie = e, clearTimeout(Sn), !e.videoId) {
       We("This video step has no link yet, so it was skipped"), setTimeout(() => cr(), 0);
       return;
     }
-    Mo().then((r) => {
+    So().then((r) => {
       if (Ie !== e) return;
       ll = performance.now() + 1500;
       const s = Number(e.start) || 0;
       za !== e.videoId ? (za = e.videoId, hn = s, r.loadVideoById({ videoId: e.videoId, startSeconds: s })) : (r.seekTo(s, !0), r.playVideo()), r.unMute(), Ha && r.pauseVideo(), Sn = setTimeout(() => {
-        Ie !== e || Ha || (r.getPlayerState() !== oo ? (r.mute(), r.playVideo(), Uo.hidden = !1) : r.isMuted() && (Uo.hidden = !1));
+        Ie !== e || Ha || (r.getPlayerState() !== oo ? (r.mute(), r.playVideo(), Yo.hidden = !1) : r.isMuted() && (Yo.hidden = !1));
       }, 1600);
     }).catch(() => {
       Ie === e && (We("YouTube didn’t load, so the video was skipped"), cr());
@@ -3074,7 +3074,7 @@ function pu(n, l) {
   function Yr() {
     clearTimeout(Sn);
     const e = Ie;
-    if (Ie = null, o("app").classList.remove("videoStep"), Gr.classList.remove("playing"), Uo.hidden = !0, e && Me) {
+    if (Ie = null, o("app").classList.remove("videoStep"), Gr.classList.remove("playing"), Yo.hidden = !0, e && Me) {
       try {
         Me.pauseVideo();
       } catch {
@@ -3084,10 +3084,10 @@ function pu(n, l) {
   }
   function cr() {
     const e = Ie;
-    !e || Ut[ne] !== e || (Yr(), clearInterval(ea), So(), ea = setInterval(ro, 1e3));
+    !e || Ut[ne] !== e || (Yr(), clearInterval(ea), Co(), ea = setInterval(ro, 1e3));
   }
-  Uo.addEventListener("click", () => {
-    Me && (Me.unMute(), Me.playVideo()), Uo.hidden = !0;
+  Yo.addEventListener("click", () => {
+    Me && (Me.unMute(), Me.playVideo()), Yo.hidden = !0;
   });
   function cl(e) {
     var p;
@@ -3118,7 +3118,7 @@ function pu(n, l) {
     const r = e.videoId;
     if (!r) return;
     const s = () => {
-      La.classList.contains("open") ? ye || Re() : (Re(), Ta());
+      La.classList.contains("open") ? ye || Be() : (Be(), Ta());
     };
     fetch("https://www.youtube.com/oembed?format=json&url=" + encodeURIComponent("https://www.youtube.com/watch?v=" + r)).then((p) => p.ok ? p.json() : Promise.reject(p.status)).then((p) => {
       e.videoId === r && (e.videoTitle = p.title || "", e.autoName && p.title && (e.name = p.title), s());
@@ -3136,31 +3136,31 @@ function pu(n, l) {
       g.className = "videoProbe", g.setAttribute("aria-hidden", "true");
       const T = document.createElement("div");
       g.appendChild(T), o("app").appendChild(g);
-      let B = null, q = !1;
-      const ot = (et, Bt) => {
+      let R = null, q = !1;
+      const it = (at, Rt) => {
         q || (q = !0, clearTimeout(ht), setTimeout(() => {
           try {
-            B == null || B.destroy();
+            R == null || R.destroy();
           } catch {
           }
           g.remove();
-        }, 0), Bt ? p(Bt) : s(et));
-      }, ht = setTimeout(() => ot(0), 2e4), it = () => {
-        var Bt;
-        const et = Number((Bt = B == null ? void 0 : B.getDuration) == null ? void 0 : Bt.call(B)) || 0;
-        return et > 0 && ot(et), et > 0;
+        }, 0), Rt ? p(Rt) : s(at));
+      }, ht = setTimeout(() => it(0), 2e4), rt = () => {
+        var Rt;
+        const at = Number((Rt = R == null ? void 0 : R.getDuration) == null ? void 0 : Rt.call(R)) || 0;
+        return at > 0 && it(at), at > 0;
       };
-      B = new r.Player(T, {
+      R = new r.Player(T, {
         width: 320,
         height: 180,
         videoId: e,
         playerVars: { playsinline: 1, mute: 1, controls: 0 },
         events: {
           onReady: () => {
-            it() || (B.mute(), B.playVideo());
+            rt() || (R.mute(), R.playVideo());
           },
-          onStateChange: () => it(),
-          onError: (et) => ot(0, et.data === 101 || et.data === 150 ? "embed" : "error")
+          onStateChange: () => rt(),
+          onError: (at) => it(0, at.data === 101 || at.data === 150 ? "embed" : "error")
         }
       });
     }));
@@ -3168,7 +3168,7 @@ function pu(n, l) {
   function ca() {
     ra = !1;
     const e = Ut[ne];
-    o("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? Di(e) : Yr(), Ve = e.duration, Bo = e.duration, Go = null, Ka ? Ka = !1 : $a(e.kind === "rest" ? "rest" : "move"), pn.textContent = e.name, Wa.textContent = e.group, Wa.hidden = !0, eo.textContent = Wr(ne), Mn && ko("step", { name: e.name, group: e.group, kind: e.kind, step: ne + 1, of: Ut.length, round: e.round || 1, rounds: sr(), duration: e.duration }), Vo(), id(), ld(), e.kind === "video" && setTimeout(Ts, 0);
+    o("app").classList.toggle("resting", e.kind === "rest"), e.kind === "video" ? Di(e) : Yr(), Ve = e.duration, Bo = e.duration, Uo = null, Ka ? Ka = !1 : $a(e.kind === "rest" ? "rest" : "move"), pn.textContent = e.name, Wa.textContent = e.group, Wa.hidden = !0, eo.textContent = Wr(ne), Mn && Mo("step", { name: e.name, group: e.group, kind: e.kind, step: ne + 1, of: Ut.length, round: e.round || 1, rounds: sr(), duration: e.duration }), Go(), id(), ld(), e.kind === "video" && setTimeout(Ts, 0);
   }
   function io() {
     var g;
@@ -3191,17 +3191,17 @@ function pu(n, l) {
       Bo = Math.max(1, T - g), (p > g || ((s = Me == null ? void 0 : Me.getPlayerState) == null ? void 0 : s.call(Me)) === oo) && (Ve = Math.max(0, Math.ceil(T - p))), io(), no(), p > g && p >= T - 0.25 && cr();
       return;
     }
-    Ve--, io(), no(), Ve <= 0 && (e.rest > 0 ? _s(e.rest) : So());
+    Ve--, io(), no(), Ve <= 0 && (e.rest > 0 ? _s(e.rest) : Co());
   }
   function _s(e) {
     var s;
     ra = !0, o("app").classList.add("resting");
     const r = qr();
-    r && r.style.setProperty("--segment-progress", "100%"), clearInterval(ea), Ve = e, Bo = e, Go = null, $a("rest"), Mn && ko("rest", { duration: e }), pn.textContent = "Rest", Wa.textContent = (s = Ut[ne]) != null && s.roundBreakAfter ? "Round " + (Ut[ne].round + 1) + " next" : "Recovery", Vo(), io(), ea = setInterval(() => {
-      Ha || (Ve--, io(), no(), Ve <= 0 && (clearInterval(ea), So(), ea = setInterval(ro, 1e3)));
+    r && r.style.setProperty("--segment-progress", "100%"), clearInterval(ea), Ve = e, Bo = e, Uo = null, $a("rest"), Mn && Mo("rest", { duration: e }), pn.textContent = "Rest", Wa.textContent = (s = Ut[ne]) != null && s.roundBreakAfter ? "Round " + (Ut[ne].round + 1) + " next" : "Recovery", Go(), io(), ea = setInterval(() => {
+      Ha || (Ve--, io(), no(), Ve <= 0 && (clearInterval(ea), Co(), ea = setInterval(ro, 1e3)));
     }, 1e3);
   }
-  function So() {
+  function Co() {
     ra = !1;
     const e = qa(ne + 1);
     if (e >= 0)
@@ -3217,7 +3217,7 @@ function pu(n, l) {
         const r = Xr(7).reduce((s, p) => s + p.minutes, 0);
         Wa.textContent = "Move finished · " + r + " min in the last 7 days";
       }
-      rr.style.width = "100%", Vo();
+      rr.style.width = "100%", Go();
     }
   }
   o("skipExercise").addEventListener("click", () => {
@@ -3229,7 +3229,7 @@ function pu(n, l) {
     if (ra) {
       ra = !1, o("app").classList.remove("resting");
       const s = qa(ne + 1);
-      s >= 0 ? (ne = s, ca(), ea = setInterval(ro, 1e3)) : So();
+      s >= 0 ? (ne = s, ca(), ea = setInterval(ro, 1e3)) : Co();
       return;
     }
     if (e && e.rest > 0) {
@@ -3237,60 +3237,60 @@ function pu(n, l) {
       return;
     }
     const r = qa(ne + 1);
-    r >= 0 ? (ne = r, ca(), ea = setInterval(ro, 1e3)) : So();
+    r >= 0 ? (ne = r, ca(), ea = setInterval(ro, 1e3)) : Co();
   }
   o("restartSegment").addEventListener("click", () => {
     if (clearInterval(ea), fn(!1), ra) {
       const e = Ut[ne];
-      Ve = e.rest, Bo = e.rest, Go = null, $a("rest"), pn.textContent = "Rest", Wa.textContent = "Recovery", o("app").classList.add("resting"), Vo(), io();
+      Ve = e.rest, Bo = e.rest, Uo = null, $a("rest"), pn.textContent = "Rest", Wa.textContent = "Recovery", o("app").classList.add("resting"), Go(), io();
     } else
       ca();
     ea = setInterval(ra ? () => {
-      Ha || (Ve--, io(), no(), Ve <= 0 && (clearInterval(ea), So(), ea = setInterval(ro, 1e3)));
+      Ha || (Ve--, io(), no(), Ve <= 0 && (clearInterval(ea), Co(), ea = setInterval(ro, 1e3)));
     } : ro, 1e3);
   });
   function pr(e, r, s, p) {
-    let g = 0, T = null, B = !1;
+    let g = 0, T = null, R = !1;
     function q() {
-      T && cancelAnimationFrame(T), T = null, g = 0, B = !1, r.style.width = "0%", e.classList.remove("holding");
+      T && cancelAnimationFrame(T), T = null, g = 0, R = !1, r.style.width = "0%", e.classList.remove("holding");
     }
-    function ot(et) {
-      if (!B) return;
-      g || (g = et);
-      const Bt = Math.min(1, (et - g) / s);
-      if (r.style.width = Bt * 100 + "%", Bt >= 1) {
-        B = !1, T && cancelAnimationFrame(T), T = null, r.style.width = "100%", setTimeout(() => r.style.width = "0%", 90), p();
+    function it(at) {
+      if (!R) return;
+      g || (g = at);
+      const Rt = Math.min(1, (at - g) / s);
+      if (r.style.width = Rt * 100 + "%", Rt >= 1) {
+        R = !1, T && cancelAnimationFrame(T), T = null, r.style.width = "100%", setTimeout(() => r.style.width = "0%", 90), p();
         return;
       }
-      T = requestAnimationFrame(ot);
+      T = requestAnimationFrame(it);
     }
-    function ht(et) {
-      var Bt;
-      if (!(et && et.button !== void 0 && et.button !== 0)) {
-        et == null || et.preventDefault(), q(), B = !0, e.classList.add("holding");
+    function ht(at) {
+      var Rt;
+      if (!(at && at.button !== void 0 && at.button !== 0)) {
+        at == null || at.preventDefault(), q(), R = !0, e.classList.add("holding");
         try {
-          (Bt = e.setPointerCapture) == null || Bt.call(e, et.pointerId);
+          (Rt = e.setPointerCapture) == null || Rt.call(e, at.pointerId);
         } catch {
         }
-        T = requestAnimationFrame(ot);
+        T = requestAnimationFrame(it);
       }
     }
-    function it() {
-      B && q();
+    function rt() {
+      R && q();
     }
-    e.addEventListener("pointerdown", ht), e.addEventListener("pointerup", it), e.addEventListener("pointercancel", it), e.addEventListener("lostpointercapture", it), e.addEventListener("keydown", (et) => {
-      (et.key === " " || et.key === "Enter") && !et.repeat && ht(et);
-    }), e.addEventListener("keyup", (et) => {
-      (et.key === " " || et.key === "Enter") && it();
+    e.addEventListener("pointerdown", ht), e.addEventListener("pointerup", rt), e.addEventListener("pointercancel", rt), e.addEventListener("lostpointercapture", rt), e.addEventListener("keydown", (at) => {
+      (at.key === " " || at.key === "Enter") && !at.repeat && ht(at);
+    }), e.addEventListener("keyup", (at) => {
+      (at.key === " " || at.key === "Enter") && rt();
     });
   }
   const fd = o("endWorkout");
   pr(fd, o("holdEndFill"), 1500, dr);
-  const Zo = o("deleteMoveConfirm");
+  const Ko = o("deleteMoveConfirm");
   o("deleteMoveOpen").addEventListener("click", () => {
-    Zo.classList.add("open"), Zo.setAttribute("aria-hidden", "false");
+    Ko.classList.add("open"), Ko.setAttribute("aria-hidden", "false");
   }), o("deleteMoveCancel").addEventListener("click", () => {
-    Zo.classList.remove("open"), Zo.setAttribute("aria-hidden", "true");
+    Ko.classList.remove("open"), Ko.setAttribute("aria-hidden", "true");
   });
   function pl() {
     const e = we, r = n.querySelector('.workoutPanel[data-workout="' + e + '"]');
@@ -3300,29 +3300,29 @@ function pu(n, l) {
       const p = "custom-" + Date.now();
       Kt[p] = { name: "New move", source: "Custom routine", total: 20, work: 45, rest: 15, customSequence: !0, preset: "movement", sequence: [], strength: [] }, de.order.push(p), s = jn(p, Kt[p]);
     }
-    Zo.classList.remove("open"), Zo.setAttribute("aria-hidden", "true"), wi = null, ar(), Oe(s.dataset.workout), Ta(), We("Move deleted");
+    Ko.classList.remove("open"), Ko.setAttribute("aria-hidden", "true"), wi = null, ar(), Oe(s.dataset.workout), Ta(), We("Move deleted");
   }
   pr(o("deleteMoveYes"), o("deleteMoveFill"), 1500, pl);
-  const Es = n.querySelector(".rubberTabs"), Ko = o("rubberIndicator");
-  function Bi(e, r = !0) {
-    if (!e || !Es || !Ko) return;
+  const Es = n.querySelector(".rubberTabs"), $o = o("rubberIndicator");
+  function Ri(e, r = !0) {
+    if (!e || !Es || !$o) return;
     const s = Es.getBoundingClientRect(), p = e.getBoundingClientRect();
-    Ko.style.transition = r ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
-    const g = Fo();
-    Ko.style.left = (p.left - s.left) / g + Es.scrollLeft + "px", Ko.style.width = p.width / g + "px", r && (Ko.style.transform = "scaleX(1.08)", setTimeout(() => Ko.style.transform = "scaleX(1)", 180));
+    $o.style.transition = r ? "left .34s cubic-bezier(.2,1.35,.4,1),width .34s cubic-bezier(.2,1.35,.4,1),transform .18s ease" : "none";
+    const g = Oo();
+    $o.style.left = (p.left - s.left) / g + Es.scrollLeft + "px", $o.style.width = p.width / g + "px", r && ($o.style.transform = "scaleX(1.08)", setTimeout(() => $o.style.transform = "scaleX(1)", 180));
   }
   n.querySelectorAll(".tab").forEach((e) => e.addEventListener("click", () => {
-    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), n.querySelectorAll(".tab").forEach((r) => r.classList.remove("active")), n.querySelectorAll(".settingsPane").forEach((r) => r.classList.remove("active")), e.classList.add("active"), o(e.dataset.pane).classList.add("active"), Bi(e, !0);
-  })), requestAnimationFrame(() => Bi(n.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => Bi(n.querySelector(".tab.active"), !1));
-  const Zr = o("pixelTrailToggle"), Kr = o("rippleToggle"), Hn = o("trailStrength"), Ri = o("trailLife");
-  function Ba(e, r) {
+    e.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), n.querySelectorAll(".tab").forEach((r) => r.classList.remove("active")), n.querySelectorAll(".settingsPane").forEach((r) => r.classList.remove("active")), e.classList.add("active"), o(e.dataset.pane).classList.add("active"), Ri(e, !0);
+  })), requestAnimationFrame(() => Ri(n.querySelector(".tab.active"), !1)), window.addEventListener("resize", () => Ri(n.querySelector(".tab.active"), !1));
+  const Zr = o("pixelTrailToggle"), Kr = o("rippleToggle"), Hn = o("trailStrength"), Bi = o("trailLife");
+  function Ra(e, r) {
     fe()[e] = r, Ta();
   }
   const ul = ["Warm-up", "Movement", "Cooldown", "Rest", "Video"];
   function Ds(e) {
     return e.kind === "rest" ? "rest" : e.kind === "video" ? "video" : "g:" + String(e.group || "").trim().toLowerCase();
   }
-  function $o(e) {
+  function Xo(e) {
     var r;
     return !!((r = fe().hideMeta) != null && r[Ds(e)]);
   }
@@ -3331,8 +3331,8 @@ function pu(n, l) {
       if (!s) return;
       Array.isArray(s) && (s = { name: s[1], group: s[2], kind: "work" });
       const T = Ds(s);
-      let B = e.get(T);
-      B || (B = { key: T, label: T === "rest" ? "Rest" : T === "video" ? "Video" : String(s.group || "").trim() || "No type", kinds: /* @__PURE__ */ new Set(), moves: /* @__PURE__ */ new Set(), count: 0 }, e.set(T, B)), B.kinds.add(T === "rest" ? "Rest" : T === "video" ? "Video" : p), B.moves.add(g), B.count++;
+      let R = e.get(T);
+      R || (R = { key: T, label: T === "rest" ? "Rest" : T === "video" ? "Video" : String(s.group || "").trim() || "No type", kinds: /* @__PURE__ */ new Set(), moves: /* @__PURE__ */ new Set(), count: 0 }, e.set(T, R)), R.kinds.add(T === "rest" ? "Rest" : T === "video" ? "Video" : p), R.moves.add(g), R.count++;
     };
     return Object.values(Kt).forEach((s) => {
       const p = s.name || "Move";
@@ -3351,8 +3351,8 @@ function pu(n, l) {
     if (!e) return;
     const r = fe().hideMeta || {}, s = $r();
     e.innerHTML = s.length ? "" : '<tr class="metaEmpty"><td colspan="4">No types match</td></tr>', s.forEach((g) => {
-      const T = !r[g.key], B = g.count ? (g.moves.length > 2 ? g.moves.slice(0, 2).join(", ") + " + " + (g.moves.length - 2) + " more" : g.moves.join(", ")) + " · " + g.count + " step" + (g.count === 1 ? "" : "s") : "Not used yet", q = document.createElement("tr");
-      q.className = T ? "" : "off", q.innerHTML = '<td><div class="metaType">' + Ht(g.label) + '</div><div class="metaSub">' + Ht(g.kind + " · " + B) + '</div></td><td class="metaKindCol">' + Ht(g.kind) + '</td><td class="metaUsedCol">' + Ht(B) + '</td><td class="metaSwitchCol"><button class="switch' + (T ? " on" : "") + '" type="button" role="switch" aria-checked="' + T + '" aria-label="Second line for ' + Ht(g.label) + ' on phones"></button></td>', q.querySelector(".switch").addEventListener("click", () => ur([g.key], T)), e.appendChild(q);
+      const T = !r[g.key], R = g.count ? (g.moves.length > 2 ? g.moves.slice(0, 2).join(", ") + " + " + (g.moves.length - 2) + " more" : g.moves.join(", ")) + " · " + g.count + " step" + (g.count === 1 ? "" : "s") : "Not used yet", q = document.createElement("tr");
+      q.className = T ? "" : "off", q.innerHTML = '<td><div class="metaType">' + Ht(g.label) + '</div><div class="metaSub">' + Ht(g.kind + " · " + R) + '</div></td><td class="metaKindCol">' + Ht(g.kind) + '</td><td class="metaUsedCol">' + Ht(R) + '</td><td class="metaSwitchCol"><button class="switch' + (T ? " on" : "") + '" type="button" role="switch" aria-checked="' + T + '" aria-label="Second line for ' + Ht(g.label) + ' on phones"></button></td>', q.querySelector(".switch").addEventListener("click", () => ur([g.key], T)), e.appendChild(q);
     });
     const p = s.filter((g) => r[g.key]).length;
     o("metaCount").textContent = s.length ? s.length + " type" + (s.length === 1 ? "" : "s") + (p ? " · " + p + " hidden on phones" : "") : "";
@@ -3361,7 +3361,7 @@ function pu(n, l) {
     const s = { ...fe().hideMeta || {} };
     e.forEach((p) => {
       r ? s[p] = !0 : delete s[p];
-    }), Ba("hideMeta", s), Ni(), di(), Vo();
+    }), Ra("hideMeta", s), Ni(), ci(), Go();
   }
   o("metaSearch").addEventListener("input", Ni), o("metaKinds").querySelectorAll(".kindChip").forEach((e) => e.addEventListener("click", () => {
     Fn = e.dataset.kind, o("metaKinds").querySelectorAll(".kindChip").forEach((r) => r.classList.toggle("active", r === e)), Ni();
@@ -3377,60 +3377,60 @@ function pu(n, l) {
     r.classList.toggle("noActivity", !e), r.classList.toggle("noWeather", !0);
   }
   n.querySelectorAll("[data-toggle]").forEach((e) => e.addEventListener("click", () => {
-    Pi[e.dataset.toggle] = Pi[e.dataset.toggle] === !1, va(), Ba("toggles", { ...Pi });
+    Pi[e.dataset.toggle] = Pi[e.dataset.toggle] === !1, va(), Ra("toggles", { ...Pi });
   })), va();
   function hd() {
-    Zr.classList.toggle("on", Pn), Kr.classList.toggle("on", qo), Hn.value = Math.round(Oo * 100), o("trailStrengthValue").textContent = Hn.value + "%", Ri.value = Si, o("trailLifeValue").textContent = Ri.value + " ms";
+    Zr.classList.toggle("on", Pn), Kr.classList.toggle("on", jo), Hn.value = Math.round(Wo * 100), o("trailStrengthValue").textContent = Hn.value + "%", Bi.value = Si, o("trailLifeValue").textContent = Bi.value + " ms";
   }
-  fe().trailEnabled !== void 0 && (Pn = fe().trailEnabled), fe().rippleEnabled !== void 0 && (qo = fe().rippleEnabled), fe().trailStrength !== void 0 && (Oo = fe().trailStrength), fe().trailMaxAge !== void 0 && (Si = fe().trailMaxAge), hd();
+  fe().trailEnabled !== void 0 && (Pn = fe().trailEnabled), fe().rippleEnabled !== void 0 && (jo = fe().rippleEnabled), fe().trailStrength !== void 0 && (Wo = fe().trailStrength), fe().trailMaxAge !== void 0 && (Si = fe().trailMaxAge), hd();
   const fr = o("soundsToggle");
   fr.classList.toggle("on", _i()), fr.addEventListener("click", () => {
-    Ba("sounds", !_i()), fr.classList.toggle("on", _i()), _i() && (rl(), $a("move"));
+    Ra("sounds", !_i()), fr.classList.toggle("on", _i()), _i() && (rl(), $a("move"));
   }), Zr.addEventListener("click", () => {
-    Pn = !Pn, Zr.classList.toggle("on", Pn), Pn || (ir = []), Ba("trailEnabled", Pn);
+    Pn = !Pn, Zr.classList.toggle("on", Pn), Pn || (ir = []), Ra("trailEnabled", Pn);
   }), Kr.addEventListener("click", () => {
-    qo = !qo, Kr.classList.toggle("on", qo), Ba("rippleEnabled", qo);
+    jo = !jo, Kr.classList.toggle("on", jo), Ra("rippleEnabled", jo);
   }), Hn.addEventListener("input", () => {
-    Oo = Number(Hn.value) / 100, o("trailStrengthValue").textContent = Hn.value + "%";
-  }), Hn.addEventListener("change", () => Ba("trailStrength", Oo)), Ri.addEventListener("input", () => {
-    Si = Number(Ri.value), o("trailLifeValue").textContent = Ri.value + " ms";
-  }), Ri.addEventListener("change", () => Ba("trailMaxAge", Si)), gi.addEventListener("change", () => Ba("upcomingCount", zn));
+    Wo = Number(Hn.value) / 100, o("trailStrengthValue").textContent = Hn.value + "%";
+  }), Hn.addEventListener("change", () => Ra("trailStrength", Wo)), Bi.addEventListener("input", () => {
+    Si = Number(Bi.value), o("trailLifeValue").textContent = Bi.value + " ms";
+  }), Bi.addEventListener("change", () => Ra("trailMaxAge", Si)), gi.addEventListener("change", () => Ra("upcomingCount", zn));
   function hl(e) {
     n.querySelectorAll(".themeBtn").forEach((s) => s.classList.toggle("active", s.dataset.theme === e));
     const r = e === "light";
     o("app").classList.toggle("light", r), l.setLight(r), Tn(n);
   }
   hl(fe().theme || "dark"), n.querySelectorAll(".themeBtn").forEach((e) => e.addEventListener("click", () => {
-    hl(e.dataset.theme), Ba("theme", e.dataset.theme);
+    hl(e.dataset.theme), Ra("theme", e.dataset.theme);
   }));
   const Xa = { steps: null, weather: null, ...fe().entities || {} };
   let pa = null, re = {};
   function ml(e) {
-    const r = Object.values(e).filter((q) => q.entity_id.startsWith("sensor.") || q.entity_id.startsWith("input_number.")), s = (q) => q.attributes.friendly_name || q.entity_id, p = r.filter((q) => /step/i.test(q.entity_id) || /step/i.test(s(q)) || ["steps", "step"].includes(String(q.attributes.unit_of_measurement || "").toLowerCase())), g = r.filter((q) => !p.includes(q)), T = (q, ot) => s(q).localeCompare(s(ot)), B = (q, ot) => /health_steps/.test(ot.entity_id) - /health_steps/.test(q.entity_id) || T(q, ot);
-    return { suggested: p.sort(B), rest: g.sort(T), label: s };
+    const r = Object.values(e).filter((q) => q.entity_id.startsWith("sensor.") || q.entity_id.startsWith("input_number.")), s = (q) => q.attributes.friendly_name || q.entity_id, p = r.filter((q) => /step/i.test(q.entity_id) || /step/i.test(s(q)) || ["steps", "step"].includes(String(q.attributes.unit_of_measurement || "").toLowerCase())), g = r.filter((q) => !p.includes(q)), T = (q, it) => s(q).localeCompare(s(it)), R = (q, it) => /health_steps/.test(it.entity_id) - /health_steps/.test(q.entity_id) || T(q, it);
+    return { suggested: p.sort(R), rest: g.sort(T), label: s };
   }
   function Ii(e) {
     const r = o("stepsEntity");
     if (!r || r.matches(":focus")) return;
-    const { suggested: s, rest: p, label: g } = ml(e), T = (ot) => '<option value="' + Ht(ot.entity_id) + '">' + Ht(g(ot)) + "</option>";
+    const { suggested: s, rest: p, label: g } = ml(e), T = (it) => '<option value="' + Ht(it.entity_id) + '">' + Ht(g(it)) + "</option>";
     r.innerHTML = '<option value="">Not connected</option>' + (s.length ? '<optgroup label="Suggested">' + s.map(T).join("") + "</optgroup>" : "") + (p.length ? '<optgroup label="All sensors">' + p.map(T).join("") + "</optgroup>" : ""), r.value = Xa.steps || "";
-    const B = o("stepsStatus"), q = Xa.steps && e[Xa.steps];
-    B.textContent = q ? "Connected · " + g(q) : B.dataset.empty;
+    const R = o("stepsStatus"), q = Xa.steps && e[Xa.steps];
+    R.textContent = q ? "Connected · " + g(q) : R.dataset.empty;
   }
   o("stepsEntity").addEventListener("change", () => {
-    Xa.steps = o("stepsEntity").value || null, Ba("entities", { ...Xa }), re = {}, Ns(), pa && (Ii(pa), Rs(pa));
+    Xa.steps = o("stepsEntity").value || null, Ra("entities", { ...Xa }), re = {}, Ns(), pa && (Ii(pa), Bs(pa));
   });
-  function Bs(e, r = 0) {
+  function Rs(e, r = 0) {
     return new Intl.NumberFormat(void 0, { maximumFractionDigits: r }).format(e);
   }
   function so() {
     const e = Xa.steps && (pa == null ? void 0 : pa[Xa.steps]), r = Number(e == null ? void 0 : e.state);
     return Number.isFinite(r) ? r : null;
   }
-  function Rs(e) {
+  function Bs(e) {
     var p;
     const r = Xa.steps, s = r ? Number((p = e[r]) == null ? void 0 : p.state) : NaN;
-    o("stepsMeta").textContent = r ? Number.isFinite(s) ? Bs(s) : "—" : "Set up in Settings";
+    o("stepsMeta").textContent = r ? Number.isFinite(s) ? Rs(s) : "—" : "Set up in Settings";
   }
   let gl = 0;
   async function Ns() {
@@ -3440,15 +3440,15 @@ function pu(n, l) {
     const r = /* @__PURE__ */ new Date(), s = new Date(r.getFullYear(), r.getMonth(), r.getDate() - 30);
     try {
       const p = await l.ws({ type: "recorder/statistics_during_period", start_time: s.toISOString(), end_time: r.toISOString(), statistic_ids: [e], period: "day", types: ["max"] }), g = (p == null ? void 0 : p[e]) || [], T = {};
-      if (g.forEach((B) => {
-        Number.isFinite(B.max) && (T[Be(new Date(B.start))] = B.max);
+      if (g.forEach((R) => {
+        Number.isFinite(R.max) && (T[Re(new Date(R.start))] = R.max);
       }), !Object.keys(T).length) {
-        const B = await l.ws({ type: "history/history_during_period", start_time: s.toISOString(), end_time: r.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
-        ((B == null ? void 0 : B[e]) || []).forEach((q) => {
-          const ot = Number(q.s ?? q.state), ht = q.lu ? q.lu * 1e3 : Date.parse(q.last_updated || q.last_changed);
-          if (!Number.isFinite(ot) || !ht) return;
-          const it = Be(new Date(ht));
-          T[it] = Math.max(T[it] || 0, ot);
+        const R = await l.ws({ type: "history/history_during_period", start_time: s.toISOString(), end_time: r.toISOString(), entity_ids: [e], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
+        ((R == null ? void 0 : R[e]) || []).forEach((q) => {
+          const it = Number(q.s ?? q.state), ht = q.lu ? q.lu * 1e3 : Date.parse(q.last_updated || q.last_changed);
+          if (!Number.isFinite(it) || !ht) return;
+          const rt = Re(new Date(ht));
+          T[rt] = Math.max(T[rt] || 0, it);
         });
       }
       re = T, Cn();
@@ -3459,28 +3459,28 @@ function pu(n, l) {
     Cn();
   }
   lo(), setInterval(() => {
-    lo(), Qn(), Io();
+    lo(), Qn(), Ho();
   }, 10 * 60 * 1e3);
   function Xr(e) {
     const r = {}, s = {};
-    de.history.forEach((B) => {
-      const q = Be(new Date(B.start));
-      r[q] = (r[q] || 0) + (B.seconds || 0) / 60, s[q] = (s[q] || 0) + 1;
+    de.history.forEach((R) => {
+      const q = Re(new Date(R.start));
+      r[q] = (r[q] || 0) + (R.seconds || 0) / 60, s[q] = (s[q] || 0) + 1;
     });
-    const p = /* @__PURE__ */ new Date(), g = Be(p), T = [];
-    for (let B = e - 1; B >= 0; B--) {
-      const q = new Date(p.getFullYear(), p.getMonth(), p.getDate() - B), ot = Be(q), ht = de.checkins.filter((et) => et.date === ot), it = (et) => {
-        const Bt = ht.map((te) => te[et]).filter(Boolean);
-        return Bt.length ? Bt.reduce((te, Ot) => te + Ot, 0) / Bt.length : null;
+    const p = /* @__PURE__ */ new Date(), g = Re(p), T = [];
+    for (let R = e - 1; R >= 0; R--) {
+      const q = new Date(p.getFullYear(), p.getMonth(), p.getDate() - R), it = Re(q), ht = de.checkins.filter((at) => at.date === it), rt = (at) => {
+        const Rt = ht.map((te) => te[at]).filter(Boolean);
+        return Rt.length ? Rt.reduce((te, Ot) => te + Ot, 0) / Rt.length : null;
       };
       T.push({
-        key: ot,
+        key: it,
         date: q,
-        minutes: Math.round(r[ot] || 0),
-        moves: s[ot] || 0,
-        steps: ot === g && so() != null ? so() : re[ot] ?? null,
-        mood: it("mood"),
-        energy: it("energy")
+        minutes: Math.round(r[it] || 0),
+        moves: s[it] || 0,
+        steps: it === g && so() != null ? so() : re[it] ?? null,
+        mood: rt("mood"),
+        energy: rt("energy")
       });
     }
     return T;
@@ -3496,8 +3496,8 @@ function pu(n, l) {
   function Cn() {
     const e = o("insightCard");
     if (!e) return;
-    const r = Xr(30), s = Jr(r), p = r.reduce((ht, it) => ht + it.minutes, 0), g = /* @__PURE__ */ new Date(), T = Be(g), B = Be(new Date(g.getFullYear(), g.getMonth(), g.getDate() - (g.getDay() + 6) % 7)), q = r.filter((ht) => ht.key >= B && ht.key <= T).reduce((ht, it) => ht + it.minutes, 0), ot = (ht, it, et) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + ht + '</div><div><div class="activityRowName">' + Ht(it) + '</div><div class="activityRowMeta">' + Ht(et) + "</div></div></div>";
-    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">' + Ua("move") + '</div><div class="activityTitle">Movement</div></div><div class="activityRows jointRows">' + ot(Ua("clock"), "This week", q + " min") + ot(Ua("streak"), "Streak", s + " day" + (s === 1 ? "" : "s")) + ot(Ua("calendar"), "30 days", p + " min") + "</div>";
+    const r = Xr(30), s = Jr(r), p = r.reduce((ht, rt) => ht + rt.minutes, 0), g = /* @__PURE__ */ new Date(), T = Re(g), R = Re(new Date(g.getFullYear(), g.getMonth(), g.getDate() - (g.getDay() + 6) % 7)), q = r.filter((ht) => ht.key >= R && ht.key <= T).reduce((ht, rt) => ht + rt.minutes, 0), it = (ht, rt, at) => '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">' + ht + '</div><div><div class="activityRowName">' + Ht(rt) + '</div><div class="activityRowMeta">' + Ht(at) + "</div></div></div>";
+    e.innerHTML = '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">' + Ua("move") + '</div><div class="activityTitle">Movement</div></div><div class="activityRows jointRows">' + it(Ua("clock"), "This week", q + " min") + it(Ua("streak"), "Streak", s + " day" + (s === 1 ? "" : "s")) + it(Ua("calendar"), "30 days", p + " min") + "</div>";
   }
   const Qr = {
     sunny: "Sunny",
@@ -3515,82 +3515,82 @@ function pu(n, l) {
     hail: "Hail",
     snowy: "Snow",
     "snowy-rainy": "Sleet"
-  }, Ps = (e) => e === "sunny" ? "clear" : e === "clear-night" ? "night" : e === "partlycloudy" ? "partly" : ["rainy", "pouring", "lightning", "lightning-rainy", "hail"].includes(e) ? "rain" : ["snowy", "snowy-rainy"].includes(e) ? "snow" : "cloudy", Xo = { s: "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", sp: "M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z", lp: "M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z", lc: "M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z", lr: "M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z" }, Co = {
+  }, Ps = (e) => e === "sunny" ? "clear" : e === "clear-night" ? "night" : e === "partlycloudy" ? "partly" : ["rainy", "pouring", "lightning", "lightning-rainy", "hail"].includes(e) ? "rain" : ["snowy", "snowy-rainy"].includes(e) ? "snow" : "cloudy", Jo = { s: "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", sp: "M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z", lp: "M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z", lc: "M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z", lr: "M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z" }, To = {
     s: ["M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z", 6.11, 40],
     l: ["M41.1747 11.959C37.7298 16.5251 35.6875 22.2086 35.6874 28.3691C35.6874 43.4321 47.8979 55.6435 62.9608 55.6436C68.3701 55.6436 73.411 54.0676 77.6512 51.3516C74.6865 66.6826 61.197 78.2607 44.9999 78.2607C26.6305 78.2607 11.7391 63.3694 11.7391 45C11.7392 27.9244 24.6071 13.8562 41.1747 11.959Z", 11.96, 78.26],
     sp: ["M16.6201 5.0791C15.3771 6.72655 14.6397 8.7772 14.6396 11C14.6396 16.4345 19.046 20.8398 24.4805 20.8398C26.4326 20.8398 28.2502 20.2686 29.7803 19.2881C28.7119 24.821 23.8449 29 18 29C11.3726 29 6 23.6274 6 17C6 10.8393 10.6426 5.76349 16.6201 5.0791Z", 5.08, 29],
     lp: ["M32.5175 9.93848C30.0859 13.1616 28.6435 17.1729 28.6434 21.5215C28.6434 32.1541 37.2628 40.7733 47.8954 40.7734C51.7136 40.7734 55.2724 39.6622 58.2655 37.7451C56.1724 48.5666 46.6506 56.7391 35.2177 56.7393C22.251 56.7393 11.7391 46.2274 11.7391 33.2607C11.7393 21.2073 20.8226 11.2776 32.5175 9.93848Z", 9.94, 56.74]
   };
   let ts = 0;
-  const hr = (e, r) => '<path class="' + r + '" d="' + e + '"/>', vl = (e, r) => ' style="animation-delay:-' + Math.round(e * 137 % r) + 'ms"', Ra = (e, r, s, p) => {
+  const hr = (e, r) => '<path class="' + r + '" d="' + e + '"/>', vl = (e, r) => ' style="animation-delay:-' + Math.round(e * 137 % r) + 'ms"', Ba = (e, r, s, p) => {
     const g = s * 0.2687;
     return '<path class="wxTwinkle" fill="#fff"' + (p < 1 ? ' opacity="' + p + '"' : "") + vl(e, 2400) + ' d="M' + e + " " + (r - s) + "L" + (e + g) + " " + (r - g) + "L" + (e + s) + " " + r + "L" + (e + g) + " " + (r + g) + "L" + e + " " + (r + s) + "L" + (e - g) + " " + (r + g) + "L" + (e - s) + " " + r + "L" + (e - g) + " " + (r - g) + 'Z"/>';
   }, es = ([e, r, s], p) => '<path class="wxMoonPath" d="' + e + '" fill="url(#' + p + ')"/><defs><linearGradient id="' + p + '" x1="0" y1="' + r + '" x2="0" y2="' + s + '" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF4C7"/><stop offset="1" stop-color="#F2C95E"/></linearGradient></defs>', bl = (e, r) => r ? '<circle class="wxSunDisc" cx="45" cy="45" r="33.26" fill="url(#' + e + ')"/><defs><linearGradient id="' + e + '" x1="12" y1="8.5" x2="67" y2="73.5" gradientUnits="userSpaceOnUse"><stop offset=".653" stop-color="#FFE100"/><stop offset="1" stop-color="#F2C159"/></linearGradient></defs>' : '<circle class="wxSunDisc" cx="23" cy="23" r="17" fill="url(#' + e + ')"/><defs><linearGradient id="' + e + '" x1="23" y1="6" x2="23" y2="40" gradientUnits="userSpaceOnUse"><stop offset=".606" stop-color="#FFE100"/><stop offset="1" stop-color="#FFAA00"/></linearGradient></defs>', md = (e) => (e ? ["29.35", "43.04", "56.74"].map((r, s) => '<g class="wxDrop" style="animation-delay:-' + s * 317 + 'ms"><rect class="wxAccent" x="' + r + '" y="60.65" width="5.87" height="15.65" rx="2.93" transform="rotate(12 ' + r + ' 60.65)"/></g>') : [19, 26, 33].map((r, s) => '<g class="wxDrop" style="animation-delay:-' + s * 317 + 'ms"><rect class="wxAccent" width="3.03" height="9.41" rx="1.51" transform="matrix(0.9698 0.244 -0.1768 0.9843 ' + r + ' 38)"/></g>')).join(""), gd = (e) => (e ? [[33.67, 67.67], [47.67, 64.67], [61.67, 67.67], [40.67, 77.67], [54.67, 77.67]] : [[21.2, 42.2], [29.2, 40.2], [37.2, 42.2], [25.2, 48.2], [33.2, 48.2]]).map(([r, s], p) => '<circle class="wxFlake" style="animation-delay:-' + p * 640 + 'ms" cx="' + r + '" cy="' + s + '" r="' + (e ? 3.67 : 2.2) + '" fill="#fff"/>').join("");
   function Is(e, r, s, p) {
-    return e === "clear" ? r ? es(s ? Co.l : Co.s, p) + (s ? Ra(70, 20, 5.83, 1) + Ra(78.33, 41.67, 3.75, 0.8) + Ra(60, 71.67, 3.33, 0.6) : Ra(42, 12, 3.5, 1) + Ra(47, 25, 2.25, 0.8) + Ra(36, 43, 2, 0.6)) : bl(p, s) : e === "partly" ? (r ? es(s ? Co.lp : Co.sp, p) : s ? '<circle class="wxSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>' : '<circle class="wxSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>') + hr(s ? Xo.lp : Xo.sp, r ? "wxCloudLight" : "wxBright") + (r ? s ? Ra(73.33, 16.67, 4.17, 0.9) : Ra(44, 10, 2.5, 0.9) : "") : e === "cloudy" ? hr(s ? Xo.lc : Xo.s, r ? "wxCloudLight" : "wxBright") + (r ? s ? Ra(15, 15, 3.75, 0.8) + Ra(76.67, 13.33, 2.92, 0.6) : Ra(9, 9, 2.25, 0.8) + Ra(46, 8, 1.75, 0.6) : "") : hr(s ? Xo.lr : Xo.s, "wxCloudLight") + (e === "rain" ? md(s) : gd(s));
+    return e === "clear" ? r ? es(s ? To.l : To.s, p) + (s ? Ba(70, 20, 5.83, 1) + Ba(78.33, 41.67, 3.75, 0.8) + Ba(60, 71.67, 3.33, 0.6) : Ba(42, 12, 3.5, 1) + Ba(47, 25, 2.25, 0.8) + Ba(36, 43, 2, 0.6)) : bl(p, s) : e === "partly" ? (r ? es(s ? To.lp : To.sp, p) : s ? '<circle class="wxSunDisc" cx="35.22" cy="33.26" r="23.48" fill="#FFE100"/>' : '<circle class="wxSunDisc" cx="18" cy="17" r="12" fill="#FFE100"/>') + hr(s ? Jo.lp : Jo.sp, r ? "wxCloudLight" : "wxBright") + (r ? s ? Ba(73.33, 16.67, 4.17, 0.9) : Ba(44, 10, 2.5, 0.9) : "") : e === "cloudy" ? hr(s ? Jo.lc : Jo.s, r ? "wxCloudLight" : "wxBright") + (r ? s ? Ba(15, 15, 3.75, 0.8) + Ba(76.67, 13.33, 2.92, 0.6) : Ba(9, 9, 2.25, 0.8) + Ba(46, 8, 1.75, 0.6) : "") : hr(s ? Jo.lr : Jo.s, "wxCloudLight") + (e === "rain" ? md(s) : gd(s));
   }
   const vd = () => {
     var e;
     return ((e = pa == null ? void 0 : pa["sun.sun"]) == null ? void 0 : e.state) === "below_horizon";
   };
   let Ja = fe().weatherStyle || "bitmap", wl = fe().weatherLayout === "strip" ? "strip" : "tiles", bd = fe().weatherMotion !== !1;
-  const Jo = () => bd && !Da(), Hi = /* @__PURE__ */ new Map(), Hs = 700, xl = (e) => {
+  const Qo = () => bd && !Da(), Hi = /* @__PURE__ */ new Map(), Hs = 700, xl = (e) => {
     const [r, s] = e.split("/");
     return { k: r === "fog" ? "cloudy" : r === "storm" ? "rain" : r, night: s === "night" };
   };
-  function Qo(e, r, s, p = Ja, g, T) {
-    let B = Ps(e);
-    const q = B === "night" || (T != null ? !!T : !!s && vd());
-    B === "night" && (B = "clear");
-    const ot = r ? 90 : 54, ht = Ul(e, q), it = performance.now();
-    let et = g ? Hi.get(g) : null;
-    if (g && !et ? Hi.set(g, et = { key: ht, t0: -1e9 }) : et && et.key !== ht && (et.fromKey = et.key, et.from = et.last || null, et.key = ht, et.t0 = it), p !== "smooth") return '<span class="wxIcon pixels' + (r ? " large" : "") + '" aria-hidden="true"><canvas data-wx="' + ht + '"' + (g ? ' data-wx-slot="' + g + '"' : "") + ' data-wx-style="' + p + '" data-wx-size="' + ot + '"></canvas></span>';
-    let Bt = "";
-    if (et && it - et.t0 < Hs && (Jo() || Da())) {
-      const te = xl(et.fromKey);
-      Bt = '<span class="wxLayer wxOut ' + te.k + (te.night ? " night" : "") + '" style="animation-delay:' + Math.round(et.t0 - it) + 'ms"><svg viewBox="0 0 ' + ot + " " + ot + '">' + Is(te.k, te.night, r, "wxg" + ++ts) + "</svg></span>";
+  function ti(e, r, s, p = Ja, g, T) {
+    let R = Ps(e);
+    const q = R === "night" || (T != null ? !!T : !!s && vd());
+    R === "night" && (R = "clear");
+    const it = r ? 90 : 54, ht = Ul(e, q), rt = performance.now();
+    let at = g ? Hi.get(g) : null;
+    if (g && !at ? Hi.set(g, at = { key: ht, t0: -1e9 }) : at && at.key !== ht && (at.fromKey = at.key, at.from = at.last || null, at.key = ht, at.t0 = rt), p !== "smooth") return '<span class="wxIcon pixels' + (r ? " large" : "") + '" aria-hidden="true"><canvas data-wx="' + ht + '"' + (g ? ' data-wx-slot="' + g + '"' : "") + ' data-wx-style="' + p + '" data-wx-size="' + it + '"></canvas></span>';
+    let Rt = "";
+    if (at && rt - at.t0 < Hs && (Qo() || Da())) {
+      const te = xl(at.fromKey);
+      Rt = '<span class="wxLayer wxOut ' + te.k + (te.night ? " night" : "") + '" style="animation-delay:' + Math.round(at.t0 - rt) + 'ms"><svg viewBox="0 0 ' + it + " " + it + '">' + Is(te.k, te.night, r, "wxg" + ++ts) + "</svg></span>";
     }
-    return '<span class="wxIcon ' + B + (q ? " night" : "") + (r ? " large" : "") + '" aria-hidden="true"><svg viewBox="0 0 ' + ot + " " + ot + '">' + Is(B, q, r, "wxg" + ++ts) + "</svg>" + Bt + "</span>";
+    return '<span class="wxIcon ' + R + (q ? " night" : "") + (r ? " large" : "") + '" aria-hidden="true"><svg viewBox="0 0 ' + it + " " + it + '">' + Is(R, q, r, "wxg" + ++ts) + "</svg>" + Rt + "</span>";
   }
   function Fi() {
     const e = o("app"), r = getComputedStyle(e), s = (q) => r.getPropertyValue(q).trim(), p = {};
-    [["skyClearDay", "--wx-clear"], ["skyClearNight", "--wx-night"], ["skyCloudyDay", "--wx-cloudy"], ["cloudDay", "--wx-cloud-bright"], ["cloudNight", "--wx-cloudy"], ["rain", "--color-accent-primary"]].forEach(([q, ot]) => {
-      s(ot) && (p[q] = s(ot));
+    [["skyClearDay", "--wx-clear"], ["skyClearNight", "--wx-night"], ["skyCloudyDay", "--wx-cloudy"], ["cloudDay", "--wx-cloud-bright"], ["cloudNight", "--wx-cloudy"], ["rain", "--color-accent-primary"]].forEach(([q, it]) => {
+      s(it) && (p[q] = s(it));
     });
-    const g = s("--color-text-primary") || "#f1f1f1", T = s("--color-bg-card") || "#222222", B = e.classList.contains("light");
-    return { colors: p, ink: B ? g : T, paper: B ? T : g };
+    const g = s("--color-text-primary") || "#f1f1f1", T = s("--color-bg-card") || "#222222", R = e.classList.contains("light");
+    return { colors: p, ink: R ? g : T, paper: R ? T : g };
   }
   function Tn(e, r = performance.now()) {
     const s = e.querySelectorAll("canvas[data-wx]");
     if (!s.length) return;
-    const p = Fi(), g = Jo(), T = Da();
-    s.forEach((B) => {
-      var et;
-      const q = B.dataset.wx, ot = B.dataset.wxSlot ? Hi.get(B.dataset.wxSlot) : null;
+    const p = Fi(), g = Qo(), T = Da();
+    s.forEach((R) => {
+      var at;
+      const q = R.dataset.wx, it = R.dataset.wxSlot ? Hi.get(R.dataset.wxSlot) : null;
       let ht = Vd(q, p.colors);
-      if (ot && ot.key === q) {
-        const Bt = (r - ot.t0) / Hs;
-        Bt < 1 && (g || T) && (ht = Zp(ot.from || Vd(ot.fromKey, p.colors), ht, Math.max(0, Bt), p.colors, T)), ot.last = ht;
+      if (it && it.key === q) {
+        const Rt = (r - it.t0) / Hs;
+        Rt < 1 && (g || T) && (ht = Zp(it.from || Vd(it.fromKey, p.colors), ht, Math.max(0, Rt), p.colors, T)), it.last = ht;
       }
-      const it = dp(ht, { size: Number(B.dataset.wxSize) || 54, px: 2, oneBit: B.dataset.wxStyle === "onebit", colors: p.colors, ink: p.ink, paper: p.paper, clock: r, idle: g });
-      B.width !== it.w && (B.width = it.w), B.height !== it.h && (B.height = it.h), (et = B.getContext("2d")) == null || et.putImageData(new ImageData(it.data, it.w, it.h), 0, 0);
+      const rt = dp(ht, { size: Number(R.dataset.wxSize) || 54, px: 2, oneBit: R.dataset.wxStyle === "onebit", colors: p.colors, ink: p.ink, paper: p.paper, clock: r, idle: g });
+      R.width !== rt.w && (R.width = rt.w), R.height !== rt.h && (R.height = rt.h), (at = R.getContext("2d")) == null || at.putImageData(new ImageData(rt.data, rt.w, rt.h), 0, 0);
     });
   }
   let as = null, yl = -1;
   function Fs(e) {
     if (as = null, !b) return;
-    const r = Jo(), s = Math.floor(e / 100), p = [...Hi.values()].some((ot) => e - ot.t0 < Hs), g = [...a.values()].some((ot) => e - ot.t0 < ot.dur), T = It.home.classList.contains("active"), B = N.classList.contains("open"), q = r && Ja === "smooth" && (B || T && wl === "strip");
-    !document.hidden && (p || g || q || r && s !== yl) && (yl = s, T && (Tn(o("weatherCard"), e), f(o("weatherCard"), e)), B && (Tn(N, e), f(N, e))), (r || p || g) && (as = requestAnimationFrame(Fs));
+    const r = Qo(), s = Math.floor(e / 100), p = [...Hi.values()].some((it) => e - it.t0 < Hs), g = [...a.values()].some((it) => e - it.t0 < it.dur), T = It.home.classList.contains("active"), R = N.classList.contains("open"), q = r && Ja === "smooth" && (R || T && wl === "strip");
+    !document.hidden && (p || g || q || r && s !== yl) && (yl = s, T && (Tn(o("weatherCard"), e), f(o("weatherCard"), e)), R && (Tn(N, e), f(N, e))), (r || p || g) && (as = requestAnimationFrame(Fs));
   }
-  function To() {
-    o("app").classList.toggle("wxMotion", Jo()), !as && b && (as = requestAnimationFrame(Fs));
+  function Ao() {
+    o("app").classList.toggle("wxMotion", Qo()), !as && b && (as = requestAnimationFrame(Fs));
   }
   let ns = [];
   const Xe = 36e5, mr = /* @__PURE__ */ new Set(["rainy", "pouring", "lightning", "lightning-rainy", "hail", "snowy", "snowy-rainy"]);
   function On() {
-    const e = /* @__PURE__ */ new Date(), r = (T, B) => new Date(e.getFullYear(), e.getMonth(), e.getDate() + T, B), s = [], p = [], g = [...Array(6)].map((T, B) => {
-      const q = r(B, 6), ot = r(B, 18), ht = r(B + 1, 6), it = ns.find((Bt) => Be(new Date(Bt.datetime)) === Be(q)), et = (Bt, te, Ot) => {
-        const Et = s.filter((ve) => ve.t >= +Bt && ve.t < +te);
+    const e = /* @__PURE__ */ new Date(), r = (T, R) => new Date(e.getFullYear(), e.getMonth(), e.getDate() + T, R), s = [], p = [], g = [...Array(6)].map((T, R) => {
+      const q = r(R, 6), it = r(R, 18), ht = r(R + 1, 6), rt = ns.find((Rt) => Re(new Date(Rt.datetime)) === Re(q)), at = (Rt, te, Ot) => {
+        const Et = s.filter((ve) => ve.t >= +Rt && ve.t < +te);
         if (Et.length) {
           const ve = {};
           return Et.forEach((zt) => {
@@ -3599,13 +3599,13 @@ function pu(n, l) {
         }
         const Ct = p.find((ve) => {
           const zt = +new Date(ve.datetime);
-          return zt >= +Bt - 3 * Xe && zt < +te && (ve.is_daytime == null || !!ve.is_daytime == !Ot);
+          return zt >= +Rt - 3 * Xe && zt < +te && (ve.is_daytime == null || !!ve.is_daytime == !Ot);
         });
         if (Ct) return Ct.condition;
-        const he = (it == null ? void 0 : it.condition) || "cloudy";
+        const he = (rt == null ? void 0 : rt.condition) || "cloudy";
         return Ot && he === "sunny" ? "clear-night" : he;
       };
-      return { start: +q, end: +ht, day: et(q, ot, !1), night: et(ot, ht, !0), hi: Number(it == null ? void 0 : it.temperature), lo: Number(it == null ? void 0 : it.templow) };
+      return { start: +q, end: +ht, day: at(q, it, !1), night: at(it, ht, !0), hi: Number(rt == null ? void 0 : rt.temperature), lo: Number(rt == null ? void 0 : rt.templow) };
     });
     return { days: g, hours: s, start: g[0].start, end: g[5].end };
   }
@@ -3619,31 +3619,31 @@ function pu(n, l) {
     return g.start + (s - p) * (g.end - g.start);
   };
   function os(e, r) {
-    const s = Math.max(0, e.days.findIndex((ot) => r < ot.end)), p = e.days[s], g = (r - p.start) / (p.end - p.start) >= 0.5;
-    let T = g ? p.night : p.day, B = NaN;
+    const s = Math.max(0, e.days.findIndex((it) => r < it.end)), p = e.days[s], g = (r - p.start) / (p.end - p.start) >= 0.5;
+    let T = g ? p.night : p.day, R = NaN;
     const q = e.hours;
     if (q.length && r >= q[0].t - Xe && r <= q[q.length - 1].t + Xe) {
-      let ot = q.findIndex((et) => et.t > r);
-      ot < 0 && (ot = q.length);
-      const ht = q[Math.max(0, ot - 1)], it = q[Math.min(q.length - 1, ot)];
-      T = ht.c || T, B = it.t > ht.t ? ht.temp + (it.temp - ht.temp) * Math.max(0, Math.min(1, (r - ht.t) / (it.t - ht.t))) : ht.temp;
+      let it = q.findIndex((at) => at.t > r);
+      it < 0 && (it = q.length);
+      const ht = q[Math.max(0, it - 1)], rt = q[Math.min(q.length - 1, it)];
+      T = ht.c || T, R = rt.t > ht.t ? ht.temp + (rt.temp - ht.temp) * Math.max(0, Math.min(1, (r - ht.t) / (rt.t - ht.t))) : ht.temp;
     }
-    if (!Number.isFinite(B)) {
-      const ot = [];
+    if (!Number.isFinite(R)) {
+      const it = [];
       if (e.days.forEach((ht) => {
-        Number.isFinite(ht.lo) && ot.push([ht.start - Xe, ht.lo]), Number.isFinite(ht.hi) && ot.push([ht.start + 9 * Xe, ht.hi]);
-      }), ot.length) {
-        B = r <= ot[0][0] ? ot[0][1] : ot[ot.length - 1][1];
-        for (let ht = 1; ht < ot.length; ht++) if (r <= ot[ht][0] && r > ot[ht - 1][0]) {
-          const [it, et] = ot[ht - 1], [Bt, te] = ot[ht];
-          B = et + (te - et) * (1 - Math.cos(Math.PI * (r - it) / (Bt - it))) / 2;
+        Number.isFinite(ht.lo) && it.push([ht.start - Xe, ht.lo]), Number.isFinite(ht.hi) && it.push([ht.start + 9 * Xe, ht.hi]);
+      }), it.length) {
+        R = r <= it[0][0] ? it[0][1] : it[it.length - 1][1];
+        for (let ht = 1; ht < it.length; ht++) if (r <= it[ht][0] && r > it[ht - 1][0]) {
+          const [rt, at] = it[ht - 1], [Rt, te] = it[ht];
+          R = at + (te - at) * (1 - Math.cos(Math.PI * (r - rt) / (Rt - rt))) / 2;
           break;
         }
       }
     }
-    return { cond: g && T === "sunny" ? "clear-night" : T, temp: B, night: g, day: p };
+    return { cond: g && T === "sunny" ? "clear-night" : T, temp: R, night: g, day: p };
   }
-  const t = (e) => Be(new Date(e)) === Be(/* @__PURE__ */ new Date()) ? "Today" : new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(new Date(e)), a = /* @__PURE__ */ new Map(), i = 900, d = 700;
+  const t = (e) => Re(new Date(e)) === Re(/* @__PURE__ */ new Date()) ? "Today" : new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(new Date(e)), a = /* @__PURE__ */ new Map(), i = 900, d = 700;
   let u = null;
   const h = typeof ResizeObserver == "function" ? new ResizeObserver((e) => e.forEach((r) => {
     f(r.target.parentElement), r.target.closest("#wxDialog") && He();
@@ -3651,52 +3651,52 @@ function pu(n, l) {
   function f(e, r = performance.now()) {
     const s = e.querySelectorAll("canvas[data-wx-strip]");
     if (!s.length) return;
-    const p = On(), g = p.days.flatMap((et) => [{ cond: et.day, night: !1 }, { cond: et.night, night: !0 }]), T = g.map((et) => et.cond).join(), B = Fi(), q = Jo(), ot = Da(), ht = Number(Be(new Date(p.start)).replace(/\D/g, "")) % 9973;
-    let it = !1;
-    s.forEach((et) => {
+    const p = On(), g = p.days.flatMap((at) => [{ cond: at.day, night: !1 }, { cond: at.night, night: !0 }]), T = g.map((at) => at.cond).join(), R = Fi(), q = Qo(), it = Da(), ht = Number(Re(new Date(p.start)).replace(/\D/g, "")) % 9973;
+    let rt = !1;
+    s.forEach((at) => {
       var ve;
-      const Bt = et.clientWidth, te = et.clientHeight;
-      if (!Bt || !te) return;
-      const Ot = et.dataset.wxStrip;
+      const Rt = at.clientWidth, te = at.clientHeight;
+      if (!Rt || !te) return;
+      const Ot = at.dataset.wxStrip;
       let Et = a.get(Ot);
       Et ? Et.sig !== T && (Et.prev = Et.segs, Et.sig = T, Et.segs = g, Et.t0 = r, Et.dur = d) : a.set(Ot, Et = { sig: T, segs: g, prev: null, t0: r, dur: i });
-      const Ct = q || ot ? Math.min(1, Math.max(0, (r - Et.t0) / Et.dur)) : 1;
-      Ct < 1 && (it = !0);
-      const he = { width: Bt, height: te, colors: B.colors, clock: r, ambient: q, seed: ht, reveal: ot ? Ct : 1 - Math.pow(1 - Ct, 3), prev: Ct < 1 ? Et.prev : null, reduce: ot };
+      const Ct = q || it ? Math.min(1, Math.max(0, (r - Et.t0) / Et.dur)) : 1;
+      Ct < 1 && (rt = !0);
+      const he = { width: Rt, height: te, colors: R.colors, clock: r, ambient: q, seed: ht, reveal: it ? Ct : 1 - Math.pow(1 - Ct, 3), prev: Ct < 1 ? Et.prev : null, reduce: it };
       if (Ja === "smooth") {
-        const zt = Math.min(2, window.devicePixelRatio || 1), be = Math.round(Bt * zt), Ee = Math.round(te * zt);
-        et.width !== be && (et.width = be), et.height !== Ee && (et.height = Ee);
-        const se = et.getContext("2d");
+        const zt = Math.min(2, window.devicePixelRatio || 1), be = Math.round(Rt * zt), Ee = Math.round(te * zt);
+        at.width !== be && (at.width = be), at.height !== Ee && (at.height = Ee);
+        const se = at.getContext("2d");
         if (!se) return;
         se.setTransform(zt, 0, 0, zt, 0, 0), du(se, g, he);
       } else {
-        const zt = lu(g, { ...he, px: 2, oneBit: Ja === "onebit", ink: B.ink, paper: B.paper });
-        et.width !== zt.w && (et.width = zt.w), et.height !== zt.h && (et.height = zt.h), (ve = et.getContext("2d")) == null || ve.putImageData(new ImageData(zt.data, zt.w, zt.h), 0, 0);
+        const zt = lu(g, { ...he, px: 2, oneBit: Ja === "onebit", ink: R.ink, paper: R.paper });
+        at.width !== zt.w && (at.width = zt.w), at.height !== zt.h && (at.height = zt.h), (ve = at.getContext("2d")) == null || ve.putImageData(new ImageData(zt.data, zt.w, zt.h), 0, 0);
       }
-    }), it && To();
+    }), rt && Ao();
   }
   function v() {
     const e = o("weatherCard");
     if (!e || e.hidden) return;
     const r = Xa.weather, s = r && (pa == null ? void 0 : pa[r]);
     if (!s) {
-      e.innerHTML = '<div class="activityHeader"><div class="activityTitle">Weather</div></div><div class="activityRows"><div class="activityRow">' + Qo("cloudy") + '<div><div class="activityRowName">Forecast</div><div class="activityRowMeta">' + (r ? "Not available" : "Set up in Settings") + "</div></div></div></div>", Tn(e);
+      e.innerHTML = '<div class="activityHeader"><div class="activityTitle">Weather</div></div><div class="activityRows"><div class="activityRow">' + ti("cloudy") + '<div><div class="activityRowName">Forecast</div><div class="activityRowMeta">' + (r ? "Not available" : "Set up in Settings") + "</div></div></div></div>", Tn(e);
       return;
     }
-    const p = s.attributes || {}, g = p.temperature_unit || "°", T = (se) => Number.isFinite(Number(se)) ? Math.round(Number(se)) + "°" : "—", B = (p.friendly_name || "").replace(/^forecast\s+/i, "") || "Weather", q = Qr[s.state] || (s.state ? s.state.charAt(0).toUpperCase() + s.state.slice(1) : "—"), ot = Be(/* @__PURE__ */ new Date()), ht = ns.slice(0, 7), it = ht.find((se) => Be(new Date(se.datetime)) === ot) || null, et = ht.filter((se) => Be(new Date(se.datetime)) >= ot).slice(0, 6), Bt = /* @__PURE__ */ new Date(), te = Be(new Date(Bt.getFullYear(), Bt.getMonth(), Bt.getDate() + 1)), Ot = it ? "H " + T(it.temperature) + "&ensp; L " + T(it.templow) : "", Et = (se) => {
-      const ae = Be(new Date(se.datetime));
-      return ae === ot ? "Today" : ae === te ? "Tomorrow" : new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(new Date(se.datetime));
+    const p = s.attributes || {}, g = p.temperature_unit || "°", T = (se) => Number.isFinite(Number(se)) ? Math.round(Number(se)) + "°" : "—", R = (p.friendly_name || "").replace(/^forecast\s+/i, "") || "Weather", q = Qr[s.state] || (s.state ? s.state.charAt(0).toUpperCase() + s.state.slice(1) : "—"), it = Re(/* @__PURE__ */ new Date()), ht = ns.slice(0, 7), rt = ht.find((se) => Re(new Date(se.datetime)) === it) || null, at = ht.filter((se) => Re(new Date(se.datetime)) >= it).slice(0, 6), Rt = /* @__PURE__ */ new Date(), te = Re(new Date(Rt.getFullYear(), Rt.getMonth(), Rt.getDate() + 1)), Ot = rt ? "H " + T(rt.temperature) + "&ensp; L " + T(rt.templow) : "", Et = (se) => {
+      const ae = Re(new Date(se.datetime));
+      return ae === it ? "Today" : ae === te ? "Tomorrow" : new Intl.DateTimeFormat(void 0, { weekday: "short" }).format(new Date(se.datetime));
     }, Ct = Number.isFinite(Number(p.temperature)) ? Math.round(Number(p.temperature)) : "—", he = (se) => {
       const ae = new Date(se.datetime);
-      return Math.round((new Date(ae.getFullYear(), ae.getMonth(), ae.getDate()) - new Date(Bt.getFullYear(), Bt.getMonth(), Bt.getDate())) / 864e5);
-    }, ve = (se) => (Qr[se] || se || "").toLowerCase(), zt = (se, ae) => '<div class="activityRow wxDayTile" role="button" tabindex="0" data-wx-day="' + he(se) + '" aria-label="' + Ht(Et(se) + ": " + ve(se.condition) + ", " + T(se.temperature) + " / " + T(se.templow) + ". Open the forecast") + '">' + Qo(se.condition, !1, !1, Ja, "day" + ae) + '<div><div class="activityRowName">' + Ht(Et(se)) + '</div><div class="activityRowMeta">' + T(se.temperature) + " / " + T(se.templow) + "</div></div></div>", be = () => '<div class="wxStrip"><div class="wxStripDays">' + On().days.map((ae, ua) => {
+      return Math.round((new Date(ae.getFullYear(), ae.getMonth(), ae.getDate()) - new Date(Rt.getFullYear(), Rt.getMonth(), Rt.getDate())) / 864e5);
+    }, ve = (se) => (Qr[se] || se || "").toLowerCase(), zt = (se, ae) => '<div class="activityRow wxDayTile" role="button" tabindex="0" data-wx-day="' + he(se) + '" aria-label="' + Ht(Et(se) + ": " + ve(se.condition) + ", " + T(se.temperature) + " / " + T(se.templow) + ". Open the forecast") + '">' + ti(se.condition, !1, !1, Ja, "day" + ae) + '<div><div class="activityRowName">' + Ht(Et(se)) + '</div><div class="activityRowMeta">' + T(se.temperature) + " / " + T(se.templow) + "</div></div></div>", be = () => '<div class="wxStrip"><div class="wxStripDays">' + On().days.map((ae, ua) => {
       const Ze = new Intl.DateTimeFormat(void 0, { weekday: "long" }).format(new Date(ae.start)) + ": " + ve(ae.day) + (ve(ae.day) === ve(ae.night) ? " all day and night" : ", then " + ve(ae.night) + " overnight") + (Number.isFinite(ae.hi) ? ". High " + T(ae.hi) : "") + (Number.isFinite(ae.lo) ? ", low " + T(ae.lo) : "") + ". Open the forecast";
       return '<div class="wxStripDay" role="button" tabindex="0" data-wx-day="' + ua + '" aria-label="' + Ht(Ze) + '"><span class="wxDayName">' + Ht(t(ae.start)) + '</span><span class="wxStripGap" aria-hidden="true"></span><span class="wxTemps" aria-hidden="true"><span class="wxHigh">' + T(ae.hi) + '</span><span class="wxLow">' + T(ae.lo) + "</span></span></div>";
     }).join("") + '</div><canvas class="wxStripSky" data-wx-strip="inline" aria-hidden="true"></canvas></div>';
-    e.innerHTML = '<div class="wxWide"><div class="wxNow" role="button" tabindex="0" data-wx-open="now" aria-label="' + Ht("Now in " + B + ": " + Ct + "°, " + ve(s.state) + ". Open the forecast") + '"><div class="wxCurrent">' + Qo(s.state, !0, !0, Ja, "now") + '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">' + Ht(String(Ct)) + '</span><span class="wxUnit">' + Ht(g) + '</span></div><div class="wxPlace">' + Ht(B) + '</div></div></div><div class="wxCondition"><div class="wxCondName">' + Ht(q) + "</div>" + (Ot ? '<div class="wxRange">' + Ot + "</div>" : "") + "</div></div>" + // the days are tiles under Now, like every card of readings (Figma "Weather in halves · proposal"), or the sky strip
-    (et.length ? wl === "strip" ? be() : '<div class="activityRows wxDays">' + et.map(zt).join("") + "</div>" : '<div class="wxNoDays">Loading the forecast…</div>') + "</div>", Tn(e);
+    e.innerHTML = '<div class="wxWide"><div class="wxNow" role="button" tabindex="0" data-wx-open="now" aria-label="' + Ht("Now in " + R + ": " + Ct + "°, " + ve(s.state) + ". Open the forecast") + '"><div class="wxCurrent">' + ti(s.state, !0, !0, Ja, "now") + '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">' + Ht(String(Ct)) + '</span><span class="wxUnit">' + Ht(g) + '</span></div><div class="wxPlace">' + Ht(R) + '</div></div></div><div class="wxCondition"><div class="wxCondName">' + Ht(q) + "</div>" + (Ot ? '<div class="wxRange">' + Ot + "</div>" : "") + "</div></div>" + // the days are tiles under Now, like every card of readings (Figma "Weather in halves · proposal"), or the sky strip
+    (at.length ? wl === "strip" ? be() : '<div class="activityRows wxDays">' + at.map(zt).join("") + "</div>" : '<div class="wxNoDays">Loading the forecast…</div>') + "</div>", Tn(e);
     const Ee = e.querySelector("canvas[data-wx-strip]");
-    u && u !== Ee && (h == null || h.unobserve(u)), u = Ee, Ee && (h == null || h.observe(Ee), f(e)), To(), z();
+    u && u !== Ee && (h == null || h.unobserve(u)), u = Ee, Ee && (h == null || h.observe(Ee), f(e)), Ao(), z();
   }
   const k = o("weatherCard"), D = (e) => {
     const r = e.closest("[data-wx-day]");
@@ -3711,11 +3711,11 @@ function pu(n, l) {
   k.addEventListener("click", (e) => D(e.target)), k.addEventListener("keydown", (e) => {
     (e.key === "Enter" || e.key === " ") && e.target.matches("[data-wx-day],[data-wx-open]") && (e.preventDefault(), D(e.target));
   });
-  const N = o("wxDialog"), F = o("wxGraph"), ct = o("wxGraphWrap");
-  let Mt = Date.now(), Dt = null, at = !1, xt = null;
+  const N = o("wxDialog"), F = o("wxGraph"), $ = o("wxGraphWrap");
+  let Mt = Date.now(), Dt = null, nt = !1, xt = null;
   function V(e, r) {
     const s = On();
-    Dt = r || null, Mt = Math.max(s.start, Math.min(s.end - Xe, e)), a.delete("dialog"), Hi.delete("scrub"), N.classList.add("open"), N.setAttribute("aria-hidden", "false"), z(), h == null || h.observe(N.querySelector("canvas[data-wx-strip]")), F.focus({ preventScroll: !0 }), To();
+    Dt = r || null, Mt = Math.max(s.start, Math.min(s.end - Xe, e)), a.delete("dialog"), Hi.delete("scrub"), N.classList.add("open"), N.setAttribute("aria-hidden", "false"), z(), h == null || h.observe(N.querySelector("canvas[data-wx-strip]")), F.focus({ preventScroll: !0 }), Ao();
   }
   function pt() {
     var e;
@@ -3727,11 +3727,11 @@ function pu(n, l) {
     o("wxGraphDays").innerHTML = e.days.map((r) => "<span>" + Ht(t(r.start)) + "</span>").join(""), He(e), jt(e), f(N);
   }
   function jt(e = On()) {
-    const r = os(e, Mt), s = pa == null ? void 0 : pa[Xa.weather], p = (s == null ? void 0 : s.attributes) || {}, g = p.temperature_unit || "°", T = Math.abs(Mt - Date.now()) < Xe / 2, B = T && s ? s.state : r.cond, q = T && Number.isFinite(Number(p.temperature)) ? Math.round(Number(p.temperature)) : Number.isFinite(r.temp) ? Math.round(r.temp) : "—", ot = Qr[B] || (B ? B.charAt(0).toUpperCase() + B.slice(1) : "—"), ht = T ? "Now" : new Intl.DateTimeFormat(void 0, { weekday: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(Math.round(Mt / Xe) * Xe)), it = r.day, et = (Number.isFinite(it.hi) ? "H " + Math.round(it.hi) + "°" : "") + (Number.isFinite(it.lo) ? "&ensp; L " + Math.round(it.lo) + "°" : "");
-    o("wxDialogNow").innerHTML = '<div class="wxCurrent">' + Qo(B, !0, T, Ja, "scrub", T ? void 0 : r.night) + '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">' + Ht(String(q)) + '</span><span class="wxUnit">' + Ht(g) + '</span></div><div class="wxPlace">' + Ht(ht) + '</div></div></div><div class="wxCondition"><div class="wxCondName">' + Ht(ot) + "</div>" + (et ? '<div class="wxRange">' + et + "</div>" : "") + "</div>", Tn(o("wxDialogNow")), F.setAttribute("aria-valuenow", String(Math.round((Mt - e.start) / Xe))), F.setAttribute("aria-valuetext", ht + ", " + ot.toLowerCase() + ", " + q + "°"), ge(e), To();
+    const r = os(e, Mt), s = pa == null ? void 0 : pa[Xa.weather], p = (s == null ? void 0 : s.attributes) || {}, g = p.temperature_unit || "°", T = Math.abs(Mt - Date.now()) < Xe / 2, R = T && s ? s.state : r.cond, q = T && Number.isFinite(Number(p.temperature)) ? Math.round(Number(p.temperature)) : Number.isFinite(r.temp) ? Math.round(r.temp) : "—", it = Qr[R] || (R ? R.charAt(0).toUpperCase() + R.slice(1) : "—"), ht = T ? "Now" : new Intl.DateTimeFormat(void 0, { weekday: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(Math.round(Mt / Xe) * Xe)), rt = r.day, at = (Number.isFinite(rt.hi) ? "H " + Math.round(rt.hi) + "°" : "") + (Number.isFinite(rt.lo) ? "&ensp; L " + Math.round(rt.lo) + "°" : "");
+    o("wxDialogNow").innerHTML = '<div class="wxCurrent">' + ti(R, !0, T, Ja, "scrub", T ? void 0 : r.night) + '<div class="wxTempBlock"><div class="wxTemp"><span class="wxDeg">' + Ht(String(q)) + '</span><span class="wxUnit">' + Ht(g) + '</span></div><div class="wxPlace">' + Ht(ht) + '</div></div></div><div class="wxCondition"><div class="wxCondName">' + Ht(it) + "</div>" + (at ? '<div class="wxRange">' + at + "</div>" : "") + "</div>", Tn(o("wxDialogNow")), F.setAttribute("aria-valuenow", String(Math.round((Mt - e.start) / Xe))), F.setAttribute("aria-valuetext", ht + ", " + it.toLowerCase() + ", " + q + "°"), ge(e), Ao();
   }
   function He(e = On()) {
-    const r = o("wxGraphLine"), s = ct.clientWidth, p = ct.clientHeight;
+    const r = o("wxGraphLine"), s = $.clientWidth, p = $.clientHeight;
     if (!s || !p) return;
     const g = [];
     for (let Ct = e.start; Ct <= e.end; Ct += Xe) {
@@ -3742,27 +3742,27 @@ function pu(n, l) {
       r.innerHTML = '<g id="wxCursorMark"></g>', xt = null, ge(e);
       return;
     }
-    const T = g.map((Ct) => Ct[1]), B = Math.min(...T), q = Math.max(...T), ot = Math.max(4, q - B), ht = Ja !== "smooth", it = (Ct) => ht ? Math.round(Ct / 2) * 2 : Math.round(Ct * 10) / 10;
-    xt = (Ct) => p * 0.84 - (Ct - B) / ot * p * 0.62;
-    const et = Fi(), Bt = Ja === "onebit" ? et.paper : "#ffffff", te = Ja === "onebit" ? et.ink : "rgba(0,0,0,.28)", Ot = "M" + g.map((Ct) => it(Ct[0]) + " " + it(xt(Ct[1]))).join(" L"), Et = (Ct, he) => {
+    const T = g.map((Ct) => Ct[1]), R = Math.min(...T), q = Math.max(...T), it = Math.max(4, q - R), ht = Ja !== "smooth", rt = (Ct) => ht ? Math.round(Ct / 2) * 2 : Math.round(Ct * 10) / 10;
+    xt = (Ct) => p * 0.84 - (Ct - R) / it * p * 0.62;
+    const at = Fi(), Rt = Ja === "onebit" ? at.paper : "#ffffff", te = Ja === "onebit" ? at.ink : "rgba(0,0,0,.28)", Ot = "M" + g.map((Ct) => rt(Ct[0]) + " " + rt(xt(Ct[1]))).join(" L"), Et = (Ct, he) => {
       const ve = g.find((zt) => zt[1] === Ct);
-      return '<text class="wxLineLabel" x="' + it(Math.min(s - 14, Math.max(14, ve[0]))) + '" y="' + it(xt(Ct) + (he ? 18 : -10)) + '" fill="' + Bt + '" stroke="' + te + '">' + Math.round(Ct) + "°</text>";
+      return '<text class="wxLineLabel" x="' + rt(Math.min(s - 14, Math.max(14, ve[0]))) + '" y="' + rt(xt(Ct) + (he ? 18 : -10)) + '" fill="' + Rt + '" stroke="' + te + '">' + Math.round(Ct) + "°</text>";
     };
-    r.setAttribute("shape-rendering", ht ? "crispEdges" : "auto"), r.innerHTML = '<path d="' + Ot + '" fill="none" stroke="' + te + '" stroke-width="' + (ht ? 4 : 5) + '" stroke-linejoin="round"/><path d="' + Ot + '" fill="none" stroke="' + Bt + '" stroke-width="2" stroke-linejoin="round"/>' + Et(q, !1) + Et(B, !0) + '<g id="wxCursorMark"></g>', ge(e);
+    r.setAttribute("shape-rendering", ht ? "crispEdges" : "auto"), r.innerHTML = '<path d="' + Ot + '" fill="none" stroke="' + te + '" stroke-width="' + (ht ? 4 : 5) + '" stroke-linejoin="round"/><path d="' + Ot + '" fill="none" stroke="' + Rt + '" stroke-width="2" stroke-linejoin="round"/>' + Et(q, !1) + Et(R, !0) + '<g id="wxCursorMark"></g>', ge(e);
   }
   function ge(e = On()) {
     const r = o("wxGraphLine").querySelector("#wxCursorMark");
     if (!r) return;
-    const s = ct.clientWidth, p = ct.clientHeight, g = Ja !== "smooth", T = (Bt) => g ? Math.round(Bt / 2) * 2 : Bt, B = T(Os(e, Mt) * s), q = os(e, Mt).temp, ot = Fi(), ht = Ja === "onebit" ? ot.paper : "#ffffff", it = Ja === "onebit" ? ot.ink : "rgba(0,0,0,.28)", et = xt && Number.isFinite(q) ? T(xt(q)) : null;
-    r.innerHTML = '<rect x="' + (B - 2) + '" y="0" width="4" height="' + p + '" fill="' + it + '"/><rect x="' + (B - 1) + '" y="0" width="2" height="' + p + '" fill="' + ht + '"/>' + (et == null ? "" : g ? '<rect x="' + (B - 5) + '" y="' + (et - 5) + '" width="10" height="10" fill="' + ht + '" stroke="' + it + '" stroke-width="2"/>' : '<circle cx="' + B + '" cy="' + et + '" r="6" fill="' + ht + '" stroke="' + it + '" stroke-width="2"/>');
+    const s = $.clientWidth, p = $.clientHeight, g = Ja !== "smooth", T = (Rt) => g ? Math.round(Rt / 2) * 2 : Rt, R = T(Os(e, Mt) * s), q = os(e, Mt).temp, it = Fi(), ht = Ja === "onebit" ? it.paper : "#ffffff", rt = Ja === "onebit" ? it.ink : "rgba(0,0,0,.28)", at = xt && Number.isFinite(q) ? T(xt(q)) : null;
+    r.innerHTML = '<rect x="' + (R - 2) + '" y="0" width="4" height="' + p + '" fill="' + rt + '"/><rect x="' + (R - 1) + '" y="0" width="2" height="' + p + '" fill="' + ht + '"/>' + (at == null ? "" : g ? '<rect x="' + (R - 5) + '" y="' + (at - 5) + '" width="10" height="10" fill="' + ht + '" stroke="' + rt + '" stroke-width="2"/>' : '<circle cx="' + R + '" cy="' + at + '" r="6" fill="' + ht + '" stroke="' + rt + '" stroke-width="2"/>');
   }
   const Sa = (e) => {
-    const r = ct.getBoundingClientRect();
+    const r = $.getBoundingClientRect();
     r.width && (Mt = kl(On(), (e - r.left) / r.width), jt());
   };
   F.addEventListener("pointerdown", (e) => {
     if (e.button === 0) {
-      at = !0;
+      nt = !0;
       try {
         F.setPointerCapture(e.pointerId);
       } catch {
@@ -3770,9 +3770,9 @@ function pu(n, l) {
       Sa(e.clientX);
     }
   }), F.addEventListener("pointermove", (e) => {
-    at && Sa(e.clientX);
+    nt && Sa(e.clientX);
   }), ["pointerup", "pointercancel", "lostpointercapture"].forEach((e) => F.addEventListener(e, () => {
-    at = !1;
+    nt = !1;
   })), F.addEventListener("keydown", (e) => {
     const r = On(), s = { ArrowLeft: -Xe, ArrowRight: Xe, ArrowDown: -Xe, ArrowUp: Xe, PageUp: -24 * Xe, PageDown: 24 * Xe }[e.key];
     s ? (e.preventDefault(), Mt = Math.max(r.start, Math.min(r.end - Xe, Math.round(Mt / Xe) * Xe + s)), jt(r)) : (e.key === "Home" || e.key === "End") && (e.preventDefault(), Mt = e.key === "Home" ? r.start : r.end - Xe, jt(r));
@@ -3781,8 +3781,8 @@ function pu(n, l) {
   }), N.addEventListener("keydown", (e) => {
     e.key === "Escape" && (e.preventDefault(), pt());
   }), v(), (cc = (lc = window.matchMedia) == null ? void 0 : (dc = lc.call(window, "(prefers-reduced-motion: reduce)")).addEventListener) == null || cc.call(dc, "change", () => {
-    To(), Tn(n);
-  }), To();
+    Ao(), Tn(n);
+  }), Ao();
   const Jt = o("tvNav");
   l.fullscreenSupported || (Jt.hidden = !0), Jt.addEventListener("click", () => l.toggleFullscreen()), n.addEventListener("keydown", (e) => {
     !It.workout.classList.contains("active") || yi.classList.contains("active") || e.target.closest("input,select,textarea,.holdEnd") || (e.key === "MediaPlayPause" || e.key === " " && !e.target.closest("button") ? (e.preventDefault(), Fr.click()) : e.key === "MediaTrackNext" ? (e.preventDefault(), o("skipExercise").click()) : e.key === "MediaTrackPrevious" && (e.preventDefault(), o("restartSegment").click()));
@@ -3791,21 +3791,21 @@ function pu(n, l) {
     String(r) !== le.value && (le.value = r, le.dispatchEvent(new Event("input", { bubbles: !0 })));
   })), [E, A, I, le].forEach((e) => e.addEventListener("input", () => {
     const r = Kt[we];
-    r && (r.total = Number(E.value), r.work = Number(A.value), r.rest = Number(I.value)), Re();
+    r && (r.total = Number(E.value), r.work = Number(A.value), r.rest = Number(I.value)), Be();
   })), G.addEventListener("click", dr), Wt.addEventListener("click", () => M("settings")), o("settingsBack").addEventListener("click", dr), Fr.addEventListener("click", () => fn(!Ha)), Oe(we), _r(), Qn(), Cn(), o("healthHelpOpen").addEventListener("click", () => n.querySelector(".tab[data-pane=helpPane]").click()), pr(o("resetStats"), o("resetStatsFill"), 1500, () => {
     de.history = [], de.checkins = [], mi = "";
     try {
       localStorage.removeItem("move-assistant-dismissed");
     } catch {
     }
-    Ta(), lo(), Qn(), _r(), Cn(), Io(), We("Stats reset");
+    Ta(), lo(), Qn(), _r(), Cn(), Ho(), We("Stats reset");
   });
-  const Ue = o("morningTime"), ti = o("eveningTime"), Ws = o("checkinAutoOpen");
-  Ue.value = Xn().morning, ti.value = Xn().evening, Ws.classList.toggle("on", fe().checkinAutoOpen !== !1), [["morningTime", Ue], ["eveningTime", ti]].forEach(([e, r]) => r.addEventListener("change", () => {
-    r.value && (Ba(e, r.value), Io());
+  const Ue = o("morningTime"), ei = o("eveningTime"), Ws = o("checkinAutoOpen");
+  Ue.value = Xn().morning, ei.value = Xn().evening, Ws.classList.toggle("on", fe().checkinAutoOpen !== !1), [["morningTime", Ue], ["eveningTime", ei]].forEach(([e, r]) => r.addEventListener("change", () => {
+    r.value && (Ra(e, r.value), Ho());
   })), Ws.addEventListener("click", () => {
     const e = fe().checkinAutoOpen === !1;
-    Ws.classList.toggle("on", e), Ba("checkinAutoOpen", e);
+    Ws.classList.toggle("on", e), Ra("checkinAutoOpen", e);
   }), setTimeout(Lr, 800);
   const ec = o("checkinNotify"), Ml = o("checkinNotifyTarget"), ac = o("checkinNotifyStatus"), Fp = ac.textContent;
   function nc() {
@@ -3834,8 +3834,8 @@ function pu(n, l) {
     }
     fe().notifyOn = e, Sl(), await wd() ? (Ta(), We(e ? "Check-in notifications on" : "Check-in notifications off")) : (fe().notifyOn = !e, Sl());
   }), Ml.addEventListener("change", () => {
-    Ba("notifyTarget", Ml.value), fe().notifyOn && wd();
-  }), [Ue, ti].forEach((e) => e.addEventListener("change", () => {
+    Ra("notifyTarget", Ml.value), fe().notifyOn && wd();
+  }), [Ue, ei].forEach((e) => e.addEventListener("change", () => {
     Sl(), fe().notifyOn && wd();
   })), nc(), Sl();
   let xd = null;
@@ -3848,11 +3848,11 @@ function pu(n, l) {
     updateStates(e) {
       var s, p;
       const r = !pa || pa[Xa.weather] !== e[Xa.weather] || ((s = pa["sun.sun"]) == null ? void 0 : s.state) !== ((p = e["sun.sun"]) == null ? void 0 : p.state);
-      pa = e, Ii(e), Rs(e), r && v(), Date.now() - gl > 60 * 60 * 1e3 && Ns(), Op();
+      pa = e, Ii(e), Bs(e), r && v(), Date.now() - gl > 60 * 60 * 1e3 && Ns(), Op();
     },
     applyRemoteData(e) {
-      if (e && (Array.isArray(e.history) && (de.history = e.history, lo()), Array.isArray(e.history) && Cn(), Array.isArray(e.checkins) && (de.checkins = e.checkins.map(Ui), Io(), _r(), Qn(), lo(), Cn()), e.profiles && !La.classList.contains("open") && !Mn)) {
-        const r = Do(e);
+      if (e && (Array.isArray(e.history) && (de.history = e.history, lo()), Array.isArray(e.history) && Cn(), Array.isArray(e.checkins) && (de.checkins = e.checkins.map(Ui), Ho(), _r(), Qn(), lo(), Cn()), e.profiles && !La.classList.contains("open") && !Mn)) {
+        const r = Ro(e);
         Object.keys(Kt).forEach((s) => delete Kt[s]), Object.assign(Kt, r.profiles), de.order = r.order, Kt[we] || (we = de.order[0]), Yi(), Oe(we);
       }
     },
@@ -3860,7 +3860,7 @@ function pu(n, l) {
       b = !1;
     },
     resume() {
-      b || (b = !0, Wo || (Wo = requestAnimationFrame(Ir)), ma || (ma = requestAnimationFrame(zo)), To(), Bi(n.querySelector(".tab.active"), !1));
+      b || (b = !0, qo || (qo = requestAnimationFrame(Ir)), ma || (ma = requestAnimationFrame(Vo)), Ao(), Ri(n.querySelector(".tab.active"), !1));
     }
   };
 }
@@ -3894,77 +3894,77 @@ function mc(n = /* @__PURE__ */ new Date()) {
   return l;
 }
 function mu({ onChange: n }) {
-  const l = {}, o = {}, c = (U, W, ut, tt) => {
-    l[U] = { entity_id: U, state: ut, attributes: tt, last_changed: new Date(Date.now() - 18e6).toISOString() }, o[U] = W;
+  const l = {}, o = {}, c = (U, W, ut, et) => {
+    l[U] = { entity_id: U, state: ut, attributes: et, last_changed: new Date(Date.now() - 18e6).toISOString() }, o[U] = W;
   }, m = (U, W, ut) => {
-    const tt = l[U], ft = W ?? tt.state;
-    l[U] = { ...tt, state: ft, attributes: { ...tt.attributes, ...ut }, last_changed: ft === tt.state ? tt.last_changed : (/* @__PURE__ */ new Date()).toISOString() };
-  }, b = (U, W, ut, tt) => c("binary_sensor." + ya + (U ? U + "_" : "") + Ll(W), U, tt ? "on" : "off", { friendly_name: W, device_class: ut });
+    const et = l[U], ft = W ?? et.state;
+    l[U] = { ...et, state: ft, attributes: { ...et.attributes, ...ut }, last_changed: ft === et.state ? et.last_changed : (/* @__PURE__ */ new Date()).toISOString() };
+  }, b = (U, W, ut, et) => c("binary_sensor." + ya + (U ? U + "_" : "") + Ll(W), U, et ? "on" : "off", { friendly_name: W, device_class: ut });
   Object.entries(fu).forEach(([U, W]) => {
     if (W.temperature != null && c("sensor." + ya + U + "_temperature", U, String(W.temperature), { friendly_name: "Temperature", device_class: "temperature", state_class: "measurement", unit_of_measurement: "°C" }), W.humidity != null && c("sensor." + ya + U + "_humidity", U, String(W.humidity), { friendly_name: "Humidity", device_class: "humidity", state_class: "measurement", unit_of_measurement: "%" }), W.vacuum && c("vacuum." + ya + "robot", U, "docked", { friendly_name: "Robot vacuum", battery_level: 100, fan_speed: "standard", rooms: [] }), W.climate && c("climate." + ya + U, U, "heat", { friendly_name: "Thermostat", hvac_modes: ["off", "heat", "cool", "auto"], hvac_action: "heating", current_temperature: W.temperature, temperature: 21, min_temp: 7, max_temp: 30, target_temp_step: 0.5 }), W.cover) {
-      const [ut, tt, ft, J] = W.cover;
-      c("cover." + ya + U + "_" + Ll(ut), U, ft ? "open" : "closed", { friendly_name: ut, device_class: tt, current_position: ft, ...J != null ? { current_tilt_position: J } : {} });
+      const [ut, et, ft, tt] = W.cover;
+      c("cover." + ya + U + "_" + Ll(ut), U, ft ? "open" : "closed", { friendly_name: ut, device_class: et, current_position: ft, ...tt != null ? { current_tilt_position: tt } : {} });
     }
     if (W.humidifier && c("humidifier." + ya + U, U, "on", { friendly_name: "Humidifier", device_class: "humidifier", humidity: 45, current_humidity: W.humidity, action: "humidifying", mode: "normal", available_modes: ["normal", "eco", "sleep", "boost"], min_humidity: 30, max_humidity: 70 }), W.solar && (c("sensor." + ya + U + "_solar_power", U, "0", { friendly_name: "Solar now", device_class: "power", state_class: "measurement", unit_of_measurement: "kW" }), c("sensor." + ya + U + "_solar_today", U, "0", { friendly_name: "Solar today", device_class: "energy", state_class: "total_increasing", unit_of_measurement: "kWh" })), W.valve && c("valve." + ya + U + "_" + Ll(W.valve), U, "closed", { friendly_name: W.valve, device_class: "water" }), W.door && b(U, W.door, "door", W.doorOpen), W.window && b(U, W.window, "window", !1), W.motion && b(U, W.motion, "motion", !1), W.plant) {
-      const [ut, tt, ft, J, _] = W.plant, P = ya + Ll(ut), st = (H, It, G, Wt, M) => c("sensor." + P + "_" + H, U, String(G), { friendly_name: It, device_class: M, state_class: "measurement", unit_of_measurement: Wt, plant_low: G < js[H][0], plant_high: G > js[H][1], icon: { moisture: "mdi:water", light: "mdi:white-balance-sunny", temperature: "mdi:thermometer", fertility: "mdi:emoticon-poop" }[H] });
-      st("moisture", "Moisture", tt, "%", "moisture"), st("light", "Light", ft, "lx", "illuminance"), st("temperature", "Temperature", J, "°C", "temperature"), st("fertility", "Fertility", _, "µS/cm", "conductivity");
-      const _t = Object.entries({ moisture: tt, light: ft, temperature: J, fertility: _ }).filter(([H, It]) => It < js[H][0] || It > js[H][1]).map(([H, It]) => H + (It < js[H][0] ? " low" : " high"));
-      c("plant." + P, U, _t.length ? "problem" : "ok", { friendly_name: ut, moisture: tt, brightness: ft, temperature: J, conductivity: _, problem: _t.join(", ") || "none" });
+      const [ut, et, ft, tt, _] = W.plant, P = ya + Ll(ut), lt = (H, It, G, Wt, M) => c("sensor." + P + "_" + H, U, String(G), { friendly_name: It, device_class: M, state_class: "measurement", unit_of_measurement: Wt, plant_low: G < js[H][0], plant_high: G > js[H][1], icon: { moisture: "mdi:water", light: "mdi:white-balance-sunny", temperature: "mdi:thermometer", fertility: "mdi:emoticon-poop" }[H] });
+      lt("moisture", "Moisture", et, "%", "moisture"), lt("light", "Light", ft, "lx", "illuminance"), lt("temperature", "Temperature", tt, "°C", "temperature"), lt("fertility", "Fertility", _, "µS/cm", "conductivity");
+      const _t = Object.entries({ moisture: et, light: ft, temperature: tt, fertility: _ }).filter(([H, It]) => It < js[H][0] || It > js[H][1]).map(([H, It]) => H + (It < js[H][0] ? " low" : " high"));
+      c("plant." + P, U, _t.length ? "problem" : "ok", { friendly_name: ut, moisture: et, brightness: ft, temperature: tt, conductivity: _, problem: _t.join(", ") || "none" });
     }
   }), c("alarm_control_panel." + ya + "house", null, "disarmed", { friendly_name: "Alarm", supported_features: 7, code_format: null, changed_by: "Matt" }), b(null, "Front door", "door", !1), b(null, "Smoke alarm", "smoke", !1), c("sensor." + ya + "doorbell", null, "", { friendly_name: "Doorbell", device_class: "timestamp", rang: Date.now() - 47 * 60 * 1e3 });
   const w = {}, L = {};
   let y = null;
-  function R() {
+  function B() {
     const U = /* @__PURE__ */ new Date();
     Object.keys(l).forEach((W) => {
       W.endsWith("_solar_power") && (l[W] = { ...l[W], state: Jd(U).toFixed(2) }), W.endsWith("_solar_today") && (l[W] = { ...l[W], state: hu(U).toFixed(1) });
     });
   }
-  R();
+  B();
   let vt = 0;
-  function rt() {
+  function st() {
     let U = !1;
-    const W = ++vt % 10 === 0, ut = (J, _, P) => {
-      m(J, _, P), U = !0;
+    const W = ++vt % 10 === 0, ut = (tt, _, P) => {
+      m(tt, _, P), U = !0;
     };
-    Object.entries(w).forEach(([J, _]) => {
-      const P = l[J].attributes.current_position, st = P < _ ? Math.min(_, P + 10) : Math.max(_, P - 10);
-      st === _ && delete w[J], ut(J, st === _ ? st === 0 ? "closed" : "open" : _ > P ? "opening" : "closing", { current_position: st });
-    }), Object.entries(L).forEach(([J, _]) => {
-      const P = l[J].attributes.current_tilt_position, st = P < _ ? Math.min(_, P + 25) : Math.max(_, P - 25);
-      st === _ && delete L[J], ut(J, null, { current_tilt_position: st });
-    }), Object.keys(l).filter((J) => J.startsWith("climate.")).forEach((J) => {
-      const _ = l[J], P = _.attributes, st = P.current_temperature, _t = (_.state === "heat" || _.state === "auto") && st < P.temperature - 0.05, H = (_.state === "cool" || _.state === "auto") && st > P.temperature + 0.05, It = _.state === "off" ? "off" : _t ? "heating" : H ? "cooling" : "idle", G = W ? Math.round((st + (_t ? 0.1 : H ? -0.1 : 0)) * 10) / 10 : st;
-      (G !== st || It !== P.hvac_action) && ut(J, null, { current_temperature: G, hvac_action: It });
-    }), Object.keys(l).filter((J) => J.startsWith("humidifier.")).forEach((J) => {
-      const _ = l[J], P = _.attributes, st = P.current_humidity, _t = _.state === "on" && st < P.humidity, H = _t && W ? st + 1 : st, It = _.state !== "on" ? "off" : _t ? "humidifying" : "idle";
-      if (H !== st || It !== P.action) {
-        ut(J, null, { current_humidity: H, action: It });
-        const G = "sensor." + ya + o[J] + "_humidity";
+    Object.entries(w).forEach(([tt, _]) => {
+      const P = l[tt].attributes.current_position, lt = P < _ ? Math.min(_, P + 10) : Math.max(_, P - 10);
+      lt === _ && delete w[tt], ut(tt, lt === _ ? lt === 0 ? "closed" : "open" : _ > P ? "opening" : "closing", { current_position: lt });
+    }), Object.entries(L).forEach(([tt, _]) => {
+      const P = l[tt].attributes.current_tilt_position, lt = P < _ ? Math.min(_, P + 25) : Math.max(_, P - 25);
+      lt === _ && delete L[tt], ut(tt, null, { current_tilt_position: lt });
+    }), Object.keys(l).filter((tt) => tt.startsWith("climate.")).forEach((tt) => {
+      const _ = l[tt], P = _.attributes, lt = P.current_temperature, _t = (_.state === "heat" || _.state === "auto") && lt < P.temperature - 0.05, H = (_.state === "cool" || _.state === "auto") && lt > P.temperature + 0.05, It = _.state === "off" ? "off" : _t ? "heating" : H ? "cooling" : "idle", G = W ? Math.round((lt + (_t ? 0.1 : H ? -0.1 : 0)) * 10) / 10 : lt;
+      (G !== lt || It !== P.hvac_action) && ut(tt, null, { current_temperature: G, hvac_action: It });
+    }), Object.keys(l).filter((tt) => tt.startsWith("humidifier.")).forEach((tt) => {
+      const _ = l[tt], P = _.attributes, lt = P.current_humidity, _t = _.state === "on" && lt < P.humidity, H = _t && W ? lt + 1 : lt, It = _.state !== "on" ? "off" : _t ? "humidifying" : "idle";
+      if (H !== lt || It !== P.action) {
+        ut(tt, null, { current_humidity: H, action: It });
+        const G = "sensor." + ya + o[tt] + "_humidity";
         l[G] && ut(G, String(H));
       }
     });
-    const tt = l["vacuum." + ya + "robot"], ft = tt.attributes;
-    tt.state === "cleaning" && W && ut(tt.entity_id, null, { battery_level: Math.max(5, ft.battery_level - 1) }), tt.state === "returning" && ut(tt.entity_id, "docked", {}), tt.state === "docked" && ft.battery_level < 100 && ut(tt.entity_id, null, { battery_level: Math.min(100, ft.battery_level + 2) }), y && Date.now() - y.at > 5e3 && (ut("alarm_control_panel." + ya + "house", "armed_" + y.mode, {}), y = null), U && n();
+    const et = l["vacuum." + ya + "robot"], ft = et.attributes;
+    et.state === "cleaning" && W && ut(et.entity_id, null, { battery_level: Math.max(5, ft.battery_level - 1) }), et.state === "returning" && ut(et.entity_id, "docked", {}), et.state === "docked" && ft.battery_level < 100 && ut(et.entity_id, null, { battery_level: Math.min(100, ft.battery_level + 2) }), y && Date.now() - y.at > 5e3 && (ut("alarm_control_panel." + ya + "house", "armed_" + y.mode, {}), y = null), U && n();
   }
-  const Y = setInterval(rt, 1e3), $ = setInterval(() => {
-    R(), n();
+  const Y = setInterval(st, 1e3), X = setInterval(() => {
+    B(), n();
   }, 60 * 1e3);
-  function nt(U, W, ut) {
-    const tt = ut == null ? void 0 : ut.entity_id;
-    if (!l[tt]) return !1;
-    const ft = l[tt], J = ft.attributes, _ = (P, st) => m(tt, P, st);
-    if (U === "climate" && (W === "set_temperature" && _(null, { temperature: Math.max(J.min_temp, Math.min(J.max_temp, ut.temperature)) }), W === "set_hvac_mode" && _(ut.hvac_mode, ut.hvac_mode === "off" ? { hvac_action: "off" } : {}), W === "toggle" && _(ft.state === "off" ? "heat" : "off", ft.state === "off" ? {} : { hvac_action: "off" })), U === "cover") {
-      const P = W === "open_cover" ? 100 : W === "close_cover" ? 0 : W === "set_cover_position" ? ut.position : W === "toggle" ? J.current_position > 0 ? 0 : 100 : null;
-      W === "stop_cover" && (delete w[tt], delete L[tt], _(J.current_position === 0 ? "closed" : "open")), P != null && P !== J.current_position && (w[tt] = P, _(P > J.current_position ? "opening" : "closing"));
-      const st = W === "open_cover_tilt" ? 100 : W === "close_cover_tilt" ? 0 : W === "set_cover_tilt_position" ? ut.tilt_position : null;
-      W === "stop_cover_tilt" && delete L[tt], st != null && J.current_tilt_position != null && st !== J.current_tilt_position && (L[tt] = st);
+  function ot(U, W, ut) {
+    const et = ut == null ? void 0 : ut.entity_id;
+    if (!l[et]) return !1;
+    const ft = l[et], tt = ft.attributes, _ = (P, lt) => m(et, P, lt);
+    if (U === "climate" && (W === "set_temperature" && _(null, { temperature: Math.max(tt.min_temp, Math.min(tt.max_temp, ut.temperature)) }), W === "set_hvac_mode" && _(ut.hvac_mode, ut.hvac_mode === "off" ? { hvac_action: "off" } : {}), W === "toggle" && _(ft.state === "off" ? "heat" : "off", ft.state === "off" ? {} : { hvac_action: "off" })), U === "cover") {
+      const P = W === "open_cover" ? 100 : W === "close_cover" ? 0 : W === "set_cover_position" ? ut.position : W === "toggle" ? tt.current_position > 0 ? 0 : 100 : null;
+      W === "stop_cover" && (delete w[et], delete L[et], _(tt.current_position === 0 ? "closed" : "open")), P != null && P !== tt.current_position && (w[et] = P, _(P > tt.current_position ? "opening" : "closing"));
+      const lt = W === "open_cover_tilt" ? 100 : W === "close_cover_tilt" ? 0 : W === "set_cover_tilt_position" ? ut.tilt_position : null;
+      W === "stop_cover_tilt" && delete L[et], lt != null && tt.current_tilt_position != null && lt !== tt.current_tilt_position && (L[et] = lt);
     }
-    if (U === "humidifier" && (W === "set_humidity" && _(null, { humidity: Math.max(J.min_humidity, Math.min(J.max_humidity, ut.humidity)) }), W === "set_mode" && _(null, { mode: ut.mode }), W === "turn_on" || W === "turn_off" || W === "toggle")) {
+    if (U === "humidifier" && (W === "set_humidity" && _(null, { humidity: Math.max(tt.min_humidity, Math.min(tt.max_humidity, ut.humidity)) }), W === "set_mode" && _(null, { mode: ut.mode }), W === "turn_on" || W === "turn_off" || W === "toggle")) {
       const P = W === "turn_on" || W === "toggle" && ft.state !== "on";
       _(P ? "on" : "off", { action: P ? "idle" : "off" });
     }
-    if (U === "vacuum" && (W === "start" && _("cleaning", { rooms: ut.rooms || J.rooms }), W === "pause" && _("paused"), W === "return_to_base" && _("returning", { rooms: [] }), W === "locate" && _(null, { located: Date.now() }), W === "set_rooms" && _(null, { rooms: ut.rooms })), U === "valve") {
+    if (U === "vacuum" && (W === "start" && _("cleaning", { rooms: ut.rooms || tt.rooms }), W === "pause" && _("paused"), W === "return_to_base" && _("returning", { rooms: [] }), W === "locate" && _(null, { located: Date.now() }), W === "set_rooms" && _(null, { rooms: ut.rooms })), U === "valve") {
       const P = W === "open_valve" || W === "toggle" && ft.state !== "open";
       ["open_valve", "close_valve", "toggle"].includes(W) && _(P ? "open" : "closed");
     }
@@ -3976,23 +3976,23 @@ function mu({ onChange: n }) {
     return n(), !0;
   }
   function K(U) {
-    const W = (U == null ? void 0 : U.states) || {}, ut = (U == null ? void 0 : U.entities) || {}, tt = (U == null ? void 0 : U.devices) || {}, ft = (A) => {
+    const W = (U == null ? void 0 : U.states) || {}, ut = (U == null ? void 0 : U.entities) || {}, et = (U == null ? void 0 : U.devices) || {}, ft = (A) => {
       var mt;
       const I = ut[A];
-      return I && (I.area_id || I.device_id && ((mt = tt[I.device_id]) == null ? void 0 : mt.area_id)) || null;
-    }, J = (A) => {
+      return I && (I.area_id || I.device_id && ((mt = et[I.device_id]) == null ? void 0 : mt.area_id)) || null;
+    }, tt = (A) => {
       const I = ut[A];
       return W[A] && W[A].state !== "unavailable" && !(I != null && I.hidden) && !(I != null && I.entity_category);
     }, _ = {};
     Object.keys(W).forEach((A) => {
       const I = ft(A);
-      I && J(A) && (_[I] || (_[I] = [])).push(A);
+      I && tt(A) && (_[I] || (_[I] = [])).push(A);
     });
-    const P = { ...W, ...l }, st = (A) => {
+    const P = { ...W, ...l }, lt = (A) => {
       var I, mt;
       return (mt = (I = P[A]) == null ? void 0 : I.attributes) == null ? void 0 : mt.device_class;
-    }, _t = ["door", "window", "garage_door", "opening", "motion", "occupancy", "smoke", "gas"], H = Object.keys(W).filter((A) => A.startsWith("vacuum.") && J(A)), It = Object.values((U == null ? void 0 : U.areas) || {}).filter((A) => !uu.has(A.area_id)).map((A) => {
-      const I = A.area_id, mt = _[I] || [], j = (Xt) => mt.filter((Te) => Te.startsWith(Xt + ".")), dt = (Xt) => j("sensor").filter((Te) => st(Te) === Xt), gt = (Xt) => Object.keys(l).filter((Te) => o[Te] === I && Xt(Te)), yt = (Xt, Te) => Xt.length ? Xt : gt(Te), $t = yt(dt("temperature"), (Xt) => Xt.endsWith(I + "_temperature")), le = yt(dt("humidity"), (Xt) => Xt.endsWith(I + "_humidity")), Ae = dt("power").filter((Xt) => /^(W|kW)$/.test(P[Xt].attributes.unit_of_measurement || "")), Ca = j("binary_sensor").filter((Xt) => st(Xt) === "moisture"), Pa = yt(j("plant"), (Xt) => Xt.startsWith("plant.")).map((Xt) => ({ id: Xt, readings: gt((Te) => Te.startsWith("sensor." + Xt.split(".")[1] + "_")) })), me = [...j("binary_sensor").filter((Xt) => _t.includes(st(Xt))), ...gt((Xt) => Xt.startsWith("binary_sensor."))];
+    }, _t = ["door", "window", "garage_door", "opening", "motion", "occupancy", "smoke", "gas"], H = Object.keys(W).filter((A) => A.startsWith("vacuum.") && tt(A)), It = Object.values((U == null ? void 0 : U.areas) || {}).filter((A) => !uu.has(A.area_id)).map((A) => {
+      const I = A.area_id, mt = _[I] || [], j = (Xt) => mt.filter((Te) => Te.startsWith(Xt + ".")), ct = (Xt) => j("sensor").filter((Te) => lt(Te) === Xt), gt = (Xt) => Object.keys(l).filter((Te) => o[Te] === I && Xt(Te)), yt = (Xt, Te) => Xt.length ? Xt : gt(Te), $t = yt(ct("temperature"), (Xt) => Xt.endsWith(I + "_temperature")), le = yt(ct("humidity"), (Xt) => Xt.endsWith(I + "_humidity")), Ae = ct("power").filter((Xt) => /^(W|kW)$/.test(P[Xt].attributes.unit_of_measurement || "")), Ca = j("binary_sensor").filter((Xt) => lt(Xt) === "moisture"), Pa = yt(j("plant"), (Xt) => Xt.startsWith("plant.")).map((Xt) => ({ id: Xt, readings: gt((Te) => Te.startsWith("sensor." + Xt.split(".")[1] + "_")) })), me = [...j("binary_sensor").filter((Xt) => _t.includes(lt(Xt))), ...gt((Xt) => Xt.startsWith("binary_sensor."))];
       return {
         id: I,
         name: A.name,
@@ -4010,7 +4010,7 @@ function mu({ onChange: n }) {
           return ((Te = P[Xt]) == null ? void 0 : Te.state) === "on";
         })
       };
-    }).filter((A) => A.readings.length || A.plugs.length || A.actions.length || A.solar.length || A.plants.length), G = Object.keys(W).find((A) => /^sensor\..*(p1_meter_power|grid_power)$/.test(A) && W[A].state !== "unavailable") || null, Wt = (A) => Object.keys(W).filter((I) => I.startsWith(A + ".") && J(I)), M = Wt("alarm_control_panel"), E = H.length ? H : ["vacuum." + ya + "robot"];
+    }).filter((A) => A.readings.length || A.plugs.length || A.actions.length || A.solar.length || A.plants.length), G = Object.keys(W).find((A) => /^sensor\..*(p1_meter_power|grid_power)$/.test(A) && W[A].state !== "unavailable") || null, Wt = (A) => Object.keys(W).filter((I) => I.startsWith(A + ".") && tt(I)), M = Wt("alarm_control_panel"), E = H.length ? H : ["vacuum." + ya + "robot"];
     return {
       states: P,
       rooms: It,
@@ -4026,11 +4026,11 @@ function mu({ onChange: n }) {
       }
     };
   }
-  return { model: K, call: nt, stop() {
-    clearInterval(Y), clearInterval($);
+  return { model: K, call: ot, stop() {
+    clearInterval(Y), clearInterval(X);
   } };
 }
-const oi = (n) => n < 0 ? 0 : n > 1 ? 1 : n, Gd = (n) => {
+const ii = (n) => n < 0 ? 0 : n > 1 ? 1 : n, Gd = (n) => {
   const l = String(n || "#000000").trim().replace("#", ""), o = l.length === 3 ? l.split("").map((c) => c + c).join("") : l;
   return [0, 2, 4].map((c) => parseInt(o.slice(c, c + 2), 16) || 0);
 }, gu = (n) => "#" + n.map((l) => Math.round(Math.max(0, Math.min(255, l))).toString(16).padStart(2, "0")).join(""), gc = {}, qn = (n, l, o) => {
@@ -4106,7 +4106,7 @@ const bu = [
   29,
   53,
   21
-], ni = (n, l) => (bu[(l & 7) * 8 + (n & 7)] + 0.5) / 64, fp = 1, hp = 2, mp = 3, gp = 4, ds = 5, jl = 6, Ud = 7, vp = 8, bc = (n, l) => l <= 0.6665 && ((n - 0.5) * (n - 0.5) + (l - 0.2877) * (l - 0.2877) <= 0.0824 || (n - 0.25) * (n - 0.25) + (l - 0.416) * (l - 0.416) <= 0.0625 || (n - 0.791) * (n - 0.791) + (l - 0.458) * (l - 0.458) <= 0.0437 || n >= 0.25 && n <= 0.791 && l >= 0.416), wu = (n, l, o) => {
+], oi = (n, l) => (bu[(l & 7) * 8 + (n & 7)] + 0.5) / 64, fp = 1, hp = 2, mp = 3, gp = 4, ds = 5, jl = 6, Ud = 7, vp = 8, bc = (n, l) => l <= 0.6665 && ((n - 0.5) * (n - 0.5) + (l - 0.2877) * (l - 0.2877) <= 0.0824 || (n - 0.25) * (n - 0.25) + (l - 0.416) * (l - 0.416) <= 0.0625 || (n - 0.791) * (n - 0.791) + (l - 0.458) * (l - 0.458) <= 0.0437 || n >= 0.25 && n <= 0.791 && l >= 0.416), wu = (n, l, o) => {
   let c = !1;
   for (let m = 0, b = n.length - 1; m < n.length; b = m++) {
     const w = n[m], L = n[b];
@@ -4115,16 +4115,16 @@ const bu = [
   return c;
 };
 function xu(n, l, o, c, { oneBit: m, ink: b, paper: w, snowInk: L }) {
-  const y = new Uint8ClampedArray(o * c * 4), R = Ol(b), vt = Ol(w);
-  for (let rt = 0; rt < c; rt++) for (let Y = 0; Y < o; Y++) {
-    const $ = rt * o + Y, nt = l[$];
-    if (n[$] == null) continue;
-    let K = Ol(n[$]);
+  const y = new Uint8ClampedArray(o * c * 4), B = Ol(b), vt = Ol(w);
+  for (let st = 0; st < c; st++) for (let Y = 0; Y < o; Y++) {
+    const X = st * o + Y, ot = l[X];
+    if (n[X] == null) continue;
+    let K = Ol(n[X]);
     if (m) {
       let U;
-      nt === gp || nt === vp ? U = !0 : nt === ds ? U = L : nt === Ud || nt === jl ? U = !1 : U = Math.round((0.2126 * K[0] + 0.7152 * K[1] + 0.0722 * K[2]) / 255 * 4) / 4 <= ni(Y, rt), (nt === fp || nt === hp || nt === mp || nt === jl) && (Y > 0 && l[$ - 1] !== nt || Y < o - 1 && l[$ + 1] !== nt || rt > 0 && l[$ - o] !== nt || rt < c - 1 && l[$ + o] !== nt) && (U = !0), K = U ? R : vt;
+      ot === gp || ot === vp ? U = !0 : ot === ds ? U = L : ot === Ud || ot === jl ? U = !1 : U = Math.round((0.2126 * K[0] + 0.7152 * K[1] + 0.0722 * K[2]) / 255 * 4) / 4 <= oi(Y, st), (ot === fp || ot === hp || ot === mp || ot === jl) && (Y > 0 && l[X - 1] !== ot || Y < o - 1 && l[X + 1] !== ot || st > 0 && l[X - o] !== ot || st < c - 1 && l[X + o] !== ot) && (U = !0), K = U ? B : vt;
     }
-    y[$ * 4] = K[0], y[$ * 4 + 1] = K[1], y[$ * 4 + 2] = K[2], y[$ * 4 + 3] = 255;
+    y[X * 4] = K[0], y[X * 4 + 1] = K[1], y[X * 4 + 2] = K[2], y[X * 4 + 3] = 255;
   }
   return { w: o, h: c, data: y };
 }
@@ -4134,183 +4134,183 @@ const yu = { clear: 0, partly: 0.35, cloudy: 0.85, fog: 0.9, rain: 1, storm: 1, 
   return l = l + Math.imul(l ^ l >>> 7, 61 | l) ^ l, ((l ^ l >>> 14) >>> 0) / 4294967296;
 }, Mu = "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", Su = "M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z", Cu = "M0 -1L0.2687 -0.2687L1 0L0.2687 0.2687L0 1L-0.2687 0.2687L-1 0L-0.2687 -0.2687Z", Tu = "M7 0L0 13L5 13L2 24L11 9L6 9L9 0Z", Au = [[7, 0], [0, 13], [5, 13], [2, 24], [11, 9], [6, 9], [9, 0]], Lu = [".##", "##.", ".#.", "#.."];
 function bp(n, { width: l, height: o, colors: c, wave: m = 0.38, soft: b = 6, glow: w = 0.6, columns: L = 6 }) {
-  const y = { ...rn, dawn: "#e5a77e", ...c }, R = vu(y), vt = l, rt = o, Y = vt / L, $ = Y / 2, nt = Math.PI * 2, K = n.length ? n : [{ cond: "cloudy", night: !1 }], U = [...Array(L * 2)].map((ft, J) => {
-    const _ = K[Math.min(J, K.length - 1)], P = ku(_.cond), st = J % 2 === 1;
-    return { cond: _.cond, k: P, night: st, sky: R[P][st ? 1 : 0], cover: yu[P] };
-  }), W = (ft) => rt * (0.5 - m * Math.cos(nt * (ft / Y - 0.25)));
-  return { C: y, S: U, W: vt, H: rt, cw: Y, sw: $, TAU: nt, yb: W, side: (ft, J, _) => {
-    const P = (ft ? W(J) - _ : _ - W(J)) / Math.max(3, b * 1.4) + 0.5;
+  const y = { ...rn, dawn: "#e5a77e", ...c }, B = vu(y), vt = l, st = o, Y = vt / L, X = Y / 2, ot = Math.PI * 2, K = n.length ? n : [{ cond: "cloudy", night: !1 }], U = [...Array(L * 2)].map((ft, tt) => {
+    const _ = K[Math.min(tt, K.length - 1)], P = ku(_.cond), lt = tt % 2 === 1;
+    return { cond: _.cond, k: P, night: lt, sky: B[P][lt ? 1 : 0], cover: yu[P] };
+  }), W = (ft) => st * (0.5 - m * Math.cos(ot * (ft / Y - 0.25)));
+  return { C: y, S: U, W: vt, H: st, cw: Y, sw: X, TAU: ot, yb: W, side: (ft, tt, _) => {
+    const P = (ft ? W(tt) - _ : _ - W(tt)) / Math.max(3, b * 1.4) + 0.5;
     return P <= 0 ? 0 : P >= 1 ? 1 : P;
   }, glowAt: (ft) => {
-    const J = ((ft / Y - 0.25) % 1 + 1) % 1, _ = Math.max(0, Math.min(L - 1, Math.round(ft / Y - 0.25))), P = Math.max(0, Math.min(L - 1, Math.round(ft / Y - 0.75))), st = 1 - (U[2 * _].cover + U[2 * P + 1].cover) / 2, _t = Math.sin(Math.PI * Math.min(1, Math.max(0, W(ft) / rt)));
-    return { c: J < 0.5 ? y.dusk : y.dawn, a: w * (0.2 + 0.8 * st) * _t * _t };
-  }, soft: b, tw: Y * 0.3, sy: rt / 90 };
+    const tt = ((ft / Y - 0.25) % 1 + 1) % 1, _ = Math.max(0, Math.min(L - 1, Math.round(ft / Y - 0.25))), P = Math.max(0, Math.min(L - 1, Math.round(ft / Y - 0.75))), lt = 1 - (U[2 * _].cover + U[2 * P + 1].cover) / 2, _t = Math.sin(Math.PI * Math.min(1, Math.max(0, W(ft) / st)));
+    return { c: tt < 0.5 ? y.dusk : y.dawn, a: w * (0.2 + 0.8 * lt) * _t * _t };
+  }, soft: b, tw: Y * 0.3, sy: st / 90 };
 }
 function wp(n, { clock: l = 0, ambient: o = !1, seed: c = 1 }) {
-  const { S: m, sw: b, side: w, C: L, TAU: y, sy: R, H: vt } = n, rt = l, Y = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
+  const { S: m, sw: b, side: w, C: L, TAU: y, sy: B, H: vt } = n, st = l, Y = { stars: [], suns: [], moons: [], clouds: [], drops: [], flakes: [], fogs: [], bolts: [] };
   m.forEach((K, U) => {
-    const W = Md(c * 977 + U * 131 + 7), ut = (U + 0.5) * b, tt = K.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[K.k] : 0;
-    for (let ft = 0; ft < tt; ft++) {
-      const J = ut + (W() - 0.5) * b * 1.6, _ = (6 + W() * 76) * R, P = W() < 0.35, st = 1.8 + W() * 1.6, _t = w(!0, J, _) * (P ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(y * rt / 2600 + ft * 1.7 + U) : 1);
-      _t >= 0.03 && Y.stars.push({ x: J, y: _, big: P, size: st, o: _t });
+    const W = Md(c * 977 + U * 131 + 7), ut = (U + 0.5) * b, et = K.night ? { clear: 9, partly: 5, cloudy: 2, fog: 0, rain: 0, storm: 0, snow: 1 }[K.k] : 0;
+    for (let ft = 0; ft < et; ft++) {
+      const tt = ut + (W() - 0.5) * b * 1.6, _ = (6 + W() * 76) * B, P = W() < 0.35, lt = 1.8 + W() * 1.6, _t = w(!0, tt, _) * (P ? 0.95 : 0.7) * (o ? 0.6 + 0.4 * Math.sin(y * st / 2600 + ft * 1.7 + U) : 1);
+      _t >= 0.03 && Y.stars.push({ x: tt, y: _, big: P, size: lt, o: _t });
     }
     if (!K.night && (K.k === "clear" || K.k === "partly")) {
-      const ft = ut + (W() - 0.5) * b * 0.3, J = Math.min(15, b * 0.29);
-      Y.suns.push({ x: ft, y: 32 * R, rad: J, halo: J * 2.8 * (o ? 1 + 0.07 * Math.sin(y * rt / 3600 + U) : 1) });
+      const ft = ut + (W() - 0.5) * b * 0.3, tt = Math.min(15, b * 0.29);
+      Y.suns.push({ x: ft, y: 32 * B, rad: tt, halo: tt * 2.8 * (o ? 1 + 0.07 * Math.sin(y * st / 3600 + U) : 1) });
     }
     if (K.night && (K.k === "clear" || K.k === "partly")) {
-      const ft = Math.min(0.78, b * 0.55 / 34), J = ut - 23 * ft + (W() - 0.5) * b * 0.2;
-      Y.moons.push({ x: J + 23 * ft, y: (4 + (o ? 0.8 * Math.sin(y * rt / 5200 + U) : 0)) * R + 23 * ft, d: 46 * ft });
+      const ft = Math.min(0.78, b * 0.55 / 34), tt = ut - 23 * ft + (W() - 0.5) * b * 0.2;
+      Y.moons.push({ x: tt + 23 * ft, y: (4 + (o ? 0.8 * Math.sin(y * st / 5200 + U) : 0)) * B + 23 * ft, d: 46 * ft });
     }
   });
-  const $ = Math.max(56, Math.min(100, vt * 0.45)), nt = Math.max(1, b / ($ * 2.4));
+  const X = Math.max(56, Math.min(100, vt * 0.45)), ot = Math.max(1, b / (X * 2.4));
   return m.forEach((K, U) => {
     const W = { clear: 0, partly: 1, cloudy: 3, fog: 0, rain: 3, storm: 3, snow: 2 }[K.k];
     if (!W) return;
-    const ut = K.k === "partly" ? 1 : Math.round(W * nt), tt = Md(c * 577 + U * 71 + 3), ft = (U + 0.5) * b, J = K.k === "rain" || K.k === "storm" || K.night ? L.cloudNight : L.cloudDay, _ = K.night ? 0.82 : K.k === "storm" ? 0.75 : 1;
+    const ut = K.k === "partly" ? 1 : Math.round(W * ot), et = Md(c * 577 + U * 71 + 3), ft = (U + 0.5) * b, tt = K.k === "rain" || K.k === "storm" || K.night ? L.cloudNight : L.cloudDay, _ = K.night ? 0.82 : K.k === "storm" ? 0.75 : 1;
     for (let P = 0; P < ut; P++) {
-      const st = $ / 46 * (K.k === "partly" ? 1 : 0.8 + tt() * 0.4), _t = ft + (K.k === "partly" ? b * 0.12 : ((P + 0.5) / ut - 0.5) * b * 0.95 + (tt() - 0.5) * b * 0.5 / ut), H = (K.k === "partly" ? 40 : 6 + tt() * 26) * R, It = o ? 2.5 * Math.sin(y * rt / 9e3 + U * 1.3 + P * 2.1) : 0, G = o ? 0.9 * Math.sin(y * rt / 6100 + U + P) : 0;
-      Y.clouds.push({ x: _t - 23 * st + It, y: H - 15.33 * st + G, w: 46 * st, h: 30.66 * st, fill: J, o: _ * (ut > 1 && P === 0 ? 0.85 : 1) });
+      const lt = X / 46 * (K.k === "partly" ? 1 : 0.8 + et() * 0.4), _t = ft + (K.k === "partly" ? b * 0.12 : ((P + 0.5) / ut - 0.5) * b * 0.95 + (et() - 0.5) * b * 0.5 / ut), H = (K.k === "partly" ? 40 : 6 + et() * 26) * B, It = o ? 2.5 * Math.sin(y * st / 9e3 + U * 1.3 + P * 2.1) : 0, G = o ? 0.9 * Math.sin(y * st / 6100 + U + P) : 0;
+      Y.clouds.push({ x: _t - 23 * lt + It, y: H - 15.33 * lt + G, w: 46 * lt, h: 30.66 * lt, fill: tt, o: _ * (ut > 1 && P === 0 ? 0.85 : 1) });
     }
   }), m.forEach((K, U) => {
-    const W = Md(c * 313 + U * 29 + 11), ut = (U + 0.5) * b, tt = K.cond === "pouring" ? 16 : K.cond === "rainy" || K.cond === "hail" ? 9 : K.cond === "lightning-rainy" ? 12 : K.cond === "snowy-rainy" ? 5 : 0;
-    for (let J = 0; J < tt; J++) {
-      let _ = ut + (W() - 0.5) * b * 1.05, P = 44 + W() * 36, st = 1;
+    const W = Md(c * 313 + U * 29 + 11), ut = (U + 0.5) * b, et = K.cond === "pouring" ? 16 : K.cond === "rainy" || K.cond === "hail" ? 9 : K.cond === "lightning-rainy" ? 12 : K.cond === "snowy-rainy" ? 5 : 0;
+    for (let tt = 0; tt < et; tt++) {
+      let _ = ut + (W() - 0.5) * b * 1.05, P = 44 + W() * 36, lt = 1;
       if (o) {
-        const H = ((P - 44 + rt * 0.04) % 36 + 36) % 36;
-        _ -= 0.21 * (H - (P - 44)), P = 44 + H, st = Math.min(1, H / 6, (36 - H) / 6);
+        const H = ((P - 44 + st * 0.04) % 36 + 36) % 36;
+        _ -= 0.21 * (H - (P - 44)), P = 44 + H, lt = Math.min(1, H / 6, (36 - H) / 6);
       }
-      P *= R;
-      const _t = w(K.night, _, P) * st;
+      P *= B;
+      const _t = w(K.night, _, P) * lt;
       _t >= 0.05 && Y.drops.push({ x: _, y: P, o: _t });
     }
     const ft = K.cond === "snowy" ? 11 : K.cond === "snowy-rainy" ? 6 : 0;
-    for (let J = 0; J < ft; J++) {
-      let _ = ut + (W() - 0.5) * b * 1.05, P = 40 + W() * 44, st = 1;
+    for (let tt = 0; tt < ft; tt++) {
+      let _ = ut + (W() - 0.5) * b * 1.05, P = 40 + W() * 44, lt = 1;
       if (o) {
-        const H = ((P - 40 + rt * 9e-3) % 44 + 44) % 44;
-        P = 40 + H, _ += 1.6 * Math.sin(y * rt / 2800 + J * 1.9 + U), st = Math.min(1, H / 6, (44 - H) / 6);
+        const H = ((P - 40 + st * 9e-3) % 44 + 44) % 44;
+        P = 40 + H, _ += 1.6 * Math.sin(y * st / 2800 + tt * 1.9 + U), lt = Math.min(1, H / 6, (44 - H) / 6);
       }
-      P *= R;
-      const _t = w(K.night, _, P) * st;
+      P *= B;
+      const _t = w(K.night, _, P) * lt;
       _t >= 0.05 && Y.flakes.push({ x: _, y: P, o: _t });
     }
     if (K.k === "fog") {
-      const J = K.night ? "#c8ccd6" : "#ffffff", _ = K.night ? 0.28 : 0.62, P = o ? 4 * Math.sin(y * rt / 8e3 + U) : 0;
-      for (let st = 0; st < 4; st++) Y.fogs.push({ x: ut - b * 0.75 + st % 2 * b * 0.18 + (st % 2 ? P : -P), y: (30 + st * 13) * R, w: b * 1.3, c: J, a: _ });
+      const tt = K.night ? "#c8ccd6" : "#ffffff", _ = K.night ? 0.28 : 0.62, P = o ? 4 * Math.sin(y * st / 8e3 + U) : 0;
+      for (let lt = 0; lt < 4; lt++) Y.fogs.push({ x: ut - b * 0.75 + lt % 2 * b * 0.18 + (lt % 2 ? P : -P), y: (30 + lt * 13) * B, w: b * 1.3, c: tt, a: _ });
     }
     if (K.k === "storm") {
-      const J = (rt / 3400 + U * 0.37) % 1;
-      Y.bolts.push({ x: ut + (W() - 0.5) * b * 0.3 - 5, y: 36 * R, o: o && !(J < 0.05 || J > 0.09 && J < 0.12) ? 0.8 : 1 });
+      const tt = (st / 3400 + U * 0.37) % 1;
+      Y.bolts.push({ x: ut + (W() - 0.5) * b * 0.3 - 5, y: 36 * B, o: o && !(tt < 0.05 || tt > 0.09 && tt < 0.12) ? 0.8 : 1 });
     }
   }), Y;
 }
 function _u(n, l, o, c, m, b, w, L) {
-  const { S: y, C: R, cw: vt, yb: rt, glowAt: Y, soft: $, tw: nt, sy: K } = n, U = new Array(o * c), W = new Uint8Array(o * c), ut = new Uint8Array(o * c), tt = (M, E, A, I, mt) => {
-    A == null || M < 0 || E < 0 || M >= o || E >= c || (I >= 1 || I > ni(M + 5, E + 3)) && (U[E * o + M] = A, W[E * o + M] = mt);
+  const { S: y, C: B, cw: vt, yb: st, glowAt: Y, soft: X, tw: ot, sy: K } = n, U = new Array(o * c), W = new Uint8Array(o * c), ut = new Uint8Array(o * c), et = (M, E, A, I, mt) => {
+    A == null || M < 0 || E < 0 || M >= o || E >= c || (I >= 1 || I > oi(M + 5, E + 3)) && (U[E * o + M] = A, W[E * o + M] = mt);
   }, ft = (M, E, A, I) => {
     for (let mt = Math.max(0, Math.floor(E - A) - 1); mt <= Math.min(c - 1, E + A + 1); mt++) for (let j = Math.max(0, Math.floor(M - A) - 1); j <= Math.min(o - 1, M + A + 1); j++) I(j, mt, j + 0.5 - M, mt + 0.5 - E);
-  }, J = (M, E, A) => {
+  }, tt = (M, E, A) => {
     for (let mt = 0; mt < M.length - 1; mt++) {
       const j = (mt + E) * vt;
-      if (A < j - nt / 2) return [M[mt], M[mt], 0];
-      if (A <= j + nt / 2) return [M[mt], M[mt + 1], (A - j + nt / 2) / nt];
+      if (A < j - ot / 2) return [M[mt], M[mt], 0];
+      if (A <= j + ot / 2) return [M[mt], M[mt + 1], (A - j + ot / 2) / ot];
     }
     const I = M[M.length - 1];
     return [I, I, 0];
-  }, _ = y.filter((M) => !M.night).map((M) => M.sky), P = y.filter((M) => M.night).map((M) => M.sky), st = $ / b, _t = 16 * K / b;
+  }, _ = y.filter((M) => !M.night).map((M) => M.sky), P = y.filter((M) => M.night).map((M) => M.sky), lt = X / b, _t = 16 * K / b;
   for (let M = 0; M < o; M++) {
-    const E = (M + 0.5) * m, A = rt(E) / b, I = J(_, 0.75, E), mt = J(P, 1.25, E), j = Y(E);
-    for (let dt = 0; dt < c; dt++) {
-      const gt = ni(M, dt), yt = dt + 0.5 - A, $t = (st > 0.01 ? oi(0.5 + yt / st) : yt > 0 ? 1 : 0) > gt;
+    const E = (M + 0.5) * m, A = st(E) / b, I = tt(_, 0.75, E), mt = tt(P, 1.25, E), j = Y(E);
+    for (let ct = 0; ct < c; ct++) {
+      const gt = oi(M, ct), yt = ct + 0.5 - A, $t = (lt > 0.01 ? ii(0.5 + yt / lt) : yt > 0 ? 1 : 0) > gt;
       let le = $t ? I[2] > gt ? I[1] : I[0] : mt[2] > gt ? mt[1] : mt[0];
-      ($t ? oi(((dt + 0.5) / c - 0.45) / 0.55) * 0.7 : oi(1 - (dt + 0.5) / (c * 0.55)) * 0.7) > ni(M + 2, dt + 5) && (le = $t ? qn(le, "#ffffff", 0.18) : qn(le, "#000000", 0.25)), $t && yt >= 0 && yt < _t && j.a * 1.3 * (1 - yt / _t) > ni(M + 6, dt + 1) && (le = j.c), U[dt * o + M] = le, ut[dt * o + M] = $t ? 0 : 1;
+      ($t ? ii(((ct + 0.5) / c - 0.45) / 0.55) * 0.7 : ii(1 - (ct + 0.5) / (c * 0.55)) * 0.7) > oi(M + 2, ct + 5) && (le = $t ? qn(le, "#ffffff", 0.18) : qn(le, "#000000", 0.25)), $t && yt >= 0 && yt < _t && j.a * 1.3 * (1 - yt / _t) > oi(M + 6, ct + 1) && (le = j.c), U[ct * o + M] = le, ut[ct * o + M] = $t ? 0 : 1;
     }
   }
-  const H = qn(R.sun, "#ffffff", 0.55), It = qn(R.moon, "#ffffff", 0.6);
+  const H = qn(B.sun, "#ffffff", 0.55), It = qn(B.moon, "#ffffff", 0.6);
   l.stars.forEach((M) => {
     const E = Math.floor(M.x / m), A = Math.floor(M.y / b);
     if (E < 0 || A < 0 || E >= o || A >= c || !ut[A * o + E] || M.o < 0.15) return;
-    const I = M.o > 0.45 ? R.star : qn(R.star, U[A * o + E], 0.5), mt = M.big && M.o > 0.6 ? Math.floor(M.size / m) : 0;
-    tt(E, A, I, 1, Ud);
-    for (let j = 1; j <= mt; j++) [[E - j, A], [E + j, A], [E, A - j], [E, A + j]].forEach((dt) => {
-      dt[0] >= 0 && dt[1] >= 0 && dt[0] < o && dt[1] < c && ut[dt[1] * o + dt[0]] && tt(dt[0], dt[1], I, 1, Ud);
+    const I = M.o > 0.45 ? B.star : qn(B.star, U[A * o + E], 0.5), mt = M.big && M.o > 0.6 ? Math.floor(M.size / m) : 0;
+    et(E, A, I, 1, Ud);
+    for (let j = 1; j <= mt; j++) [[E - j, A], [E + j, A], [E, A - j], [E, A + j]].forEach((ct) => {
+      ct[0] >= 0 && ct[1] >= 0 && ct[0] < o && ct[1] < c && ut[ct[1] * o + ct[0]] && et(ct[0], ct[1], I, 1, Ud);
     });
   }), l.suns.forEach((M) => {
     const E = Math.max(1.5, M.rad / m), A = M.x / m, I = M.y / b, mt = M.halo / m * 0.85;
-    if (ft(A, I, mt, (j, dt, gt, yt) => {
+    if (ft(A, I, mt, (j, ct, gt, yt) => {
       const $t = Math.sqrt(gt * gt + yt * yt);
-      $t > E && $t < mt && !ut[dt * o + j] && tt(j, dt, H, 0.3 * (1 - ($t - E) / (mt - E)), 0);
+      $t > E && $t < mt && !ut[ct * o + j] && et(j, ct, H, 0.3 * (1 - ($t - E) / (mt - E)), 0);
     }), L) {
-      const j = Math.floor(w / 500) % 2, dt = Math.max(1, E * 0.3);
-      for (let gt = 0; gt < 8; gt++) if (gt % 2 === j) for (let yt = E + 1.2; yt < E + 1.2 + dt; yt += 0.7) tt(Math.floor(A + Math.cos(gt * Math.PI / 4) * yt), Math.floor(I + Math.sin(gt * Math.PI / 4) * yt), R.sun, 1, vp);
+      const j = Math.floor(w / 500) % 2, ct = Math.max(1, E * 0.3);
+      for (let gt = 0; gt < 8; gt++) if (gt % 2 === j) for (let yt = E + 1.2; yt < E + 1.2 + ct; yt += 0.7) et(Math.floor(A + Math.cos(gt * Math.PI / 4) * yt), Math.floor(I + Math.sin(gt * Math.PI / 4) * yt), B.sun, 1, vp);
     }
-    ft(A, I, E, (j, dt, gt, yt) => {
-      gt * gt + yt * yt <= E * E && tt(j, dt, oi(((yt / E + 1) / 2 - 0.6) / 0.4) > ni(j, dt) ? R.sunEdge : R.sun, 1, fp);
+    ft(A, I, E, (j, ct, gt, yt) => {
+      gt * gt + yt * yt <= E * E && et(j, ct, ii(((yt / E + 1) / 2 - 0.6) / 0.4) > oi(j, ct) ? B.sunEdge : B.sun, 1, fp);
     });
   }), l.moons.forEach((M) => {
-    const E = Math.max(1.5, M.d * 0.37 / m), A = M.x / m, I = M.y / b, mt = A + 0.547 * E, j = I - 0.503 * E, dt = 0.82 * E;
+    const E = Math.max(1.5, M.d * 0.37 / m), A = M.x / m, I = M.y / b, mt = A + 0.547 * E, j = I - 0.503 * E, ct = 0.82 * E;
     ft(A, I, E, (gt, yt, $t, le) => {
       if ($t * $t + le * le > E * E) return;
       const Ae = gt + 0.5 - mt, Ca = yt + 0.5 - j;
-      Ae * Ae + Ca * Ca > dt * dt && tt(gt, yt, oi((le + E) / (2 * E) * 1.1 - 0.1) > ni(gt, yt) ? R.moon : It, 1, hp);
+      Ae * Ae + Ca * Ca > ct * ct && et(gt, yt, ii((le + E) / (2 * E) * 1.1 - 0.1) > oi(gt, yt) ? B.moon : It, 1, hp);
     });
   }), l.clouds.forEach((M) => {
     const E = Math.max(3, M.w / m), A = E * 0.6665, I = M.x / m, mt = M.y / b, j = qn(M.fill, "#000000", 0.16);
-    for (let dt = Math.max(0, Math.floor(mt) - 1); dt <= Math.min(c - 1, mt + A + 1); dt++) for (let gt = Math.max(0, Math.floor(I) - 1); gt <= Math.min(o - 1, I + E + 1); gt++) {
-      const yt = (gt + 0.5 - I) / E, $t = (dt + 0.5 - mt) / E;
-      bc(yt, $t) && tt(gt, dt, !bc(yt, $t + 1 / E) || oi(($t - 0.42) / 0.25) * 0.8 > ni(gt, dt) ? j : M.fill, M.o, mp);
+    for (let ct = Math.max(0, Math.floor(mt) - 1); ct <= Math.min(c - 1, mt + A + 1); ct++) for (let gt = Math.max(0, Math.floor(I) - 1); gt <= Math.min(o - 1, I + E + 1); gt++) {
+      const yt = (gt + 0.5 - I) / E, $t = (ct + 0.5 - mt) / E;
+      bc(yt, $t) && et(gt, ct, !bc(yt, $t + 1 / E) || ii(($t - 0.42) / 0.25) * 0.8 > oi(gt, ct) ? j : M.fill, M.o, mp);
     }
   }), l.fogs.forEach((M) => {
     const E = Math.floor(M.y / b), A = Math.max(E, Math.floor((M.y + 6 * K) / b) - 1), I = Math.floor(M.x / m), mt = Math.floor((M.x + M.w) / m);
-    for (let j = E; j <= A; j++) for (let dt = I; dt <= mt; dt++) {
-      const gt = (dt - I) / Math.max(1, mt - I);
-      tt(dt, j, M.c, M.a * (gt < 0.25 ? gt / 0.25 : gt > 0.75 ? (1 - gt) / 0.25 : 1), 0);
+    for (let j = E; j <= A; j++) for (let ct = I; ct <= mt; ct++) {
+      const gt = (ct - I) / Math.max(1, mt - I);
+      et(ct, j, M.c, M.a * (gt < 0.25 ? gt / 0.25 : gt > 0.75 ? (1 - gt) / 0.25 : 1), 0);
     }
   });
   const G = Math.max(2, Math.round(9 / b));
   l.drops.forEach((M) => {
     const E = M.x / m, A = Math.floor(M.y / b);
-    for (let I = 0; I < G; I++) tt(Math.floor(E - 0.208 * I * b / m), A + I, R.rain, M.o, gp);
+    for (let I = 0; I < G; I++) et(Math.floor(E - 0.208 * I * b / m), A + I, B.rain, M.o, gp);
   });
   const Wt = Math.max(0, Math.round(4.4 / m / 2.6));
   return l.flakes.forEach((M) => {
     const E = Math.floor(M.x / m), A = Math.floor(M.y / b);
-    tt(E, A, R.snow, M.o, ds);
+    et(E, A, B.snow, M.o, ds);
     for (let I = 1; I <= Wt; I++)
-      tt(E - I, A, R.snow, M.o, ds), tt(E + I, A, R.snow, M.o, ds), tt(E, A - I, R.snow, M.o, ds), tt(E, A + I, R.snow, M.o, ds);
+      et(E - I, A, B.snow, M.o, ds), et(E + I, A, B.snow, M.o, ds), et(E, A - I, B.snow, M.o, ds), et(E, A + I, B.snow, M.o, ds);
   }), l.bolts.forEach((M) => {
     if (m <= 3.5)
       for (let E = Math.floor(M.y / b); E <= (M.y + 24) / b; E++) for (let A = Math.floor(M.x / m); A <= (M.x + 11) / m; A++)
-        wu(Au, (A + 0.5) * m - M.x, (E + 0.5) * b - M.y) && tt(A, E, R.sun, 1, jl);
+        wu(Au, (A + 0.5) * m - M.x, (E + 0.5) * b - M.y) && et(A, E, B.sun, 1, jl);
     else {
       const E = Math.round(M.x / m), A = Math.round(M.y / b);
-      Lu.forEach((I, mt) => I.split("").forEach((j, dt) => {
-        j === "#" && tt(E + dt, A + mt, R.sun, 1, jl);
+      Lu.forEach((I, mt) => I.split("").forEach((j, ct) => {
+        j === "#" && et(E + ct, A + mt, B.sun, 1, jl);
       }));
     }
   }), { col: U, ids: W };
 }
 function Eu(n, l) {
-  const o = l.px, c = Math.max(6, Math.round(l.width / o)), m = Math.max(6, Math.round(l.height / o)), b = l.width / c, w = l.height / m, L = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, y = ($) => {
-    const nt = bp($, l);
-    return _u(nt, wp(nt, { clock: L, ambient: l.ambient, seed: l.seed }), c, m, b, w, L, l.ambient);
-  }, R = y(n), vt = l.reveal == null ? 1 : oi(l.reveal);
-  let rt = R.col, Y = R.ids;
+  const o = l.px, c = Math.max(6, Math.round(l.width / o)), m = Math.max(6, Math.round(l.height / o)), b = l.width / c, w = l.height / m, L = l.ambient ? Math.floor((l.clock || 0) / 100) * 100 : 0, y = (X) => {
+    const ot = bp(X, l);
+    return _u(ot, wp(ot, { clock: L, ambient: l.ambient, seed: l.seed }), c, m, b, w, L, l.ambient);
+  }, B = y(n), vt = l.reveal == null ? 1 : ii(l.reveal);
+  let st = B.col, Y = B.ids;
   if (vt < 1) {
-    const $ = l.prev ? y(l.prev) : null, nt = vt * (c + 12);
-    rt = new Array(c * m), Y = new Uint8Array(c * m);
+    const X = l.prev ? y(l.prev) : null, ot = vt * (c + 12);
+    st = new Array(c * m), Y = new Uint8Array(c * m);
     for (let K = 0; K < c * m; K++) {
       const U = K % c, W = K / c | 0;
-      (l.reduce ? vt : oi((nt - U) / 12)) > ni(U, W) ? (rt[K] = R.col[K], Y[K] = R.ids[K]) : $ ? (rt[K] = $.col[K], Y[K] = $.ids[K]) : (rt[K] = null, Y[K] = 255);
+      (l.reduce ? vt : ii((ot - U) / 12)) > oi(U, W) ? (st[K] = B.col[K], Y[K] = B.ids[K]) : X ? (st[K] = X.col[K], Y[K] = X.ids[K]) : (st[K] = null, Y[K] = 255);
     }
   }
-  return xu(rt, Y, c, m, { oneBit: l.oneBit, ink: l.ink || "#26221e", paper: l.paper || "#fbf9f6", snowInk: !1 });
+  return xu(st, Y, c, m, { oneBit: l.oneBit, ink: l.ink || "#26221e", paper: l.paper || "#fbf9f6", snowInk: !1 });
 }
 function Du(n, l, o) {
-  const c = o.width, m = o.height, b = o.reveal == null ? 1 : oi(o.reveal), w = (Y, $) => {
-    const nt = bp($, o);
-    Bu(Y, nt, wp(nt, o));
+  const c = o.width, m = o.height, b = o.reveal == null ? 1 : ii(o.reveal), w = (Y, X) => {
+    const ot = bp(X, o);
+    Ru(Y, ot, wp(ot, o));
   };
   if (n.clearRect(0, 0, c, m), b >= 1) {
     w(n, l);
@@ -4322,14 +4322,14 @@ function Du(n, l, o) {
   }
   const L = n.canvas, y = L.__wxOff || (L.__wxOff = document.createElement("canvas"));
   (y.width !== L.width || y.height !== L.height) && (y.width = L.width, y.height = L.height);
-  const R = y.getContext("2d");
-  R.setTransform(n.getTransform()), R.clearRect(0, 0, c, m), w(R, l);
-  const vt = b * (c + 64) - 64, rt = R.createLinearGradient(vt, 0, vt + 64, 0);
-  rt.addColorStop(0, "rgba(0,0,0,1)"), rt.addColorStop(1, "rgba(0,0,0,0)"), R.globalCompositeOperation = "destination-in", R.fillStyle = rt, R.fillRect(0, 0, c, m), R.globalCompositeOperation = "source-over", n.save(), n.setTransform(1, 0, 0, 1, 0, 0), n.drawImage(y, 0, 0), n.restore();
+  const B = y.getContext("2d");
+  B.setTransform(n.getTransform()), B.clearRect(0, 0, c, m), w(B, l);
+  const vt = b * (c + 64) - 64, st = B.createLinearGradient(vt, 0, vt + 64, 0);
+  st.addColorStop(0, "rgba(0,0,0,1)"), st.addColorStop(1, "rgba(0,0,0,0)"), B.globalCompositeOperation = "destination-in", B.fillStyle = st, B.fillRect(0, 0, c, m), B.globalCompositeOperation = "source-over", n.save(), n.setTransform(1, 0, 0, 1, 0, 0), n.drawImage(y, 0, 0), n.restore();
 }
-function Bu(n, l, o) {
-  const { W: c, H: m, S: b, C: w, cw: L, yb: y, glowAt: R, soft: vt, tw: rt, sy: Y } = l, $ = n.getTransform().a || 1, nt = (G) => {
-    n.shadowColor = G ? "rgba(28,18,8,.22)" : "transparent", n.shadowBlur = G ? 4 * $ : 0, n.shadowOffsetY = G ? 1.5 * $ : 0;
+function Ru(n, l, o) {
+  const { W: c, H: m, S: b, C: w, cw: L, yb: y, glowAt: B, soft: vt, tw: st, sy: Y } = l, X = n.getTransform().a || 1, ot = (G) => {
+    n.shadowColor = G ? "rgba(28,18,8,.22)" : "transparent", n.shadowBlur = G ? 4 * X : 0, n.shadowOffsetY = G ? 1.5 * X : 0;
   }, K = (G, Wt) => {
     const M = Ol(G);
     return "rgba(" + M[0] + "," + M[1] + "," + M[2] + "," + Math.max(0, Math.min(1, Wt)).toFixed(3) + ")";
@@ -4337,7 +4337,7 @@ function Bu(n, l, o) {
     const M = n.createLinearGradient(0, 0, c, 0);
     M.addColorStop(0, G[0]);
     for (let E = 0; E < G.length - 1; E++) {
-      const A = (E + Wt) * L, I = (A - rt / 2) / c, mt = (A + rt / 2) / c;
+      const A = (E + Wt) * L, I = (A - st / 2) / c, mt = (A + st / 2) / c;
       I > 0 && I < 1 && M.addColorStop(I, G[E]), mt > 0 && mt < 1 && M.addColorStop(mt, G[E + 1]);
     }
     return M.addColorStop(1, G[G.length - 1]), M;
@@ -4354,21 +4354,21 @@ function Bu(n, l, o) {
     n.closePath(), n.fill();
   };
   n.save(), n.fillStyle = U(b.filter((G) => !G.night).map((G) => G.sky), 0.75), n.fillRect(0, 0, c, m);
-  const tt = n.createLinearGradient(0, 0, c, 0);
+  const et = n.createLinearGradient(0, 0, c, 0);
   for (let G = 0; G <= 64; G++) {
-    const Wt = R(c * G / 64);
-    tt.addColorStop(G / 64, K(Wt.c, Math.min(1, Wt.a)));
+    const Wt = B(c * G / 64);
+    et.addColorStop(G / 64, K(Wt.c, Math.min(1, Wt.a)));
   }
-  n.fillStyle = tt;
+  n.fillStyle = et;
   for (let G = 0; G < 8; G++)
     n.globalAlpha = 1 - G / 8, ut(G * 2 * Y, (G + 1) * 2 * Y);
   n.fillStyle = U(b.filter((G) => G.night).map((G) => G.sky), 1.25);
-  const ft = Math.max(0.5, vt), J = 6;
+  const ft = Math.max(0.5, vt), tt = 6;
   n.globalAlpha = 1, ut(null, -ft);
-  for (let G = 0; G < J; G++)
-    n.globalAlpha = 1 - (G + 0.5) / J, ut(-ft + 2 * ft * G / J, -ft + 2 * ft * (G + 1) / J);
+  for (let G = 0; G < tt; G++)
+    n.globalAlpha = 1 - (G + 0.5) / tt, ut(-ft + 2 * ft * G / tt, -ft + 2 * ft * (G + 1) / tt);
   n.globalAlpha = 1;
-  const _ = new Path2D(Cu), P = new Path2D(Su), st = new Path2D(Mu), _t = new Path2D(Tu);
+  const _ = new Path2D(Cu), P = new Path2D(Su), lt = new Path2D(Mu), _t = new Path2D(Tu);
   n.fillStyle = w.star, o.stars.forEach((G) => {
     n.globalAlpha = G.o, G.big ? (n.save(), n.translate(G.x, G.y), n.scale(G.size, G.size), n.fill(_), n.restore()) : (n.beginPath(), n.arc(G.x, G.y, 0.8, 0, Math.PI * 2), n.fill());
   }), n.globalAlpha = 1;
@@ -4377,15 +4377,15 @@ function Bu(n, l, o) {
     const Wt = n.createRadialGradient(G.x, G.y, 0, G.x, G.y, G.halo);
     Wt.addColorStop(0, K(H, 0.42)), Wt.addColorStop(0.7, K(H, 0)), n.fillStyle = Wt, n.beginPath(), n.arc(G.x, G.y, G.halo, 0, Math.PI * 2), n.fill();
     const M = n.createLinearGradient(0, G.y - G.rad, 0, G.y + G.rad);
-    M.addColorStop(0.6, w.sun), M.addColorStop(1, w.sunEdge), n.fillStyle = M, nt(!0), n.beginPath(), n.arc(G.x, G.y, G.rad, 0, Math.PI * 2), n.fill(), nt(!1);
+    M.addColorStop(0.6, w.sun), M.addColorStop(1, w.sunEdge), n.fillStyle = M, ot(!0), n.beginPath(), n.arc(G.x, G.y, G.rad, 0, Math.PI * 2), n.fill(), ot(!1);
   });
   const It = qn(w.moon, "#ffffff", 0.6);
   o.moons.forEach((G) => {
     n.save(), n.translate(G.x - G.d / 2, G.y - G.d / 2), n.scale(G.d / 46, G.d / 46);
     const Wt = n.createLinearGradient(0, 6, 0, 40);
-    Wt.addColorStop(0, It), Wt.addColorStop(1, w.moon), n.fillStyle = Wt, nt(!0), n.fill(P), nt(!1), n.restore();
+    Wt.addColorStop(0, It), Wt.addColorStop(1, w.moon), n.fillStyle = Wt, ot(!0), n.fill(P), ot(!1), n.restore();
   }), o.clouds.forEach((G) => {
-    n.save(), n.globalAlpha = G.o, n.translate(G.x, G.y), n.scale(G.w / 46, G.h / 30.66), n.translate(-4, -9.67), n.fillStyle = G.fill, nt(!0), n.fill(st), nt(!1), n.restore();
+    n.save(), n.globalAlpha = G.o, n.translate(G.x, G.y), n.scale(G.w / 46, G.h / 30.66), n.translate(-4, -9.67), n.fillStyle = G.fill, ot(!0), n.fill(lt), ot(!1), n.restore();
   }), o.fogs.forEach((G) => {
     const Wt = n.createLinearGradient(G.x, 0, G.x + G.w, 0);
     Wt.addColorStop(0, K(G.c, 0)), Wt.addColorStop(0.25, K(G.c, G.a)), Wt.addColorStop(0.75, K(G.c, G.a)), Wt.addColorStop(1, K(G.c, 0)), n.fillStyle = Wt, n.fillRect(G.x, G.y, G.w, 6 * Y);
@@ -4397,7 +4397,7 @@ function Bu(n, l, o) {
     n.save(), n.globalAlpha = G.o, n.translate(G.x, G.y), n.fill(_t), n.restore();
   }), n.restore();
 }
-const Ru = (n) => n === "sunny" ? "clear" : n === "clear-night" ? "night" : n === "partlycloudy" ? "partly" : ["rainy", "pouring", "lightning", "lightning-rainy", "hail"].includes(n) ? "rain" : ["snowy", "snowy-rainy"].includes(n) ? "snow" : "cloudy", ss = { s: "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", sp: "M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z", lp: "M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z", lc: "M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z", lr: "M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z" }, _l = {
+const Bu = (n) => n === "sunny" ? "clear" : n === "clear-night" ? "night" : n === "partlycloudy" ? "partly" : ["rainy", "pouring", "lightning", "lightning-rainy", "hail"].includes(n) ? "rain" : ["snowy", "snowy-rainy"].includes(n) ? "snow" : "cloudy", ss = { s: "M41.0875 21.224C40.4398 17.9648 38.6815 15.0313 36.1125 12.9237C33.5435 10.816 30.3229 9.66488 27 9.66651C21.4608 9.66651 16.65 12.8098 14.2542 17.3907C11.4355 17.6995 8.83007 19.0382 6.93769 21.1499C5.0453 23.2616 3.99919 25.9976 4 28.8332C4 31.8832 5.2116 34.8082 7.36827 36.9649C9.52494 39.1216 12.45 40.3332 15.5 40.3332H40.4167C41.6752 40.3332 42.9213 40.0853 44.084 39.6037C45.2468 39.1221 46.3032 38.4162 47.1931 37.5263C48.083 36.6364 48.7889 35.5799 49.2705 34.4172C49.7521 33.2545 50 32.0083 50 30.7498C50 25.6898 46.0708 21.5882 41.0875 21.224Z", sp: "M41.025 27.045C40.5181 24.4943 39.142 22.1985 37.1315 20.5491C35.121 18.8996 32.6005 17.9987 30 18C25.665 18 21.9 20.46 20.025 24.045C17.8191 24.2867 15.7801 25.3344 14.2991 26.987C12.8181 28.6396 11.9994 30.7809 12 33C12 35.3869 12.9482 37.6761 14.636 39.364C16.3239 41.0518 18.6131 42 21 42H40.5C41.4849 42 42.4602 41.806 43.3701 41.4291C44.2801 41.0522 45.1069 40.4997 45.8033 39.8033C46.4997 39.1069 47.0522 38.2801 47.4291 37.3701C47.806 36.4602 48 35.4849 48 34.5C48 30.54 44.925 27.33 41.025 27.045Z", lp: "M70.8016 48.008C69.9751 43.8493 67.7316 40.1062 64.4536 37.4168C61.1755 34.7275 57.0661 33.2587 52.8261 33.2607C45.7581 33.2607 39.6196 37.2716 36.5625 43.1167C32.9659 43.5108 29.6414 45.219 27.2267 47.9135C24.8121 50.608 23.4772 54.0991 23.4783 57.7173C23.4783 61.609 25.0243 65.3414 27.7761 68.0933C30.528 70.8452 34.2604 72.3912 38.1522 72.3912H69.9456C71.5515 72.3912 73.1416 72.0749 74.6252 71.4604C76.1088 70.8458 77.4568 69.9451 78.5923 68.8096C79.7278 67.6741 80.6286 66.3261 81.2431 64.8425C81.8576 63.3589 82.1739 61.7688 82.1739 60.1629C82.1739 53.7064 77.1603 48.4727 70.8016 48.008Z", lc: "M65.3723 37.5398C64.4356 32.8266 61.8929 28.5843 58.1778 25.5364C54.4627 22.4885 49.8054 20.8238 45 20.8262C36.9897 20.8262 30.0326 25.3718 26.5679 31.9963C22.4918 32.4429 18.724 34.3788 15.9874 37.4326C13.2508 40.4864 11.738 44.443 11.7391 48.5436C11.7391 52.9542 13.4913 57.1842 16.6101 60.3031C19.7289 63.4219 23.9589 65.174 28.3696 65.174H64.4022C66.2221 65.174 68.0243 64.8155 69.7057 64.1191C71.3871 63.4226 72.9149 62.4018 74.2018 61.1149C75.4887 59.828 76.5095 58.3002 77.2059 56.6188C77.9024 54.9374 78.2609 53.1353 78.2609 51.3153C78.2609 43.9979 72.5788 38.0664 65.3723 37.5398Z", lr: "M62.9755 28.4431C62.149 24.2844 59.9055 20.5412 56.6275 17.8519C53.3494 15.1626 49.24 13.6937 45 13.6958C37.9321 13.6958 31.7935 17.7067 28.7364 23.5518C25.1398 23.9459 21.8153 25.654 19.4006 28.3485C16.986 31.043 15.6511 34.5342 15.6522 38.1523C15.6522 42.0441 17.1982 45.7765 19.9501 48.5284C22.7019 51.2802 26.4343 52.8262 30.3261 52.8262H62.1196C63.7254 52.8262 65.3155 52.5099 66.7991 51.8954C68.2827 51.2809 69.6307 50.3802 70.7662 49.2447C71.9017 48.1092 72.8025 46.7611 73.417 45.2775C74.0315 43.7939 74.3478 42.2038 74.3478 40.598C74.3478 34.1415 69.3342 28.9078 62.9755 28.4431Z" }, _l = {
   s: ["M21.0459 6.11182C19.2847 8.44583 18.2402 11.3513 18.2402 14.5005C18.2405 22.199 24.4811 28.4398 32.1797 28.4399C34.9446 28.4399 37.5211 27.634 39.6885 26.2456C38.1734 34.0818 31.2788 40.0005 23 40.0005C13.6113 40.0005 6.00026 32.3891 6 23.0005C6 14.2725 12.5775 7.08102 21.0459 6.11182Z", 6.11, 40],
   l: ["M41.1747 11.959C37.7298 16.5251 35.6875 22.2086 35.6874 28.3691C35.6874 43.4321 47.8979 55.6435 62.9608 55.6436C68.3701 55.6436 73.411 54.0676 77.6512 51.3516C74.6865 66.6826 61.197 78.2607 44.9999 78.2607C26.6305 78.2607 11.7391 63.3694 11.7391 45C11.7392 27.9244 24.6071 13.8562 41.1747 11.959Z", 11.96, 78.26],
   sp: ["M16.6201 5.0791C15.3771 6.72655 14.6397 8.7772 14.6396 11C14.6396 16.4345 19.046 20.8398 24.4805 20.8398C26.4326 20.8398 28.2502 20.2686 29.7803 19.2881C28.7119 24.821 23.8449 29 18 29C11.3726 29 6 23.6274 6 17C6 10.8393 10.6426 5.76349 16.6201 5.0791Z", 5.08, 29],
@@ -4412,7 +4412,7 @@ function Fu(n, l, o, c) {
 }
 const Ou = (n, l) => '<defs><filter id="' + n + '-sh" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="' + (l ? 1.6 : 1) + '" stdDeviation="' + (l ? 1.8 : 1.1) + '" flood-color="#1c1208" flood-opacity=".22"/></filter></defs>';
 function Wu(n, l, o, c) {
-  let m = Ru(n);
+  let m = Bu(n);
   const b = m === "night" || !!o;
   m === "night" && (m = "clear");
   const w = l ? 90 : 54;
@@ -4486,23 +4486,23 @@ const qu = [
 ], El = (n, l) => (qu[l % 8 * 8 + n % 8] + 0.5) / 64, po = (n) => [parseInt(n.slice(1, 3), 16), parseInt(n.slice(3, 5), 16), parseInt(n.slice(5, 7), 16)], Va = (n, l, o) => [Math.round(n[0] + (l[0] - n[0]) * o), Math.round(n[1] + (l[1] - n[1]) * o), Math.round(n[2] + (l[2] - n[2]) * o)], zs = (n) => n < 0 ? 0 : n > 1 ? 1 : n, xc = (n, l) => {
   let o = n * 374761393 + l * 668265263 ^ 1540483477;
   return o = Math.imul(o ^ o >>> 13, 1274126177), ((o ^ o >>> 16) >>> 0) / 4294967296;
-}, br = [255, 255, 255], en = po("#26221e"), yc = po("#0288d1"), ju = po("#01579b"), Cd = po(rn.cloudDay), Td = po(rn.cloudNight), Dl = po(rn.dusk), Ad = po(rn.sunEdge), zu = po(rn.sun), Vu = 10, kc = 0.3, ii = 56, xp = 21;
+}, br = [255, 255, 255], en = po("#26221e"), yc = po("#0288d1"), ju = po("#01579b"), Cd = po(rn.cloudDay), Td = po(rn.cloudNight), Dl = po(rn.dusk), Ad = po(rn.sunEdge), zu = po(rn.sun), Vu = 10, kc = 0.3, ri = 56, xp = 21;
 function Gu(n) {
-  const l = Array.from({ length: xp }, () => new Array(ii).fill(void 0)), o = (w, L, y) => {
+  const l = Array.from({ length: xp }, () => new Array(ri).fill(void 0)), o = (w, L, y) => {
     l[L][w] = y;
   }, c = Va(Dl, en, 0.35), m = Va(en, br, 0.22);
   for (let w = 0; w <= 6; w++) {
-    const L = w < 2 ? ii - 2 : ii - 1;
+    const L = w < 2 ? ri - 2 : ri - 1;
     for (let y = 6 - w; y <= L; y++) o(y, w, w < 2 ? c : w === 6 ? m : en);
   }
   const b = [Dl, Ad, Td, po(rn.skyRainDay), Va(Dl, en, 0.2), Va(n, en, 0.35)];
   [2, 3, 2, 3, 3].forEach((w, L) => {
     const y = 9 + L * 6;
-    for (let R = 0; R < w; R++) {
-      const vt = b[(L * 2 + R * 3) % b.length];
-      for (let rt = y; rt < y + 5; rt++)
-        o(rt, 7 + R * 2, Va(vt, en, 0.12)), o(rt, 8 + R * 2, R === w - 1 ? Va(vt, br, 0.3) : vt);
-      o(y + 5, 7 + R * 2, en), o(y + 5, 8 + R * 2, en);
+    for (let B = 0; B < w; B++) {
+      const vt = b[(L * 2 + B * 3) % b.length];
+      for (let st = y; st < y + 5; st++)
+        o(st, 7 + B * 2, Va(vt, en, 0.12)), o(st, 8 + B * 2, B === w - 1 ? Va(vt, br, 0.3) : vt);
+      o(y + 5, 7 + B * 2, en), o(y + 5, 8 + B * 2, en);
     }
   });
   for (let w = 7; w <= 12; w++) o(5, w, en);
@@ -4516,25 +4516,25 @@ function Gu(n) {
   return o(44, 20, zu), l;
 }
 function Uu(n, l, o, c) {
-  const m = Math.max(1, Math.round(n)), b = Math.max(1, Math.round(l)), w = new Uint8ClampedArray(m * b * 4), L = po(c.skyClearDay), y = po(c.skyFogDay), R = Gu(L), vt = Math.round(b * 0.55), rt = zs(1 - Math.log(o / kc) / Math.log(Vu / kc)), Y = Va(L, y, rt), $ = (W) => zs((W - 0.1) / 0.9), nt = zs((1 - Math.exp(-2 / o) - 0.2) / 0.8), K = Math.round(m / 2 - ii / 2), U = vt + 3;
+  const m = Math.max(1, Math.round(n)), b = Math.max(1, Math.round(l)), w = new Uint8ClampedArray(m * b * 4), L = po(c.skyClearDay), y = po(c.skyFogDay), B = Gu(L), vt = Math.round(b * 0.55), st = zs(1 - Math.log(o / kc) / Math.log(Vu / kc)), Y = Va(L, y, st), X = (W) => zs((W - 0.1) / 0.9), ot = zs((1 - Math.exp(-2 / o) - 0.2) / 0.8), K = Math.round(m / 2 - ri / 2), U = vt + 3;
   for (let W = 0; W < b; W++) {
-    const ut = U - 1 - W, tt = W - U;
+    const ut = U - 1 - W, et = W - U;
     for (let ft = 0; ft < m; ft++) {
-      const J = ft - K;
+      const tt = ft - K;
       let _, P;
-      const st = ut >= 0 && ut < xp && J >= 0 && J < ii ? R[ut][J] : void 0;
-      if (st)
-        _ = st, P = nt;
-      else if (ut >= 0 && ut <= 1 && J >= 4 - ut && J <= 5 - ut)
-        _ = Va(br, yc, 0.15), P = nt;
+      const lt = ut >= 0 && ut < xp && tt >= 0 && tt < ri ? B[ut][tt] : void 0;
+      if (lt)
+        _ = lt, P = ot;
+      else if (ut >= 0 && ut <= 1 && tt >= 4 - ut && tt <= 5 - ut)
+        _ = Va(br, yc, 0.15), P = ot;
       else if (W < vt) {
         const It = zs(((W + 0.5) / vt - 0.15) / 0.85) * 3, G = Math.min(3, Math.floor(It + El(ft + 2, W + 5)));
-        _ = Va(Y, br, G * 0.1), P = rt * 0.95;
+        _ = Va(Y, br, G * 0.1), P = st * 0.95;
       } else {
         const It = (W - vt + 0.5) / (b - vt), G = Math.min(1.5, 6e-3 / (It * It)), Wt = zs(It * 1.4) * 3, M = Math.min(3, Math.floor(Wt + El(ft + 1, W + 6)));
         _ = Va(yc, ju, M / 3);
         const E = 1 + Math.round(It * 7), A = Math.floor(ft / (E * 3)), I = 0.06 + 0.16 * It, mt = ft % (E * 3) < E;
-        mt && xc(A, W) < I ? _ = Va(_, br, 0.18 + 0.1 * (1 - It)) : mt && It > 0.5 && xc(A, W - 1) < I && (_ = Va(_, en, 0.12)), P = $(1 - Math.exp(-G / o)), tt === 0 && J >= 3 && J <= 8 ? (_ = Va(_, br, J < 6 ? 0.8 : 0.45), P = nt) : tt >= 0 && tt <= 2 && J >= ii && J < ii + 40 ? ((1 - (J - ii) / 40) * (tt === 1 ? 0.9 : 0.5) > El(ft, W + 3) && (_ = Va(_, br, 0.5)), P = nt) : tt === 0 && J >= 6 && J < ii && (_ = Va(_, en, J % 2 === 0 ? 0.35 : 0.2), P = nt);
+        mt && xc(A, W) < I ? _ = Va(_, br, 0.18 + 0.1 * (1 - It)) : mt && It > 0.5 && xc(A, W - 1) < I && (_ = Va(_, en, 0.12)), P = X(1 - Math.exp(-G / o)), et === 0 && tt >= 3 && tt <= 8 ? (_ = Va(_, br, tt < 6 ? 0.8 : 0.45), P = ot) : et >= 0 && et <= 2 && tt >= ri && tt < ri + 40 ? ((1 - (tt - ri) / 40) * (et === 1 ? 0.9 : 0.5) > El(ft, W + 3) && (_ = Va(_, br, 0.5)), P = ot) : et === 0 && tt >= 6 && tt < ri && (_ = Va(_, en, tt % 2 === 0 ? 0.35 : 0.2), P = ot);
       }
       const _t = P > El(ft, W) ? y : _, H = (W * m + ft) * 4;
       w[H] = _t[0], w[H + 1] = _t[1], w[H + 2] = _t[2], w[H + 3] = 255;
@@ -4577,10 +4577,10 @@ function Ku(n, l) {
   const c = (b) => Math.abs(Math.log(b[2] / l)), m = o.reduce((b, w) => c(w) < c(b) ? w : b);
   return c(m) <= Math.log(Zu) ? { from: m[0], to: m[1], km: m[2] } : void 0;
 }
-const $u = (n, l) => l === "mi" ? n * 1.609344 : l === "m" ? n / 1e3 : l === "ft" ? n * 3048e-7 : l === "yd" ? n * 9144e-7 : n, Xu = (n) => n < 1 ? "very_poor" : n < 4 ? "poor" : n < 10 ? "moderate" : n < 20 ? "good" : n < 40 ? "very_good" : "excellent", co = 6e4, Fe = 36e5, _o = 864e5, Us = 1440, Ju = 6, Qu = 10 * co, Mc = 3, tf = 3, Bl = { day: [6, 22], waking: [7, 23], all: [0, 24] }, ef = [[-5, [91, 141, 239]], [5, [79, 195, 230]], [12, [95, 211, 160]], [18, [255, 211, 77]], [24, [255, 159, 67]], [30, [255, 91, 79]]], af = "M6.5 18.5h11a4 4 0 0 0 .4-7.98 5.5 5.5 0 0 0-10.6-1.1A4.5 4.5 0 0 0 6.5 18.5Z", Sc = (n, l, o, c) => '<circle cx="' + n + '" cy="' + l + '" r="' + o + '"/><path d="' + [0, 45, 90, 135, 180, 225, 270, 315].map((m) => {
+const $u = (n, l) => l === "mi" ? n * 1.609344 : l === "m" ? n / 1e3 : l === "ft" ? n * 3048e-7 : l === "yd" ? n * 9144e-7 : n, Xu = (n) => n < 1 ? "very_poor" : n < 4 ? "poor" : n < 10 ? "moderate" : n < 20 ? "good" : n < 40 ? "very_good" : "excellent", co = 6e4, Fe = 36e5, Eo = 864e5, Us = 1440, Ju = 6, Qu = 10 * co, Mc = 3, tf = 3, Rl = { day: [6, 22], waking: [7, 23], all: [0, 24] }, ef = [[-5, [91, 141, 239]], [5, [79, 195, 230]], [12, [95, 211, 160]], [18, [255, 211, 77]], [24, [255, 159, 67]], [30, [255, 91, 79]]], af = "M6.5 18.5h11a4 4 0 0 0 .4-7.98 5.5 5.5 0 0 0-10.6-1.1A4.5 4.5 0 0 0 6.5 18.5Z", Sc = (n, l, o, c) => '<circle cx="' + n + '" cy="' + l + '" r="' + o + '"/><path d="' + [0, 45, 90, 135, 180, 225, 270, 315].map((m) => {
   const b = Math.cos(m * Math.PI / 180), w = Math.sin(m * Math.PI / 180), L = o + 2, y = o + 2 + c;
   return "M" + (n + b * L).toFixed(2) + " " + (l + w * L).toFixed(2) + "L" + (n + b * y).toFixed(2) + " " + (l + w * y).toFixed(2);
-}).join("") + '"/>', ei = (n) => '<path d="' + af + '"' + (n ? ' transform="' + n + '"' : "") + "/>", ai = (n) => '<path d="' + n + '"/>', Cc = '<path d="M19.5 14.5A7.5 7.5 0 1 1 9.5 4.5a6 6 0 0 0 10 10Z"/>';
+}).join("") + '"/>', ai = (n) => '<path d="' + af + '"' + (n ? ' transform="' + n + '"' : "") + "/>", ni = (n) => '<path d="' + n + '"/>', Cc = '<path d="M19.5 14.5A7.5 7.5 0 1 1 9.5 4.5a6 6 0 0 0 10 10Z"/>';
 function nf(n, l) {
   const o = "translate(0,-3)";
   switch (n) {
@@ -4589,30 +4589,30 @@ function nf(n, l) {
     case "clear-night":
       return Cc;
     case "partlycloudy":
-      return (l ? '<path d="M11.5 9.5A4.5 4.5 0 1 1 6 4a3.6 3.6 0 0 0 5.5 5.5Z"/>' : Sc(7.5, 7.5, 2.6, 1.4)) + ei("translate(3.6,3) scale(.85)");
+      return (l ? '<path d="M11.5 9.5A4.5 4.5 0 1 1 6 4a3.6 3.6 0 0 0 5.5 5.5Z"/>' : Sc(7.5, 7.5, 2.6, 1.4)) + ai("translate(3.6,3) scale(.85)");
     case "cloudy":
-      return ei();
+      return ai();
     case "fog":
-      return ai("M4 8.5h16M3 12.5h18M5 16.5h14");
+      return ni("M4 8.5h16M3 12.5h18M5 16.5h14");
     case "rainy":
-      return ei(o) + ai("M8.5 18.5 7.5 21M12.5 18.5l-1 2.5M16.5 18.5l-1 2.5");
+      return ai(o) + ni("M8.5 18.5 7.5 21M12.5 18.5l-1 2.5M16.5 18.5l-1 2.5");
     case "pouring":
-      return ei(o) + ai("M7.5 18.5 6 22M11 18.5 9.5 22M14.5 18.5 13 22M18 18.5 16.5 22");
+      return ai(o) + ni("M7.5 18.5 6 22M11 18.5 9.5 22M14.5 18.5 13 22M18 18.5 16.5 22");
     case "snowy":
-      return ei(o) + ai("M8 20h.01M12 21.5h.01M16 20h.01");
+      return ai(o) + ni("M8 20h.01M12 21.5h.01M16 20h.01");
     case "snowy-rainy":
-      return ei(o) + ai("M8.5 18.5 7.5 21M12 21h.01M16.5 18.5l-1 2.5");
+      return ai(o) + ni("M8.5 18.5 7.5 21M12 21h.01M16.5 18.5l-1 2.5");
     case "hail":
-      return ei(o) + '<circle cx="8" cy="20.5" r="1"/><circle cx="12" cy="21.5" r="1"/><circle cx="16" cy="20.5" r="1"/>';
+      return ai(o) + '<circle cx="8" cy="20.5" r="1"/><circle cx="12" cy="21.5" r="1"/><circle cx="16" cy="20.5" r="1"/>';
     case "lightning":
-      return ei(o) + ai("M12.5 16 10.5 19.5h3l-2 3");
+      return ai(o) + ni("M12.5 16 10.5 19.5h3l-2 3");
     case "lightning-rainy":
-      return ei(o) + ai("M12.5 16 10.5 19.5h3l-2 3M7.5 18.5l-1 2.5M17.5 18.5l-1 2.5");
+      return ai(o) + ni("M12.5 16 10.5 19.5h3l-2 3M7.5 18.5l-1 2.5M17.5 18.5l-1 2.5");
     case "windy":
     case "windy-variant":
-      return ai("M3 8.5h10.5a2.5 2.5 0 1 0-2.5-2.5M3 12h15.5a2.5 2.5 0 1 1-2.5 2.5M3 15.5h8");
+      return ni("M3 8.5h10.5a2.5 2.5 0 1 0-2.5-2.5M3 12h15.5a2.5 2.5 0 1 1-2.5 2.5M3 15.5h8");
     default:
-      return '<circle cx="12" cy="12" r="8"/>' + ai("M12 8v5M12 16h.01");
+      return '<circle cx="12" cy="12" r="8"/>' + ni("M12 8v5M12 16h.01");
   }
 }
 const Ld = (n, l) => '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + nf(n, l) + "</svg>", of = /* @__PURE__ */ new Set(["rainy", "pouring", "lightning", "lightning-rainy", "hail", "snowy", "snowy-rainy"]), rf = 30 * co, sf = 7, lf = 3, Tc = 1, df = co, cf = 15 * co, pf = 5, ka = {
@@ -4701,7 +4701,7 @@ const Ld = (n, l) => '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" st
   sunny: "Sunny",
   windy: "Windy",
   "windy-variant": "Windy, cloudy"
-}, ff = ["n", "nne", "ne", "ene", "e", "ese", "se", "sse", "s", "ssw", "sw", "wsw", "w", "wnw", "nw", "nnw"], hf = Object.keys(Yt.phases), Rl = { low: "var(--success-color, #43a047)", moderate: "var(--warning-color, #ffa600)", high: "var(--orange-color, #ff9800)", very_high: "var(--error-color, #db4437)" }, mf = { good: "var(--success-color, #43a047)", fair: "var(--lime-color, #cddc39)", moderate: "var(--warning-color, #ffa600)", poor: "var(--orange-color, #ff9800)", very_poor: "var(--error-color, #db4437)", extremely_poor: "var(--purple-color, #926bc7)" }, yp = [["good", 15], ["fair", 25], ["moderate", 37.5], ["poor", 50], ["very_poor", 75], ["extremely_poor", 1 / 0]], Nl = 100, Ac = "µg/m³", gf = "weather_alerts.air_quality_pollen", zl = ["aqi", "pm25", "pm10", "nitrogen_dioxide", "ozone"], vf = { "m/s": 1, "km/h": 1 / 3.6, mph: 0.44704, kn: 0.514444, "ft/s": 0.3048 }, bf = [0.5, 1.6, 3.4, 5.5, 8, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7], wf = { hPa: 1, mbar: 1, kPa: 10, inHg: 33.8639, mmHg: 1.33322 }, xf = { daily: 1, hourly: 2 }, qt = (n) => String(n ?? "").replace(/[&<>"']/g, (l) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[l]), Na = (n, l) => n.replace(/\{(\w+)\}/g, (o, c) => l[c] ?? ""), cs = (n) => '<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="' + n + '"/></svg>', Lc = /* @__PURE__ */ new Map();
+}, ff = ["n", "nne", "ne", "ene", "e", "ese", "se", "sse", "s", "ssw", "sw", "wsw", "w", "wnw", "nw", "nnw"], hf = Object.keys(Yt.phases), Bl = { low: "var(--success-color, #43a047)", moderate: "var(--warning-color, #ffa600)", high: "var(--orange-color, #ff9800)", very_high: "var(--error-color, #db4437)" }, mf = { good: "var(--success-color, #43a047)", fair: "var(--lime-color, #cddc39)", moderate: "var(--warning-color, #ffa600)", poor: "var(--orange-color, #ff9800)", very_poor: "var(--error-color, #db4437)", extremely_poor: "var(--purple-color, #926bc7)" }, yp = [["good", 15], ["fair", 25], ["moderate", 37.5], ["poor", 50], ["very_poor", 75], ["extremely_poor", 1 / 0]], Nl = 100, Ac = "µg/m³", gf = "weather_alerts.air_quality_pollen", zl = ["aqi", "pm25", "pm10", "nitrogen_dioxide", "ozone"], vf = { "m/s": 1, "km/h": 1 / 3.6, mph: 0.44704, kn: 0.514444, "ft/s": 0.3048 }, bf = [0.5, 1.6, 3.4, 5.5, 8, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7], wf = { hPa: 1, mbar: 1, kPa: 10, inHg: 33.8639, mmHg: 1.33322 }, xf = { daily: 1, hourly: 2 }, qt = (n) => String(n ?? "").replace(/[&<>"']/g, (l) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[l]), Na = (n, l) => n.replace(/\{(\w+)\}/g, (o, c) => l[c] ?? ""), cs = (n) => '<svg class="wbIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="' + n + '"/></svg>', Lc = /* @__PURE__ */ new Map();
 function yf(n) {
   let l = Lc.get(n);
   if (l === void 0) {
@@ -4775,10 +4775,10 @@ function Mp(n, l) {
   }
   return c;
 }
-const Ao = (n, l) => Mp(Qd(l), { hour: "numeric", minute: "2-digit", hourCycle: Sf(l == null ? void 0 : l.locale) ? "h12" : "h23", timeZone: kp(l) }).format(n), Dc = (n, l) => Mp(Qd(l), { weekday: "short", timeZone: kp(l) }).format(n), Cf = (n, l) => n.toLocaleDateString(Qd(l), { weekday: "narrow" }), oa = (n, l) => Ke(l) ? fa(Math.round(Number(l)), n.locale) + "°" : "–", ps = (n) => {
+const Lo = (n, l) => Mp(Qd(l), { hour: "numeric", minute: "2-digit", hourCycle: Sf(l == null ? void 0 : l.locale) ? "h12" : "h23", timeZone: kp(l) }).format(n), Dc = (n, l) => Mp(Qd(l), { weekday: "short", timeZone: kp(l) }).format(n), Cf = (n, l) => n.toLocaleDateString(Qd(l), { weekday: "narrow" }), oa = (n, l) => Ke(l) ? fa(Math.round(Number(l)), n.locale) + "°" : "–", ps = (n) => {
   const l = new Date(n);
   return l.setHours(0, 0, 0, 0), l;
-}, ls = (n, l) => n.getFullYear() === l.getFullYear() && n.getMonth() === l.getMonth() && n.getDate() === l.getDate(), vn = Math.PI / 180, Tf = 2440588, Af = 2451545, Vl = vn * 23.4397, Lf = 149598e3, _f = -0.833 * vn, Ef = 0.133 * vn, Bc = 5 * co, Sp = (n) => n.getTime() / _o - 0.5 + Tf - Af, Cp = (n, l) => Math.atan2(Math.sin(n) * Math.cos(Vl) - Math.tan(l) * Math.sin(Vl), Math.cos(n)), Tp = (n, l) => Math.asin(Math.sin(l) * Math.cos(Vl) + Math.cos(l) * Math.sin(Vl) * Math.sin(n)), Df = (n, l) => vn * (280.16 + 360.9856235 * n) - l, Bf = (n, l, o) => Math.asin(Math.sin(l) * Math.sin(o) + Math.cos(l) * Math.cos(o) * Math.cos(n));
+}, ls = (n, l) => n.getFullYear() === l.getFullYear() && n.getMonth() === l.getMonth() && n.getDate() === l.getDate(), vn = Math.PI / 180, Tf = 2440588, Af = 2451545, Vl = vn * 23.4397, Lf = 149598e3, _f = -0.833 * vn, Ef = 0.133 * vn, Rc = 5 * co, Sp = (n) => n.getTime() / Eo - 0.5 + Tf - Af, Cp = (n, l) => Math.atan2(Math.sin(n) * Math.cos(Vl) - Math.tan(l) * Math.sin(Vl), Math.cos(n)), Tp = (n, l) => Math.asin(Math.sin(l) * Math.cos(Vl) + Math.cos(l) * Math.sin(Vl) * Math.sin(n)), Df = (n, l) => vn * (280.16 + 360.9856235 * n) - l, Rf = (n, l, o) => Math.asin(Math.sin(l) * Math.sin(o) + Math.cos(l) * Math.cos(o) * Math.cos(n));
 function Ap(n) {
   const l = vn * (357.5291 + 0.98560028 * n), o = vn * (1.9148 * Math.sin(l) + 0.02 * Math.sin(2 * l) + 3e-4 * Math.sin(3 * l)), c = l + o + vn * 102.9372 + Math.PI;
   return { ra: Cp(c, 0), dec: Tp(c, 0), dist: Lf };
@@ -4789,16 +4789,16 @@ function Lp(n) {
 }
 const _p = (n, l, o, c) => {
   const m = Sp(l), b = n(m);
-  return Bf(Df(m, vn * -c) - b.ra, vn * o, b.dec);
-}, tc = (n, l, o) => _p(Ap, n, l, o), Rf = (n, l, o) => _p(Lp, n, l, o);
+  return Rf(Df(m, vn * -c) - b.ra, vn * o, b.dec);
+}, tc = (n, l, o) => _p(Ap, n, l, o), Bf = (n, l, o) => _p(Lp, n, l, o);
 function Ep(n, l, o, c) {
   const m = {};
   let b = o.getTime(), w = n(o) - l;
-  for (let L = b + Bc; L <= c.getTime(); L += Bc) {
+  for (let L = b + Rc; L <= c.getTime(); L += Rc) {
     const y = n(new Date(L)) - l;
     if (w < 0 != y < 0) {
-      const R = new Date(b + (L - b) * w / (w - y));
-      y > 0 ? m.rise ?? (m.rise = R) : m.set ?? (m.set = R);
+      const B = new Date(b + (L - b) * w / (w - y));
+      y > 0 ? m.rise ?? (m.rise = B) : m.set ?? (m.set = B);
     }
     b = L, w = y;
   }
@@ -4806,8 +4806,8 @@ function Ep(n, l, o, c) {
 }
 const Dp = (n) => {
   const l = ps(n);
-  return [l, new Date(l.getTime() + _o)];
-}, Nf = (n, l, o) => Ep((c) => tc(c, l, o), _f, ...Dp(n)), Pf = (n, l, o) => Ep((c) => Rf(c, l, o), Ef, ...Dp(n));
+  return [l, new Date(l.getTime() + Eo)];
+}, Nf = (n, l, o) => Ep((c) => tc(c, l, o), _f, ...Dp(n)), Pf = (n, l, o) => Ep((c) => Bf(c, l, o), Ef, ...Dp(n));
 function If(n) {
   const l = Sp(n), o = Ap(l), c = Lp(l), m = Math.acos(Math.sin(o.dec) * Math.sin(c.dec) + Math.cos(o.dec) * Math.cos(c.dec) * Math.cos(o.ra - c.ra)), b = Math.atan2(o.dist * Math.sin(m), c.dist - o.dist * Math.cos(m)), w = Math.atan2(Math.cos(o.dec) * Math.sin(o.ra - c.ra), Math.sin(o.dec) * Math.cos(c.dec) - Math.cos(o.dec) * Math.sin(c.dec) * Math.cos(o.ra - c.ra));
   return { fraction: (1 + Math.cos(b)) / 2, phase: 0.5 + 0.5 * b * (w < 0 ? -1 : 1) / Math.PI };
@@ -4820,11 +4820,11 @@ const Hf = (n) => {
   return l && Ke(l.latitude) && Ke(l.longitude) ? { lat: Number(l.latitude), lon: Number(l.longitude) } : null;
 };
 function Ed(n, l) {
-  var R, vt, rt;
-  const o = Gl(n), c = o ? Nf(l, o.lat, o.lon) : {}, m = (R = n == null ? void 0 : n.states) == null ? void 0 : R["sun.sun"], b = ps(l).getTime(), w = (Y) => {
-    const $ = Y ? new Date(Y) : null;
-    return $ && Number.isFinite($.getTime()) && ps($).getTime() === b ? $ : null;
-  }, L = w((vt = m == null ? void 0 : m.attributes) == null ? void 0 : vt.next_rising), y = w((rt = m == null ? void 0 : m.attributes) == null ? void 0 : rt.next_setting);
+  var B, vt, st;
+  const o = Gl(n), c = o ? Nf(l, o.lat, o.lon) : {}, m = (B = n == null ? void 0 : n.states) == null ? void 0 : B["sun.sun"], b = ps(l).getTime(), w = (Y) => {
+    const X = Y ? new Date(Y) : null;
+    return X && Number.isFinite(X.getTime()) && ps(X).getTime() === b ? X : null;
+  }, L = w((vt = m == null ? void 0 : m.attributes) == null ? void 0 : vt.next_rising), y = w((st = m == null ? void 0 : m.attributes) == null ? void 0 : st.next_setting);
   return L && (c.rise = L), y && (c.set = y), c;
 }
 function Ff(n) {
@@ -4908,7 +4908,7 @@ function Vs(n, l) {
   }
   return ((o = l.attributes) == null ? void 0 : o.friendly_name) || l.entity_id;
 }
-const jf = (n) => n < 3 ? "low" : n < 6 ? "moderate" : n < 8 ? "high" : n < 11 ? "very_high" : "extreme", Rc = (n) => yp.find(([, l]) => n <= l)[0];
+const jf = (n) => n < 3 ? "low" : n < 6 ? "moderate" : n < 8 ? "high" : n < 11 ? "very_high" : "extreme", Bc = (n) => yp.find(([, l]) => n <= l)[0];
 function zf(n, l) {
   if (l === "Beaufort") return Math.round(n);
   const o = l ? vf[l] : void 0;
@@ -4938,7 +4938,7 @@ function Vf(n) {
   }
   return l;
 }
-const Bp = (n, l, o) => {
+const Rp = (n, l, o) => {
   var m, b, w;
   const c = (b = (m = n.entities) == null ? void 0 : m[o]) == null ? void 0 : b.platform;
   return !!c && !!((w = l[c]) != null && w.includes(gf));
@@ -4947,21 +4947,21 @@ function Gf(n, l) {
   const o = /* @__PURE__ */ new Map();
   return Object.values(n.states || {}).filter((c) => {
     var m;
-    return c.entity_id.startsWith("sensor.") && zl.includes(((m = c.attributes) == null ? void 0 : m.device_class) ?? "") && us(n, c.entity_id) && Bp(n, l, c.entity_id);
+    return c.entity_id.startsWith("sensor.") && zl.includes(((m = c.attributes) == null ? void 0 : m.device_class) ?? "") && us(n, c.entity_id) && Rp(n, l, c.entity_id);
   }).sort((c, m) => c.entity_id.localeCompare(m.entity_id)).forEach((c) => {
     o.has(c.attributes.device_class) || o.set(c.attributes.device_class, c.entity_id);
   }), zl.map((c) => o.get(c)).filter(Boolean);
 }
 const Uf = (n, l) => Object.values(n.states || {}).filter((o) => {
   var c, m;
-  return o.entity_id.startsWith("sensor.") && us(n, o.entity_id) && Bp(n, l, o.entity_id) && (((m = (c = n.entities) == null ? void 0 : c[o.entity_id]) == null ? void 0 : m.translation_key) ?? o.entity_id).toLowerCase().includes("pollen");
+  return o.entity_id.startsWith("sensor.") && us(n, o.entity_id) && Rp(n, l, o.entity_id) && (((m = (c = n.entities) == null ? void 0 : c[o.entity_id]) == null ? void 0 : m.translation_key) ?? o.entity_id).toLowerCase().includes("pollen");
 }).map((o) => o.entity_id).sort();
 function Ic(n, l, o) {
-  const c = Math.max(l - n, 1e-6), m = o[o.length - 1], b = o.find((R) => c / R <= 4) ?? m * Math.ceil(c / (4 * m)), w = Math.floor(n / b) * b;
+  const c = Math.max(l - n, 1e-6), m = o[o.length - 1], b = o.find((B) => c / B <= 4) ?? m * Math.ceil(c / (4 * m)), w = Math.floor(n / b) * b;
   let L = Math.ceil(l / b) * b;
   L === w && (L = w + b);
   const y = [];
-  for (let R = w; R <= L + b / 1e3; R += b) y.push(R);
+  for (let B = w; B <= L + b / 1e3; B += b) y.push(B);
   return { min: w, max: L, ticks: y };
 }
 const Gs = (n, l, o) => {
@@ -4977,12 +4977,12 @@ function Zf(n) {
   return w += '<div class="wbDcY">' + n.ticks.map((L) => '<span style="top:' + o(L) + '%">' + qt(n.format(L)) + "</span>").join("") + "</div>", w += '<div class="wbDcPlot"><svg viewBox="0 0 ' + Us + ' 100" preserveAspectRatio="none">' + n.night.map(([L, y]) => '<rect class="wbDcNight" x="' + L + '" y="0" width="' + (y - L) + '" height="100"></rect>').join("") + n.ticks.map((L) => '<line class="wbDcGrid" x1="0" x2="' + Us + '" y1="' + o(L) + '" y2="' + o(L) + '" vector-effect="non-scaling-stroke"></line>').join("") + n.sun.map((L) => '<line class="wbDcSunLine" x1="' + L.t + '" x2="' + L.t + '" y1="0" y2="100" vector-effect="non-scaling-stroke"></line>').join("") + (n.past && n.past.length > 1 ? '<polyline class="wbDcPast" points="' + m(n.past) + '" vector-effect="non-scaling-stroke"></polyline>' : "") + (b.length > 1 ? '<polygon class="wbDcArea" points="' + b[0].t + ",100 " + m(b) + " " + b[b.length - 1].t + ',100"></polygon><polyline class="wbDcLine" points="' + m(b) + '" vector-effect="non-scaling-stroke"></polyline>' : "") + (n.now ? '<line class="wbDcNow" x1="' + n.now.t + '" x2="' + n.now.t + '" y1="0" y2="100" vector-effect="non-scaling-stroke"></line>' : "") + "</svg>" + (n.kind === "bars" ? n.points.filter((L) => L.v > 0).map((L) => '<i class="wbDcBar" style="left:' + c(L.t + 12) + ";width:" + c(36) + ";height:" + (100 - o(L.v)) + '%"></i>').join("") : "") + (n.now && n.kind === "line" ? '<i class="wbDcDot" style="left:' + c(n.now.t) + ";top:" + o(n.now.v) + '%"></i>' : "") + (n.peak ? '<span class="wbDcPeak" style="left:' + c(n.peak.t) + ";top:" + o(n.peak.v) + '%">' + qt(n.peak.label) + "</span>" : "") + (n.note ? '<span class="wbDcNote">' + qt(n.note) + "</span>" : "") + "</div>", w += '<div class="wbDcX">' + n.hours.map((L) => '<span class="' + (L.minor ? "wbMinor" : "") + '" style="left:' + c(L.t) + '">' + qt(L.label) + "</span>").join("") + "</div></div>", w;
 }
 function Kf(n, l) {
-  const w = n.map((U) => U.value), L = Math.min(...w), y = Math.max(...w), R = y - L || 1, vt = (U) => U / (n.length - 1) * 300, rt = (U) => 18 + (1 - (U - L) / R) * 84, Y = n.map((U, W) => vt(W) + "," + rt(U.value)).join(" "), $ = w.indexOf(y), nt = w.indexOf(L), K = (U) => U === 0 ? "start" : U === n.length - 1 ? "end" : "middle";
-  return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true"><polygon class="wbArea" points="0,102 ' + Y + ' 300,102"></polygon><polyline class="wbLine" points="' + Y + '" vector-effect="non-scaling-stroke"></polyline><text x="' + vt($) + '" y="' + (rt(y) - 6) + '" text-anchor="' + K($) + '">' + qt(l(y)) + '</text><text x="' + vt(nt) + '" y="' + (rt(L) + 14) + '" text-anchor="' + K(nt) + '">' + qt(l(L)) + '</text><text x="0" y="120" text-anchor="start">' + qt(n[0].label) + '</text><text x="300" y="120" text-anchor="end">' + qt(n[n.length - 1].label) + "</text></svg>";
+  const w = n.map((U) => U.value), L = Math.min(...w), y = Math.max(...w), B = y - L || 1, vt = (U) => U / (n.length - 1) * 300, st = (U) => 18 + (1 - (U - L) / B) * 84, Y = n.map((U, W) => vt(W) + "," + st(U.value)).join(" "), X = w.indexOf(y), ot = w.indexOf(L), K = (U) => U === 0 ? "start" : U === n.length - 1 ? "end" : "middle";
+  return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true"><polygon class="wbArea" points="0,102 ' + Y + ' 300,102"></polygon><polyline class="wbLine" points="' + Y + '" vector-effect="non-scaling-stroke"></polyline><text x="' + vt(X) + '" y="' + (st(y) - 6) + '" text-anchor="' + K(X) + '">' + qt(l(y)) + '</text><text x="' + vt(ot) + '" y="' + (st(L) + 14) + '" text-anchor="' + K(ot) + '">' + qt(l(L)) + '</text><text x="0" y="120" text-anchor="start">' + qt(n[0].label) + '</text><text x="300" y="120" text-anchor="end">' + qt(n[n.length - 1].label) + "</text></svg>";
 }
 function $f(n, l) {
-  const b = n.map((rt) => rt.value).concat([]), w = Math.min(...b) - 2, L = Math.max(...b) + 1, y = L - w || 1, R = 300 / n.length, vt = (rt) => (1 - (rt - w) / y) * 104;
-  return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true">' + n.map((rt, Y) => '<rect class="wbBar' + (rt.now ? " wbNowBar" : "") + '" x="' + (Y * R + R * 0.2) + '" y="' + vt(rt.value) + '" width="' + R * 0.6 + '" height="' + (104 - vt(rt.value)) + '" rx="6"></rect><text x="' + (Y * R + R / 2) + '" y="120" text-anchor="middle">' + qt(rt.label) + "</text>").join("") + "</svg>";
+  const b = n.map((st) => st.value).concat([]), w = Math.min(...b) - 2, L = Math.max(...b) + 1, y = L - w || 1, B = 300 / n.length, vt = (st) => (1 - (st - w) / y) * 104;
+  return '<svg class="wbChart" viewBox="0 0 300 120" aria-hidden="true">' + n.map((st, Y) => '<rect class="wbBar' + (st.now ? " wbNowBar" : "") + '" x="' + (Y * B + B * 0.2) + '" y="' + vt(st.value) + '" width="' + B * 0.6 + '" height="' + (104 - vt(st.value)) + '" rx="6"></rect><text x="' + (Y * B + B / 2) + '" y="120" text-anchor="middle">' + qt(st.label) + "</text>").join("") + "</svg>";
 }
 const Xf = [
   [44.5, 40.1, 16.5, 13.2, -15, 0.7],
@@ -5000,24 +5000,24 @@ const Xf = [
 ], Jf = [[60, 92, 2.2], [72, 98, 1.6], [48, 100, 1.5], [85, 88, 1.8], [38, 92, 1.3], [66, 84, 1.2], [95, 80, 1.3], [25, 40, 1.4], [82, 30, 1.3], [55, 108, 1.2]], Hc = [[54.4, 95, 1.8], [44.5, 56.6, 1.5], [33.5, 56.6, 1.1], [23.7, 40.1, 1.1]], Qf = [[30, 62], [48, 48], [72, 60], [96, 82], [86, 112], [30, 108], [16, 86]];
 let th = 0;
 function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, cards: b, onOpen: w, hoursWindow: L } = {}) {
-  var yn, Po;
-  const y = "wb" + ++th + "-", R = document.createElement("div");
-  R.className = "wb", R.dataset.style = c;
+  var yn, Io;
+  const y = "wb" + ++th + "-", B = document.createElement("div");
+  B.className = "wb", B.dataset.style = c;
   const vt = document.createElement("div");
-  vt.className = "wbBento", R.appendChild(vt), n.replaceChildren(R);
-  const rt = ["aq_tile", "pollen_tile", "radar_tile"], Y = ["current", "hourly", "sun", "moon", "wind", "uv_index", "compared_to_average", "humidity", "pressure", "precipitation", "visibility", "air_quality", ...rt].filter((x) => !b || b.includes(x)), $ = { current: "wide", hourly: "wide", compared_to_average: "double" }, nt = {};
+  vt.className = "wbBento", B.appendChild(vt), n.replaceChildren(B);
+  const st = ["aq_tile", "pollen_tile", "radar_tile"], Y = ["current", "hourly", "sun", "moon", "wind", "uv_index", "compared_to_average", "humidity", "pressure", "precipitation", "visibility", "air_quality", ...st].filter((x) => !b || b.includes(x)), X = { current: "wide", hourly: "wide", compared_to_average: "double" }, ot = {};
   Y.forEach((x) => {
     const S = document.createElement("div");
-    S.className = "wbItem", S.dataset.card = x, S.dataset.size = $[x] || "tile", S.hidden = !0, vt.appendChild(S), nt[x] = { el: S, html: null };
+    S.className = "wbItem", S.dataset.card = x, S.dataset.size = X[x] || "tile", S.hidden = !0, vt.appendChild(S), ot[x] = { el: S, html: null };
   });
-  let K = !1, U = null, W = 0, ut = -1, tt = !1, ft = null;
-  const J = "homecore-next-view", P = { openDay: void 0, opener: void 0, dayMode: "temperature", hourlyMode: "temperature", hourlyView: (() => {
+  let K = !1, U = null, W = 0, ut = -1, et = !1, ft = null;
+  const tt = "homecore-next-view", P = { openDay: void 0, opener: void 0, dayMode: "temperature", hourlyMode: "temperature", hourlyView: (() => {
     try {
-      return localStorage.getItem(J);
+      return localStorage.getItem(tt);
     } catch {
       return null;
     }
-  })() === "bars" ? "bars" : "strip", aq: void 0 }, st = { todayHistory: void 0, rain: void 0, temperatureHistory: void 0, pressureHistory: void 0, aqHistory: void 0, categories: void 0, lastFetch: 0 };
+  })() === "bars" ? "bars" : "strip", aq: void 0 }, lt = { todayHistory: void 0, rain: void 0, temperatureHistory: void 0, pressureHistory: void 0, aqHistory: void 0, categories: void 0, lastFetch: 0 };
   let _t = /* @__PURE__ */ new Date(), H = /* @__PURE__ */ new Date();
   const It = {}, G = {}, Wt = {}, M = (x) => {
     var S;
@@ -5038,11 +5038,11 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     if (typeof ((Z = x.connection) == null ? void 0 : Z.subscribeMessage) != "function") return;
     const O = { entityId: C };
     try {
-      O.unsub = Promise.resolve(x.connection.subscribeMessage((X) => {
-        K || G[S] !== O || (X != null && X.forecast ? Wt[S] = { entityId: C, forecast: X.forecast } : delete Wt[S], uo());
+      O.unsub = Promise.resolve(x.connection.subscribeMessage((J) => {
+        K || G[S] !== O || (J != null && J.forecast ? Wt[S] = { entityId: C, forecast: J.forecast } : delete Wt[S], uo());
       }, { type: "weather/subscribe_forecast", forecast_type: S, entity_id: C }));
-    } catch (X) {
-      O.unsub = Promise.reject(X);
+    } catch (J) {
+      O.unsub = Promise.reject(J);
     }
     O.unsub.catch(() => {
       G[S] === O && delete G[S];
@@ -5064,40 +5064,40 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     no_attributes: O,
     significant_changes_only: !1
   });
-  async function dt(x, S) {
-    var lt, bt, wt;
+  async function ct(x, S) {
+    var dt, bt, wt;
     const C = mn(x, S, "pressure");
     if (!C) return;
-    const O = C.stateObj.entity_id, Z = await j(x, O, new Date(Date.now() - 3 * Fe)), X = (wt = (bt = (lt = Z == null ? void 0 : Z[O]) == null ? void 0 : lt.find((Pt) => {
+    const O = C.stateObj.entity_id, Z = await j(x, O, new Date(Date.now() - 3 * Fe)), J = (wt = (bt = (dt = Z == null ? void 0 : Z[O]) == null ? void 0 : dt.find((Pt) => {
       var Lt;
       return typeof ((Lt = Pt.a) == null ? void 0 : Lt.pressure) == "number";
     })) == null ? void 0 : bt.a) == null ? void 0 : wt.pressure;
-    st.pressureHistory = typeof X == "number" ? { entityId: O, value: X } : void 0;
+    lt.pressureHistory = typeof J == "number" ? { entityId: O, value: J } : void 0;
   }
   async function gt(x, S) {
     var bt;
     const C = mn(x, S, "temperature");
     if (!C) return;
-    const O = C.stateObj.entity_id, Z = ps(/* @__PURE__ */ new Date()), X = await j(x, O, new Date(Z.getTime() - sf * _o)), lt = /* @__PURE__ */ new Map();
-    for (const wt of (X == null ? void 0 : X[O]) ?? []) {
+    const O = C.stateObj.entity_id, Z = ps(/* @__PURE__ */ new Date()), J = await j(x, O, new Date(Z.getTime() - sf * Eo)), dt = /* @__PURE__ */ new Map();
+    for (const wt of (J == null ? void 0 : J[O]) ?? []) {
       const Pt = (bt = wt.a) == null ? void 0 : bt.temperature, Lt = new Date((wt.lc ?? wt.lu) * 1e3);
       if (typeof Pt != "number" || Lt >= Z) continue;
       const kt = Lt.toDateString();
-      lt.set(kt, Math.max(lt.get(kt) ?? -1 / 0, Pt));
+      dt.set(kt, Math.max(dt.get(kt) ?? -1 / 0, Pt));
     }
-    st.temperatureHistory = { entityId: O, dailyHighs: [...lt.values()], days: [...lt.entries()].map(([wt, Pt]) => ({ date: new Date(wt), high: Pt })) };
+    lt.temperatureHistory = { entityId: O, dailyHighs: [...dt.values()], days: [...dt.entries()].map(([wt, Pt]) => ({ date: new Date(wt), high: Pt })) };
   }
   async function yt(x) {
     const S = Dd(x);
     if (!S) return;
     const C = await x.callWS({ type: "recorder/statistic_during_period", statistic_id: S, rolling_window: { duration: { hours: 24 } } });
-    st.rain = { entityId: S, change: (C == null ? void 0 : C.change) ?? void 0 };
+    lt.rain = { entityId: S, change: (C == null ? void 0 : C.change) ?? void 0 };
   }
   function $t() {
     const x = l == null ? void 0 : l();
     if (!x || K || typeof x.callWS != "function") return;
     const S = Pa(x);
-    st.lastFetch = Date.now(), [dt(x, S), gt(x, S), yt(x)].forEach((C) => C.then(() => uo(), () => {
+    lt.lastFetch = Date.now(), [ct(x, S), gt(x, S), yt(x)].forEach((C) => C.then(() => uo(), () => {
     }));
   }
   async function le() {
@@ -5107,11 +5107,11 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     if (!S) return;
     const C = S.stateObj.entity_id, O = ps(/* @__PURE__ */ new Date());
     try {
-      const Z = await j(x, C, O), X = (lt) => ((Z == null ? void 0 : Z[C]) ?? []).map((bt) => {
+      const Z = await j(x, C, O), J = (dt) => ((Z == null ? void 0 : Z[C]) ?? []).map((bt) => {
         var wt;
-        return { time: bt.lu * 1e3, value: (wt = bt.a) == null ? void 0 : wt[lt] };
+        return { time: bt.lu * 1e3, value: (wt = bt.a) == null ? void 0 : wt[dt] };
       }).filter((bt) => typeof bt.value == "number");
-      st.todayHistory = { day: O.toDateString(), fetched: Date.now(), temperature: X("temperature"), humidity: X("humidity") }, uo();
+      lt.todayHistory = { day: O.toDateString(), fetched: Date.now(), temperature: J("temperature"), humidity: J("humidity") }, uo();
     } catch {
     }
   }
@@ -5119,16 +5119,16 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     const S = l == null ? void 0 : l();
     if (S)
       try {
-        const C = await j(S, x, new Date(Date.now() - 24 * Fe), !0), O = ((C == null ? void 0 : C[x]) ?? []).filter((X) => Ke(X.s)), Z = Math.max(1, Math.ceil(O.length / 48));
-        st.aqHistory = { entityId: x, points: O.filter((X, lt) => lt % Z === 0).map((X) => ({ label: Ao(new Date(X.lu * 1e3), S), value: Number(X.s) })) }, uo();
+        const C = await j(S, x, new Date(Date.now() - 24 * Fe), !0), O = ((C == null ? void 0 : C[x]) ?? []).filter((J) => Ke(J.s)), Z = Math.max(1, Math.ceil(O.length / 48));
+        lt.aqHistory = { entityId: x, points: O.filter((J, dt) => dt % Z === 0).map((J) => ({ label: Lo(new Date(J.lu * 1e3), S), value: Number(J.s) })) }, uo();
       } catch {
       }
   }
   function Ca(x) {
-    st.categories === void 0 && (st.categories = null, Promise.resolve().then(() => x.callWS({ type: "integration/descriptions" })).then((S) => {
-      st.categories = Vf(S);
+    lt.categories === void 0 && (lt.categories = null, Promise.resolve().then(() => x.callWS({ type: "integration/descriptions" })).then((S) => {
+      lt.categories = Vf(S);
     }, () => {
-      st.categories = {};
+      lt.categories = {};
     }).then(() => uo()));
   }
   function Pa(x) {
@@ -5136,7 +5136,7 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     const S = Object.keys(x.states || {}).filter((O) => O.startsWith("weather.") && us(x, O)).sort();
     return o && ((C = x.states) != null && C[o]) ? [o, ...S.filter((O) => O !== o)] : S;
   }
-  const me = (x) => st.categories ? { air: Gf(x, st.categories), pollen: Uf(x, st.categories) } : { air: [], pollen: [] };
+  const me = (x) => lt.categories ? { air: Gf(x, lt.categories), pollen: Uf(x, lt.categories) } : { air: [], pollen: [] };
   function Xt(x, S, C, O) {
     if (c === "line") return '<span class="wbWx wbS' + S + ' wbLineIcon" aria-hidden="true">' + Ld(x, C || x === "clear-night") + "</span>";
     if (c === "smooth") {
@@ -5148,17 +5148,17 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
   const Te = () => M("daily").filter((x) => x.templow != null).slice(0, Ju);
   function Qt(x, S) {
     const C = new Date(S.datetime), O = /* @__PURE__ */ new Date();
-    return ls(C, O) ? Yt.today : ls(C, new Date(O.getTime() + _o)) ? Yt.tomorrow : Dc(C, x);
+    return ls(C, O) ? Yt.today : ls(C, new Date(O.getTime() + Eo)) ? Yt.tomorrow : Dc(C, x);
   }
   const Ma = (x, S, C) => C === 0 ? Qt(x, S) : Dc(new Date(S.datetime), x);
   function Ea(x, S) {
-    var Lt, kt, Gt, Rt;
+    var Lt, kt, Gt, Bt;
     const C = Of(x, S);
     if (!C) return "";
-    const O = Te(), Z = P.openDay !== void 0 ? O[P.openDay] : void 0, X = mn(x, S, "temperature"), lt = O[0], bt = lt && ls(new Date(lt.datetime), /* @__PURE__ */ new Date()), wt = ((kt = (Lt = x.config) == null ? void 0 : Lt.unit_system) == null ? void 0 : kt.temperature) || ((Gt = C.attributes) == null ? void 0 : Gt.temperature_unit) || "";
-    let Pt = '<div class="wbCard wbWeather' + (Z ? " wbIsOpen" : "") + '"><div class="wbClosed"' + (Z ? " inert" : "") + '><div class="wbNow">' + (w ? '<button class="wbCurrent wbOpenPage" data-wb="open-page" data-wb-focus="open-page" aria-label="' + qt(Yt.openPage) + '">' : '<div class="wbCurrent">') + Xt(C.state, 90, Ff(x), "now") + '<div class="wbTempBlock">' + (X && Ke(X.value) ? '<div class="wbTemp"><span class="wbDeg">' + qt(fa(Math.round(Number(X.value)), x.locale)) + '</span><span class="wbUnit">' + qt(wt) + "</span></div>" : "") + '<div class="wbPlace">' + qt(((Rt = x.config) == null ? void 0 : Rt.location_name) ?? "") + "</div></div>" + (w ? "</button>" : "</div>") + '<div class="wbCondition"><div class="wbCondName">' + qt(gr(x, C)) + "</div>" + (bt && lt.templow != null ? '<div class="wbRange">' + qt(Na(Yt.range, { high: oa(x, lt.temperature), low: oa(x, lt.templow) })) + "</div>" : "") + "</div></div>";
-    if (Pt += we(x) + Do(x), O.length) {
-      const Ft = bt && X && Ke(X.value) ? oa(x, X.value) : "", Zt = (Vt, Tt, ee) => Vt === 0 && Ft ? '<span class="wbAsDay">' + qt(Tt) + '</span><span class="wbAsNow">' + qt(ee) + "</span>" : qt(Tt);
+    const O = Te(), Z = P.openDay !== void 0 ? O[P.openDay] : void 0, J = mn(x, S, "temperature"), dt = O[0], bt = dt && ls(new Date(dt.datetime), /* @__PURE__ */ new Date()), wt = ((kt = (Lt = x.config) == null ? void 0 : Lt.unit_system) == null ? void 0 : kt.temperature) || ((Gt = C.attributes) == null ? void 0 : Gt.temperature_unit) || "";
+    let Pt = '<div class="wbCard wbWeather' + (Z ? " wbIsOpen" : "") + '"><div class="wbClosed"' + (Z ? " inert" : "") + '><div class="wbNow">' + (w ? '<button class="wbCurrent wbOpenPage" data-wb="open-page" data-wb-focus="open-page" aria-label="' + qt(Yt.openPage) + '">' : '<div class="wbCurrent">') + Xt(C.state, 90, Ff(x), "now") + '<div class="wbTempBlock">' + (J && Ke(J.value) ? '<div class="wbTemp"><span class="wbDeg">' + qt(fa(Math.round(Number(J.value)), x.locale)) + '</span><span class="wbUnit">' + qt(wt) + "</span></div>" : "") + '<div class="wbPlace">' + qt(((Bt = x.config) == null ? void 0 : Bt.location_name) ?? "") + "</div></div>" + (w ? "</button>" : "</div>") + '<div class="wbCondition"><div class="wbCondName">' + qt(gr(x, C)) + "</div>" + (bt && dt.templow != null ? '<div class="wbRange">' + qt(Na(Yt.range, { high: oa(x, dt.temperature), low: oa(x, dt.templow) })) + "</div>" : "") + "</div></div>";
+    if (Pt += we(x) + Ro(x), O.length) {
+      const Ft = bt && J && Ke(J.value) ? oa(x, J.value) : "", Zt = (Vt, Tt, ee) => Vt === 0 && Ft ? '<span class="wbAsDay">' + qt(Tt) + '</span><span class="wbAsNow">' + qt(ee) + "</span>" : qt(Tt);
       Pt += '<div class="wbColumns" role="list">' + O.map((Vt, Tt) => '<button class="wbColumn" role="listitem" data-wb="day" data-index="' + Tt + '" data-wb-focus="col-' + Tt + '"><span class="wbDay">' + Zt(Tt, Ma(x, Vt, Tt), Yt.now) + "</span>" + Xt(Vt.condition ?? "cloudy", 60, !1, "col" + Tt) + '<span class="wbTemps"><span class="wbHi">' + Zt(Tt, oa(x, Vt.temperature), Ft) + '</span><span class="wbLo">' + qt(oa(x, Vt.templow)) + "</span></span></button>").join("") + "</div>", Pt += '<div class="wbHalves" role="list">' + O.map((Vt, Tt) => '<button class="wbTile" role="listitem" data-wb="day" data-index="' + Tt + '" data-wb-focus="half-' + Tt + '">' + Xt(Vt.condition ?? "cloudy", 40, !1, "half" + Tt) + '<span class="wbText"><span class="wbName">' + qt(Qt(x, Vt)) + '</span><span class="wbSub">' + qt(Na(Yt.highLow, { high: oa(x, Vt.temperature), low: oa(x, Vt.templow) })) + "</span></span></button>").join("") + "</div>";
     }
     return Pt + "</div>" + (Z ? Ta(x, S, Z) : "") + "</div>";
@@ -5198,35 +5198,35 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
   function Kt(x) {
     const S = Date.now(), C = M("hourly").filter((kt) => new Date(kt.datetime).getTime() > S - Fe).slice(0, 13);
     if (C.length < 2) return "";
-    const O = (kt) => Ao(new Date(kt.datetime), x), Z = (kt) => xr[kt.condition] || "", X = (kt) => de[kt.condition] || kt.condition;
-    let lt = Z(C[0]);
-    if (!lt) return "";
+    const O = (kt) => Lo(new Date(kt.datetime), x), Z = (kt) => xr[kt.condition] || "", J = (kt) => de[kt.condition] || kt.condition;
+    let dt = Z(C[0]);
+    if (!dt) return "";
     let bt = C[0], wt = 0;
     for (const kt of C.slice(1))
-      wt === 2 || X(kt) === X(bt) || !Z(kt) || (lt += (wt ? " and " : ", ") + Z(kt) + " from " + O(kt), bt = kt, wt++);
+      wt === 2 || J(kt) === J(bt) || !Z(kt) || (dt += (wt ? " and " : ", ") + Z(kt) + " from " + O(kt), bt = kt, wt++);
     const Pt = Number(C[0].temperature), Lt = C.filter((kt) => Ke(kt.temperature));
     if (Ke(Pt) && Lt.length) {
-      const kt = Lt.reduce((Rt, Ft) => Number(Ft.temperature) < Number(Rt.temperature) ? Ft : Rt), Gt = Lt.reduce((Rt, Ft) => Number(Ft.temperature) > Number(Rt.temperature) ? Ft : Rt);
-      Pt - Number(kt.temperature) >= 3 ? lt += ", down to " + oa(x, kt.temperature) + " by " + O(kt) : Number(Gt.temperature) - Pt >= 3 && (lt += ", up to " + oa(x, Gt.temperature) + " by " + O(Gt));
+      const kt = Lt.reduce((Bt, Ft) => Number(Ft.temperature) < Number(Bt.temperature) ? Ft : Bt), Gt = Lt.reduce((Bt, Ft) => Number(Ft.temperature) > Number(Bt.temperature) ? Ft : Bt);
+      Pt - Number(kt.temperature) >= 3 ? dt += ", down to " + oa(x, kt.temperature) + " by " + O(kt) : Number(Gt.temperature) - Pt >= 3 && (dt += ", up to " + oa(x, Gt.temperature) + " by " + O(Gt));
     }
-    return lt[0].toUpperCase() + lt.slice(1) + ".";
+    return dt[0].toUpperCase() + dt.slice(1) + ".";
   }
   const we = (x) => {
     const S = Kt(x);
     return S ? '<div class="wbSummary"><p class="wbSummaryText">' + qt(S) + "</p></div>" : "";
   };
-  function Do(x) {
-    const [S, C] = Bl[L == null ? void 0 : L()] || Bl.day, O = Date.now(), Z = M("hourly").filter((X) => {
-      const lt = new Date(X.datetime), bt = lt.getHours();
-      return lt.getTime() > O - Fe / 2 && bt >= S && bt < C && Ke(X.temperature);
+  function Ro(x) {
+    const [S, C] = Rl[L == null ? void 0 : L()] || Rl.day, O = Date.now(), Z = M("hourly").filter((J) => {
+      const dt = new Date(J.datetime), bt = dt.getHours();
+      return dt.getTime() > O - Fe / 2 && bt >= S && bt < C && Ke(J.temperature);
     }).slice(0, 4);
-    return Z.length ? '<div class="wbNextHours" role="list">' + Z.map((X, lt) => '<div class="wbHour" role="listitem"><span class="wbHourTime">' + qt(Ao(new Date(X.datetime), x)) + "</span>" + Xt(X.condition ?? "cloudy", 40, X.is_daytime === !1, "hr" + lt) + '<span class="wbHourTemp">' + qt(oa(x, X.temperature)) + "</span></div>").join("") + "</div>" : "";
+    return Z.length ? '<div class="wbNextHours" role="list">' + Z.map((J, dt) => '<div class="wbHour" role="listitem"><span class="wbHourTime">' + qt(Lo(new Date(J.datetime), x)) + "</span>" + Xt(J.condition ?? "cloudy", 40, J.is_daytime === !1, "hr" + dt) + '<span class="wbHourTemp">' + qt(oa(x, J.temperature)) + "</span></div>").join("") + "</div>" : "";
   }
   function yr(x) {
     const S = x.getTime(), C = Date.now() - Fe;
     return M("hourly").filter((O) => {
       const Z = new Date(O.datetime).getTime();
-      return Z >= S && Z < S + _o && Z > C;
+      return Z >= S && Z < S + Eo && Z > C;
     });
   }
   function Ui(x) {
@@ -5235,72 +5235,72 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     return x.some((C) => C.precipitation != null || C.precipitation_probability != null) && S.push("precipitation"), x.some((C) => C.humidity != null) && S.push("humidity"), S;
   }
   function Ta(x, S, C) {
-    const O = ps(new Date(C.datetime)), Z = yr(O), X = Ui(Z), lt = X.includes(P.dayMode) ? P.dayMode : "temperature", bt = (wt) => wt === "humidity" ? Yt.humidity : Yt.modes[wt];
-    return '<div class="wbOpen" data-wb-open="day"><div class="wbOpenHead">' + Xt(C.condition ?? "cloudy", 40, !1, "open") + '<div class="wbText"><span class="wbName">' + qt(Qt(x, C)) + '</span><span class="wbSub">' + qt(Na(Yt.highLow, { high: oa(x, C.temperature), low: oa(x, C.templow) })) + '</span></div><button class="wbBack" title="' + qt(Yt.back) + '" data-wb="close-day" data-wb-focus="back-day">' + cs(ka.back) + "</button></div>" + (X.length > 1 ? '<div class="wbDayTabs"><div class="wbSegments" role="group">' + X.map((wt) => '<button aria-pressed="' + (wt === lt) + '" data-wb="day-mode" data-mode="' + wt + '" data-wb-focus="day-mode-' + wt + '">' + qt(bt(wt)) + "</button>").join("") + "</div></div>" : "") + '<div class="wbGraph">' + Zf(fe(x, S, O, Z, lt)) + "</div></div>";
+    const O = ps(new Date(C.datetime)), Z = yr(O), J = Ui(Z), dt = J.includes(P.dayMode) ? P.dayMode : "temperature", bt = (wt) => wt === "humidity" ? Yt.humidity : Yt.modes[wt];
+    return '<div class="wbOpen" data-wb-open="day"><div class="wbOpenHead">' + Xt(C.condition ?? "cloudy", 40, !1, "open") + '<div class="wbText"><span class="wbName">' + qt(Qt(x, C)) + '</span><span class="wbSub">' + qt(Na(Yt.highLow, { high: oa(x, C.temperature), low: oa(x, C.templow) })) + '</span></div><button class="wbBack" title="' + qt(Yt.back) + '" data-wb="close-day" data-wb-focus="back-day">' + cs(ka.back) + "</button></div>" + (J.length > 1 ? '<div class="wbDayTabs"><div class="wbSegments" role="group">' + J.map((wt) => '<button aria-pressed="' + (wt === dt) + '" data-wb="day-mode" data-mode="' + wt + '" data-wb-focus="day-mode-' + wt + '">' + qt(bt(wt)) + "</button>").join("") + "</div></div>" : "") + '<div class="wbGraph">' + Zf(fe(x, S, O, Z, dt)) + "</div></div>";
   }
   function fe(x, S, C, O, Z) {
-    var Rn;
-    const X = C.getTime(), lt = Date.now(), bt = ls(C, /* @__PURE__ */ new Date()), wt = (ce) => (ce - X) / co, Pt = (ce) => Ao(new Date(ce), x), Lt = (ce) => new Date(ce.datetime).getTime(), kt = [0, 3, 6, 9, 12, 15, 18, 21].map((ce) => ({ t: ce * 60, label: Pt(X + ce * Fe), minor: ce % 6 !== 0 })), { rise: Gt, set: Rt } = Ed(x, C), Ft = [], Zt = [];
-    Gt && (Ft.push({ t: wt(Gt.getTime()), label: Pt(Gt.getTime()), rise: !0 }), Zt.push([0, wt(Gt.getTime())])), Rt && (Ft.push({ t: wt(Rt.getTime()), label: Pt(Rt.getTime()), rise: !1 }), Zt.push([wt(Rt.getTime()), Us]));
+    var Bn;
+    const J = C.getTime(), dt = Date.now(), bt = ls(C, /* @__PURE__ */ new Date()), wt = (ce) => (ce - J) / co, Pt = (ce) => Lo(new Date(ce), x), Lt = (ce) => new Date(ce.datetime).getTime(), kt = [0, 3, 6, 9, 12, 15, 18, 21].map((ce) => ({ t: ce * 60, label: Pt(J + ce * Fe), minor: ce % 6 !== 0 })), { rise: Gt, set: Bt } = Ed(x, C), Ft = [], Zt = [];
+    Gt && (Ft.push({ t: wt(Gt.getTime()), label: Pt(Gt.getTime()), rise: !0 }), Zt.push([0, wt(Gt.getTime())])), Bt && (Ft.push({ t: wt(Bt.getTime()), label: Pt(Bt.getTime()), rise: !1 }), Zt.push([wt(Bt.getTime()), Us]));
     const Vt = Gl(x);
-    !Gt && !Rt && Vt && tc(new Date(X + _o / 2), Vt.lat, Vt.lon) < 0 && Zt.push([0, Us]);
-    const Tt = bt ? wt(lt) : void 0, ee = { hours: kt, sun: Ft, night: Zt };
+    !Gt && !Bt && Vt && tc(new Date(J + Eo / 2), Vt.lat, Vt.lon) < 0 && Zt.push([0, Us]);
+    const Tt = bt ? wt(dt) : void 0, ee = { hours: kt, sun: Ft, night: Zt };
     if (!O.length && !bt) return { ...ee, kind: "line", points: [], min: 0, max: 1, ticks: [], format: String, note: Yt.noHourly };
     if (Z === "precipitation") {
-      const ce = O.some((Aa) => Aa.precipitation_probability != null), Oa = O.map((Aa) => ({ t: wt(Lt(Aa)), v: Number((ce ? Aa.precipitation_probability : Aa.precipitation) ?? 0) })), sn = vr(x, E(x, "hourly"), "precipitation"), ln = Math.max(0, ...Oa.map((Aa) => Aa.v)), ci = ce ? 100 : Ic(0, Math.max(ln, 1), [0.5, 1, 2, 5, 10]).max, Sr = (Aa) => ce ? fa(Aa, x.locale) + "%" : fa(Aa, x.locale, { maximumFractionDigits: 1 }) + " " + sn, $n = Oa.find((Aa) => Aa.v === ln);
+      const ce = O.some((Aa) => Aa.precipitation_probability != null), Oa = O.map((Aa) => ({ t: wt(Lt(Aa)), v: Number((ce ? Aa.precipitation_probability : Aa.precipitation) ?? 0) })), sn = vr(x, E(x, "hourly"), "precipitation"), ln = Math.max(0, ...Oa.map((Aa) => Aa.v)), pi = ce ? 100 : Ic(0, Math.max(ln, 1), [0.5, 1, 2, 5, 10]).max, Sr = (Aa) => ce ? fa(Aa, x.locale) + "%" : fa(Aa, x.locale, { maximumFractionDigits: 1 }) + " " + sn, $n = Oa.find((Aa) => Aa.v === ln);
       return {
         ...ee,
         kind: "bars",
         points: Oa,
         min: 0,
-        max: ci,
-        ticks: [0, ci / 2, ci],
+        max: pi,
+        ticks: [0, pi / 2, pi],
         format: Sr,
         now: Tt !== void 0 ? { t: Tt, v: 0 } : void 0,
         peak: $n && ln > 0 ? { t: $n.t + 30, v: $n.v, label: Sr($n.v) } : void 0,
         note: ln > 0 ? void 0 : Yt.noRain
       };
     }
-    const ie = Z === "humidity" ? "humidity" : "temperature", Ge = O.filter((ce) => ce[ie] != null && (!bt || Lt(ce) >= lt)).map((ce) => ({ t: wt(Lt(ce)), v: Number(ce[ie]) }));
+    const ie = Z === "humidity" ? "humidity" : "temperature", Ge = O.filter((ce) => ce[ie] != null && (!bt || Lt(ce) >= dt)).map((ce) => ({ t: wt(Lt(ce)), v: Number(ce[ie]) }));
     let Nt, Pe = [];
     if (Tt !== void 0) {
       const ce = mn(x, S, ie);
-      ce && Ke(ce.value) && (Nt = { t: Tt, v: Number(ce.value) }, Ge.unshift(Nt)), Pe = (((Rn = st.todayHistory) == null ? void 0 : Rn.day) === C.toDateString() ? st.todayHistory[ie] : []).filter((sn) => sn.time <= lt).map((sn) => ({ t: Math.max(0, wt(sn.time)), v: sn.value })), Nt && Pe.length && Pe.push(Nt);
+      ce && Ke(ce.value) && (Nt = { t: Tt, v: Number(ce.value) }, Ge.unshift(Nt)), Pe = (((Bn = lt.todayHistory) == null ? void 0 : Bn.day) === C.toDateString() ? lt.todayHistory[ie] : []).filter((sn) => sn.time <= dt).map((sn) => ({ t: Math.max(0, wt(sn.time)), v: sn.value })), Nt && Pe.length && Pe.push(Nt);
     }
     const $e = [...Pe, ...Ge];
     if (!$e.length) return { ...ee, kind: "line", points: [], min: 0, max: 1, ticks: [], format: String, note: Yt.noHourly };
     const Fa = $e.map((ce) => ce.v), Dn = Ic(Math.min(...Fa), Math.max(...Fa), ie === "humidity" ? [5, 10, 20, 25] : [1, 2, 5, 10]);
     ie === "humidity" && (Dn.min = Math.max(0, Dn.min), Dn.max = Math.min(100, Dn.max), Dn.ticks = Dn.ticks.filter((ce) => ce >= 0 && ce <= 100));
-    const Bn = ie === "humidity" ? (ce) => fa(ce, x.locale) + "%" : (ce) => oa(x, ce), Xi = ie === "temperature" ? $e.reduce((ce, Oa) => Oa.v > ce.v ? Oa : ce) : void 0;
-    return { ...ee, kind: "line", points: Ge, past: Pe, ...Dn, format: Bn, now: Nt, peak: Xi ? { ...Xi, label: Bn(Xi.v) } : void 0 };
+    const Rn = ie === "humidity" ? (ce) => fa(ce, x.locale) + "%" : (ce) => oa(x, ce), Xi = ie === "temperature" ? $e.reduce((ce, Oa) => Oa.v > ce.v ? Oa : ce) : void 0;
+    return { ...ee, kind: "line", points: Ge, past: Pe, ...Dn, format: Rn, now: Nt, peak: Xi ? { ...Xi, label: Rn(Xi.v) } : void 0 };
   }
   function Oe(x) {
     const S = ["temperature"];
     return x.some((C) => C.precipitation_probability != null || C.precipitation != null) && S.push("precipitation"), x.some((C) => C.wind_speed != null) && S.push("wind"), S;
   }
   function kr(x, S, C = Mc) {
-    var X, lt;
+    var J, dt;
     const O = M("daily"), Z = [];
     for (let bt = 0; bt < C; bt++) for (const wt of [!1, !0]) {
       const Pt = x.getTime() + (bt * 24 + (wt ? 12 : 0)) * Fe, Lt = Pt + 12 * Fe, kt = {};
-      S.forEach((Rt) => {
-        const Ft = new Date(Rt.datetime).getTime();
-        Rt.condition && Ft >= Pt && Ft < Lt && (kt[Rt.condition] = (kt[Rt.condition] ?? 0) + (of.has(Rt.condition) ? 2 : 1));
+      S.forEach((Bt) => {
+        const Ft = new Date(Bt.datetime).getTime();
+        Bt.condition && Ft >= Pt && Ft < Lt && (kt[Bt.condition] = (kt[Bt.condition] ?? 0) + (of.has(Bt.condition) ? 2 : 1));
       });
-      let Gt = (X = Object.entries(kt).sort((Rt, Ft) => Ft[1] - Rt[1])[0]) == null ? void 0 : X[0];
+      let Gt = (J = Object.entries(kt).sort((Bt, Ft) => Ft[1] - Bt[1])[0]) == null ? void 0 : J[0];
       if (!Gt) {
-        const Rt = new Date(Pt).toDateString();
-        Gt = ((lt = O.find((Ft) => new Date(Ft.datetime).toDateString() === Rt)) == null ? void 0 : lt.condition) ?? "cloudy";
+        const Bt = new Date(Pt).toDateString();
+        Gt = ((dt = O.find((Ft) => new Date(Ft.datetime).toDateString() === Bt)) == null ? void 0 : dt.condition) ?? "cloudy";
       }
       Z.push({ cond: wt && Gt === "sunny" ? "clear-night" : Gt, night: wt });
     }
     return Z;
   }
-  function si(x, S, C) {
-    const O = E(x, "hourly"), Z = S.precipitation_probability != null ? fa(S.precipitation_probability, x.locale) + "%" : "", X = S.precipitation ? fa(S.precipitation, x.locale) + " " + vr(x, O, "precipitation") : "";
+  function li(x, S, C) {
+    const O = E(x, "hourly"), Z = S.precipitation_probability != null ? fa(S.precipitation_probability, x.locale) + "%" : "", J = S.precipitation ? fa(S.precipitation, x.locale) + " " + vr(x, O, "precipitation") : "";
     switch (C) {
       case "precipitation":
-        return Z ? [Z, X] : [X || "–", ""];
+        return Z ? [Z, J] : [J || "–", ""];
       case "wind":
         return S.wind_speed != null ? [fa(Math.round(S.wind_speed), x.locale), vr(x, O, "wind_speed")] : ["–", ""];
       default:
@@ -5308,49 +5308,49 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     }
   }
   function xe(x, S, C) {
-    const [O, Z] = Bl[L == null ? void 0 : L()] || Bl.day, X = [];
-    for (let lt = 0; lt < 4 && X.length < 3; lt++) {
+    const [O, Z] = Rl[L == null ? void 0 : L()] || Rl.day, J = [];
+    for (let dt = 0; dt < 4 && J.length < 3; dt++) {
       const bt = /* @__PURE__ */ new Date();
-      bt.setHours(0, 0, 0, 0), bt.setDate(bt.getDate() + lt);
+      bt.setHours(0, 0, 0, 0), bt.setDate(bt.getDate() + dt);
       const wt = new Date(bt);
       wt.setHours(Z, 0, 0, 0), bt.setHours(O, 0, 0, 0), !(wt.getTime() <= C || !S.some((Pt) => {
         const Lt = new Date(Pt.datetime).getTime();
         return Lt >= bt.getTime() && Lt <= wt.getTime();
-      })) && X.push({ a: bt.getTime(), b: wt.getTime(), label: Qt(x, { datetime: bt.toISOString() }) });
+      })) && J.push({ a: bt.getTime(), b: wt.getTime(), label: Qt(x, { datetime: bt.toISOString() }) });
     }
-    return X;
+    return J;
   }
-  function St(x, S, C, O, Z, X) {
-    const lt = (C.b - S.a) / Fe, bt = (Tt) => ((Tt - S.a) / Fe).toFixed(3), wt = 80, Pt = 32, Lt = [];
-    for (const Tt = new Date(S.a - _o); Tt.getTime() < C.b + _o; Tt.setDate(Tt.getDate() + 1)) {
+  function St(x, S, C, O, Z, J) {
+    const dt = (C.b - S.a) / Fe, bt = (Tt) => ((Tt - S.a) / Fe).toFixed(3), wt = 80, Pt = 32, Lt = [];
+    for (const Tt = new Date(S.a - Eo); Tt.getTime() < C.b + Eo; Tt.setDate(Tt.getDate() + 1)) {
       const { rise: ee, set: ie } = Ed(x, new Date(Tt));
       ee && ie && Lt.push({ rise: ee.getTime(), set: ie.getTime() });
     }
     const kt = (Tt, ee) => wt - (wt - Pt) * Math.sin(Math.PI * (ee - Tt.rise) / (Tt.set - Tt.rise)), Gt = (Tt) => !Lt.some((ee) => Tt >= ee.rise && Tt <= ee.set);
-    let Rt = "", Ft = "", Zt = "";
+    let Bt = "", Ft = "", Zt = "";
     Lt.forEach((Tt, ee) => {
       const ie = [];
       for (let Nt = Tt.rise; Nt <= Tt.set; Nt += 15 * co) ie.push(bt(Nt) + "," + kt(Tt, Nt).toFixed(2));
-      ie.push(bt(Tt.set) + "," + wt), Rt += '<polyline class="wbLineArc" points="' + ie.join(" ") + '"/>';
+      ie.push(bt(Tt.set) + "," + wt), Bt += '<polyline class="wbLineArc" points="' + ie.join(" ") + '"/>';
       const Ge = Lt[ee + 1];
-      Ge && (Rt += '<rect class="wbLineNight" x="' + bt(Tt.set) + '" y="0" width="' + ((Ge.rise - Tt.set) / Fe).toFixed(3) + '" height="100"/>'), [[Tt.rise, "↑"], [Tt.set, "↓"]].forEach(([Nt, Pe]) => {
-        Nt < S.a || Nt > C.b || (Ft += '<line class="wbLineEdge" x1="' + bt(Nt) + '" x2="' + bt(Nt) + '" y1="0" y2="100"/>', Zt += '<span class="wbLineTime" style="left:' + X(Nt) + '">' + Pe + " " + qt(Ao(new Date(Nt), x)) + "</span>");
+      Ge && (Bt += '<rect class="wbLineNight" x="' + bt(Tt.set) + '" y="0" width="' + ((Ge.rise - Tt.set) / Fe).toFixed(3) + '" height="100"/>'), [[Tt.rise, "↑"], [Tt.set, "↓"]].forEach(([Nt, Pe]) => {
+        Nt < S.a || Nt > C.b || (Ft += '<line class="wbLineEdge" x1="' + bt(Nt) + '" x2="' + bt(Nt) + '" y1="0" y2="100"/>', Zt += '<span class="wbLineTime" style="left:' + J(Nt) + '">' + Pe + " " + qt(Lo(new Date(Nt), x)) + "</span>");
       });
     });
     const Vt = Lt.find((Tt) => Z >= Tt.rise && Z <= Tt.set);
-    return '<svg class="wbLineArt" viewBox="0 0 ' + lt + ' 100" preserveAspectRatio="none" aria-hidden="true">' + Rt + Ft + '<line class="wbLineHorizon" x1="0" x2="' + lt + '" y1="' + wt + '" y2="' + wt + '"/></svg>' + Zt + (Vt ? '<span class="wbLineNow" style="left:' + X(Z) + ";top:" + kt(Vt, Z) + '%">' + Ld("sunny", !1) + "</span>" : "") + O.filter((Tt) => Tt.entry && !Tt.now).map((Tt) => '<span class="wbLineGlyph' + Tt.edge + '" style="left:' + X(Tt.t) + '">' + Ld(Tt.entry.condition ?? "cloudy", Gt(Tt.t)) + "</span>").join("");
+    return '<svg class="wbLineArt" viewBox="0 0 ' + dt + ' 100" preserveAspectRatio="none" aria-hidden="true">' + Bt + Ft + '<line class="wbLineHorizon" x1="0" x2="' + dt + '" y1="' + wt + '" y2="' + wt + '"/></svg>' + Zt + (Vt ? '<span class="wbLineNow" style="left:' + J(Z) + ";top:" + kt(Vt, Z) + '%">' + Ld("sunny", !1) + "</span>" : "") + O.filter((Tt) => Tt.entry && !Tt.now).map((Tt) => '<span class="wbLineGlyph' + Tt.edge + '" style="left:' + J(Tt.t) + '">' + Ld(Tt.entry.condition ?? "cloudy", Gt(Tt.t)) + "</span>").join("");
   }
   function ze(x, S) {
     delete It.hourly;
     const C = P.hourlyView === "bars" ? "bars" : "strip", O = '<div class="wbHeader"><h2 class="wbTitle">' + qt(C === "bars" ? Yt.nextDays : Yt.nextHours) + '</h2><div class="wbSegments wbViews" role="group" aria-label="' + qt(Yt.showAs) + '">' + ["strip", "bars"].map((Nt) => '<button aria-pressed="' + (Nt === C) + '" data-wb="hourly-view" data-view="' + Nt + '" data-wb-focus="hourly-view-' + Nt + '">' + qt(Yt.views[Nt]) + "</button>").join("") + "</div></div>";
     if (C === "bars") return Ia(x, S, O);
-    const Z = M("hourly"), X = Math.floor(Date.now() / co) * co, lt = Z.filter((Nt) => new Date(Nt.datetime).getTime() > X - Fe);
-    if (!lt.length) return "";
-    const bt = Oe(lt), wt = bt.includes(P.hourlyMode) ? P.hourlyMode : "temperature", Pt = xe(x, Z, X);
+    const Z = M("hourly"), J = Math.floor(Date.now() / co) * co, dt = Z.filter((Nt) => new Date(Nt.datetime).getTime() > J - Fe);
+    if (!dt.length) return "";
+    const bt = Oe(dt), wt = bt.includes(P.hourlyMode) ? P.hourlyMode : "temperature", Pt = xe(x, Z, J);
     if (!Pt.length) return "";
-    const Lt = Pt[0], kt = Pt[Pt.length - 1], Gt = (Lt.b - Lt.a) / Fe, Rt = (Nt) => "calc(var(--wb-u) * " + ((Nt - Lt.a) / Fe).toFixed(3) + ")", Ft = new Date(Lt.a);
+    const Lt = Pt[0], kt = Pt[Pt.length - 1], Gt = (Lt.b - Lt.a) / Fe, Bt = (Nt) => "calc(var(--wb-u) * " + ((Nt - Lt.a) / Fe).toFixed(3) + ")", Ft = new Date(Lt.a);
     Ft.setHours(6, 0, 0, 0), Ft.getTime() > Lt.a && Ft.setDate(Ft.getDate() - 1);
-    const Zt = Math.ceil((kt.b - Ft.getTime()) / _o);
+    const Zt = Math.ceil((kt.b - Ft.getTime()) / Eo);
     c !== "line" && (It.hourly = { segs: kr(Ft, Z, Zt), seed: Ft.getDate(), columns: Zt });
     const Vt = (Nt) => Nt === Lt.a ? " wbFirst" : Nt === kt.b ? " wbLast" : "", Tt = [];
     for (let Nt = Lt.a; Nt < kt.b; ) {
@@ -5359,103 +5359,103 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
       const $e = Math.min(Pe.getTime(), kt.b);
       Tt.push({ a: Nt, b: $e, label: Qt(x, { datetime: new Date(Nt).toISOString() }), page: Pt.find((Fa) => Fa.a >= Nt && Fa.a < $e) || Pt.find((Fa) => Fa.a < $e && Fa.b > Nt) }), Nt = $e;
     }
-    const ee = X > Lt.a && X < kt.b ? Math.floor((X - Lt.a) / (2 * Fe)) * 2 : 0, ie = [];
+    const ee = J > Lt.a && J < kt.b ? Math.floor((J - Lt.a) / (2 * Fe)) * 2 : 0, ie = [];
     for (let Nt = Lt.a; Nt <= kt.b; Nt += Fe) {
       const Pe = new Date(Nt), $e = Vt(Nt);
-      !$e && Pe.getHours() % tf || !$e && (Math.abs(Lt.a - Nt) < 2 * Fe || Math.abs(kt.b - Nt) < 2 * Fe) || X >= Lt.a && Math.abs(Nt - X) < 1.5 * Fe && !$e || ie.push({ t: Nt, edge: $e, label: Ao(Pe, x), entry: Nt >= X - Fe ? Z.find((Fa) => new Date(Fa.datetime).getTime() === Nt) : void 0 });
+      !$e && Pe.getHours() % tf || !$e && (Math.abs(Lt.a - Nt) < 2 * Fe || Math.abs(kt.b - Nt) < 2 * Fe) || J >= Lt.a && Math.abs(Nt - J) < 1.5 * Fe && !$e || ie.push({ t: Nt, edge: $e, label: Lo(Pe, x), entry: Nt >= J - Fe ? Z.find((Fa) => new Date(Fa.datetime).getTime() === Nt) : void 0 });
     }
-    X > Lt.a && X < Lt.b && ie.push({ t: X, edge: X - Lt.a < Fe ? " wbFirst" : Lt.b - X < Fe ? " wbLast" : "", label: Yt.now, entry: lt[0], now: !0 });
-    const Ge = (Nt, Pe) => '<span class="wbMark' + Nt.edge + (Nt.now ? " wbNowMark" : "") + '" style="left:' + Rt(Nt.t) + '">' + Pe + "</span>";
+    J > Lt.a && J < Lt.b && ie.push({ t: J, edge: J - Lt.a < Fe ? " wbFirst" : Lt.b - J < Fe ? " wbLast" : "", label: Yt.now, entry: dt[0], now: !0 });
+    const Ge = (Nt, Pe) => '<span class="wbMark' + Nt.edge + (Nt.now ? " wbNowMark" : "") + '" style="left:' + Bt(Nt.t) + '">' + Pe + "</span>";
     return '<div class="wbCard wbHc wbHourly">' + O + (bt.length > 1 ? '<div class="wbTabs"><div class="wbSegments" role="group">' + bt.map((Nt) => '<button aria-pressed="' + (Nt === wt) + '" data-wb="hourly-mode" data-mode="' + Nt + '" data-wb-focus="hourly-mode-' + Nt + '">' + qt(Yt.modes[Nt]) + "</button>").join("") + "</div></div>" : "") + '<div class="wbStripScroll wbPaged" tabindex="0" aria-label="' + qt(Yt.nextHours) + '" data-span="' + Gt + '" data-start="' + ee + '"><div class="wbStrip" style="--wb-u:calc(100cqw / ' + Gt + ");width:calc(var(--wb-u) * " + (kt.b - Lt.a) / Fe + ')">' + // a stop every two hours (Matt, 1 Nov): a swipe settles on one, a flick runs on past several
-    [...Array(Math.floor((kt.b - Lt.a) / (2 * Fe)) + 1)].map((Nt, Pe) => '<i class="wbSnap" style="left:' + Rt(Lt.a + Pe * 2 * Fe) + '"></i>').join("") + '<div class="wbDays">' + Tt.map((Nt, Pe) => {
+    [...Array(Math.floor((kt.b - Lt.a) / (2 * Fe)) + 1)].map((Nt, Pe) => '<i class="wbSnap" style="left:' + Bt(Lt.a + Pe * 2 * Fe) + '"></i>').join("") + '<div class="wbDays">' + Tt.map((Nt, Pe) => {
       var $e;
       return '<span class="wbDaySpan" style="width:calc(var(--wb-u) * ' + ((Nt.b - Nt.a) / Fe).toFixed(3) + ')"><button class="wbDayName" data-wb="hours-day" data-hours="' + (Pe === 0 ? ee : (((($e = Nt.page) == null ? void 0 : $e.a) ?? Nt.a) - Lt.a) / Fe) + '" data-wb-focus="hours-day-' + Pe + '">' + qt(Nt.label) + "</button></span>";
-    }).join("") + '</div><div class="wbRow wbTimes">' + ie.map((Nt) => Ge(Nt, qt(Nt.label))).join("") + "</div>" + (c === "line" ? '<div class="wbSky wbLineSky">' + St(x, Lt, kt, ie, X, Rt) : '<div class="wbSky"><div class="wbSkyArt" style="left:' + Rt(Ft.getTime()) + ";width:calc(var(--wb-u) * " + Zt * 24 + ')"><canvas data-wb-strip="hourly"' + (c === "smooth" ? "" : ' class="wbPixels"') + "></canvas></div>") + (X > Lt.a ? '<i class="wbPast" style="width:' + Rt(Math.min(X, kt.b)) + '"></i><i class="wbNowLine" style="left:' + Rt(X) + '"></i>' : "") + Tt.slice(1).map((Nt) => '<i class="wbMidnight" style="left:' + Rt(Nt.a) + '"></i>').join("") + '</div><div class="wbRow wbValues">' + ie.map((Nt) => {
+    }).join("") + '</div><div class="wbRow wbTimes">' + ie.map((Nt) => Ge(Nt, qt(Nt.label))).join("") + "</div>" + (c === "line" ? '<div class="wbSky wbLineSky">' + St(x, Lt, kt, ie, J, Bt) : '<div class="wbSky"><div class="wbSkyArt" style="left:' + Bt(Ft.getTime()) + ";width:calc(var(--wb-u) * " + Zt * 24 + ')"><canvas data-wb-strip="hourly"' + (c === "smooth" ? "" : ' class="wbPixels"') + "></canvas></div>") + (J > Lt.a ? '<i class="wbPast" style="width:' + Bt(Math.min(J, kt.b)) + '"></i><i class="wbNowLine" style="left:' + Bt(J) + '"></i>' : "") + Tt.slice(1).map((Nt) => '<i class="wbMidnight" style="left:' + Bt(Nt.a) + '"></i>').join("") + '</div><div class="wbRow wbValues">' + ie.map((Nt) => {
       if (!Nt.entry) return "";
-      const [Pe, $e] = si(x, Nt.entry, wt);
+      const [Pe, $e] = li(x, Nt.entry, wt);
       return Ge(Nt, '<span class="wbPrimaryV">' + qt(Pe) + '</span><span class="wbSecondary">' + qt($e) + "</span>");
     }).join("") + "</div></div></div></div>";
   }
   function Ht(x) {
     const S = ef, C = S.findIndex(([wt]) => wt >= x);
     if (C <= 0) return "rgb(" + S[C < 0 ? S.length - 1 : 0][1].join(",") + ")";
-    const [O, Z] = S[C - 1], [X, lt] = S[C], bt = (x - O) / (X - O);
-    return "rgb(" + Z.map((wt, Pt) => Math.round(wt + (lt[Pt] - wt) * bt)).join(",") + ")";
+    const [O, Z] = S[C - 1], [J, dt] = S[C], bt = (x - O) / (J - O);
+    return "rgb(" + Z.map((wt, Pt) => Math.round(wt + (dt[Pt] - wt) * bt)).join(",") + ")";
   }
   function Ia(x, S, C) {
-    var Rt;
+    var Bt;
     const O = M("daily").filter((Ft) => Ke(Ft.templow) && Ke(Ft.temperature)).slice(0, 7);
     if (!O.length) return "";
-    const Z = Math.min(...O.map((Ft) => Number(Ft.templow))), X = Math.max(...O.map((Ft) => Number(Ft.temperature))), lt = Math.max(1, X - Z), bt = (Ft) => Math.max(0, Math.min(100, (Ft - Z) / lt * 100)).toFixed(2), wt = /F/.test(vr(x, E(x, "daily"), "temperature")), Pt = (Ft) => wt ? (Ft - 32) / 1.8 : Ft, Lt = "linear-gradient(90deg," + [0, 0.25, 0.5, 0.75, 1].map((Ft) => Ht(Pt(Z + Ft * lt)) + " " + Ft * 100 + "%").join(",") + ")", kt = (Rt = mn(x, S, "temperature")) == null ? void 0 : Rt.value;
+    const Z = Math.min(...O.map((Ft) => Number(Ft.templow))), J = Math.max(...O.map((Ft) => Number(Ft.temperature))), dt = Math.max(1, J - Z), bt = (Ft) => Math.max(0, Math.min(100, (Ft - Z) / dt * 100)).toFixed(2), wt = /F/.test(vr(x, E(x, "daily"), "temperature")), Pt = (Ft) => wt ? (Ft - 32) / 1.8 : Ft, Lt = "linear-gradient(90deg," + [0, 0.25, 0.5, 0.75, 1].map((Ft) => Ht(Pt(Z + Ft * dt)) + " " + Ft * 100 + "%").join(",") + ")", kt = (Bt = mn(x, S, "temperature")) == null ? void 0 : Bt.value;
     return '<div class="wbCard wbHc wbHourly wbBars' + (Oe(M("hourly").filter((Ft) => new Date(Ft.datetime).getTime() > Date.now() - Fe)).length > 1 ? " wbTabbed" : "") + '">' + C + '<div class="wbDayBars" role="list">' + O.map((Ft, Zt) => {
       const Vt = Qt(x, Ft), Tt = ls(new Date(Ft.datetime), /* @__PURE__ */ new Date()), ee = Number(Ft.templow), ie = Number(Ft.temperature);
       return '<div class="wbDayBar" role="listitem" aria-label="' + qt(Na(Yt.rangeRow, { day: Vt, low: oa(x, ee), high: oa(x, ie) })) + '"><span class="wbRangeDay">' + qt(Vt) + "</span>" + Xt(Ft.condition, 40, !1, "r" + Zt) + '<span class="wbRangeLo">' + qt(oa(x, ee)) + '</span><span class="wbRangeTrack"><i class="wbRangeFill" style="background:' + Lt + ";clip-path:inset(0 " + (100 - bt(ie)) + "% 0 " + bt(ee) + '% round 4px)"></i>' + (Tt && Ke(kt) ? '<i class="wbRangeNow" style="left:' + bt(Number(kt)) + '%"></i>' : "") + '</span><span class="wbRangeHi">' + qt(oa(x, ie)) + "</span></div>";
     }).join("") + "</div></div>";
   }
   function jn(x) {
-    const S = _t, { rise: C, set: O } = Ed(x, S), Z = C && O ? Math.round((O.getTime() - C.getTime()) / co) : 0, X = Math.floor(Z / 60), lt = Z % 60, bt = C && O ? (S.getTime() - C.getTime()) / (O.getTime() - C.getTime()) : -1, wt = bt >= 0 && bt <= 1, Pt = Math.PI * (1 - Math.min(1, Math.max(0, bt))), Lt = 100 + 74 * Math.cos(Pt), kt = 100 - 74 * Math.sin(Pt), Gt = wt ? Math.sin(Math.PI * bt) : 0, Rt = wt ? Gs("#2e0a0d", "#43180a", Gt) : "#0e0507", Ft = wt ? Gs("#7a1d12", "#8f400f", Gt) : "#1c0709", Zt = Gs("#f60c08", "#ff8f00", Gt), Vt = Gs("#fd9b07", "#ffd84a", Gt), Tt = wt ? Gs("#fd9b07", "#ffd84a", Gt) : "#6b3a2a", ee = (Ge) => Ge ? Ao(Ge, x) : "–", ie = C && O ? new Date((C.getTime() + O.getTime()) / 2) : null;
+    const S = _t, { rise: C, set: O } = Ed(x, S), Z = C && O ? Math.round((O.getTime() - C.getTime()) / co) : 0, J = Math.floor(Z / 60), dt = Z % 60, bt = C && O ? (S.getTime() - C.getTime()) / (O.getTime() - C.getTime()) : -1, wt = bt >= 0 && bt <= 1, Pt = Math.PI * (1 - Math.min(1, Math.max(0, bt))), Lt = 100 + 74 * Math.cos(Pt), kt = 100 - 74 * Math.sin(Pt), Gt = wt ? Math.sin(Math.PI * bt) : 0, Bt = wt ? Gs("#2e0a0d", "#43180a", Gt) : "#0e0507", Ft = wt ? Gs("#7a1d12", "#8f400f", Gt) : "#1c0709", Zt = Gs("#f60c08", "#ff8f00", Gt), Vt = Gs("#fd9b07", "#ffd84a", Gt), Tt = wt ? Gs("#fd9b07", "#ffd84a", Gt) : "#6b3a2a", ee = (Ge) => Ge ? Lo(Ge, x) : "–", ie = C && O ? new Date((C.getTime() + O.getTime()) / 2) : null;
     return gn({
       icon: ka.sunny,
       name: Yt.sun,
-      sub: Z ? Na(Yt.daylightShort, { hours: X, minutes: lt }) : void 0,
-      visual: '<div class="wbSunSky" style="background:linear-gradient(180deg, ' + Rt + ", " + Ft + ");--wb-sun-line:" + Tt + '"><svg viewBox="0 0 200 124" aria-hidden="true"><defs><radialGradient id="' + y + 'sun-glow"><stop offset="0" stop-color="' + Zt + '"></stop><stop offset="0.45" stop-color="' + Zt + '"></stop><stop offset="1" stop-color="' + Vt + '"></stop></radialGradient><clipPath id="' + y + 'above-horizon"><rect x="0" y="0" width="200" height="100"></rect></clipPath></defs><path class="wbSunPath" d="M 26 100 A 74 74 0 0 1 174 100"></path><line class="wbHorizon" x1="0" x2="200" y1="100" y2="100"></line>' + (wt ? '<circle cx="' + Lt + '" cy="' + kt + '" r="14" fill="url(#' + y + 'sun-glow)" clip-path="url(#' + y + 'above-horizon)"></circle>' : "") + (ie ? '<text class="wbSunTime wbNoon" x="100" y="1">' + qt(ee(ie)) + "</text>" : "") + '<text class="wbSunTime" x="26" y="117">' + qt(ee(C)) + '</text><text class="wbSunTime" x="174" y="117">' + qt(ee(O)) + "</text></svg></div>"
+      sub: Z ? Na(Yt.daylightShort, { hours: J, minutes: dt }) : void 0,
+      visual: '<div class="wbSunSky" style="background:linear-gradient(180deg, ' + Bt + ", " + Ft + ");--wb-sun-line:" + Tt + '"><svg viewBox="0 0 200 124" aria-hidden="true"><defs><radialGradient id="' + y + 'sun-glow"><stop offset="0" stop-color="' + Zt + '"></stop><stop offset="0.45" stop-color="' + Zt + '"></stop><stop offset="1" stop-color="' + Vt + '"></stop></radialGradient><clipPath id="' + y + 'above-horizon"><rect x="0" y="0" width="200" height="100"></rect></clipPath></defs><path class="wbSunPath" d="M 26 100 A 74 74 0 0 1 174 100"></path><line class="wbHorizon" x1="0" x2="200" y1="100" y2="100"></line>' + (wt ? '<circle cx="' + Lt + '" cy="' + kt + '" r="14" fill="url(#' + y + 'sun-glow)" clip-path="url(#' + y + 'above-horizon)"></circle>' : "") + (ie ? '<text class="wbSunTime wbNoon" x="100" y="1">' + qt(ee(ie)) + "</text>" : "") + '<text class="wbSunTime" x="26" y="117">' + qt(ee(C)) + '</text><text class="wbSunTime" x="174" y="117">' + qt(ee(O)) + "</text></svg></div>"
     });
   }
   function Yi(x, S, C) {
-    const O = (lt) => y + "moon-" + lt, Z = x > 0.995 ? "" : '<path class="wbMoonNight" filter="url(#' + O("terminator") + ')" d="' + Yf(61, 61, 57.9, x) + '"' + (S ? ' transform="translate(122 0) scale(-1 1)"' : "") + "></path>", X = (lt, bt, wt, Pt, Lt, kt) => '<filter id="' + O(lt) + '" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="' + bt + '" numOctaves="' + wt + '" seed="' + Pt + '"></feTurbulence><feColorMatrix values="0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1"></feColorMatrix><feComponentTransfer>' + ["R", "G", "B"].map((Gt) => "<feFunc" + Gt + ' type="linear" slope="' + Lt + '" intercept="' + kt + '"></feFunc' + Gt + ">").join("") + "</feComponentTransfer></filter>";
-    return '<svg class="wbMoonArt" width="122" height="122" viewBox="0 0 122 122" aria-hidden="true"><defs><radialGradient id="' + O("fill") + '" cx="0.42" cy="0.38" r="0.68"><stop offset="0" stop-color="#ECECE8"></stop><stop offset="0.7" stop-color="#D2D2CD"></stop><stop offset="1" stop-color="#ACACA7"></stop></radialGradient><clipPath id="' + O("clip") + '"><circle cx="61" cy="61" r="54.9"></circle></clipPath><filter id="' + O("soften") + '" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"></feGaussianBlur></filter><filter id="' + O("glow") + '" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"></feGaussianBlur></filter><filter id="' + O("terminator") + '" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1"></feGaussianBlur></filter>' + X("mottle", "0.045", 4, 3, 1.8, -0.4) + X("grain", "1.2", 2, 7, 2, -0.5) + '</defs><g clip-path="url(#' + O("clip") + ')"><circle cx="61" cy="61" r="54.9" fill="url(#' + O("fill") + ')"></circle><g' + (C ? ' transform="rotate(180 61 61)"' : "") + '><g class="wbMaria" filter="url(#' + O("soften") + ')">' + Xf.map(([lt, bt, wt, Pt, Lt, kt]) => '<ellipse cx="' + lt + '" cy="' + bt + '" rx="' + wt + '" ry="' + Pt + '" fill-opacity="' + kt + '" transform="rotate(' + Lt + " " + lt + " " + bt + ')"></ellipse>').join("") + "</g>" + Jf.map(([lt, bt, wt]) => '<circle class="wbCrater" cx="' + lt + '" cy="' + bt + '" r="' + wt + '"></circle>').join("") + '<g class="wbRays" filter="url(#' + O("glow") + ')">' + Qf.map(([lt, bt]) => '<line x1="54.4" y1="95" x2="' + lt + '" y2="' + bt + '"></line>').join("") + '</g><g class="wbBrightSpots" filter="url(#' + O("glow") + ')">' + Hc.map(([lt, bt, wt]) => '<circle cx="' + lt + '" cy="' + bt + '" r="' + wt * 2 + '"></circle>').join("") + "</g>" + Hc.map(([lt, bt, wt]) => '<circle class="wbBrightCenter" cx="' + lt + '" cy="' + bt + '" r="' + wt + '"></circle>').join("") + '</g><rect class="wbMottle" width="122" height="122" filter="url(#' + O("mottle") + ')"></rect><rect class="wbGrain" width="122" height="122" filter="url(#' + O("grain") + ')"></rect>' + Z + '</g><circle cx="61" cy="61" r="54.9" fill="none" stroke="#B4B4B4" stroke-width="0.2"></circle></svg>';
+    const O = (dt) => y + "moon-" + dt, Z = x > 0.995 ? "" : '<path class="wbMoonNight" filter="url(#' + O("terminator") + ')" d="' + Yf(61, 61, 57.9, x) + '"' + (S ? ' transform="translate(122 0) scale(-1 1)"' : "") + "></path>", J = (dt, bt, wt, Pt, Lt, kt) => '<filter id="' + O(dt) + '" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="' + bt + '" numOctaves="' + wt + '" seed="' + Pt + '"></feTurbulence><feColorMatrix values="0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1"></feColorMatrix><feComponentTransfer>' + ["R", "G", "B"].map((Gt) => "<feFunc" + Gt + ' type="linear" slope="' + Lt + '" intercept="' + kt + '"></feFunc' + Gt + ">").join("") + "</feComponentTransfer></filter>";
+    return '<svg class="wbMoonArt" width="122" height="122" viewBox="0 0 122 122" aria-hidden="true"><defs><radialGradient id="' + O("fill") + '" cx="0.42" cy="0.38" r="0.68"><stop offset="0" stop-color="#ECECE8"></stop><stop offset="0.7" stop-color="#D2D2CD"></stop><stop offset="1" stop-color="#ACACA7"></stop></radialGradient><clipPath id="' + O("clip") + '"><circle cx="61" cy="61" r="54.9"></circle></clipPath><filter id="' + O("soften") + '" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"></feGaussianBlur></filter><filter id="' + O("glow") + '" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"></feGaussianBlur></filter><filter id="' + O("terminator") + '" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1"></feGaussianBlur></filter>' + J("mottle", "0.045", 4, 3, 1.8, -0.4) + J("grain", "1.2", 2, 7, 2, -0.5) + '</defs><g clip-path="url(#' + O("clip") + ')"><circle cx="61" cy="61" r="54.9" fill="url(#' + O("fill") + ')"></circle><g' + (C ? ' transform="rotate(180 61 61)"' : "") + '><g class="wbMaria" filter="url(#' + O("soften") + ')">' + Xf.map(([dt, bt, wt, Pt, Lt, kt]) => '<ellipse cx="' + dt + '" cy="' + bt + '" rx="' + wt + '" ry="' + Pt + '" fill-opacity="' + kt + '" transform="rotate(' + Lt + " " + dt + " " + bt + ')"></ellipse>').join("") + "</g>" + Jf.map(([dt, bt, wt]) => '<circle class="wbCrater" cx="' + dt + '" cy="' + bt + '" r="' + wt + '"></circle>').join("") + '<g class="wbRays" filter="url(#' + O("glow") + ')">' + Qf.map(([dt, bt]) => '<line x1="54.4" y1="95" x2="' + dt + '" y2="' + bt + '"></line>').join("") + '</g><g class="wbBrightSpots" filter="url(#' + O("glow") + ')">' + Hc.map(([dt, bt, wt]) => '<circle cx="' + dt + '" cy="' + bt + '" r="' + wt * 2 + '"></circle>').join("") + "</g>" + Hc.map(([dt, bt, wt]) => '<circle class="wbBrightCenter" cx="' + dt + '" cy="' + bt + '" r="' + wt + '"></circle>').join("") + '</g><rect class="wbMottle" width="122" height="122" filter="url(#' + O("mottle") + ')"></rect><rect class="wbGrain" width="122" height="122" filter="url(#' + O("grain") + ')"></rect>' + Z + '</g><circle cx="61" cy="61" r="54.9" fill="none" stroke="#B4B4B4" stroke-width="0.2"></circle></svg>';
   }
   function Ut(x) {
-    const S = H, C = Gl(x), O = (C == null ? void 0 : C.lat) ?? 0, Z = If(S), X = Pc(x), lt = X ? x.states[X] : void 0, bt = wr(lt) && hf.includes(lt.state) ? lt.state : Hf(Z.phase), { rise: wt, set: Pt } = C ? Pf(S, C.lat, C.lon) : {}, Lt = Z.phase > 0.5 != O < 0, kt = fa(Math.round(Z.fraction * 100), x.locale) + "%", Gt = wt ?? Pt, Rt = Gt ? Ao(Gt, x) : void 0;
+    const S = H, C = Gl(x), O = (C == null ? void 0 : C.lat) ?? 0, Z = If(S), J = Pc(x), dt = J ? x.states[J] : void 0, bt = wr(dt) && hf.includes(dt.state) ? dt.state : Hf(Z.phase), { rise: wt, set: Pt } = C ? Pf(S, C.lat, C.lon) : {}, Lt = Z.phase > 0.5 != O < 0, kt = fa(Math.round(Z.fraction * 100), x.locale) + "%", Gt = wt ?? Pt, Bt = Gt ? Lo(Gt, x) : void 0;
     return gn({
       icon: ka.night,
       name: Yt.moon,
       sub: Yt.phases[bt],
-      visual: '<div class="wbMoonBox">' + Yi(Z.fraction, Lt, O < 0) + '</div><div class="wbScaleNote wbMoonCaption"><span>' + (Rt ? qt(Na(wt ? Yt.moonriseAt : Yt.moonsetAt, { time: Rt })) : "") + "</span><span>" + qt(Na(Yt.lit, { illumination: kt })) + "</span></div>"
+      visual: '<div class="wbMoonBox">' + Yi(Z.fraction, Lt, O < 0) + '</div><div class="wbScaleNote wbMoonCaption"><span>' + (Bt ? qt(Na(wt ? Yt.moonriseAt : Yt.moonsetAt, { time: Bt })) : "") + "</span><span>" + qt(Na(Yt.lit, { illumination: kt })) + "</span></div>"
     });
   }
   function ne(x, S) {
     var Ft;
     const C = mn(x, S, "wind_speed");
     if (!C || !Ke(C.value)) return "";
-    const O = mn(x, S, "wind_gust_speed"), Z = mn(x, S, "wind_bearing"), X = Z && Ke(Z.value) ? Number(Z.value) : void 0, lt = zf(Number(C.value), (Ft = C.stateObj.attributes) == null ? void 0 : Ft.wind_speed_unit), bt = Wl(x, C.stateObj, "wind_speed", C.value), wt = X !== void 0 ? Yt.cardinal[ff[((X + 11.25) / 22.5 | 0) % 16]] : void 0, Pt = O ? qf(x, O.stateObj, "wind_gust_speed", O.value) : void 0, Lt = [wt ? Na(Yt.windFrom, { direction: wt }) : void 0, lt !== void 0 ? lt + " " + Yt.beaufort : void 0].filter(Boolean).join(" · ") || Pt, kt = (Zt, Vt) => {
+    const O = mn(x, S, "wind_gust_speed"), Z = mn(x, S, "wind_bearing"), J = Z && Ke(Z.value) ? Number(Z.value) : void 0, dt = zf(Number(C.value), (Ft = C.stateObj.attributes) == null ? void 0 : Ft.wind_speed_unit), bt = Wl(x, C.stateObj, "wind_speed", C.value), wt = J !== void 0 ? Yt.cardinal[ff[((J + 11.25) / 22.5 | 0) % 16]] : void 0, Pt = O ? qf(x, O.stateObj, "wind_gust_speed", O.value) : void 0, Lt = [wt ? Na(Yt.windFrom, { direction: wt }) : void 0, dt !== void 0 ? dt + " " + Yt.beaufort : void 0].filter(Boolean).join(" · ") || Pt, kt = (Zt, Vt) => {
       const Tt = (Zt - 90) * Math.PI / 180;
       return [100 + Vt * Math.cos(Tt), 100 + Vt * Math.sin(Tt)];
     }, Gt = Array.from({ length: 36 }, (Zt, Vt) => Vt * 10).map((Zt) => {
       const Vt = Zt % 90 === 0, [Tt, ee] = kt(Zt, 97), [ie, Ge] = kt(Zt, Vt ? 83 : 89);
       return '<line class="wbTick' + (Vt ? " wbMajor" : "") + '" x1="' + Tt + '" y1="' + ee + '" x2="' + ie + '" y2="' + Ge + '"></line>';
-    }).join(""), Rt = [["n", 0], ["e", 90], ["s", 180], ["w", 270]].map(([Zt, Vt]) => {
+    }).join(""), Bt = [["n", 0], ["e", 90], ["s", 180], ["w", 270]].map(([Zt, Vt]) => {
       const [Tt, ee] = kt(Vt, 64);
       return '<text class="wbLetter' + (Zt === "n" ? " wbNorth" : "") + '" x="' + Tt + '" y="' + ee + '">' + qt(Yt.cardinal[Zt]) + "</text>";
     }).join("");
-    return gn({ icon: ka.windy, name: Yt.wind, sub: Lt, cls: "wbWind", visual: '<svg viewBox="0 0 200 200" aria-hidden="true">' + Gt + Rt + (X !== void 0 ? '<path class="wbMarker" transform="rotate(' + X + ' 100 100)" d="M 100 24 L 91 5 L 109 5 Z"></path>' : "") + '<circle class="wbDisc" cx="100" cy="100" r="46"></circle><text class="wbSpeed" x="100" y="102">' + qt(bt.number) + '</text><text class="wbSpeedUnit" x="100" y="124">' + qt(bt.unit) + "</text></svg>" });
+    return gn({ icon: ka.windy, name: Yt.wind, sub: Lt, cls: "wbWind", visual: '<svg viewBox="0 0 200 200" aria-hidden="true">' + Gt + Bt + (J !== void 0 ? '<path class="wbMarker" transform="rotate(' + J + ' 100 100)" d="M 100 24 L 91 5 L 109 5 Z"></path>' : "") + '<circle class="wbDisc" cx="100" cy="100" r="46"></circle><text class="wbSpeed" x="100" y="102">' + qt(bt.number) + '</text><text class="wbSpeedUnit" x="100" y="124">' + qt(bt.unit) + "</text></svg>" });
   }
   function Ve(x, S) {
     const C = mn(x, S, "uv_index");
     if (!C || !Ke(C.value)) return "";
-    const O = Number(C.value), Z = Yt.uvLevel[jf(O)], X = /* @__PURE__ */ new Date();
-    X.setHours(23, 59, 59, 999);
-    const lt = M("hourly").filter((Zt) => Zt.uv_index != null && new Date(Zt.datetime) > /* @__PURE__ */ new Date() && new Date(Zt.datetime) <= X).reduce((Zt, Vt) => !Zt || Vt.uv_index > Zt.uv ? { uv: Vt.uv_index, time: new Date(Vt.datetime) } : Zt, void 0), bt = 48, wt = 100, Pt = 130, Lt = (Zt) => -bt + Math.min(Zt, 11) / 11 * 2 * bt, kt = (Zt, Vt) => {
+    const O = Number(C.value), Z = Yt.uvLevel[jf(O)], J = /* @__PURE__ */ new Date();
+    J.setHours(23, 59, 59, 999);
+    const dt = M("hourly").filter((Zt) => Zt.uv_index != null && new Date(Zt.datetime) > /* @__PURE__ */ new Date() && new Date(Zt.datetime) <= J).reduce((Zt, Vt) => !Zt || Vt.uv_index > Zt.uv ? { uv: Vt.uv_index, time: new Date(Vt.datetime) } : Zt, void 0), bt = 48, wt = 100, Pt = 130, Lt = (Zt) => -bt + Math.min(Zt, 11) / 11 * 2 * bt, kt = (Zt, Vt) => {
       const Tt = Zt * Math.PI / 180;
       return [wt + Vt * Math.sin(Tt), Pt - Vt * Math.cos(Tt)];
     }, Gt = (Zt, Vt, Tt) => {
       const [ee, ie] = kt(Lt(Zt), Tt), [Ge, Nt] = kt(Lt(Vt), Tt);
       return "M " + ee + " " + ie + " A " + Tt + " " + Tt + " 0 0 1 " + Ge + " " + Nt;
-    }, Ft = '<svg class="wbVu" viewBox="0 0 200 134" preserveAspectRatio="xMidYMax meet" aria-hidden="true">' + [[0, 3, Rl.low], [3, 6, Rl.moderate], [6, 8, Rl.high], [8, 11, Rl.very_high]].map(([Zt, Vt, Tt]) => '<path class="wbVuZone" d="' + Gt(Zt, Vt, 96) + '" style="stroke:' + Tt + '"></path>').join("") + Array.from({ length: 21 }, (Zt, Vt) => ({ angle: -bt + Vt * (2 * bt / 20), major: Vt % 2 === 0 })).map(({ angle: Zt, major: Vt }) => {
+    }, Ft = '<svg class="wbVu" viewBox="0 0 200 134" preserveAspectRatio="xMidYMax meet" aria-hidden="true">' + [[0, 3, Bl.low], [3, 6, Bl.moderate], [6, 8, Bl.high], [8, 11, Bl.very_high]].map(([Zt, Vt, Tt]) => '<path class="wbVuZone" d="' + Gt(Zt, Vt, 96) + '" style="stroke:' + Tt + '"></path>').join("") + Array.from({ length: 21 }, (Zt, Vt) => ({ angle: -bt + Vt * (2 * bt / 20), major: Vt % 2 === 0 })).map(({ angle: Zt, major: Vt }) => {
       const [Tt, ee] = kt(Zt, 102), [ie, Ge] = kt(Zt, Vt ? 114 : 108);
       return '<line class="wbVuTick' + (Vt ? " wbMajor" : "") + '" x1="' + Tt + '" y1="' + ee + '" x2="' + ie + '" y2="' + Ge + '"></line>';
     }).join("") + '<text class="wbVuLabel" x="100" y="70.1">UV</text><g class="wbVuNeedle" style="--wb-angle:' + Lt(O) + 'deg"><line x1="' + wt + '" y1="' + Pt + '" x2="' + wt + '" y2="' + (Pt - 116) + '"></line></g><path class="wbVuHousing" d="M 64 134 L 64 128 A 36 36 0 0 1 136 128 L 136 134 Z"></path><text class="wbVuValue" x="100" y="114.9">' + qt(fa(Math.round(O), x.locale)) + "</text></svg>";
     return gn({
       icon: ka.sunnyAlert,
       name: Yt.metrics.uv_index,
-      sub: lt && lt.uv > O ? Na(Yt.uvPeak, { level: Z, uv_index: fa(Math.round(lt.uv), x.locale), time: Ao(lt.time, x) }) : Z,
+      sub: dt && dt.uv > O ? Na(Yt.uvPeak, { level: Z, uv_index: fa(Math.round(dt.uv), x.locale), time: Lo(dt.time, x) }) : Z,
       visual: Ft
     });
   }
   function Bo(x) {
-    const S = M("daily")[0], C = st.temperatureHistory;
+    const S = M("daily")[0], C = lt.temperatureHistory;
     if (!S || new Date(S.datetime).toDateString() !== (/* @__PURE__ */ new Date()).toDateString() || !Ke(S.temperature) || !C || C.dailyHighs.length < lf) return "";
-    const O = Number(S.temperature), Z = C.dailyHighs.reduce((ie, Ge) => ie + Ge, 0) / C.dailyHighs.length, X = Math.round(O - Z) || 0, lt = X > 0 ? "above" : X < 0 ? "below" : "same", bt = [...C.days, { date: /* @__PURE__ */ new Date(), high: O, today: !0 }], wt = 220, Pt = 158, Lt = 22, kt = 20, Gt = bt.map((ie) => ie.high).concat(Z), Rt = Math.min(...Gt) - 3, Ft = Math.max(...Gt) + 1, Zt = (ie) => Lt + (1 - (ie - Rt) / (Ft - Rt)) * (Pt - Lt - kt), Vt = wt / bt.length, Tt = Math.min(18, Vt * 0.6), ee = '<svg class="wbCompareBars" viewBox="0 0 ' + wt + " " + Pt + '" aria-hidden="true"><line class="wbAvgLine" x1="0" x2="' + wt + '" y1="' + Zt(Z) + '" y2="' + Zt(Z) + '"></line>' + bt.map((ie, Ge) => {
+    const O = Number(S.temperature), Z = C.dailyHighs.reduce((ie, Ge) => ie + Ge, 0) / C.dailyHighs.length, J = Math.round(O - Z) || 0, dt = J > 0 ? "above" : J < 0 ? "below" : "same", bt = [...C.days, { date: /* @__PURE__ */ new Date(), high: O, today: !0 }], wt = 220, Pt = 158, Lt = 22, kt = 20, Gt = bt.map((ie) => ie.high).concat(Z), Bt = Math.min(...Gt) - 3, Ft = Math.max(...Gt) + 1, Zt = (ie) => Lt + (1 - (ie - Bt) / (Ft - Bt)) * (Pt - Lt - kt), Vt = wt / bt.length, Tt = Math.min(18, Vt * 0.6), ee = '<svg class="wbCompareBars" viewBox="0 0 ' + wt + " " + Pt + '" aria-hidden="true"><line class="wbAvgLine" x1="0" x2="' + wt + '" y1="' + Zt(Z) + '" y2="' + Zt(Z) + '"></line>' + bt.map((ie, Ge) => {
       const Nt = Ge * Vt + Vt / 2, Pe = Zt(ie.high), $e = ie.today ? " wbToday" : "";
       return '<rect class="wbAvgBar' + $e + '" x="' + (Nt - Tt / 2) + '" y="' + Pe + '" width="' + Tt + '" height="' + (Pt - kt - Pe) + '" rx="5"></rect><text class="wbAvgValue' + $e + '" x="' + Nt + '" y="' + (Pe - 6) + '">' + qt(oa(x, ie.high)) + '</text><text class="wbAvgDay' + $e + '" x="' + Nt + '" y="' + (Pt - 4) + '">' + qt(Cf(ie.date, x)) + "</text>";
     }).join("") + "</svg>";
@@ -5464,7 +5464,7 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
       name: Yt.metrics.compared_to_average,
       double: !0,
       sub: Na(Yt.highsLastDays, { days: C.days.length }),
-      visual: '<div class="wbCompare"><div class="wbCompareText"><div class="wbCompareNumber">' + (X > 0 ? "+" : "") + qt(oa(x, X)) + '</div><div class="wbCompareWords">' + qt(Yt.average[lt]) + '</div><div class="wbCompareTemps">' + qt(Na(Yt.todayVsAverage, { today: oa(x, O), average: oa(x, Z) })) + "</div></div>" + ee + "</div>"
+      visual: '<div class="wbCompare"><div class="wbCompareText"><div class="wbCompareNumber">' + (J > 0 ? "+" : "") + qt(oa(x, J)) + '</div><div class="wbCompareWords">' + qt(Yt.average[dt]) + '</div><div class="wbCompareTemps">' + qt(Na(Yt.todayVsAverage, { today: oa(x, O), average: oa(x, Z) })) + "</div></div>" + ee + "</div>"
     });
   }
   function Ha(x, S) {
@@ -5483,10 +5483,10 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     var Pt, Lt;
     const C = mn(x, S, "pressure");
     if (!C || !Ke(C.value)) return "";
-    const O = Number(C.value), Z = (Pt = C.stateObj.attributes) == null ? void 0 : Pt.pressure_unit, X = Nc(O, Z), lt = ((Lt = st.pressureHistory) == null ? void 0 : Lt.entityId) === C.stateObj.entity_id ? Nc(st.pressureHistory.value, Z) : void 0;
+    const O = Number(C.value), Z = (Pt = C.stateObj.attributes) == null ? void 0 : Pt.pressure_unit, J = Nc(O, Z), dt = ((Lt = lt.pressureHistory) == null ? void 0 : Lt.entityId) === C.stateObj.entity_id ? Nc(lt.pressureHistory.value, Z) : void 0;
     let bt;
-    if (X !== void 0 && lt !== void 0) {
-      const kt = X - lt;
+    if (J !== void 0 && dt !== void 0) {
+      const kt = J - dt;
       bt = kt >= Tc ? "rising" : kt <= -Tc ? "falling" : "steady";
     }
     const wt = Wl(x, C.stateObj, "pressure", Math.round(O));
@@ -5494,28 +5494,28 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
       icon: ka.gauge,
       name: Yt.metrics.pressure,
       sub: bt ? Yt.pressure[bt] : void 0,
-      visual: '<div class="wbTapeRow"><div class="wbTapeValue">' + ji(wt.number) + '<span class="wbTapeUnit">' + qt(wt.unit) + "</span></div>" + (X !== void 0 ? li(x, X) : "") + "</div>"
+      visual: '<div class="wbTapeRow"><div class="wbTapeValue">' + ji(wt.number) + '<span class="wbTapeUnit">' + qt(wt.unit) + "</span></div>" + (J !== void 0 ? di(x, J) : "") + "</div>"
     });
   }
-  function li(x, S) {
+  function di(x, S) {
     const Z = Math.floor(S) - 11;
-    return '<svg class="wbTape" viewBox="0 0 76 200" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">' + Array.from({ length: 24 }, (X, lt) => Z + lt).map((X) => {
-      const lt = 100 - (X - S) * 9;
-      if (lt < 22 || lt > 178) return "";
-      const bt = X % 5 === 0;
-      return '<g opacity="' + Math.max(0.15, 1 - Math.abs(lt - 100) / 100) + '"><line class="wbTapeTick" x1="' + (bt ? 2 : 8) + '" x2="26" y1="' + lt + '" y2="' + lt + '"></line>' + (bt ? '<text class="wbTapeLabel" x="33" y="' + lt + '">' + qt(fa(X, x.locale, { useGrouping: !1 })) + "</text>" : "") + "</g>";
+    return '<svg class="wbTape" viewBox="0 0 76 200" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">' + Array.from({ length: 24 }, (J, dt) => Z + dt).map((J) => {
+      const dt = 100 - (J - S) * 9;
+      if (dt < 22 || dt > 178) return "";
+      const bt = J % 5 === 0;
+      return '<g opacity="' + Math.max(0.15, 1 - Math.abs(dt - 100) / 100) + '"><line class="wbTapeTick" x1="' + (bt ? 2 : 8) + '" x2="26" y1="' + dt + '" y2="' + dt + '"></line>' + (bt ? '<text class="wbTapeLabel" x="33" y="' + dt + '">' + qt(fa(J, x.locale, { useGrouping: !1 })) + "</text>" : "") + "</g>";
     }).join("") + '<text class="wbTapeEnd" x="14" y="8">' + qt(Yt.high) + '</text><text class="wbTapeEnd" x="14" y="192">' + qt(Yt.low) + '</text><line class="wbTapeMarker" x1="0" x2="30" y1="100" y2="100"></line></svg>';
   }
   function ra(x) {
     var wt, Pt;
     const S = Dd(x), C = S ? x.states[S] : void 0;
-    if (!C || ((wt = st.rain) == null ? void 0 : wt.entityId) !== S || !Ke(st.rain.change)) return "";
-    const O = ((Pt = C.attributes) == null ? void 0 : Pt.unit_of_measurement) ?? "", Z = E(x, "hourly"), X = Date.now() + _o, lt = M("hourly").filter((Lt) => Lt.precipitation != null && new Date(Lt.datetime).getTime() <= X), bt = lt.reduce((Lt, kt) => Lt + Number(kt.precipitation), 0);
+    if (!C || ((wt = lt.rain) == null ? void 0 : wt.entityId) !== S || !Ke(lt.rain.change)) return "";
+    const O = ((Pt = C.attributes) == null ? void 0 : Pt.unit_of_measurement) ?? "", Z = E(x, "hourly"), J = Date.now() + Eo, dt = M("hourly").filter((Lt) => Lt.precipitation != null && new Date(Lt.datetime).getTime() <= J), bt = dt.reduce((Lt, kt) => Lt + Number(kt.precipitation), 0);
     return gn({
       icon: ka.rainy,
       name: Yt.metrics.precipitation,
-      sub: Z && lt.length ? Na(Yt.rainExpected, { amount: fa(bt, x.locale, { maximumFractionDigits: 1 }) + " " + vr(x, Z, "precipitation") }) : Yt.rainLast24h,
-      visual: ji(fa(st.rain.change, x.locale, { maximumFractionDigits: 1 }), O) + (lt.length > 1 ? $f(lt.map((Lt) => ({ label: "", value: Number(Lt.precipitation) }))) : "")
+      sub: Z && dt.length ? Na(Yt.rainExpected, { amount: fa(bt, x.locale, { maximumFractionDigits: 1 }) + " " + vr(x, Z, "precipitation") }) : Yt.rainLast24h,
+      visual: ji(fa(lt.rain.change, x.locale, { maximumFractionDigits: 1 }), O) + (dt.length > 1 ? $f(dt.map((Lt) => ({ label: "", value: Number(Lt.precipitation) }))) : "")
     });
   }
   function zn(x, S) {
@@ -5530,38 +5530,38 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     });
   }
   function Vn(x, S) {
-    var X;
-    const C = Ku((X = x.config) == null ? void 0 : X.country, S);
+    var J;
+    const C = Ku((J = x.config) == null ? void 0 : J.country, S);
     if (C) return Na(Yt.visibilityLandmarks, { from: C.from, to: C.to });
     const O = S / pf * 60;
     if (O < 60) {
-      const lt = O < 5 ? Math.max(1, Math.round(O)) : 5 * Math.round(O / 5);
-      if (lt < 60) return Na(Yt.walkMinutes, { minutes: fa(lt, x.locale) });
+      const dt = O < 5 ? Math.max(1, Math.round(O)) : 5 * Math.round(O / 5);
+      if (dt < 60) return Na(Yt.walkMinutes, { minutes: fa(dt, x.locale) });
     }
     const Z = Math.max(1, Math.round(O / 30) / 2);
     return Z < 8 ? Na(Yt.walkHours, { hours: fa(Z, x.locale) }) : Yt.walkDay;
   }
-  function Ro(x) {
-    st.categories === void 0 && Ca(x);
+  function No(x) {
+    lt.categories === void 0 && Ca(x);
     const S = me(x), C = (wt) => wt.map((Pt) => x.states[Pt]).filter(wr), O = C(S.air), Z = C(S.pollen);
     if (!O.length && !Z.length) return "";
-    const X = [...O, ...Z], lt = (wt) => Z.includes(wt) ? ka.flower : ka.airFilter, bt = X.find((wt) => wt.entity_id === P.aq);
-    return bt ? Ye(x, bt, lt(bt)) : '<div class="wbCard wbHc wbAq"><div class="wbHeader"><h2 class="wbTitle">' + qt(Yt.airQuality) + '</h2></div><div class="wbAqTiles">' + X.map((wt) => '<button class="wbTile" data-wb="aq-open" data-entity="' + qt(wt.entity_id) + '"><span class="wbChip">' + cs(lt(wt)) + '</span><span class="wbText"><span class="wbName">' + qt(Vs(x, wt)) + '</span><span class="wbSub">' + qt(gr(x, wt)) + "</span></span></button>").join("") + "</div></div>";
+    const J = [...O, ...Z], dt = (wt) => Z.includes(wt) ? ka.flower : ka.airFilter, bt = J.find((wt) => wt.entity_id === P.aq);
+    return bt ? Ye(x, bt, dt(bt)) : '<div class="wbCard wbHc wbAq"><div class="wbHeader"><h2 class="wbTitle">' + qt(Yt.airQuality) + '</h2></div><div class="wbAqTiles">' + J.map((wt) => '<button class="wbTile" data-wb="aq-open" data-entity="' + qt(wt.entity_id) + '"><span class="wbChip">' + cs(dt(wt)) + '</span><span class="wbText"><span class="wbName">' + qt(Vs(x, wt)) + '</span><span class="wbSub">' + qt(gr(x, wt)) + "</span></span></button>").join("") + "</div></div>";
   }
   function Ye(x, S, C) {
     var Lt, kt, Gt;
-    const O = ((Lt = S.attributes) == null ? void 0 : Lt.unit_of_measurement) ?? "", Z = ((kt = S.attributes) == null ? void 0 : kt.device_class) === "pm25" && O === Ac && Ke(S.state), X = Number(S.state), lt = Z ? Rc(X) : void 0, bt = ((Gt = st.aqHistory) == null ? void 0 : Gt.entityId) === S.entity_id ? st.aqHistory.points : void 0, wt = (Rt) => Math.min(100, Math.max(0, Rt / Nl * 100));
+    const O = ((Lt = S.attributes) == null ? void 0 : Lt.unit_of_measurement) ?? "", Z = ((kt = S.attributes) == null ? void 0 : kt.device_class) === "pm25" && O === Ac && Ke(S.state), J = Number(S.state), dt = Z ? Bc(J) : void 0, bt = ((Gt = lt.aqHistory) == null ? void 0 : Gt.entityId) === S.entity_id ? lt.aqHistory.points : void 0, wt = (Bt) => Math.min(100, Math.max(0, Bt / Nl * 100));
     let Pt;
-    if (bt && bt.length > 1) Pt = Kf(bt, (Rt) => (fa(Rt, x.locale, { maximumFractionDigits: 1 }) + " " + O).trim());
-    else if (lt) {
-      let Rt = 0;
+    if (bt && bt.length > 1) Pt = Kf(bt, (Bt) => (fa(Bt, x.locale, { maximumFractionDigits: 1 }) + " " + O).trim());
+    else if (dt) {
+      let Bt = 0;
       const Ft = yp.map(([Zt, Vt]) => {
-        const Tt = wt(Math.min(Vt, Nl)), ee = mf[Zt] + " " + Rt + "% " + Tt + "%";
-        return Rt = Tt, ee;
+        const Tt = wt(Math.min(Vt, Nl)), ee = mf[Zt] + " " + Bt + "% " + Tt + "%";
+        return Bt = Tt, ee;
       });
-      Pt = '<div class="wbScale" role="meter" aria-label="' + qt(Yt.fineParticles) + '" aria-valuemin="0" aria-valuemax="' + Nl + '" aria-valuenow="' + X + '" style="background:linear-gradient(to right, ' + Ft.join(", ") + ')"><i style="left:' + wt(X) + '%"></i></div><div class="wbGraphNote"><span>0</span><span>' + Nl + " " + Ac + "</span></div>";
+      Pt = '<div class="wbScale" role="meter" aria-label="' + qt(Yt.fineParticles) + '" aria-valuemin="0" aria-valuemax="' + Nl + '" aria-valuenow="' + J + '" style="background:linear-gradient(to right, ' + Ft.join(", ") + ')"><i style="left:' + wt(J) + '%"></i></div><div class="wbGraphNote"><span>0</span><span>' + Nl + " " + Ac + "</span></div>";
     } else Pt = '<span class="wbGraphNote"><span>' + qt(gr(x, S)) + "</span></span>";
-    return '<div class="wbCard wbHc wbAq wbAqOpen"><div class="wbOpen"><div class="wbOpenHead"><span class="wbChip">' + cs(C) + '</span><span class="wbText"><span class="wbName">' + qt(Vs(x, S)) + '</span><span class="wbSub">' + qt(gr(x, S)) + (lt ? " · " + qt(Yt.aqLevel[lt]) : "") + '</span></span><button class="wbBack" title="' + qt(Yt.back) + '" data-wb="aq-close">' + cs(ka.back) + '</button></div><div class="wbGraph">' + Pt + "</div></div></div>";
+    return '<div class="wbCard wbHc wbAq wbAqOpen"><div class="wbOpen"><div class="wbOpenHead"><span class="wbChip">' + cs(C) + '</span><span class="wbText"><span class="wbName">' + qt(Vs(x, S)) + '</span><span class="wbSub">' + qt(gr(x, S)) + (dt ? " · " + qt(Yt.aqLevel[dt]) : "") + '</span></span><button class="wbBack" title="' + qt(Yt.back) + '" data-wb="aq-close">' + cs(ka.back) + '</button></div><div class="wbGraph">' + Pt + "</div></div></div>";
   }
   const Gn = { good: "Good", fair: "Fair", moderate: "Moderate", poor: "Poor", very_poor: "Very poor", extremely_poor: "Extremely poor" }, Ga = (x) => x <= 50 ? "Good" : x <= 100 ? "Moderate" : x <= 150 ? "Unhealthy for some" : x <= 200 ? "Unhealthy" : x <= 300 ? "Very unhealthy" : "Hazardous";
   function Un(x) {
@@ -5579,21 +5579,21 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
   }), sa = ["none", "very_low", "low", "moderate", "high", "very_high"], Ln = (x) => Ke(x.state) ? Number(x.state) : sa.indexOf(String(x.state).toLowerCase().replace(/ /g, "_")), bn = (x) => {
     const S = String(x).replace(/_/g, " ");
     return S[0].toUpperCase() + S.slice(1);
-  }, No = (x) => x.length ? '<div class="wbBaseRows">' + x.map(([S, C]) => '<span class="wbBaseRow"><span>' + qt(S) + "</span><span>" + qt(C) + "</span></span>").join("") + "</div>" : "";
+  }, Po = (x) => x.length ? '<div class="wbBaseRows">' + x.map(([S, C]) => '<span class="wbBaseRow"><span>' + qt(S) + "</span><span>" + qt(C) + "</span></span>").join("") + "</div>" : "";
   function Zi(x) {
     const S = Un(x), C = S[0];
     if (!C) return gn({ icon: ka.airFilter, name: Yt.airQuality, sub: Yt.noAir, visual: ji("–", ""), cls: "wbBase" });
-    const O = C.attributes.device_class, Z = Number(C.state), X = Ke(C.state), lt = O === "aqi" && X ? Ga(Z) : O === "pm25" && X ? Gn[Rc(Z)] : gr(x, C);
+    const O = C.attributes.device_class, Z = Number(C.state), J = Ke(C.state), dt = O === "aqi" && J ? Ga(Z) : O === "pm25" && J ? Gn[Bc(Z)] : gr(x, C);
     return gn({
       icon: ka.airFilter,
       name: Yt.airQuality,
-      sub: lt,
+      sub: dt,
       cls: "wbBase",
-      visual: ji(X ? fa(Math.round(Z), x.locale) : String(C.state), O === "aqi" ? "AQI" : C.attributes.unit_of_measurement || "") + No(S.slice(1, 3).map((bt) => [Vs(x, bt), gr(x, bt)]))
+      visual: ji(J ? fa(Math.round(Z), x.locale) : String(C.state), O === "aqi" ? "AQI" : C.attributes.unit_of_measurement || "") + Po(S.slice(1, 3).map((bt) => [Vs(x, bt), gr(x, bt)]))
     });
   }
   function Ki(x) {
-    const S = Yn(x).sort((Z, X) => Ln(X) - Ln(Z));
+    const S = Yn(x).sort((Z, J) => Ln(J) - Ln(Z));
     if (!S.length) return gn({ icon: ka.flower, name: Yt.pollen, sub: Yt.noPollen, visual: ji("–", ""), cls: "wbBase" });
     const C = S[0], O = (Z) => Ke(Z.state) ? gr(x, Z) : bn(Z.state);
     return gn({
@@ -5601,17 +5601,17 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
       name: Yt.pollen,
       sub: Vs(x, C) + " · " + O(C),
       cls: "wbBase",
-      visual: ji(O(C), "") + No(S.slice(1, 3).map((Z) => [Vs(x, Z), O(Z)]))
+      visual: ji(O(C), "") + Po(S.slice(1, 3).map((Z) => [Vs(x, Z), O(Z)]))
     });
   }
   function hs(x) {
-    const S = Date.now(), C = M("hourly").filter((X) => {
-      const lt = new Date(X.datetime).getTime();
-      return lt > S - Fe && lt < S + 12 * Fe;
-    }), O = C.find((X) => (X.precipitation_probability ?? 0) >= 50 || (X.precipitation ?? 0) >= 0.2), Z = O ? Na(Yt.rainFrom, { time: Ao(new Date(Math.max(S, new Date(O.datetime).getTime())), x) }) : C.length ? Yt.noRain12 : void 0;
+    const S = Date.now(), C = M("hourly").filter((J) => {
+      const dt = new Date(J.datetime).getTime();
+      return dt > S - Fe && dt < S + 12 * Fe;
+    }), O = C.find((J) => (J.precipitation_probability ?? 0) >= 50 || (J.precipitation ?? 0) >= 0.2), Z = O ? Na(Yt.rainFrom, { time: Lo(new Date(Math.max(S, new Date(O.datetime).getTime())), x) }) : C.length ? Yt.noRain12 : void 0;
     return gn({ icon: ka.radar, name: Yt.rainRadar, sub: Z, cls: "wbBase", visual: '<div class="wbRadar" aria-hidden="true"><i class="wbRadarRing"></i><i class="wbRadarHome"></i></div>' });
   }
-  const Re = {
+  const Be = {
     current: Ea,
     hourly: ze,
     sun: jn,
@@ -5623,7 +5623,7 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     pressure: ea,
     precipitation: ra,
     visibility: zn,
-    air_quality: Ro,
+    air_quality: No,
     aq_tile: Zi,
     pollen_tile: Ki,
     radar_tile: hs
@@ -5633,84 +5633,84 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     const S = l == null ? void 0 : l();
     if (!S || K) return;
     const C = Pa(S);
-    mt(S, C), st.lastFetch || $t();
-    const O = me(S), Z = Pc(S), X = Dd(S), lt = [
+    mt(S, C), lt.lastFetch || $t();
+    const O = me(S), Z = Pc(S), J = Dd(S), dt = [
       ...C.map((Gt) => S.states[Gt]),
       S.states["sun.sun"],
       Z && S.states[Z],
-      X && S.states[X],
+      J && S.states[J],
       ...O.air.map((Gt) => S.states[Gt]),
       ...O.pollen.map((Gt) => S.states[Gt]),
-      ...Y.some((Gt) => rt.includes(Gt)) ? [...Un(S), ...Yn(S)] : [],
+      ...Y.some((Gt) => st.includes(Gt)) ? [...Un(S), ...Yn(S)] : [],
       S.locale,
       S.config,
       S.entities,
       Math.floor(Date.now() / co)
     ];
-    if (!x && U && lt.length === U.length && lt.every((Gt, Rt) => Gt === U[Rt])) return;
-    U = lt;
-    const bt = R.getRootNode(), wt = bt.activeElement || document.activeElement;
+    if (!x && U && dt.length === U.length && dt.every((Gt, Bt) => Gt === U[Bt])) return;
+    U = dt;
+    const bt = B.getRootNode(), wt = bt.activeElement || document.activeElement;
     for (const Gt of Y) {
-      const Rt = nt[Gt];
+      const Bt = ot[Gt];
       let Ft = "";
       try {
-        Ft = Re[Gt](S, C) || "";
+        Ft = Be[Gt](S, C) || "";
       } catch {
         Ft = "";
       }
-      if (Ft === Rt.html) continue;
-      const Zt = wt && Rt.el.contains(wt) ? (Pt = wt.dataset) == null ? void 0 : Pt.wbFocus : void 0, Vt = Rt.el.querySelector(".wbStripScroll"), Tt = Vt ? Vt.scrollLeft : null;
-      Rt.html = Ft, Rt.el.hidden = !Ft, Rt.el.innerHTML = Ft;
-      const ee = Rt.el.querySelector(".wbStripScroll");
-      ee && Tt != null ? ee.scrollTo({ left: Tt }) : ee != null && ee.dataset.start && ee.scrollTo({ left: Number(ee.dataset.start) * ee.clientWidth / Number(ee.dataset.span) }), Zt && !ft && ((Lt = Rt.el.querySelector('[data-wb-focus="' + Zt + '"]')) == null || Lt.focus());
+      if (Ft === Bt.html) continue;
+      const Zt = wt && Bt.el.contains(wt) ? (Pt = wt.dataset) == null ? void 0 : Pt.wbFocus : void 0, Vt = Bt.el.querySelector(".wbStripScroll"), Tt = Vt ? Vt.scrollLeft : null;
+      Bt.html = Ft, Bt.el.hidden = !Ft, Bt.el.innerHTML = Ft;
+      const ee = Bt.el.querySelector(".wbStripScroll");
+      ee && Tt != null ? ee.scrollTo({ left: Tt }) : ee != null && ee.dataset.start && ee.scrollTo({ left: Number(ee.dataset.start) * ee.clientWidth / Number(ee.dataset.span) }), Zt && !ft && ((Lt = Bt.el.querySelector('[data-wb-focus="' + Zt + '"]')) == null || Lt.focus());
     }
-    ft && ((kt = R.querySelector('[data-wb-focus="' + ft + '"]')) == null || kt.focus(), ft = null), _n(performance.now());
+    ft && ((kt = B.querySelector('[data-wb-focus="' + ft + '"]')) == null || kt.focus(), ft = null), _n(performance.now());
   }
   function uo() {
-    tt || K || (tt = !0, queueMicrotask(() => {
-      tt = !1, ha(!0);
+    et || K || (et = !0, queueMicrotask(() => {
+      et = !1, ha(!0);
     }));
   }
   function Mr() {
-    const x = getComputedStyle(R), S = (lt) => x.getPropertyValue(lt).trim(), C = {};
-    [["skyClearDay", "--wx-clear"], ["skyClearNight", "--wx-night"], ["skyCloudyDay", "--wx-cloudy"], ["cloudDay", "--wx-cloud-bright"], ["cloudNight", "--wx-cloudy"], ["rain", "--primary"]].forEach(([lt, bt]) => {
-      S(bt) && (C[lt] = S(bt));
+    const x = getComputedStyle(B), S = (dt) => x.getPropertyValue(dt).trim(), C = {};
+    [["skyClearDay", "--wx-clear"], ["skyClearNight", "--wx-night"], ["skyCloudyDay", "--wx-cloudy"], ["cloudDay", "--wx-cloud-bright"], ["cloudNight", "--wx-cloudy"], ["rain", "--primary"]].forEach(([dt, bt]) => {
+      S(bt) && (C[dt] = S(bt));
     });
-    const O = S("--color-text-primary") || "#f1f1f1", Z = S("--color-bg-card") || "#222222", X = !!R.closest(".light");
-    return { colors: { ...rn, ...C }, ink: X ? O : Z, paper: X ? Z : O };
+    const O = S("--color-text-primary") || "#f1f1f1", Z = S("--color-bg-card") || "#222222", J = !!B.closest(".light");
+    return { colors: { ...rn, ...C }, ink: J ? O : Z, paper: J ? Z : O };
   }
   const Ua = (x, S) => {
     var C;
     x.width !== S.w && (x.width = S.w), x.height !== S.h && (x.height = S.h), (C = x.getContext("2d")) == null || C.putImageData(new ImageData(S.data, S.w, S.h), 0, 0);
   }, ye = () => m && !kf();
   function na(x, S) {
-    R.querySelectorAll("canvas[data-wb-strip]").forEach((C) => Le(C, It[C.dataset.wbStrip], x, S));
+    B.querySelectorAll("canvas[data-wb-strip]").forEach((C) => Le(C, It[C.dataset.wbStrip], x, S));
   }
   function Le(x, S, C, O) {
     if (!S || !x.getClientRects().length) return;
-    const Z = x.clientWidth, X = x.clientHeight;
-    if (!Z || !X) return;
-    const lt = { width: Z, height: X, columns: S.columns || Mc, colors: O.colors, clock: C, ambient: ye(), seed: S.seed, soft: 1.5 };
+    const Z = x.clientWidth, J = x.clientHeight;
+    if (!Z || !J) return;
+    const dt = { width: Z, height: J, columns: S.columns || Mc, colors: O.colors, clock: C, ambient: ye(), seed: S.seed, soft: 1.5 };
     if (c === "smooth") {
-      const bt = Math.min(2, window.devicePixelRatio || 1), wt = Math.round(Z * bt), Pt = Math.round(X * bt);
+      const bt = Math.min(2, window.devicePixelRatio || 1), wt = Math.round(Z * bt), Pt = Math.round(J * bt);
       x.width !== wt && (x.width = wt), x.height !== Pt && (x.height = Pt);
       const Lt = x.getContext("2d");
       if (!Lt) return;
-      Lt.setTransform(bt, 0, 0, bt, 0, 0), Du(Lt, S.segs, lt);
-    } else Ua(x, Eu(S.segs, { ...lt, px: 2, oneBit: c === "onebit", ink: O.ink, paper: O.paper }));
+      Lt.setTransform(bt, 0, 0, bt, 0, 0), Du(Lt, S.segs, dt);
+    } else Ua(x, Eu(S.segs, { ...dt, px: 2, oneBit: c === "onebit", ink: O.ink, paper: O.paper }));
   }
   function _n(x) {
     if (K) return;
     const S = Mr();
     if (c !== "smooth") {
       const C = ye();
-      R.querySelectorAll("canvas[data-wb-wx]").forEach((O) => {
+      B.querySelectorAll("canvas[data-wb-wx]").forEach((O) => {
         O.getClientRects().length && Ua(O, dp(Vd(O.dataset.wbWx, S.colors), { size: Number(O.dataset.size) || 40, px: 2, oneBit: c === "onebit", colors: S.colors, ink: S.ink, paper: S.paper, clock: x, idle: C }));
       });
     }
-    R.querySelectorAll("canvas[data-wb-sea]").forEach((C) => {
-      const O = C.clientWidth, Z = C.clientHeight, X = Number(C.dataset.wbSea), lt = O + "x" + Z + ":" + X + ":" + S.colors.skyClearDay;
-      !O || !Z || !(X > 0) || C.dataset.painted === lt || (C.dataset.painted = lt, Ua(C, Uu(O, Z, X, S.colors)));
+    B.querySelectorAll("canvas[data-wb-sea]").forEach((C) => {
+      const O = C.clientWidth, Z = C.clientHeight, J = Number(C.dataset.wbSea), dt = O + "x" + Z + ":" + J + ":" + S.colors.skyClearDay;
+      !O || !Z || !(J > 0) || C.dataset.painted === dt || (C.dataset.painted = dt, Ua(C, Uu(O, Z, J, S.colors)));
     }), na(x, S);
   }
   function Zn(x) {
@@ -5725,17 +5725,17 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     }
   }
   function fo() {
-    R.classList.toggle("wbMotion", ye()), !W && !K && ye() && (W = requestAnimationFrame(Zn));
+    B.classList.toggle("wbMotion", ye()), !W && !K && ye() && (W = requestAnimationFrame(Zn));
   }
   function Da(x) {
     var C, O;
     const S = (O = (C = x.target).closest) == null ? void 0 : O.call(C, "[data-wb]");
-    if (!(!S || !R.contains(S))) {
+    if (!(!S || !B.contains(S))) {
       switch (S.dataset.wb) {
         case "day": {
           P.openDay = Number(S.dataset.index), P.opener = S.dataset.wbFocus, ft = "back-day";
-          const Z = Te()[P.openDay], X = !st.todayHistory || st.todayHistory.day !== (/* @__PURE__ */ new Date()).toDateString() || Date.now() - st.todayHistory.fetched > Qu;
-          Z && ls(new Date(Z.datetime), /* @__PURE__ */ new Date()) && X && le();
+          const Z = Te()[P.openDay], J = !lt.todayHistory || lt.todayHistory.day !== (/* @__PURE__ */ new Date()).toDateString() || Date.now() - lt.todayHistory.fetched > Qu;
+          Z && ls(new Date(Z.datetime), /* @__PURE__ */ new Date()) && J && le();
           break;
         }
         case "close-day":
@@ -5753,12 +5753,12 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
         case "hourly-view":
           P.hourlyView = S.dataset.view;
           try {
-            localStorage.setItem(J, P.hourlyView);
+            localStorage.setItem(tt, P.hourlyView);
           } catch {
           }
           break;
         case "hours-day": {
-          const Z = R.querySelector(".wbStripScroll");
+          const Z = B.querySelector(".wbStripScroll");
           Z && Z.scrollTo({ left: Number(S.dataset.hours) * Z.clientWidth / Number(Z.dataset.span), behavior: "smooth" });
           return;
         }
@@ -5779,20 +5779,20 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
     x.key === "Escape" && P.openDay !== void 0 && ((C = (S = x.target).closest) != null && C.call(S, '[data-wb-open="day"]')) && (P.openDay = void 0, ft = P.opener, P.opener = void 0, ha(!0));
   }
   let wn = null;
-  function di(x) {
+  function ci(x) {
     var C, O;
     const S = (O = (C = x.target).closest) == null ? void 0 : O.call(C, ".wbStripScroll");
     !S || x.button !== 0 || (wn = { startX: x.pageX, left: S.scrollLeft, moved: !1 }, S.classList.add("wbHeld"), window.addEventListener("mousemove", xn), window.addEventListener("mouseup", ho, { once: !0 }));
   }
   function xn(x) {
-    const S = R.querySelector(".wbStripScroll");
+    const S = B.querySelector(".wbStripScroll");
     if (!wn || !S) return;
     const C = x.pageX - wn.startX;
     !wn.moved && Math.abs(C) > 1 && (wn.moved = !0, S.classList.add("wbDragging")), S.scrollLeft = wn.left - C;
   }
   function ho() {
     wn = null, window.removeEventListener("mousemove", xn);
-    const x = R.querySelector(".wbStripScroll");
+    const x = B.querySelector(".wbStripScroll");
     if (!x) return;
     x.classList.remove("wbDragging", "wbHeld");
     const S = [...x.querySelectorAll(".wbSnap")];
@@ -5801,13 +5801,13 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
       x.scrollTo({ left: C.offsetLeft, behavior: "smooth" });
     }
   }
-  R.addEventListener("click", Da), R.addEventListener("keydown", En), R.addEventListener("mousedown", di);
+  B.addEventListener("click", Da), B.addEventListener("keydown", En), B.addEventListener("mousedown", ci);
   const Kn = typeof ResizeObserver == "function" ? new ResizeObserver(() => _n(performance.now())) : null;
-  Kn == null || Kn.observe(R);
+  Kn == null || Kn.observe(B);
   const Ya = (yn = window.matchMedia) == null ? void 0 : yn.call(window, "(prefers-reduced-motion: reduce)"), mo = () => {
     fo(), _n(performance.now());
   };
-  (Po = Ya == null ? void 0 : Ya.addEventListener) == null || Po.call(Ya, "change", mo);
+  (Io = Ya == null ? void 0 : Ya.addEventListener) == null || Io.call(Ya, "change", mo);
   const $i = [
     setInterval(() => {
       _t = /* @__PURE__ */ new Date(), ha(!0);
@@ -5826,17 +5826,17 @@ function Fc(n, { getHass: l, entityId: o, style: c = "bitmap", motion: m = !0, c
       ha(!0);
     },
     setStyle(x) {
-      !x || x === c || (c = x, R.dataset.style = c, ha(!0), fo());
+      !x || x === c || (c = x, B.dataset.style = c, ha(!0), fo());
     },
     destroy() {
       var x;
-      K = !0, $i.forEach(clearInterval), W && cancelAnimationFrame(W), W = 0, Kn == null || Kn.disconnect(), (x = Ya == null ? void 0 : Ya.removeEventListener) == null || x.call(Ya, "change", mo), ho(), R.removeEventListener("click", Da), R.removeEventListener("keydown", En), R.removeEventListener("mousedown", di), ["daily", "hourly"].forEach(A), R.remove();
+      K = !0, $i.forEach(clearInterval), W && cancelAnimationFrame(W), W = 0, Kn == null || Kn.disconnect(), (x = Ya == null ? void 0 : Ya.removeEventListener) == null || x.call(Ya, "change", mo), ho(), B.removeEventListener("click", Da), B.removeEventListener("keydown", En), B.removeEventListener("mousedown", ci), ["daily", "hourly"].forEach(A), B.remove();
     }
   };
 }
-const Ys = "#E1E1E1", Oc = "#F7F4F0", Bd = "#03a9f4", Ce = 14, De = 172;
+const Ys = "#E1E1E1", Oc = "#F7F4F0", Rd = "#03a9f4", Ce = 14, De = 172;
 let eh = 0;
-const Qe = (n) => Math.round(n * 100) / 100, Eo = (n, l, o) => Math.max(l, Math.min(o, n)), ri = (n, l, o, c, m, b) => '<rect x="' + Qe(n) + '" y="' + Qe(l) + '" width="' + Qe(o) + '" height="' + Qe(c) + '" fill="' + m + '"' + (b != null ? ' opacity="' + b + '"' : "") + "/>", Rd = (n) => n.map((l, o) => (o ? "L" : "M") + Qe(l[0]) + " " + Qe(l[1])).join("");
+const Qe = (n) => Math.round(n * 100) / 100, Do = (n, l, o) => Math.max(l, Math.min(o, n)), si = (n, l, o, c, m, b) => '<rect x="' + Qe(n) + '" y="' + Qe(l) + '" width="' + Qe(o) + '" height="' + Qe(c) + '" fill="' + m + '"' + (b != null ? ' opacity="' + b + '"' : "") + "/>", Bd = (n) => n.map((l, o) => (o ? "L" : "M") + Qe(l[0]) + " " + Qe(l[1])).join("");
 function Nd(n) {
   const l = (n == null ? void 0 : n.attributes) || {};
   return l.device_class === "curtain" ? "curtain" : l.device_class === "blind" || l.current_tilt_position != null ? "venetian" : "blind";
@@ -5859,98 +5859,98 @@ function ah(n) {
     break;
   }
   const m = (l - o[0]) / (c[0] - o[0]), b = m * m * (3 - 2 * m), w = (L, y) => {
-    const R = parseInt(L.slice(1), 16), vt = parseInt(y.slice(1), 16);
-    return "#" + [16, 8, 0].map((rt) => Math.round((R >> rt & 255) + ((vt >> rt & 255) - (R >> rt & 255)) * b).toString(16).padStart(2, "0")).join("");
+    const B = parseInt(L.slice(1), 16), vt = parseInt(y.slice(1), 16);
+    return "#" + [16, 8, 0].map((st) => Math.round((B >> st & 255) + ((vt >> st & 255) - (B >> st & 255)) * b).toString(16).padStart(2, "0")).join("");
   };
   return { top: w(o[1][0], c[1][0]), bot: w(o[1][1], c[1][1]), warm: w(o[1][2], c[1][2]), cool: w(o[1][3], c[1][3]), op: o[1][4] + (c[1][4] - o[1][4]) * b, t: l };
 }
 function nh(n) {
   const l = parseInt(n.slice(1), 16), o = (l >> 16 & 255) / 255, c = (l >> 8 & 255) / 255, m = (l & 255) / 255, b = Math.max(o, c, m), w = Math.min(o, c, m);
   let L = 0, y = 0;
-  const R = (b + w) / 2;
+  const B = (b + w) / 2;
   if (b !== w) {
     const vt = b - w;
-    y = R > 0.5 ? vt / (2 - b - w) : vt / (b + w), L = (b === o ? (c - m) / vt + (c < m ? 6 : 0) : b === c ? (m - o) / vt + 2 : (o - c) / vt + 4) / 6;
+    y = B > 0.5 ? vt / (2 - b - w) : vt / (b + w), L = (b === o ? (c - m) / vt + (c < m ? 6 : 0) : b === c ? (m - o) / vt + 2 : (o - c) / vt + 4) / 6;
   }
-  return [L * 360, y * 100, R * 100];
+  return [L * 360, y * 100, B * 100];
 }
-function Rp(n, l, o) {
-  l = Eo(l, 0, 100) / 100, o = Eo(o, 0, 100) / 100;
+function Bp(n, l, o) {
+  l = Do(l, 0, 100) / 100, o = Do(o, 0, 100) / 100;
   const c = (w) => (w + n / 30) % 12, m = l * Math.min(o, 1 - o), b = (w) => o - m * Math.max(-1, Math.min(c(w) - 3, Math.min(9 - c(w), 1)));
   return "#" + [b(0), b(8), b(4)].map((w) => Math.round(w * 255).toString(16).padStart(2, "0")).join("");
 }
-const [Np, Pp, Ip] = nh(Ys), Wc = Rp(Np, Pp, Math.max(6, Ip - 14)), oh = Rp(Np, Pp, Math.min(96, Ip + 16));
+const [Np, Pp, Ip] = nh(Ys), Wc = Bp(Np, Pp, Math.max(6, Ip - 14)), oh = Bp(Np, Pp, Math.min(96, Ip + 16));
 function ih(n, l, o, c, m) {
-  const b = De / 2, w = De * 0.12, L = b - (b - w) * n, y = (nt) => nt ** 1.3, R = Eo(o, -1.5, 1.5), vt = (nt) => -(Math.abs(R) * 4.6 * nt ** 1.5) * Math.sign(R), rt = n * 1.4, Y = (nt, K) => {
-    const U = Math.min(4.8, Math.abs(o) * 2.6) * (K ? 1 : -1) * Math.sign(o || 1), W = K ? nt + L : nt, ut = K ? nt : nt + L, tt = (_t) => W + vt(_t) + U * Math.sin(_t * Math.PI * 1.2 + c) * y(_t) * 1.4 + rt * Math.sin(_t * Math.PI * 2 + c * 0.6) * y(_t) * (K ? 1 : -1), ft = [[ut, Ce]];
-    for (let _t = 0; _t <= 12; _t++) ft.push([tt(_t / 12), Ce + De * _t / 12]);
+  const b = De / 2, w = De * 0.12, L = b - (b - w) * n, y = (ot) => ot ** 1.3, B = Do(o, -1.5, 1.5), vt = (ot) => -(Math.abs(B) * 4.6 * ot ** 1.5) * Math.sign(B), st = n * 1.4, Y = (ot, K) => {
+    const U = Math.min(4.8, Math.abs(o) * 2.6) * (K ? 1 : -1) * Math.sign(o || 1), W = K ? ot + L : ot, ut = K ? ot : ot + L, et = (_t) => W + vt(_t) + U * Math.sin(_t * Math.PI * 1.2 + c) * y(_t) * 1.4 + st * Math.sin(_t * Math.PI * 2 + c * 0.6) * y(_t) * (K ? 1 : -1), ft = [[ut, Ce]];
+    for (let _t = 0; _t <= 12; _t++) ft.push([et(_t / 12), Ce + De * _t / 12]);
     ft.push([ut, Ce + De]);
-    let J = '<path d="' + Rd(ft) + 'Z" fill="' + Ys + '"/>';
-    if (m) return J;
+    let tt = '<path d="' + Bd(ft) + 'Z" fill="' + Ys + '"/>';
+    if (m) return tt;
     const _ = 1.35 + ((K ? o > 0 : o < 0) ? 0.35 : 0), P = (_t) => {
-      const H = _t / 7, It = K ? 1 - H : H, G = (1 - It) ** 1.3, Wt = nt + L * H;
+      const H = _t / 7, It = K ? 1 - H : H, G = (1 - It) ** 1.3, Wt = ot + L * H;
       return Array.from({ length: 13 }, (M, E) => {
         const A = E / 12;
-        return [Wt + vt(A) * G + U * _ * Math.sin(A * Math.PI * 1.2 + c - It * 3.2) * y(A) * 1.4 * G + rt * 1.6 * Math.sin(A * Math.PI * 2 + c * 0.6 - It * 2.5) * y(A) * n * (0.4 + 0.6 * G), Ce + De * A];
+        return [Wt + vt(A) * G + U * _ * Math.sin(A * Math.PI * 1.2 + c - It * 3.2) * y(A) * 1.4 * G + st * 1.6 * Math.sin(A * Math.PI * 2 + c * 0.6 - It * 2.5) * y(A) * n * (0.4 + 0.6 * G), Ce + De * A];
       });
-    }, st = [1, 2, 3, 4, 5, 6].map(P);
-    for (let _t = 0; _t < 6; _t += 2) J += '<path d="' + Rd(st[_t]) + Rd(st[_t + 1].slice().reverse()).replace("M", "L") + 'Z" fill="#fff"/>';
-    return J;
-  }, $ = b - (b - w) * l;
-  return { body: Y(Ce, !0) + Y(Ce + De - L, !1), rails: [{ x: Ce + $ - 4, y: Ce, w: 4, h: De }, { x: Ce + De - $, y: Ce, w: 4, h: De }], head: 6.4 };
+    }, lt = [1, 2, 3, 4, 5, 6].map(P);
+    for (let _t = 0; _t < 6; _t += 2) tt += '<path d="' + Bd(lt[_t]) + Bd(lt[_t + 1].slice().reverse()).replace("M", "L") + 'Z" fill="#fff"/>';
+    return tt;
+  }, X = b - (b - w) * l;
+  return { body: Y(Ce, !0) + Y(Ce + De - L, !1), rails: [{ x: Ce + X - 4, y: Ce, w: 4, h: De }, { x: Ce + De - X, y: Ce, w: 4, h: De }], head: 6.4 };
 }
 function rh(n, l, o) {
   const c = De * (1 - n);
   let m = "";
-  if (c > 1 && (m += ri(Ce, Ce, De, c, Ys), !o))
-    for (let b = 1; b < 7; b += 2) m += ri(Ce + De * b / 7, Ce, De / 7, c, "#fff");
+  if (c > 1 && (m += si(Ce, Ce, De, c, Ys), !o))
+    for (let b = 1; b < 7; b += 2) m += si(Ce + De * b / 7, Ce, De / 7, c, "#fff");
   return { body: m, rails: [{ x: Ce, y: Ce + De * (1 - l) - 7, w: De, h: 11 }], head: 10.4 };
 }
 function sh(n, l, o, c) {
-  const m = 9 - 7 * (o / 100), b = Ce + De * (1 - n), w = Math.ceil(De / 10) + 1, L = Ce + m / 2, y = (Ce + De - m / 2 - L) / (w - 1), R = 0.8, vt = 0.6, rt = Array.from({ length: w }, (nt, K) => Math.max(L + K * vt, Math.min(L + K * y, b - m / 2 - (w - 1 - K) * vt))), Y = rt.slice(0, -1).map((nt, K) => Eo((rt[K + 1] - nt - vt) / (y - vt), 0, 1));
+  const m = 9 - 7 * (o / 100), b = Ce + De * (1 - n), w = Math.ceil(De / 10) + 1, L = Ce + m / 2, y = (Ce + De - m / 2 - L) / (w - 1), B = 0.8, vt = 0.6, st = Array.from({ length: w }, (ot, K) => Math.max(L + K * vt, Math.min(L + K * y, b - m / 2 - (w - 1 - K) * vt))), Y = st.slice(0, -1).map((ot, K) => Do((st[K + 1] - ot - vt) / (y - vt), 0, 1));
   Y.push(Y[w - 2]);
-  let $ = "";
-  return rt.forEach((nt, K) => {
-    const U = R + (m - R) * Y[K], W = Math.max(0.5, U / 2), ut = Math.max(0.4, U * 0.114);
-    $ += ri(Ce, nt - W, De, Math.max(1, U), Ys), !c && U > 2.2 && ($ += ri(Ce, nt + W - ut, De, ut, Wc) + ri(Ce, nt - W, De, ut * 0.55, oh, 0.75));
-  }), c || [0.22, 0.78].forEach((nt) => {
-    $ += ri(Ce + De * nt - 0.7, Ce, 1.4, Math.max(0, rt[w - 1] + 1 - Ce), Wc, 0.85);
-  }), { body: $, rails: [{ x: Ce, y: Ce + De * (1 - l) - 8, w: De, h: 8 }], head: 8.8 };
+  let X = "";
+  return st.forEach((ot, K) => {
+    const U = B + (m - B) * Y[K], W = Math.max(0.5, U / 2), ut = Math.max(0.4, U * 0.114);
+    X += si(Ce, ot - W, De, Math.max(1, U), Ys), !c && U > 2.2 && (X += si(Ce, ot + W - ut, De, ut, Wc) + si(Ce, ot - W, De, ut * 0.55, oh, 0.75));
+  }), c || [0.22, 0.78].forEach((ot) => {
+    X += si(Ce + De * ot - 0.7, Ce, 1.4, Math.max(0, st[w - 1] + 1 - Ce), Wc, 0.85);
+  }), { body: X, rails: [{ x: Ce, y: Ce + De * (1 - l) - 8, w: De, h: 8 }], head: 8.8 };
 }
 const qc = (n, l, o, c, m, b, w) => n === "curtain" ? ih(l, o, m, b, w) : n === "venetian" ? sh(l, o, c, w) : rh(l, o, w);
 function lh(n, l) {
   let o = "", c = "";
   return l.forEach((m) => {
-    const b = m.w > m.h, w = Eo(b ? Ce + De / 2 : m.x + m.w / 2, 17, 183), L = Eo(b ? m.y + m.h / 2 : Ce + De / 2, 17, 183);
-    o += b ? ri(Ce, Eo(m.y + m.h / 2, Ce, Ce + De) - 1, De, 2, Bd) : ri(Eo(m.x + m.w / 2, Ce, Ce + De) - 1, Ce, 2, De, Bd);
+    const b = m.w > m.h, w = Do(b ? Ce + De / 2 : m.x + m.w / 2, 17, 183), L = Do(b ? m.y + m.h / 2 : Ce + De / 2, 17, 183);
+    o += b ? si(Ce, Do(m.y + m.h / 2, Ce, Ce + De) - 1, De, 2, Rd) : si(Do(m.x + m.w / 2, Ce, Ce + De) - 1, Ce, 2, De, Rd);
     const y = b ? "M" + Qe(w - 4) + " " + Qe(L - 3) + "l4 -3l4 3M" + Qe(w - 4) + " " + Qe(L + 3) + "l4 3l4 -3" : "M" + Qe(w - 3) + " " + Qe(L - 4) + "l-3 4l3 4M" + Qe(w + 3) + " " + Qe(L - 4) + "l3 4l-3 4";
-    c += '<circle cx="' + Qe(w) + '" cy="' + Qe(L) + '" r="11" fill="' + Bd + '" filter="url(#' + n + 's)"/><path d="' + y + '" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
+    c += '<circle cx="' + Qe(w) + '" cy="' + Qe(L) + '" r="11" fill="' + Rd + '" filter="url(#' + n + 's)"/><path d="' + y + '" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
   }), { lines: o, knobs: c };
 }
 function dh(n, l) {
-  const o = /* @__PURE__ */ new Date(), c = ah(o.getHours() + o.getMinutes() / 60), m = 42 + 18 * Math.sin(c.t * 0.5), b = c.t >= 5 && c.t <= 20 ? 40 - 48 * Math.sin(Math.PI * (c.t - 5) / 15) : 80, w = qc(l.kind, l.pos / 100, l.bar / 100, l.tilt, l.vel, l.ph, !1), L = l.ghostAlpha > 4e-3 && l.ghost != null ? qc(l.kind, l.ghost / 100, l.ghost / 100, l.tilt, 0, 0, !0).body : "", y = l.grip > 4e-3 ? lh(n, w.rails) : null, R = (vt) => ri(Ce, Ce, De, De, vt);
-  return '<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><clipPath id="' + n + 'c"><rect x="14" y="14" width="172" height="172" rx="8"/></clipPath><linearGradient id="' + n + 'l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c.top + '"/><stop offset="1" stop-color="' + c.bot + '"/></linearGradient><radialGradient id="' + n + 'w" cx="' + Qe(m) + '%" cy="' + Qe(b) + '%" r="58%"><stop offset="0" stop-color="' + c.warm + '" stop-opacity="' + Qe(c.op * 0.8) + '"/><stop offset="1" stop-color="' + c.warm + '" stop-opacity="0"/></radialGradient><radialGradient id="' + n + 'k" cx="' + Qe(100 - m * 0.8) + '%" cy="' + Qe(100 - b * 0.6) + '%" r="62%"><stop offset="0" stop-color="' + c.cool + '" stop-opacity="' + Qe(c.op * 0.64) + '"/><stop offset="1" stop-color="' + c.cool + '" stop-opacity="0"/></radialGradient><filter id="' + n + 's" x="-5%" y="-50%" width="110%" height="300%"><feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000" flood-opacity=".18"/></filter></defs><rect x="6" y="6" width="188" height="188" rx="16" fill="' + Oc + '" stroke="#E3E3E3" stroke-width=".4"/><g clip-path="url(#' + n + 'c)">' + R("url(#" + n + "l)") + R("url(#" + n + "w)") + R("url(#" + n + "k)") + (L ? '<g opacity="' + Qe(l.ghostAlpha) + '">' + L + "</g>" : "") + w.body + '<rect x="14" y="14" width="172" height="' + w.head + '" fill="' + Ys + '" filter="url(#' + n + 's)"/></g>' + (y ? '<g clip-path="url(#' + n + 'c)" opacity="' + Qe(l.grip) + '">' + y.lines + "</g>" : "") + '<rect x="13.5" y="13.5" width="173" height="173" rx="8.5" fill="none" stroke="' + Oc + '" stroke-width="3"/>' + (y ? '<g opacity="' + Qe(l.grip) + '">' + y.knobs + "</g>" : "") + "</svg>";
+  const o = /* @__PURE__ */ new Date(), c = ah(o.getHours() + o.getMinutes() / 60), m = 42 + 18 * Math.sin(c.t * 0.5), b = c.t >= 5 && c.t <= 20 ? 40 - 48 * Math.sin(Math.PI * (c.t - 5) / 15) : 80, w = qc(l.kind, l.pos / 100, l.bar / 100, l.tilt, l.vel, l.ph, !1), L = l.ghostAlpha > 4e-3 && l.ghost != null ? qc(l.kind, l.ghost / 100, l.ghost / 100, l.tilt, 0, 0, !0).body : "", y = l.grip > 4e-3 ? lh(n, w.rails) : null, B = (vt) => si(Ce, Ce, De, De, vt);
+  return '<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><clipPath id="' + n + 'c"><rect x="14" y="14" width="172" height="172" rx="8"/></clipPath><linearGradient id="' + n + 'l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c.top + '"/><stop offset="1" stop-color="' + c.bot + '"/></linearGradient><radialGradient id="' + n + 'w" cx="' + Qe(m) + '%" cy="' + Qe(b) + '%" r="58%"><stop offset="0" stop-color="' + c.warm + '" stop-opacity="' + Qe(c.op * 0.8) + '"/><stop offset="1" stop-color="' + c.warm + '" stop-opacity="0"/></radialGradient><radialGradient id="' + n + 'k" cx="' + Qe(100 - m * 0.8) + '%" cy="' + Qe(100 - b * 0.6) + '%" r="62%"><stop offset="0" stop-color="' + c.cool + '" stop-opacity="' + Qe(c.op * 0.64) + '"/><stop offset="1" stop-color="' + c.cool + '" stop-opacity="0"/></radialGradient><filter id="' + n + 's" x="-5%" y="-50%" width="110%" height="300%"><feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000" flood-opacity=".18"/></filter></defs><rect x="6" y="6" width="188" height="188" rx="16" fill="' + Oc + '" stroke="#E3E3E3" stroke-width=".4"/><g clip-path="url(#' + n + 'c)">' + B("url(#" + n + "l)") + B("url(#" + n + "w)") + B("url(#" + n + "k)") + (L ? '<g opacity="' + Qe(l.ghostAlpha) + '">' + L + "</g>" : "") + w.body + '<rect x="14" y="14" width="172" height="' + w.head + '" fill="' + Ys + '" filter="url(#' + n + 's)"/></g>' + (y ? '<g clip-path="url(#' + n + 'c)" opacity="' + Qe(l.grip) + '">' + y.lines + "</g>" : "") + '<rect x="13.5" y="13.5" width="173" height="173" rx="8.5" fill="none" stroke="' + Oc + '" stroke-width="3"/>' + (y ? '<g opacity="' + Qe(l.grip) + '">' + y.knobs + "</g>" : "") + "</svg>";
 }
 function ch({ onMove: n, onSet: l }) {
-  var J;
+  var tt;
   const o = "cv" + ++eh, c = document.createElement("div");
   c.className = "tfCoverArt";
-  const m = (J = window.matchMedia) == null ? void 0 : J.call(window, "(pointer: coarse)").matches;
+  const m = (tt = window.matchMedia) == null ? void 0 : tt.call(window, "(pointer: coarse)").matches;
   let b = null;
   const w = { pos: 0, tilt: 0, vel: 0, ph: 0, grip: 0, ghost: 0, gpos: null, last: 0 };
-  let L = 0, y = !1, R = !1, vt = null, rt = 0, Y = 0;
-  const $ = () => (b == null ? void 0 : b.kind) === "curtain" ? "x" : "y", nt = () => vt || y || R || b.moving || b.target != null ? 1 : m ? performance.now() < Y ? 1 : 0.4 : 0, K = () => {
+  let L = 0, y = !1, B = !1, vt = null, st = 0, Y = 0;
+  const X = () => (b == null ? void 0 : b.kind) === "curtain" ? "x" : "y", ot = () => vt || y || B || b.moving || b.target != null ? 1 : m ? performance.now() < Y ? 1 : 0.4 : 0, K = () => {
     c.innerHTML = dh(o, { kind: b.kind, pos: w.pos, bar: b.target ?? w.pos, tilt: w.tilt, vel: w.vel, ph: w.ph, ghost: w.gpos, ghostAlpha: w.ghost, grip: w.grip });
   };
   function U(_) {
     L = 0;
-    const P = w.last ? Math.min(0.064, (_ - w.last) / 1e3) : 1 / 60, st = P * 60;
+    const P = w.last ? Math.min(0.064, (_ - w.last) / 1e3) : 1 / 60, lt = P * 60;
     w.last = _;
     const _t = b.pos - w.pos, H = w.pos;
-    w.pos += Math.sign(_t) * Math.min(Math.abs(_t), Math.max(10.5, Math.abs(_t) * 1.4) * P), Math.abs(b.pos - w.pos) < 0.03 && (w.pos = b.pos), w.vel = w.vel * 0.86 + (w.pos - H) / st * 0.14, Math.abs(w.vel) < 0.015 && w.pos === b.pos && (w.vel = 0), (w.pos !== H || w.vel) && (w.ph += (0.06 + Math.abs(w.vel) * 0.03) * st);
+    w.pos += Math.sign(_t) * Math.min(Math.abs(_t), Math.max(10.5, Math.abs(_t) * 1.4) * P), Math.abs(b.pos - w.pos) < 0.03 && (w.pos = b.pos), w.vel = w.vel * 0.86 + (w.pos - H) / lt * 0.14, Math.abs(w.vel) < 0.015 && w.pos === b.pos && (w.vel = 0), (w.pos !== H || w.vel) && (w.ph += (0.06 + Math.abs(w.vel) * 0.03) * lt);
     const It = b.tilt - w.tilt;
     w.tilt += Math.sign(It) * Math.min(Math.abs(It), Math.max(60, Math.abs(It) * 4) * P);
-    const G = nt();
+    const G = ot();
     w.grip += (G - w.grip) * Math.min(1, P * (G > w.grip ? 11 : 3.5)), Math.abs(G - w.grip) < 0.01 && (w.grip = G);
     const Wt = b.target != null && Math.abs(b.target - w.pos) > 0.5 ? 0.22 : 0;
     b.target != null && (w.gpos = b.target), w.ghost += (Wt - w.ghost) * Math.min(1, P * (Wt > w.ghost ? 16 : 3)), Math.abs(Wt - w.ghost) < 4e-3 && (w.ghost = Wt), K(), w.pos !== b.pos || w.vel || w.tilt !== b.tilt || w.grip !== G || w.ghost !== Wt ? L = requestAnimationFrame(U) : w.last = 0;
@@ -5959,16 +5959,16 @@ function ch({ onMove: n, onSet: l }) {
     b && !L && (L = requestAnimationFrame(U));
   }, ut = setInterval(() => {
     b && !L && K();
-  }, 60 * 1e3), tt = (_) => {
+  }, 60 * 1e3), et = (_) => {
     const P = c.getBoundingClientRect();
-    return $() === "x" ? (_.clientX - P.left) / P.width : (_.clientY - P.top) / P.height;
+    return X() === "x" ? (_.clientX - P.left) / P.width : (_.clientY - P.top) / P.height;
   };
   c.addEventListener("pointerdown", (_) => {
     var _t;
     if (!(b != null && b.canSet) || _.button > 0) return;
     _.preventDefault(), (_t = c.setPointerCapture) == null || _t.call(c, _.pointerId);
-    const P = b.target ?? b.pos, st = c.getBoundingClientRect();
-    vt = { p0: tt(_), from: P, x0: _.clientX, value: null, side: null }, b.kind === "curtain" && P > 0 && (vt.side = (_.clientX - st.left) / st.width < 0.5 ? "L" : "R"), W();
+    const P = b.target ?? b.pos, lt = c.getBoundingClientRect();
+    vt = { p0: et(_), from: P, x0: _.clientX, value: null, side: null }, b.kind === "curtain" && P > 0 && (vt.side = (_.clientX - lt.left) / lt.width < 0.5 ? "L" : "R"), W();
   }), c.addEventListener("pointermove", (_) => {
     if (!vt) return;
     let P;
@@ -5978,10 +5978,10 @@ function ch({ onMove: n, onSet: l }) {
         if (Math.abs(_t) < 4) return;
         vt.side = _t < 0 ? "L" : "R";
       }
-      const st = (De / 2 - De * 0.12) / 200;
-      P = vt.from + (vt.side === "L" ? -1 : 1) * ((tt(_) - vt.p0) / st) * 100;
-    } else P = vt.from - (tt(_) - vt.p0) / (De / 200) * 100;
-    vt.value = Eo(P, 0, 100), n(vt.value);
+      const lt = (De / 2 - De * 0.12) / 200;
+      P = vt.from + (vt.side === "L" ? -1 : 1) * ((et(_) - vt.p0) / lt) * 100;
+    } else P = vt.from - (et(_) - vt.p0) / (De / 200) * 100;
+    vt.value = Do(P, 0, 100), n(vt.value);
   });
   const ft = () => {
     if (!vt) return;
@@ -5993,24 +5993,24 @@ function ch({ onMove: n, onSet: l }) {
   }), c.addEventListener("pointerleave", () => {
     y = !1, W();
   }), c.addEventListener("focus", () => {
-    R = c.matches(":focus-visible"), W();
+    B = c.matches(":focus-visible"), W();
   }), c.addEventListener("blur", () => {
-    R = !1, W();
+    B = !1, W();
   }), c.addEventListener("keydown", (_) => {
     if (!(b != null && b.canSet)) return;
-    const P = Math.round(b.target ?? b.pos), st = _.shiftKey ? 10 : 1, _t = { ArrowUp: P + st, ArrowRight: P + st, ArrowDown: P - st, ArrowLeft: P - st, PageUp: P + 25, PageDown: P - 25, Home: 0, End: 100 }[_.key];
+    const P = Math.round(b.target ?? b.pos), lt = _.shiftKey ? 10 : 1, _t = { ArrowUp: P + lt, ArrowRight: P + lt, ArrowDown: P - lt, ArrowLeft: P - lt, PageUp: P + 25, PageDown: P - 25, Home: 0, End: 100 }[_.key];
     if (_t == null) return;
     _.preventDefault();
-    const H = Eo(_t, 0, 100);
-    n(H), clearTimeout(rt), rt = setTimeout(() => l(H), 500);
+    const H = Do(_t, 0, 100);
+    n(H), clearTimeout(st), st = setTimeout(() => l(H), 500);
   }), {
     el: c,
     update(_) {
       const P = !b;
-      b = _, P && (w.pos = b.pos, w.tilt = b.tilt, Y = performance.now() + 1500, m && setTimeout(W, 1600)), c.classList.toggle("x", $() === "x"), c.classList.toggle("y", $() === "y"), b.canSet ? (c.tabIndex = 0, c.setAttribute("role", "slider"), c.setAttribute("aria-valuemin", "0"), c.setAttribute("aria-valuemax", "100"), c.setAttribute("aria-valuenow", String(Math.round(b.target ?? b.pos))), c.setAttribute("aria-orientation", $() === "x" ? "horizontal" : "vertical")) : c.setAttribute("role", "img"), c.setAttribute("aria-label", b.name + (b.canSet ? " position" : "")), c.setAttribute("aria-valuetext", b.text), W();
+      b = _, P && (w.pos = b.pos, w.tilt = b.tilt, Y = performance.now() + 1500, m && setTimeout(W, 1600)), c.classList.toggle("x", X() === "x"), c.classList.toggle("y", X() === "y"), b.canSet ? (c.tabIndex = 0, c.setAttribute("role", "slider"), c.setAttribute("aria-valuemin", "0"), c.setAttribute("aria-valuemax", "100"), c.setAttribute("aria-valuenow", String(Math.round(b.target ?? b.pos))), c.setAttribute("aria-orientation", X() === "x" ? "horizontal" : "vertical")) : c.setAttribute("role", "img"), c.setAttribute("aria-label", b.name + (b.canSet ? " position" : "")), c.setAttribute("aria-valuetext", b.text), W();
     },
     destroy() {
-      cancelAnimationFrame(L), L = 0, clearInterval(ut), clearTimeout(rt), c.remove();
+      cancelAnimationFrame(L), L = 0, clearInterval(ut), clearTimeout(st), c.remove();
     }
   };
 }
@@ -6047,43 +6047,43 @@ const jc = "move-assistant-density", Vi = {
   media_players: { name: "Media players", icon: "mdi:multimedia", colour: "#2196f3" },
   maintenance: { name: "Maintenance", icon: "mdi:wrench", colour: "#9e9e9e" },
   energy: { name: "Energy", icon: "mdi:lightning-bolt", colour: "#ffc107" }
-}, Xc = "move_assistant_house", Jc = "move-assistant-house-used", xh = ["switch", "fan", "input_boolean", "automation"], Qc = "move-assistant-house-look", yh = [["popup", "Popup"], ["sheet", "Sheet"]], kh = [["auto", "Automatic"], ["cut", "Cut short"], ["wrap", "Two lines"], ["scroll", "Scroll"]], Mh = [["day", "Daytime 06–22"], ["waking", "Waking 07–23"], ["all", "All day"]], Sh = [["bitmap", "Pixel"], ["onebit", "1-bit"], ["smooth", "Smooth"], ["line", "Line"]], Hd = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>', Ch = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>', Th = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>', tp = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/></svg>', ep = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>', ap = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>', Hp = (n) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + n.map((l) => '<path d="' + l + '"/>').join("") + "</svg>", np = Hp(["M12 20H21", "M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z"]), Ah = Hp(["M20 6L9 17L4 12"]), Lo = (n, l = "") => '<span class="tfAreaGlyph" data-icon-for="' + Q(n || "") + '"' + (l ? ' data-icon-name="' + Q(l) + '"' : "") + "></span>", Lh = (n) => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 6 6.6.6-5 4.4 1.5 6.5L12 17l-5.9 3.3 1.5-6.5-5-4.4 6.6-.6z" fill="' + (n ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>', _h = 1, Eh = [["disarmed", "Off", "alarm_disarm", 0], ["armed_home", "Home", "alarm_arm_home", 1], ["armed_away", "Away", "alarm_arm_away", 2], ["armed_night", "Night", "alarm_arm_night", 4]], op = { disarmed: "Disarmed", armed_home: "Armed home", armed_away: "Armed away", armed_night: "Armed night", armed_vacation: "Armed vacation", arming: "Arming", pending: "Pending", triggered: "Triggered", disarming: "Disarming" }, Fd = ["hs", "xy", "rgb", "rgbw", "rgbww"], Il = ["door", "window", "garage_door", "opening"], ip = { moisture: ["detected water", "dry"], smoke: ["detected smoke", "clear"], gas: ["detected gas", "clear"], carbon_monoxide: ["detected carbon monoxide", "clear"], safety: ["became unsafe", "safe"] }, Hl = ["light", "climate", "cover", "humidifier", "media_player", "vacuum", "lock", "alarm_control_panel", "valve"], Dh = ["light", "switch", "fan", "lock", "cover", "climate", "humidifier", "media_player", "alarm_control_panel", "vacuum", "valve", "binary_sensor"], Bh = 10, Rh = 20, Nh = { electricity: "mdi:lightning-bolt", solar: "mdi:solar-power-variant", gas: "mdi:fire", water: "mdi:water" }, Ph = ["living room", "bedroom", "office"];
+}, Xc = "move_assistant_house", Jc = "move-assistant-house-used", xh = ["switch", "fan", "input_boolean", "automation"], Qc = "move-assistant-house-look", yh = [["popup", "Popup"], ["sheet", "Sheet"]], kh = [["auto", "Automatic"], ["cut", "Cut short"], ["wrap", "Two lines"], ["scroll", "Scroll"]], Mh = [["day", "Daytime 06–22"], ["waking", "Waking 07–23"], ["all", "All day"]], Sh = [["bitmap", "Pixel"], ["onebit", "1-bit"], ["smooth", "Smooth"], ["line", "Line"]], Hd = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z"/></svg>', Ch = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/></svg>', Th = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>', tp = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/></svg>', ep = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>', ap = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>', Hp = (n) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + n.map((l) => '<path d="' + l + '"/>').join("") + "</svg>", np = Hp(["M12 20H21", "M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z"]), Ah = Hp(["M20 6L9 17L4 12"]), _o = (n, l = "") => '<span class="tfAreaGlyph" data-icon-for="' + Q(n || "") + '"' + (l ? ' data-icon-name="' + Q(l) + '"' : "") + "></span>", Lh = (n) => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 6 6.6.6-5 4.4 1.5 6.5L12 17l-5.9 3.3 1.5-6.5-5-4.4 6.6-.6z" fill="' + (n ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>', _h = 1, Eh = [["disarmed", "Off", "alarm_disarm", 0], ["armed_home", "Home", "alarm_arm_home", 1], ["armed_away", "Away", "alarm_arm_away", 2], ["armed_night", "Night", "alarm_arm_night", 4]], op = { disarmed: "Disarmed", armed_home: "Armed home", armed_away: "Armed away", armed_night: "Armed night", armed_vacation: "Armed vacation", arming: "Arming", pending: "Pending", triggered: "Triggered", disarming: "Disarming" }, Fd = ["hs", "xy", "rgb", "rgbw", "rgbww"], Il = ["door", "window", "garage_door", "opening"], ip = { moisture: ["detected water", "dry"], smoke: ["detected smoke", "clear"], gas: ["detected gas", "clear"], carbon_monoxide: ["detected carbon monoxide", "clear"], safety: ["became unsafe", "safe"] }, Hl = ["light", "climate", "cover", "humidifier", "media_player", "vacuum", "lock", "alarm_control_panel", "valve"], Dh = ["light", "switch", "fan", "lock", "cover", "climate", "humidifier", "media_player", "alarm_control_panel", "vacuum", "valve", "binary_sensor"], Rh = 10, Bh = 20, Nh = { electricity: "mdi:lightning-bolt", solar: "mdi:solar-power-variant", gas: "mdi:fire", water: "mdi:water" }, Ph = ["living room", "bedroom", "office"];
 function Ih(n, { config: l, getHass: o }) {
   var Os, kl, os;
   const c = (t) => n.getElementById(t), m = c("app"), w = String((l || {}).layout || "").toLowerCase().replace("_", "-") === "test-focus";
   let L = Vi.get(jc) === "1", y = {};
-  const R = (t) => {
+  const B = (t) => {
     var a;
     return (a = o()) == null ? void 0 : a.callWS(t);
-  }, vt = (t, a, i) => R({ type: "call_service", domain: t, service: a, service_data: i }), rt = n.querySelector("#appearancePane .toggleList");
-  rt && !c("densityToggle") && (rt.insertAdjacentHTML(
+  }, vt = (t, a, i) => B({ type: "call_service", domain: t, service: a, service_data: i }), st = n.querySelector("#appearancePane .toggleList");
+  st && !c("densityToggle") && (st.insertAdjacentHTML(
     "afterbegin",
     '<div class="toggleRow"><div><strong>Show density</strong><div class="status">Each card’s height, and how many readings fit on the screen.</div></div><button class="switch" id="densityToggle" type="button" aria-label="Show density"></button></div>'
   ), c("densityToggle").addEventListener("click", () => {
-    L = !L, Vi.set(jc, L ? "1" : "0"), J();
+    L = !L, Vi.set(jc, L ? "1" : "0"), tt();
   }));
   const Y = [
     ["weather", "Weather", "The forecast under Home.", (t) => t.startsWith("weather.")],
     ["grid", "Energy", "Power from the grid, for Energy.", (t) => t.startsWith("sensor.") && xe(t).device_class === "power" && /^(W|kW)$/.test(xe(t).unit_of_measurement || "")],
     ["alarm", "Alarm", "The alarm in the Security popup.", (t) => t.startsWith("alarm_control_panel.")]
-  ], $ = (t, a, i, d) => '<div class="themeChoice" id="' + t + '" role="group" aria-label="' + a + '">' + d.map(([u, h]) => '<button class="wxLayoutBtn" type="button" aria-pressed="false" ' + i + '="' + u + '">' + h + "</button>").join("") + "</div>", nt = (t, a, i, d) => '<div class="toggleRow"' + (d ? ' id="' + d + '"' : "") + "><div><strong>" + t + "</strong>" + (a ? '<div class="status">' + a + "</div>" : "") + "</div>" + i + "</div>";
+  ], X = (t, a, i, d) => '<div class="themeChoice" id="' + t + '" role="group" aria-label="' + a + '">' + d.map(([u, h]) => '<button class="wxLayoutBtn" type="button" aria-pressed="false" ' + i + '="' + u + '">' + h + "</button>").join("") + "</div>", ot = (t, a, i, d) => '<div class="toggleRow"' + (d ? ' id="' + d + '"' : "") + "><div><strong>" + t + "</strong>" + (a ? '<div class="status">' + a + "</div>" : "") + "</div>" + i + "</div>";
   function K() {
-    var k, D, N, F, ct, Mt;
+    var k, D, N, F, $, Mt;
     if (!w || c("housePane")) return;
     const t = c("settingsView");
     t.querySelector(".settingsTitle").textContent = "HomeCore";
-    const a = [["look", "Appearance"], ["lights", "Lights"], ["sources", "Sources"], ["sums", "Summaries"]], i = (Dt, at) => '<div class="houseTab' + (Dt === "look" ? " active" : "") + '" data-house-pane="' + Dt + '"><section class="card">' + at + "</section></div>";
-    t.querySelector(".rubberTabs").insertAdjacentHTML("afterend", '<div class="settingsPane active" id="housePane"><div class="tabs rubberTabs houseTabs"><div class="rubberIndicator" aria-hidden="true"></div>' + a.map(([Dt, at]) => '<button class="tab segBtn' + (Dt === "look" ? " active" : "") + '" type="button" data-house-tab="' + Dt + '">' + at + "</button>").join("") + "</div>" + i("look", '<div class="toggleList" id="houseLook"></div>') + i("lights", '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p><div class="metaTableWrap"><table class="metaTable tfLightTable"><thead><tr><th>Light</th><th>Room</th><th>Now</th><th class="metaSwitchCol">Favourite</th><th>Tile</th><th>Pad</th></tr></thead><tbody id="lightRows"></tbody></table></div>') + i("sources", '<div class="toggleList">' + Y.map(([Dt, at, xt]) => nt(at, xt, '<select class="settingsSelect" data-source="' + Dt + '" aria-label="' + at + '"></select>')).join("") + "</div>") + i("sums", '<div class="toggleList">' + Object.entries(Id).map(([Dt, at]) => nt(at.name, "", '<button class="switch" type="button" role="switch" data-sum-toggle="' + Dt + '" aria-label="' + at.name + ' summary"></button>')).join("") + "</div>") + "</div>");
+    const a = [["look", "Appearance"], ["lights", "Lights"], ["sources", "Sources"], ["sums", "Summaries"]], i = (Dt, nt) => '<div class="houseTab' + (Dt === "look" ? " active" : "") + '" data-house-pane="' + Dt + '"><section class="card">' + nt + "</section></div>";
+    t.querySelector(".rubberTabs").insertAdjacentHTML("afterend", '<div class="settingsPane active" id="housePane"><div class="tabs rubberTabs houseTabs"><div class="rubberIndicator" aria-hidden="true"></div>' + a.map(([Dt, nt]) => '<button class="tab segBtn' + (Dt === "look" ? " active" : "") + '" type="button" data-house-tab="' + Dt + '">' + nt + "</button>").join("") + "</div>" + i("look", '<div class="toggleList" id="houseLook"></div>') + i("lights", '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p><div class="metaTableWrap"><table class="metaTable tfLightTable"><thead><tr><th>Light</th><th>Room</th><th>Now</th><th class="metaSwitchCol">Favourite</th><th>Tile</th><th>Pad</th></tr></thead><tbody id="lightRows"></tbody></table></div>') + i("sources", '<div class="toggleList">' + Y.map(([Dt, nt, xt]) => ot(nt, xt, '<select class="settingsSelect" data-source="' + Dt + '" aria-label="' + nt + '"></select>')).join("") + "</div>") + i("sums", '<div class="toggleList">' + Object.entries(Id).map(([Dt, nt]) => ot(nt.name, "", '<button class="switch" type="button" role="switch" data-sum-toggle="' + Dt + '" aria-label="' + nt.name + ' summary"></button>')).join("") + "</div>") + "</div>");
     const d = c("houseLook");
-    [(k = t.querySelector(".themeBtn")) == null ? void 0 : k.closest(".toggleRow"), (D = c("densityToggle")) == null ? void 0 : D.closest(".toggleRow"), (N = c("moreInfoChoice")) == null ? void 0 : N.closest(".toggleRow"), (F = c("namesChoice")) == null ? void 0 : F.closest(".toggleRow"), (ct = c("hoursChoice")) == null ? void 0 : ct.closest(".toggleRow"), (Mt = c("wxStyleChoice")) == null ? void 0 : Mt.closest(".toggleRow")].forEach((Dt) => Dt && d.appendChild(Dt)), d.insertAdjacentHTML("beforeend", nt("Lights", "How lights show on the house page.", $("lightsChoice", "Lights", "data-lights", [["tile", "HomeCore tile"], ["dac", "Dual Axis Controller"]]), "lightsRow") + nt("Pad", "What the Dual Axis Controller’s pad sets on its tile.", $("dacPadChoice", "Pad", "data-dac-pad", [["temperature", "Temperature"], ["colour", "Colour"]]), "dacPadRow"));
+    [(k = t.querySelector(".themeBtn")) == null ? void 0 : k.closest(".toggleRow"), (D = c("densityToggle")) == null ? void 0 : D.closest(".toggleRow"), (N = c("moreInfoChoice")) == null ? void 0 : N.closest(".toggleRow"), (F = c("namesChoice")) == null ? void 0 : F.closest(".toggleRow"), ($ = c("hoursChoice")) == null ? void 0 : $.closest(".toggleRow"), (Mt = c("wxStyleChoice")) == null ? void 0 : Mt.closest(".toggleRow")].forEach((Dt) => Dt && d.appendChild(Dt)), d.insertAdjacentHTML("beforeend", ot("Lights", "How lights show on the house page.", X("lightsChoice", "Lights", "data-lights", [["tile", "HomeCore tile"], ["dac", "Dual Axis Controller"]]), "lightsRow") + ot("Pad", "What the Dual Axis Controller’s pad sets on its tile.", X("dacPadChoice", "Pad", "data-dac-pad", [["temperature", "Temperature"], ["colour", "Colour"]]), "dacPadRow"));
     const u = c("housePane"), h = u.querySelector(".houseTabs"), f = h.querySelector(".rubberIndicator"), v = (Dt) => {
-      const at = h.querySelector(".tab.active");
-      f.style.transition = Dt ? "" : "none", f.style.left = at.offsetLeft + "px", f.style.width = at.offsetWidth + "px", Dt && (f.style.transform = "scaleX(1.08)", setTimeout(() => f.style.transform = "", 180));
+      const nt = h.querySelector(".tab.active");
+      f.style.transition = Dt ? "" : "none", f.style.left = nt.offsetLeft + "px", f.style.width = nt.offsetWidth + "px", Dt && (f.style.transform = "scaleX(1.08)", setTimeout(() => f.style.transform = "", 180));
     };
     new ResizeObserver(() => v(!1)).observe(h), u.addEventListener("click", (Dt) => {
-      const at = Dt.target.closest("[data-house-tab]");
-      if (at) {
-        h.querySelectorAll(".tab").forEach((pt) => pt.classList.toggle("active", pt === at)), u.querySelectorAll(".houseTab").forEach((pt) => pt.classList.toggle("active", pt.dataset.housePane === at.dataset.houseTab)), at.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), v(!0);
+      const nt = Dt.target.closest("[data-house-tab]");
+      if (nt) {
+        h.querySelectorAll(".tab").forEach((pt) => pt.classList.toggle("active", pt === nt)), u.querySelectorAll(".houseTab").forEach((pt) => pt.classList.toggle("active", pt.dataset.housePane === nt.dataset.houseTab)), nt.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }), v(!0);
         return;
       }
       const xt = Dt.target.closest("[data-light-fav]");
@@ -6100,12 +6100,12 @@ function Ih(n, { config: l, getHass: o }) {
         Fn();
       }
     }), u.addEventListener("change", (Dt) => {
-      const at = Dt.target;
-      at.dataset.source && (j = { ...j, sources: { ...j.sources || {}, [at.dataset.source]: at.value || void 0 } }, Pa());
-      const xt = at.dataset.lightStyle || at.dataset.lightPad;
+      const nt = Dt.target;
+      nt.dataset.source && (j = { ...j, sources: { ...j.sources || {}, [nt.dataset.source]: nt.value || void 0 } }, Pa());
+      const xt = nt.dataset.lightStyle || nt.dataset.lightPad;
       if (xt) {
-        const V = at.dataset.lightStyle ? "lightStyles" : "lightPads", pt = { ...me[V] };
-        at.value ? pt[xt] = at.value : delete pt[xt], me[V] = pt, Xt(), [...Vt.keys()].filter((z) => z.endsWith(":" + xt)).forEach((z) => Vt.delete(z));
+        const V = nt.dataset.lightStyle ? "lightStyles" : "lightPads", pt = { ...me[V] };
+        nt.value ? pt[xt] = nt.value : delete pt[xt], me[V] = pt, Xt(), [...Vt.keys()].filter((z) => z.endsWith(":" + xt)).forEach((z) => Vt.delete(z));
       }
       Fn();
     });
@@ -6119,8 +6119,8 @@ function Ih(n, { config: l, getHass: o }) {
     t.querySelectorAll("[data-lights]").forEach((D) => D.setAttribute("aria-pressed", String(D.dataset.lights === me.lights))), c("lightsRow").querySelector(".status").textContent = a || !ee() ? "How lights show on the house page." : Ft === "failed" ? "The Dual Axis Controller didn't load. Check the connection, or install it from HACS." : "Getting the Dual Axis Controller…", t.querySelectorAll("[data-dac-pad]").forEach((D) => D.setAttribute("aria-pressed", String(D.dataset.dacPad === me.dacPad))), c("dacPadRow").hidden = !ee();
     for (const D of t.querySelectorAll("[data-source]")) {
       if (D === n.activeElement) continue;
-      const [N] = Y.find(([ct]) => ct === D.dataset.source), F = Object.keys(y).filter(Y.find(([ct]) => ct === N)[3]).sort((ct, Mt) => St(ct).localeCompare(St(Mt)));
-      D.dataset.sig !== F.join(",") && (D.innerHTML = '<option value="">Automatic</option>' + F.map((ct) => '<option value="' + Q(ct) + '">' + Q(St(ct)) + "</option>").join(""), D.dataset.sig = F.join(",")), D.value = F.includes((v = j.sources) == null ? void 0 : v[N]) ? j.sources[N] : "";
+      const [N] = Y.find(([$]) => $ === D.dataset.source), F = Object.keys(y).filter(Y.find(([$]) => $ === N)[3]).sort(($, Mt) => St($).localeCompare(St(Mt)));
+      D.dataset.sig !== F.join(",") && (D.innerHTML = '<option value="">Automatic</option>' + F.map(($) => '<option value="' + Q($) + '">' + Q(St($)) + "</option>").join(""), D.dataset.sig = F.join(",")), D.value = F.includes((v = j.sources) == null ? void 0 : v[N]) ? j.sources[N] : "";
     }
     t.querySelectorAll("[data-sum-toggle]").forEach((D) => {
       const N = !(j.hiddenSums || []).includes(D.dataset.sumToggle);
@@ -6128,16 +6128,16 @@ function Ih(n, { config: l, getHass: o }) {
     });
     const i = c("lightRows"), d = i != null && i.contains(n.activeElement) ? n.activeElement : null;
     if (!i || d != null && d.matches("select")) return;
-    const u = new Set(la()), h = (D, N, F, ct) => '<option value="' + D + '"' + (D === F ? " selected" : "") + ">" + N + "</option>", f = Object.keys(y).filter((D) => D.startsWith("light.")).sort((D, N) => !Ae.get(D) - !Ae.get(N) || (Ae.get(D) || "").localeCompare(Ae.get(N) || "") || St(D).localeCompare(St(N))).map((D) => {
-      const N = me.lightStyles[D] || "", F = me.lightPads[D] || "", ct = u.has(D), Mt = Q(St(D));
-      return "<tr><td><strong>" + Mt + "</strong></td><td>" + Q(Ae.get(D) || "—") + "</td><td>" + Q(sa(D)) + '</td><td class="metaSwitchCol"><button class="switch' + (ct ? " on" : "") + '" type="button" role="switch" aria-checked="' + ct + '" data-light-fav="' + Q(D) + '" aria-label="' + Mt + ' is a favourite"></button></td><td><select class="settingsSelect" data-light-style="' + Q(D) + '" aria-label="' + Mt + ' tile">' + h("", "Default", N) + h("tile", "HomeCore tile", N) + h("dac", "Dual Axis Controller", N) + '</select></td><td><select class="settingsSelect" data-light-pad="' + Q(D) + '" aria-label="' + Mt + ' pad"' + (Tt(D) ? "" : " disabled") + ">" + h("", "Default", F) + h("temperature", "Temperature", F) + h("colour", "Colour", F) + "</select></td></tr>";
+    const u = new Set(la()), h = (D, N, F, $) => '<option value="' + D + '"' + (D === F ? " selected" : "") + ">" + N + "</option>", f = Object.keys(y).filter((D) => D.startsWith("light.")).sort((D, N) => !Ae.get(D) - !Ae.get(N) || (Ae.get(D) || "").localeCompare(Ae.get(N) || "") || St(D).localeCompare(St(N))).map((D) => {
+      const N = me.lightStyles[D] || "", F = me.lightPads[D] || "", $ = u.has(D), Mt = Q(St(D));
+      return "<tr><td><strong>" + Mt + "</strong></td><td>" + Q(Ae.get(D) || "—") + "</td><td>" + Q(sa(D)) + '</td><td class="metaSwitchCol"><button class="switch' + ($ ? " on" : "") + '" type="button" role="switch" aria-checked="' + $ + '" data-light-fav="' + Q(D) + '" aria-label="' + Mt + ' is a favourite"></button></td><td><select class="settingsSelect" data-light-style="' + Q(D) + '" aria-label="' + Mt + ' tile">' + h("", "Default", N) + h("tile", "HomeCore tile", N) + h("dac", "Dual Axis Controller", N) + '</select></td><td><select class="settingsSelect" data-light-pad="' + Q(D) + '" aria-label="' + Mt + ' pad"' + (Tt(D) ? "" : " disabled") + ">" + h("", "Default", F) + h("temperature", "Temperature", F) + h("colour", "Colour", F) + "</select></td></tr>";
     }).join("");
     i.dataset.html !== f && (i.innerHTML = f, i.dataset.html = f, d != null && d.dataset.lightFav && ((k = i.querySelector('[data-light-fav="' + CSS.escape(d.dataset.lightFav) + '"]')) == null || k.focus({ preventScroll: !0 })));
   }
   const W = document.createElement("div");
   W.className = "densityBadge", W.setAttribute("aria-live", "polite"), W.hidden = !0, m.appendChild(W);
   let ut = 0;
-  function tt() {
+  function et() {
     if (!L) return;
     const t = c("homeView"), a = (h) => h.offsetParent !== null && !h.closest("[hidden]");
     t.querySelectorAll(":scope .card, :scope .tfAction").forEach((h) => {
@@ -6150,19 +6150,19 @@ function Ih(n, { config: l, getHass: o }) {
     W.hidden = !t.classList.contains("active"), W.innerHTML = "<b>" + u + "</b><small>of " + i.length + " readings on screen</small>";
   }
   const ft = () => {
-    L && requestAnimationFrame(tt);
+    L && requestAnimationFrame(et);
   };
-  function J() {
+  function tt() {
     var t;
-    m.classList.toggle("showDensity", L), (t = c("densityToggle")) == null || t.classList.toggle("on", L), W.hidden = !L, clearInterval(ut), L && (ut = setInterval(tt, 1e3), tt());
+    m.classList.toggle("showDensity", L), (t = c("densityToggle")) == null || t.classList.toggle("on", L), W.hidden = !L, clearInterval(ut), L && (ut = setInterval(et, 1e3), et());
   }
   window.addEventListener("scroll", ft, { capture: !0, passive: !0 }), window.addEventListener("resize", ft, { passive: !0 });
   const _ = n.querySelector("#homeView .grid");
-  let P = null, st = null, _t = null, H = null;
+  let P = null, lt = null, _t = null, H = null;
   const It = /* @__PURE__ */ new Map(), G = /* @__PURE__ */ new Map(), Wt = /* @__PURE__ */ new Map(), M = 6;
   let E = null;
   const A = /* @__PURE__ */ new Map(), I = /* @__PURE__ */ new Map(), mt = /* @__PURE__ */ new Map();
-  let j = { favourites: null }, dt = {}, gt = {}, yt = [], $t = null;
+  let j = { favourites: null }, ct = {}, gt = {}, yt = [], $t = null;
   const le = (() => {
     try {
       return JSON.parse(Vi.get(Jc)) || {};
@@ -6172,7 +6172,7 @@ function Ih(n, { config: l, getHass: o }) {
   })();
   let Ae = /* @__PURE__ */ new Map(), Ca = 0;
   function Pa() {
-    clearTimeout(Ca), Ca = setTimeout(() => Promise.resolve(R({ type: "frontend/set_user_data", key: Xc, value: j })).catch(() => {
+    clearTimeout(Ca), Ca = setTimeout(() => Promise.resolve(B({ type: "frontend/set_user_data", key: Xc, value: j })).catch(() => {
     }), 400);
   }
   const me = (() => {
@@ -6194,9 +6194,9 @@ function Ih(n, { config: l, getHass: o }) {
       lightPads: a(t.lightPads, ["temperature", "colour"])
     };
   })(), Xt = () => Vi.set(Qc, JSON.stringify(me)), Te = () => {
-    m.dataset.more = me.more, m.dataset.names = me.names, Bs();
+    m.dataset.more = me.more, m.dataset.names = me.names, Rs();
   };
-  w && rt && !c("moreInfoChoice") && (c("densityToggle").closest(".toggleRow").insertAdjacentHTML(
+  w && st && !c("moreInfoChoice") && (c("densityToggle").closest(".toggleRow").insertAdjacentHTML(
     "afterend",
     '<div class="toggleRow"><div><strong>More info</strong><div class="status">How a device opens on the house page.</div></div><div class="themeChoice" id="moreInfoChoice" role="group" aria-label="More info">' + yh.map(([t, a]) => '<button class="wxLayoutBtn" type="button" aria-pressed="' + (me.more === t) + '" data-more-style="' + t + '">' + a + "</button>").join("") + "</div></div>"
   ), c("moreInfoChoice").addEventListener("click", (t) => {
@@ -6227,20 +6227,20 @@ function Ih(n, { config: l, getHass: o }) {
   const xr = w ? mu({ onChange: () => va() }) : null;
   w && m.classList.add("house");
   const de = Object.assign(document.createElement("div"), { className: "tfBento" });
-  let Kt = null, we = null, Do = !1;
+  let Kt = null, we = null, Ro = !1;
   function yr(t) {
     const a = Ar();
     if (m.classList.toggle("houseBento", !!a), Kt && (we !== a || t == null) && (Kt.destroy(), Kt = null), !a || t == null) {
       de.remove();
       return;
     }
-    de.isConnected || _.append(de), de.style.order = t, !Kt && !Do && (Kt = Fc(de, { getHass: o, entityId: a, style: me.wxStyle, hoursWindow: () => me.hoursWindow }), we = a);
+    de.isConnected || _.append(de), de.style.order = t, !Kt && !Ro && (Kt = Fc(de, { getHass: o, entityId: a, style: me.wxStyle, hoursWindow: () => me.hoursWindow }), we = a);
   }
   const Ui = [["wx", ["current"]], ["avg", ["compared_to_average"]], ["aq", ["aq_tile"]], ["pollen", ["pollen_tile"]], ["radar", ["radar_tile"]]], Ta = ["aq", "pollen", "radar"], fe = Object.fromEntries(Ui.map(([t]) => [t, Object.assign(document.createElement("div"), { className: "tfDashBento tfDash-" + t })]));
   let Oe = null, kr = null;
-  function si(t) {
+  function li(t) {
     const a = Ar();
-    Oe && kr !== a && (Oe.forEach((i) => i.destroy()), Oe = null), Object.values(fe).forEach((i) => a ? !i.isConnected && _.append(i) : i.remove()), a && !Oe && !Do && (Oe = Ui.map(([i, d]) => Fc(fe[i], { getHass: o, entityId: a, style: me.wxStyle, cards: d, onOpen: i === "wx" ? () => Kr("weather") : void 0 })), kr = a);
+    Oe && kr !== a && (Oe.forEach((i) => i.destroy()), Oe = null), Object.values(fe).forEach((i) => a ? !i.isConnected && _.append(i) : i.remove()), a && !Oe && !Ro && (Oe = Ui.map(([i, d]) => Fc(fe[i], { getHass: o, entityId: a, style: me.wxStyle, cards: d, onOpen: i === "wx" ? () => Kr("weather") : void 0 })), kr = a);
   }
   const xe = (t) => {
     var a;
@@ -6260,7 +6260,7 @@ function Ih(n, { config: l, getHass: o }) {
   }, Ha = (t) => 0.2126 * Ve(t[0]) + 0.7152 * Ve(t[1]) + 0.0722 * Ve(t[2]), ea = (t, a) => {
     const i = Ha(t), d = Ha(a);
     return (Math.max(i, d) + 0.05) / (Math.min(i, d) + 0.05);
-  }, li = (t, a) => {
+  }, di = (t, a) => {
     const i = Bo(t);
     for (let d = 0.1; d < 1; d += 0.02) {
       const u = t.map((h) => Math.round(i ? h * (1 - d) : h + (255 - h) * d));
@@ -6270,7 +6270,7 @@ function Ih(n, { config: l, getHass: o }) {
   };
   function ra(t) {
     const a = xe(t), i = (a.rgb_color || (a.hs_color && a.color_mode !== "color_temp" ? ne(...a.hs_color) : a.color_temp_kelvin ? Ut(a.color_temp_kelvin) : [255, 170, 0])).map((d) => Math.round(Math.max(0, Math.min(255, d))));
-    return "--light:rgb(" + i.join(",") + ");--light-ink:" + li(i, 3.5);
+    return "--light:rgb(" + i.join(",") + ");--light-ink:" + di(i, 3.5);
   }
   const zn = (t) => {
     var a;
@@ -6278,7 +6278,7 @@ function Ih(n, { config: l, getHass: o }) {
   }, Vn = (t) => {
     const a = Yi(t);
     return a.length ? a.some((i) => i !== "onoff") : xe(t).brightness != null;
-  }, Ro = (t) => [xe(t).min_color_temp_kelvin || 2e3, xe(t).max_color_temp_kelvin || 6500], Ye = (t) => new Date(t).toLocaleTimeString(void 0, { hour: "2-digit", minute: "2-digit" });
+  }, No = (t) => [xe(t).min_color_temp_kelvin || 2e3, xe(t).max_color_temp_kelvin || 6500], Ye = (t) => new Date(t).toLocaleTimeString(void 0, { hour: "2-digit", minute: "2-digit" });
   function Gn(t) {
     const a = Math.max(1, Math.round((Date.now() - t) / 1e3));
     if (a < 10) return "Just now";
@@ -6295,10 +6295,10 @@ function Ih(n, { config: l, getHass: o }) {
     return xe(t).current_position ?? (((a = y[t]) == null ? void 0 : a.state) === "closed" ? 0 : 100);
   }, Un = (t) => {
     var a;
-    return Rn("pos", t, ((a = A.get(t)) == null ? void 0 : a.pos) ?? Ga(t));
+    return Bn("pos", t, ((a = A.get(t)) == null ? void 0 : a.pos) ?? Ga(t));
   }, Yn = (t) => {
     var a;
-    return Rn("tilt", t, ((a = A.get(t)) == null ? void 0 : a.tilt) ?? xe(t).current_tilt_position);
+    return Bn("tilt", t, ((a = A.get(t)) == null ? void 0 : a.tilt) ?? xe(t).current_tilt_position);
   };
   function sa(t) {
     var f;
@@ -6355,11 +6355,11 @@ function Ih(n, { config: l, getHass: o }) {
       } else u.textContent || (u.textContent = (u.dataset.letter || St(u.dataset.iconFor) || "?").trim().charAt(0).toUpperCase());
     }), (i = t.querySelectorAll) == null || i.call(t, ".tfIcon").forEach(Zi), (d = t.classList) != null && d.contains("tfIcon") && Zi(t), Mr();
   }
-  const No = /* @__PURE__ */ new Map();
+  const Po = /* @__PURE__ */ new Map();
   function Zi(t) {
     var h, f, v;
-    const a = (((h = t.closest("[data-k]")) == null ? void 0 : h.dataset.k) || "") + "|" + (t.dataset.iconFor || ((f = t.querySelector("[data-icon-for]")) == null ? void 0 : f.dataset.iconFor) || t.getAttribute("aria-label") || ""), i = getComputedStyle(t), d = { backgroundColor: i.backgroundColor, color: i.color }, u = No.get(a);
-    No.set(a, d), !(!u || u.backgroundColor === d.backgroundColor && u.color === d.color || (v = window.matchMedia) != null && v.call(window, "(prefers-reduced-motion: reduce)").matches) && t.animate([u, d], { duration: 180, easing: "ease" });
+    const a = (((h = t.closest("[data-k]")) == null ? void 0 : h.dataset.k) || "") + "|" + (t.dataset.iconFor || ((f = t.querySelector("[data-icon-for]")) == null ? void 0 : f.dataset.iconFor) || t.getAttribute("aria-label") || ""), i = getComputedStyle(t), d = { backgroundColor: i.backgroundColor, color: i.color }, u = Po.get(a);
+    Po.set(a, d), !(!u || u.backgroundColor === d.backgroundColor && u.color === d.color || (v = window.matchMedia) != null && v.call(window, "(prefers-reduced-motion: reduce)").matches) && t.animate([u, d], { duration: 180, easing: "ease" });
   }
   const Ki = "[data-icon-for]>:is(ha-state-icon,ha-icon),.tfIcon>svg", hs = (t) => {
     const a = [t];
@@ -6370,8 +6370,8 @@ function Ih(n, { config: l, getHass: o }) {
     }
     return null;
   };
-  function Re(t) {
-    var Mt, Dt, at;
+  function Be(t) {
+    var Mt, Dt, nt;
     const a = t.localName === "svg" ? t : hs(t), i = a ? [...a.querySelectorAll("path,rect,circle,ellipse,polygon,polyline,line")] : [];
     if (!i.length) return !a;
     const d = (Mt = t.closest(".tfIcon")) == null ? void 0 : Mt.offsetWidth;
@@ -6385,12 +6385,12 @@ function Ih(n, { config: l, getHass: o }) {
       !V.width && !V.height || (h = Math.min(h, V.x - z), f = Math.min(f, V.y - z), v = Math.max(v, V.x + V.width + z), k = Math.max(k, V.y + V.height + z));
     }
     if (!(v > h)) return !1;
-    const D = (at = (Dt = a.viewBox) == null ? void 0 : Dt.baseVal) != null && at.width ? a.viewBox.baseVal : { x: 0, y: 0, width: 24, height: 24 }, N = d - 14, F = N * D.width / Math.max(v - h, k - f), ct = F / D.width;
-    return t.localName === "svg" ? (t.style.width = F + "px", t.style.height = F + "px") : t.style.setProperty("--mdc-icon-size", F + "px"), a.style.translate = ((D.x + D.width / 2 - (h + v) / 2) * ct).toFixed(2) + "px " + ((D.y + D.height / 2 - (f + k) / 2) * ct).toFixed(2) + "px", t.dataset.fitted = u, !0;
+    const D = (nt = (Dt = a.viewBox) == null ? void 0 : Dt.baseVal) != null && nt.width ? a.viewBox.baseVal : { x: 0, y: 0, width: 24, height: 24 }, N = d - 14, F = N * D.width / Math.max(v - h, k - f), $ = F / D.width;
+    return t.localName === "svg" ? (t.style.width = F + "px", t.style.height = F + "px") : t.style.setProperty("--mdc-icon-size", F + "px"), a.style.translate = ((D.x + D.width / 2 - (h + v) / 2) * $).toFixed(2) + "px " + ((D.y + D.height / 2 - (f + k) / 2) * $).toFixed(2) + "px", t.dataset.fitted = u, !0;
   }
   let ha = 0;
   function uo(t = 0) {
-    clearTimeout(ha), [...n.querySelectorAll(Ki)].filter((i) => !Re(i)).length && t < 5 && (ha = setTimeout(() => uo(t + 1), 300));
+    clearTimeout(ha), [...n.querySelectorAll(Ki)].filter((i) => !Be(i)).length && t < 5 && (ha = setTimeout(() => uo(t + 1), 300));
   }
   function Mr() {
     clearTimeout(ha), ha = setTimeout(() => uo(), 60);
@@ -6417,14 +6417,14 @@ function Ih(n, { config: l, getHass: o }) {
     var a;
     return ((a = G.get(t)) == null ? void 0 : a.text) ?? sa(t);
   };
-  function di(t) {
+  function ci(t) {
     var i;
     const a = (i = G.get(t)) == null ? void 0 : i.icon;
     return '<div class="tfOpen"><div class="tfOpenHead"><div class="tfIcon" aria-hidden="true"' + (a ? ye("", a, En(t)) : ye(t, na(t))) + '></div><div><div class="activityRowName">' + Q(En(t)) + '</div><div class="activityRowMeta">' + Q(wn(t)) + '</div></div><button class="tfBack" type="button" data-close aria-label="Close ' + Q(En(t)) + '’s last 24 hours">' + Pd + '</button></div><svg class="tfGraph" data-graph="' + Q(t) + '" role="img" aria-label="' + Q(En(t)) + ', last 24 hours"></svg></div>';
   }
   function xn(t, a, i, d, u = "", h = null, f = "") {
     const v = P && P.key === t;
-    return '<section class="card tfCard' + (f ? " " + f : "") + (v ? " open" : "") + '" data-tf data-k="' + Q(t) + '" style="order:' + a + (v && P.h ? ";min-height:" + P.h + "px" : "") + '" aria-label="' + Q(i) + '"><div class="activityHeader">' + (h ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + Q(h) + '" aria-label="' + Q(i + (y[h] ? ", " + sa(h) : "") + ". More info") + '">' + Q(i) + "</button>" : '<div class="activityTitle">' + Q(i) + "</div>") + "</div>" + (v ? di(P.id) : '<div class="activityRows">' + d.join("") + "</div>" + u) + "</section>";
+    return '<section class="card tfCard' + (f ? " " + f : "") + (v ? " open" : "") + '" data-tf data-k="' + Q(t) + '" style="order:' + a + (v && P.h ? ";min-height:" + P.h + "px" : "") + '" aria-label="' + Q(i) + '"><div class="activityHeader">' + (h ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + Q(h) + '" aria-label="' + Q(i + (y[h] ? ", " + sa(h) : "") + ". More info") + '">' + Q(i) + "</button>" : '<div class="activityTitle">' + Q(i) + "</div>") + "</div>" + (v ? ci(P.id) : '<div class="activityRows">' + d.join("") + "</div>" + u) + "</section>";
   }
   function ho(t, a) {
     const i = "readings:" + t.id, d = t.readings.map((u) => Zn(i, u));
@@ -6447,11 +6447,11 @@ function Ih(n, { config: l, getHass: o }) {
       return {};
     }
   })();
-  let Po = 0;
+  let Io = 0;
   const x = (t, a) => {
-    !a || yn[t] === a || (yn[t] = a, clearTimeout(Po), Po = setTimeout(() => Vi.set($i, JSON.stringify(yn)), 500));
-  }, S = (t, a, i, d) => '<div class="tfStep" role="group" aria-label="' + Q(t) + '"><button type="button" data-act="' + i + '" aria-label="Lower ' + Q(t.toLowerCase()) + '">' + Vc.down + "</button><output>" + Q(a) + '</output><button type="button" data-act="' + d + '" aria-label="Raise ' + Q(t.toLowerCase()) + '">' + Vc.up + "</button></div>", C = (t, a, i) => '<div class="' + t + '" role="group" aria-label="' + Q(a) + '">' + i.filter(Boolean).map((d) => '<button type="button" data-act="' + d.act + '"' + (d.pressed != null ? ' aria-pressed="' + d.pressed + '"' : "") + (d.disabled ? " disabled" : "") + (d.aria ? ' aria-label="' + Q(d.aria) + '"' : "") + ">" + (d.html || Q(d.label)) + "</button>").join("") + "</div>", O = (t, a) => "width:" + Math.round(Math.max(0, Math.min(1, (t - a * 25) / 25)) * 1e3) / 10 + "%;opacity:" + (0.6 + 0.4 * a / 3).toFixed(2), Z = (t) => "left:calc(4px + " + t / 100 + " * (100% - 8px))", X = (t, a) => '<div class="tfBlocks" role="slider" tabindex="0" aria-label="' + Q(St(t)) + ' position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(a) + '" aria-valuetext="' + Math.round(a) + '% open" data-blocks="' + Q(t) + '">' + [0, 1, 2, 3].map((i) => '<span><i style="' + O(a, i) + '"></i><b' + (a >= (i + 1) * 25 - 12 ? ' class="lit"' : "") + ">" + (i + 1) * 25 + "<small>%</small></b></span>").join("") + '<output class="tfTip" aria-hidden="true" style="' + Z(a) + '">' + Math.round(a) + "%</output></div>";
-  function lt(t, a) {
+    !a || yn[t] === a || (yn[t] = a, clearTimeout(Io), Io = setTimeout(() => Vi.set($i, JSON.stringify(yn)), 500));
+  }, S = (t, a, i, d) => '<div class="tfStep" role="group" aria-label="' + Q(t) + '"><button type="button" data-act="' + i + '" aria-label="Lower ' + Q(t.toLowerCase()) + '">' + Vc.down + "</button><output>" + Q(a) + '</output><button type="button" data-act="' + d + '" aria-label="Raise ' + Q(t.toLowerCase()) + '">' + Vc.up + "</button></div>", C = (t, a, i) => '<div class="' + t + '" role="group" aria-label="' + Q(a) + '">' + i.filter(Boolean).map((d) => '<button type="button" data-act="' + d.act + '"' + (d.pressed != null ? ' aria-pressed="' + d.pressed + '"' : "") + (d.disabled ? " disabled" : "") + (d.aria ? ' aria-label="' + Q(d.aria) + '"' : "") + ">" + (d.html || Q(d.label)) + "</button>").join("") + "</div>", O = (t, a) => "width:" + Math.round(Math.max(0, Math.min(1, (t - a * 25) / 25)) * 1e3) / 10 + "%;opacity:" + (0.6 + 0.4 * a / 3).toFixed(2), Z = (t) => "left:calc(4px + " + t / 100 + " * (100% - 8px))", J = (t, a) => '<div class="tfBlocks" role="slider" tabindex="0" aria-label="' + Q(St(t)) + ' position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(a) + '" aria-valuetext="' + Math.round(a) + '% open" data-blocks="' + Q(t) + '">' + [0, 1, 2, 3].map((i) => '<span><i style="' + O(a, i) + '"></i><b' + (a >= (i + 1) * 25 - 12 ? ' class="lit"' : "") + ">" + (i + 1) * 25 + "<small>%</small></b></span>").join("") + '<output class="tfTip" aria-hidden="true" style="' + Z(a) + '">' + Math.round(a) + "%</output></div>";
+  function dt(t, a) {
     t.querySelectorAll(":scope>span").forEach((d, u) => {
       d.firstElementChild.setAttribute("style", O(a, u)), d.lastElementChild.classList.toggle("lit", a >= (u + 1) * 25 - 12);
     });
@@ -6467,14 +6467,14 @@ function Ih(n, { config: l, getHass: o }) {
     const d = ce(t), u = t.startsWith("light.") && ie(t) && !(i && cn(t) < 3), h = i || (a && t.startsWith("light.") ? ["bright"] : null), f = u ? ['<div class="tfDacPad" data-dac="' + (a ? "more:" : i ? "dash:" : "tile:") + Q(t) + '"></div>'] : d.sections.map((v, k) => v && (!h || h.includes((d.parts || [])[k])) ? v : "").filter(Boolean);
     return '<div class="tfAction' + (u ? " tfDac" : "") + (d.on ? " on" : "") + '" data-k="' + Q(t) + '"' + (d.tone ? ' data-tone="' + d.tone + '"' : "") + zn(t) + '><div class="tfActionHead">' + Pt(t, d) + Lt(t) + "</div>" + f.join("") + "</div>";
   }
-  const Gt = "dual-controller-v3", Rt = "https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.5/dist/dual-axis-controller-v4.js";
+  const Gt = "dual-controller-v3", Bt = "https://cdn.jsdelivr.net/gh/mbb365/Dual-Axis-Controller-v4@v9.0.5/dist/dual-axis-controller-v4.js";
   let Ft = null;
   async function Zt() {
     if (Ft || customElements.get(Gt)) return;
     Ft = "loading";
-    const t = await Promise.resolve().then(() => R({ type: "lovelace/resources" })).catch(() => null), a = Array.isArray(t) && t.some((d) => /dual-axis-controller/i.test(d.url || ""));
+    const t = await Promise.resolve().then(() => B({ type: "lovelace/resources" })).catch(() => null), a = Array.isArray(t) && t.some((d) => /dual-axis-controller/i.test(d.url || ""));
     if (await Promise.race([customElements.whenDefined(Gt), new Promise((d) => setTimeout(d, a ? 8e3 : 0))]), customElements.get(Gt)) return;
-    const i = Object.assign(document.createElement("script"), { src: Rt });
+    const i = Object.assign(document.createElement("script"), { src: Bt });
     i.onerror = () => {
       Ft = "failed", U();
     }, document.head.appendChild(i);
@@ -6496,7 +6496,7 @@ function Ih(n, { config: l, getHass: o }) {
     const i = a.parentElement;
     !i || !a.offsetHeight || (i.style.removeProperty("min-height"), Fa.set(i.dataset.dac, i.offsetHeight));
   }));
-  function Bn(t) {
+  function Rn(t) {
     t.querySelectorAll("[data-dac]").forEach((a) => {
       const i = a.dataset.dac;
       let d = Vt.get(i);
@@ -6516,18 +6516,18 @@ function Ih(n, { config: l, getHass: o }) {
   customElements.whenDefined(Gt).then(() => {
     w && (_ != null && _.querySelector("[data-tf]")) && fl(Fn);
   });
-  const Rn = (t, a, i) => Wt.has(t + "|" + a) ? Wt.get(t + "|" + a) : i;
+  const Bn = (t, a, i) => Wt.has(t + "|" + a) ? Wt.get(t + "|" + a) : i;
   function ce(t) {
     var h;
     const a = y[t], i = a.attributes, d = t.split(".")[0], u = (f, v) => ({ act: Le(f, "toggle", t), label: v });
     if (d === "light") {
-      const f = a.state === "on", v = Yi(t), [k, D] = Ro(t), N = Rn("bright", t, jn(a));
+      const f = a.state === "on", v = Yi(t), [k, D] = No(t), N = Bn("bright", t, jn(a));
       f && x(t, jn(a));
-      const F = Rn("ct", t, f && i.color_mode === "color_temp" ? i.color_temp_kelvin : null), ct = Rn("hue", t, f && Fd.includes(i.color_mode) && i.hs_color ? i.hs_color[0] : null);
+      const F = Bn("ct", t, f && i.color_mode === "color_temp" ? i.color_temp_kelvin : null), $ = Bn("hue", t, f && Fd.includes(i.color_mode) && i.hs_color ? i.hs_color[0] : null);
       return { on: f, button: u("light", "Turn " + St(t) + (f ? " off" : " on")), parts: ["bright", "ct", "hue"], sections: [
         Vn(t) && mo("bright", t, N / 100, St(t) + " brightness", N + "%", !1, f ? null : yn[t] ?? null),
         v.includes("color_temp") && mo("ct", t, F == null ? null : (F - k) / (D - k), St(t) + " warm to cool", F == null ? "" : Math.round(F) + " kelvin", !0),
-        v.some((Mt) => Fd.includes(Mt)) && mo("hue", t, ct == null ? null : ct / 360, St(t) + " colour", "", !0)
+        v.some((Mt) => Fd.includes(Mt)) && mo("hue", t, $ == null ? null : $ / 360, St(t) + " colour", "", !0)
       ] };
     }
     if (d === "climate") {
@@ -6540,7 +6540,7 @@ function Ih(n, { config: l, getHass: o }) {
     if (d === "cover") {
       const f = a.state === "opening" || a.state === "closing", v = a.state === "closed", k = Un(t), D = Yn(t);
       return { on: !v, tone: "blue", icon: $c[Nd(a)][v ? 1 : 0], button: u("cover", (v ? "Open " : "Close ") + St(t)), parts: ["blocks", "tilt", "buttons"], sections: [
-        ze(t, Kc) && X(t, k),
+        ze(t, Kc) && J(t, k),
         D != null && bt(t, D),
         wt(t, k, f)
       ] };
@@ -6553,7 +6553,7 @@ function Ih(n, { config: l, getHass: o }) {
       ] };
     }
     if (d === "media_player") {
-      const f = a.state === "playing", v = a.state === "off" || a.state === "standby", k = Rn("vol", t, i.volume_level), D = v ? { act: Le("media_player", ze(t, fh) ? "turn_on" : "toggle", t), label: "Turn " + St(t) + " on" } : a.state === "playing" || a.state === "paused" ? { act: Le("media_player", "media_play_pause", t), label: (f ? "Pause " : "Play ") + St(t) } : { act: Le("media_player", ze(t, hh) ? "turn_off" : "toggle", t), label: "Turn " + St(t) + " off" };
+      const f = a.state === "playing", v = a.state === "off" || a.state === "standby", k = Bn("vol", t, i.volume_level), D = v ? { act: Le("media_player", ze(t, fh) ? "turn_on" : "toggle", t), label: "Turn " + St(t) + " on" } : a.state === "playing" || a.state === "paused" ? { act: Le("media_player", "media_play_pause", t), label: (f ? "Pause " : "Play ") + St(t) } : { act: Le("media_player", ze(t, hh) ? "turn_off" : "toggle", t), label: "Turn " + St(t) + " off" };
       return { on: !v, tone: "blue", art: !v && i.entity_picture ? i.entity_picture : null, button: D, parts: ["playback", "volume"], sections: v ? [] : [
         (ze(t, Uc) || ze(t, Yc) || ze(t, Gc) || ze(t, Zc)) && C("tfSeg", "Playback", [
           { html: Pl.prev, aria: "Previous", act: Le("media_player", "media_previous_track", t), disabled: !ze(t, Uc) },
@@ -6613,21 +6613,21 @@ function Ih(n, { config: l, getHass: o }) {
     }), v = h(/^cover\./), k = v.filter((V) => {
       var pt;
       return ((pt = y[V]) == null ? void 0 : pt.state) !== "closed";
-    }), D = [...new Set(v.map((V) => Nd(y[V])))], N = h(/^climate\./)[0], F = h(/^humidifier\./)[0], ct = h(/^media_player\./), Mt = ct.find((V) => {
+    }), D = [...new Set(v.map((V) => Nd(y[V])))], N = h(/^climate\./)[0], F = h(/^humidifier\./)[0], $ = h(/^media_player\./), Mt = $.find((V) => {
       var pt;
       return ((pt = y[V]) == null ? void 0 : pt.state) === "playing";
-    }) || ct.find((V) => {
+    }) || $.find((V) => {
       var pt;
       return ((pt = y[V]) == null ? void 0 : pt.state) === "paused";
     }), Dt = t.plugs.filter((V) => {
       var pt;
       return ((pt = y[V]) == null ? void 0 : pt.state) === "on";
-    }), at = [];
-    if (i && Number.isFinite(u(i)) && at.push({ key: "temp", id: i, kind: "reading", icon: Lo(i), label: "Temperature", value: Ia(u(i)) + "°" }), d && Number.isFinite(u(d)) && at.push({ key: "hum", id: d, kind: "reading", icon: Lo(d), label: "Humidity", value: Math.round(u(d)) + "%" }), t.lights.length && at.push({
+    }), nt = [];
+    if (i && Number.isFinite(u(i)) && nt.push({ key: "temp", id: i, kind: "reading", icon: _o(i), label: "Temperature", value: Ia(u(i)) + "°" }), d && Number.isFinite(u(d)) && nt.push({ key: "hum", id: d, kind: "reading", icon: _o(d), label: "Humidity", value: Math.round(u(d)) + "%" }), t.lights.length && nt.push({
       key: "lights",
       kind: "control",
       tone: "light",
-      icon: Lo("", "mdi:lightbulb"),
+      icon: _o("", "mdi:lightbulb"),
       label: "Lights",
       value: f.length ? f.length + " of " + t.lights.length + " on" : "All off",
       short: f.length ? f.length + " on" : "Off",
@@ -6637,11 +6637,11 @@ function Ih(n, { config: l, getHass: o }) {
       aria: (f.length ? "Turn off" : "Turn on") + " the lights in " + t.name
     }), v.length) {
       const V = D.length === 1 ? wh[D[0]] : "covers", pt = Math.round(v.reduce((z, jt) => z + Ga(jt), 0) / v.length);
-      at.push({
+      nt.push({
         key: "covers",
         kind: "control",
         tone: "blue",
-        icon: Lo("", ((xt = $c[D[0]]) == null ? void 0 : xt[k.length ? 0 : 1]) || "mdi:window-shutter"),
+        icon: _o("", ((xt = $c[D[0]]) == null ? void 0 : xt[k.length ? 0 : 1]) || "mdi:window-shutter"),
         label: Ht(V),
         value: pt <= 0 ? "Closed" : pt >= 100 ? "Open" : pt + "% open",
         short: pt <= 0 ? "Closed" : pt + "%",
@@ -6652,11 +6652,11 @@ function Ih(n, { config: l, getHass: o }) {
     }
     if (N) {
       const V = xe(N), pt = y[N].state === "off";
-      at.push({
+      nt.push({
         key: "climate",
         kind: "control",
         tone: V.hvac_action === "cooling" ? "cool" : "heat",
-        icon: Lo(N),
+        icon: _o(N),
         label: St(N),
         value: pt ? "Off" : Ht(V.hvac_action || y[N].state) + " · " + Oa(V.temperature),
         short: pt ? "Off" : Oa(V.temperature),
@@ -6667,11 +6667,11 @@ function Ih(n, { config: l, getHass: o }) {
     }
     if (F) {
       const V = y[F].state === "on";
-      at.push({
+      nt.push({
         key: "humidifier",
         kind: "control",
         tone: "blue",
-        icon: Lo("", "mdi:air-humidifier"),
+        icon: _o("", "mdi:air-humidifier"),
         label: St(F),
         value: V ? "On · " + xe(F).humidity + "%" : "Off",
         short: V ? xe(F).humidity + "%" : "Off",
@@ -6680,13 +6680,13 @@ function Ih(n, { config: l, getHass: o }) {
         aria: "Turn " + St(F) + (V ? " off" : " on")
       });
     }
-    if (ct.length) {
-      const V = Mt || ct[0], pt = y[V], z = pt.state === "playing";
-      at.push({
+    if ($.length) {
+      const V = Mt || $[0], pt = y[V], z = pt.state === "playing";
+      nt.push({
         key: "media",
         kind: "control",
         tone: "blue",
-        icon: Lo(V),
+        icon: _o(V),
         label: St(V),
         value: sa(V),
         short: z ? "Playing" : pt.state === "paused" ? "Paused" : Ht(pt.state),
@@ -6695,18 +6695,18 @@ function Ih(n, { config: l, getHass: o }) {
         aria: (z ? "Pause " : "Play ") + St(V)
       });
     }
-    return t.plugs.length && at.push({
+    return t.plugs.length && nt.push({
       key: "plugs",
       kind: "control",
       tone: "blue",
-      icon: Lo("", "mdi:power-plug"),
+      icon: _o("", "mdi:power-plug"),
       label: "Plugs",
       value: Dt.length ? Dt.length + " of " + t.plugs.length + " on" : "All off",
       short: Dt.length ? Dt.length + " on" : "Off",
       on: Dt.length > 0,
       acts: t.plugs.map((V) => ["switch", Dt.length ? "turn_off" : "turn_on", V]),
       aria: (Dt.length ? "Turn off" : "Turn on") + " the plugs in " + t.name
-    }), t.alerts.forEach((V) => at.push(xe(V).device_class === "moisture" ? { key: "alert:" + V, kind: "alert", icon: Lo(V), label: "Water leak" } : { key: "note:" + V, kind: "note", icon: Lo(V), label: St(V) + " " + sa(V).toLowerCase() })), at;
+    }), t.alerts.forEach((V) => nt.push(xe(V).device_class === "moisture" ? { key: "alert:" + V, kind: "alert", icon: _o(V), label: "Water leak" } : { key: "note:" + V, kind: "note", icon: _o(V), label: St(V) + " " + sa(V).toLowerCase() })), nt;
   }
   const ln = (t, a) => {
     const i = (d) => t.actions.filter((u) => d.test(u));
@@ -6727,7 +6727,7 @@ function Ih(n, { config: l, getHass: o }) {
         }) || d[0]].filter(Boolean);
       })()
     }[a] || [];
-  }, ci = (t, a, i) => '<button class="' + a + (t.on ? " on" : "") + '" type="button" data-tone="' + t.tone + '" data-acts="' + _n(t.acts) + '" aria-label="' + Q(t.aria) + '" aria-pressed="' + t.on + '">' + i + "</button>", Sr = (t) => '<button class="tfAName" type="button" data-go="' + Q(t.id) + '" aria-label="Open ' + Q(t.name) + '">' + Q(t.name) + "</button>";
+  }, pi = (t, a, i) => '<button class="' + a + (t.on ? " on" : "") + '" type="button" data-tone="' + t.tone + '" data-acts="' + _n(t.acts) + '" aria-label="' + Q(t.aria) + '" aria-pressed="' + t.on + '">' + i + "</button>", Sr = (t) => '<button class="tfAName" type="button" data-go="' + Q(t.id) + '" aria-label="Open ' + Q(t.name) + '">' + Q(t.name) + "</button>";
   function $n(t, a, i = !1) {
     const d = a.find((v) => v.key === "lights"), u = !!(d != null && d.on), h = "", f = '<span class="tfAreaGlyph"' + ye("area:" + t.id, t.icon || "mdi:texture-box", t.name) + "></span>";
     return i || !d ? '<span class="tfIcon tfAreaIcon' + (u ? " on" : "") + '"' + h + ' aria-hidden="true">' + f + "</span>" : '<button class="tfIcon tfAreaIcon' + (u ? " on" : "") + '" type="button"' + h + ' data-acts="' + _n(d.acts) + '" aria-label="' + Q(d.aria) + '" aria-pressed="' + u + '">' + f + "</button>";
@@ -6756,31 +6756,31 @@ function Ih(n, { config: l, getHass: o }) {
     const d = i.find((v) => v.key === "temp"), u = i.find((v) => v.key === "hum"), h = xe(a), f = y[a].state === "off";
     return a.startsWith("climate.") ? [Zs(t, a), f ? "Off" : Ht(h.hvac_action || y[a].state) + (h.temperature != null ? " · " + Oa(h.temperature) : ""), u && u.value + " humidity"].filter(Boolean).join(" · ") : [!(d && d.id === a) && Zs(t, a), d && d.id !== a && d.value, u && u.id !== a && u.value + " humidity"].filter(Boolean).join(" · ");
   };
-  function pi(t, a, i) {
+  function ui(t, a, i) {
     const d = i && ms(i), u = i ? gs(t, i, a) : "", h = (v) => {
       const k = ln(t, v.key);
       return k.length === 1 ? k[0] : "group:" + t.id + ":" + v.key;
-    }, f = a.filter((v) => v.kind === "control").slice(0, 4).map((v) => '<div class="tfATile' + (v.on ? " on" : "") + '" data-tone="' + v.tone + '"' + (v.light ? ' data-light style="' + v.light + '"' : "") + ">" + ci(v, "tfIcon", v.icon) + '<button class="tfName" type="button" data-more="' + Q(h(v)) + '" aria-label="' + Q(t.name + " " + v.label.toLowerCase() + ", " + v.value + ". Open") + '"><span class="activityRowName">' + Q(v.label) + '</span><span class="activityRowMeta">' + Q(v.value) + "</span></button></div>");
+    }, f = a.filter((v) => v.kind === "control").slice(0, 4).map((v) => '<div class="tfATile' + (v.on ? " on" : "") + '" data-tone="' + v.tone + '"' + (v.light ? ' data-light style="' + v.light + '"' : "") + ">" + pi(v, "tfIcon", v.icon) + '<button class="tfName" type="button" data-more="' + Q(h(v)) + '" aria-label="' + Q(t.name + " " + v.label.toLowerCase() + ", " + v.value + ". Open") + '"><span class="activityRowName">' + Q(v.label) + '</span><span class="activityRowMeta">' + Q(v.value) + "</span></button></div>");
     return '<div class="workoutPanelTop">' + $n(t, a) + '<div class="tfATitle">' + Sr(t) + Aa(a) + "</div></div>" + (i ? '<button class="tfABig" type="button" data-more="' + Q(i) + '" aria-label="' + Q(St(i) + ", " + sa(i) + ". More info") + '"><span class="tfABigMain' + (d.text.length > 7 ? " long" : "") + '">' + Q(d.text) + (d.unit ? '<span class="tfABigUnit">' + Q(d.unit) + "</span>" : "") + "</span>" + (u ? '<span class="tfABigSub">' + Q(u) + "</span>" : "") + "</button>" : "") + (f.length ? '<div class="tfATiles">' + f.join("") + "</div>" : "");
   }
   function Yl(t) {
-    const a = t.id === st, i = sn(t), d = We(t), u = d && ms(d), h = [...i.filter((f) => f.kind === "control"), ...i.filter((f) => f.kind !== "control" && f.kind !== "reading")].slice(0, 4);
-    return '<article class="workoutPanel tfAreaPanel' + (a ? " active" : "") + '" data-area="' + Q(t.id) + '" tabindex="0" aria-expanded="' + a + '" aria-label="' + Q(t.name) + '"><div class="panelExpanded"' + (a ? "" : " inert") + ">" + pi(t, i, d) + '</div><div class="panelCollapsed tfACollapsed"><div class="tfACTop">' + $n(t, i, !0) + '<span class="tfACName">' + Q(t.name) + '</span></div><span class="tfACMain">' + (u ? Q(u.text + (u.unit ? " " + u.unit : "")) : "") + '</span><span class="tfACTiles" aria-hidden="true">' + h.map((f) => '<span class="tfACTile"><span class="tfIcon' + (f.kind === "alert" ? " alert" : "") + '"' + (f.on && f.light ? ' data-light style="' + f.light + '"' : "") + ">" + f.icon + "</span></span>").join("") + "</span></div></article>";
+    const a = t.id === lt, i = sn(t), d = We(t), u = d && ms(d), h = [...i.filter((f) => f.kind === "control"), ...i.filter((f) => f.kind !== "control" && f.kind !== "reading")].slice(0, 4);
+    return '<article class="workoutPanel tfAreaPanel' + (a ? " active" : "") + '" data-area="' + Q(t.id) + '" tabindex="0" aria-expanded="' + a + '" aria-label="' + Q(t.name) + '"><div class="panelExpanded"' + (a ? "" : " inert") + ">" + ui(t, i, d) + '</div><div class="panelCollapsed tfACollapsed"><div class="tfACTop">' + $n(t, i, !0) + '<span class="tfACName">' + Q(t.name) + '</span></div><span class="tfACMain">' + (u ? Q(u.text + (u.unit ? " " + u.unit : "")) : "") + '</span><span class="tfACTiles" aria-hidden="true">' + h.map((f) => '<span class="tfACTile"><span class="tfIcon' + (f.kind === "alert" ? " alert" : "") + '"' + (f.on && f.light ? ' data-light style="' + f.light + '"' : "") + ">" + f.icon + "</span></span>").join("") + "</span></div></article>";
   }
-  let Be = [];
-  const Xn = (t) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + t + '"><section class="workoutGallery tfAreaGallery" aria-label="Areas">' + Be.map(Yl).join("") + "</section></div>", ui = (t) => t.startsWith("room:"), Ks = (t) => Be.find((a) => "room:" + a.id === t);
+  let Re = [];
+  const Xn = (t) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + t + '"><section class="workoutGallery tfAreaGallery" aria-label="Areas">' + Re.map(Yl).join("") + "</section></div>", go = (t) => t.startsWith("room:"), Ks = (t) => Re.find((a) => "room:" + a.id === t);
   function Cr(t, a) {
-    const i = sn(t), d = We(t), u = d && ms(d), h = d ? gs(t, d, i) : "", f = u ? u.text + (u.unit ? " " + u.unit : "") : "", v = (D) => {
-      const N = ln(t, D.key);
-      return N.length === 1 ? N[0] : "group:" + t.id + ":" + D.key;
-    }, k = i.filter((D) => D.kind === "control").slice(0, 4).map((D) => '<button class="tfIcon' + (D.on ? " on" : "") + '" type="button" data-tone="' + D.tone + '"' + (D.on && D.light ? ' data-light style="' + D.light + '"' : "") + ' data-more="' + Q(v(D)) + '" aria-label="' + Q(D.label + ", " + D.value + ". Open its controls") + '">' + D.icon + "</button>");
-    return '<div class="tfAction tfRoomTile" data-k="' + Q(a) + '" data-go="' + Q(t.id) + '"><div class="tfActionHead"><span class="tfIcon tfRoomIcon" aria-hidden="true"><span class="tfAreaGlyph"' + ye("area:" + t.id, t.icon || "mdi:texture-box", t.name) + '></span></span><button class="tfName" type="button" data-go="' + Q(t.id) + '" aria-label="Open ' + Q(t.name) + '"><span class="activityRowName">' + Q(t.name) + "</span>" + (f || h ? '<span class="activityRowMeta">' + (f ? '<span class="tfRoomInline">' + Q(f) + (h ? " · " : "") + "</span>" : "") + Q(h) + "</span>" : "") + "</button></div>" + (f ? '<div class="tfRoomReading" aria-hidden="true"><span class="tfRoomBig">' + Q(f) + "</span>" + (h ? '<span class="tfRoomSub">' + Q(h) + "</span>" : "") + "</div>" : "") + (k.length ? '<div class="tfRoomDevices">' + k.join("") + "</div>" : "") + "</div>";
+    const i = sn(t), d = We(t), u = d && ms(d), h = d ? gs(t, d, i) : "", f = u ? u.text + (u.unit ? " " + u.unit : "") : "", v = ($) => {
+      const Mt = ln(t, $.key);
+      return Mt.length === 1 ? Mt[0] : "group:" + t.id + ":" + $.key;
+    }, k = i.filter(($) => $.kind === "control").slice(0, 4), D = ($) => $.on && $.light ? ' data-light style="' + $.light + '"' : "", N = k.map(($) => '<button class="tfIcon' + ($.on ? " on" : "") + '" type="button" data-tone="' + $.tone + '"' + D($) + ' data-more="' + Q(v($)) + '" aria-label="' + Q($.label + ", " + $.value + ". Open its controls") + '">' + $.icon + "</button>"), F = k.map(($) => '<button class="tfRoomDev" type="button" data-more="' + Q(v($)) + '" aria-label="' + Q($.label + ", " + $.value + ". Open its controls") + '"><span class="tfIcon' + ($.on ? " on" : "") + '" data-tone="' + $.tone + '"' + D($) + ">" + $.icon + '</span><span class="tfRoomDevName"><span class="activityRowName">' + Q($.label) + '</span><span class="activityRowMeta">' + Q($.value) + "</span></span></button>");
+    return '<div class="tfAction tfRoomTile" data-k="' + Q(a) + '" data-go="' + Q(t.id) + '"><div class="tfActionHead"><span class="tfIcon tfRoomIcon" aria-hidden="true"><span class="tfAreaGlyph"' + ye("area:" + t.id, t.icon || "mdi:texture-box", t.name) + '></span></span><button class="tfName" type="button" data-go="' + Q(t.id) + '" aria-label="Open ' + Q(t.name) + '"><span class="activityRowName">' + Q(t.name) + "</span>" + (f || h ? '<span class="activityRowMeta">' + (f ? '<span class="tfRoomInline">' + Q(f) + (h ? " · " : "") + "</span>" : "") + Q(h) + "</span>" : "") + "</button></div>" + (f ? '<div class="tfRoomReading" aria-hidden="true"><span class="tfRoomBig">' + Q(f) + "</span>" + (h ? '<span class="tfRoomSub">' + Q(h) + "</span>" : "") + "</div>" : "") + (N.length ? '<div class="tfRoomDevices">' + N.join("") + '</div><div class="tfRoomHeads">' + F.join("") + "</div>" : "") + "</div>";
   }
   const Tr = () => [
     { key: "home", name: "Home", ids: Qt.homeVacuums },
     ...Qt.rooms.map((t) => ({ key: "room:" + t.id, name: t.name, room: t, ids: t.actions }))
-  ], go = (t, a, i) => t + " " + (t === 1 ? a : i), la = () => (j.favourites ?? dt.favorite_entities ?? []).filter((t) => y[t]);
-  function vo() {
+  ], vo = (t, a, i) => t + " " + (t === 1 ? a : i), la = () => (j.favourites ?? ct.favorite_entities ?? []).filter((t) => y[t]);
+  function bo() {
     if (!$t) {
       const a = Object.entries(le).sort((d, u) => u[1] - d[1]).map(([d]) => d), i = Qt.rooms.flatMap((d) => d.actions);
       $t = [.../* @__PURE__ */ new Set([...yt, ...a, ...i.filter((d) => ce(d).on), ...i])];
@@ -6792,21 +6792,21 @@ function Ih(n, { config: l, getHass: o }) {
   function Jn() {
     if (!$s || j.favSeeded || !Qt.rooms.length) return;
     const t = (i) => Object.keys(y).find((d) => qi(d) && i(d)), a = [t((i) => i.startsWith("climate.")), t((i) => i.startsWith("cover.") && /curtain/.test(i)), t((i) => i.startsWith("valve.")), Qt.security.locks[0]];
-    j = { ...j, favourites: [.../* @__PURE__ */ new Set([...j.favourites ?? dt.favorite_entities ?? [], ...a.filter(Boolean)])], favSeeded: !0 }, Pa();
+    j = { ...j, favourites: [.../* @__PURE__ */ new Set([...j.favourites ?? ct.favorite_entities ?? [], ...a.filter(Boolean)])], favSeeded: !0 }, Pa();
   }
-  const Ji = () => j.suggest ?? !dt.hide_suggested_entities;
+  const Ji = () => j.suggest ?? !ct.hide_suggested_entities;
   function Nn() {
-    const t = new Set(j.favHidden || []), a = la().filter((d) => !t.has(d)), i = Ji() ? vo().filter((d) => !t.has(d) && Br(d)) : [];
-    return [...a, ...i].slice(0, Bh);
+    const t = new Set(j.favHidden || []), a = la().filter((d) => !t.has(d)), i = Ji() ? bo().filter((d) => !t.has(d) && Rr(d)) : [];
+    return [...a, ...i].slice(0, Rh);
   }
   const Xs = (t) => {
     const a = la().includes(t);
     return '<button class="tfStar" type="button" data-star="' + Q(t) + '" aria-pressed="' + a + '" aria-label="Favourite: ' + Q(St(t)) + '">' + Lh(a) + "</button>";
   };
   function vs(t, { area: a = !1, star: i = !1, plain: d = !1, say: u = null, alert: h = !1 } = {}) {
-    var Dt, at, xt, V, pt, z;
-    const f = d && ((pt = (Dt = o()) == null ? void 0 : Dt.devices) == null ? void 0 : pt[(V = (xt = (at = o()) == null ? void 0 : at.entities) == null ? void 0 : xt[t]) == null ? void 0 : V.device_id]), v = f && (f.name_by_user || f.name) || St(t), k = t.split(".")[0], D = !d && Hl.includes(k) ? ce(t) : null, N = D ? D.on : ["on", "open", "playing"].includes((z = y[t]) == null ? void 0 : z.state), F = d ? null : D ? D.button : xh.includes(k) ? { act: Le(k, "toggle", t), label: "Turn " + St(t) + (N ? " off" : " on") } : k === "scene" || k === "script" ? { act: Le(k, "turn_on", t), label: "Run " + St(t) } : null, ct = (u ?? sa(t)) + (a && Ae.get(t) ? " · " + Ae.get(t) : ""), Mt = (D == null ? void 0 : D.icon) || na(t);
-    return '<div class="activityRow' + (F ? " tfPlug" : "") + (N ? " on" : "") + (i ? " tfPick" : "") + (h ? " alert" : "") + '" data-k="' + Q((a ? "fav:" : "row:") + t) + '" data-tone="' + (k === "light" ? "light" : (D == null ? void 0 : D.tone) || "blue") + '"' + zn(t) + ">" + (F && !i ? '<button class="tfIcon" type="button" data-act="' + F.act + '" aria-label="' + Q(F.label) + '"' + ye(t, Mt) + "></button>" : '<div class="tfIcon" aria-hidden="true"' + ye(t, Mt) + "></div>") + '<button class="tfName" type="button" data-more="' + Q(t) + '" aria-label="' + Q(v + ", " + ct + ". More info") + '"><span class="activityRowName">' + Q(v) + '</span><span class="activityRowMeta">' + Q(ct) + "</span></button>" + (i ? Xs(t) : "") + "</div>";
+    var Dt, nt, xt, V, pt, z;
+    const f = d && ((pt = (Dt = o()) == null ? void 0 : Dt.devices) == null ? void 0 : pt[(V = (xt = (nt = o()) == null ? void 0 : nt.entities) == null ? void 0 : xt[t]) == null ? void 0 : V.device_id]), v = f && (f.name_by_user || f.name) || St(t), k = t.split(".")[0], D = !d && Hl.includes(k) ? ce(t) : null, N = D ? D.on : ["on", "open", "playing"].includes((z = y[t]) == null ? void 0 : z.state), F = d ? null : D ? D.button : xh.includes(k) ? { act: Le(k, "toggle", t), label: "Turn " + St(t) + (N ? " off" : " on") } : k === "scene" || k === "script" ? { act: Le(k, "turn_on", t), label: "Run " + St(t) } : null, $ = (u ?? sa(t)) + (a && Ae.get(t) ? " · " + Ae.get(t) : ""), Mt = (D == null ? void 0 : D.icon) || na(t);
+    return '<div class="activityRow' + (F ? " tfPlug" : "") + (N ? " on" : "") + (i ? " tfPick" : "") + (h ? " alert" : "") + '" data-k="' + Q((a ? "fav:" : "row:") + t) + '" data-tone="' + (k === "light" ? "light" : (D == null ? void 0 : D.tone) || "blue") + '"' + zn(t) + ">" + (F && !i ? '<button class="tfIcon" type="button" data-act="' + F.act + '" aria-label="' + Q(F.label) + '"' + ye(t, Mt) + "></button>" : '<div class="tfIcon" aria-hidden="true"' + ye(t, Mt) + "></div>") + '<button class="tfName" type="button" data-more="' + Q(t) + '" aria-label="' + Q(v + ", " + $ + ". More info") + '"><span class="activityRowName">' + Q(v) + '</span><span class="activityRowMeta">' + Q($) + "</span></button>" + (i ? Xs(t) : "") + "</div>";
   }
   const Ar = () => {
     var t;
@@ -6819,7 +6819,7 @@ function Ih(n, { config: l, getHass: o }) {
   }
   function Js() {
     const t = Object.keys(Id), a = /* @__PURE__ */ new Set(), i = [];
-    return (dt.shortcuts || []).forEach((d) => {
+    return (ct.shortcuts || []).forEach((d) => {
       if (d.type === "summary") {
         if (!t.includes(d.key) || a.has(d.key)) return;
         a.add(d.key);
@@ -6846,48 +6846,48 @@ function Ih(n, { config: l, getHass: o }) {
     })], k = i.filter((V) => y[V].state === "unavailable"), D = [.../* @__PURE__ */ new Set([...f, ...v, ...k])], N = (V) => {
       const pt = parseFloat(y[V].state);
       return a(V) === "battery" && Number.isFinite(pt) ? pt : 101;
-    }, F = [...d, ...Qt.vacuums, ...[...i].sort((V, pt) => N(V) - N(pt))].filter((V) => y[V] && !D.includes(V)), ct = /* @__PURE__ */ new Map();
+    }, F = [...d, ...Qt.vacuums, ...[...i].sort((V, pt) => N(V) - N(pt))].filter((V) => y[V] && !D.includes(V)), $ = /* @__PURE__ */ new Map();
     F.forEach((V) => {
       var z;
       const pt = ((z = Qt.areaOf) == null ? void 0 : z.call(Qt, V)) || "";
-      ct.set(pt, [...ct.get(pt) || [], V]);
+      $.set(pt, [...$.get(pt) || [], V]);
     });
     const Mt = (V) => {
       const pt = Qt.rooms.findIndex((z) => z.id === V);
       return V === "" ? 1 / 0 : pt < 0 ? Qt.rooms.length : pt;
-    }, Dt = [...ct.keys()].sort((V, pt) => Mt(V) - Mt(pt)), at = (V) => {
+    }, Dt = [...$.keys()].sort((V, pt) => Mt(V) - Mt(pt)), nt = (V) => {
       var pt, z, jt, He;
       return ((pt = Qt.rooms.find((ge) => ge.id === V)) == null ? void 0 : pt.name) || ((He = (jt = (z = o()) == null ? void 0 : z.areas) == null ? void 0 : jt[V]) == null ? void 0 : He.name) || V;
     };
     return {
-      value: [f.length && go(f.length, "low battery", "low batteries"), v.length && go(v.length, "problem", "problems"), k.length && go(k.length, "unavailable device", "unavailable devices")].filter(Boolean).join(", ") || "All good",
+      value: [f.length && vo(f.length, "low battery", "low batteries"), v.length && vo(v.length, "problem", "problems"), k.length && vo(k.length, "unavailable device", "unavailable devices")].filter(Boolean).join(", ") || "All good",
       plain: !0,
-      groups: [{ name: "Needs attention", ids: D, alert: !0 }, ...Dt.map((V) => ({ name: V ? at(V) : Dt.length > 1 ? "Other devices" : "Devices", ids: ct.get(V) }))].filter((V) => V.ids.length)
+      groups: [{ name: "Needs attention", ids: D, alert: !0 }, ...Dt.map((V) => ({ name: V ? nt(V) : Dt.length > 1 ? "Other devices" : "Devices", ids: $.get(V) }))].filter((V) => V.ids.length)
     };
   }
   function fi() {
     var Sa;
-    const t = Qt.rooms, a = Qt.security, i = (Jt, Ue) => Jt.actions.filter((ti) => Ue.test(ti)), d = (Jt) => t.map((Ue) => ({ name: Ue.name, ids: Jt(Ue) })).filter((Ue) => Ue.ids.length), u = t.flatMap((Jt) => Jt.lights), h = u.filter((Jt) => {
+    const t = Qt.rooms, a = Qt.security, i = (Jt, Ue) => Jt.actions.filter((ei) => Ue.test(ei)), d = (Jt) => t.map((Ue) => ({ name: Ue.name, ids: Jt(Ue) })).filter((Ue) => Ue.ids.length), u = t.flatMap((Jt) => Jt.lights), h = u.filter((Jt) => {
       var Ue;
       return ((Ue = y[Jt]) == null ? void 0 : Ue.state) === "on";
     }).length, f = t.map((Jt) => Jt.readings.find((Ue) => xe(Ue).device_class === "temperature")).filter(Boolean).map((Jt) => Number(y[Jt].state)).filter(Number.isFinite), [v, k] = [Ia(Math.min(...f)), Ia(Math.max(...f))], D = t.flatMap((Jt) => i(Jt, /^media_player\./)), N = D.filter((Jt) => {
       var Ue;
       return ((Ue = y[Jt]) == null ? void 0 : Ue.state) === "playing";
-    }).length, F = bs(), ct = F.filter((Jt) => Jt.severity === "warning" && Jt.on).length, Mt = a.locks.filter((Jt) => {
+    }).length, F = bs(), $ = F.filter((Jt) => Jt.severity === "warning" && Jt.on).length, Mt = a.locks.filter((Jt) => {
       var Ue;
       return ["unlocked", "jammed", "open"].includes((Ue = y[Jt]) == null ? void 0 : Ue.state);
     }).length, Dt = a.alarms.filter((Jt) => {
       var Ue;
       return ((Ue = y[Jt]) == null ? void 0 : Ue.state) === "disarmed";
-    }).length, at = ct ? go(ct, "warning", "warnings") : null, xt = Mt ? Mt + " unlocked" : Dt ? Dt + " disarmed" : at ? null : "All secure", V = Zl(), pt = t.flatMap((Jt) => Jt.solar), z = pt.find((Jt) => Jt.endsWith("_power")), jt = {
+    }).length, nt = $ ? vo($, "warning", "warnings") : null, xt = Mt ? Mt + " unlocked" : Dt ? Dt + " disarmed" : nt ? null : "All secure", V = Zl(), pt = t.flatMap((Jt) => Jt.solar), z = pt.find((Jt) => Jt.endsWith("_power")), jt = {
       light: u.length && { value: h ? h + " on" : "All off", groups: d((Jt) => Jt.lights) },
       climate: f.length && { value: v === k ? v + "°" : v + " - " + k + "°", groups: d((Jt) => [...Jt.readings.filter((Ue) => ["temperature", "humidity"].includes(xe(Ue).device_class)), ...i(Jt, /^(climate|humidifier)\./)]) },
-      security: (a.alarms.length || a.locks.length) && { value: [at, xt].filter(Boolean).join(", "), groups: [{ name: "Alarm and locks", ids: [...a.alarms, ...a.locks] }, { name: "Doors and windows", ids: a.openings }].filter((Jt) => Jt.ids.length) },
+      security: (a.alarms.length || a.locks.length) && { value: [nt, xt].filter(Boolean).join(", "), groups: [{ name: "Alarm and locks", ids: [...a.alarms, ...a.locks] }, { name: "Doors and windows", ids: a.openings }].filter((Jt) => Jt.ids.length) },
       media_players: D.length && { value: N ? N + " playing" : "No media playing", groups: d((Jt) => i(Jt, /^media_player\./)) },
       maintenance: V,
       energy: Qt.grid && { value: Ln(Number(((Sa = y[z]) == null ? void 0 : Sa.state) || 0) * 1e3 + Number(y[Qt.grid].state)) + " now", groups: [{ name: "Energy", ids: [...pt, Qt.grid] }] }
     }, He = [], ge = F.filter((Jt) => Jt.severity !== "warning" && Jt.on);
-    return ge.length && He.push({ key: "alerts", name: "Alerts", icon: "mdi:alarm-plus", colour: "#f44336", value: go(ge.length, "active alert", "active alerts"), groups: [{ name: "Active", ids: ge.map((Jt) => Jt.entity) }] }), Js().forEach((Jt) => {
+    return ge.length && He.push({ key: "alerts", name: "Alerts", icon: "mdi:alarm-plus", colour: "#f44336", value: vo(ge.length, "active alert", "active alerts"), groups: [{ name: "Active", ids: ge.map((Jt) => Jt.entity) }] }), Js().forEach((Jt) => {
       Jt.type !== "summary" ? He.push({ key: "path:" + Jt.path, name: Jt.label || Jt.path, icon: Jt.icon || "mdi:link-variant", colour: "", value: "" }) : !Jt.hidden && jt[Jt.key] && !(j.hiddenSums || []).includes(Jt.key) && He.push({ key: Jt.key, ...Id[Jt.key], ...jt[Jt.key] });
     }), He;
   }
@@ -6906,14 +6906,14 @@ function Ih(n, { config: l, getHass: o }) {
     }
     ts("summary:" + t, a);
   }
-  async function Io() {
-    const t = (f) => Promise.resolve().then(() => R(f)).catch(() => null), [a, i, d, u] = await Promise.all([
+  async function Ho() {
+    const t = (f) => Promise.resolve().then(() => B(f)).catch(() => null), [a, i, d, u] = await Promise.all([
       t({ type: "frontend/get_user_data", key: Xc }),
       t({ type: "frontend/get_system_data", key: "home" }),
       t({ type: "frontend/get_system_data", key: "security" }),
       t({ type: "usage_prediction/common_control" })
     ]), h = (a == null ? void 0 : a.value) || {};
-    j = { favourites: h.favourites ?? null, sources: h.sources, hiddenSums: h.hiddenSums, dash: h.dash, named: h.named, favHidden: h.favHidden, suggest: h.suggest, favSeeded: h.favSeeded }, dt = (i == null ? void 0 : i.value) || {}, gt = (d == null ? void 0 : d.value) || {}, yt = Array.isArray(u == null ? void 0 : u.entities) ? u.entities : [], $t = null, Object.keys(y).length && va(), _r(), $s = !0, Jn();
+    j = { favourites: h.favourites ?? null, sources: h.sources, hiddenSums: h.hiddenSums, dash: h.dash, named: h.named, favHidden: h.favHidden, suggest: h.suggest, favSeeded: h.favSeeded }, ct = (i == null ? void 0 : i.value) || {}, gt = (d == null ? void 0 : d.value) || {}, yt = Array.isArray(u == null ? void 0 : u.entities) ? u.entities : [], $t = null, Object.keys(y).length && va(), _r(), $s = !0, Jn();
   }
   const Lr = "HomeCore";
   async function _r() {
@@ -6924,39 +6924,39 @@ function Ih(n, { config: l, getHass: o }) {
       j = { ...j, named: [...a, t] }, Pa();
     };
     try {
-      const f = (h = await R({ type: "lovelace/dashboards/list" })) == null ? void 0 : h.find((D) => D.url_path === t);
+      const f = (h = await B({ type: "lovelace/dashboards/list" })) == null ? void 0 : h.find((D) => D.url_path === t);
       if (!f || f.mode === "yaml") return;
       if (f.title === Lr) {
         i();
         return;
       }
-      const v = await R({ type: "lovelace/config", url_path: t }), k = ((v == null ? void 0 : v.views) || []).flatMap((D) => [...D.cards || [], ...(D.sections || []).flatMap((N) => N.cards || [])]);
+      const v = await B({ type: "lovelace/config", url_path: t }), k = ((v == null ? void 0 : v.views) || []).flatMap((D) => [...D.cards || [], ...(D.sections || []).flatMap((N) => N.cards || [])]);
       if (!k.length || !k.every((D) => (D == null ? void 0 : D.type) === "custom:move-assistant-card" && D.layout === "test-focus")) return;
-      await R({ type: "lovelace/dashboards/update", dashboard_id: f.id, title: Lr }), i();
+      await B({ type: "lovelace/dashboards/update", dashboard_id: f.id, title: Lr }), i();
     } catch {
     }
   }
-  let Qn = null, gi = 0, Ho = !1;
+  let Qn = null, gi = 0, Fo = !1;
   const Er = (t) => {
     const a = t.split(".")[0], i = xe(t).device_class;
     return Dh.includes(a) && (a !== "binary_sensor" || Il.includes(i) || !!ip[i]);
   }, dn = (t) => t.startsWith("binary_sensor.") ? ip[xe(t).device_class] : null;
   async function vi() {
     var t;
-    if (!(Ho || Date.now() - gi < 30 * 1e3)) {
-      Ho = !0, gi = Date.now();
+    if (!(Fo || Date.now() - gi < 30 * 1e3)) {
+      Fo = !0, gi = Date.now();
       try {
-        const a = Object.keys(((t = o()) == null ? void 0 : t.states) || {}).filter(Er), i = a.length ? await R({ type: "logbook/get_events", start_time: new Date(Date.now() - 24 * 3600 * 1e3).toISOString(), end_time: (/* @__PURE__ */ new Date()).toISOString(), entity_ids: a }) : null;
+        const a = Object.keys(((t = o()) == null ? void 0 : t.states) || {}).filter(Er), i = a.length ? await B({ type: "logbook/get_events", start_time: new Date(Date.now() - 24 * 3600 * 1e3).toISOString(), end_time: (/* @__PURE__ */ new Date()).toISOString(), entity_ids: a }) : null;
         Qn = Array.isArray(i) ? i.filter((d) => d.entity_id && d.state != null && d.when) : null;
       } catch {
         Qn = null;
       }
-      Ho = !1, va();
+      Fo = !1, va();
     }
   }
   function $l() {
     const t = /* @__PURE__ */ new Map(), a = /* @__PURE__ */ new Map(), i = (u) => {
-      if (!y[u.entity_id] || !Er(u.entity_id) || !Br(u.entity_id) || ["unavailable", "unknown"].includes(u.state)) return;
+      if (!y[u.entity_id] || !Er(u.entity_id) || !Rr(u.entity_id) || ["unavailable", "unknown"].includes(u.state)) return;
       if (dn(u.entity_id)) {
         const f = a.get(u.entity_id);
         u.state === "on" ? (!f || u.when > f.when + 1) && a.set(u.entity_id, { ...u, alarm: !0, cleared: null }) : f && !f.cleared && u.when > f.when && (f.cleared = u.when);
@@ -6971,7 +6971,7 @@ function Ih(n, { config: l, getHass: o }) {
       var v;
       const h = y[u], f = h.last_changed ? Date.parse(h.last_changed) / 1e3 : 0;
       f > d && i({ entity_id: u, state: h.state, when: f, context_user_id: (v = h.context) == null ? void 0 : v.user_id });
-    }), [...t.values(), ...a.values()].sort((u, h) => h.when - u.when).slice(0, Rh);
+    }), [...t.values(), ...a.values()].sort((u, h) => h.when - u.when).slice(0, Bh);
   }
   function Xl(t) {
     var d;
@@ -6988,7 +6988,7 @@ function Ih(n, { config: l, getHass: o }) {
     const a = t.entity_id, i = t.alarm && dn(a), d = St(a) + " " + (i ? i[0] : bi(t)), u = i ? Ye(t.when * 1e3) + (t.cleared ? " · " + i[1] + " since " + Ye(t.cleared * 1e3) : "") : [Xl(t), Ye(t.when * 1e3)].filter(Boolean).join(" · ");
     return '<div class="activityRow' + (i ? " alert" : "") + '"><div class="tfIcon' + (i ? " alert" : "") + '" aria-hidden="true"' + ye(a, na(a)) + '></div><button class="tfName" type="button" data-more="' + Q(a) + '" data-at="' + Math.round(t.when * 1e3) + '" aria-label="' + Q(d + ", " + u + ". More info") + '"><span class="activityRowName">' + Q(d) + '</span><span class="activityRowMeta">' + Q(u) + "</span></button></div>";
   }
-  let bo = null, Dr = 0;
+  let wo = null, Dr = 0;
   const Jl = [["electricity", "Electricity", 4.3, "kWh"], ["gas", "Gas", 0.21, "m³"], ["water", "Water", 0.2, "m³"]];
   async function ws() {
     var a;
@@ -6996,36 +6996,36 @@ function Ih(n, { config: l, getHass: o }) {
     Dr = Date.now();
     const t = [];
     try {
-      const i = ((a = await R({ type: "energy/get_prefs" })) == null ? void 0 : a.energy_sources) || [], d = (u) => i.filter((h) => h.type === u).flatMap((h) => u === "grid" ? (h.flow_from || []).map((f) => f.stat_energy_from) : [h.stat_energy_from]).filter(Boolean);
+      const i = ((a = await B({ type: "energy/get_prefs" })) == null ? void 0 : a.energy_sources) || [], d = (u) => i.filter((h) => h.type === u).flatMap((h) => u === "grid" ? (h.flow_from || []).map((f) => f.stat_energy_from) : [h.stat_energy_from]).filter(Boolean);
       for (const [u, h, f] of [["electricity", "Electricity", d("grid")], ["solar", "Solar", d("solar")], ["gas", "Gas", d("gas")], ["water", "Water", d("water")]]) {
         if (!f.length) continue;
-        const v = await Promise.all(f.map((k) => Promise.resolve(R({ type: "recorder/statistic_during_period", statistic_id: k, calendar: { period: "day" }, types: ["change"] })).then((D) => Number(D == null ? void 0 : D.change) || 0, () => 0)));
+        const v = await Promise.all(f.map((k) => Promise.resolve(B({ type: "recorder/statistic_during_period", statistic_id: k, calendar: { period: "day" }, types: ["change"] })).then((D) => Number(D == null ? void 0 : D.change) || 0, () => 0)));
         t.push({ key: u, name: h, id: f[0], ids: f, value: v.reduce((k, D) => k + D, 0), unit: xe(f[0]).unit_of_measurement || (u === "gas" || u === "water" ? "m³" : "kWh") });
       }
     } catch {
     }
-    bo = t, va();
+    wo = t, va();
   }
-  let wo = null, tr = [];
+  let xo = null, tr = [];
   function xs() {
     var h;
-    const t = tr = bo != null && bo.length ? bo : Jl.map(([f, v, k, D]) => {
+    const t = tr = wo != null && wo.length ? wo : Jl.map(([f, v, k, D]) => {
       const N = "sensor.made_up_energy_" + f;
       return y[N] = { entity_id: N, state: String(k), last_changed: (/* @__PURE__ */ new Date()).toISOString(), attributes: { friendly_name: v + " today", unit_of_measurement: D, state_class: "total_increasing" } }, { key: f, name: v, id: N, value: k, unit: D };
     });
-    G.clear(), t.some((f) => f.id === wo) || (wo = t[0].id);
+    G.clear(), t.some((f) => f.id === xo) || (xo = t[0].id);
     const a = t.map((f) => {
-      const v = Number(f.value).toLocaleString(void 0, { maximumFractionDigits: f.value < 10 ? 2 : 1 }) + " " + f.unit, k = Nh[f.key], D = f.id === wo;
+      const v = Number(f.value).toLocaleString(void 0, { maximumFractionDigits: f.value < 10 ? 2 : 1 }) + " " + f.unit, k = Nh[f.key], D = f.id === xo;
       return G.set(f.id, { name: f.name, text: v, icon: k }), '<div class="activityRow tap' + (D ? " picked" : "") + '" role="button" tabindex="0" data-energy-pick="' + Q(f.id) + '" aria-pressed="' + D + '" aria-label="' + Q(f.name + ", " + v) + '. Show its day in the graph"><div class="tfIcon" aria-hidden="true"' + ye("", k, f.name) + '></div><div><div class="activityRowName">' + Q(f.name) + '</div><div class="activityRowMeta">' + Q(v) + "</div></div></div>";
-    }), i = t.find((f) => f.id === wo), d = (((h = qe().opts.energy) == null ? void 0 : h.graph) || "above") === "below", u = '<div class="tfCardGraph tfDashGraph"><svg class="tfGraph" data-graph="' + Q(i.id) + '" role="img" aria-label="' + Q(i.name) + ', last 24 hours"></svg></div>';
+    }), i = t.find((f) => f.id === xo), d = (((h = qe().opts.energy) == null ? void 0 : h.graph) || "above") === "below", u = '<div class="tfCardGraph tfDashGraph"><svg class="tfGraph" data-graph="' + Q(i.id) + '" role="img" aria-label="' + Q(i.name) + ', last 24 hours"></svg></div>';
     return xn("dash:energy", 0, "Energy today", a, u, fi().some((f) => f.key === "energy") ? "summary:energy" : null, "tfDashCard tfDash-energy" + (d ? "" : " graphAbove"));
   }
   function tl(t) {
     const a = _.querySelector(".tfDash-energy"), i = a == null ? void 0 : a.querySelector(".tfDashGraph svg");
-    !i || t === wo || (wo = t, a.querySelectorAll("[data-energy-pick]").forEach((d) => {
+    !i || t === xo || (xo = t, a.querySelectorAll("[data-energy-pick]").forEach((d) => {
       const u = d.dataset.energyPick === t;
       d.classList.toggle("picked", u), d.setAttribute("aria-pressed", String(u));
-    }), i.dataset.graph = t, i.dataset.drawn = "", Ma.set("dash:energy", xs()), Zo(!0));
+    }), i.dataset.graph = t, i.dataset.drawn = "", Ma.set("dash:energy", xs()), Ko(!0));
   }
   const La = {
     electricity: [15, 12, 10, 10, 10, 12, 25, 45, 40, 30, 25, 30, 35, 30, 25, 25, 35, 60, 80, 70, 55, 45, 30, 20],
@@ -7041,12 +7041,12 @@ function Ih(n, { config: l, getHass: o }) {
     const f = wi.get(t.id);
     if (f && f.day === i && Date.now() - f.at < 5 * 60 * 1e3) return f.hours;
     try {
-      const v = await R({ type: "recorder/statistics_during_period", start_time: new Date(i).toISOString(), end_time: a.toISOString(), statistic_ids: t.ids, period: "hour", types: ["change"] });
+      const v = await B({ type: "recorder/statistics_during_period", start_time: new Date(i).toISOString(), end_time: a.toISOString(), statistic_ids: t.ids, period: "hour", types: ["change"] });
       t.ids.forEach((N) => ((v == null ? void 0 : v[N]) || []).forEach((F) => {
-        const ct = typeof F.start == "number" ? F.start : Date.parse(F.start), Mt = new Date(ct).getHours();
-        ct >= i && Mt < d && (h[Mt] += Number(F.change) || 0);
+        const $ = typeof F.start == "number" ? F.start : Date.parse(F.start), Mt = new Date($).getHours();
+        $ >= i && Mt < d && (h[Mt] += Number(F.change) || 0);
       }));
-      const k = new Date(a).setMinutes(0, 0, 0), D = await Promise.all(t.ids.map((N) => Promise.resolve(R({ type: "recorder/statistic_during_period", statistic_id: N, fixed_period: { start_time: new Date(k).toISOString(), end_time: a.toISOString() }, types: ["change"] })).then((F) => Number(F == null ? void 0 : F.change) || 0, () => 0)));
+      const k = new Date(a).setMinutes(0, 0, 0), D = await Promise.all(t.ids.map((N) => Promise.resolve(B({ type: "recorder/statistic_during_period", statistic_id: N, fixed_period: { start_time: new Date(k).toISOString(), end_time: a.toISOString() }, types: ["change"] })).then((F) => Number(F == null ? void 0 : F.change) || 0, () => 0)));
       h[d] = D.reduce((N, F) => N + F, 0);
     } catch {
     }
@@ -7055,8 +7055,8 @@ function Ih(n, { config: l, getHass: o }) {
   async function Ql(t, a) {
     const i = await xi(a);
     if (!t.isConnected) return;
-    const d = Math.max(120, t.clientWidth || 260), u = Math.max(60, t.clientHeight || 130), h = 18, f = u - 18, v = d / 24, k = v * 0.72, D = (/* @__PURE__ */ new Date()).getHours(), N = i.map((xt) => xt ?? 0), F = Math.max(0, ...N), ct = (xt) => f - (F > 0 ? xt / F * (f - h) : 0), Mt = (xt) => xt.toLocaleString(void 0, { maximumFractionDigits: xt < 10 ? 2 : 1 }) + " " + a.unit, Dt = (xt) => String(xt).padStart(2, "0") + ":00", at = F > 0 ? N.indexOf(F) : -1;
-    t.setAttribute("viewBox", "0 0 " + d + " " + u), t.setAttribute("aria-label", a.name + " today by the hour: " + Mt(a.value) + (at >= 0 ? ", most " + Mt(F) + " at " + Dt(at) : "")), t.innerHTML = [h, (h + f) / 2, f].map((xt) => '<line x1="0" x2="' + d + '" y1="' + xt + '" y2="' + xt + '" stroke="var(--line)" stroke-width="1"/>').join("") + i.map((xt, V) => xt > 0 ? '<rect x="' + (V * v + (v - k) / 2).toFixed(1) + '" y="' + ct(xt).toFixed(1) + '" width="' + k.toFixed(1) + '" height="' + (f - ct(xt)).toFixed(1) + '" rx="2" fill="' + (V === D ? "var(--primary)" : "var(--text)") + '"' + (V === D ? "" : ' fill-opacity=".5"') + "/>" : "").join("") + [0, 6, 12, 18].map((xt) => '<text x="' + (xt * v).toFixed(1) + '" y="' + (u - 3) + '">' + String(xt).padStart(2, "0") + "</text>").join("") + (at >= 0 ? '<text x="0" y="11">Most: ' + Q(Mt(F)) + " at " + Dt(at) + "</text>" : "");
+    const d = Math.max(120, t.clientWidth || 260), u = Math.max(60, t.clientHeight || 130), h = 18, f = u - 18, v = d / 24, k = v * 0.72, D = (/* @__PURE__ */ new Date()).getHours(), N = i.map((xt) => xt ?? 0), F = Math.max(0, ...N), $ = (xt) => f - (F > 0 ? xt / F * (f - h) : 0), Mt = (xt) => xt.toLocaleString(void 0, { maximumFractionDigits: xt < 10 ? 2 : 1 }) + " " + a.unit, Dt = (xt) => String(xt).padStart(2, "0") + ":00", nt = F > 0 ? N.indexOf(F) : -1;
+    t.setAttribute("viewBox", "0 0 " + d + " " + u), t.setAttribute("aria-label", a.name + " today by the hour: " + Mt(a.value) + (nt >= 0 ? ", most " + Mt(F) + " at " + Dt(nt) : "")), t.innerHTML = [h, (h + f) / 2, f].map((xt) => '<line x1="0" x2="' + d + '" y1="' + xt + '" y2="' + xt + '" stroke="var(--line)" stroke-width="1"/>').join("") + i.map((xt, V) => xt > 0 ? '<rect x="' + (V * v + (v - k) / 2).toFixed(1) + '" y="' + $(xt).toFixed(1) + '" width="' + k.toFixed(1) + '" height="' + (f - $(xt)).toFixed(1) + '" rx="2" fill="' + (V === D ? "var(--primary)" : "var(--text)") + '"' + (V === D ? "" : ' fill-opacity=".5"') + "/>" : "").join("") + [0, 6, 12, 18].map((xt) => '<text x="' + (xt * v).toFixed(1) + '" y="' + (u - 3) + '">' + String(xt).padStart(2, "0") + "</text>").join("") + (nt >= 0 ? '<text x="0" y="11">Most: ' + Q(Mt(F)) + " at " + Dt(nt) + "</text>" : "");
   }
   function el(t) {
     var a;
@@ -7071,10 +7071,10 @@ function Ih(n, { config: l, getHass: o }) {
     i.animate([{ strokeDasharray: d, strokeDashoffset: d }, { strokeDasharray: d, strokeDashoffset: 0 }], { duration: 700, easing: "cubic-bezier(.2,.7,.3,1)" }), a == null || a.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 200, easing: "ease-out", fill: "backwards" });
   }
   let er = null, ar = 0;
-  const Br = (t) => !t.startsWith("light.") || Ph.includes((Ae.get(t) || "").toLowerCase()), yi = () => Math.max(2, eo((_ == null ? void 0 : _.clientWidth) || 0).n), Rr = (t) => {
+  const Rr = (t) => !t.startsWith("light.") || Ph.includes((Ae.get(t) || "").toLowerCase()), yi = () => Math.max(2, eo((_ == null ? void 0 : _.clientWidth) || 0).n), Br = (t) => {
     const a = ce(t);
     return a.sections.map((i, d) => i && (a.parts || [])[d]).filter(Boolean);
-  }, to = (t) => Rr(t).slice(0, cn(t) - 1);
+  }, to = (t) => Br(t).slice(0, cn(t) - 1);
   function nr(t) {
     const a = qe().tiles;
     if (a) return a.filter((d) => y[d] || Ks(d));
@@ -7086,7 +7086,7 @@ function Ih(n, { config: l, getHass: o }) {
       er = {
         lights: Qt.rooms.flatMap((u) => u.lights).filter((u) => {
           var h;
-          return Br(u) && ((h = y[u]) == null ? void 0 : h.state) !== "unavailable";
+          return Rr(u) && ((h = y[u]) == null ? void 0 : h.state) !== "unavailable";
         }).sort((u, h) => d(h) - d(u) || St(u).localeCompare(St(h))),
         climates: Qt.rooms.flatMap((u) => u.actions.filter((h) => h.startsWith("climate.")))
       };
@@ -7097,7 +7097,7 @@ function Ih(n, { config: l, getHass: o }) {
   const Nr = (t, a, i, d) => (u) => '<section class="card tfCard tfDashCard ' + t + '" data-tf data-k="' + a + '" aria-label="' + i + '">' + (d ? '<div class="activityHeader">' + (a === "favs" ? '<button class="activityTitle tfTitleBtn" type="button" data-more="favourites" aria-label="Favourites. More info">' + i + "</button>" : '<div class="activityTitle">' + i + "</div>") + "</div>" : "") + '<div class="activityRows">' + u + "</div></section>";
   function ed(t, a) {
     var h, f;
-    t.dash = !0, t.push({ key: "dash:title", html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + Q(((f = (h = o()) == null ? void 0 : h.config) == null ? void 0 : f.location_name) || "Home") + "</h1>" }), a.length && t.push({ key: "sums", wrap: (v) => '<div class="tfDashBarRow" data-tf data-k="sums">' + Nr("tfDash-bar", "sums-bar", "Summaries", !1)(v).replace(" data-tf", "") + "</div>", tiles: a.map((v) => ({ key: "sum:" + v.key, html: Qs(v) })) }), Be.length && t.push({ key: "areas", html: Xn(0) });
+    t.dash = !0, t.push({ key: "dash:title", html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + Q(((f = (h = o()) == null ? void 0 : h.config) == null ? void 0 : f.location_name) || "Home") + "</h1>" }), a.length && t.push({ key: "sums", wrap: (v) => '<div class="tfDashBarRow" data-tf data-k="sums">' + Nr("tfDash-bar", "sums-bar", "Summaries", !1)(v).replace(" data-tf", "") + "</div>", tiles: a.map((v) => ({ key: "sum:" + v.key, html: Qs(v) })) }), Re.length && t.push({ key: "areas", html: Xn(0) });
     const i = Nn();
     i.length && t.push({ key: "favs", wrap: Nr("tfDash-favs", "favs", "Favourites", !0), tiles: i.map((v) => ({ key: "fav:" + v, html: vs(v, { area: !0 }) })) });
     const d = $l();
@@ -7106,20 +7106,20 @@ function Ih(n, { config: l, getHass: o }) {
     return ar = u, nr(u >= 3 ? u : u * 2).forEach((v) => t.push({
       key: "dash:tile:" + v,
       wrap: (k) => '<div class="tfDashTiles" data-tf data-k="dash:tile:' + Q(v) + '">' + k + "</div>",
-      tiles: [{ key: v, html: ui(v) ? Cr(Ks(v), v) : kt(v, !1, to(v)) }]
+      tiles: [{ key: v, html: go(v) ? Cr(Ks(v), v) : kt(v, !1, to(v)) }]
     })), vi(), ws(), t;
   }
-  const ki = 252, aa = 16, al = 200, Fo = Math.round(ki * 1.25), ad = 60, xo = ad + aa, Pr = 3, or = { title: "The name", sums: "Summaries", wx: "Weather", areas: "Areas", favs: "Favourites", act: "Activity", energy: "Energy today", avg: "Compared to average", aq: "Air quality", pollen: "Pollen", radar: "Rain radar" }, Mi = ["wx", "favs", "act", "energy", "avg"], Pn = ["XS", "S", "M", "L", "XL"], Oo = Pn.length, Si = ["Narrow", "Wide", "Really wide"], ir = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 }, Wo = (t) => !t.includes(".") || !y[t] || t.startsWith("light.") && Tt(t) ? Oo : Math.min(Oo, Rr(t).length + 1), cn = (t) => {
-    const a = qe().opts[t] || {}, i = Wo(t), d = Number(a.h) || (a.tall ? 5 : ir[t] || ys);
+  const ki = 252, aa = 16, al = 200, Oo = Math.round(ki * 1.25), ad = 60, yo = ad + aa, Pr = 3, or = { title: "The name", sums: "Summaries", wx: "Weather", areas: "Areas", favs: "Favourites", act: "Activity", energy: "Energy today", avg: "Compared to average", aq: "Air quality", pollen: "Pollen", radar: "Rain radar" }, Mi = ["wx", "favs", "act", "energy", "avg"], Pn = ["XS", "S", "M", "L", "XL"], Wo = Pn.length, Si = ["Narrow", "Wide", "Really wide"], ir = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 }, qo = (t) => !t.includes(".") || !y[t] || t.startsWith("light.") && Tt(t) ? Wo : Math.min(Wo, Br(t).length + 1), cn = (t) => {
+    const a = qe().opts[t] || {}, i = qo(t), d = Number(a.h) || (a.tall ? 5 : ir[t] || ys);
     return Math.max(1, Math.min(i, d));
   }, ys = 2, nd = 90, Ir = 56, da = (t) => {
     var a;
-    return or[t] || (t.startsWith("room:") ? ((a = Be.find((i) => "room:" + i.id === t)) == null ? void 0 : a.name) || "Room" : St(t));
-  }, Ci = 409, qo = 128;
-  let ma = !1, _e = null, kn = null, Hr = !1, jo = /* @__PURE__ */ new Map(), zo = 0, pn = 0;
+    return or[t] || (t.startsWith("room:") ? ((a = Re.find((i) => "room:" + i.id === t)) == null ? void 0 : a.name) || "Area" : St(t));
+  }, Ci = 409, jo = 128;
+  let ma = !1, _e = null, kn = null, Hr = !1, zo = /* @__PURE__ */ new Map(), Vo = 0, pn = 0;
   const Wa = ["title", "sums"], eo = (t) => {
     const a = Math.max(1, Math.floor((t + aa) / (al + aa)));
-    return { n: a, w: Math.max(1, Math.min(Fo, Math.floor((t - (a - 1) * aa) / a))) };
+    return { n: a, w: Math.max(1, Math.min(Oo, Math.floor((t - (a - 1) * aa) / a))) };
   }, qe = () => {
     const t = { cells: {}, spans: {}, hidden: [], opts: {}, ...j.dash || {} }, a = Ta.filter((i) => !(t.known || []).includes(i) && !t.hidden.includes(i));
     return a.length ? { ...t, hidden: [...t.hidden, ...a] } : t;
@@ -7145,29 +7145,29 @@ function Ih(n, { config: l, getHass: o }) {
   const Fr = (t, a, i) => {
     if (t.span === "full") return a;
     const d = t.span === "areas" && qe().spans.areas;
-    return d ? d === "full" ? a : Math.min(a, Math.max(2, d)) : t.span === "areas" ? Math.min(a, Math.ceil((Ci + Math.max(0, Be.length - 1) * (qo + aa) + aa) / (i + aa))) : Math.min(a, qe().spans[t.key] ?? t.span);
+    return d ? d === "full" ? a : Math.min(a, Math.max(2, d)) : t.span === "areas" ? Math.min(a, Math.ceil((Ci + Math.max(0, Re.length - 1) * (jo + aa) + aa) / (i + aa))) : Math.min(a, qe().spans[t.key] ?? t.span);
   }, nl = (t) => cn(t.key);
   function ol(t, a, i = null) {
     const d = qe().cells, u = t.every((v) => !d[v.key] || d[v.key].col + v.cols <= a), h = (v) => d[v.key] || { row: 1e9, col: 0 };
     return (() => {
-      const v = /* @__PURE__ */ new Set(), k = /* @__PURE__ */ new Map(), D = (at, xt, V, pt) => {
-        for (let z = xt; z < xt + pt; z++) for (let jt = at; jt < at + V; jt++) if (v.has(jt + "," + z)) return !1;
+      const v = /* @__PURE__ */ new Set(), k = /* @__PURE__ */ new Map(), D = (nt, xt, V, pt) => {
+        for (let z = xt; z < xt + pt; z++) for (let jt = nt; jt < nt + V; jt++) if (v.has(jt + "," + z)) return !1;
         return !0;
-      }, N = (at, xt, V) => {
-        for (let pt = V; pt < V + at.rows; pt++) for (let z = xt; z < xt + at.cols; z++) v.add(z + "," + pt);
-        k.set(at.key, { col: xt, row: V, cols: at.cols, rows: at.rows });
-      }, F = (at, xt, V) => {
-        for (xt = Math.max(0, Math.min(a - at.cols, xt)), V = Math.max(0, V); !D(xt, V, at.cols, at.rows); ) V++;
-        N(at, xt, V);
-      }, ct = (at) => {
-        for (let xt = 0; ; xt++) for (let V = 0; V <= a - at.cols; V++) if (D(V, xt, at.cols, at.rows)) {
-          N(at, V, xt);
+      }, N = (nt, xt, V) => {
+        for (let pt = V; pt < V + nt.rows; pt++) for (let z = xt; z < xt + nt.cols; z++) v.add(z + "," + pt);
+        k.set(nt.key, { col: xt, row: V, cols: nt.cols, rows: nt.rows });
+      }, F = (nt, xt, V) => {
+        for (xt = Math.max(0, Math.min(a - nt.cols, xt)), V = Math.max(0, V); !D(xt, V, nt.cols, nt.rows); ) V++;
+        N(nt, xt, V);
+      }, $ = (nt) => {
+        for (let xt = 0; ; xt++) for (let V = 0; V <= a - nt.cols; V++) if (D(V, xt, nt.cols, nt.rows)) {
+          N(nt, V, xt);
           return;
         }
       };
       i && F(i, _e.col, _e.row);
-      const Mt = t.filter((at) => at !== i), Dt = (at, xt) => h(at).row - h(xt).row || h(at).col - h(xt).col;
-      return u ? (Mt.filter((at) => d[at.key]).sort(Dt).forEach((at) => F(at, d[at.key].col, d[at.key].row)), Mt.filter((at) => !d[at.key]).forEach(ct), k) : ([...Mt].sort(Dt).forEach(ct), k);
+      const Mt = t.filter((nt) => nt !== i), Dt = (nt, xt) => h(nt).row - h(xt).row || h(nt).col - h(xt).col;
+      return u ? (Mt.filter((nt) => d[nt.key]).sort(Dt).forEach((nt) => F(nt, d[nt.key].col, d[nt.key].row)), Mt.filter((nt) => !d[nt.key]).forEach($), k) : ([...Mt].sort(Dt).forEach($), k);
     })();
   }
   function od(t, a) {
@@ -7189,7 +7189,7 @@ function Ih(n, { config: l, getHass: o }) {
   }
   function Ti() {
     const t = qe(), a = new Set(t.hidden), i = In().filter((f) => !Wa.includes(f.key));
-    let d = jo;
+    let d = zo;
     if (!d.size) {
       const f = t.pegs || 4, v = i.filter((k) => !a.has(k.key));
       v.forEach((k) => {
@@ -7257,22 +7257,22 @@ function Ih(n, { config: l, getHass: o }) {
         ;
       jt && (jt.style.maxWidth = ""), F += z.el.offsetHeight + aa;
     }), pn = F;
-    const ct = N.filter((z) => !Wa.includes(z.key));
-    ct.forEach((z) => {
-      z.cols = Fr(z, d, u), z.el.classList.add("tfBoardItem"), z.el.style.width = (z.cols === d ? t : z.cols * u + (z.cols - 1) * aa) + "px", z.el.style.height = "", z.rows = nl(z) ?? Math.max(1, Math.ceil((z.el.offsetHeight + aa - 6) / xo));
+    const $ = N.filter((z) => !Wa.includes(z.key));
+    $.forEach((z) => {
+      z.cols = Fr(z, d, u), z.el.classList.add("tfBoardItem"), z.el.style.width = (z.cols === d ? t : z.cols * u + (z.cols - 1) * aa) + "px", z.el.style.height = "", z.rows = nl(z) ?? Math.max(1, Math.ceil((z.el.offsetHeight + aa - 6) / yo));
     });
-    const Mt = _e && ct.find((z) => z.key === _e.key), Dt = a && Ti().map((z) => z.key), at = (z) => Dt.includes(z.key) ? Dt.indexOf(z.key) : -1, xt = a ? od([...ct].sort((z, jt) => at(z) - at(jt)), d) : ol(ct, d, Mt);
-    xt.forEach((z) => Object.assign(z, { x: z.cols === d ? 0 : z.col * D, y: pn + z.row * xo, w: z.cols === d ? t : z.cols * u + (z.cols - 1) * aa, h: z.rows * xo - aa })), ct.forEach((z) => {
+    const Mt = _e && $.find((z) => z.key === _e.key), Dt = a && Ti().map((z) => z.key), nt = (z) => Dt.includes(z.key) ? Dt.indexOf(z.key) : -1, xt = a ? od([...$].sort((z, jt) => nt(z) - nt(jt)), d) : ol($, d, Mt);
+    xt.forEach((z) => Object.assign(z, { x: z.cols === d ? 0 : z.col * D, y: pn + z.row * yo, w: z.cols === d ? t : z.cols * u + (z.cols - 1) * aa, h: z.rows * yo - aa })), $.forEach((z) => {
       const jt = xt.get(z.key);
-      z.el.style.height = jt.h + "px", z.el.dataset.rows = cn(z.key), z.el.toggleAttribute("data-narrow", !a && jt.cols === 1 && d > 1), z.el.classList.contains("tfDac") && z.el.style.setProperty("--tf-dac-pad", jt.h - nd + "px"), !(z === Mt && !_e.fromTray) && (z.el.style.left = jt.x + "px", z.el.style.top = jt.y + "px");
-    }), a || (jo = xt), qa([...N.filter((z) => Wa.includes(z.key)), ...ct.slice().sort((z, jt) => xt.get(z.key).row - xt.get(jt.key).row || xt.get(z.key).col - xt.get(jt.key).col)].map((z) => z.el)), [["favs", ".tfDash-favs"], ["act", ".tfDash-act"]].forEach(([z, jt]) => {
+      z.el.style.height = jt.h + "px", z.el.dataset.rows = cn(z.key), z.el.toggleAttribute("data-narrow", !a && jt.cols === 1 && d > 1), z.el.dataset.cols = jt.cols, z.el.classList.contains("tfDac") && z.el.style.setProperty("--tf-dac-pad", jt.h - nd + "px"), !(z === Mt && !_e.fromTray) && (z.el.style.left = jt.x + "px", z.el.style.top = jt.y + "px");
+    }), a || (zo = xt), qa([...N.filter((z) => Wa.includes(z.key)), ...$.slice().sort((z, jt) => xt.get(z.key).row - xt.get(jt.key).row || xt.get(z.key).col - xt.get(jt.key).col)].map((z) => z.el)), [["favs", ".tfDash-favs"], ["act", ".tfDash-act"]].forEach(([z, jt]) => {
       const He = xt.get(z), ge = He && _.querySelector(jt), Sa = ge == null ? void 0 : ge.querySelector(":scope > .activityRows"), Jt = ge == null ? void 0 : ge.querySelector(":scope > .activityHeader");
       if (!Sa || !Jt) return;
-      const Ue = Sa.getBoundingClientRect().top - ge.getBoundingClientRect().top, ti = He.rows === 1 ? He.h : Math.floor(He.h - Ue - parseFloat(getComputedStyle(ge).paddingBottom)), Ws = Math.max(1, Math.floor(ti / Ir));
-      Sa.style.setProperty("--fill-row", (ti / Ws).toFixed(2) + "px"), Sa.style.maxHeight = ti + "px";
-    }), zo = Math.max(0, ...[...xt.values()].map((z) => z.row + z.rows));
-    let V = pn + zo * xo - aa;
-    V = sr(ma && !a, ct, xt, V, d, u), _.style.height = V + "px", requestAnimationFrame(() => m.classList.add("tfBoardReady")), v.forEach((z) => Or.observe(z.el)), Zo(), ga();
+      const Ue = Sa.getBoundingClientRect().top - ge.getBoundingClientRect().top, ei = He.rows === 1 ? He.h : Math.floor(He.h - Ue - parseFloat(getComputedStyle(ge).paddingBottom)), Ws = Math.max(1, Math.floor(ei / Ir));
+      Sa.style.setProperty("--fill-row", (ei / Ws).toFixed(2) + "px"), Sa.style.maxHeight = ei + "px";
+    }), Vo = Math.max(0, ...[...xt.values()].map((z) => z.row + z.rows));
+    let V = pn + Vo * yo - aa;
+    V = sr(ma && !a, $, xt, V, d, u), _.style.height = V + "px", requestAnimationFrame(() => m.classList.add("tfBoardReady")), v.forEach((z) => Or.observe(z.el)), Ko(), ga();
   }
   const Li = () => {
     Hr || (Hr = !0, requestAnimationFrame(() => {
@@ -7290,8 +7290,8 @@ function Ih(n, { config: l, getHass: o }) {
     let f = _.querySelector(".tfBoardCells"), v = _.querySelector(".tfBoardLand");
     if (!t)
       return f == null || f.remove(), v == null || v.remove(), ao(), d;
-    const k = zo + Pr;
-    if (f || (f = Object.assign(document.createElement("div"), { className: "tfBoardCells" }), f.setAttribute("aria-hidden", "true"), _.prepend(f)), f.style.top = pn + "px", f.dataset.size !== u + "x" + k + "x" + h && (f.dataset.size = u + "x" + k + "x" + h, f.style.gridTemplateColumns = "repeat(" + u + "," + h + "px)", f.innerHTML = "<i></i>".repeat(u * k)), d = Math.max(d, pn + k * xo - aa), a.forEach((N) => {
+    const k = Vo + Pr;
+    if (f || (f = Object.assign(document.createElement("div"), { className: "tfBoardCells" }), f.setAttribute("aria-hidden", "true"), _.prepend(f)), f.style.top = pn + "px", f.dataset.size !== u + "x" + k + "x" + h && (f.dataset.size = u + "x" + k + "x" + h, f.style.gridTemplateColumns = "repeat(" + u + "," + h + "px)", f.innerHTML = "<i></i>".repeat(u * k)), d = Math.max(d, pn + k * yo - aa), a.forEach((N) => {
       const F = N.el;
       !F || F.querySelector(":scope > .tfEditChips") || F.insertAdjacentHTML("beforeend", '<div class="tfEditChips"><span class="tfEditGrip" aria-hidden="true">' + Hd + '</span><button class="tfEditChip" type="button" data-board-more="' + Q(N.key) + '" aria-label="' + Q(da(N.key)) + ' options" aria-haspopup="menu">' + Ch + "</button></div>");
     }), _e && i.has(_e.key)) {
@@ -7303,8 +7303,8 @@ function Ih(n, { config: l, getHass: o }) {
     if (D) {
       const N = D.getBoundingClientRect();
       D.insertAdjacentHTML("beforeend", '<div class="tfFavHides">' + [...D.querySelectorAll('[data-k^="fav:"]')].map((F) => {
-        const ct = F.getBoundingClientRect(), Mt = F.dataset.k.slice(4);
-        return '<button class="tfFavHide" type="button" data-fav-hide="' + Q(Mt) + '" aria-label="Hide ' + Q(St(Mt)) + ' from the dashboard" style="left:' + Math.round(ct.right - N.left - 42) + "px;top:" + Math.round(ct.top - N.top + (ct.height - 32) / 2) + 'px">' + tp + "</button>";
+        const $ = F.getBoundingClientRect(), Mt = F.dataset.k.slice(4);
+        return '<button class="tfFavHide" type="button" data-fav-hide="' + Q(Mt) + '" aria-label="Hide ' + Q(St(Mt)) + ' from the dashboard" style="left:' + Math.round($.right - N.left - 42) + "px;top:" + Math.round($.top - N.top + ($.height - 32) / 2) + 'px">' + tp + "</button>";
       }).join("") + "</div>");
     }
     return d;
@@ -7316,29 +7316,29 @@ function Ih(n, { config: l, getHass: o }) {
   function id(t, a) {
     var xt, V;
     ao();
-    const i = jo.get(t), { n: d } = eo(_.clientWidth), u = qe(), h = u.spans[t] ?? 2;
+    const i = zo.get(t), { n: d } = eo(_.clientWidth), u = qe(), h = u.spans[t] ?? (go(t) ? 1 : 2);
     if (!i) return;
     const f = i.cols >= d, v = (pt, z, jt) => '<button type="button" role="menuitem" data-board-act="' + pt + '"' + (jt ? " disabled" : "") + ">" + z + "</button>", k = Object.assign(document.createElement("div"), { className: "tfBoardMenu" });
     k.setAttribute("role", "menu"), k.setAttribute("aria-label", da(t) + " options");
-    const D = _.querySelector('.tfDashTiles > [data-k="' + CSS.escape(t) + '"]'), N = Wo(t), F = cn(t), ct = '<div class="tfHeight" role="group" aria-label="Height"><span class="tfHeightLabel" aria-hidden="true">Height</span><div class="tfHeightTabs">' + Pn.map((pt, z) => '<button type="button" role="menuitemradio" aria-checked="' + (z + 1 === F) + '" aria-label="' + pt + ", " + (z + 1) + (z ? " rows" : " row") + '" data-board-act="h:' + (z + 1) + '"' + (z < N ? "" : " disabled") + ">" + pt + "</button>").join("") + "</div></div>", Mt = [["Wide", 2, d >= 2], ["Really wide", 3, d >= 3], ["Full width", "full", d >= 4]], Dt = t === "areas" ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' + Mt.map(([pt, z, jt]) => '<button type="button" role="menuitemradio" aria-checked="' + (jt && (z === "full" ? i.cols === d : i.cols === z && !(z === d && u.spans.areas === "full"))) + '" aria-label="' + pt + (z === "full" ? "" : ", " + z + " columns") + '" data-board-act="w:' + z + '"' + (jt ? "" : " disabled") + ">" + pt + "</button>").join("") + "</div></div>" : Mi.includes(t) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' + Si.map((pt, z) => '<button type="button" role="menuitemradio" aria-checked="' + (z + 1 === Math.min(h, d)) + '" aria-label="' + pt + ", " + (z + 1) + (z ? " columns" : " column") + '" data-board-act="w:' + (z + 1) + '"' + (z < d ? "" : " disabled") + ">" + pt + "</button>").join("") + "</div></div>" : "";
-    k.innerHTML = ct + Dt + (t === "energy" ? v("graph", (((xt = u.opts.energy) == null ? void 0 : xt.graph) || "above") === "above" ? "Graph below" : "Graph above") : "") + v("left", "Move left", f || i.col === 0) + v("right", "Move right", f || i.col + i.cols >= d) + v("up", "Move up", i.row <= 0) + v("down", "Move down") + (D ? v("remove", "Remove") : v("hide", "Hide")), _.appendChild(k);
-    const at = Math.min(i.x + i.w - k.offsetWidth, _.clientWidth - k.offsetWidth);
-    Object.assign(k.style, { left: Math.max(0, at) + "px", top: i.y + 28 + "px" }), kn = { key: t, menu: k, opener: a }, (V = k.querySelector("button:not([disabled])")) == null || V.focus();
+    const D = _.querySelector('.tfDashTiles > [data-k="' + CSS.escape(t) + '"]'), N = qo(t), F = cn(t), $ = '<div class="tfHeight" role="group" aria-label="Height"><span class="tfHeightLabel" aria-hidden="true">Height</span><div class="tfHeightTabs">' + Pn.map((pt, z) => '<button type="button" role="menuitemradio" aria-checked="' + (z + 1 === F) + '" aria-label="' + pt + ", " + (z + 1) + (z ? " rows" : " row") + '" data-board-act="h:' + (z + 1) + '"' + (z < N ? "" : " disabled") + ">" + pt + "</button>").join("") + "</div></div>", Mt = [["Wide", 2, d >= 2], ["Really wide", 3, d >= 3], ["Full width", "full", d >= 4]], Dt = t === "areas" ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' + Mt.map(([pt, z, jt]) => '<button type="button" role="menuitemradio" aria-checked="' + (jt && (z === "full" ? i.cols === d : i.cols === z && !(z === d && u.spans.areas === "full"))) + '" aria-label="' + pt + (z === "full" ? "" : ", " + z + " columns") + '" data-board-act="w:' + z + '"' + (jt ? "" : " disabled") + ">" + pt + "</button>").join("") + "</div></div>" : Mi.includes(t) || go(t) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' + Si.map((pt, z) => '<button type="button" role="menuitemradio" aria-checked="' + (z + 1 === Math.min(h, d)) + '" aria-label="' + pt + ", " + (z + 1) + (z ? " columns" : " column") + '" data-board-act="w:' + (z + 1) + '"' + (z < d ? "" : " disabled") + ">" + pt + "</button>").join("") + "</div></div>" : "";
+    k.innerHTML = $ + Dt + (t === "energy" ? v("graph", (((xt = u.opts.energy) == null ? void 0 : xt.graph) || "above") === "above" ? "Graph below" : "Graph above") : "") + v("left", "Move left", f || i.col === 0) + v("right", "Move right", f || i.col + i.cols >= d) + v("up", "Move up", i.row <= 0) + v("down", "Move down") + (D ? v("remove", "Remove") : v("hide", "Hide")), _.appendChild(k);
+    const nt = Math.min(i.x + i.w - k.offsetWidth, _.clientWidth - k.offsetWidth);
+    Object.assign(k.style, { left: Math.max(0, nt) + "px", top: i.y + 28 + "px" }), kn = { key: t, menu: k, opener: a }, (V = k.querySelector("button:not([disabled])")) == null || V.focus();
   }
   function ao(t) {
     if (!kn) return;
     const { menu: a, opener: i } = kn;
     kn = null, a.remove(), t && (i == null || i.focus());
   }
-  const yo = () => Object.fromEntries([...jo].map(([t, a]) => [t, { col: a.col, row: a.row }]));
-  function Vo(t, a) {
+  const ko = () => Object.fromEntries([...zo].map(([t, a]) => [t, { col: a.col, row: a.row }]));
+  function Go(t, a) {
     var f, v;
     if (a === "remove") {
       ao(), un(t);
       return;
     }
-    const i = j, d = qe(), u = yo(), h = u[t] || { col: 0, row: 0 };
-    a.startsWith("w:") && (d.spans = { ...d.spans, [t]: a === "w:full" ? "full" : Number(a.slice(2)) }), a.startsWith("h:") && (d.opts = { ...d.opts, [t]: { ...d.opts[t] || {}, h: Number(a.slice(2)), tall: void 0 } }), a === "graph" && (d.opts = { ...d.opts, energy: { ...d.opts.energy || {}, graph: (((f = d.opts.energy) == null ? void 0 : f.graph) || "above") === "above" ? "below" : "above" } }), a === "left" && (u[t] = { ...h, col: h.col - 1 }), a === "right" && (u[t] = { ...h, col: h.col + 1 }), a === "up" && (u[t] = { ...h, row: h.row - 1 }), a === "down" && (u[t] = { ...h, row: h.row + 1 }), a === "hide" && (d.hidden = [.../* @__PURE__ */ new Set([...d.hidden, t])]), ["left", "right", "up", "down"].includes(a) && (_e = { key: t, col: u[t].col, row: u[t].row }), Ai(d, u), _e && (ja(), _e = null, Ai(qe(), yo())), ao(), a === "graph" && (Ma.delete("dash:energy"), va()), a.startsWith("h:") && t.includes(".") && va(), ja(), a !== "hide" ? (v = _.querySelector('[data-board-more="' + CSS.escape(t) + '"]')) == null || v.focus() : Ka(da(t) + " hidden", oo(i));
+    const i = j, d = qe(), u = ko(), h = u[t] || { col: 0, row: 0 };
+    a.startsWith("w:") && (d.spans = { ...d.spans, [t]: a === "w:full" ? "full" : Number(a.slice(2)) }), a.startsWith("h:") && (d.opts = { ...d.opts, [t]: { ...d.opts[t] || {}, h: Number(a.slice(2)), tall: void 0 } }), a === "graph" && (d.opts = { ...d.opts, energy: { ...d.opts.energy || {}, graph: (((f = d.opts.energy) == null ? void 0 : f.graph) || "above") === "above" ? "below" : "above" } }), a === "left" && (u[t] = { ...h, col: h.col - 1 }), a === "right" && (u[t] = { ...h, col: h.col + 1 }), a === "up" && (u[t] = { ...h, row: h.row - 1 }), a === "down" && (u[t] = { ...h, row: h.row + 1 }), a === "hide" && (d.hidden = [.../* @__PURE__ */ new Set([...d.hidden, t])]), ["left", "right", "up", "down"].includes(a) && (_e = { key: t, col: u[t].col, row: u[t].row }), Ai(d, u), _e && (ja(), _e = null, Ai(qe(), ko())), ao(), a === "graph" && (Ma.delete("dash:energy"), va()), a.startsWith("h:") && t.includes(".") && va(), ja(), a !== "hide" ? (v = _.querySelector('[data-board-more="' + CSS.escape(t) + '"]')) == null || v.focus() : Ka(da(t) + " hidden", oo(i));
   }
   const Mn = (t) => {
     var a;
@@ -7348,18 +7348,18 @@ function Ih(n, { config: l, getHass: o }) {
     const a = qe(), i = da(t) + Mn(t);
     rr({ ...a, hidden: a.hidden.filter((d) => d !== t) }), ja(), Ka(i);
   }
-  const ko = () => qe().tiles || [..._.querySelectorAll(".tfDashTiles > [data-k]")].map((t) => t.dataset.k).filter((t) => !qe().hidden.includes(t));
+  const Mo = () => qe().tiles || [..._.querySelectorAll(".tfDashTiles > [data-k]")].map((t) => t.dataset.k).filter((t) => !qe().hidden.includes(t));
   function il(t, a) {
     const i = qe();
     Ai({ ...i, tiles: t, hidden: i.hidden.filter((d) => !d.includes(".")) }, a), va(), ga();
   }
   const ks = (t) => {
-    il([...ko().filter((a) => a !== t), t], yo()), Ka(da(t) + " added"), sd(t);
+    il([...Mo().filter((a) => a !== t), t], ko()), Ka(da(t) + " added"), sd(t);
   }, un = (t) => {
-    const a = j, i = yo();
-    delete i[t], il(ko().filter((d) => d !== t), i), Ka(da(t) + " removed", oo(a));
+    const a = j, i = ko();
+    delete i[t], il(Mo().filter((d) => d !== t), i), Ka(da(t) + " removed", oo(a));
   };
-  let Go = 0;
+  let Uo = 0;
   function Ka(t, a = null) {
     var f;
     const i = c("toast");
@@ -7367,11 +7367,11 @@ function Ih(n, { config: l, getHass: o }) {
     if (i.replaceChildren(Object.assign(document.createElement("span"), { textContent: t })), a) {
       const v = Object.assign(document.createElement("button"), { type: "button", className: "toastAction", textContent: "Undo" });
       v.addEventListener("click", () => {
-        clearTimeout(Go), i.classList.remove("show", "withAction"), a();
+        clearTimeout(Uo), i.classList.remove("show", "withAction"), a();
       }), i.appendChild(v);
     }
     const d = m.getBoundingClientRect(), u = (f = n.querySelector(".bottomNav")) == null ? void 0 : f.getBoundingClientRect(), h = Se.classList.contains("open") && !Me ? Math.min(d.right, Se.getBoundingClientRect().left) : d.right;
-    i.style.left = (d.left + h) / 2 + "px", i.style.bottom = (u != null && u.height ? window.innerHeight - u.top + 12 : 26) + "px", i.classList.add("tfToast", "show"), i.classList.toggle("withAction", !!a), clearTimeout(Go), Go = setTimeout(() => i.classList.remove("show", "withAction"), a ? 5e3 : 2200);
+    i.style.left = (d.left + h) / 2 + "px", i.style.bottom = (u != null && u.height ? window.innerHeight - u.top + 12 : 26) + "px", i.classList.add("tfToast", "show"), i.classList.toggle("withAction", !!a), clearTimeout(Uo), Uo = setTimeout(() => i.classList.remove("show", "withAction"), a ? 5e3 : 2200);
   }
   const _i = 700, rl = 1e3, ia = Object.assign(document.createElement("div"), { className: "tfTooltip", hidden: !0 });
   ia.setAttribute("role", "tooltip"), ia.setAttribute("aria-hidden", "true"), m.appendChild(ia);
@@ -7445,14 +7445,14 @@ function Ih(n, { config: l, getHass: o }) {
       t.style.textOverflow = "", Ms.delete(t);
     };
   }
-  const Uo = new IntersectionObserver((t) => t.forEach((a) => {
-    a.isIntersecting && (Uo.unobserve(a.target), Gr(a.target));
+  const Yo = new IntersectionObserver((t) => t.forEach((a) => {
+    a.isIntersecting && (Yo.unobserve(a.target), Gr(a.target));
   }), { threshold: 1 });
   let Ss = !1;
   new MutationObserver(() => {
     Ss || me.names !== "scroll" || (Ss = !0, setTimeout(() => {
       Ss = !1, n.querySelectorAll(Vr).forEach((t) => {
-        !t.dataset.glided && dr(t) && (t.dataset.glided = "1", Uo.observe(t));
+        !t.dataset.glided && dr(t) && (t.dataset.glided = "1", Yo.observe(t));
       });
     }, 300));
   }).observe(n, { childList: !0, subtree: !0 });
@@ -7472,27 +7472,27 @@ function Ih(n, { config: l, getHass: o }) {
     }, ll(t) ? 260 : 0);
   }
   function ll(t) {
-    const a = jo.get(t);
+    const a = zo.get(t);
     if (!a || !Se.classList.contains("open") || Me) return !1;
     const { n: i, w: d } = eo(_.clientWidth), u = Se.getBoundingClientRect().left - _.getBoundingClientRect().left, h = (k) => k * (d + aa) + a.cols * d + (a.cols - 1) * aa <= u;
     if (h(a.col)) return !1;
     const f = /* @__PURE__ */ new Set();
-    jo.forEach((k, D) => {
+    zo.forEach((k, D) => {
       if (D !== t) for (let N = k.row; N < k.row + k.rows; N++) for (let F = k.col; F < k.col + k.cols; F++) f.add(F + "," + N);
     });
     const v = (k, D) => {
       for (let N = D; N < D + a.rows; N++) for (let F = k; F < k + a.cols; F++) if (f.has(F + "," + N)) return !1;
       return !0;
     };
-    for (let k = 0; k <= zo; k++) for (let D = 0; D + a.cols <= i && h(D); D++)
+    for (let k = 0; k <= Vo; k++) for (let D = 0; D + a.cols <= i && h(D); D++)
       if (v(D, k))
-        return Ai(qe(), { ...yo(), [t]: { col: D, row: k } }), ja(), !0;
+        return Ai(qe(), { ...ko(), [t]: { col: D, row: k } }), ja(), !0;
     return !1;
   }
   const Ei = /^(light|switch|cover|climate|fan|lock|valve|media_player|humidifier|vacuum|scene|script|alarm_control_panel|water_heater|input_boolean)\./, Se = Object.assign(document.createElement("aside"), { className: "tfEditTray" });
-  Se.setAttribute("aria-label", "Edit the dashboard"), Se.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button><div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div><section class="tfTraySection" data-tray="cards"></section><section class="tfTraySection"><div class="sectionLabel">Tiles</div><p class="tfTrayNote">Remove a tile from its ⋯.</p><button class="pill tfTrayAdd" type="button" data-tile-add aria-expanded="false">Add tile</button><div class="tfTrayPick" data-pick="tiles" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-tile-search><ul class="tfTrayList" data-tray="tilepick"></ul></div></section><section class="tfTraySection"><div class="sectionLabel">Rooms</div><p class="tfTrayNote">A room on its own, instead of the Areas card.</p><button class="pill tfTrayAdd" type="button" data-room-add aria-expanded="false">Add room</button><ul class="tfTrayList" data-tray="roompick" hidden></ul></section><section class="tfTraySection" data-tray="phone"></section><section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul><button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button><div class="tfTrayPick" data-pick="favs" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search><ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>', m.appendChild(Se);
-  let Me = !1, za = !1, hn = !1, Yo = !1, Ie = null, Sn = !1;
-  const Ur = {}, Mo = (t, a) => {
+  Se.setAttribute("aria-label", "Edit the dashboard"), Se.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button><div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div><section class="tfTraySection" data-tray="cards"></section><section class="tfTraySection"><div class="sectionLabel">Tiles</div><p class="tfTrayNote">Remove a tile from its ⋯.</p><button class="pill tfTrayAdd" type="button" data-tile-add aria-expanded="false">Add tile</button><div class="tfTrayPick" data-pick="tiles" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-tile-search><ul class="tfTrayList" data-tray="tilepick"></ul></div></section><section class="tfTraySection"><div class="sectionLabel">Areas</div><p class="tfTrayNote">One area on its own, instead of all of them in the Areas card.</p><button class="pill tfTrayAdd" type="button" data-room-add aria-expanded="false">Add area</button><ul class="tfTrayList" data-tray="roompick" hidden></ul></section><section class="tfTraySection" data-tray="phone"></section><section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul><button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button><div class="tfTrayPick" data-pick="favs" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search><ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>', m.appendChild(Se);
+  let Me = !1, za = !1, hn = !1, Zo = !1, Ie = null, Sn = !1;
+  const Ur = {}, So = (t, a) => {
     if (Ur[t] === a) return;
     Ur[t] = a;
     const i = Se.querySelector('[data-tray="' + t + '"]');
@@ -7511,13 +7511,13 @@ function Ih(n, { config: l, getHass: o }) {
     const a = Se.querySelector("[data-tray-tuck]");
     a.innerHTML = Me ? zc : ap, a.setAttribute("aria-expanded", String(!Me)), a.setAttribute("aria-label", Me ? "Show the edit tray" : "Tuck the edit tray away");
     const i = qe().hidden.filter((f) => In().some((v) => v.key === f));
-    Mo("cards", '<div class="sectionLabel">Hidden and new cards</div>' + (i.length ? '<div class="tfTrayCards">' + i.map((f) => '<button class="tfTrayCard" type="button" data-tray-card="' + Q(f) + '" aria-label="' + Q(da(f)) + ': drag it onto the board, or press to put it back"><span class="tfTrayGrip" aria-hidden="true">' + Hd + "</span>" + Q(da(f)) + "</button>").join("") + "</div>" : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>')), Mo("phone", '<div class="sectionLabel">Phone</div><p class="tfTrayNote">' + (qe().phone ? "Phones have an order of their own." : "Phones follow the board's order.") + '</p><button class="pill tfTrayAdd" type="button" data-phone-toggle aria-pressed="' + Sn + '">' + (Sn ? "Hide the phone" : "Show the phone") + "</button>");
+    So("cards", '<div class="sectionLabel">Hidden and new cards</div>' + (i.length ? '<div class="tfTrayCards">' + i.map((f) => '<button class="tfTrayCard" type="button" data-tray-card="' + Q(f) + '" aria-label="' + Q(da(f)) + ': drag it onto the board, or press to put it back"><span class="tfTrayGrip" aria-hidden="true">' + Hd + "</span>" + Q(da(f)) + "</button>").join("") + "</div>" : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>')), So("phone", '<div class="sectionLabel">Phone</div><p class="tfTrayNote">' + (qe().phone ? "Phones have an order of their own." : "Phones follow the board's order.") + '</p><button class="pill tfTrayAdd" type="button" data-phone-toggle aria-pressed="' + Sn + '">' + (Sn ? "Hide the phone" : "Show the phone") + "</button>");
     const d = new Set(j.favHidden || []), u = la(), h = [...u, ...[...d].filter((f) => !u.includes(f) && y[f])];
-    if (Mo("favs", h.map((f) => ld(f, d.has(f), u.includes(f))).join("") || '<li class="tfTrayNote">No favourites yet.</li>'), Se.querySelector('[data-pick="tiles"]').hidden = !hn, Se.querySelector("[data-tile-add]").setAttribute("aria-expanded", String(hn)), hn && Mo("tilepick", dl(Se.querySelector("[data-tile-search]").value, (f) => Hl.includes(f.split(".")[0]), new Set(ko()), "data-tile-pick")), Se.querySelector('[data-tray="roompick"]').hidden = !Yo, Se.querySelector("[data-room-add]").setAttribute("aria-expanded", String(Yo)), Yo) {
-      const f = new Set(ko());
-      Mo("roompick", Be.filter((v) => !f.has("room:" + v.id)).map((v) => '<li><button class="tfTrayPickItem" type="button" data-room-pick="' + Q(v.id) + '"><span class="tfIcon"><span class="tfAreaGlyph"' + ye("area:" + v.id, v.icon || "mdi:texture-box", v.name) + '></span></span><span class="tfTrayName"><span class="activityRowName">' + Q(v.name) + "</span></span></button></li>").join("") || '<li class="tfTrayNote">Every room is on the board.</li>');
+    if (So("favs", h.map((f) => ld(f, d.has(f), u.includes(f))).join("") || '<li class="tfTrayNote">No favourites yet.</li>'), Se.querySelector('[data-pick="tiles"]').hidden = !hn, Se.querySelector("[data-tile-add]").setAttribute("aria-expanded", String(hn)), hn && So("tilepick", dl(Se.querySelector("[data-tile-search]").value, (f) => Hl.includes(f.split(".")[0]), new Set(Mo()), "data-tile-pick")), Se.querySelector('[data-tray="roompick"]').hidden = !Zo, Se.querySelector("[data-room-add]").setAttribute("aria-expanded", String(Zo)), Zo) {
+      const f = new Set(Mo());
+      So("roompick", Re.filter((v) => !f.has("room:" + v.id)).map((v) => '<li><button class="tfTrayPickItem" type="button" data-room-pick="' + Q(v.id) + '"><span class="tfIcon"><span class="tfAreaGlyph"' + ye("area:" + v.id, v.icon || "mdi:texture-box", v.name) + '></span></span><span class="tfTrayName"><span class="activityRowName">' + Q(v.name) + "</span></span></button></li>").join("") || '<li class="tfTrayNote">Every area is on the board.</li>');
     }
-    Se.querySelector('[data-pick="favs"]').hidden = !za, Se.querySelector("[data-fav-add]").setAttribute("aria-expanded", String(za)), za && Mo("pick", dl(Se.querySelector("[data-fav-search]").value, (f) => Ei.test(f), new Set(la()), "data-fav-pick")), Mo("suggest", '<div><strong>Show suggestions</strong><div class="status">Fills the card after your favourites.</div></div><button class="switch' + (Ji() ? " on" : "") + '" type="button" role="switch" aria-checked="' + Ji() + '" data-fav-suggest aria-label="Show suggestions"></button>');
+    Se.querySelector('[data-pick="favs"]').hidden = !za, Se.querySelector("[data-fav-add]").setAttribute("aria-expanded", String(za)), za && So("pick", dl(Se.querySelector("[data-fav-search]").value, (f) => Ei.test(f), new Set(la()), "data-fav-pick")), So("suggest", '<div><strong>Show suggestions</strong><div class="status">Fills the card after your favourites.</div></div><button class="switch' + (Ji() ? " on" : "") + '" type="button" role="switch" aria-checked="' + Ji() + '" data-fav-suggest aria-label="Show suggestions"></button>');
   }
   const Di = (t) => {
     j = { ...j, ...t }, Pa(), va(), ga();
@@ -7535,7 +7535,7 @@ function Ih(n, { config: l, getHass: o }) {
   Se.addEventListener("click", (t) => {
     var i;
     const a = t.target.closest("button");
-    a && (a.hasAttribute("data-tray-done") ? qr(!1) : a.hasAttribute("data-tray-tuck") ? (Me = !Me, ga()) : a.hasAttribute("data-phone-toggle") ? (Sn = !Sn, ga(), Sn && ((i = ca.querySelector("[data-phone-key]")) == null || i.focus({ preventScroll: !0 }))) : a.dataset.trayCard ? t.detail === 0 && (lr(a.dataset.trayCard), ga()) : a.dataset.favEye ? Ts(a.dataset.favEye, a.getAttribute("aria-pressed") !== "true") : a.dataset.favRemove ? Yr(a.dataset.favRemove) : a.hasAttribute("data-fav-add") ? (za = !za, ga(), za && Se.querySelector("[data-fav-search]").focus({ preventScroll: !0 })) : a.dataset.favPick ? cr(a.dataset.favPick) : a.hasAttribute("data-tile-add") ? (hn = !hn, ga(), hn && Se.querySelector("[data-tile-search]").focus({ preventScroll: !0 })) : a.dataset.tilePick ? ks(a.dataset.tilePick) : a.hasAttribute("data-room-add") ? (Yo = !Yo, ga()) : a.dataset.roomPick ? ks("room:" + a.dataset.roomPick) : a.hasAttribute("data-fav-suggest") && Di({ suggest: !Ji() }));
+    a && (a.hasAttribute("data-tray-done") ? qr(!1) : a.hasAttribute("data-tray-tuck") ? (Me = !Me, ga()) : a.hasAttribute("data-phone-toggle") ? (Sn = !Sn, ga(), Sn && ((i = ca.querySelector("[data-phone-key]")) == null || i.focus({ preventScroll: !0 }))) : a.dataset.trayCard ? t.detail === 0 && (lr(a.dataset.trayCard), ga()) : a.dataset.favEye ? Ts(a.dataset.favEye, a.getAttribute("aria-pressed") !== "true") : a.dataset.favRemove ? Yr(a.dataset.favRemove) : a.hasAttribute("data-fav-add") ? (za = !za, ga(), za && Se.querySelector("[data-fav-search]").focus({ preventScroll: !0 })) : a.dataset.favPick ? cr(a.dataset.favPick) : a.hasAttribute("data-tile-add") ? (hn = !hn, ga(), hn && Se.querySelector("[data-tile-search]").focus({ preventScroll: !0 })) : a.dataset.tilePick ? ks(a.dataset.tilePick) : a.hasAttribute("data-room-add") ? (Zo = !Zo, ga()) : a.dataset.roomPick ? ks("room:" + a.dataset.roomPick) : a.hasAttribute("data-fav-suggest") && Di({ suggest: !Ji() }));
   }), Se.addEventListener("input", (t) => {
     t.target.matches("[data-fav-search],[data-tile-search]") && ga();
   }), Se.addEventListener("keydown", (t) => {
@@ -7553,20 +7553,20 @@ function Ih(n, { config: l, getHass: o }) {
         f = a.cloneNode(!0), f.classList.add("tfTrayGhost"), f.style.width = a.offsetWidth + "px", m.appendChild(f);
       }
       f.style.transform = "translate(" + (F.clientX - 24) + "px," + (F.clientY - 24) + "px)";
-      const ct = !Me && F.clientX >= Se.getBoundingClientRect().left;
+      const $ = !Me && F.clientX >= Se.getBoundingClientRect().left;
       if (i === "card") {
-        const at = _.getBoundingClientRect(), { w: xt } = eo(_.clientWidth);
-        _e = !ct && F.clientX >= at.left && F.clientX <= at.right && F.clientY >= at.top + pn ? { key: d, col: Math.max(0, Math.floor((F.clientX - at.left) / (xt + aa))), row: Math.max(0, Math.floor((F.clientY - at.top - pn) / xo)), fromTray: !0 } : null, v || (v = requestAnimationFrame(() => {
+        const nt = _.getBoundingClientRect(), { w: xt } = eo(_.clientWidth);
+        _e = !$ && F.clientX >= nt.left && F.clientX <= nt.right && F.clientY >= nt.top + pn ? { key: d, col: Math.max(0, Math.floor((F.clientX - nt.left) / (xt + aa))), row: Math.max(0, Math.floor((F.clientY - nt.top - pn) / yo)), fromTray: !0 } : null, v || (v = requestAnimationFrame(() => {
           v = 0, ja();
         }));
         return;
       }
       const Mt = _.querySelector(".tfDash-favs"), Dt = Mt == null ? void 0 : Mt.getBoundingClientRect();
-      if (Ie = null, Dt && !ct && F.clientX >= Dt.left && F.clientX <= Dt.right && F.clientY >= Dt.top && F.clientY <= Dt.bottom) {
-        let at = 1 / 0;
+      if (Ie = null, Dt && !$ && F.clientX >= Dt.left && F.clientX <= Dt.right && F.clientY >= Dt.top && F.clientY <= Dt.bottom) {
+        let nt = 1 / 0;
         Mt.querySelectorAll('[data-k^="fav:"]').forEach((xt, V) => {
           const pt = xt.getBoundingClientRect(), z = Math.hypot(F.clientX - (pt.left + pt.width / 2), F.clientY - (pt.top + pt.height / 2));
-          z < at && (at = z, Ie = { i: V, r: pt, after: F.clientX > pt.left + pt.width / 2 });
+          z < nt && (nt = z, Ie = { i: V, r: pt, after: F.clientX > pt.left + pt.width / 2 });
         }), Ie || (Ie = { i: 0, r: null, after: !1 });
       }
       Ie != null && Ie.r ? (k.isConnected || m.appendChild(k), Object.assign(k.style, { left: (Ie.after ? Ie.r.right : Ie.r.left) - 2 + "px", top: Ie.r.top + 8 + "px", height: Ie.r.height - 16 + "px" })) : k.remove();
@@ -7575,8 +7575,8 @@ function Ih(n, { config: l, getHass: o }) {
         if (!f) lr(d);
         else if (_e != null && _e.fromTray) {
           ja();
-          const at = da(d) + Mn(d), xt = qe(), V = yo();
-          _e = null, Ai({ ...xt, hidden: xt.hidden.filter((pt) => pt !== d) }, V), Ka(at);
+          const nt = da(d) + Mn(d), xt = qe(), V = ko();
+          _e = null, Ai({ ...xt, hidden: xt.hidden.filter((pt) => pt !== d) }, V), Ka(nt);
         }
         _e = null, ja(), va(), ga();
         return;
@@ -7584,8 +7584,8 @@ function Ih(n, { config: l, getHass: o }) {
       if (!Ie) return;
       const F = new Set(j.favHidden || []);
       F.delete(d);
-      const ct = la().filter((at) => at !== d), Mt = ct.filter((at) => !F.has(at)), Dt = Mt[Math.min(Ie.i + (Ie.after ? 1 : 0), Mt.length)];
-      ct.splice(Dt ? ct.indexOf(Dt) : ct.length, 0, d), Ie = null, Di({ favourites: ct, favHidden: [...F] }), Ka(St(d) + " put back");
+      const $ = la().filter((nt) => nt !== d), Mt = $.filter((nt) => !F.has(nt)), Dt = Mt[Math.min(Ie.i + (Ie.after ? 1 : 0), Mt.length)];
+      $.splice(Dt ? $.indexOf(Dt) : $.length, 0, d), Ie = null, Di({ favourites: $, favHidden: [...F] }), Ka(St(d) + " put back");
     };
     window.addEventListener("pointermove", D), window.addEventListener("pointerup", N), window.addEventListener("pointercancel", N);
   }
@@ -7609,24 +7609,24 @@ function Ih(n, { config: l, getHass: o }) {
     var i;
     rr({ ...qe(), phone: t }), ga(), a && ((i = ca.querySelector('[data-phone-key="' + CSS.escape(a) + '"]')) == null || i.focus({ preventScroll: !0 }));
   }
-  const So = () => [...ca.querySelectorAll("[data-phone-key]")].map((t) => t.dataset.phoneKey);
+  const Co = () => [...ca.querySelectorAll("[data-phone-key]")].map((t) => t.dataset.phoneKey);
   function ud(t, a) {
     t.preventDefault();
-    const i = a.parentElement, d = ca.querySelector(".tfPhoneScreen"), u = So().join();
+    const i = a.parentElement, d = ca.querySelector(".tfPhoneScreen"), u = Co().join();
     a.classList.add("moving");
     const h = (v) => {
       const k = d.getBoundingClientRect();
       v.clientY > k.bottom - 40 ? d.scrollTop += 12 : v.clientY < k.top + 40 && (d.scrollTop -= 12);
-      const D = [...i.querySelectorAll("[data-phone-key]")].find((ct) => {
-        const Mt = ct.getBoundingClientRect();
-        return ct !== a && v.clientX >= Mt.left && v.clientX <= Mt.right && v.clientY >= Mt.top && v.clientY <= Mt.bottom;
+      const D = [...i.querySelectorAll("[data-phone-key]")].find(($) => {
+        const Mt = $.getBoundingClientRect();
+        return $ !== a && v.clientX >= Mt.left && v.clientX <= Mt.right && v.clientY >= Mt.top && v.clientY <= Mt.bottom;
       });
       if (!D) return;
       const N = D.getBoundingClientRect(), F = D.classList.contains("tile") ? v.clientX < N.left + N.width / 2 : v.clientY < N.top + N.height / 2;
       i.insertBefore(a, F ? D : D.nextSibling);
     }, f = () => {
       window.removeEventListener("pointermove", h), window.removeEventListener("pointerup", f), window.removeEventListener("pointercancel", f), a.classList.remove("moving");
-      const v = So();
+      const v = Co();
       io = "", v.join() !== u ? _s(v) : ro();
     };
     window.addEventListener("pointermove", h), window.addEventListener("pointerup", f), window.addEventListener("pointercancel", f);
@@ -7652,7 +7652,7 @@ function Ih(n, { config: l, getHass: o }) {
     const a = (D = (k = (v = t.target).closest) == null ? void 0 : k.call(v, "[data-phone-key]")) == null ? void 0 : D.dataset.phoneKey, i = { ArrowUp: -1, ArrowLeft: -1, ArrowDown: 1, ArrowRight: 1 }[t.key];
     if (!a || !i) return;
     t.preventDefault();
-    const d = So(), u = d.indexOf(a), h = u + i;
+    const d = Co(), u = d.indexOf(a), h = u + i;
     h < 0 || h >= d.length || ([d[u], d[h]] = [d[h], d[u]], _s(d, a));
   });
   function pr(t, a) {
@@ -7684,26 +7684,26 @@ function Ih(n, { config: l, getHass: o }) {
     if (!ma || t.button !== 0 || t.target.closest("[data-board-more],.tfBoardMenu,.tfFavHides")) return;
     const a = t.target.closest(".tfBoardItem"), i = a && In().find((F) => F.el === a);
     if (!i || Wa.includes(i.key)) return;
-    const d = jo.get(i.key), { w: u } = eo(_.clientWidth);
+    const d = zo.get(i.key), { w: u } = eo(_.clientWidth);
     if (!d) return;
     t.preventDefault(), ao();
     const h = t.clientX, f = t.clientY;
     let v = !1, k = 0;
     const D = (F) => {
-      const ct = F.clientX - h, Mt = F.clientY - f;
+      const $ = F.clientX - h, Mt = F.clientY - f;
       if (!v) {
-        if (Math.hypot(ct, Mt) < 4) return;
+        if (Math.hypot($, Mt) < 4) return;
         v = !0, _e = { key: i.key, col: d.col, row: d.row }, a.classList.add("tfDragging");
       }
-      a.style.transform = "translate(" + ct + "px," + Mt + "px)", _e.col = Math.round((d.x + ct) / (u + aa)), _e.row = Math.round((d.y + Mt - pn) / xo), k || (k = requestAnimationFrame(() => {
+      a.style.transform = "translate(" + $ + "px," + Mt + "px)", _e.col = Math.round((d.x + $) / (u + aa)), _e.row = Math.round((d.y + Mt - pn) / yo), k || (k = requestAnimationFrame(() => {
         k = 0, ja();
       }));
     }, N = () => {
-      window.removeEventListener("pointermove", D), window.removeEventListener("pointerup", N), window.removeEventListener("pointercancel", N), v && (cancelAnimationFrame(k), ja(), a.classList.remove("tfDragging"), a.style.transform = "", _e = null, Ai(qe(), yo()), ja(), va());
+      window.removeEventListener("pointermove", D), window.removeEventListener("pointerup", N), window.removeEventListener("pointercancel", N), v && (cancelAnimationFrame(k), ja(), a.classList.remove("tfDragging"), a.style.transform = "", _e = null, Ai(qe(), ko()), ja(), va());
     };
     window.addEventListener("pointermove", D), window.addEventListener("pointerup", N), window.addEventListener("pointercancel", N);
   }
-  function Zo(t = !1) {
+  function Ko(t = !1) {
     const a = _ == null ? void 0 : _.querySelector(".tfDashGraph svg[data-graph]");
     if (!(a != null && a.clientWidth)) return;
     const i = a.dataset.graph + "@" + a.clientWidth + "x" + a.clientHeight + "@" + Math.floor(Date.now() / 3e5);
@@ -7713,24 +7713,24 @@ function Ih(n, { config: l, getHass: o }) {
     const u = tr.find((h) => h.id === a.dataset.graph);
     u ? Ql(a, u).then(() => {
       (t || d) && el(a);
-    }) : Jo(a.dataset.graph, a).then(() => {
+    }) : Qo(a.dataset.graph, a).then(() => {
       t && td(a);
     });
   }
   function pl() {
     var v, k, D;
     Qt = xr.model(o()), Jn(), y = Qt.states, y[(v = j.sources) == null ? void 0 : v.grid] && (Qt.grid = j.sources.grid), y[(k = j.sources) == null ? void 0 : k.alarm] && (Qt.security.alarms = [j.sources.alarm]), A.forEach((N, F) => {
-      const ct = y[F], Mt = (ct == null ? void 0 : ct.attributes) || {};
-      if (!ct || Date.now() - N.at > 2 * 60 * 1e3) {
+      const $ = y[F], Mt = ($ == null ? void 0 : $.attributes) || {};
+      if (!$ || Date.now() - N.at > 2 * 60 * 1e3) {
         A.delete(F);
         return;
       }
-      N.pos != null && ct.state !== "opening" && ct.state !== "closing" && Math.abs(Ga(F) - N.pos) < 1 && delete N.pos, N.tilt != null && Math.abs((Mt.current_tilt_position ?? -1) - N.tilt) < 1 && delete N.tilt, N.pos == null && N.tilt == null && A.delete(F);
+      N.pos != null && $.state !== "opening" && $.state !== "closing" && Math.abs(Ga(F) - N.pos) < 1 && delete N.pos, N.tilt != null && Math.abs((Mt.current_tilt_position ?? -1) - N.tilt) < 1 && delete N.tilt, N.pos == null && N.tilt == null && A.delete(F);
     });
     const t = [];
     let a = 0;
     const i = Tr();
-    Be = i.filter((N) => N.room).map((N) => N.room), Be.some((N) => N.id === st) || (st = ((D = Be[0]) == null ? void 0 : D.id) || null);
+    Re = i.filter((N) => N.room).map((N) => N.room), Re.some((N) => N.id === lt) || (lt = ((D = Re[0]) == null ? void 0 : D.id) || null);
     const d = _t === "weather" ? { key: "weather", name: "Weather" } : _t && i.find((N) => N.key === _t);
     if (d || (_t = null), m.classList.toggle("tfAreaOpen", !!d), m.classList.toggle("tfWeatherOpen", (d == null ? void 0 : d.key) === "weather"), m.classList.toggle("tfDash", !d), Ae = /* @__PURE__ */ new Map(), Qt.rooms.forEach((N) => [...N.actions, ...N.plugs, ...N.readings, ...N.openings, ...N.solar, ...N.plants.flatMap((F) => [F.id, ...F.readings])].forEach((F) => Ae.set(F, N.name))), !d) return ed(t, fi());
     if (t.push({ key: "areahead", html: Es(d, ++a) }), d.key === "weather")
@@ -7739,16 +7739,16 @@ function Ih(n, { config: l, getHass: o }) {
     return f != null && f.solar.length && t.push({ key: "energy:" + f.id, html: Kn(f, ++a) }), f && (f.readings.length || f.plugs.length || f.power != null) && t.push({ key: "readings:" + f.id, html: ho(f, ++a) }), f == null || f.plants.forEach((N) => t.push({ key: "plant:" + N.id, html: Ya(N, ++a) })), u.length && t.push({ key: "block:" + h, order: ++a, tiles: u.map((N) => ({ key: N, html: kt(N) })) }), t;
   }
   const Es = (t, a) => '<div class="settingsHeader tfAreaHead" data-tf data-k="areahead" style="order:' + a + '"><button class="back" type="button" data-area-back aria-label="Back to the house">' + zc + '</button><div class="settingsTitle">' + Q(t.name) + "</div></div>";
-  let Ko = 0, Bi = null;
+  let $o = 0, Ri = null;
   const Zr = (t) => t === "weather" ? fe.wx : t.startsWith("room:") && _.querySelector('.tfRoomTile[data-k="' + CSS.escape(t) + '"]') || _.querySelector(".tfAreas");
   function Kr(t) {
     var a, i;
-    _t || (Ko = $o().scrollTop, Bi = ((a = Zr(t)) == null ? void 0 : a.getBoundingClientRect().top) ?? null), _t = t, t.startsWith("room:") && (st = t.slice(5)), Fn(), $o().scrollTop = 0, (i = _.querySelector("[data-area-back]")) == null || i.focus({ preventScroll: !0 });
+    _t || ($o = Xo().scrollTop, Ri = ((a = Zr(t)) == null ? void 0 : a.getBoundingClientRect().top) ?? null), _t = t, t.startsWith("room:") && (lt = t.slice(5)), Fn(), Xo().scrollTop = 0, (i = _.querySelector("[data-area-back]")) == null || i.focus({ preventScroll: !0 });
   }
   let Hn = null;
-  function Ri(t, a) {
+  function Bi(t, a) {
     if (Hn == null || Hn(), a == null) return;
-    const i = $o(), d = performance.now() + 1500, u = ["wheel", "touchstart", "pointerdown", "keydown"];
+    const i = Xo(), d = performance.now() + 1500, u = ["wheel", "touchstart", "pointerdown", "keydown"];
     let h = 0;
     const f = () => {
       cancelAnimationFrame(h), u.forEach((k) => window.removeEventListener(k, f, !0)), Hn = null;
@@ -7762,15 +7762,15 @@ function Ih(n, { config: l, getHass: o }) {
     };
     u.forEach((k) => window.addEventListener(k, f, { capture: !0, passive: !0 })), Hn = f, v();
   }
-  function Ba() {
+  function Ra() {
     var i;
     const t = _t;
-    _t = null, Fn(), $o().scrollTop = Ko, Ri(() => Zr(t), Bi);
+    _t = null, Fn(), Xo().scrollTop = $o, Bi(() => Zr(t), Ri);
     const a = t.startsWith("room:") ? _.querySelector('.tfRoomTile[data-k="' + CSS.escape(t) + '"]') || _.querySelector('.tfAreaPanel[data-area="' + CSS.escape(t.slice(5)) + '"]') : t === "weather" ? fe.wx.querySelector(".wbOpenPage") : _.querySelector('[data-k="sum:' + CSS.escape(t) + '"]');
     (i = (a == null ? void 0 : a.querySelector("[data-go]")) || a) == null || i.focus({ preventScroll: !0 });
   }
   const ul = (t) => t.wrap ? t.wrap(t.tiles.map((a) => a.html).join(""), t) : '<div class="tfBlock" data-tf data-k="' + Q(t.key) + '" style="order:' + t.order + '"><div class="tfActions">' + t.tiles.map((a) => a.html).join("") + "</div></div>", Ds = (t) => t.map((a) => a.key + (a.tiles ? "(" + a.tiles.map((i) => i.key).join(",") + ")" : "")).join(";");
-  function $o() {
+  function Xo() {
     for (let t = m.parentElement || m.getRootNode().host; t; t = t.parentElement || t.getRootNode().host) {
       const a = getComputedStyle(t).overflowY;
       if ((a === "auto" || a === "scroll") && t.scrollHeight > t.clientHeight) return t;
@@ -7778,7 +7778,7 @@ function Ih(n, { config: l, getHass: o }) {
     return document.scrollingElement;
   }
   function fl(t) {
-    const a = $o(), i = (v) => {
+    const a = Xo(), i = (v) => {
       const k = v.getBoundingClientRect();
       return k.height && k.bottom > 0 && k.top < window.innerHeight;
     }, d = [..._.children, ..._.querySelectorAll(".tfDashTiles > *")].find((v) => !v.matches(".tfDashTiles") && i(v)), u = d == null ? void 0 : d.dataset.k, h = d == null ? void 0 : d.getBoundingClientRect().top;
@@ -7791,7 +7791,7 @@ function Ih(n, { config: l, getHass: o }) {
     const t = pl();
     _.querySelectorAll("[data-tf]").forEach((i) => i.remove()), Ma.clear();
     const a = document.createElement("div");
-    a.innerHTML = t.map((i) => i.tiles ? ul(i) : i.html).join(""), t.forEach((i) => i.tiles ? i.tiles.forEach((d) => Ma.set(d.key, d.html)) : Ma.set(i.key, i.html)), Ea = Ds(t), _.append(...a.children), yr(t.weather), si(), Or.disconnect(), ja(), bn(_), Cn(_), Bn(_), U(), P && Jo(P.id), Hi(), Co(), Xo(), requestAnimationFrame(tt);
+    a.innerHTML = t.map((i) => i.tiles ? ul(i) : i.html).join(""), t.forEach((i) => i.tiles ? i.tiles.forEach((d) => Ma.set(d.key, d.html)) : Ma.set(i.key, i.html)), Ea = Ds(t), _.append(...a.children), yr(t.weather), li(), Or.disconnect(), ja(), bn(_), Cn(_), Rn(_), U(), P && Qo(P.id), Hi(), To(), Jo(), requestAnimationFrame(et);
   }
   const $r = (t) => {
     var i;
@@ -7819,7 +7819,7 @@ function Ih(n, { config: l, getHass: o }) {
     const i = document.createElement("div");
     i.innerHTML = a;
     const d = $r(t), u = ur(t, i.firstElementChild);
-    bn(u), Cn(u), Bn(u), Ni(u, d);
+    bn(u), Cn(u), Rn(u), Ni(u, d);
   }
   function va() {
     !w || !_ || _e || fl(hd);
@@ -7846,9 +7846,9 @@ function Ih(n, { config: l, getHass: o }) {
           u.querySelector(".tfOpen .activityRowMeta").textContent = wn(P.id);
           return;
         }
-        Pi(u, d.html), P && P.key === d.key && Jo(P.id), d.key.startsWith("energy:") && Hi();
+        Pi(u, d.html), P && P.key === d.key && Qo(P.id), d.key.startsWith("energy:") && Hi();
       }
-    })), Co(), Xo(), Xi(), U(), Kt == null || Kt.update(), Oe == null || Oe.forEach((i) => i.update()), m.classList.contains("tfDash") && Li(), requestAnimationFrame(tt);
+    })), To(), Jo(), Xi(), U(), Kt == null || Kt.update(), Oe == null || Oe.forEach((i) => i.update()), m.classList.contains("tfDash") && Li(), requestAnimationFrame(et);
   }
   const fr = {
     light: (t) => [["Brightness", t.brightness != null ? Math.round(t.brightness / 2.55) + "%" : null], ["Colour temperature", t.color_temp_kelvin ? Number(t.color_temp_kelvin).toLocaleString() + " K" : null], ["Colour mode", t.color_mode && Ht(t.color_mode)]],
@@ -7890,37 +7890,37 @@ function Ih(n, { config: l, getHass: o }) {
   }, { passive: !1 }), re.addEventListener("wheel", (t) => {
     ml(t.target, t.deltaY) || t.preventDefault();
   }, { passive: !1 });
-  function Bs() {
+  function Rs() {
     const t = re.querySelector(".tfMorePair"), a = re.querySelector(".tfMore");
     t == null || t.classList.toggle("over", window.innerWidth <= 620 || (window.innerWidth - a.offsetWidth) / 2 < 328);
   }
-  window.addEventListener("resize", Bs, { passive: !0 }), w && Te();
+  window.addEventListener("resize", Rs, { passive: !0 }), w && Te();
   let so = [];
-  const Rs = (t) => t === "favourites" || t.startsWith("summary:") || t.startsWith("group:");
+  const Bs = (t) => t === "favourites" || t.startsWith("summary:") || t.startsWith("group:");
   function gl(t) {
     const a = (k, D = "") => '<div class="tfMoreHead">' + (H != null && H.back ? '<button class="tfBack" type="button" data-more-back aria-label="Back">' + Pd + "</button>" : "") + '<div class="activityTitle" id="tfMoreTitle">' + Q(k) + "</div>" + D + '<button class="tfBack" type="button" data-more-close aria-label="Close">' + ph + "</button></div>", i = (k, D) => '<div class="tfMoreNow"><div class="tfMoreState">' + Q(k) + "</div>" + (D ? '<div class="tfMoreSub">' + Q(D) + "</div>" : "") + "</div>", d = pa;
     if (t === "favourites") {
-      const k = la(), D = new Set(k), N = [{ name: "Starred", ids: k }, { name: "Home", ids: Qt.homeVacuums }, { name: "Security", ids: [...Qt.security.alarms, ...Qt.security.locks] }, ...Qt.rooms.map((F) => ({ name: F.name, ids: [...F.actions, ...F.plugs] }))].map((F, ct) => ct ? { ...F, ids: F.ids.filter((Mt) => !D.has(Mt)) } : F).filter((F) => F.ids.length);
+      const k = la(), D = new Set(k), N = [{ name: "Starred", ids: k }, { name: "Home", ids: Qt.homeVacuums }, { name: "Security", ids: [...Qt.security.alarms, ...Qt.security.locks] }, ...Qt.rooms.map((F) => ({ name: F.name, ids: [...F.actions, ...F.plugs] }))].map((F, $) => $ ? { ...F, ids: F.ids.filter((Mt) => !D.has(Mt)) } : F).filter((F) => F.ids.length);
       return [a("Favourites"), i(k.length ? k.length + " starred" : "None starred"), d(N, { star: !0 }, !0)];
     }
     const u = (k, { name: D = "", alert: N = !1, plain: F = !1 } = {}) => {
-      const ct = F ? [] : k.filter((at) => Hl.includes(at.split(".")[0])), Mt = k.filter((at) => !ct.includes(at)), Dt = (at) => at.startsWith("vacuum.") && xe(at).battery_level != null ? xe(at).battery_level + "%" : null;
-      return '<div class="tfMoreGroup">' + (D ? '<div class="tfMoreGroupName">' + Q(D) + "</div>" : "") + '<div class="tfMoreActions">' + ct.map((at) => kt(at, !0)).join("") + Mt.map((at) => vs(at, { plain: F, alert: N, say: F ? Dt(at) : null })).join("") + "</div></div>";
+      const $ = F ? [] : k.filter((nt) => Hl.includes(nt.split(".")[0])), Mt = k.filter((nt) => !$.includes(nt)), Dt = (nt) => nt.startsWith("vacuum.") && xe(nt).battery_level != null ? xe(nt).battery_level + "%" : null;
+      return '<div class="tfMoreGroup">' + (D ? '<div class="tfMoreGroupName">' + Q(D) + "</div>" : "") + '<div class="tfMoreActions">' + $.map((nt) => kt(nt, !0)).join("") + Mt.map((nt) => vs(nt, { plain: F, alert: N, say: F ? Dt(nt) : null })).join("") + "</div></div>";
     };
     if (t.startsWith("summary:")) {
-      const k = fi().find((ct) => ct.key === t.slice(8));
+      const k = fi().find(($) => $.key === t.slice(8));
       if (!k) return null;
-      const D = k.key === "light" ? (k.groups || []).flatMap((ct) => ct.ids) : [], N = D.some((ct) => {
+      const D = k.key === "light" ? (k.groups || []).flatMap(($) => $.ids) : [], N = D.some(($) => {
         var Mt;
-        return ((Mt = y[ct]) == null ? void 0 : Mt.state) === "on";
-      }), F = D.length ? '<button class="primary" type="button" data-acts="' + _n(D.map((ct) => ["light", N ? "turn_off" : "turn_on", ct])) + '">' + (N ? "Turn all off" : "Turn all on") + "</button>" : "";
-      return [a(k.name), '<div class="tfMoreNowRow">' + i(k.value) + F + "</div>", ...(k.groups || []).map((ct) => u(ct.ids, { name: ct.name === k.name ? "" : ct.name, alert: ct.alert, plain: k.plain }))];
+        return ((Mt = y[$]) == null ? void 0 : Mt.state) === "on";
+      }), F = D.length ? '<button class="primary" type="button" data-acts="' + _n(D.map(($) => ["light", N ? "turn_off" : "turn_on", $])) + '">' + (N ? "Turn all off" : "Turn all on") + "</button>" : "";
+      return [a(k.name), '<div class="tfMoreNowRow">' + i(k.value) + F + "</div>", ...(k.groups || []).map(($) => u($.ids, { name: $.name === k.name ? "" : $.name, alert: $.alert, plain: k.plain }))];
     }
     if (t.startsWith("group:")) {
       const [, k, D] = t.split(":"), N = Qt.rooms.find((Mt) => Mt.id === k), F = N && sn(N).find((Mt) => Mt.key === D);
       if (!F) return null;
-      const ct = F.acts ? '<button class="primary" type="button" data-acts="' + _n(F.acts) + '">' + (F.on ? "Turn all off" : "Turn all on") + "</button>" : "";
-      return [a(N.name + " " + F.label.toLowerCase()), '<div class="tfMoreNowRow">' + i(F.value) + ct + "</div>", u(ln(N, D))];
+      const $ = F.acts ? '<button class="primary" type="button" data-acts="' + _n(F.acts) + '">' + (F.on ? "Turn all off" : "Turn all on") + "</button>" : "";
+      return [a(N.name + " " + F.label.toLowerCase()), '<div class="tfMoreNowRow">' + i(F.value) + $ + "</div>", u(ln(N, D))];
     }
     const h = t.split(".")[0], f = y[t], v = Hl.includes(h) ? ce(t) : { sections: [] };
     return [
@@ -7932,11 +7932,11 @@ function Ih(n, { config: l, getHass: o }) {
       Ns(t) && '<button class="tfDetailsBtn" type="button" data-details aria-expanded="' + !!(H != null && H.details) + '" aria-controls="tfMoreSide"><span>Details</span>' + ap + "</button>"
     ].filter(Boolean);
   }
-  const Ns = (t) => Rs(t) ? "" : hl(t) + Xa(t);
+  const Ns = (t) => Bs(t) ? "" : hl(t) + Xa(t);
   let lo = "";
   function Xr(t) {
     var a;
-    H && (H.details = t, Co(), (a = re.querySelector(t ? "[data-details-close]" : "[data-details]")) == null || a.focus({ preventScroll: !0 }));
+    H && (H.details = t, To(), (a = re.querySelector(t ? "[data-details-close]" : "[data-details]")) == null || a.focus({ preventScroll: !0 }));
   }
   const Jr = (t) => {
     const a = y[t], i = Ga(t), d = Un(t);
@@ -7953,14 +7953,14 @@ function Ih(n, { config: l, getHass: o }) {
   }
   const Qr = (t) => [...I.values()].filter((a) => a.coverId === t), Ps = () => I.forEach((t) => {
     y[t.coverId] && t.update(Jr(t.coverId));
-  }), Xo = () => {
+  }), Jo = () => {
     I.forEach((t, a) => {
       t.el.isConnected || (t.destroy(), I.delete(a));
     }), Ps();
   };
-  function Co() {
+  function To() {
     var h, f;
-    if (!H || !(Rs(H.id) || y[H.id])) {
+    if (!H || !(Bs(H.id) || y[H.id])) {
       re.hidden = !0;
       return;
     }
@@ -7970,21 +7970,21 @@ function Ih(n, { config: l, getHass: o }) {
     }
     const t = gl(H.id), a = re.querySelector(".tfMore");
     if (!t) {
-      Ra();
+      Ba();
       return;
     }
     const i = $r(re), d = Ns(H.id), u = H.frame ? H.frame.wide : H.id.startsWith("summary:") || H.id.startsWith("group:");
     if (re.hidden || !a || t.length !== so.length || a.classList.contains("wide") !== u) {
       const v = hr ? H.scroll || 0 : !re.hidden && a ? a.scrollTop : 0;
-      re.innerHTML = '<div class="tfMorePair' + (re.hidden ? "" : " still") + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (u ? " wide" : "") + '"' + (H.frame ? ' style="height:' + H.frame.h + 'px"' : "") + ">" + t.join("") + "</section>" + (d ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + Pd + '</button><div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + d + "</div></div></aside>" : "") + "</div>", lo = d, re.classList.toggle("wide", u), re.hidden = !1, Bs(), Cn(re), Bn(re), bn(re), re.querySelectorAll("[data-day]").forEach((k) => wl(k.dataset.day, k, H.at)), v && (re.querySelector(".tfMore").scrollTop = v), Ni(re, i), re.contains(n.activeElement) || (h = re.querySelector("[data-more-close]")) == null || h.focus({ preventScroll: !0 });
+      re.innerHTML = '<div class="tfMorePair' + (re.hidden ? "" : " still") + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (u ? " wide" : "") + '"' + (H.frame ? ' style="height:' + H.frame.h + 'px"' : "") + ">" + t.join("") + "</section>" + (d ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + Pd + '</button><div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + d + "</div></div></aside>" : "") + "</div>", lo = d, re.classList.toggle("wide", u), re.hidden = !1, Rs(), Cn(re), Rn(re), bn(re), re.querySelectorAll("[data-day]").forEach((k) => wl(k.dataset.day, k, H.at)), v && (re.querySelector(".tfMore").scrollTop = v), Ni(re, i), re.contains(n.activeElement) || (h = re.querySelector("[data-more-close]")) == null || h.focus({ preventScroll: !0 });
     } else {
       if (t.forEach((v, k) => {
-        var F, ct;
-        if (v === so[k] || v.includes("data-cover-art") || a.children[k].contains((ct = (F = n.activeElement) == null ? void 0 : F.matches) != null && ct.call(F, "input,select") ? n.activeElement : null) || [...Wt.keys()].some((Mt) => a.children[k].querySelector('[data-drag="' + CSS.escape(Mt) + '"]'))) return;
+        var F, $;
+        if (v === so[k] || v.includes("data-cover-art") || a.children[k].contains(($ = (F = n.activeElement) == null ? void 0 : F.matches) != null && $.call(F, "input,select") ? n.activeElement : null) || [...Wt.keys()].some((Mt) => a.children[k].querySelector('[data-drag="' + CSS.escape(Mt) + '"]'))) return;
         const D = document.createElement("div");
         D.innerHTML = v;
         const N = ur(a.children[k], D.firstElementChild);
-        bn(N), Bn(N);
+        bn(N), Rn(N);
       }), d !== lo) {
         const v = re.querySelector(".tfMoreSideBody");
         v && (v.innerHTML = d), lo = d;
@@ -7994,7 +7994,7 @@ function Ih(n, { config: l, getHass: o }) {
     (f = re.querySelector(".tfMorePair")) == null || f.classList.toggle("details", !!(H.details && d)), so = t, Ps();
   }
   setInterval(() => {
-    H && Co();
+    H && To();
   }, 15 * 1e3);
   function ts(t, a) {
     var u;
@@ -8005,9 +8005,9 @@ function Ih(n, { config: l, getHass: o }) {
   function vl() {
     so = [], hr = !re.hidden, I.forEach((t, a) => {
       a !== H.id && re.contains(t.el) && (t.destroy(), I.delete(a));
-    }), Co(), hr = !1;
+    }), To(), hr = !1;
   }
-  function Ra() {
+  function Ba() {
     var i, d, u, h, f, v;
     const t = H == null ? void 0 : H.opener;
     H = null, I.forEach((k, D) => {
@@ -8019,10 +8019,10 @@ function Ih(n, { config: l, getHass: o }) {
     t != null && t.isConnected ? t.focus(a) : (i = t == null ? void 0 : t.dataset) != null && i.more ? (d = _.querySelector('[data-more="' + CSS.escape(t.dataset.more) + '"]')) == null || d.focus(a) : (u = t == null ? void 0 : t.dataset) != null && u.summary ? (h = _.querySelector('[data-summary="' + CSS.escape(t.dataset.summary) + '"]')) == null || h.focus(a) : (f = t == null ? void 0 : t.hasAttribute) != null && f.call(t, "data-favs-edit") && ((v = _.querySelector("[data-favs-edit]")) == null || v.focus(a));
   }
   function es(t, a, i, d = {}) {
-    const u = a.map((xt) => xt[1]), h = d.zero ? 0 : Math.min(...u), f = Math.max(...u), v = Math.max(120, t.clientWidth || 260), k = Math.max(60, t.clientHeight || 130), D = 8, N = k - 20, F = Date.now() - 24 * 3600 * 1e3, ct = 24 * 3600 * 1e3, Mt = (xt) => Math.max(0, Math.min(v, (xt - F) / ct * v)), Dt = (xt) => f === h ? (D + N) / 2 : N - (xt - h) / (f - h) * (N - D);
-    let at = "M" + Mt(a[0][0]).toFixed(1) + " " + Dt(a[0][1]).toFixed(1);
-    for (let xt = 1; xt < a.length; xt++) at += d.smooth ? "L" + Mt(a[xt][0]).toFixed(1) + " " + Dt(a[xt][1]).toFixed(1) : "H" + Mt(a[xt][0]).toFixed(1) + "V" + Dt(a[xt][1]).toFixed(1);
-    t.setAttribute("viewBox", "0 0 " + v + " " + k), t.setAttribute("aria-label", i), t.innerHTML = '<path d="' + at + "V" + N + "H" + Mt(a[0][0]).toFixed(1) + 'Z" fill="' + (d.colour || "var(--primary)") + '" fill-opacity=".14"/><path d="' + at + '" fill="none" stroke="' + (d.colour || "var(--primary)") + '" stroke-width="2" stroke-linejoin="round"/><text x="0" y="' + (k - 4) + '">24 h ago</text><text x="' + v + '" y="' + (k - 4) + '" text-anchor="end">Now</text>';
+    const u = a.map((xt) => xt[1]), h = d.zero ? 0 : Math.min(...u), f = Math.max(...u), v = Math.max(120, t.clientWidth || 260), k = Math.max(60, t.clientHeight || 130), D = 8, N = k - 20, F = Date.now() - 24 * 3600 * 1e3, $ = 24 * 3600 * 1e3, Mt = (xt) => Math.max(0, Math.min(v, (xt - F) / $ * v)), Dt = (xt) => f === h ? (D + N) / 2 : N - (xt - h) / (f - h) * (N - D);
+    let nt = "M" + Mt(a[0][0]).toFixed(1) + " " + Dt(a[0][1]).toFixed(1);
+    for (let xt = 1; xt < a.length; xt++) nt += d.smooth ? "L" + Mt(a[xt][0]).toFixed(1) + " " + Dt(a[xt][1]).toFixed(1) : "H" + Mt(a[xt][0]).toFixed(1) + "V" + Dt(a[xt][1]).toFixed(1);
+    t.setAttribute("viewBox", "0 0 " + v + " " + k), t.setAttribute("aria-label", i), t.innerHTML = '<path d="' + nt + "V" + N + "H" + Mt(a[0][0]).toFixed(1) + 'Z" fill="' + (d.colour || "var(--primary)") + '" fill-opacity=".14"/><path d="' + nt + '" fill="none" stroke="' + (d.colour || "var(--primary)") + '" stroke-width="2" stroke-linejoin="round"/><text x="0" y="' + (k - 4) + '">24 h ago</text><text x="' + v + '" y="' + (k - 4) + '" text-anchor="end">Now</text>';
   }
   const bl = { lock: ["unlocked", "open", "opening"], cover: ["open", "opening", "closing"], valve: ["open", "opening", "closing"], vacuum: ["cleaning", "returning"] }, md = (t, a) => {
     const i = t.split(".")[0];
@@ -8037,7 +8037,7 @@ function Ih(n, { config: l, getHass: o }) {
     if (!a || Date.now() - a.at > 60 * 1e3) {
       let u = [];
       try {
-        const h = await R({ type: "history/history_during_period", start_time: new Date(Date.now() - 864e5).toISOString(), entity_ids: [t], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
+        const h = await B({ type: "history/history_during_period", start_time: new Date(Date.now() - 864e5).toISOString(), entity_ids: [t], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 });
         u = ((h == null ? void 0 : h[t]) || []).map((f) => [f.lu != null ? f.lu * 1e3 : Date.parse(f.last_updated || f.last_changed), String(f.s ?? f.state)]).filter(([f]) => Number.isFinite(f));
       } catch {
       }
@@ -8060,17 +8060,17 @@ function Ih(n, { config: l, getHass: o }) {
       const He = md(t, jt);
       He && F == null ? F = Math.max(z, f) : !He && F != null && (N.push([F, Math.max(z, f)]), F = null);
     }), F != null && N.push([F, h]);
-    const ct = dn(t) ? "var(--danger)" : t.startsWith("light.") ? "#ffaa00" : "var(--primary)", Mt = gd(t), Dt = "tfDayClip" + ++vd, at = N.map(([z, jt]) => Mt + (jt >= h - 1e3 && z <= f + 1e3 ? " all day" : jt >= h - 1e3 ? " since " + Ye(z) : z <= f + 1e3 ? " until " + Ye(jt) : " " + Ye(z) + "–" + Ye(jt)));
+    const $ = dn(t) ? "var(--danger)" : t.startsWith("light.") ? "#ffaa00" : "var(--primary)", Mt = gd(t), Dt = "tfDayClip" + ++vd, nt = N.map(([z, jt]) => Mt + (jt >= h - 1e3 && z <= f + 1e3 ? " all day" : jt >= h - 1e3 ? " since " + Ye(z) : z <= f + 1e3 ? " until " + Ye(jt) : " " + Ye(z) + "–" + Ye(jt)));
     let xt = "", V = -1 / 0;
     N.forEach(([z], jt) => {
-      const He = at[jt].length * 5.4, ge = Math.min(D(z), v - He);
-      ge < V + 8 || (xt += '<text x="' + ge.toFixed(1) + '" y="10">' + Q(at[jt]) + "</text>", V = ge + He);
+      const He = nt[jt].length * 5.4, ge = Math.min(D(z), v - He);
+      ge < V + 8 || (xt += '<text x="' + ge.toFixed(1) + '" y="10">' + Q(nt[jt]) + "</text>", V = ge + He);
     });
     let pt = '<text x="' + v + '" y="' + (k - 2) + '" text-anchor="end">Now</text>';
     [0, 6, 12, 18].forEach((z) => {
       let jt = new Date(h).setHours(z, 0, 0, 0);
       jt > h && (jt -= 864e5), D(jt) > 8 && D(jt) < v - 34 && (pt += '<text x="' + D(jt).toFixed(1) + '" y="' + (k - 2) + '" text-anchor="middle">' + String(z).padStart(2, "0") + "</text>");
-    }), a.setAttribute("viewBox", "0 0 " + v + " " + k), a.setAttribute("aria-label", St(t) + ", last 24 hours: " + (at.length ? at.join(", ") : "no changes")), a.innerHTML = '<clipPath id="' + Dt + '"><rect x="0" y="18" width="' + v + '" height="26" rx="8"/></clipPath>' + xt + '<rect x="0" y="18" width="' + v + '" height="26" rx="8" fill="var(--text)" fill-opacity=".1"/><g clip-path="url(#' + Dt + ')">' + N.map(([z, jt]) => '<rect x="' + D(z).toFixed(1) + '" y="18" width="' + Math.max(2, D(jt) - D(z)).toFixed(1) + '" height="26" fill="' + ct + '"/>').join("") + "</g>" + (i && i >= f ? '<line x1="' + D(i).toFixed(1) + '" x2="' + D(i).toFixed(1) + '" y1="13" y2="49" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>' : "") + pt;
+    }), a.setAttribute("viewBox", "0 0 " + v + " " + k), a.setAttribute("aria-label", St(t) + ", last 24 hours: " + (nt.length ? nt.join(", ") : "no changes")), a.innerHTML = '<clipPath id="' + Dt + '"><rect x="0" y="18" width="' + v + '" height="26" rx="8"/></clipPath>' + xt + '<rect x="0" y="18" width="' + v + '" height="26" rx="8" fill="var(--text)" fill-opacity=".1"/><g clip-path="url(#' + Dt + ')">' + N.map(([z, jt]) => '<rect x="' + D(z).toFixed(1) + '" y="18" width="' + Math.max(2, D(jt) - D(z)).toFixed(1) + '" height="26" fill="' + $ + '"/>').join("") + "</g>" + (i && i >= f ? '<line x1="' + D(i).toFixed(1) + '" x2="' + D(i).toFixed(1) + '" y1="13" y2="49" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>' : "") + pt;
   }
   function bd(t) {
     var d;
@@ -8081,14 +8081,14 @@ function Ih(n, { config: l, getHass: o }) {
     }
     return [...Array(48)].map((u, h) => [i - (48 - h) * 30 * 60 * 1e3, Math.round(a * (0.96 + 0.04 * Math.sin(h / 6)) * 10) / 10]);
   }
-  async function Jo(t, a) {
+  async function Qo(t, a) {
     var Mt, Dt;
     let i = It.get(t);
     if (t.endsWith("_solar_power")) i = { at: Date.now(), points: mc() };
     else if (qi(t)) i = { at: Date.now(), points: bd(t) };
     else if (!i || Date.now() - i.at > 5 * 60 * 1e3) {
       try {
-        const at = new Date(Date.now() - 864e5).toISOString(), xt = await R({ type: "history/history_during_period", start_time: at, entity_ids: [t], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 }), V = ((xt == null ? void 0 : xt[t]) || []).map((pt) => [pt.lu != null ? pt.lu * 1e3 : Date.parse(pt.last_updated || pt.last_changed), Number(pt.s ?? pt.state)]).filter(([pt, z]) => Number.isFinite(pt) && Number.isFinite(z));
+        const nt = new Date(Date.now() - 864e5).toISOString(), xt = await B({ type: "history/history_during_period", start_time: nt, entity_ids: [t], minimal_response: !0, no_attributes: !0, significant_changes_only: !1 }), V = ((xt == null ? void 0 : xt[t]) || []).map((pt) => [pt.lu != null ? pt.lu * 1e3 : Date.parse(pt.last_updated || pt.last_changed), Number(pt.s ?? pt.state)]).filter(([pt, z]) => Number.isFinite(pt) && Number.isFinite(z));
         i = { at: Date.now(), points: V };
       } catch {
         i = { at: Date.now(), points: [] };
@@ -8102,8 +8102,8 @@ function Ih(n, { config: l, getHass: o }) {
       d.setAttribute("aria-label", St(t) + ": no history for the last 24 hours"), d.innerHTML = '<text x="0" y="16">No history for the last 24 hours</text>';
       return;
     }
-    const k = f.map((at) => at[1]), D = Math.min(...k), N = Math.max(...k), F = (at) => at.toLocaleString(void 0, { maximumFractionDigits: Math.abs(at) >= 100 ? 0 : 1 }), ct = ((Dt = u == null ? void 0 : u.attributes) == null ? void 0 : Dt.state_class) === "total_increasing";
-    es(d, f, St(t) + ", last 24 hours: " + (ct ? "+" + F(k[k.length - 1] - k[0]) : D === N ? F(D) : F(D) + " to " + F(N)) + (h ? " " + h : ""), { smooth: t.endsWith("_solar_power"), zero: t.endsWith("_solar_power") });
+    const k = f.map((nt) => nt[1]), D = Math.min(...k), N = Math.max(...k), F = (nt) => nt.toLocaleString(void 0, { maximumFractionDigits: Math.abs(nt) >= 100 ? 0 : 1 }), $ = ((Dt = u == null ? void 0 : u.attributes) == null ? void 0 : Dt.state_class) === "total_increasing";
+    es(d, f, St(t) + ", last 24 hours: " + ($ ? "+" + F(k[k.length - 1] - k[0]) : D === N ? F(D) : F(D) + " to " + F(N)) + (h ? " " + h : ""), { smooth: t.endsWith("_solar_power"), zero: t.endsWith("_solar_power") });
   }
   function Hi() {
     const t = _ == null ? void 0 : _.querySelector("[data-solar]");
@@ -8120,17 +8120,17 @@ function Ih(n, { config: l, getHass: o }) {
     const d = i == null ? void 0 : i.entity_id;
     return t !== "light" || typeof d != "string" || !yn[d] || !Vn(d) || i.brightness_pct != null || i.brightness != null ? [a, i] : a !== "turn_on" && !(a === "toggle" && ((u = y[d]) == null ? void 0 : u.state) !== "on") ? [a, i] : ["turn_on", { ...i, brightness_pct: yn[d] }];
   }
-  function Qo(t, a, i, d) {
+  function ti(t, a, i, d) {
     let u = { entity_id: i, ...d || {} };
     return [a, u] = xl(t, a, u), t === "cover" && Hs(a, u), le[i] = (le[i] || 0) + 1, Vi.set(Jc, JSON.stringify(le)), xr.call(t, a, u) ? Promise.resolve() : Promise.resolve(vt(t, a, u));
   }
   function Fi(t) {
     const [a, i, d, u] = t.split("|");
-    Qo(a, i, d, u ? JSON.parse(u) : null).catch(() => {
+    ti(a, i, d, u ? JSON.parse(u) : null).catch(() => {
     });
   }
   function Tn(t, a) {
-    Wt.set("pos|" + t, a), Ma.delete(t), so = so.map(() => ""), [_, re].forEach((d) => d.querySelectorAll('[data-blocks="' + CSS.escape(t) + '"]').forEach((u) => lt(u, a)));
+    Wt.set("pos|" + t, a), Ma.delete(t), so = so.map(() => ""), [_, re].forEach((d) => d.querySelectorAll('[data-blocks="' + CSS.escape(t) + '"]').forEach((u) => dt(u, a)));
     const i = _.querySelector('.tfAction[data-k="' + CSS.escape(t) + '"] .tfName .activityRowMeta');
     if (i && (i.textContent = Math.round(a) + "%"), (H == null ? void 0 : H.id) === t) {
       const d = re.querySelector(".tfMoreState"), u = re.querySelector(".tfMoreSub");
@@ -8143,9 +8143,9 @@ function Ih(n, { config: l, getHass: o }) {
     return d == null ? null : Math.max(0, Math.min(100, Math.round(d)));
   };
   function yl(t, a) {
-    var at;
+    var nt;
     const i = t.dataset.blocks;
-    (at = t.setPointerCapture) == null || at.call(t, a.pointerId);
+    (nt = t.setPointerCapture) == null || nt.call(t, a.pointerId);
     const d = (xt) => {
       const V = t.getBoundingClientRect();
       return Math.max(0, Math.min(100, (xt.clientX - V.left) / V.width * 100));
@@ -8155,10 +8155,10 @@ function Ih(n, { config: l, getHass: o }) {
       v = Math.abs(k - v) < 0.2 ? k : v + (k - v) * 0.14, Tn(i, v), D = requestAnimationFrame(N);
     }, F = () => {
       f || (f = !0, t.classList.add("fine"), D = requestAnimationFrame(N));
-    }, ct = setTimeout(F, 350), Mt = (xt) => {
-      k = d(xt), Math.abs(xt.clientX - h) > 6 && (clearTimeout(ct), F());
+    }, $ = setTimeout(F, 350), Mt = (xt) => {
+      k = d(xt), Math.abs(xt.clientX - h) > 6 && (clearTimeout($), F());
     }, Dt = () => {
-      clearTimeout(ct), cancelAnimationFrame(D), t.removeEventListener("pointermove", Mt), t.removeEventListener("pointerup", Dt), t.removeEventListener("pointercancel", Dt), t.classList.remove("fine"), Tn(i, f ? Math.round(v) : (Math.min(3, Math.floor(u / 25)) + 1) * 25), mr("pos", i);
+      clearTimeout($), cancelAnimationFrame(D), t.removeEventListener("pointermove", Mt), t.removeEventListener("pointerup", Dt), t.removeEventListener("pointercancel", Dt), t.classList.remove("fine"), Tn(i, f ? Math.round(v) : (Math.min(3, Math.floor(u / 25)) + 1) * 25), mr("pos", i);
     };
     t.addEventListener("pointermove", Mt), t.addEventListener("pointerup", Dt), t.addEventListener("pointercancel", Dt);
   }
@@ -8167,9 +8167,9 @@ function Ih(n, { config: l, getHass: o }) {
     const [a, i] = t.dataset.open.split("|"), d = t.closest(".tfCard");
     P = { key: a, id: i, h: d ? Math.round(d.getBoundingClientRect().height) : 0 }, Ma.delete(a), va(), (u = _.querySelector(".tfOpen [data-close]")) == null || u.focus({ preventScroll: !0 });
   }
-  function To(t) {
+  function Ao(t) {
     var a;
-    st = t.dataset.area, _.querySelectorAll(".tfAreaPanel").forEach((i) => {
+    lt = t.dataset.area, _.querySelectorAll(".tfAreaPanel").forEach((i) => {
       var u;
       const d = i === t;
       i.classList.toggle("active", d), i.setAttribute("aria-expanded", String(d)), (u = i.querySelector(".panelExpanded")) == null || u.toggleAttribute("inert", !d);
@@ -8178,7 +8178,7 @@ function Ih(n, { config: l, getHass: o }) {
   const ns = {
     bright: { value: (t, a) => Math.round(a * 100), text: (t, a) => a ? a + "%" : "Off", send: (t, a) => a > 0 ? ["light", "turn_on", { brightness_pct: a }] : ["light", "turn_off", {}] },
     ct: { value: (t, a) => {
-      const [i, d] = Ro(t);
+      const [i, d] = No(t);
       return Math.round(i + a * (d - i));
     }, text: (t, a) => a.toLocaleString() + "k", send: (t, a) => ["light", "turn_on", { color_temp_kelvin: a }] },
     hue: { value: (t, a) => Math.round(a * 360), text: () => "Colour", send: (t, a) => {
@@ -8211,7 +8211,7 @@ function Ih(n, { config: l, getHass: o }) {
     const i = Wt.get(t + "|" + a), [d, u, h] = ns[t].send(a, i), f = () => setTimeout(() => {
       Wt.delete(t + "|" + a), va();
     }, 1500);
-    Qo(d, u, a, h).then(f, f);
+    ti(d, u, a, h).then(f, f);
   }
   function On(t) {
     t.addEventListener("click", (a) => {
@@ -8220,7 +8220,7 @@ function Ih(n, { config: l, getHass: o }) {
       if (kn && !a.target.closest(".tfBoardMenu,[data-board-more]") && ao(), !(!i || !t.contains(i) || i.disabled))
         if (i.dataset.boardMore)
           (kn == null ? void 0 : kn.key) === i.dataset.boardMore ? ao(!0) : id(i.dataset.boardMore, i);
-        else if (i.dataset.boardAct) Vo(kn.key, i.dataset.boardAct);
+        else if (i.dataset.boardAct) Go(kn.key, i.dataset.boardAct);
         else if (i.dataset.boardShow) lr(i.dataset.boardShow);
         else if (i.dataset.favHide) Ts(i.dataset.favHide, !1);
         else if (i.dataset.energyPick) tl(i.dataset.energyPick);
@@ -8233,21 +8233,21 @@ function Ih(n, { config: l, getHass: o }) {
           const h = H.id;
           H = H.back, vl(), (d = re.querySelector('.tfMore [data-more="' + CSS.escape(h) + '"]')) == null || d.focus({ preventScroll: !0 });
         } else if (i.hasAttribute("data-favs-edit")) ts("favourites", i);
-        else if (i.dataset.acts) JSON.parse(i.dataset.acts).forEach(([h, f, v, k]) => Qo(h, f, v, k).catch(() => {
+        else if (i.dataset.acts) JSON.parse(i.dataset.acts).forEach(([h, f, v, k]) => ti(h, f, v, k).catch(() => {
         }));
         else if (i.dataset.more) ts(i.dataset.more, i);
-        else if (i.hasAttribute("data-more-close")) Ra();
+        else if (i.hasAttribute("data-more-close")) Ba();
         else if (i.dataset.go) Kr("room:" + i.dataset.go);
-        else if (i.hasAttribute("data-area-back")) Ba();
+        else if (i.hasAttribute("data-area-back")) Ra();
         else if (i.dataset.open) Fs(i);
         else if (i.hasAttribute("data-close")) {
           const h = P;
           P = null, Ma.delete(h.key), va(), (u = _.querySelector('[data-open="' + CSS.escape(h.key + "|" + h.id) + '"]')) == null || u.focus({ preventScroll: !0 });
-        } else i.classList.contains("tfAreaPanel") && !i.classList.contains("active") && To(i);
+        } else i.classList.contains("tfAreaPanel") && !i.classList.contains("active") && Ao(i);
     }), t.addEventListener("keydown", (a) => {
       var d, u, h, f, v, k, D;
       const i = a.target;
-      if ((d = i.dataset) != null && d.open && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), Fs(i)), (u = i.dataset) != null && u.energyPick && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), tl(i.dataset.energyPick)), (h = i.classList) != null && h.contains("tfAreaPanel") && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), To(i)), (f = i.dataset) != null && f.summary && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), mi(i.dataset.summary, i)), a.key === "Escape" && kn && t === _) {
+      if ((d = i.dataset) != null && d.open && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), Fs(i)), (u = i.dataset) != null && u.energyPick && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), tl(i.dataset.energyPick)), (h = i.classList) != null && h.contains("tfAreaPanel") && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), Ao(i)), (f = i.dataset) != null && f.summary && (a.key === "Enter" || a.key === " ") && (a.preventDefault(), mi(i.dataset.summary, i)), a.key === "Escape" && kn && t === _) {
         a.preventDefault(), ao(!0);
         return;
       }
@@ -8255,7 +8255,7 @@ function Ih(n, { config: l, getHass: o }) {
         a.preventDefault(), qr(!1), (v = c("dashEditNav")) == null || v.focus();
         return;
       }
-      if (a.key === "Escape" && _t && t === _ && (a.preventDefault(), Ba()), (k = i.dataset) != null && k.blocks) {
+      if (a.key === "Escape" && _t && t === _ && (a.preventDefault(), Ra()), (k = i.dataset) != null && k.blocks) {
         const N = i.dataset.blocks, F = as(a, Math.round(Un(N)));
         if (F == null) return;
         a.preventDefault(), Tn(N, F), clearTimeout(mt.get(N)), mt.set(N, setTimeout(() => mr("pos", N), 500));
@@ -8263,7 +8263,7 @@ function Ih(n, { config: l, getHass: o }) {
       }
       if ((D = i.dataset) != null && D.drag && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(a.key)) {
         a.preventDefault();
-        const [N, F] = i.dataset.drag.split("|"), ct = Number(i.getAttribute("aria-valuenow")) / 100, Mt = a.key === "Home" ? 0 : a.key === "End" ? 1 : Math.max(0, Math.min(1, ct + (a.key === "ArrowLeft" || a.key === "ArrowDown" ? -0.05 : 0.05)));
+        const [N, F] = i.dataset.drag.split("|"), $ = Number(i.getAttribute("aria-valuenow")) / 100, Mt = a.key === "Home" ? 0 : a.key === "End" ? 1 : Math.max(0, Math.min(1, $ + (a.key === "ArrowLeft" || a.key === "ArrowDown" ? -0.05 : 0.05)));
         Xe(i, N, F, Mt), mr(N, F);
       }
     }), t.addEventListener("pointerdown", (a) => {
@@ -8284,21 +8284,21 @@ function Ih(n, { config: l, getHass: o }) {
         const Sa = d.getBoundingClientRect();
         return Math.max(0, Math.min(1, (ge.clientX - Sa.left - D) / N()));
       };
-      let ct = v ? "waiting" : k ? "pressed" : "dragging", Mt = 0;
-      const Dt = a.clientX, at = a.clientY, xt = (ge, Sa) => Math.hypot(ge.clientX - Dt, ge.clientY - at) > Sa, V = () => {
+      let $ = v ? "waiting" : k ? "pressed" : "dragging", Mt = 0;
+      const Dt = a.clientX, nt = a.clientY, xt = (ge, Sa) => Math.hypot(ge.clientX - Dt, ge.clientY - nt) > Sa, V = () => {
         try {
           d.setPointerCapture(a.pointerId);
         } catch {
         }
       };
-      v || (a.preventDefault(), V()), ct === "dragging" && Xe(d, u, h, F(a));
+      v || (a.preventDefault(), V()), $ === "dragging" && Xe(d, u, h, F(a));
       const pt = () => {
         var ge, Sa;
-        ct = "sliding", E = d, d.classList.add("held"), V(), (ge = navigator.userActivation) != null && ge.hasBeenActive && ((Sa = navigator.vibrate) == null || Sa.call(navigator, 8)), Mt = k ? (yn[h] ?? 100) / 100 : Number(d.getAttribute("aria-valuenow")) / 100;
+        $ = "sliding", E = d, d.classList.add("held"), V(), (ge = navigator.userActivation) != null && ge.hasBeenActive && ((Sa = navigator.vibrate) == null || Sa.call(navigator, 8)), Mt = k ? (yn[h] ?? 100) / 100 : Number(d.getAttribute("aria-valuenow")) / 100;
       }, z = (ge) => {
-        ct === "waiting" && xt(ge, M) ? !f && Math.abs(ge.clientX - Dt) > Math.abs(ge.clientY - at) ? pt() : ct = "gone" : ct === "pressed" && xt(ge, 4) && (ct = "dragging"), ct === "sliding" ? Xe(d, u, h, Math.max(0, Math.min(1, Mt + (ge.clientX - Dt) / N()))) : ct === "dragging" && Xe(d, u, h, F(ge));
+        $ === "waiting" && xt(ge, M) ? !f && Math.abs(ge.clientX - Dt) > Math.abs(ge.clientY - nt) ? pt() : $ = "gone" : $ === "pressed" && xt(ge, 4) && ($ = "dragging"), $ === "sliding" ? Xe(d, u, h, Math.max(0, Math.min(1, Mt + (ge.clientX - Dt) / N()))) : $ === "dragging" && Xe(d, u, h, F(ge));
       }, jt = (ge) => {
-        ["pointermove", "pointerup", "pointercancel"].forEach((Sa, Jt) => d.removeEventListener(Sa, Jt ? jt : z)), d.classList.remove("held"), E === d && (E = null), ct === "sliding" || ct === "dragging" ? mr(u, h) : ge.type === "pointerup" && f ? Fi(Le("light", "toggle", h)) : ge.type === "pointerup" && k && (ct === "waiting" || ct === "pressed") && Qo("light", "turn_on", h).catch(() => {
+        ["pointermove", "pointerup", "pointercancel"].forEach((Sa, Jt) => d.removeEventListener(Sa, Jt ? jt : z)), d.classList.remove("held"), E === d && (E = null), $ === "sliding" || $ === "dragging" ? mr(u, h) : ge.type === "pointerup" && f ? Fi(Le("light", "toggle", h)) : ge.type === "pointerup" && k && ($ === "waiting" || $ === "pressed") && ti("light", "turn_on", h).catch(() => {
         });
       };
       d.addEventListener("pointermove", z), d.addEventListener("pointerup", jt), d.addEventListener("pointercancel", jt);
@@ -8306,15 +8306,15 @@ function Ih(n, { config: l, getHass: o }) {
       E && a.cancelable && a.preventDefault();
     }, { passive: !1 });
   }
-  return _ && w && (Io(), On(_), On(re), re.addEventListener("click", (t) => {
-    t.target === re && Ra();
+  return _ && w && (Ho(), On(_), On(re), re.addEventListener("click", (t) => {
+    t.target === re && Ba();
   }), (Os = n.getElementById("homeNav")) == null || Os.addEventListener("click", () => {
-    _t && Ba();
+    _t && Ra();
   }), (kl = n.querySelector(".bottomNav")) == null || kl.insertAdjacentHTML("beforeend", '<button class="navBtn" id="dashEditNav" type="button" title="Edit" aria-label="Edit the dashboard" aria-pressed="false" hidden>' + np + "</button>"), (os = c("dashEditNav")) == null || os.addEventListener("click", () => qr(!ma)), _.addEventListener("pointerdown", fd), new ResizeObserver(() => {
     m.classList.contains("tfDash") && yi() !== ar ? va() : Li();
   }).observe(_), window.addEventListener("resize", Li, { passive: !0 }), re.addEventListener("keydown", (t) => {
-    t.key === "Escape" && (t.stopPropagation(), H != null && H.details ? Xr(!1) : Ra());
-  })), J(), {
+    t.key === "Escape" && (t.stopPropagation(), H != null && H.details ? Xr(!1) : Ba());
+  })), tt(), {
     update(t) {
       if (!w) return;
       const a = !Object.keys(y).length;
@@ -8324,14 +8324,14 @@ function Ih(n, { config: l, getHass: o }) {
     },
     // the bento's animation runs while it's mounted, so it goes while the card is away
     suspend() {
-      Do = !0, Kt == null || Kt.destroy(), Kt = null, Oe == null || Oe.forEach((t) => t.destroy()), Oe = null;
+      Ro = !0, Kt == null || Kt.destroy(), Kt = null, Oe == null || Oe.forEach((t) => t.destroy()), Oe = null;
     },
     resume() {
-      Do = !1, !(!w || !(_ != null && _.querySelector("[data-tf]"))) && (de.isConnected && yr(de.style.order), si());
+      Ro = !1, !(!w || !(_ != null && _.querySelector("[data-tf]"))) && (de.isConnected && yr(de.style.order), li());
     }
   };
 }
-const Hh = "0.64.0", Od = "move_assistant", Fh = "move_assistant", rp = "move_assistant_checkin_reminder";
+const Hh = "0.65.0", Od = "move_assistant", Fh = "move_assistant", rp = "move_assistant_checkin_reminder";
 function Oh() {
   if (document.getElementById("move-assistant-inter")) return;
   const n = document.createElement("link");
