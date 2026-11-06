@@ -1003,6 +1003,26 @@ export function mountTestFocus(root, { config, getHass }) {
   let areaRooms = []; // the rooms with area cards, in Matt's order
   const areasHtml = (order) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + order + '">' +
     '<section class="workoutGallery tfAreaGallery" aria-label="Areas">' + areaRooms.map(areaPanel).join('') + '</section></div>';
+  /* one room on its own (Tile · Room, Matt, 6 Nov; Figma 954:6176): a tile added from the edit tray instead of the Areas
+     card, keyed room:<area>. The head is the room's icon and name; XS its reading in the head, S the reading big, M its
+     devices too (up to four), L and XL the reading bigger with its second under it. It never opens out: the tile opens
+     the room's page, and each device button that device's control (one device its own, a room's lights or covers as a
+     group) */
+  const isRoomKey = (key) => key.startsWith('room:');
+  const roomOf = (key) => areaRooms.find((r) => 'room:' + r.id === key);
+  function roomTile(r, key) {
+    const keys = roomKeys(r), main = mainOf(r), h = main && headline(main), sub = main ? mainSub(r, main, keys) : '';
+    const big = h ? h.text + (h.unit ? ' ' + h.unit : '') : '';
+    const opens = (k) => { const ids = groupIds(r, k.key); return ids.length === 1 ? ids[0] : 'group:' + r.id + ':' + k.key; };
+    const devices = keys.filter((k) => k.kind === 'control').slice(0, 4).map((k) => '<button class="tfIcon' + (k.on ? ' on' : '') + '" type="button" data-tone="' + k.tone + '"' +
+      (k.on && k.light ? ' data-light style="' + k.light + '"' : '') + ' data-more="' + esc(opens(k)) + '" aria-label="' + esc(k.label + ', ' + k.value + '. Open its controls') + '">' + k.icon + '</button>');
+    return '<div class="tfAction tfRoomTile" data-k="' + esc(key) + '" data-go="' + esc(r.id) + '">' +
+      '<div class="tfActionHead"><span class="tfIcon tfRoomIcon" aria-hidden="true"><span class="tfAreaGlyph"' + iconSlot('area:' + r.id, r.icon || 'mdi:texture-box', r.name) + '></span></span>' +
+      '<button class="tfName" type="button" data-go="' + esc(r.id) + '" aria-label="Open ' + esc(r.name) + '"><span class="activityRowName">' + esc(r.name) + '</span>' +
+      (big || sub ? '<span class="activityRowMeta">' + (big ? '<span class="tfRoomInline">' + esc(big) + (sub ? ' · ' : '') + '</span>' : '') + esc(sub) + '</span>' : '') + '</button></div>' +
+      (big ? '<div class="tfRoomReading" aria-hidden="true"><span class="tfRoomBig">' + esc(big) + '</span>' + (sub ? '<span class="tfRoomSub">' + esc(sub) + '</span>' : '') + '</div>' : '') +
+      (devices.length ? '<div class="tfRoomDevices">' + devices.join('') + '</div>' : '') + '</div>';
+  }
 
   /* sections: Home and each room, with their devices as Home Assistant has them (Security is a summary's popup, Matt
      29 Oct) */
@@ -1423,7 +1443,7 @@ export function mountTestFocus(root, { config, getHass }) {
   const dashControl = (id) => controlsOf(id).slice(0, sizeOf(id) - 1);
   function dashTileIds(n) {
     const own = dashPrefs().tiles;
-    if (own) return own.filter((id) => states[id]);
+    if (own) return own.filter((id) => states[id] || roomOf(id));
     if (!dashPicks) {
       const rank = (id) => (states[id]?.state === 'on' ? 1e6 : 0) + (used[id] || 0);
       dashPicks = {
@@ -1452,7 +1472,7 @@ export function mountTestFocus(root, { config, getHass }) {
     dashColsSeen = cols;
     // each tile in a wrapper of its own (display:contents), so the page can be put in reading order round the cards
     dashTileIds(cols >= 3 ? cols : cols * 2).forEach((id) => out.push({ key: 'dash:tile:' + id, wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tile:' + esc(id) + '">' + inner + '</div>',
-      tiles: [{ key: id, html: actionTile(id, false, dashControl(id)) }] }));
+      tiles: [{ key: id, html: isRoomKey(id) ? roomTile(roomOf(id), id) : actionTile(id, false, dashControl(id)) }] }));
     loadActivity();
     loadEnergy();
     return out;
@@ -1491,7 +1511,7 @@ export function mountTestFocus(root, { config, getHass }) {
   const TILE_ROWS = 2, DAC_CHROME = 90; // a tile's padding (18 and 18), head (40) and gap (14) around the controller's pad
   // a card of tiles fills its height (Matt, 2 Nov): as many rows as fit at 56 or taller, every row the same height
   const FILL_MIN = 56;
-  const boardName = (key) => BOARD_NAMES[key] || nameOf(key);
+  const boardName = (key) => BOARD_NAMES[key] || (key.startsWith('room:') ? areaRooms.find((r) => 'room:' + r.id === key)?.name || 'Room' : nameOf(key));
   const AREA_OPEN = 409, AREA_FOLDED = 128;
   let editing = false, drag = null, boardOpen = null, fitQueued = false, lastPlaced = new Map(), boardRows = 0, boardTop = 0;
   // the page's header, above the grid at its own size (the cards' rules: padding 10, tiles 60, so a bar of summaries is
@@ -1519,6 +1539,9 @@ export function mountTestFocus(root, { config, getHass }) {
   // a card's width in pegs on a board n pegs wide, each w: 'full' the whole width, the areas as wide as they're drawn
   const colsOf = (it, n, w) => {
     if (it.span === 'full') return n;
+    // the areas: as wide as you picked in its ⋯ (Matt, 6 Nov: a lot of rooms), else as wide as its rooms; the rest scroll
+    const picked = it.span === 'areas' && dashPrefs().spans.areas;
+    if (picked) return picked === 'full' ? n : Math.min(n, Math.max(2, picked));
     if (it.span === 'areas') return Math.min(n, Math.ceil((AREA_OPEN + Math.max(0, areaRooms.length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / (w + PEG_GAP)));
     return Math.min(n, dashPrefs().spans[it.key] ?? it.span);
   };
@@ -1772,7 +1795,12 @@ export function mountTestFocus(root, { config, getHass }) {
       SIZE_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === now) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' rows' : ' row') + '" data-board-act="h:' + (i + 1) + '"' + (i < most ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>';
     // then its width, for the cards that have one: narrow (a column), wide (two) or really wide (three), one the board
     // hasn't the columns for greyed out (Matt, 6 Nov: not "Card size" / "Tile size")
-    const width = RESIZABLE.includes(key) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
+    // the areas: wide (two), really wide (three) or the full width, never narrow (an open room is 409); until one's
+    // picked it's as wide as its rooms, which may be none of these
+    const AREA_WIDTHS = [['Wide', 2, n >= 2], ['Really wide', 3, n >= 3], ['Full width', 'full', n >= 4]];
+    const width = key === 'areas' ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
+      AREA_WIDTHS.map(([name, v, ok]) => '<button type="button" role="menuitemradio" aria-checked="' + (ok && (v === 'full' ? p.cols === n : p.cols === v && !(v === n && dash.spans.areas === 'full'))) + '" aria-label="' + name + (v === 'full' ? '' : ', ' + v + ' columns') + '" data-board-act="w:' + v + '"' + (ok ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>'
+      : RESIZABLE.includes(key) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
       WIDTH_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === Math.min(span, n)) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' columns' : ' column') + '" data-board-act="w:' + (i + 1) + '"' + (i < n ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>' : '';
     menu.innerHTML = height + width +
       (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
@@ -1796,7 +1824,7 @@ export function mountTestFocus(root, { config, getHass }) {
   function boardAct(key, act) {
     if (act === 'remove') { closeBoardMenu(); removeTile(key); return; }
     const before = prefs, dash = dashPrefs(), cells = cellsNow(), here = cells[key] || { col: 0, row: 0 };
-    if (act.startsWith('w:')) dash.spans = { ...dash.spans, [key]: Number(act.slice(2)) };
+    if (act.startsWith('w:')) dash.spans = { ...dash.spans, [key]: act === 'w:full' ? 'full' : Number(act.slice(2)) };
     if (act.startsWith('h:')) dash.opts = { ...dash.opts, [key]: { ...(dash.opts[key] || {}), h: Number(act.slice(2)), tall: undefined } };
     if (act === 'graph') dash.opts = { ...dash.opts, energy: { ...(dash.opts.energy || {}), graph: (dash.opts.energy?.graph || 'above') === 'above' ? 'below' : 'above' } };
     if (act === 'left') cells[key] = { ...here, col: here.col - 1 };
@@ -1810,7 +1838,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (drag) { layoutBoard(); drag = null; saveCells(dashPrefs(), cellsNow()); }
     closeBoardMenu();
     if (act === 'graph') { units.delete('dash:energy'); refresh(); }
-    if (act.startsWith('h:') && key.includes('.')) refresh(); // a tile's controls change with its height
+    if (act.startsWith('h:') && key.includes('.')) refresh(); // a room's tile shows what fits by its height alone // a tile's controls change with its height
     layoutBoard();
     if (act !== 'hide') grid.querySelector('[data-board-more="' + CSS.escape(key) + '"]')?.focus();
     else toast(boardName(key) + ' hidden', undoTo(before));
@@ -1833,8 +1861,8 @@ export function mountTestFocus(root, { config, getHass }) {
     refresh();
     renderTray();
   }
-  const addTile = (id) => { setTiles([...tilesNow().filter((x) => x !== id), id], cellsNow()); toast(nameOf(id) + ' added'); reveal(id); };
-  const removeTile = (id) => { const before = prefs, cells = cellsNow(); delete cells[id]; setTiles(tilesNow().filter((x) => x !== id), cells); toast(nameOf(id) + ' removed', undoTo(before)); };
+  const addTile = (id) => { setTiles([...tilesNow().filter((x) => x !== id), id], cellsNow()); toast(boardName(id) + ' added'); reveal(id); };
+  const removeTile = (id) => { const before = prefs, cells = cellsNow(); delete cells[id]; setTiles(tilesNow().filter((x) => x !== id), cells); toast(boardName(id) + ' removed', undoTo(before)); };
   /* ---------- toasts (Matt, 29 Oct) ----------
      The card's toast, at the bottom middle of the board (left of the edit tray when it's out) and 12 above the bottom
      bar: what an edit did, with Undo for 5 s after a remove or a hide. Done says Changes saved when the edits changed
@@ -2003,13 +2031,16 @@ export function mountTestFocus(root, { config, getHass }) {
     '<button class="pill tfTrayAdd" type="button" data-tile-add aria-expanded="false">Add tile</button>' +
     '<div class="tfTrayPick" data-pick="tiles" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-tile-search>' +
     '<ul class="tfTrayList" data-tray="tilepick"></ul></div></section>' +
+    '<section class="tfTraySection"><div class="sectionLabel">Rooms</div><p class="tfTrayNote">A room on its own, instead of the Areas card.</p>' +
+    '<button class="pill tfTrayAdd" type="button" data-room-add aria-expanded="false">Add room</button>' +
+    '<ul class="tfTrayList" data-tray="roompick" hidden></ul></section>' +
     '<section class="tfTraySection" data-tray="phone"></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul>' +
     '<button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button>' +
     '<div class="tfTrayPick" data-pick="favs" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
     '<ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>';
   app.appendChild(tray);
-  let trayTucked = false, trayPicking = false, tilePicking = false, favAim = null, phoneShown = false;
+  let trayTucked = false, trayPicking = false, tilePicking = false, roomPicking = false, favAim = null, phoneShown = false;
   const trayHtml = {};
   const trayPut = (key, html) => {
     if (trayHtml[key] === html) return;
@@ -2057,6 +2088,11 @@ export function mountTestFocus(root, { config, getHass }) {
     tray.querySelector('[data-pick="tiles"]').hidden = !tilePicking;
     tray.querySelector('[data-tile-add]').setAttribute('aria-expanded', String(tilePicking));
     if (tilePicking) trayPut('tilepick', pickHtml(tray.querySelector('[data-tile-search]').value, (id) => ACTION_DOMAINS.includes(id.split('.')[0]), new Set(tilesNow()), 'data-tile-pick'));
+    // the rooms not on the board yet, in the Areas card's order
+    tray.querySelector('[data-tray="roompick"]').hidden = !roomPicking;
+    tray.querySelector('[data-room-add]').setAttribute('aria-expanded', String(roomPicking));
+    if (roomPicking) { const there = new Set(tilesNow()); trayPut('roompick', areaRooms.filter((r) => !there.has('room:' + r.id)).map((r) => '<li><button class="tfTrayPickItem" type="button" data-room-pick="' + esc(r.id) + '">' +
+      '<span class="tfIcon"><span class="tfAreaGlyph"' + iconSlot('area:' + r.id, r.icon || 'mdi:texture-box', r.name) + '></span></span><span class="tfTrayName"><span class="activityRowName">' + esc(r.name) + '</span></span></button></li>').join('') || '<li class="tfTrayNote">Every room is on the board.</li>'); }
     tray.querySelector('[data-pick="favs"]').hidden = !trayPicking;
     tray.querySelector('[data-fav-add]').setAttribute('aria-expanded', String(trayPicking));
     if (trayPicking) trayPut('pick', pickHtml(tray.querySelector('[data-fav-search]').value, (id) => PICK_DOMAINS.test(id), new Set(starred()), 'data-fav-pick'));
@@ -2089,6 +2125,8 @@ export function mountTestFocus(root, { config, getHass }) {
     else if (t.dataset.favPick) addFav(t.dataset.favPick);
     else if (t.hasAttribute('data-tile-add')) { tilePicking = !tilePicking; renderTray(); if (tilePicking) tray.querySelector('[data-tile-search]').focus({ preventScroll: true }); }
     else if (t.dataset.tilePick) addTile(t.dataset.tilePick);
+    else if (t.hasAttribute('data-room-add')) { roomPicking = !roomPicking; renderTray(); }
+    else if (t.dataset.roomPick) addTile('room:' + t.dataset.roomPick);
     else if (t.hasAttribute('data-fav-suggest')) saveFavs({ suggest: !suggestOn() });
   });
   tray.addEventListener('input', (ev) => { if (ev.target.matches('[data-fav-search],[data-tile-search]')) renderTray(); });
@@ -2395,7 +2433,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // you were (Matt, 28 Oct). Scrolling it into view instead would tuck its title under Home Assistant's top bar
   let leftAt = 0, leftTop = null; // how far the house was scrolled when a page opened, and where its opener was on screen
   // the card a page opened from: the weather card or the areas
-  const openerOf = (key) => (key === 'weather' ? dashBoxes.wx : grid.querySelector('.tfAreas'));
+  const openerOf = (key) => (key === 'weather' ? dashBoxes.wx : (key.startsWith('room:') && grid.querySelector('.tfRoomTile[data-k="' + CSS.escape(key) + '"]')) || grid.querySelector('.tfAreas'));
   function openArea(key) {
     if (!areaPage) { leftAt = scroller().scrollTop; leftTop = openerOf(key)?.getBoundingClientRect().top ?? null; }
     areaPage = key;
@@ -2428,7 +2466,7 @@ export function mountTestFocus(root, { config, getHass }) {
     render();
     scroller().scrollTop = leftAt;
     holdPlace(() => openerOf(key), leftTop);
-    const panel = key.startsWith('room:') ? grid.querySelector('.tfAreaPanel[data-area="' + CSS.escape(key.slice(5)) + '"]')
+    const panel = key.startsWith('room:') ? grid.querySelector('.tfRoomTile[data-k="' + CSS.escape(key) + '"]') || grid.querySelector('.tfAreaPanel[data-area="' + CSS.escape(key.slice(5)) + '"]')
       : key === 'weather' ? dashBoxes.wx.querySelector('.wbOpenPage') : grid.querySelector('[data-k="sum:' + CSS.escape(key) + '"]');
     (panel?.querySelector('[data-go]') || panel)?.focus({ preventScroll: true });
   }

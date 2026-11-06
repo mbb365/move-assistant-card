@@ -566,6 +566,24 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityHeader,#app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.tfDashGraph{display:none}
 #app.tfBoard .tfBoardItem.tfDashCard[data-rows="1"]>.activityRows{margin:0;flex:1}
 #app.tfBoard .tfBoardItem.tfAction[data-rows="1"]{padding:10px;border-radius:24px}
+/* Tile · Room (Matt, 6 Nov; Figma 954:6176): one room on its own. XS its reading in the head; S the reading 46 at the
+   bottom; M its devices under it (up to four, 12 apart); L and XL the reading 52 / 64 with its second under it (the head
+   then the name only). The whole tile opens the room's page; each device button that device's control */
+.tfRoomTile{cursor:pointer}
+.tfRoomTile .tfRoomIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.tfRoomInline,.tfRoomSub{display:none}
+.tfRoomReading{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tfRoomBig{overflow:hidden;color:var(--text);font:500 46px/46px var(--font-tile);letter-spacing:-.92px;white-space:nowrap;text-overflow:ellipsis}
+.tfRoomSub{overflow:hidden;color:var(--muted);font:400 16px/19px var(--font);white-space:nowrap;text-overflow:ellipsis}
+.tfRoomDevices{display:flex;gap:12px}
+.tfRoomDevices .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
+.tfRoomDevices .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}
+#app.tfBoard .tfRoomTile[data-rows="1"] .tfRoomInline{display:inline}
+#app.tfBoard .tfRoomTile[data-rows="1"] :is(.tfRoomReading,.tfRoomDevices),#app.tfBoard .tfRoomTile[data-rows="2"] .tfRoomDevices{display:none}
+#app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfActionHead .activityRowMeta{display:none}
+#app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfRoomSub{display:block}
+#app.tfBoard .tfRoomTile[data-rows="4"] .tfRoomBig{font-size:52px;line-height:52px;letter-spacing:-1.92px}
+#app.tfBoard .tfRoomTile[data-rows="5"] .tfRoomBig{font-size:64px;line-height:64px;letter-spacing:-1.92px}
 #app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}
 #app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}
 /* the weather: XS now as a tile; S now; M now and a sentence; L now and the days; XL all three */
