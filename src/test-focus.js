@@ -1958,23 +1958,30 @@ export function mountTestFocus(root, { config, getHass }) {
   const NAME_SEL = '.activityRowName,.activityRowMeta';
   const gliding = new WeakSet();
   function glide(el) {
-    if (look.names !== 'scroll' || gliding.has(el) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-    const d = el.scrollWidth - el.clientWidth;
-    if (d < 2) return;
-    const go = (d / 30) * 1000, total = 600 + go + 1000 + go;
+    if (look.names !== 'scroll' || gliding.has(el) || el.closest('[inert]') || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
     gliding.add(el);
-    el.style.textOverflow = 'clip';
-    const a = el.animate([
-      { textIndent: '0px', offset: 0 },
-      { textIndent: '0px', offset: 600 / total, easing: 'ease-in-out' },
-      { textIndent: -d + 'px', offset: (600 + go) / total },
-      { textIndent: -d + 'px', offset: (1600 + go) / total, easing: 'ease-in-out' },
-      { textIndent: '0px', offset: 1 },
-    ], { duration: total });
-    a.onfinish = a.oncancel = () => { el.style.textOverflow = ''; gliding.delete(el); };
+    // measured after the pause, once what it sits in has stopped moving: an area opening grows for 0.32 s, and measured
+    // as it began, its names, cut while it was folded, scrolled though they fit once it was open (Matt, 6 Nov: a bug)
+    // (and after the area it's in, if it's opening, has finished: a slow phone may take longer than the pause)
+    const settled = () => Promise.all([el.closest('.workoutPanel'), el.closest('.panelExpanded')].filter(Boolean)
+      .flatMap((x) => x.getAnimations()).map((a) => a.finished.catch(() => {})));
+    setTimeout(async () => {
+      await settled();
+      const d = el.isConnected && !el.closest('[inert]') ? el.scrollWidth - el.clientWidth : 0;
+      if (d < 2) { gliding.delete(el); return; }
+      const go = (d / 30) * 1000, total = go + 1000 + go;
+      el.style.textOverflow = 'clip';
+      const a = el.animate([
+        { textIndent: '0px', offset: 0, easing: 'ease-in-out' },
+        { textIndent: -d + 'px', offset: go / total },
+        { textIndent: -d + 'px', offset: (1000 + go) / total, easing: 'ease-in-out' },
+        { textIndent: '0px', offset: 1 },
+      ], { duration: total });
+      a.onfinish = a.oncancel = () => { el.style.textOverflow = ''; gliding.delete(el); };
+    }, 600);
   }
-  // each cut name glides the first time it's wholly in view
-  const inView = new IntersectionObserver((seen) => seen.forEach((e) => { if (e.isIntersecting) { inView.unobserve(e.target); glide(e.target); } }), { threshold: 1 });
+  // each cut name glides the first time it's wholly in view (not while it's on a folded area's hidden layer)
+  const inView = new IntersectionObserver((seen) => seen.forEach((e) => { if (e.isIntersecting && !e.target.closest('[inert]')) { inView.unobserve(e.target); glide(e.target); } }), { threshold: 1 });
   let namesQueued = false;
   new MutationObserver(() => {
     if (namesQueued || look.names !== 'scroll') return;
