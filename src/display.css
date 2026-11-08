@@ -53,7 +53,7 @@
 /* icons on the house page (Matt, 27 Oct): one neutral grey, on or off, the glyph in the muted text colour (Matt, 1 Nov:
    softer than black; 4.8:1 light, 3.9:1 dark). A light that's on shows its own colour (--light, set on its tile with
    data-light); alerts and a triggered alarm stay red */
-#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--muted)}
+#app.house{--hc-icon:#3a3a3a;--hc-icon-ink:var(--text)}
 #app.house.light{--hc-icon:#e6e6e6}
 #app.house #homeView .activityRowIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 /* phones (Matt, 28 Oct): cards 16 apart, double the 8 (the Weather page's too, and so the title to the first card);
@@ -92,7 +92,7 @@
 .tfAction>.tfActionHead{margin-bottom:auto}
 .tfActionHead>:is(div,.tfName){min-width:0}
 .tfAction .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
-.tfAction.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
+.tfAction.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
 .tfBar{position:relative;height:46px;border-radius:16px;background:var(--tile);overflow:hidden;cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 /* a bar a finger has held long enough to move it (Matt, 28 Oct): an accent ring until it's let go; a swipe over a bar
    scrolls the page (pan-y), and the bar takes over only once held */
@@ -248,7 +248,7 @@
 .tfSide :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tfSide .activityRow>div{min-width:0}
 /* a favourite's icon is its button: a light that's on in its own colour, a triggered alarm red */
-:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
+:is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
 :is(.tfCard,.tfMoreList,.tfMoreActions) .tfPlug.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
 /* a summary's devices, and the favourites list, in the dialog: tiles by room, two to a row (one with stars) */
 .tfMoreList{display:flex;flex-direction:column;gap:14px}
@@ -391,7 +391,7 @@ button.tfAreaIcon{cursor:pointer}
 .tfATile{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:var(--tile-min);padding:var(--inset);border-radius:var(--r-tile)}
 .tfATile>:is(div,.tfName):last-child{min-width:0}
 .tfATile .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
-.tfATile.on[data-light] .tfIcon{background:var(--light);color:var(--light-ink)}
+.tfATile.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
 .tfATile :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* folded (Matt's Figma "Area card accordions v04" 521:9673): 18 in at the top, 10 at the bottom; at the top the room's
    icon with its name under it (Inter 600 16), 6 apart, cut with "…" when it doesn't fit; the main (Geist 200 32) between;
@@ -407,7 +407,7 @@ button.tfAreaIcon{cursor:pointer}
 .tfACTiles:has(>:nth-child(3)){margin-top:-60px}
 .tfACTile{display:grid;place-items:center;width:60px;height:60px}
 .tfACTile .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
-.tfACTile .tfIcon[data-light]{background:var(--light);color:var(--light-ink)}
+.tfACTile .tfIcon[data-light]{background:var(--light-soft);color:var(--light-ink)}
 .tfACTile .tfIcon.alert{background:#e53935;color:#ffffff}
 @container (max-width:119px){.tfACTiles{grid-template-columns:60px}.tfACTile:nth-child(n+3){display:none}.tfACTiles:has(>:nth-child(2)){margin-top:-60px}}
 
@@ -599,7 +599,7 @@ button.tfAreaIcon{cursor:pointer}
 .tfRoomSub{overflow:hidden;color:var(--muted);font:400 16px/19px var(--font);white-space:nowrap;text-overflow:ellipsis}
 .tfRoomDevices{display:flex;gap:12px}
 .tfRoomDevices .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
-.tfRoomDevices .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}
+.tfRoomDevices .tfIcon.on[data-light]{background:var(--light-soft);color:var(--light-ink)}
 #app.tfBoard .tfRoomTile[data-rows="1"] .tfRoomInline{display:inline}
 #app.tfBoard .tfRoomTile[data-rows="1"] :is(.tfRoomReading,.tfRoomDevices),#app.tfBoard .tfRoomTile[data-rows="2"] .tfRoomDevices{display:none}
 #app.tfBoard .tfRoomTile:is([data-rows="4"],[data-rows="5"]) .tfActionHead .activityRowMeta{display:none}
@@ -612,7 +612,7 @@ button.tfAreaIcon{cursor:pointer}
 .tfRoomHeads{display:none;gap:12px 16px}
 .tfRoomDev{display:flex;align-items:center;gap:12px;min-width:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
 .tfRoomDev .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
-.tfRoomDev .tfIcon.on[data-light]{background:var(--light);color:var(--light-ink)}
+.tfRoomDev .tfIcon.on[data-light]{background:var(--light-soft);color:var(--light-ink)}
 .tfRoomDevName{display:flex;flex-direction:column;min-width:0}
 .tfRoomDevName>span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 #app.tfBoard .tfRoomTile[data-rows="1"]:not([data-cols="1"]){flex-direction:row;align-items:center;gap:12px}
@@ -818,3 +818,9 @@ button.tfAreaIcon{cursor:pointer}
 #app.house[data-names="wrap"] :is(.activityRowName,.activityRowMeta){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;hyphens:auto}
 /* names on two lines can make Favourites taller than its card: its list scrolls inside it, as Activity's does */
 #app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}
+
+/* icon chips (Matt, 8 Nov): soft 3D with a lit top edge, at half strength. A touch lighter at the top, a light line along the top and the
+   chip's own ink (currentColor) along and over the base; stronger on a coloured chip. Icons are in the text colour
+   (were grey) */
+#app.house :is(.tfIcon,.activityRowIcon,.tfAreaIcon,.tfRoomIcon){--chip-hi:.075;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,var(--chip-hi)),inset 0 -1px 0 color-mix(in srgb,currentColor 6%,transparent),inset 0 -3px 6px color-mix(in srgb,currentColor 7%,transparent)}
+#app.house :is(.on[data-light] .tfIcon,.tfIcon.on[data-light],.tfACTile .tfIcon[data-light],.on[data-tone="alarm"] .tfIcon){--chip-hi:.275}

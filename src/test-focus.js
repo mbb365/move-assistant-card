@@ -492,26 +492,46 @@ export function mountTestFocus(root, { config, getHass }) {
   // a lit light's glyph is its own colour, deepened (or, where white would contrast more, paled) only as far as 3.5:1
   // on it (Matt, 1 Nov: black on orange was harsh; 29 Oct: white on amber was 2:1)
   const lin = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
-  const darkInkWins = (rgb) => {
-    const L = 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
-    return (L + 0.05) / 0.0664 > 1.05 / (L + 0.05);
-  };
   const lum = (rgb) => 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
   const ratio = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
-  const tonalInk = (rgb, want) => {
-    const dark = darkInkWins(rgb);
-    for (let f = 0.1; f < 1; f += 0.02) {
-      const c = rgb.map((v) => Math.round(dark ? v * (1 - f) : v + (255 - v) * f));
-      if (ratio(c, rgb) >= want) return 'rgb(' + c.join(',') + ')';
-    }
-    return dark ? '#26221e' : '#ffffff';
-  };
-  function lightVars(id) {
+  /* a device that's on has its kind's colour (Matt, 8 Nov): a solid chip in a soft tint of it (mixed with white, so it
+     stays clean) and the icon a brighter, richer version of the same hue, never darkened toward grey: full saturation, as
+     light as it can be while it still reads on the chip (3:1). A light is its own colour; the rest are Home Assistant's
+     state colours */
+  const SOFTEN = 0.55;
+  const lightRgb = (id) => {
     const a = attr(id);
-    const rgb = (a.rgb_color || (a.hs_color && a.color_mode !== 'color_temp' ? hueRgb(...a.hs_color) : a.color_temp_kelvin ? kelvinRgb(a.color_temp_kelvin) : [255, 170, 0])).map((v) => Math.round(Math.max(0, Math.min(255, v))));
-    return '--light:rgb(' + rgb.join(',') + ');--light-ink:' + tonalInk(rgb, 3.5);
+    return (a.rgb_color || (a.hs_color && a.color_mode !== 'color_temp' ? hueRgb(...a.hs_color) : a.color_temp_kelvin ? kelvinRgb(a.color_temp_kelvin) : [255, 170, 0])).map((v) => Math.round(Math.max(0, Math.min(255, v))));
+  };
+  const CLIMATE_RGB = { heat: [255, 111, 34], cool: [33, 150, 243], heat_cool: [255, 193, 7], auto: [76, 175, 80], dry: [255, 152, 0], fan_only: [0, 188, 212] };
+  // the colour a device has while it's on, or null while it's off (a triggered alarm stays solid red)
+  function kindRgb(id) {
+    const d = id.split('.')[0], st = states[id]?.state;
+    if (!st || st === 'unavailable' || st === 'unknown') return null;
+    if (d === 'light') return st === 'on' ? lightRgb(id) : null;
+    if (d === 'climate') return CLIMATE_RGB[st] || null;
+    if (d === 'cover') return st !== 'closed' ? [146, 107, 199] : null;
+    if (d === 'lock') return st !== 'locked' ? [244, 67, 54] : null;
+    if (d === 'media_player') return ['playing', 'paused', 'on', 'buffering'].includes(st) ? [3, 169, 244] : null;
+    if (d === 'humidifier' || d === 'valve') return ['on', 'open', 'opening', 'closing'].includes(st) ? [33, 150, 243] : null;
+    if (d === 'vacuum') return ['cleaning', 'returning'].includes(st) ? [0, 150, 136] : null;
+    if (d === 'alarm_control_panel') return st !== 'disarmed' && st !== 'triggered' ? [76, 175, 80] : null;
+    if (d === 'fan') return st === 'on' ? [0, 188, 212] : null;
+    if (d === 'switch' || d === 'input_boolean') return st === 'on' ? [255, 193, 7] : null;
+    return null;
   }
-  const lightAttrs = (id) => (id.startsWith('light.') && states[id]?.state === 'on' ? ' data-light style="' + lightVars(id) + '"' : '');
+  function richInk(rgb, on) {
+    const [r, g, b] = rgb.map((v) => v / 255), mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+    const h = !d ? 0 : (mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4) * 60;
+    const l0 = (mx + mn) / 2, s0 = !d ? 0 : d / (1 - Math.abs(2 * l0 - 1)), s = d < 0.1 ? Math.min(s0, 0.25) : 1; // a white light stays soft, not pink
+    const hsl = (l) => { const k = (n) => (n + h / 30) % 12, a = s * Math.min(l, 1 - l); return [0, 8, 4].map((n) => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1))))); };
+    for (let l = 0.5; l > 0.04; l -= 0.01) { const c = hsl(l); if (ratio(c, on) >= 3) return 'rgb(' + c.join(',') + ')'; }
+    return '#26221e';
+  }
+  const colourVars = (rgb) => { const soft = rgb.map((v) => Math.round(v + (255 - v) * SOFTEN)); return '--light-soft:rgb(' + soft.join(',') + ');--light-ink:' + richInk(rgb, soft); };
+  const lightVars = (id) => colourVars(lightRgb(id));
+  // the marker and colours on a device's tile while it's on (data-light: lights first, now every kind)
+  const lightAttrs = (id) => { const c = kindRgb(id); return c ? ' data-light style="' + colourVars(c) + '"' : ''; };
   const dimmable = (id) => { const m = modesOf(id); return m.length ? m.some((x) => x !== 'onoff') : attr(id).brightness != null; };
   const kelvinRange = (id) => [attr(id).min_color_temp_kelvin || 2000, attr(id).max_color_temp_kelvin || 6500];
   const clock = (t) => new Date(t).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
@@ -963,25 +983,25 @@ export function mountTestFocus(root, { config, getHass }) {
       acts: r.lights.map((id) => ['light', lit.length ? 'turn_off' : 'turn_on', id]), aria: (lit.length ? 'Turn off' : 'Turn on') + ' the lights in ' + r.name });
     if (covers.length) {
       const noun = kinds.length === 1 ? COVER_NOUN[kinds[0]] : 'covers', avg = Math.round(covers.reduce((t, id) => t + posOf(id), 0) / covers.length);
-      keys.push({ key: 'covers', kind: 'control', tone: 'blue', icon: areaGlyph('', COVER_ICON[kinds[0]]?.[open.length ? 0 : 1] || 'mdi:window-shutter'), label: cap(noun), value: avg <= 0 ? 'Closed' : avg >= 100 ? 'Open' : avg + '% open', short: avg <= 0 ? 'Closed' : avg + '%', on: open.length > 0,
+      keys.push({ key: 'covers', kind: 'control', tone: 'blue', light: open.length ? colourVars([146, 107, 199]) : '', icon: areaGlyph('', COVER_ICON[kinds[0]]?.[open.length ? 0 : 1] || 'mdi:window-shutter'), label: cap(noun), value: avg <= 0 ? 'Closed' : avg >= 100 ? 'Open' : avg + '% open', short: avg <= 0 ? 'Closed' : avg + '%', on: open.length > 0,
         acts: covers.map((id) => ['cover', open.length ? 'close_cover' : 'open_cover', id]), aria: (open.length ? 'Close the ' : 'Open the ') + noun + ' in ' + r.name });
     }
     if (climate) {
       const a = attr(climate), off = states[climate].state === 'off';
-      keys.push({ key: 'climate', kind: 'control', tone: a.hvac_action === 'cooling' ? 'cool' : 'heat', icon: areaGlyph(climate), label: nameOf(climate), value: off ? 'Off' : cap(a.hvac_action || states[climate].state) + ' · ' + deg(a.temperature), short: off ? 'Off' : deg(a.temperature), on: !off,
+      keys.push({ key: 'climate', kind: 'control', tone: a.hvac_action === 'cooling' ? 'cool' : 'heat', light: kindRgb(climate) ? colourVars(kindRgb(climate)) : '', icon: areaGlyph(climate), label: nameOf(climate), value: off ? 'Off' : cap(a.hvac_action || states[climate].state) + ' · ' + deg(a.temperature), short: off ? 'Off' : deg(a.temperature), on: !off,
         acts: [['climate', 'toggle', climate]], aria: 'Turn ' + nameOf(climate) + (off ? ' on' : ' off') });
     }
     if (humidifier) {
       const on = states[humidifier].state === 'on';
-      keys.push({ key: 'humidifier', kind: 'control', tone: 'blue', icon: areaGlyph('', 'mdi:air-humidifier'), label: nameOf(humidifier), value: on ? 'On · ' + attr(humidifier).humidity + '%' : 'Off', short: on ? attr(humidifier).humidity + '%' : 'Off', on,
+      keys.push({ key: 'humidifier', kind: 'control', tone: 'blue', light: on ? colourVars([33, 150, 243]) : '', icon: areaGlyph('', 'mdi:air-humidifier'), label: nameOf(humidifier), value: on ? 'On · ' + attr(humidifier).humidity + '%' : 'Off', short: on ? attr(humidifier).humidity + '%' : 'Off', on,
         acts: [['humidifier', 'toggle', humidifier]], aria: 'Turn ' + nameOf(humidifier) + (on ? ' off' : ' on') });
     }
     if (players.length) {
       const id = playing || players[0], st = states[id], isOn = st.state === 'playing';
-      keys.push({ key: 'media', kind: 'control', tone: 'blue', icon: areaGlyph(id), label: nameOf(id), value: valueOf(id), short: isOn ? 'Playing' : st.state === 'paused' ? 'Paused' : cap(st.state), on: isOn,
+      keys.push({ key: 'media', kind: 'control', tone: 'blue', light: kindRgb(id) ? colourVars(kindRgb(id)) : '', icon: areaGlyph(id), label: nameOf(id), value: valueOf(id), short: isOn ? 'Playing' : st.state === 'paused' ? 'Paused' : cap(st.state), on: isOn,
         acts: [['media_player', st.state === 'playing' || st.state === 'paused' ? 'media_play_pause' : 'toggle', id]], aria: (isOn ? 'Pause ' : 'Play ') + nameOf(id) });
     }
-    if (r.plugs.length) keys.push({ key: 'plugs', kind: 'control', tone: 'blue', icon: areaGlyph('', 'mdi:power-plug'), label: 'Plugs', value: plugsOn.length ? plugsOn.length + ' of ' + r.plugs.length + ' on' : 'All off', short: plugsOn.length ? plugsOn.length + ' on' : 'Off', on: plugsOn.length > 0,
+    if (r.plugs.length) keys.push({ key: 'plugs', kind: 'control', tone: 'blue', light: plugsOn.length ? colourVars([255, 193, 7]) : '', icon: areaGlyph('', 'mdi:power-plug'), label: 'Plugs', value: plugsOn.length ? plugsOn.length + ' of ' + r.plugs.length + ' on' : 'All off', short: plugsOn.length ? plugsOn.length + ' on' : 'Off', on: plugsOn.length > 0,
       acts: r.plugs.map((id) => ['switch', plugsOn.length ? 'turn_off' : 'turn_on', id]), aria: (plugsOn.length ? 'Turn off' : 'Turn on') + ' the plugs in ' + r.name });
     // a leak is an alert, in red; an open door or window is only worth a note, never red (Matt, 27 Oct: the balcony door)
     r.alerts.forEach((id) => keys.push(attr(id).device_class === 'moisture' ? { key: 'alert:' + id, kind: 'alert', icon: areaGlyph(id), label: 'Water leak' }
