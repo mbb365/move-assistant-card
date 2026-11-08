@@ -299,13 +299,15 @@ export function mountTestFocus(root, { config, getHass }) {
         new MutationObserver(follow).observe(c, { subtree: true, attributes: true, attributeFilter: ['aria-pressed', 'class', 'disabled'] });
         follow();
       }
-      if (btns.length > 3) { c.hidden = true; list.hidden = false; continue; }
+      const show = (seg) => { if (c.hidden !== !seg) c.hidden = !seg; if (list.hidden !== seg) list.hidden = seg; };
+      if (btns.length > 3) { show(false); continue; }
       // measured only while it shows; a closed tab keeps what it had
-      if (!c.getClientRects().length && !list.getClientRects().length) { if (!list.dataset.fit) { c.hidden = false; list.hidden = true; } continue; }
+      if (!c.getClientRects().length && !list.getClientRects().length) { if (!list.dataset.fit) show(true); continue; }
+      const was = c.hidden;
       c.hidden = false;
       const fits = btns.every((b) => b.scrollWidth <= b.clientWidth + 1);
-      c.hidden = !fits;
-      list.hidden = fits;
+      c.hidden = was;
+      show(fits);
       list.dataset.fit = '1';
     }
   }
@@ -520,14 +522,29 @@ export function mountTestFocus(root, { config, getHass }) {
     if (d === 'switch' || d === 'input_boolean') return st === 'on' ? [255, 193, 7] : null;
     return null;
   }
-  function richInk(rgb, on) {
+  // the richest version of a colour that reads (3:1) on the chip under it: its hue at full saturation, from mid
+  // lightness darker for a light chip, or lighter for a dark one
+  function richInk(rgb, on, up = false) {
     const [r, g, b] = rgb.map((v) => v / 255), mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
     const h = !d ? 0 : (mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4) * 60;
     const l0 = (mx + mn) / 2, s0 = !d ? 0 : d / (1 - Math.abs(2 * l0 - 1)), s = d < 0.1 ? Math.min(s0, 0.25) : 1; // a white light stays soft, not pink
     const hsl = (l) => { const k = (n) => (n + h / 30) % 12, a = s * Math.min(l, 1 - l); return [0, 8, 4].map((n) => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1))))); };
-    for (let l = 0.5; l > 0.04; l -= 0.01) { const c = hsl(l); if (ratio(c, on) >= 3) return 'rgb(' + c.join(',') + ')'; }
-    return '#26221e';
+    for (let l = 0.5; up ? l < 0.96 : l > 0.04; l += up ? 0.01 : -0.01) { const c = hsl(l); if (ratio(c, on) >= 3) return 'rgb(' + c.join(',') + ')'; }
+    return up ? '#ffffff' : '#26221e';
   }
+  // a summary's icon in its colour on the plain chip (Matt, 8 Nov), one for the dark chip and one for the light; a grey
+  // summary colour (Maintenance) has no hue, so it keeps the text colour
+  const sumInk = (hex) => {
+    const rgb = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+    if (Math.max(...rgb) - Math.min(...rgb) < 26) return '';
+    return ';--sum-d:' + richInk(rgb, [58, 58, 58], true) + ';--sum-l:' + richInk(rgb, [230, 230, 230]);
+  };
+  // Climate's icon is a soft pastel gradient from warm to cool (Matt, 8 Nov): peach at the top, blue at the foot, through
+  // lilac so the middle never goes grey; a touch deeper on the light chip so it still shows there
+  const CLIMATE_STOPS = { d: ['#ffb894', '#d2b4ff', '#9dcbff'], l: ['#f0946a', '#b48ae6', '#6fa8e8'] };
+  const climateVars = () => [0, 1, 2].map((i) => '--g' + i + '-d:' + CLIMATE_STOPS.d[i] + ';--g' + i + '-l:' + CLIMATE_STOPS.l[i]).join(';');
+  const CLIMATE_DEFS = '<svg class="tfGradDefs" aria-hidden="true" focusable="false"><defs><linearGradient id="hcClimateGrad" x1="0" y1="0" x2="0" y2="1">' +
+    [0.15, 0.5, 0.85].map((o, i) => '<stop offset="' + o + '" style="stop-color:var(--g' + i + ')"/>').join('') + '</linearGradient></defs></svg>';
   const colourVars = (rgb) => { const soft = rgb.map((v) => Math.round(v + (255 - v) * SOFTEN)); return '--light-soft:rgb(' + soft.join(',') + ');--light-ink:' + richInk(rgb, soft); };
   const lightVars = (id) => colourVars(lightRgb(id));
   // the marker and colours on a device's tile while it's on (data-light: lights first, now every kind)
@@ -1065,7 +1082,9 @@ export function mountTestFocus(root, { config, getHass }) {
     const opens = (k) => { const ids = groupIds(r, k.key); return ids.length === 1 ? ids[0] : 'group:' + r.id + ':' + k.key; };
     const tiles = keys.filter((k) => k.kind === 'control').slice(0, 4).map((k) => '<div class="tfATile' + (k.on ? ' on' : '') + '" data-tone="' + k.tone + '"' + (k.light ? ' data-light style="' + k.light + '"' : '') + '>' + keyButton(k, 'tfIcon', k.icon) +
       '<button class="tfName" type="button" data-more="' + esc(opens(k)) + '" aria-label="' + esc(r.name + ' ' + k.label.toLowerCase() + ', ' + k.value + '. Open') + '"><span class="activityRowName">' + esc(k.label) + '</span><span class="activityRowMeta">' + esc(k.value) + '</span></button></div>');
-    return '<div class="workoutPanelTop">' + areaIcon(r, keys) + '<div class="tfATitle">' + areaTitle(r) + alertTags(keys) + '</div></div>' +
+    // its notes (an open door, a leak) sit in the card's top right corner, so they never push the reading down (Matt, 8 Nov)
+    const tags = alertTags(keys);
+    return '<div class="workoutPanelTop">' + areaIcon(r, keys) + '<div class="tfATitle">' + areaTitle(r) + '</div>' + (tags ? '<div class="tfATags">' + tags + '</div>' : '') + '</div>' +
       (main ? '<button class="tfABig" type="button" data-more="' + esc(main) + '" aria-label="' + esc(nameOf(main) + ', ' + valueOf(main) + '. More info') + '">' +
         '<span class="tfABigMain' + (h.text.length > 7 ? ' long' : '') + '">' + esc(h.text) + (h.unit ? '<span class="tfABigUnit">' + esc(h.unit) + '</span>' : '') + '</span>' +
         (sub ? '<span class="tfABigSub">' + esc(sub) + '</span>' : '') + '</button>' : '') +
@@ -1264,8 +1283,8 @@ export function mountTestFocus(root, { config, getHass }) {
     });
     return out;
   }
-  const summaryRow = (s) => '<div class="activityRow tap tfSum" role="button" tabindex="0" data-summary="' + esc(s.key) + '" data-k="sum:' + esc(s.key) + '" aria-label="' + esc(s.name + (s.value ? ', ' + s.value : '')) + '"' + (s.key === 'alerts' ? ' style="--sum:' + s.colour + ';--sum-ink:#ffffff"' : '') + '>' +
-    '<div class="tfIcon" aria-hidden="true"' + iconSlot(s.id || '', s.icon, s.name) + '></div>' +
+  const summaryRow = (s) => '<div class="activityRow tap tfSum" role="button" tabindex="0" data-summary="' + esc(s.key) + '" data-k="sum:' + esc(s.key) + '" aria-label="' + esc(s.name + (s.value ? ', ' + s.value : '')) + '"' + (s.key === 'alerts' ? ' style="--sum:' + s.colour + ';--sum-ink:#ffffff"' : s.key === 'climate' ? ' style="' + climateVars() + '"' : s.colour && sumInk(s.colour) ? ' style="' + sumInk(s.colour).slice(1) + '"' : '') + '>' +
+    (s.key === 'climate' ? CLIMATE_DEFS : '') + '<div class="tfIcon" aria-hidden="true"' + iconSlot(s.id || '', s.icon, s.name) + '></div>' +
     '<div><div class="activityRowName">' + esc(s.name) + '</div>' + (s.value ? '<div class="activityRowMeta">' + esc(s.value) + '</div>' : '') + '</div></div>';
   function toggleStar(id) {
     const list = starred();
@@ -2593,12 +2612,18 @@ export function mountTestFocus(root, { config, getHass }) {
     if (!testFocus || !grid) return;
     // the new page is ready before the old one goes, so the page never stands empty (it would lose its scroll)
     const out = layout();
+    // the icons already drawn go into the new page's same slots, so a full redraw (the favourites settling a moment
+    // after the page opens, an area opening) doesn't blank every icon while they load again (Matt, 8 Nov: flicker)
+    const slotKey = (slot) => (slot.closest('[data-k]')?.dataset.k || '') + '|' + slot.dataset.iconFor + '|' + (slot.dataset.iconName || '');
+    const drawn = new Map();
+    grid.querySelectorAll('[data-tf] [data-icon-for]').forEach((slot) => { if (slot.firstElementChild) (drawn.get(slotKey(slot)) || drawn.set(slotKey(slot), []).get(slotKey(slot))).push(slot.firstElementChild); });
     grid.querySelectorAll('[data-tf]').forEach((el) => el.remove());
     units.clear();
     const wrap = document.createElement('div');
     wrap.innerHTML = out.map((n) => (n.tiles ? blockHtml(n) : n.html)).join('');
     out.forEach((n) => (n.tiles ? n.tiles.forEach((t) => units.set(t.key, t.html)) : units.set(n.key, n.html)));
     signature = signOf(out);
+    wrap.querySelectorAll('[data-icon-for]').forEach((slot) => { const el = !slot.firstElementChild && drawn.get(slotKey(slot))?.shift(); if (el) slot.appendChild(el); });
     grid.append(...wrap.children);
     placeBento(out.weather);
     placeDash(true);
@@ -2633,6 +2658,14 @@ export function mountTestFocus(root, { config, getHass }) {
       // the light's colours; the board's own (--tf-…, its place and size) stay
       [...old.style].filter((v) => v.startsWith('--') && !v.startsWith('--tf-')).forEach((v) => old.style.removeProperty(v));
       [...next.style].forEach((v) => old.style.setProperty(v, next.style.getPropertyValue(v)));
+      return old;
+    }
+    // an icon that's already drawn stays (Matt, 8 Nov: icons flickered): the redrawn slot comes empty, and swapped in
+    // it stood blank until its icon loaded again. Same icon, so only its attributes change; fillIcons updates it in place
+    const slot = (el) => el.dataset?.iconFor !== undefined;
+    if (slot(old) && slot(next) && !next.children.length && old.dataset.iconFor === next.dataset.iconFor && old.dataset.iconName === next.dataset.iconName && old.firstElementChild) {
+      [...old.attributes].forEach((a) => { if (!next.hasAttribute(a.name)) old.removeAttribute(a.name); });
+      [...next.attributes].forEach((a) => { if (old.getAttribute(a.name) !== a.value) old.setAttribute(a.name, a.value); });
       return old;
     }
     if (old.tagName !== next.tagName || old.children.length !== next.children.length) { old.replaceWith(next); return next; }
