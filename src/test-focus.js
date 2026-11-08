@@ -62,6 +62,8 @@ const TOGGLES = ['switch', 'fan', 'input_boolean', 'automation'];
 // bottom, 640 wide. Set in Settings → Appearance → More info and remembered in this browser; both rise from the
 // bottom on phones.
 const LOOK_KEY = 'move-assistant-house-look';
+// Settings → Appearance in groups, each named above its card (Matt, 8 Nov)
+const LOOK_GROUPS = [['look', 'Look'], ['house', 'House page'], ['weather', 'Weather']];
 const MORE_STYLES = [['popup', 'Popup'], ['sheet', 'Sheet']];
 // Settings → Appearance → Long names (Matt, 31 Oct): how a name or state too long for its space shows
 const NAME_STYLES = [['auto', 'Automatic'], ['cut', 'Cut short'], ['wrap', 'Two lines'], ['scroll', 'Scroll']];
@@ -146,19 +148,23 @@ export function mountTestFocus(root, { config, getHass }) {
     view.querySelector('.rubberTabs').insertAdjacentHTML('afterend', '<div class="settingsPane active" id="housePane">' +
       '<div class="tabs rubberTabs houseTabs"><div class="rubberIndicator" aria-hidden="true"></div>' +
         tabs.map(([k, t]) => '<button class="tab segBtn' + (k === 'look' ? ' active' : '') + '" type="button" data-house-tab="' + k + '">' + t + '</button>').join('') + '</div>' +
-      tabPane('look', '<div class="toggleList" id="houseLook"></div>') +
+      // Appearance in groups, each named above its card (Matt, 8 Nov)
+      tabPane('look', LOOK_GROUPS.map(([k, t]) => '<div class="tfSetGroup"><div class="sectionLabel">' + t + '</div><div class="toggleList" data-look-group="' + k + '"></div></div>').join('')) +
       tabPane('lights', '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p>' +
         '<div class="metaTableWrap"><table class="metaTable tfLightTable"><thead><tr><th>Light</th><th>Room</th><th>Now</th><th class="metaSwitchCol">Favourite</th><th>Tile</th><th>Pad</th></tr></thead>' +
-        '<tbody id="lightRows"></tbody></table></div>') +
+        '<tbody id="lightRows"></tbody></table></div><div class="tfLightCards" id="lightCards"></div>') +
       tabPane('sources', '<div class="toggleList">' +
         SOURCES.map(([k, t, s]) => settingRow(t, s, '<select class="settingsSelect" data-source="' + k + '" aria-label="' + t + '"></select>')).join('') + '</div>') +
       tabPane('sums', '<div class="toggleList">' +
         Object.entries(SUMMARIES).map(([k, s]) => settingRow(s.name, '', '<button class="switch" type="button" role="switch" data-sum-toggle="' + k + '" aria-label="' + s.name + ' summary"></button>')).join('') + '</div>') + '</div>');
-    const rows = $('houseLook');
-    [view.querySelector('.themeBtn')?.closest('.toggleRow'), $('densityToggle')?.closest('.toggleRow'), $('moreInfoChoice')?.closest('.toggleRow'), $('namesChoice')?.closest('.toggleRow'), $('hoursChoice')?.closest('.toggleRow'), $('wxStyleChoice')?.closest('.toggleRow')].forEach((row) => row && rows.appendChild(row));
-    rows.insertAdjacentHTML('beforeend', settingRow('Lights', 'How lights show on the house page.', seg('lightsChoice', 'Lights', 'data-lights', [['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']]), 'lightsRow') +
+    const group = (k) => view.querySelector('[data-look-group="' + k + '"]'), rowOf = (el) => el?.closest('.toggleRow');
+    [rowOf(view.querySelector('.themeBtn')), rowOf($('densityToggle'))].forEach((row) => row && group('look').appendChild(row));
+    [rowOf($('moreInfoChoice')), rowOf($('namesChoice'))].forEach((row) => row && group('house').appendChild(row));
+    group('house').insertAdjacentHTML('beforeend', settingRow('Lights', 'How lights show on the house page.', seg('lightsChoice', 'Lights', 'data-lights', [['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']]), 'lightsRow') +
       settingRow('Pad', 'What the Dual Axis Controller’s pad sets on its tile.', seg('dacPadChoice', 'Pad', 'data-dac-pad', [['temperature', 'Temperature'], ['colour', 'Colour']]), 'dacPadRow'));
+    [rowOf($('hoursChoice')), rowOf($('wxStyleChoice'))].forEach((row) => row && group('weather').appendChild(row));
     const pane = $('housePane'), bar = pane.querySelector('.houseTabs'), mark = bar.querySelector('.rubberIndicator');
+    new ResizeObserver(() => fitChoices()).observe(pane);
     // the sliding mark under the open tab, as on Move Assistant's settings; placed again whenever the bar shows or resizes
     const placeMark = (animate) => {
       const on = bar.querySelector('.tab.active');
@@ -175,10 +181,22 @@ export function mountTestFocus(root, { config, getHass }) {
         pane.querySelectorAll('.houseTab').forEach((p) => p.classList.toggle('active', p.dataset.housePane === tab.dataset.houseTab));
         tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
         placeMark(true);
+        fitChoices();
         return;
       }
       const fav = ev.target.closest('[data-light-fav]');
       if (fav) { toggleStar(fav.dataset.lightFav); return; }
+      // a light's card on a phone: its tile and pad as choices (the table's lists, as segments)
+      const pick = ev.target.closest('[data-light-pick]');
+      if (pick) {
+        const [field, id] = pick.dataset.lightPick.split('|'), next = { ...look[field] };
+        if (pick.dataset.v) next[id] = pick.dataset.v; else delete next[id];
+        look[field] = next;
+        saveLook();
+        [...dacs.keys()].filter((k) => k.endsWith(':' + id)).forEach((k) => dacs.delete(k));
+        render();
+        return;
+      }
       const b = ev.target.closest('[data-lights],[data-dac-pad],[data-sum-toggle]');
       if (!b || b.disabled) return;
       if (b.dataset.lights) look.lights = b.dataset.lights;
@@ -230,8 +248,9 @@ export function mountTestFocus(root, { config, getHass }) {
     pane.querySelectorAll('[data-sum-toggle]').forEach((b) => { const on = !(prefs.hiddenSums || []).includes(b.dataset.sumToggle); b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); });
     // the lights table, by room, redrawn when something in it changed, but not while one of its lists is open. A switch
     // just pressed keeps its focus through the redraw (it used to stop the redraw, so a favourite never showed as set)
-    const body = $('lightRows'), inside = body?.contains(root.activeElement) ? root.activeElement : null;
-    if (!body || inside?.matches('select')) return;
+    const body = $('lightRows'), cards = $('lightCards'), active = root.activeElement;
+    const inside = body?.contains(active) || cards?.contains(active) ? active : null;
+    if (!body || inside?.matches('select')) { fitChoices(); return; }
     const stars = new Set(starred()), opt = (v, t, cur, off) => '<option value="' + v + '"' + (v === cur ? ' selected' : '') + (off ? ' disabled' : '') + '>' + t + '</option>';
     const html = Object.keys(states).filter((id) => id.startsWith('light.'))
       .sort((a, b) => !whereIs.get(a) - !whereIs.get(b) || (whereIs.get(a) || '').localeCompare(whereIs.get(b) || '') || nameOf(a).localeCompare(nameOf(b))).map((id) => {
@@ -241,10 +260,54 @@ export function mountTestFocus(root, { config, getHass }) {
           '<td><select class="settingsSelect" data-light-style="' + esc(id) + '" aria-label="' + name + ' tile">' + opt('', 'Default', style) + opt('tile', 'HomeCore tile', style) + opt('dac', 'Dual Axis Controller', style) + '</select></td>' +
           '<td><select class="settingsSelect" data-light-pad="' + esc(id) + '" aria-label="' + name + ' pad"' + (wantsDac(id) ? '' : ' disabled') + '>' + opt('', 'Default', pad) + opt('temperature', 'Temperature', pad) + opt('colour', 'Colour', pad) + '</select></td></tr>';
       }).join('');
-    if (body.dataset.html === html) return;
-    body.innerHTML = html;
-    body.dataset.html = html;
-    if (inside?.dataset.lightFav) body.querySelector('[data-light-fav="' + CSS.escape(inside.dataset.lightFav) + '"]')?.focus({ preventScroll: true });
+    // on a phone each light is a card (Matt, 8 Nov): its name and where it is, then Favourite with its switch, then its
+    // tile, and its pad when it's the Dual Axis Controller, as choices
+    const pickSeg = (field, id, label, opts, cur) => '<div class="themeChoice" role="group" aria-label="' + label + '">' + opts.map(([v, t]) =>
+      '<button class="wxLayoutBtn" type="button" aria-pressed="' + (v === cur) + '" data-light-pick="' + field + '|' + esc(id) + '" data-v="' + v + '">' + t + '</button>').join('') + '</div>';
+    const cardsHtml = Object.keys(states).filter((id) => id.startsWith('light.'))
+      .sort((a, b) => !whereIs.get(a) - !whereIs.get(b) || (whereIs.get(a) || '').localeCompare(whereIs.get(b) || '') || nameOf(a).localeCompare(nameOf(b))).map((id) => {
+        const fav = stars.has(id), name = esc(nameOf(id)), where = [whereIs.get(id), valueOf(id)].filter(Boolean).map(esc).join(' · ');
+        return '<div class="toggleList"><div class="toggleRow"><div><strong>' + name + '</strong><div class="status">' + where + '</div></div></div>' +
+          settingRow('Favourite', '', '<button class="switch' + (fav ? ' on' : '') + '" type="button" role="switch" aria-checked="' + fav + '" data-light-fav="' + esc(id) + '" aria-label="' + name + ' is a favourite"></button>') +
+          settingRow('Tile', '', pickSeg('lightStyles', id, name + ' tile', [['', 'Default'], ['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']], look.lightStyles[id] || '')) +
+          (wantsDac(id) ? settingRow('Pad', '', pickSeg('lightPads', id, name + ' pad', [['', 'Default'], ['temperature', 'Temperature'], ['colour', 'Colour']], look.lightPads[id] || '')) : '') + '</div>';
+      }).join('');
+    if (body.dataset.html !== html) { body.innerHTML = html; body.dataset.html = html; }
+    if (cards.dataset.html !== cardsHtml) { cards.innerHTML = cardsHtml; cards.dataset.html = cardsHtml; }
+    if (inside?.dataset.lightFav) (cards.contains(inside) ? cards : body).querySelector('[data-light-fav="' + CSS.escape(inside.dataset.lightFav) + '"]')?.focus({ preventScroll: true });
+    fitChoices();
+  }
+  /* a choice of more than three, or one whose choices don't fit on its line, is a list below instead (Matt, 8 Nov).
+     The list stands in for the segments: picking in it presses the segment, and it follows whichever is pressed */
+  function fitChoices() {
+    const pane = $('housePane');
+    if (!pane) return;
+    for (const c of pane.querySelectorAll('.themeChoice')) {
+      const btns = [...c.querySelectorAll('button')];
+      let list = c.nextElementSibling?.classList.contains('tfChoiceList') ? c.nextElementSibling : null;
+      if (!list) {
+        list = document.createElement('select');
+        list.className = 'settingsSelect tfChoiceList';
+        list.setAttribute('aria-label', c.getAttribute('aria-label') || c.closest('.toggleRow')?.querySelector('strong')?.textContent || '');
+        list.addEventListener('change', () => btns[Number(list.value)]?.click());
+        c.after(list);
+        const follow = () => {
+          list.innerHTML = btns.map((b, i) => '<option value="' + i + '"' + (b.disabled ? ' disabled' : '') + '>' + esc(b.textContent) + '</option>').join('');
+          const on = btns.findIndex((b) => b.getAttribute('aria-pressed') === 'true' || b.classList.contains('active'));
+          if (on >= 0) list.value = String(on);
+        };
+        new MutationObserver(follow).observe(c, { subtree: true, attributes: true, attributeFilter: ['aria-pressed', 'class', 'disabled'] });
+        follow();
+      }
+      if (btns.length > 3) { c.hidden = true; list.hidden = false; continue; }
+      // measured only while it shows; a closed tab keeps what it had
+      if (!c.getClientRects().length && !list.getClientRects().length) { if (!list.dataset.fit) { c.hidden = false; list.hidden = true; } continue; }
+      c.hidden = false;
+      const fits = btns.every((b) => b.scrollWidth <= b.clientWidth + 1);
+      c.hidden = !fits;
+      list.hidden = fits;
+      list.dataset.fit = '1';
+    }
   }
 
   /* ---------- density overlay ---------- */
