@@ -141,16 +141,19 @@ export function mountTestFocus(root, { config, getHass }) {
   function houseSettings() {
     if (!testFocus || $('housePane')) return;
     const view = $('settingsView');
-    view.querySelector('.settingsTitle').textContent = 'HomeCore';
+    view.querySelector('.settingsTitle').textContent = 'HomeCore settings'; // (Matt, 9 Nov)
     // one tab each (Matt, 27 Oct); the tab names the section, so the sections have no heading of their own
     const tabs = [['look', 'Appearance'], ['lights', 'Lights'], ['sources', 'Sources'], ['sums', 'Summaries']];
     const tabPane = (k, html) => '<div class="houseTab' + (k === 'look' ? ' active' : '') + '" data-house-pane="' + k + '"><section class="card">' + html + '</section></div>';
     view.querySelector('.rubberTabs').insertAdjacentHTML('afterend', '<div class="settingsPane active" id="housePane">' +
       '<div class="tabs rubberTabs houseTabs"><div class="rubberIndicator" aria-hidden="true"></div>' +
         tabs.map(([k, t]) => '<button class="tab segBtn' + (k === 'look' ? ' active' : '') + '" type="button" data-house-tab="' + k + '">' + t + '</button>').join('') + '</div>' +
-      // Appearance in groups, each named above its card (Matt, 8 Nov)
-      tabPane('look', LOOK_GROUPS.map(([k, t]) => '<div class="tfSetGroup"><div class="sectionLabel">' + t + '</div><div class="toggleList" data-look-group="' + k + '"></div></div>').join('')) +
-      tabPane('lights', '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p>' +
+      // Appearance in groups (Matt, 8 Nov), each one's title inside its card as a card header (Matt, 9 Nov)
+      tabPane('look', LOOK_GROUPS.map(([k, t]) => '<div class="tfSetGroup"><div class="toggleList" data-look-group="' + k + '"><div class="tfCardTitle">' + t + '</div></div></div>').join('')) +
+      // Lights as cards by default, with a Cards | Table choice (Matt, 9 Nov)
+      tabPane('lights', '<div class="tfLightView"><div class="themeChoice" role="group" aria-label="Show lights as">' +
+        '<button class="wxLayoutBtn" type="button" data-light-view="cards">Cards</button><button class="wxLayoutBtn" type="button" data-light-view="table">Table</button></div></div>' +
+        '<p class="note tfTableNote">This is an example of a table. It is not how to control features in lights.</p>' +
         '<div class="metaTableWrap"><table class="metaTable tfLightTable"><thead><tr><th>Light</th><th>Room</th><th>Now</th><th class="metaSwitchCol">Favourite</th><th>Tile</th><th>Pad</th></tr></thead>' +
         '<tbody id="lightRows"></tbody></table></div><div class="tfLightCards" id="lightCards"></div>') +
       tabPane('sources', '<div class="toggleList">' +
@@ -158,12 +161,23 @@ export function mountTestFocus(root, { config, getHass }) {
       tabPane('sums', '<div class="toggleList">' +
         Object.entries(SUMMARIES).map(([k, s]) => settingRow(s.name, '', '<button class="switch" type="button" role="switch" data-sum-toggle="' + k + '" aria-label="' + s.name + ' summary"></button>')).join('') + '</div>') + '</div>');
     const group = (k) => view.querySelector('[data-look-group="' + k + '"]'), rowOf = (el) => el?.closest('.toggleRow');
-    [rowOf(view.querySelector('.themeBtn')), rowOf($('densityToggle'))].forEach((row) => row && group('look').appendChild(row));
+    [rowOf(view.querySelector('.themeBtn'))].forEach((row) => row && group('look').appendChild(row));
+    // no Show density in HomeCore's settings (Matt, 9 Nov)
+    const density = rowOf($('densityToggle'));
+    if (density) density.hidden = true;
     [rowOf($('moreInfoChoice')), rowOf($('namesChoice'))].forEach((row) => row && group('house').appendChild(row));
     group('house').insertAdjacentHTML('beforeend', settingRow('Lights', 'How lights show on the house page.', seg('lightsChoice', 'Lights', 'data-lights', [['tile', 'HomeCore tile'], ['dac', 'Dual Axis Controller']]), 'lightsRow') +
       settingRow('Pad', 'What the Dual Axis Controller’s pad sets on its tile.', seg('dacPadChoice', 'Pad', 'data-dac-pad', [['temperature', 'Temperature'], ['colour', 'Colour']]), 'dacPadRow'));
     [rowOf($('hoursChoice')), rowOf($('wxStyleChoice'))].forEach((row) => row && group('weather').appendChild(row));
     const pane = $('housePane'), bar = pane.querySelector('.houseTabs'), mark = bar.querySelector('.rubberIndicator');
+    const LIGHT_VIEW_KEY = 'homecore-light-view';
+    const showLights = (v) => {
+      pane.classList.toggle('tfLightCardsOn', v === 'cards');
+      pane.querySelectorAll('[data-light-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lightView === v)));
+      local.set(LIGHT_VIEW_KEY, v);
+    };
+    showLights(local.get(LIGHT_VIEW_KEY) === 'table' ? 'table' : 'cards');
+    pane.querySelector('.tfLightView').addEventListener('click', (ev) => { const b = ev.target.closest('[data-light-view]'); if (b) showLights(b.dataset.lightView); });
     new ResizeObserver(() => fitChoices()).observe(pane);
     // a late font changes the choices' words' widths too (as the leadership demo, 9 Nov)
     document.fonts?.ready?.then(() => fitChoices());
@@ -1750,6 +1764,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const { n, w } = phone ? { n: 2, w: Math.floor((W - PEG_GAP) / 2) } : pegsFor(W);
     // the Weather page is laid on the same board, its columns the dashboard's (Matt, 1 Nov: one rule set)
     bentoBox.classList.add('tfPegs');
+    bentoBox.classList.toggle('tfPhonePegs', phone); // a phone's Weather page: its cards M, not XL (Matt, 9 Nov: too long)
     bentoBox.style.setProperty('--peg-n', n);
     bentoBox.style.setProperty('--peg-w', w + 'px');
     const off = new Set(dashPrefs().hidden);
@@ -1803,7 +1818,8 @@ export function mountTestFocus(root, { config, getHass }) {
     cards.forEach((it) => {
       const p = placed.get(it.key);
       it.el.style.height = p.h + 'px';
-      it.el.dataset.rows = sizeOf(it.key);
+      // a phone shows the weather card whole, its sentence and days, whatever its size on the big board (Matt, 9 Nov)
+      it.el.dataset.rows = phone && it.key === 'wx' ? 5 : sizeOf(it.key);
       // one column wide on a board of more (not a phone's single column): the card's narrow version (Matt, 6 Nov)
       it.el.toggleAttribute('data-narrow', !phone && p.cols === 1 && n > 1);
       it.el.dataset.cols = p.cols; // how many columns it spans (a room's tile lays out by it)

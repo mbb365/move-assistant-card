@@ -454,7 +454,8 @@ button.tfAreaIcon{cursor:pointer}
 .tfMoreActions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}
 .tfMoreActions .tfAction{grid-column:auto}
 /* a reading tile beside a taller device keeps its icon and name at the top */
-.tfMoreActions>.activityRow{display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
+/* a reading has nothing to control, so it stays as tall as its name and value, not its row (Matt, 9 Nov) */
+.tfMoreActions>.activityRow{align-self:start;display:grid;grid-auto-flow:column;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:start;gap:12px;min-width:0;padding:18px;border-radius:28px;background:var(--card);box-shadow:var(--hc-hair)}
 .tfMoreActions>.activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfMoreActions>.tfPlug .tfIcon{border:0;padding:0;cursor:pointer}
 .tfMoreActions>.activityRow :is(.activityRowName,.activityRowMeta){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -855,15 +856,23 @@ button.tfAreaIcon{cursor:pointer}
 #app.house :is(.tfIcon,.activityRowIcon,.tfAreaIcon,.tfRoomIcon){--chip-hi:.0375;background-image:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,var(--chip-hi)),inset 0 -1px 0 color-mix(in srgb,currentColor 3%,transparent),inset 0 -3px 6px color-mix(in srgb,currentColor 3.5%,transparent)}
 #app.house :is(.on[data-light] .tfIcon,.tfIcon.on[data-light],.tfACTile .tfIcon[data-light],.on[data-tone="alarm"] .tfIcon,.tfIcon[data-light]){--chip-hi:.1375}
 /* widgets with an action zone (Matt, 9 Nov): XL (5 rows) on the Weather page, so the callouts show under the zone;
-   on the dashboard L is the zone alone, XL adds the callouts; M and S keep the reading and its parts as before */
-/* every widget on the Weather page is as tall as the zoned ones (Matt, 9 Nov: even sized cards next to each other on
-   rows), so each row's cards are one height and the page reads as clean rows */
-#app.tfWeatherOpen .tfBento.tfPegs .wbItem:is([data-xl],[data-size="tile"],[data-size="double"]){grid-row:span 5}
+   on the dashboard L is the zone alone, XL adds the callouts; M shows the three callout lines (Matt, 9 Nov) under the reading; S keeps the reading and its parts as before */
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-xl]{grid-row:span 5}
+/* on a phone the Weather page's half-width widgets are M (3 rows, 212), drawn as the dashboard draws M: the reading where
+   the zone was, its three callout lines under it (Matt, 9 Nov: two columns of XL ran it far too long) */
+#app.tfWeatherOpen .tfBento.tfPegs.tfPhonePegs .wbItem:is([data-xl],[data-size="tile"]){grid-row:span 3}
+#app.tfWeatherOpen .tfBento.tfPhonePegs .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
+#app.tfWeatherOpen .tfBento.tfPhonePegs .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}
 #app.tfBoard .tfDashBento:not([data-rows="5"]) .wbItem[data-xl] .wbCallouts{display:none}
 #app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]) .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
 #app.tfBoard .tfDashBento[data-rows="3"] .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}
 #app.tfBoard .tfDashBento[data-rows="1"] :is(.wbZone,.wbCallouts){display:none}
-#app.tfBoard .tfDashBento[data-rows="3"] .wbCallout:nth-child(n+3){display:none}
+/* the Weather page in rows by height (Matt, 9 Nov): no packing of later cards into earlier gaps, and the first 4-row card
+   starts a new row, so the 5-row cards share rows and the 4-row cards share rows */
+#app.tfWeatherOpen .tfBento.tfPegs .wbBento{grid-auto-flow:row}
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-break]{grid-column-start:1}
+/* the Weather page uses the page's full width */
+#app.house.tfWeatherOpen #homeView{max-width:none}
 
 /* as the leadership demo (Matt, 9 Nov) ---------------------------------------------------------------------------
    Settings: each group is a card (34), its rows 18 in, so the 16 switches, choices and lists inside nest (34 less 18);
@@ -871,7 +880,24 @@ button.tfAreaIcon{cursor:pointer}
 #app.house #settingsView .toggleList{border-radius:var(--r-card);padding-block:4px}
 #app.house #settingsView .toggleRow{padding-left:18px;padding-right:18px}
 #app.house #settingsView .toggleRow:not([hidden])~.toggleRow::before{left:18px}
-#app.house #settingsView{margin-left:0}
+/* every page from the left, as Home (Matt, 9 Nov): Settings, the Weather page and the room pages were centred */
+#app.house .view{margin-left:0}
+/* each group's title inside its card: a card header, 18 in, 14 from the top (Matt, 9 Nov; was a label above the card) */
+#app.house #settingsView .toggleList>.tfCardTitle{display:flex;align-items:center;min-height:28px;padding:14px 18px 2px;font:500 18px/1.2 var(--font-tile);letter-spacing:-.01em;color:var(--text)}
+/* Lights: cards by default (the cards a phone gets), a table on choice; the table's note only with the table */
+.tfLightView{display:flex;padding:4px 0 14px}
+#housePane.tfLightCardsOn .houseTab .metaTableWrap,#housePane.tfLightCardsOn .houseTab .tfTableNote{display:none}
+#housePane.tfLightCardsOn .tfLightCards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+#housePane:not(.tfLightCardsOn) .tfLightCards{display:none}
+@container housepane (width < 720px){#housePane:not(.tfLightCardsOn) .houseTab .metaTableWrap{display:none}#housePane:not(.tfLightCardsOn) .tfLightCards{display:grid}}
+/* light mode: the summaries' icons as bright as in dark mode (Matt, 9 Nov: Lights, Energy and Climate went dull) */
+#app.house.light .tfSum{--sum-ink:var(--sum-d,var(--hc-icon-ink))}
+#app.house.light .tfSum[data-summary="climate"]{--g0:var(--g0-d);--g1:var(--g1-d);--g2:var(--g2-d)}
+/* the edit tray's settings further apart (Matt, 9 Nov): 32 between sections, 12 inside one */
+#app.house .tfTrayInner{gap:32px}
+#app.house .tfTraySection{gap:12px}
+/* Geist only (Matt, 9 Nov; was Inter) */
+#app.house{--font:Geist,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-family:var(--font)}
 /* segmented controls hug their words (Matt, 9 Nov: "too big… they dominate"): as wide as their segments, from the left.
    Settings' choices and lists, the ⋯ menu's sizes and the Weather page's modes; on a phone a long one shrinks (its
    words cut with …) rather than running off the card */
@@ -887,7 +913,12 @@ button.tfAreaIcon{cursor:pointer}
 @media(max-width:620px){
   #app.house.tfDash:not(.tfEditing) #homeView>.grid{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:var(--grid-gap);height:auto!important}
   #app.house.tfDash:not(.tfEditing) #homeView>.grid .tfBoardItem{position:relative!important;left:auto!important;top:auto!important}
-  #app.house.tfDash:not(.tfEditing) #homeView>.grid>.tfBoardItem{height:auto!important}
+  /* Favourites keeps its own height, so turning suggestions on or off doesn't move the page (Matt, 9 Nov) */
+  #app.house.tfDash:not(.tfEditing) #homeView>.grid>.tfBoardItem:not(.tfDash-favs){height:auto!important}
   #app.house.tfDash:not(.tfEditing) .tfDash-wx .wbSummary{flex:none;margin-top:0;container-type:normal}
   #app.house.tfDash:not(.tfEditing) .tfDash-wx .wbSummaryText{position:static}
 }
+/* every choice of segments the size of Settings' (Matt, 9 Nov): after the hug rules above, so its 12 padding wins: a 32 track, 26 buttons, corner 13, 12 type; the weather
+   cards' tabs and the board's height tabs were 38 in a 46 */
+#app.house :is(#housePane .themeChoice,.wb .wbSegments,.tfBoardMenu .tfHeightTabs){height:32px;padding:3px;gap:3px;box-sizing:border-box}
+#app.house :is(#housePane .themeChoice>button,.wb .wbSegments button,.tfBoardMenu .tfHeightTabs button){height:26px!important;padding:0 12px;border-radius:13px!important;font:600 12px/16px var(--font-tile)!important}
