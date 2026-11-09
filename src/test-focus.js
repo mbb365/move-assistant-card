@@ -165,6 +165,8 @@ export function mountTestFocus(root, { config, getHass }) {
     [rowOf($('hoursChoice')), rowOf($('wxStyleChoice'))].forEach((row) => row && group('weather').appendChild(row));
     const pane = $('housePane'), bar = pane.querySelector('.houseTabs'), mark = bar.querySelector('.rubberIndicator');
     new ResizeObserver(() => fitChoices()).observe(pane);
+    // a late font changes the choices' words' widths too (as the leadership demo, 9 Nov)
+    document.fonts?.ready?.then(() => fitChoices());
     // the sliding mark under the open tab, as on Move Assistant's settings; placed again whenever the bar shows or resizes
     const placeMark = (animate) => {
       const on = bar.querySelector('.tab.active');
@@ -1420,7 +1422,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // Energy today: Home Assistant's energy dashboard where it's set up (each source's use since midnight); otherwise
   // made up, as the house makes up what it doesn't have. A tile opens to its graph, like a reading
   let energy = null, energyAt = 0;
-  const MADE_UP_ENERGY = [['electricity', 'Electricity', 4.3, 'kWh'], ['gas', 'Gas', 0.21, 'm³'], ['water', 'Water', 0.2, 'm³']];
+  // Solar too (Matt, 9 Nov), in Home Assistant's order: the house's own solar today when it has one
+  const MADE_UP_ENERGY = [['electricity', 'Electricity', 4.3, 'kWh'], ['solar', 'Solar', 2.3, 'kWh'], ['gas', 'Gas', 0.21, 'm³'], ['water', 'Water', 0.2, 'm³']];
   async function loadEnergy() {
     if (Date.now() - energyAt < 5 * 60 * 1000) return;
     energyAt = Date.now();
@@ -1442,6 +1445,7 @@ export function mountTestFocus(root, { config, getHass }) {
   let energyPick = null, energyTiles = [];
   function energyGlance() {
     const tiles = energyTiles = energy?.length ? energy : MADE_UP_ENERGY.map(([key, name, value, unit]) => {
+      if (key === 'solar') { const sun = Object.keys(states).find((x) => x.endsWith('_solar_today') && !x.includes('made_up_energy')); if (sun && Number.isFinite(Number(states[sun].state))) value = Number(states[sun].state); }
       const id = 'sensor.made_up_energy_' + key;
       states[id] = { entity_id: id, state: String(value), last_changed: new Date().toISOString(), attributes: { friendly_name: name + ' today', unit_of_measurement: unit, state_class: 'total_increasing' } };
       return { key, name, id, value, unit };

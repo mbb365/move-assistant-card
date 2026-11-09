@@ -349,7 +349,10 @@
    controls as tiles inside the padding. Folded: the icon with the name under it (6 apart), the main 32 light, the
    room's control icons two by two.
    ========================================================= */
-#homeView .workoutPanel.tfAreaPanel{padding:18px 18px 10px}
+/* its edges match every card that holds tiles (Matt, 9 Nov): the tiles reach out to 10 from the card's sides, as in
+   Favourites, so their icons sit 20 in, and the room's icon, name and reading sit 20 in on the same line */
+#homeView .workoutPanel.tfAreaPanel{padding:18px 20px 10px}
+.tfAreaPanel .tfATiles{margin-inline:-10px}
 .tfAreaPanel .workoutPanelTop{justify-content:flex-start;gap:14px;padding:0}
 .tfAreaPanel .panelExpanded{justify-content:flex-start;gap:16px}
 .tfAreaPanel .icon{width:22px;height:22px}
@@ -735,7 +738,9 @@ button.tfAreaIcon{cursor:pointer}
 .tfEditTray.open{transform:none}
 .tfEditTray.open.tucked{transform:translateX(100%)}
 .tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}
-.tfTrayTuck{position:absolute;top:20px;left:-40px;display:grid;place-items:center;width:40px;height:56px;min-height:0;padding:0;border:0;border-radius:16px 0 0 16px;background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}
+/* the tray's tuck: a 40 chip like every back button, 12 off the tray (Matt, 9 Nov: was a 40 × 56 tab, and the buttons'
+   corner rule rounded it all round into a loose rectangle) */
+.tfTrayTuck{position:absolute;top:20px;left:-52px;display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);min-height:0;padding:0;border:0;border-radius:var(--r-inner);background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all);cursor:pointer;--mdc-icon-size:22px}
 .tfTrayTuck svg{width:22px;height:22px}
 .tfEditTray:not(.open) .tfTrayTuck{visibility:hidden}
 .tfTrayInner{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;overflow:auto;overscroll-behavior:contain;padding:20px;border-radius:var(--r-card) 0 0 var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px rgba(0,0,0,.3)}
@@ -844,8 +849,43 @@ button.tfAreaIcon{cursor:pointer}
 /* names on two lines can make Favourites taller than its card: its list scrolls inside it, as Activity's does */
 #app.tfBoard .tfDash-favs>.activityRows{min-height:0;overflow-y:auto;scrollbar-width:thin}
 
-/* icon chips (Matt, 8 Nov): soft 3D with a lit top edge, at half strength. A touch lighter at the top, a light line along the top and the
+/* icon chips (Matt, 8 Nov): soft 3D with a lit top edge, at half strength; halved again (Matt, 9 Nov: knock it down 50%). A touch lighter at the top, a light line along the top and the
    chip's own ink (currentColor) along and over the base; stronger on a coloured chip. Icons are in the text colour
    (were grey) */
-#app.house :is(.tfIcon,.activityRowIcon,.tfAreaIcon,.tfRoomIcon){--chip-hi:.075;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,var(--chip-hi)),inset 0 -1px 0 color-mix(in srgb,currentColor 6%,transparent),inset 0 -3px 6px color-mix(in srgb,currentColor 7%,transparent)}
-#app.house :is(.on[data-light] .tfIcon,.tfIcon.on[data-light],.tfACTile .tfIcon[data-light],.on[data-tone="alarm"] .tfIcon){--chip-hi:.275}
+#app.house :is(.tfIcon,.activityRowIcon,.tfAreaIcon,.tfRoomIcon){--chip-hi:.0375;background-image:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,var(--chip-hi)),inset 0 -1px 0 color-mix(in srgb,currentColor 3%,transparent),inset 0 -3px 6px color-mix(in srgb,currentColor 3.5%,transparent)}
+#app.house :is(.on[data-light] .tfIcon,.tfIcon.on[data-light],.tfACTile .tfIcon[data-light],.on[data-tone="alarm"] .tfIcon,.tfIcon[data-light]){--chip-hi:.1375}
+/* widgets with an action zone (Matt, 9 Nov): XL (5 rows) on the Weather page, so the callouts show under the zone;
+   on the dashboard L is the zone alone, XL adds the callouts; M and S keep the reading and its parts as before */
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-xl]{grid-row:span 5}
+#app.tfBoard .tfDashBento:not([data-rows="5"]) .wbItem[data-xl] .wbCallouts{display:none}
+#app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]) .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
+#app.tfBoard .tfDashBento[data-rows="3"] .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}
+#app.tfBoard .tfDashBento[data-rows="1"] :is(.wbZone,.wbCallouts){display:none}
+#app.tfBoard .tfDashBento[data-rows="3"] .wbCallout:nth-child(n+3){display:none}
+
+/* as the leadership demo (Matt, 9 Nov) ---------------------------------------------------------------------------
+   Settings: each group is a card (34), its rows 18 in, so the 16 switches, choices and lists inside nest (34 less 18);
+   the first and last rows' controls 18 from the card's top and bottom too. The page from the left, as Home */
+#app.house #settingsView .toggleList{border-radius:var(--r-card);padding-block:4px}
+#app.house #settingsView .toggleRow{padding-left:18px;padding-right:18px}
+#app.house #settingsView .toggleRow:not([hidden])~.toggleRow::before{left:18px}
+#app.house #settingsView{margin-left:0}
+/* segmented controls hug their words (Matt, 9 Nov: "too big… they dominate"): as wide as their segments, from the left.
+   Settings' choices and lists, the ⋯ menu's sizes and the Weather page's modes; on a phone a long one shrinks (its
+   words cut with …) rather than running off the card */
+#app.house #housePane .toggleRow>:is(.themeChoice,.settingsSelect){align-self:flex-start;width:auto;max-width:100%}
+#app.house #housePane .themeChoice{display:inline-flex}
+#app.house #housePane .themeChoice>button{flex:0 1 auto;min-width:0;padding:0 16px;overflow:hidden;text-overflow:ellipsis}
+#app.house #housePane .toggleRow{min-width:0}
+#app.house #housePane .toggleRow>.settingsSelect{min-width:200px}
+#app.house :is(.tfBoardMenu .tfHeightTabs,.wb .wbSegments){display:inline-flex;width:auto;align-self:flex-start}
+#app.house :is(.tfBoardMenu .tfHeightTabs,.wb .wbSegments) button{flex:0 0 auto;padding:0 16px}
+/* phones: a card the full width of the screen is as tall as what it holds (the weather card needn't stretch to fill its
+   board height). The cards run down in the board's reading order, 16 apart; tiles keep their drawn heights */
+@media(max-width:620px){
+  #app.house.tfDash:not(.tfEditing) #homeView>.grid{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:var(--grid-gap);height:auto!important}
+  #app.house.tfDash:not(.tfEditing) #homeView>.grid .tfBoardItem{position:relative!important;left:auto!important;top:auto!important}
+  #app.house.tfDash:not(.tfEditing) #homeView>.grid>.tfBoardItem{height:auto!important}
+  #app.house.tfDash:not(.tfEditing) .tfDash-wx .wbSummary{flex:none;margin-top:0;container-type:normal}
+  #app.house.tfDash:not(.tfEditing) .tfDash-wx .wbSummaryText{position:static}
+}

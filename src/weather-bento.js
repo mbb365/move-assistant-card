@@ -83,6 +83,9 @@ const I={
 
 // The patch's English text (ui.card.weather.*); placeholders in braces
 const T={
+  // the XL widgets' callout rows (Matt, 9 Nov)
+  advice:{fine:'We\'re all good here 🙂',sunblock:'Cover up with sunblock',avoidUntil:'Avoid the sun until {time}',avoidToday:'Stay out of the sun today',window:'Open the window',closed:'Keep the windows closed'},
+  callout:{sunrise:'Sunrise',sunset:'Sunset',noon:'Solar noon',riseTomorrow:'Sunrise tomorrow',setTomorrow:'Sunset tomorrow',dayTomorrow:'Daylight tomorrow',moonrise:'Moonrise',moonset:'Moonset',lit:'Lit',now:'Now',peak:'Peak today'},
   now:'Now',today:'Today',tomorrow:'Tomorrow',back:'Back',nextHours:'Next hours',nextDays:'Next days',views:{strip:'Hours',bars:'Days'},showAs:'Show as',
   rangeRow:'{day}: low {low}, high {high}',humidity:'Humidity',high:'High',low:'Low',
   modes:{temperature:'Temperature',precipitation:'Rain',wind:'Wind'},
@@ -327,10 +330,14 @@ const moonShadowPath=(cx,cy,r,f)=>{const rx=r*Math.abs(1-2*f),sweep=f<.5?0:1;ret
 
 /* ---- Pieces every card uses (homecore.ts) ---- */
 // Square data tile: chip, name and subdata, then one drawing that fills the rest
-const tile=({icon,name,sub,visual,double,backdrop,cls})=>'<div class="wbCard wbSquare'+(double?' wbDouble':'')+(backdrop?' wbHasBackdrop':'')+(cls?' '+cls:'')+'">'+
+// A widget with an action zone (Matt, 9 Nov; Figma 986:10196): the head, then the zone, 216 x 198 at the drawn 252
+// (the whole of an L's space); at XL the same zone, then up to three lines of data callouts under it
+const tile=({icon,name,sub,visual,double,backdrop,cls,zone,callouts})=>'<div class="wbCard wbSquare'+(double?' wbDouble':'')+(backdrop?' wbHasBackdrop':'')+(zone!=null?' wbZoned':'')+(cls?' '+cls:'')+'">'+
   (backdrop?'<div class="wbBackdrop" aria-hidden="true">'+backdrop+'</div>':'')+
   '<div class="wbHead"><div class="wbChip wbPlain">'+fittedIcon(icon)+'</div><div class="wbText"><span class="wbName">'+esc(name)+'</span>'+
-  (sub?'<span class="wbSub">'+esc(sub)+'</span>':'')+'</div></div><div class="wbVisual">'+visual+'</div></div>';
+  (sub?'<span class="wbSub">'+esc(sub)+'</span>':'')+'</div></div>'+
+  (zone!=null?'<div class="wbZone">'+zone+'</div>'+(callouts?.length?'<div class="wbCallouts">'+callouts.slice(0,3).map(c=>Array.isArray(c)?'<span class="wbCallout"><span>'+esc(c[0])+'</span><span>'+esc(c[1])+'</span></span>':'<span class="wbCallout wbAdvice"><span>'+esc(c)+'</span></span>').join('')+'</div>':'')
+    :'<div class="wbVisual">'+visual+'</div>')+'</div>';
 const valueHtml=(n,unit)=>'<div class="wbValue"><span class="wbNum">'+esc(n)+'</span>'+(unit?'<span class="wbUnitV">'+esc(unit)+'</span>':'')+'</div>';
 
 // One day from midnight to midnight: night shaded, sunrise and sunset along the top, the hours along the bottom,
@@ -404,10 +411,13 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   const CARDS=['current','hourly','sun','moon','wind','uv_index','compared_to_average','humidity','pressure','precipitation','visibility','air_quality',...BASE_CARDS]
     .filter(name=>!cards||cards.includes(name));
   const SIZES={current:'wide',hourly:'wide',compared_to_average:'double'};
+  // the widgets with an action zone are XL on the Weather page, so their callouts show (Matt, 9 Nov)
+  const XL=['sun','moon','uv_index','aq_tile','pollen_tile'];
   const items={};
   CARDS.forEach(name=>{
     const el=document.createElement('div');
     el.className='wbItem';el.dataset.card=name;el.dataset.size=SIZES[name]||'tile';el.hidden=true;
+    if(XL.includes(name))el.dataset.xl='';
     bento.appendChild(el);items[name]={el,html:null};
   });
 
@@ -833,8 +843,12 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const time=d=>d?fmtTime(d,h):'–';
     // solar noon, named above the top of the path
     const noon=rise&&set?new Date((rise.getTime()+set.getTime())/2):null;
+    // today's times are in the picture; the callouts are tomorrow's (Matt, 9 Nov)
+    const next=new Date(now);next.setDate(next.getDate()+1);
+    const t2=sunTimes(h,next),day2=t2.rise&&t2.set?Math.round((t2.set.getTime()-t2.rise.getTime())/MINUTE):0;
     return tile({icon:I.sunny,name:T.sun,sub:daylight?fill(T.daylightShort,{hours,minutes}):undefined,
-      visual:'<div class="wbSunSky" style="background:linear-gradient(180deg, '+top+', '+bottom+');--wb-sun-line:'+line+'"><svg viewBox="0 0 200 124" aria-hidden="true">'+
+      callouts:[[T.callout.riseTomorrow,time(t2.rise)],[T.callout.setTomorrow,time(t2.set)],...(day2?[[T.callout.dayTomorrow,Math.floor(day2/60)+'h '+(day2%60)+'m']]:[])],
+      zone:'<div class="wbSunSky" style="background:linear-gradient(180deg, '+top+', '+bottom+');--wb-sun-line:'+line+'"><svg viewBox="0 0 200 124" aria-hidden="true">'+
         '<defs><radialGradient id="'+P+'sun-glow"><stop offset="0" stop-color="'+core+'"></stop><stop offset="0.45" stop-color="'+core+'"></stop><stop offset="1" stop-color="'+edge+'"></stop></radialGradient>'+
         '<clipPath id="'+P+'above-horizon"><rect x="0" y="0" width="200" height="100"></rect></clipPath></defs>'+
         '<path class="wbSunPath" d="M 26 100 A 74 74 0 0 1 174 100"></path><line class="wbHorizon" x1="0" x2="200" y1="100" y2="100"></line>'+
@@ -877,8 +891,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const litOnLeft=ill.phase>.5!==lat<0;
     const lit=fmtNum(Math.round(ill.fraction*100),h.locale)+'%',riseOrSet=rise??set,time=riseOrSet?fmtTime(riseOrSet,h):undefined;
     return tile({icon:I.night,name:T.moon,sub:T.phases[phase],
-      visual:'<div class="wbMoonBox">'+moonSvg(ill.fraction,litOnLeft,lat<0)+'</div>'+
-        '<div class="wbScaleNote wbMoonCaption"><span>'+(time?esc(fill(rise?T.moonriseAt:T.moonsetAt,{time})):'')+'</span><span>'+esc(fill(T.lit,{illumination:lit}))+'</span></div>'});
+      callouts:[...(rise?[[T.callout.moonrise,fmtTime(rise,h)]]:[]),...(set?[[T.callout.moonset,fmtTime(set,h)]]:[]),[T.callout.lit,lit]],
+      zone:'<div class="wbMoonBox">'+moonSvg(ill.fraction,litOnLeft,lat<0)+'</div>'});
   }
 
   /* ---- Wind: speed, direction and Beaufort on a round compass ---- */
@@ -902,6 +916,14 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   }
 
   /* ---- Data tiles (hui-weather-metric-card) ---- */
+  /* a line of advice in the data space (Matt, 9 Nov): low UV, all good; 3 to 7, sunblock; 8 and up, out of the sun until
+     the forecast has it back under 6 */
+  const uvAdvice=(v,h)=>{
+    if(v<3)return T.advice.fine;
+    if(v<8)return T.advice.sunblock;
+    const now=Date.now(),back=forecast('hourly').find(e=>e.uv_index!=null&&new Date(e.datetime).getTime()>now&&e.uv_index<6);
+    return back&&new Date(back.datetime).toDateString()===new Date().toDateString()?fill(T.advice.avoidUntil,{time:fmtTime(new Date(back.datetime),h)}):T.advice.avoidToday;
+  };
   function renderUv(h,src){
     const uv=value(h,src,'uv_index');if(!uv||!num(uv.value))return '';
     const v=Number(uv.value),levelName=T.uvLevel[uvLevel(v)];
@@ -909,19 +931,19 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     const endOfDay=new Date();endOfDay.setHours(23,59,59,999);
     const peak=forecast('hourly').filter(e=>e.uv_index!=null&&new Date(e.datetime)>new Date()&&new Date(e.datetime)<=endOfDay)
       .reduce((best,e)=>!best||e.uv_index>best.uv?{uv:e.uv_index,time:new Date(e.datetime)}:best,undefined);
-    const SWEEP=48,PX=100,PY=130,angleOf=x=>-SWEEP+(Math.min(x,11)/11)*2*SWEEP;
-    const at=(a,r)=>{const rad=(a*Math.PI)/180;return [PX+r*Math.sin(rad),PY-r*Math.cos(rad)]};
-    const arc=(from,to,r)=>{const [x1,y1]=at(angleOf(from),r),[x2,y2]=at(angleOf(to),r);return 'M '+x1+' '+y1+' A '+r+' '+r+' 0 0 1 '+x2+' '+y2};
-    const zones=[[0,3,UV_COLORS.low],[3,6,UV_COLORS.moderate],[6,8,UV_COLORS.high],[8,11,UV_COLORS.very_high]];
-    // 21 ticks evenly over the sweep, every other one long
-    const meter='<svg class="wbVu" viewBox="0 0 200 134" preserveAspectRatio="xMidYMax meet" aria-hidden="true">'+
-      zones.map(([a,b,c])=>'<path class="wbVuZone" d="'+arc(a,b,96)+'" style="stroke:'+c+'"></path>').join('')+
-      Array.from({length:21},(_,i)=>({angle:-SWEEP+i*(2*SWEEP/20),major:i%2===0})).map(({angle,major})=>{const [x1,y1]=at(angle,102),[x2,y2]=at(angle,major?114:108);
-        return '<line class="wbVuTick'+(major?' wbMajor':'')+'" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'"></line>'}).join('')+
-      '<text class="wbVuLabel" x="100" y="70.1">UV</text><g class="wbVuNeedle" style="--wb-angle:'+angleOf(v)+'deg"><line x1="'+PX+'" y1="'+PY+'" x2="'+PX+'" y2="'+(PY-116)+'"></line></g>'+
-      '<path class="wbVuHousing" d="M 64 134 L 64 128 A 36 36 0 0 1 136 128 L 136 134 Z"></path><text class="wbVuValue" x="100" y="114.9">'+esc(fmtNum(Math.round(v),h.locale))+'</text></svg>';
+    /* UV (Matt, 9 Nov): a sun in the zone's top-left corner whose size is the intensity, about 40% of the zone at 4-5 and
+       nearly 90% at 10; a toned gradient, light at its heart to the level's colour at its edge. The number big in the
+       bottom right, its level under it (the rays that fanned from the corner went the same day) */
+    const colour=UV_COLORS[uvLevel(v)],sunR=216*Math.min(1,Math.max(.08,.4+(v-4.5)*(.5/5.5)));
+    const art='<svg class="wbUvArt" viewBox="0 0 216 198" preserveAspectRatio="xMinYMin slice" aria-hidden="true">'+
+      '<defs><radialGradient id="'+P+'uv-sun" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="'+sunR.toFixed(1)+'">'+
+        '<stop offset="0" style="stop-color:color-mix(in srgb, '+colour+' 28%, #fff6dd)"></stop><stop offset=".62" style="stop-color:color-mix(in srgb, '+colour+' 62%, #fff6dd)"></stop>'+
+        '<stop offset="1" style="stop-color:'+colour+'"></stop></radialGradient></defs>'+
+      '<circle class="wbUvSun" cx="0" cy="0" r="'+sunR.toFixed(1)+'" fill="url(#'+P+'uv-sun)"></circle></svg>'+
+      '<div class="wbUvBig"><span class="wbUvNum">'+esc(fmtNum(Math.round(v),h.locale))+'</span><span class="wbUvWord">'+esc(levelName)+'</span></div>';
     return tile({icon:I.sunnyAlert,name:T.metrics.uv_index,
-      sub:peak&&peak.uv>v?fill(T.uvPeak,{level:levelName,uv_index:fmtNum(Math.round(peak.uv),h.locale),time:fmtTime(peak.time,h)}):levelName,visual:meter});
+      sub:peak&&peak.uv>v?fill(T.uvPeak,{level:levelName,uv_index:fmtNum(Math.round(peak.uv),h.locale),time:fmtTime(peak.time,h)}):levelName,zone:art,cls:'wbUv',
+      callouts:[uvAdvice(v,h),[T.callout.now,fmtNum(Math.round(v),h.locale)+' · '+levelName],[T.callout.peak,peak&&peak.uv>v?fmtNum(Math.round(peak.uv),h.locale)+' at '+fmtTime(peak.time,h):T.callout.now]]});
   }
   function renderCompared(h){
     const today=forecast('daily')[0],history=data.temperatureHistory;
@@ -930,13 +952,22 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     // || 0 turns -0 into 0
     const difference=Math.round(high-average)||0,key=difference>0?'above':difference<0?'below':'same';
     const list=[...history.days,{date:new Date(),high,today:true}];
-    const W=220,H=158,top=22,bottom=20,values=list.map(d=>d.high).concat(average),min=Math.min(...values)-3,max=Math.max(...values)+1;
-    const y=v=>top+(1-(v-min)/(max-min))*(H-top-bottom),slot=W/list.length,barWidth=Math.min(18,slot*.6);
-    const bars='<svg class="wbCompareBars" viewBox="0 0 '+W+' '+H+'" aria-hidden="true"><line class="wbAvgLine" x1="0" x2="'+W+'" y1="'+y(average)+'" y2="'+y(average)+'"></line>'+
-      list.map((d,i)=>{const x=i*slot+slot/2,barTop=y(d.high),t=d.today?' wbToday':'';
-        return '<rect class="wbAvgBar'+t+'" x="'+(x-barWidth/2)+'" y="'+barTop+'" width="'+barWidth+'" height="'+(H-bottom-barTop)+'" rx="5"></rect>'+
-          '<text class="wbAvgValue'+t+'" x="'+x+'" y="'+(barTop-6)+'">'+esc(deg(h,d.high))+'</text><text class="wbAvgDay'+t+'" x="'+x+'" y="'+(H-4)+'">'+esc(fmtWeekdayNarrow(d.date,h))+'</text>'}).join('')+'</svg>';
-    // the big number, then what it means in words and in temperatures; the bars sit where a square's drawing would be
+    /* the highs as a line graph (Matt, 9 Nov; were bars) that fills its side of the card to the card's bottom inset: the
+       line and the shade under it stretch with the space, the points, values and days stay their size. Today in the
+       accent, the average as a dashed line with its value */
+    const values=list.map(d=>d.high).concat(average),min=Math.min(...values)-1,max=Math.max(...values)+1;
+    const fy=v=>(1-(v-min)/(max-min))*100,fx=i=>(i+.5)/list.length*100;
+    const pts=list.map((d,i)=>[fx(i),fy(d.high)]),line=pts.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join('');
+    const bars='<div class="wbCompareBars wbTrend" aria-hidden="true"><div class="wbTrendPlot">'+
+      '<svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="'+P+'trend" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--primary)" stop-opacity=".28"></stop><stop offset="1" style="stop-color:var(--primary)" stop-opacity="0"></stop></linearGradient></defs>'+
+        '<path class="wbTrendArea" d="'+line+'L'+pts[pts.length-1][0].toFixed(2)+' 100L'+pts[0][0].toFixed(2)+' 100Z" fill="url(#'+P+'trend)"></path>'+
+        '<line class="wbAvgLine" x1="0" x2="100" y1="'+fy(average).toFixed(2)+'" y2="'+fy(average).toFixed(2)+'" vector-effect="non-scaling-stroke"></line>'+
+        '<path class="wbTrendLine" d="'+line+'" vector-effect="non-scaling-stroke"></path></svg>'+
+      '<span class="wbTrendAvg" style="top:'+fy(average).toFixed(2)+'%">'+esc(deg(h,average))+'</span>'+
+      list.map((d,i)=>{const t=d.today?' wbToday':'',at='left:'+fx(i).toFixed(2)+'%;top:'+fy(d.high).toFixed(2)+'%';
+        return '<i class="wbTrendDot'+t+'" style="'+at+'"></i><span class="wbAvgValue'+t+'" style="'+at+'">'+esc(deg(h,d.high))+'</span>'}).join('')+'</div>'+
+      '<div class="wbTrendDays">'+list.map((d,i)=>'<span class="wbAvgDay'+(d.today?' wbToday':'')+'" style="left:'+fx(i).toFixed(2)+'%">'+esc(fmtWeekdayNarrow(d.date,h))+'</span>').join('')+'</div></div>';
+    // the big number, then what it means in words and in temperatures; the graph beside them
     return tile({icon:I.chartLine,name:T.metrics.compared_to_average,double:true,sub:fill(T.highsLastDays,{days:history.days.length}),
       visual:'<div class="wbCompare"><div class="wbCompareText"><div class="wbCompareNumber">'+(difference>0?'+':'')+esc(deg(h,difference))+'</div>'+
         '<div class="wbCompareWords">'+esc(T.average[key])+'</div><div class="wbCompareTemps">'+esc(fill(T.todayVsAverage,{today:deg(h,high),average:deg(h,average)}))+'</div></div>'+bars+'</div>'});
@@ -1052,22 +1083,40 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   const POLLEN_RANK=['none','very_low','low','moderate','high','very_high'];
   const pollenRank=s=>num(s.state)?Number(s.state):POLLEN_RANK.indexOf(String(s.state).toLowerCase().replace(/ /g,'_'));
   const sayLevel=t=>{const w=String(t).replace(/_/g,' ');return w[0].toUpperCase()+w.slice(1)};
-  const baseRows=rows=>rows.length?'<div class="wbBaseRows">'+rows.map(([a,b])=>'<span class="wbBaseRow"><span>'+esc(a)+'</span><span>'+esc(b)+'</span></span>').join('')+'</div>':'';
+  // good air, open up; moderate, all good; poor or worse, keep it out (Matt, 9 Nov)
+  const aqAdvice=(dc,v,n)=>{
+    const level=!n?null:dc==='aqi'?(v<=50?'good':v<=100?'moderate':'poor'):dc==='pm25'?pm25Level(v):null;
+    return level==='good'||level==='fair'?T.advice.window:level==='moderate'||level===null?T.advice.fine:T.advice.closed;
+  };
   function renderAqTile(h){
     const air=anyAir(h),main=air[0];
     if(!main)return tile({icon:I.airFilter,name:T.airQuality,sub:T.noAir,visual:valueHtml('–',''),cls:'wbBase'});
     const dc=main.attributes.device_class,v=Number(main.state),n=num(main.state);
     const sub=dc==='aqi'&&n?aqiWord(v):dc==='pm25'&&n?AQ_WORDS[pm25Level(v)]:stateText(h,main);
     return tile({icon:I.airFilter,name:T.airQuality,sub,cls:'wbBase',
-      visual:valueHtml(n?fmtNum(Math.round(v),h.locale):String(main.state),dc==='aqi'?'AQI':main.attributes.unit_of_measurement||'')+
-        baseRows(air.slice(1,3).map(s=>[entityName(h,s),stateText(h,s)]))});
+      zone:valueHtml(n?fmtNum(Math.round(v),h.locale):String(main.state),dc==='aqi'?'AQI':main.attributes.unit_of_measurement||''),
+      callouts:[aqAdvice(dc,v,n),...air.slice(1,3).map(s=>[entityName(h,s),stateText(h,s)])]});
   }
+  /* Pollen (Matt, 9 Nov): seeds, pollen grains and grass seed-heads floating across the gap between the head and the
+     level, more of them the higher it is; placed by a fixed pattern, so a redraw doesn't make them jump */
+  const POLLEN_GLYPHS=[
+    ['wbSeed','<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 28V11" fill="none" stroke="currentColor" stroke-width="1"></path><path d="M11 11L3 6M11 11L5 2.5M11 11L8.5 1M11 11L13.5 1M11 11L17 2.5M11 11L19 6" fill="none" stroke="currentColor" stroke-width=".8" stroke-linecap="round"></path><circle cx="11" cy="28.5" r="1.4" fill="currentColor"></circle></svg>'],
+    ['wbGrain','<svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="3.3" fill="currentColor"></circle><path d="M6 1.2v1.4M6 9.4v1.4M1.2 6h1.4M9.4 6h1.4M2.6 2.6l1 1M8.4 8.4l1 1M2.6 9.4l1-1M8.4 3.6l1-1" stroke="currentColor" stroke-width=".9" stroke-linecap="round"></path></svg>'],
+    ['wbStem','<svg viewBox="0 0 10 30" aria-hidden="true"><path d="M5 29Q3.6 18 5 8" fill="none" stroke="currentColor" stroke-width="1"></path><ellipse cx="5" cy="6" rx="2.3" ry="4.6" fill="currentColor"></ellipse></svg>'],
+  ];
+  const pollenAir=rank=>{
+    const n=[1,3,5,7,10,13][Math.max(0,Math.min(5,Number.isFinite(rank)?Math.round(rank):0))];
+    return '<div class="wbPollenAir" aria-hidden="true">'+Array.from({length:n},(_,i)=>{
+      const [cls,svg]=POLLEN_GLYPHS[i%3],dur=10+(i*7)%9,bob=2.6+(i*5)%4*.4;
+      return '<span class="wbFloat '+cls+'" style="top:'+(4+(i*37)%52)+'%;--x:'+((i*29)%90+4)+'%;--s:'+(.8+((i*13)%5)/10).toFixed(1)+';animation-duration:'+dur+'s;animation-delay:-'+((i*2.3)%dur).toFixed(1)+'s">'+
+        '<span class="wbPush"><span class="wbBob" style="animation-duration:'+bob.toFixed(1)+'s;animation-delay:-'+((i*.7)%bob).toFixed(1)+'s">'+svg+'</span></span></span>'}).join('')+'</div>';
+  };
   function renderPollenTile(h){
     const all=anyPollen(h).sort((a,b)=>pollenRank(b)-pollenRank(a));
     if(!all.length)return tile({icon:I.flower,name:T.pollen,sub:T.noPollen,visual:valueHtml('–',''),cls:'wbBase'});
     const top=all[0],level=s=>num(s.state)?stateText(h,s):sayLevel(s.state);
-    return tile({icon:I.flower,name:T.pollen,sub:entityName(h,top)+' · '+level(top),cls:'wbBase',
-      visual:valueHtml(level(top),'')+baseRows(all.slice(1,3).map(s=>[entityName(h,s),level(s)]))});
+    return tile({icon:I.flower,name:T.pollen,sub:entityName(h,top)+' · '+level(top),cls:'wbBase wbPollen',
+      zone:pollenAir(pollenRank(top))+valueHtml(level(top),''),callouts:all.slice(0,3).map(s=>[entityName(h,s),level(s)])});
   }
   function renderRadarTile(h){
     const now=Date.now(),hours=forecast('hourly').filter(e=>{const t=new Date(e.datetime).getTime();return t>now-HOUR&&t<now+12*HOUR});
@@ -1238,6 +1287,29 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   root.addEventListener('keydown',onKeyDown);
   root.addEventListener('mousedown',onMouseDown);
 
+  /* Pollen's seeds move away from the pointer (Matt, 9 Nov): while it's over the card, each one near it is pushed
+     away, more the closer it is; once it leaves they ease back into their drift. Not with Reduce motion */
+  const PUSH_R=64,PUSH_MOST=30;let pushAt=null,pushRaf=0;
+  const pushFrame=()=>{
+    pushRaf=0;
+    root.querySelectorAll('.wbPollen .wbPush').forEach(el=>{
+      let x=0,y=0;
+      if(pushAt){const b=el.parentElement.getBoundingClientRect(),dx=b.left+b.width/2-pushAt.x,dy=b.top+b.height/2-pushAt.y,d=Math.hypot(dx,dy)||1;
+        if(d<PUSH_R){const f=(1-d/PUSH_R)*PUSH_MOST;x=dx/d*f;y=dy/d*f}}
+      el.style.transform=x||y?'translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)':'';
+    });
+    if(pushAt)pushRaf=requestAnimationFrame(pushFrame); // the seeds keep drifting under a still pointer
+  };
+  const onPointerMove=e=>{
+    const card=e.target.closest?.('.wbPollen');
+    if(!card||motionQuery?.matches){if(pushAt){pushAt=null;if(!pushRaf)pushRaf=requestAnimationFrame(pushFrame)}return}
+    pushAt={x:e.clientX,y:e.clientY};
+    if(!pushRaf)pushRaf=requestAnimationFrame(pushFrame);
+  };
+  const onPointerLeave=()=>{pushAt=null;if(!pushRaf)pushRaf=requestAnimationFrame(pushFrame)};
+  root.addEventListener('pointermove',onPointerMove);
+  root.addEventListener('pointerleave',onPointerLeave);
+
   // Sizes change (phone and desktop, or the page comes into view): repaint the art at its new size
   const resize=typeof ResizeObserver==='function'?new ResizeObserver(()=>paint(performance.now())):null;
   resize?.observe(root);
@@ -1264,6 +1336,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       render(true);wake();
     },
     destroy(){
+      cancelAnimationFrame(pushRaf);root.removeEventListener('pointermove',onPointerMove);root.removeEventListener('pointerleave',onPointerLeave);
       destroyed=true;
       timers.forEach(clearInterval);
       if(raf)cancelAnimationFrame(raf);
