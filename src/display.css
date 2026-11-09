@@ -856,7 +856,9 @@ button.tfAreaIcon{cursor:pointer}
 #app.house :is(.on[data-light] .tfIcon,.tfIcon.on[data-light],.tfACTile .tfIcon[data-light],.on[data-tone="alarm"] .tfIcon,.tfIcon[data-light]){--chip-hi:.1375}
 /* widgets with an action zone (Matt, 9 Nov): XL (5 rows) on the Weather page, so the callouts show under the zone;
    on the dashboard L is the zone alone, XL adds the callouts; M and S keep the reading and its parts as before */
-#app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-xl]{grid-row:span 5}
+/* every widget on the Weather page is as tall as the zoned ones (Matt, 9 Nov: even sized cards next to each other on
+   rows), so each row's cards are one height and the page reads as clean rows */
+#app.tfWeatherOpen .tfBento.tfPegs .wbItem:is([data-xl],[data-size="tile"],[data-size="double"]){grid-row:span 5}
 #app.tfBoard .tfDashBento:not([data-rows="5"]) .wbItem[data-xl] .wbCallouts{display:none}
 #app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]) .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
 #app.tfBoard .tfDashBento[data-rows="3"] .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}
