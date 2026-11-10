@@ -293,6 +293,47 @@
 @media(max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}
 @media(max-width:900px){.tfCard,.tfBlock{grid-column:auto}}
 
+/* a device's popup as a tile (Matt, 10 Nov; Figma 1004:8984): its head (icon, name, area), then two pages one height,
+   swiped or clicked across: the big space (corner 16, 224 tall at the drawn 274) and the controls; Info and its device
+   page. Dots under them say which page */
+.tfMoreTileHead .tfName{display:grid;flex:1;min-width:0;cursor:default}
+.tfMoreTileHead :is(.activityRowName,.activityRowMeta){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfMoreTileHead .tfIcon{border:0;padding:0;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer}
+.tfMoreTileHead div.tfIcon{cursor:default}
+.tfMoreTileHead.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
+.tfMoreTileHead.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
+.tfMorePages{display:grid;grid-auto-flow:column;grid-auto-columns:100%;align-items:start;gap:20px;flex:none;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;transition:height .25s cubic-bezier(.2,.7,.3,1)}
+@media(prefers-reduced-motion:reduce){.tfMorePages{transition:none}}
+.tfMorePages::-webkit-scrollbar{display:none}
+.tfMorePage{display:flex;flex-direction:column;gap:14px;min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
+/* the space (Matt, 10 Nov): left largely undefined for contributors; for now the main number (the area card's 64) at
+   the top and the basic facts spread under it, the stack filling the space's height */
+.tfMoreSpace{flex:none;display:flex;flex-direction:column;justify-content:space-between;gap:12px;height:224px;padding:18px;border-radius:16px;background:var(--tile);overflow:hidden}
+/* a visual controller that is the space itself (a cover's drawing, the Dual Axis Controller's pad; Matt, 10 Nov: no
+   grey box round it): no fill, the drawing scaled to the space's height and centred */
+.tfMoreSpace.tfMoreFill{justify-content:center;align-items:center;height:auto;padding:0;background:none;border-radius:0}
+/* the drawing as wide as the popup allows (Matt, 10 Nov: scaled up), square */
+.tfMoreSpace.tfMoreFill>.tfCoverArt{width:100%;height:auto;max-width:none;align-self:center}
+.tfMoreSpace.tfMoreFill>.tfDacPad{width:100%;height:100%}
+.tfMoreBig{display:flex;align-items:baseline;min-width:0;font:500 64px/1 var(--font-tile);letter-spacing:-.03em;white-space:nowrap}
+.tfMoreBig.live{color:var(--primary)}
+.tfMoreNum{overflow:hidden;text-overflow:ellipsis}
+.tfMoreUnit{margin-inline-start:6px;font-size:24px;letter-spacing:0}
+.tfMoreFacts{display:flex;flex:1;flex-direction:column;justify-content:space-evenly;min-height:0}
+.tfMoreFact{display:flex;justify-content:space-between;gap:16px;font:400 14px/20px var(--font)}
+.tfMoreFact span:first-child{color:var(--muted)}
+.tfMoreFact span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tfMoreGraph{display:flex;flex:none;flex-direction:column;gap:6px}
+.tfMoreGraph .tfMoreGroupName{margin:0}
+.tfMoreGraph .tfGraph.tfDay{width:100%}
+.tfMoreDots{display:flex;flex:none;justify-content:center;gap:4px;margin-top:-4px}
+.tfMoreDots button{display:grid;place-items:center;width:24px;height:24px;min-height:0;padding:0;border:0;background:none;cursor:pointer}
+.tfMoreDots button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:.45;transition:opacity .15s ease,background .15s ease}
+.tfMoreDots button[aria-selected="true"]::before{background:var(--text);opacity:1}
+.tfMoreLink{margin-top:auto}
+.tfMoreLink svg{transform:none!important}
+.tfMorePage .tfMoreRows{flex:none}
+
 /* density overlay (Settings → Appearance → Show density): every display card's height, and how many readings fit on the screen */
 #app.showDensity #homeView :is(.card,.tfAction){position:relative;outline:1px dashed color-mix(in srgb,var(--primary) 70%,transparent);outline-offset:-1px}
 #app.showDensity #homeView :is(.card,.tfAction)::after{content:attr(data-h);position:absolute;top:6px;right:12px;z-index:5;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;font:600 11px/16px var(--font);pointer-events:none}
@@ -858,11 +899,8 @@ button.tfAreaIcon{cursor:pointer}
 /* widgets with an action zone (Matt, 9 Nov): XL (5 rows) on the Weather page, so the callouts show under the zone;
    on the dashboard L is the zone alone, XL adds the callouts; M shows the three callout lines (Matt, 9 Nov) under the reading; S keeps the reading and its parts as before */
 #app.tfWeatherOpen .tfBento.tfPegs .wbItem[data-xl]{grid-row:span 5}
-/* on a phone the Weather page's half-width widgets are M (3 rows, 212), drawn as the dashboard draws M: the reading where
-   the zone was, its three callout lines under it (Matt, 9 Nov: two columns of XL ran it far too long) */
-#app.tfWeatherOpen .tfBento.tfPegs.tfPhonePegs .wbItem:is([data-xl],[data-size="tile"]){grid-row:span 3}
-#app.tfWeatherOpen .tfBento.tfPhonePegs .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
-#app.tfWeatherOpen .tfBento.tfPhonePegs .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}
+/* on a phone the Weather page's widgets keep their full scale, XL with their zone and lines (Matt, 10 Nov: at M they
+   lost their scale and their data) */
 #app.tfBoard .tfDashBento:not([data-rows="5"]) .wbItem[data-xl] .wbCallouts{display:none}
 #app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]) .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
 #app.tfBoard .tfDashBento[data-rows="3"] .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}

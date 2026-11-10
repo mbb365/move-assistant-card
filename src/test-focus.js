@@ -1764,7 +1764,6 @@ export function mountTestFocus(root, { config, getHass }) {
     const { n, w } = phone ? { n: 2, w: Math.floor((W - PEG_GAP) / 2) } : pegsFor(W);
     // the Weather page is laid on the same board, its columns the dashboard's (Matt, 1 Nov: one rule set)
     bentoBox.classList.add('tfPegs');
-    bentoBox.classList.toggle('tfPhonePegs', phone); // a phone's Weather page: its cards M, not XL (Matt, 9 Nov: too long)
     bentoBox.style.setProperty('--peg-n', n);
     bentoBox.style.setProperty('--peg-w', w + 'px');
     const off = new Set(dashPrefs().hidden);
@@ -2784,7 +2783,10 @@ export function mountTestFocus(root, { config, getHass }) {
     touchAt = { x: t.clientX, y: t.clientY };
     if (Math.abs(dy) >= Math.abs(dx) && !scrollsInside(ev.target, dy)) ev.preventDefault();
   }, { passive: false });
-  sheet.addEventListener('wheel', (ev) => { if (!scrollsInside(ev.target, ev.deltaY)) ev.preventDefault(); }, { passive: false });
+  sheet.addEventListener('wheel', (ev) => {
+    if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY) && ev.target.closest?.('[data-more-pages]')) return; // sideways: the pages
+    if (!scrollsInside(ev.target, ev.deltaY)) ev.preventDefault();
+  }, { passive: false });
   // a device's details sit behind a Details button and roll out beside the dialog, which stays where it is (Matt,
   // 27 Oct); where there's no room beside it (always on phones) they open over the top of it
   function fitDetails() {
@@ -2835,18 +2837,78 @@ export function mountTestFocus(root, { config, getHass }) {
       const all = k.acts ? '<button class="primary" type="button" data-acts="' + acts(k.acts) + '">' + (k.on ? 'Turn all off' : 'Turn all on') + '</button>' : '';
       return [head(r.name + ' ' + k.label.toLowerCase()), '<div class="tfMoreNowRow">' + now(k.value) + all + '</div>', groupGrid(groupIds(r, key))];
     }
+    /* a device (Matt, 10 Nov; Figma "Example of more info card with room for activities / data" 1004:8984): a tile.
+       Its head (the icon is the button, the name, the area under it), then two pages swiped or clicked across, one
+       height: Control, the big space (the reading over the last 24 hours; a light's pad when it's the Dual Axis
+       Controller; a cover's drawing; a media player's artwork) and the tile's controls; Info, its details, when it
+       changed, its area, entity, device and integration, and its device page */
     const d = id.split('.')[0], st = states[id];
     const s = ACTION_DOMAINS.includes(d) ? specFor(id) : { sections: [] };
+    const page = more?.page || 0;
     return [
-      head(nameOf(id)),
-      now(valueOf(id), st.last_changed && ago(Date.parse(st.last_changed))),
-      more?.at && '<svg class="tfGraph tfDay" data-day="' + esc(id) + '" role="img" aria-label="' + esc(nameOf(id)) + ', last 24 hours"></svg>',
-      d === 'cover' && '<div data-cover-art="' + esc(id) + '"></div>',
-      ...s.sections.filter(Boolean),
-      detailsOf(id) && '<button class="tfDetailsBtn" type="button" data-details aria-expanded="' + Boolean(more?.details) + '" aria-controls="tfMoreSide"><span>Details</span>' + CHEVRON + '</button>',
-    ].filter(Boolean);
+      moreHead(id, s, head),
+      '<div class="tfMorePages" data-more-pages>' +
+        '<section class="tfMorePage" aria-label="Control">' + moreSpace(id) + s.sections.filter(Boolean).join('') + '</section>' +
+        '<section class="tfMorePage" aria-label="Info">' + infoOf(id) + '</section></div>',
+      '<div class="tfMoreDots" role="tablist" aria-label="Pages">' + ['Control', 'Info'].map((n, i) => '<button type="button" role="tab" aria-selected="' + (i === page) + '" aria-label="' + n + '" data-more-page="' + i + '"' + (i === page ? '' : ' tabindex="-1"') + '></button>').join('') + '</div>',
+    ];
   }
-  const detailsOf = (id) => (special(id) ? '' : detailsHtml(id) + madeUpNote(id));
+  // the popup's head is the tile's: Back where it was opened from inside a popup, the icon (its button), the name
+  // over the area, and Close
+  function moreHead(id, s, head) {
+    const area = model.areaOf?.(id), areaName = area ? model.rooms.find((r) => r.id === area)?.name || getHass()?.areas?.[area]?.name || '' : '';
+    const icon = s.button ? iconButton(id, s) : '<div class="tfIcon"' + iconSlot(id, s.icon) + '></div>';
+    return '<div class="tfMoreHead tfMoreTileHead' + (s.on ? ' on' : '') + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
+      (more?.back ? '<button class="tfBack" type="button" data-more-back aria-label="Back">' + ARROW + '</button>' : '') + icon +
+      '<div class="tfName"><span class="activityRowName" id="tfMoreTitle">' + esc(nameOf(id)) + '</span>' + (areaName ? '<span class="activityRowMeta">' + esc(areaName) + '</span>' : '') + '</div>' +
+      '<button class="tfBack" type="button" data-more-close aria-label="Close">' + CLOSE + '</button></div>';
+  }
+  // the big space (Matt, 10 Nov: the data and action space is left largely undefined, for contributors to design;
+  // for now a large number and the basic information, stacked to fill the room it has): the device's main number
+  // (its reading, brightness, position, battery, else its state in a word) at the top, its facts spread under it
+  const NO_SPACE = ['lock', 'alarm_control_panel', 'switch', 'input_boolean', 'fan', 'valve', 'media_player', 'automation', 'script', 'scene', 'button'];
+  function moreSpace(id) {
+    // a device whose visual controller is its data and action (Matt, 10 Nov: the curtains' drawing) fills the space with it
+    const d = id.split('.')[0];
+    // a device that is only its controls or a state word has no space (Matt, 10 Nov: Popup · Device, rule popup.space):
+    // a lock, an alarm, a switch, a valve, a media player, and a light that isn't the Dual Axis Controller (its bars say
+    // its brightness)
+    if (NO_SPACE.includes(d) || (d === 'light' && !dacFor(id))) return '';
+    if (d === 'cover') return '<div class="tfMoreSpace tfMoreFill"><div data-cover-art="' + esc(id) + '"></div></div>';
+    if (d === 'light' && dacFor(id)) return '<div class="tfMoreSpace tfMoreFill"><div class="tfDacPad" data-dac="more:' + esc(id) + '"></div></div>';
+    const { big, lines } = bigOf(id);
+    return '<div class="tfMoreSpace"><div class="tfMoreBig' + (held('pos', id) != null ? ' live' : '') + '"><span class="tfMoreNum">' + esc(big[0]) + '</span>' + (big[1] ? '<span class="tfMoreUnit">' + esc(big[1]) + '</span>' : '') + '</div>' +
+      '<div class="tfMoreFacts">' + lines.map(([k, v]) => '<div class="tfMoreFact"><span>' + esc(k) + '</span><span>' + esc(v) + '</span></div>').join('') + '</div></div>';
+  }
+  function bigOf(id) {
+    const st = states[id], a = attr(id), d = id.split('.')[0];
+    const rows = (DETAILS[d]?.(a) || []).filter(([, v]) => v != null && v !== '');
+    const take = (label) => { const i = rows.findIndex(([k]) => k === label); return i < 0 ? null : rows.splice(i, 1)[0][1]; };
+    const split = (v) => { const m = String(v).match(/^(-?[\d.,]+)\s*(.*)$/); return m ? [m[1], m[2]] : [String(v), '']; };
+    const word = () => [cap(String(st.state).replace(/_/g, ' ')), ''];
+    let big;
+    if (d === 'light') { take('Brightness'); big = st.state === 'on' && dimmable(id) ? [String(brightnessOf(st)), '%'] : word(); }
+    else if (d === 'climate') big = split(take('Current temperature') || num(a.current_temperature) + ' °C');
+    else if (d === 'cover') { take('Position'); big = a.current_position != null ? [String(posOf(id)), '%'] : word(); }
+    else if (d === 'humidifier') big = split(take('Current humidity') || st.state);
+    else if (d === 'vacuum') big = split(take('Battery') || st.state);
+    else if (d === 'plant') big = split(take('Moisture') || st.state);
+    else if (['media_player', 'lock', 'alarm_control_panel', 'valve'].includes(d)) big = word();
+    else big = split(st.state + (a.unit_of_measurement ? ' ' + a.unit_of_measurement : ''));
+    const lines = rows.length ? rows.slice(0, 4) : [['State', valueOf(id)]];
+    return { big, lines };
+  }
+  // Info: the device's details, when it changed, where it is and what it is, and the way to its device page
+  function infoOf(id) {
+    const st = states[id], h = getHass(), ent = h?.entities?.[id], dev = ent?.device_id ? h?.devices?.[ent.device_id] : null;
+    const graph = '<div class="tfMoreGraph"><div class="tfMoreGroupName">Last 24 hours</div><svg class="tfGraph tfDay" data-day="' + esc(id) + '" role="img" aria-label="' + esc(nameOf(id)) + ', last 24 hours"></svg></div>';
+    const area = model.areaOf?.(id), areaName = area ? model.rooms.find((r) => r.id === area)?.name || h?.areas?.[area]?.name || '' : '';
+    const rows = [...(DETAILS[id.split('.')[0]]?.(attr(id)) || []), ['Changed', st.last_changed && ago(Date.parse(st.last_changed))], ['Area', areaName],
+      ['Device', dev && (dev.name_by_user || dev.name)], ['Integration', ent?.platform && cap(ent.platform.replace(/_/g, ' '))], ['Entity', id]].filter(([, v]) => v != null && v !== '');
+    return graph + '<div class="tfMoreRows">' + rows.map(([k, v]) => '<div class="tfMoreRow"><span>' + esc(k) + '</span><span>' + esc(v) + '</span></div>').join('') + '</div>' + madeUpNote(id) +
+      (dev ? '<button class="tfDetailsBtn tfMoreLink" type="button" data-path="/config/devices/device/' + esc(ent.device_id) + '"><span>Device page</span>' + CHEVRON + '</button>' : '');
+  }
+  const detailsOf = () => ''; // a device's details are its Info page now (10 Nov); nothing opens beside the popup
   let moreSide = '';
   function toggleDetails(open) {
     if (!more) return;
@@ -2897,6 +2959,7 @@ export function mountTestFocus(root, { config, getHass }) {
       fillIcons(sheet);
       sheet.querySelectorAll('[data-day]').forEach((svg) => drawDay(svg.dataset.day, svg, more.at));
       if (keep) sheet.querySelector('.tfMore').scrollTop = keep;
+      settlePages();
       refocus(sheet, was);
       if (!sheet.contains(root.activeElement)) sheet.querySelector('[data-more-close]')?.focus({ preventScroll: true });
     } else {
@@ -2911,12 +2974,49 @@ export function mountTestFocus(root, { config, getHass }) {
         mountDacs(next);
       });
       if (side !== moreSide) { const body = sheet.querySelector('.tfMoreSideBody'); if (body) body.innerHTML = side; moreSide = side; }
+      // a day graph swapped in empty (its page redrawn for a new reading) is drawn again
+      box.querySelectorAll('[data-day]').forEach((svg) => { if (!svg.innerHTML) drawDay(svg.dataset.day, svg, more.at); });
+      settlePages();
       if (!sheet.contains(root.activeElement)) refocus(sheet, was);
     }
     sheet.querySelector('.tfMorePair')?.classList.toggle('details', Boolean(more.details && side));
     moreParts = parts;
     syncArts();
   }
+  // the page the popup is on (swiped, or picked from its dots) stays through redraws; the dots follow a swipe
+  function settlePages() {
+    const track = sheet.querySelector('[data-more-pages]');
+    if (!track || !more) return;
+    track.scrollTo({ left: (more.page || 0) * track.clientWidth, behavior: 'instant' });
+    markPage();
+    fitPage(track);
+  }
+  // the pages take the height of the one showing (a lock's Control is one row; its Info is more), the popup easing
+  // between them
+  function fitPage(track) {
+    const page = track.children[more?.page || 0];
+    if (page) track.style.height = page.scrollHeight + 'px';
+  }
+  function markPage() {
+    const page = more?.page || 0;
+    sheet.querySelectorAll('[data-more-page]').forEach((b) => { const on = Number(b.dataset.morePage) === page; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
+  }
+  function turnPage(page, focus) {
+    const track = sheet.querySelector('[data-more-pages]');
+    if (!track || !more) return;
+    more.page = Math.max(0, Math.min(1, page));
+    track.scrollTo({ left: more.page * track.clientWidth, behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    markPage();
+    fitPage(track);
+    if (focus) sheet.querySelector('[data-more-page="' + more.page + '"]')?.focus({ preventScroll: true });
+  }
+  let pageTimer = 0;
+  sheet.addEventListener('scroll', (ev) => {
+    const track = ev.target;
+    if (!track.matches?.('[data-more-pages]') || !more) return;
+    clearTimeout(pageTimer);
+    pageTimer = setTimeout(() => { const page = Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); if (page !== (more.page || 0)) { more.page = page; markPage(); fitPage(track); } }, 80);
+  }, true);
   // "5 minutes ago" moves on while it's open
   setInterval(() => { if (more) renderMore(); }, 15 * 1000);
   function openMore(id, opener) {
@@ -3211,7 +3311,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // the same controls work on the page and in the stand-in more-info
   function bindControls(el) {
     el.addEventListener('click', (ev) => {
-      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-fav-hide],[data-energy-pick],.tfAreaPanel');
+      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-fav-hide],[data-energy-pick],[data-more-page],[data-path],.tfAreaPanel');
       if (boardOpen && !ev.target.closest('.tfBoardMenu,[data-board-more]')) closeBoardMenu();
       if (!t || !el.contains(t) || t.disabled) return;
       if (t.dataset.boardMore) { if (boardOpen?.key === t.dataset.boardMore) closeBoardMenu(true); else openBoardMenu(t.dataset.boardMore, t); }
@@ -3229,6 +3329,8 @@ export function mountTestFocus(root, { config, getHass }) {
       else if (t.dataset.acts) JSON.parse(t.dataset.acts).forEach(([domain, service, id, data]) => send(domain, service, id, data).catch(() => {}));
       else if (t.dataset.more) openMore(t.dataset.more, t);
       else if (t.hasAttribute('data-more-close')) closeMore();
+      else if (t.dataset.morePage) turnPage(Number(t.dataset.morePage), true);
+      else if (t.dataset.path) go(t.dataset.path);
       else if (t.dataset.go) openArea('room:' + t.dataset.go);
       else if (t.hasAttribute('data-area-back')) closeArea();
       else if (t.dataset.open) openReading(t);
@@ -3333,7 +3435,10 @@ export function mountTestFocus(root, { config, getHass }) {
     new ResizeObserver(() => { if (app.classList.contains('tfDash') && dashCols() !== dashColsSeen) refresh(); else queueFit(); }).observe(grid);
     window.addEventListener('resize', queueFit, { passive: true });
     // Escape folds the details away first, then closes
-    sheet.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { ev.stopPropagation(); if (more?.details) toggleDetails(false); else closeMore(); } });
+    sheet.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') { ev.stopPropagation(); if (more?.details) toggleDetails(false); else closeMore(); }
+    else if ((ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') && ev.target.closest?.('.tfMoreDots')) { ev.preventDefault(); turnPage((more?.page || 0) + (ev.key === 'ArrowRight' ? 1 : -1), true); }
+  });
   }
 
   applyDensity();
