@@ -1,11 +1,13 @@
 import css from "./styles.css?inline";
 import displayCss from "./display.css?inline";
 import bentoCss from "./weather-bento.css?inline";
+import motionCss from "./motion.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 import { mountTestFocus } from "./test-focus.js";
+import { installMotion, installSegments } from "./motion.js";
 
-const VERSION = "0.73.0";
+const VERSION = "0.74.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
@@ -65,7 +67,7 @@ class MoveAssistantCard extends HTMLElement {
   async _init() {
     loadInter();
     const root = this.shadowRoot || this.attachShadow({ mode: "open" });
-    root.innerHTML = `<style>${css}${displayCss}${bentoCss}</style>${template}`;
+    root.innerHTML = `<style>${css}${displayCss}${bentoCss}${motionCss}</style>${template}`;
     const app = root.getElementById("app");
     app.style.opacity = "0";
 
@@ -103,6 +105,9 @@ class MoveAssistantCard extends HTMLElement {
     // With `layout: test-focus`, more Home Assistant entities on Home; Settings → Appearance → Show density
     this._test = mountTestFocus(root, { config: this._config, getHass: () => this._hass });
     this._test.update(this._hass.states);
+    // HomeCore's micro-interactions (the Motion Lab's eleven, as the leadership demo)
+    installMotion(root, app);
+    installSegments(root);
     if (!this.isConnected) { this._app.suspend(); this._test.suspend(); }
     app.style.transition = "opacity .2s ease";
     app.style.opacity = "";

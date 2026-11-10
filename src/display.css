@@ -609,8 +609,11 @@ button.tfAreaIcon{cursor:pointer}
 /* edit mode: the cells as a solid grid under the cards, each card outlined in the accent with its grip (top middle,
    80 × 40, across the card's top edge so it covers nothing in it) and ⋯ (top right); its own controls rest. Nothing
    shakes */
-.tfBoardCells{position:absolute;top:0;left:0;z-index:0;display:grid;grid-auto-rows:60px;gap:16px;pointer-events:none}
-.tfBoardCells i{border-radius:var(--r-inner);background:color-mix(in srgb,var(--text) 7%,transparent)}
+/* the grid: dots, and crosshairs where the gutters cross (Matt, 10 Nov; were solid cells) */
+.tfBoardCells{position:absolute;top:0;left:0;z-index:0;pointer-events:none;color:var(--text)}
+.tfBoardCells svg{display:block;overflow:visible}
+.tfBoardCells pattern circle{fill:currentColor;fill-opacity:.16}
+.tfBoardCells .tfGridCross{fill:none;stroke:currentColor;stroke-opacity:.45;stroke-width:1.5;stroke-linecap:round}
 #app.tfEditing .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfDashBento){outline:1.5px solid var(--primary);outline-offset:-1.5px;border-radius:var(--r-card)}
 #app.tfEditing .tfBoardItem:is(.tfAction,.tfDac){border-radius:28px}
 #app.tfEditing .tfAreas{border-radius:24px}
@@ -905,6 +908,11 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]) .wbZone{flex:1;height:auto;background:none;box-shadow:none;padding:0;align-items:flex-start}
 #app.tfBoard .tfDashBento[data-rows="3"] .wbItem[data-xl] .wbCallouts{display:flex;margin-top:0}
 #app.tfBoard .tfDashBento[data-rows="1"] :is(.wbZone,.wbCallouts){display:none}
+/* at M the illustration goes and just the reading shows, as Pollen's does (Matt, 10 Nov: squashing it is silly) */
+#app .wbZoneM{display:none}
+:is(#app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]),#app.tfWeatherOpen .tfBento.tfPhonePegs) .wbZone:has(>.wbZoneM){display:flex;align-items:flex-start;justify-content:flex-start}
+:is(#app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]),#app.tfWeatherOpen .tfBento.tfPhonePegs) .wbZone:has(>.wbZoneM)>:not(.wbZoneM){display:none}
+:is(#app.tfBoard .tfDashBento:is([data-rows="2"],[data-rows="3"]),#app.tfWeatherOpen .tfBento.tfPhonePegs) .wbZoneM{display:flex}
 /* the Weather page in rows by height (Matt, 9 Nov): no packing of later cards into earlier gaps, and the first 4-row card
    starts a new row, so the 5-row cards share rows and the 4-row cards share rows */
 #app.tfWeatherOpen .tfBento.tfPegs .wbBento{grid-auto-flow:row}
@@ -960,3 +968,13 @@ button.tfAreaIcon{cursor:pointer}
    cards' tabs and the board's height tabs were 38 in a 46 */
 #app.house :is(#housePane .themeChoice,.wb .wbSegments,.tfBoardMenu .tfHeightTabs){height:32px;padding:3px;gap:3px;box-sizing:border-box}
 #app.house :is(#housePane .themeChoice>button,.wb .wbSegments button,.tfBoardMenu .tfHeightTabs button){height:26px!important;padding:0 12px;border-radius:13px!important;font:600 12px/16px var(--font-tile)!important}
+
+/* a plant's problem graph (Matt, 10 Nov): its reading's last 24 hours, with a dashed line where the plant wants it */
+.tfPlantProblem{flex:1 1 0;min-height:184px;flex-direction:column}
+/* it takes the room the page has under it (Matt, 10 Nov), 160 at the least; two problems share it */
+.tfGraph.tfPlantGraph{flex:1 1 0;width:calc(100% - 20px);height:auto;min-height:160px;margin:0 10px} /* inside its page (the popup's pages clip) */
+.tfGraph .tfGuide{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 4;vector-effect:non-scaling-stroke}
+.tfGraph .tfGuideWord{font-size:11px}
+/* popups' stroke (Matt, 10 Nov: they got lost on the fade): the cards' own stroke colour (set in HomeCore settings), at
+   1 so it holds against the dim and blur behind them */
+#app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){box-shadow:inset 0 0 0 1px var(--line)}

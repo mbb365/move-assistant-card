@@ -7,9 +7,10 @@
 //   Claude Design's "Covers design": four blocks, a tilt bar and Open/Stop/Close on the tile, and the cover drawn in
 //   its window in more-info. The normal Home never shows any of this.
 // - Show density: every display card's height, and how many readings fit on the screen.
-import { createHouse, isMadeUp, solarHistory } from './house.js';
+import { createHouse, isMadeUp, solarHistory, PLANT_RANGE } from './house.js';
 import { mountWeatherBento } from './weather-bento.js';
 import { createCoverArt, coverKind } from './cover-art.js';
+import { M, EASE, smoothD, gridLines, drawLine, stretchTo, expandOpen, expandClose, closeDialog, toastBody, toastIn, toaster, springStep, squash, reduced } from './motion.js';
 
 const DENSITY_KEY = 'move-assistant-density';
 
@@ -184,10 +185,10 @@ export function mountTestFocus(root, { config, getHass }) {
     // the sliding mark under the open tab, as on Move Assistant's settings; placed again whenever the bar shows or resizes
     const placeMark = (animate) => {
       const on = bar.querySelector('.tab.active');
-      mark.style.transition = animate ? '' : 'none';
-      mark.style.left = on.offsetLeft + 'px';
-      mark.style.width = on.offsetWidth + 'px';
-      if (animate) { mark.style.transform = 'scaleX(1.08)'; setTimeout(() => (mark.style.transform = ''), 180); }
+      mark.style.transition = 'none';
+      // the Motion Lab's tabs: the mark stretches across to the new tab
+      if (animate) stretchTo(mark, mark.offsetLeft, mark.offsetWidth, on.offsetLeft, on.offsetWidth);
+      else { mark.style.left = on.offsetLeft + 'px'; mark.style.width = on.offsetWidth + 'px'; }
     };
     new ResizeObserver(() => placeMark(false)).observe(bar);
     pane.addEventListener('click', (ev) => {
@@ -657,7 +658,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const cs = getComputedStyle(chip), now = { backgroundColor: cs.backgroundColor, color: cs.color }, was = chipWas.get(key);
     chipWas.set(key, now);
     if (!was || (was.backgroundColor === now.backgroundColor && was.color === now.color) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-    chip.animate([was, now], { duration: 180, easing: 'ease' });
+    chip.animate([was, now], { duration: M.warp.cdur, delay: M.warp.cdelay, easing: EASE[M.warp.ease], fill: 'backwards' }); // the Motion Lab's on/off colour
   }
   /* icon fit (Matt, 31 Oct: one size for every icon): Material Design Icons draw at different sizes in their 24 grid
      (curtains 22 across, a water drop 12), so in one box they look different sizes. Once drawn, each glyph is sized so
@@ -1548,10 +1549,7 @@ export function mountTestFocus(root, { config, getHass }) {
   function drawIn(svg) {
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
     const [area, line] = svg.querySelectorAll('path');
-    if (!line?.getTotalLength) return;
-    const len = line.getTotalLength();
-    line.animate([{ strokeDasharray: len, strokeDashoffset: len }, { strokeDasharray: len, strokeDashoffset: 0 }], { duration: 700, easing: 'cubic-bezier(.2,.7,.3,1)' });
-    area?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 200, easing: 'ease-out', fill: 'backwards' });
+    drawLine(svg, line, [area].filter(Boolean)); // the Motion Lab's: over 1 s, the fill following
   }
   // the dashboard's tiles: yours once you've added or removed one in edit mode (Matt, 29 Oct), any device with controls
   // from any room. Until then, the bottom row: the lights of the living room, bedroom and office (on first, then the
@@ -1857,6 +1855,22 @@ export function mountTestFocus(root, { config, getHass }) {
   // edit mode's tools: the grid of cells, each card's grip (top middle) and ⋯ (its own controls rest), where a dragged
   // card will land, and on the Favourites card a hide button for each favourite (hidden cards and favourites wait in the
   // edit tray); returns the board's height with them
+  /* edit mode's grid (Matt, 10 Nov; were solid cells): a field of dots and a crosshair wherever the gutters cross, all
+     from the grid the cards snap to. The crosshairs sit in the middle of the gutters, so a card's corners land just inside
+     four of them; the dots run through the same points, a quarter of a row apart down and about as far across (each
+     column step split evenly), so they line up with the cards too */
+  function gridMarks(n, rows, w) {
+    const P = w + PEG_GAP, W = n * w + (n - 1) * PEG_GAP, H = rows * ROW_PITCH - PEG_GAP, half = PEG_GAP / 2;
+    const dx = P / Math.max(1, Math.round(P / (ROW_PITCH / 4))), dy = ROW_PITCH / 4, arm = 6;
+    let x = '';
+    for (let i = 0; i <= n; i++) for (let j = 0; j <= rows; j++) {
+      const cx = i * P - half, cy = j * ROW_PITCH - half;
+      x += 'M' + (cx - arm) + ' ' + cy + 'H' + (cx + arm) + 'M' + cx + ' ' + (cy - arm) + 'V' + (cy + arm);
+    }
+    return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '"><defs><pattern id="tfGridDots" patternUnits="userSpaceOnUse" x="' + (-half) + '" y="' + (-half) + '" width="' + dx.toFixed(3) + '" height="' + dy + '">' +
+      '<circle cx="0" cy="0" r="1.4"></circle><circle cx="' + dx.toFixed(3) + '" cy="0" r="1.4"></circle><circle cx="0" cy="' + dy + '" r="1.4"></circle><circle cx="' + dx.toFixed(3) + '" cy="' + dy + '" r="1.4"></circle></pattern></defs>' +
+      '<rect class="tfGridDots" x="' + (-half) + '" y="' + (-half) + '" width="' + (W + PEG_GAP) + '" height="' + (H + PEG_GAP) + '" fill="url(#tfGridDots)"></rect><path class="tfGridCross" d="' + x + '"></path></svg>';
+  }
   function editTools(on, shown = [], placed = new Map(), height = 0, n = 1, w = PEG) {
     grid.querySelectorAll('.tfEditChips').forEach((c) => { if (!on || !c.closest('.tfBoardItem')) c.remove(); });
     grid.querySelectorAll('.tfFavHides').forEach((c) => c.remove());
@@ -1869,8 +1883,7 @@ export function mountTestFocus(root, { config, getHass }) {
     cells.style.top = boardTop + 'px';
     if (cells.dataset.size !== n + 'x' + rows + 'x' + w) {
       cells.dataset.size = n + 'x' + rows + 'x' + w;
-      cells.style.gridTemplateColumns = 'repeat(' + n + ',' + w + 'px)';
-      cells.innerHTML = '<i></i>'.repeat(n * rows);
+      cells.innerHTML = gridMarks(n, rows, w);
     }
     height = Math.max(height, boardTop + rows * ROW_PITCH - PEG_GAP);
     shown.forEach((it) => {
@@ -1963,7 +1976,13 @@ export function mountTestFocus(root, { config, getHass }) {
     if (['left', 'right', 'up', 'down'].includes(act)) drag = { key, col: cells[key].col, row: cells[key].row };
     saveCells(dash, cells);
     if (drag) { layoutBoard(); drag = null; saveCells(dashPrefs(), cellsNow()); }
-    closeBoardMenu();
+    // a size: the menu stays while its highlight stretches across to the new one (the Motion Lab's tabs), then goes
+    const tab = /^[hw]:/.test(act) && !reduced() && boardOpen?.menu.querySelector('[data-board-act="' + CSS.escape(act) + '"]');
+    if (tab) {
+      const open = boardOpen;
+      tab.parentElement.querySelectorAll('[aria-checked]').forEach((b) => b.setAttribute('aria-checked', String(b === tab)));
+      setTimeout(() => { if (boardOpen === open) closeBoardMenu(); }, M.tabs.dur);
+    } else closeBoardMenu();
     if (act === 'graph') { units.delete('dash:energy'); refresh(); }
     if (act.startsWith('h:') && key.includes('.')) refresh(); // a room's tile shows what fits by its height alone // a tile's controls change with its height
     layoutBoard();
@@ -1995,10 +2014,11 @@ export function mountTestFocus(root, { config, getHass }) {
      bar: what an edit did, with Undo for 5 s after a remove or a hide. Done says Changes saved when the edits changed
      anything; they save as they're made */
   let toastTimer = 0;
+  toaster.show = (message) => toast(message); // the shell's messages (Add to the list) use it too
   function toast(message, undo = null) {
     const el = $('toast');
     if (!el) return;
-    el.replaceChildren(Object.assign(document.createElement('span'), { textContent: message }));
+    toastBody(el, message); // the Motion Lab's confirmation: a tick, the message at 18
     if (undo) {
       const b = Object.assign(document.createElement('button'), { type: 'button', className: 'toastAction', textContent: 'Undo' });
       b.addEventListener('click', () => { clearTimeout(toastTimer); el.classList.remove('show', 'withAction'); undo(); });
@@ -2010,8 +2030,9 @@ export function mountTestFocus(root, { config, getHass }) {
     el.style.bottom = (bar?.height ? window.innerHeight - bar.top + 12 : 26) + 'px';
     el.classList.add('tfToast', 'show');
     el.classList.toggle('withAction', Boolean(undo));
+    toastIn(el);
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove('show', 'withAction'), undo ? 5000 : 2200);
+    toastTimer = setTimeout(() => el.classList.remove('show', 'withAction'), undo ? 5000 : M.confirm.stay);
   }
   /* ---------- tooltips (Matt, 29 Oct: a HomeCore rule) ----------
      Text cut short with "…" shows all of it in a tooltip, by the mouse or keyboard focus (not touch): the first after
@@ -2477,10 +2498,24 @@ export function mountTestFocus(root, { config, getHass }) {
     closeBoardMenu();
     const x0 = ev.clientX, y0 = ev.clientY;
     let started = false, raf = 0;
+    /* the Motion Lab's drag: the card resists until it's pulled 44 (stretching toward the pointer), then follows on a
+       spring (pull, keep), tilting with its speed and lifted 3.5%; let go, it springs to its place and squashes as it
+       lands. Where it'll go follows the pointer, not the spring */
+    const D = M.drag, still = reduced();
+    let dx = 0, dy = 0, x = 0, y = 0, vx = 0, vy = 0, free = still || D.stick === 0, spring = 0;
+    const paint = (tilt, a, s1, s2) => { el.style.transform = 'translate(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px) rotate(' + tilt.toFixed(2) + 'deg) rotate(' + a + 'rad) scale(' + s1.toFixed(4) + ',' + s2.toFixed(4) + ') rotate(' + -a + 'rad)'; };
+    const frame = () => {
+      spring = requestAnimationFrame(frame);
+      if (still) { x = dx; y = dy; paint(0, 0, 1, 1); return; }
+      if (!free) { const t = Math.min(Math.hypot(dx, dy) / Math.max(1, D.stick), 1); x = dx * 0.35; y = dy * 0.35; paint(0, Math.atan2(dy, dx), 1 + 0.155 * t, 1 - 0.1 * t); return; }
+      vx = springStep(vx, dx - x, D.pull / 100, D.keep / 100); vy = springStep(vy, dy - y, D.pull / 100, D.keep / 100); x += vx; y += vy;
+      const sp = Math.hypot(vx, vy), st = Math.min(sp / 48, 1), tilt = Math.max(-D.tilt, Math.min(D.tilt, vx * 0.32)), lift = 1 + D.lift / 100;
+      paint(tilt, Math.atan2(vy, vx), lift * (1 + 0.1 * st), lift * (1 - 0.063 * st));
+    };
     const move = (e) => {
-      const dx = e.clientX - x0, dy = e.clientY - y0;
-      if (!started) { if (Math.hypot(dx, dy) < 4) return; started = true; drag = { key: it.key, col: p.col, row: p.row }; el.classList.add('tfDragging'); }
-      el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+      dx = e.clientX - x0; dy = e.clientY - y0;
+      if (!started) { if (Math.hypot(dx, dy) < 4) return; started = true; drag = { key: it.key, col: p.col, row: p.row }; el.classList.add('tfDragging', 'mvDrag'); spring = requestAnimationFrame(frame); }
+      if (!free && Math.hypot(dx, dy) > D.stick) { free = true; vx = dx * 0.085; vy = dy * 0.085; }
       drag.col = Math.round((p.x + dx) / (w + PEG_GAP));
       drag.row = Math.round((p.y + dy - boardTop) / ROW_PITCH);
       if (!raf) raf = requestAnimationFrame(() => { raf = 0; layoutBoard(); });
@@ -2491,13 +2526,26 @@ export function mountTestFocus(root, { config, getHass }) {
       window.removeEventListener('pointercancel', up);
       if (!started) return;
       cancelAnimationFrame(raf);
+      cancelAnimationFrame(spring);
+      // where it is on screen now, to slide from once it's in its place
+      const was = el.getBoundingClientRect(), key = it.key;
+      el.style.transition = 'none'; // it slides from where it was dropped (below), not from its old place as well
       layoutBoard();
-      el.classList.remove('tfDragging');
+      el.classList.remove('tfDragging', 'mvDrag');
       el.style.transform = '';
       drag = null;
       saveCells(dashPrefs(), cellsNow());
       layoutBoard();
       refresh();
+      const now = boardItems().find((x2) => x2.key === key)?.el;
+      requestAnimationFrame(() => { el.style.transition = ''; if (now) now.style.transition = ''; });
+      if (!now || still) return;
+      now.style.transition = 'none';
+      const r = now.getBoundingClientRect();
+      const fx = was.left + was.width / 2 - (r.left + r.width / 2), fy = was.top + was.height / 2 - (r.top + r.height / 2);
+      now.style.zIndex = '20';
+      const a = now.animate([{ transform: 'translate(' + fx + 'px,' + fy + 'px) scale(' + (1 + D.lift / 100) + ')' }, { transform: 'none' }], { duration: D.slide, easing: EASE.land });
+      a.finished.then(() => { now.style.zIndex = ''; squash(now); }, () => { now.style.zIndex = ''; });
     };
     window.addEventListener('pointermove', move);
     window.addEventListener('pointerup', up);
@@ -2848,7 +2896,7 @@ export function mountTestFocus(root, { config, getHass }) {
     return [
       moreHead(id, s, head),
       '<div class="tfMorePages" data-more-pages>' +
-        '<section class="tfMorePage" aria-label="Control">' + moreSpace(id) + s.sections.filter(Boolean).join('') + '</section>' +
+        '<section class="tfMorePage" aria-label="Control">' + moreSpace(id) + (d === 'plant' ? plantProblems(id).join('') : '') + s.sections.filter(Boolean).join('') + '</section>' +
         '<section class="tfMorePage" aria-label="Info">' + infoOf(id) + '</section></div>',
       '<div class="tfMoreDots" role="tablist" aria-label="Pages">' + ['Control', 'Info'].map((n, i) => '<button type="button" role="tab" aria-selected="' + (i === page) + '" aria-label="' + n + '" data-more-page="' + i + '"' + (i === page ? '' : ' tabindex="-1"') + '></button>').join('') + '</div>',
     ];
@@ -2958,6 +3006,7 @@ export function mountTestFocus(root, { config, getHass }) {
       mountDacs(sheet);
       fillIcons(sheet);
       sheet.querySelectorAll('[data-day]').forEach((svg) => drawDay(svg.dataset.day, svg, more.at));
+      drawPlantGraphs(sheet);
       if (keep) sheet.querySelector('.tfMore').scrollTop = keep;
       settlePages();
       refocus(sheet, was);
@@ -2971,6 +3020,7 @@ export function mountTestFocus(root, { config, getHass }) {
         t.innerHTML = p;
         const next = swapIn(box.children[i], t.firstElementChild);
         fillIcons(next);
+        drawPlantGraphs(next);
         mountDacs(next);
       });
       if (side !== moreSide) { const body = sheet.querySelector('.tfMoreSideBody'); if (body) body.innerHTML = side; moreSide = side; }
@@ -3037,6 +3087,12 @@ export function mountTestFocus(root, { config, getHass }) {
     turning = false;
   }
   function closeMore() {
+    if (!more) return;
+    // the Motion Lab's dialog close: the dim goes and it shrinks back, then it's taken away
+    const was = more;
+    closeDialog(sheet, () => { if (more === was) closeMoreNow(); });
+  }
+  function closeMoreNow() {
     const opener = more?.opener;
     more = null;
     arts.forEach((art, k) => { if (sheet.contains(art.el)) { art.destroy(); arts.delete(k); } });
@@ -3052,19 +3108,37 @@ export function mountTestFocus(root, { config, getHass }) {
   }
 
   /* graphs: the last 24 hours of an open reading, and the balcony's solar */
+  /* a plant's problems (Matt, 10 Nov: Maintenance's Monstera and Basil): each reading it's unhappy about (its state
+     above says which, so the graph is headed with the reading's name), its last 24 hours, with a dashed line where the
+     plant wants it (Home Assistant's plant ranges, as the made-up home checks them) */
+  const PLANT_KEYS = { moisture: 'moisture', light: 'light', brightness: 'light', temperature: 'temperature', fertility: 'fertility', conductivity: 'fertility' };
+  function plantProblems(id) {
+    const said = String(attr(id).problem || ''), base = 'sensor.' + id.split('.')[1] + '_';
+    return said === 'none' ? [] : said.split(',').map((x) => x.trim().split(' ')).map(([k, way]) => {
+      const key = PLANT_KEYS[k], sid = base + key;
+      if (!key || !states[sid] || !PLANT_RANGE[key]) return '';
+      const unit = attr(sid).unit_of_measurement || '', [lo, hi] = PLANT_RANGE[key], low = way === 'low';
+      return '<div class="tfMoreGroup tfPlantProblem"><div class="tfMoreGroupName">' + esc(nameOf(sid)) + '</div>' +
+        '<svg class="tfGraph tfPlantGraph" data-plant-graph="' + esc(sid) + '" data-guide="' + (low ? lo : hi) + '" data-guide-word="' + esc('Wants ' + (low ? '' : 'up to ') + (low ? lo : hi).toLocaleString() + (unit === '%' ? '%' : unit ? ' ' + unit : '') + (low ? ' or more' : '')) + '" role="img" aria-label="' + esc(nameOf(sid)) + ', last 24 hours"></svg></div>';
+    }).filter(Boolean);
+  }
+  const drawPlantGraphs = (scope) => scope.querySelectorAll('[data-plant-graph]').forEach((svg) => drawHistory(svg.dataset.plantGraph, svg, { guide: Number(svg.dataset.guide), guideWord: svg.dataset.guideWord }).then(() => drawIn(svg)));
   function plot(svg, pts, label, opts = {}) {
-    const vals = pts.map((p) => p[1]), min = opts.zero ? 0 : Math.min(...vals), max = Math.max(...vals);
+    const vals = pts.map((p) => p[1]).concat(opts.guide != null ? [opts.guide] : []), min = opts.zero ? 0 : Math.min(...vals), max = Math.max(...vals);
     const W = Math.max(120, svg.clientWidth || 260), H = Math.max(60, svg.clientHeight || 130), top = 8, bottom = H - 20;
     const t0 = Date.now() - 24 * 3600 * 1000, span = 24 * 3600 * 1000;
     const x = (t) => Math.max(0, Math.min(W, ((t - t0) / span) * W));
     const y = (v) => (max === min ? (top + bottom) / 2 : bottom - ((v - min) / (max - min)) * (bottom - top));
     let d = 'M' + x(pts[0][0]).toFixed(1) + ' ' + y(pts[0][1]).toFixed(1);
-    for (let i = 1; i < pts.length; i++) d += opts.smooth ? 'L' + x(pts[i][0]).toFixed(1) + ' ' + y(pts[i][1]).toFixed(1) : 'H' + x(pts[i][0]).toFixed(1) + 'V' + y(pts[i][1]).toFixed(1);
+    if (M.graphs.curve === 'smooth' && pts.length > 2) d = smoothD(pts.map((p) => [x(p[0]), y(p[1])])); // every graph: the Motion Lab's smooth line
+    else for (let i = 1; i < pts.length; i++) d += opts.smooth ? 'L' + x(pts[i][0]).toFixed(1) + ' ' + y(pts[i][1]).toFixed(1) : 'H' + x(pts[i][0]).toFixed(1) + 'V' + y(pts[i][1]).toFixed(1);
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     svg.setAttribute('aria-label', label);
-    svg.innerHTML = '<path d="' + d + 'V' + bottom + 'H' + x(pts[0][0]).toFixed(1) + 'Z" fill="' + (opts.colour || 'var(--primary)') + '" fill-opacity=".14"/>' +
-      '<path d="' + d + '" fill="none" stroke="' + (opts.colour || 'var(--primary)') + '" stroke-width="2" stroke-linejoin="round"/>' +
-      '<text x="0" y="' + (H - 4) + '">24 h ago</text><text x="' + W + '" y="' + (H - 4) + '" text-anchor="end">Now</text>';
+    svg.innerHTML = gridLines(W, top, bottom) + '<path d="' + d + 'V' + bottom + 'H' + x(pts[0][0]).toFixed(1) + 'Z" fill="' + (opts.colour || 'var(--primary)') + '" fill-opacity="' + (M.graphs.fill ? '.14' : '0') + '"/>' +
+      '<path d="' + d + '" fill="none" stroke="' + (opts.colour || 'var(--primary)') + '" stroke-width="' + M.graphs.weight + '" stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<text x="0" y="' + (H - 4) + '">24 h ago</text><text x="' + W + '" y="' + (H - 4) + '" text-anchor="end">Now</text>' +
+      (opts.guide != null ? '<line class="tfGuide" x1="0" x2="' + W + '" y1="' + y(opts.guide).toFixed(1) + '" y2="' + y(opts.guide).toFixed(1) + '"/>' +
+        '<text class="tfGuideWord" x="' + W + '" y="' + (y(opts.guide) < 20 ? y(opts.guide) + 14 : y(opts.guide) - 5).toFixed(1) + '" text-anchor="end">' + esc(opts.guideWord || '') + '</text>' : '');
   }
   /* a device's day, opened from Activity (Matt, 29 Oct; the motion lab's "On and off through the day"): one track 26
      tall across the last 24 hours, corner 8, in the text colour at 10%; each time it was on (open, wet, unlocked…) a span
@@ -3145,9 +3219,17 @@ export function mountTestFocus(root, { config, getHass }) {
       const midnight = new Date().setHours(0, 0, 0, 0), span = Math.max(1, now - midnight);
       return [...Array(49)].map((_, i) => midnight + (span * i) / 48).map((t) => [t, Math.round(v * Math.pow((t - midnight) / span, 1.3) * 100) / 100]);
     }
+    // a plant's soil dries through the day (watered a day ago, 22 points wetter), and its light follows the sun, at its
+    // brightest around midday, ending at now's reading (so a dry Monstera and a dim Basil show how they got there)
+    if (isMadeUp(id) && id.endsWith('_moisture')) return [...Array(48)].map((_, i) => [now - (48 - i) * 30 * 60 * 1000, Math.round((v + 22 * Math.pow(1 - i / 48, 1.2)) * 10) / 10]);
+    if (isMadeUp(id) && id.endsWith('_light')) {
+      const sun = (t) => { const h = new Date(t).getHours() + new Date(t).getMinutes() / 60; return Math.max(0, Math.sin(((h - 6) / 14) * Math.PI)); };
+      const k = (t) => 0.8 + 0.2 * sun(t);
+      return [...Array(48)].map((_, i) => now - (48 - i) * 30 * 60 * 1000).map((t) => [t, Math.round((v * k(t)) / k(now))]);
+    }
     return [...Array(48)].map((_, i) => [now - (48 - i) * 30 * 60 * 1000, Math.round(v * (0.96 + 0.04 * Math.sin(i / 6)) * 10) / 10]);
   }
-  async function drawHistory(id, into) {
+  async function drawHistory(id, into, extra = {}) {
     let h = history.get(id);
     if (id.endsWith('_solar_power')) h = { at: Date.now(), points: solarHistory() };
     else if (isMadeUp(id)) h = { at: Date.now(), points: madeUpHistory(id) };
@@ -3170,7 +3252,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const vals = pts.map((p) => p[1]), min = Math.min(...vals), max = Math.max(...vals);
     const f = (v) => v.toLocaleString(undefined, { maximumFractionDigits: Math.abs(v) >= 100 ? 0 : 1 });
     const growing = st?.attributes?.state_class === 'total_increasing';
-    plot(svg, pts, nameOf(id) + ', last 24 hours: ' + (growing ? '+' + f(vals[vals.length - 1] - vals[0]) : (min === max ? f(min) : f(min) + ' to ' + f(max))) + (unit ? ' ' + unit : ''), { smooth: id.endsWith('_solar_power'), zero: id.endsWith('_solar_power') });
+    plot(svg, pts, nameOf(id) + ', last 24 hours: ' + (growing ? '+' + f(vals[vals.length - 1] - vals[0]) : (min === max ? f(min) : f(min) + ' to ' + f(max))) + (unit ? ' ' + unit : ''), { smooth: id.endsWith('_solar_power'), zero: id.endsWith('_solar_power') , ...extra });
   }
   function drawSolar() {
     const svg = grid?.querySelector('[data-solar]');
@@ -3261,10 +3343,14 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   function openReading(el) {
     const [key, id] = el.dataset.open.split('|');
-    const c = el.closest('.tfCard');
-    open = { key, id, h: c ? Math.round(c.getBoundingClientRect().height) : 0 };
+    const c = el.closest('.tfCard'), from = el.getBoundingClientRect(), chip = el.querySelector('.tfIcon')?.getBoundingClientRect();
+    open = { key, id, h: c ? Math.round(c.getBoundingClientRect().height) : 0, from, chip };
     units.delete(key);
     refresh();
+    // the Motion Lab's tile opening: it grows from the reading, its head slides up from the reading's, the graph after
+    const det = grid.querySelector('.tfOpen');
+    if (det) open.rel = from.top - det.getBoundingClientRect().top;
+    expandOpen(det, from, chip);
     grid.querySelector('.tfOpen [data-close]')?.focus({ preventScroll: true });
   }
   function pickArea(panel) {
@@ -3334,7 +3420,12 @@ export function mountTestFocus(root, { config, getHass }) {
       else if (t.dataset.go) openArea('room:' + t.dataset.go);
       else if (t.hasAttribute('data-area-back')) closeArea();
       else if (t.dataset.open) openReading(t);
-      else if (t.hasAttribute('data-close')) { const was = open; open = null; units.delete(was.key); refresh(); grid.querySelector('[data-open="' + CSS.escape(was.key + '|' + was.id) + '"]')?.focus({ preventScroll: true }); }
+      else if (t.hasAttribute('data-close')) {
+        const was = open, det = t.closest('.tfOpen'), top = det?.getBoundingClientRect().top;
+        // back into the reading it came from (where it is now, if the page moved)
+        const from = was.from && top != null ? new DOMRect(was.from.left, top + (was.rel || 0), was.from.width, was.from.height) : was.from;
+        expandClose(det, from, () => { if (open !== was) return; open = null; units.delete(was.key); refresh(); grid.querySelector('[data-open="' + CSS.escape(was.key + '|' + was.id) + '"]')?.focus({ preventScroll: true }); });
+      }
       else if (t.classList.contains('tfAreaPanel') && !t.classList.contains('active')) pickArea(t);
     });
     el.addEventListener('keydown', (ev) => {
