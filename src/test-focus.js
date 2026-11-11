@@ -682,7 +682,8 @@ export function mountTestFocus(root, { config, getHass }) {
     }
     if (!(x2 > x1)) return false;
     const vb = svg.viewBox?.baseVal?.width ? svg.viewBox.baseVal : { x: 0, y: 0, width: 24, height: 24 };
-    const target = room - 14, size = (target * vb.width) / Math.max(x2 - x1, y2 - y1), at = size / vb.width;
+    // a glyph fills its room less 14 (26 in the 40 chip); a bigger room (the sheet's big switch, 240) keeps that share
+    const target = room > 40 ? room * (26 / 40) : room - 14, size = (target * vb.width) / Math.max(x2 - x1, y2 - y1), at = size / vb.width;
     if (el.localName === 'svg') { el.style.width = size + 'px'; el.style.height = size + 'px'; } else el.style.setProperty('--mdc-icon-size', size + 'px');
     svg.style.translate = ((vb.x + vb.width / 2 - (x1 + x2) / 2) * at).toFixed(2) + 'px ' + ((vb.y + vb.height / 2 - (y1 + y2) / 2) * at).toFixed(2) + 'px';
     el.dataset.fitted = key;
@@ -2837,6 +2838,58 @@ export function mountTestFocus(root, { config, getHass }) {
     if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY) && ev.target.closest?.('[data-more-pages]')) return; // sideways: the pages
     if (!scrollsInside(ev.target, ev.deltaY)) ev.preventDefault();
   }, { passive: false });
+  // phones (Matt, 11 Nov; rule popup.sheet): flick the sheet down to hide it. It follows the finger from its handle (the
+  // sheet's ::before), its head, or its page once that's scrolled to its top; let go far enough down (120), or fast, and it's taken away, else
+  // it springs back. A tap stays a tap: nothing moves under 8, and a drag's click is eaten
+  const onPhone = () => window.innerWidth <= 620;
+  let flick = null;
+  sheet.addEventListener('pointerdown', (ev) => {
+    const pair = sheet.querySelector('.tfMorePair');
+    if (!onPhone() || !pair || !pair.contains(ev.target) || !ev.isPrimary || sheet._closing) return;
+    if (ev.target.closest('input,textarea,select,.tfDacPad,[data-cover-art],.tfMoreSide')) return;
+    flick = { x: ev.clientX, y: ev.clientY, t: performance.now(), dy: 0, v: 0, pair, from: ev.target, grab: ev.target.matches('.tfMore') || Boolean(ev.target.closest('.tfMoreHead')) };
+  }, true);
+  sheet.addEventListener('pointermove', (ev) => {
+    if (!flick || !ev.isPrimary) return;
+    const dy = ev.clientY - flick.y, now = performance.now();
+    if (!flick.on) {
+      if (Math.abs(ev.clientX - flick.x) > 8 || dy < -8 || (!flick.grab && scrollsInside(flick.from, -1))) { flick = null; return; }
+      if (dy < 8) return;
+      flick.on = true;
+      try { sheet.setPointerCapture(ev.pointerId); } catch { /* a pointer that's gone */ }
+    }
+    flick.v = (dy - flick.dy) / Math.max(1, now - flick.t);
+    flick.dy = dy; flick.t = now;
+    flick.pair.style.transform = 'translateY(' + Math.max(0, dy) + 'px)';
+  });
+  const flickEnd = (ev) => {
+    if (!flick || !ev.isPrimary) return;
+    const f = flick;
+    flick = null;
+    if (!f.on) return;
+    const eat = (e) => { e.preventDefault(); e.stopImmediatePropagation(); };
+    window.addEventListener('click', eat, { capture: true, once: true });
+    setTimeout(() => window.removeEventListener('click', eat, { capture: true }), 300);
+    const away = ev.type === 'pointerup' && (f.dy > 120 || f.v > 0.5);
+    const from = 'translateY(' + Math.max(0, f.dy) + 'px)';
+    f.pair.style.transform = '';
+    if (!away || reduced()) {
+      if (away) closeMoreNow();
+      else f.pair.animate([{ transform: from }, { transform: 'none' }], { duration: 320, easing: EASE.spring });
+      return;
+    }
+    const was = more;
+    sheet._closing = true;
+    sheet.style.pointerEvents = 'none';
+    sheet.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: EASE.exit, fill: 'forwards' });
+    const a = f.pair.animate([{ transform: from }, { transform: 'translateY(calc(100% + 40px))' }], { duration: 220, easing: EASE.exit, fill: 'forwards' });
+    let called = false;
+    const go = () => { if (called) return; called = true; sheet._closing = false; sheet.style.pointerEvents = ''; sheet.getAnimations().forEach((x) => x.cancel()); f.pair.getAnimations().forEach((x) => x.cancel()); if (more === was) closeMoreNow(); };
+    a.finished.then(go, go);
+    setTimeout(go, 300);
+  };
+  sheet.addEventListener('pointerup', flickEnd);
+  sheet.addEventListener('pointercancel', flickEnd);
   // a device's details sit behind a Details button and roll out beside the dialog, which stays where it is (Matt,
   // 27 Oct); where there's no room beside it (always on phones) they open over the top of it
   function fitDetails() {
@@ -2923,7 +2976,12 @@ export function mountTestFocus(root, { config, getHass }) {
     // a device that is only its controls or a state word has no space (Matt, 10 Nov: Popup · Device, rule popup.space):
     // a lock, an alarm, a switch, a valve, a media player, and a light that isn't the Dual Axis Controller (its bars say
     // its brightness)
-    if (NO_SPACE.includes(d) || (d === 'light' && !dacFor(id))) return '';
+    if (NO_SPACE.includes(d) || (d === 'light' && !dacFor(id))) {
+      // on a phone (the sheet, rule popup.sheet; Matt, 11 Nov) its icon, big, is the switch: the tile's icon button at
+      // 240, toggling like the tile's. Desktop popups keep their rows (the switch is hidden there)
+      const s = ACTION_DOMAINS.includes(d) ? specFor(id) : null;
+      return s?.button ? '<div class="tfMoreSpace tfMoreSwitch' + (s.on ? ' on' : '') + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' + iconButton(id, s) + '</div>' : '';
+    }
     if (d === 'cover') return '<div class="tfMoreSpace tfMoreFill"><div data-cover-art="' + esc(id) + '"></div></div>';
     if (d === 'light' && dacFor(id)) return '<div class="tfMoreSpace tfMoreFill"><div class="tfDacPad" data-dac="more:' + esc(id) + '"></div></div>';
     const { big, lines } = bigOf(id);
@@ -2997,7 +3055,7 @@ export function mountTestFocus(root, { config, getHass }) {
       // starts at its top, and Back returns to where that page was left
       const keep = turning ? more.scroll || 0 : !sheet.hidden && box ? box.scrollTop : 0;
       // the dialog and, beside it, its details: one dialog for screen readers. Already open, it doesn't rise in again
-      sheet.innerHTML = '<div class="tfMorePair' + (sheet.hidden ? '' : ' still') + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (wide ? ' wide' : '') + '"' + (more.frame ? ' style="height:' + more.frame.h + 'px"' : '') + '>' + parts.join('') + '</section>' +
+      sheet.innerHTML = '<div class="tfMorePair' + (sheet.hidden ? '' : ' still') + '" role="dialog" aria-modal="true" aria-labelledby="tfMoreTitle"><section class="tfMore' + (wide ? ' wide' : '') + '"' + (more.frame ? ' style="height:' + more.frame.h + 'px"' : '') + ' tabindex="-1">' + parts.join('') + '</section>' +
         (side ? '<aside class="tfMoreSide" id="tfMoreSide" aria-label="Details"><div class="tfMoreSideInner"><div class="tfMoreHead"><button class="tfBack" type="button" data-details-close aria-label="Back">' + ARROW + '</button>' +
           '<div class="activityTitle">Details</div></div><div class="tfMoreSideBody">' + side + '</div></div></aside>' : '') + '</div>';
       moreSide = side;
@@ -3012,7 +3070,7 @@ export function mountTestFocus(root, { config, getHass }) {
       if (keep) sheet.querySelector('.tfMore').scrollTop = keep;
       settlePages();
       refocus(sheet, was);
-      if (!sheet.contains(root.activeElement)) sheet.querySelector('[data-more-close]')?.focus({ preventScroll: true });
+      if (!sheet.contains(root.activeElement)) { const c = sheet.querySelector('[data-more-close]'); (c?.offsetParent ? c : sheet.querySelector('.tfMore'))?.focus({ preventScroll: true }); }
     } else {
       // only the parts that changed, so the drawing and a focused button stay
       parts.forEach((p, i) => {

@@ -289,7 +289,7 @@
 .tfMoreRow{display:flex;justify-content:space-between;gap:16px;padding:10px 0;box-shadow:inset 0 -.4px 0 var(--line);font:400 14px/20px var(--font)}
 .tfMoreRow span:first-child{color:var(--muted)}
 .tfMoreNote{color:var(--muted);font:400 12px/16px var(--font)}
-@media(max-width:620px){.tfMoreBackdrop{place-items:end stretch;padding:0}.tfMorePair{width:100%;max-height:85vh}.tfMore{width:100%;border-radius:var(--r-card) var(--r-card) 0 0}}
+/* phones: the sheet, at the end of this file (Matt, 11 Nov) */
 @media(max-width:1199px) and (min-width:901px){.tfCard{grid-column:span 6}.tfBlock{grid-column:span 12}}
 @media(max-width:900px){.tfCard,.tfBlock{grid-column:auto}}
 
@@ -982,3 +982,34 @@ button.tfAreaIcon{cursor:pointer}
 /* popups' stroke (Matt, 10 Nov: they got lost on the fade): the cards' own stroke colour (set in HomeCore settings), at
    1 so it holds against the dim and blur behind them */
 #app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){box-shadow:inset 0 0 0 1px var(--line)}
+
+/* =========================================================
+   Phones (Matt, 11 Nov; Figma Popup · Sheet, rule popup.sheet): a popup is a sheet that floats above the bottom of
+   the screen, 16 from the sides and the bottom, every corner 34, with a soft shadow on the dim. A device's is one
+   height whatever it holds, 600 (85% of the screen at most), so its controls are always in the same reach: the data
+   and action space takes the room there is and the controls sit at the bottom, the dots under them; a page with more
+   than fits scrolls inside. A handle 36 × 5 at the top, 10 down, and no Close: flick the handle, the head or the page
+   (at its top) down to hide it. Summaries and the favourites list float the same way, as tall as what they hold.
+   ========================================================= */
+@media(max-width:620px){
+  #app .tfMoreBackdrop{place-items:end center;padding:0 16px max(16px,env(safe-area-inset-bottom,0px))}
+  #app .tfMoreBackdrop .tfMorePair{width:100%;max-height:85dvh}
+  #app .tfMoreBackdrop:not(.wide) .tfMore{height:min(600px,85dvh)}
+  #app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){width:100%;border-radius:34px;box-shadow:inset 0 0 0 1px var(--line),0 10px 30px rgba(0,0,0,.28)}
+  #app .tfMoreBackdrop .tfMore{padding-top:10px;outline:none}
+  #app .tfMoreBackdrop .tfMore::before{content:"";display:block;position:sticky;top:10px;z-index:2;flex:none;width:36px;height:5px;margin:0 auto;border-radius:3px;background:var(--line)}
+  #app .tfMoreBackdrop .tfMore [data-more-close]{display:none}
+  #app .tfMoreBackdrop:not(.wide) .tfMorePages{flex:1 1 auto;min-height:0;height:auto!important;align-items:stretch}
+  #app .tfMoreBackdrop:not(.wide) .tfMorePage{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+  #app .tfMoreBackdrop:not(.wide) .tfMorePage[aria-label="Control"]>:first-child{margin-top:auto}
+  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace{flex:1 1 auto;height:auto;min-height:224px}
+  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill{min-height:0}
+  #app .tfMoreBackdrop .tfMoreSwitch{display:flex;min-height:0}
+}
+/* the None case of the space (Matt, 11 Nov): a device with no data or action space (a lock, an alarm, a valve) shows
+   its icon, big, as the switch on the sheet: the tile's icon button at 240 (narrower where the room is), the same
+   shape (corner 40%), the glyph 85% of it like the tile's 34 in 40. It toggles like the tile's, in the head's colour */
+.tfMoreSwitch{display:none;align-items:center;justify-content:center;padding:0;border-radius:0;background:none}
+.tfMoreSwitch .tfIcon{width:min(240px,100%);height:min(240px,100%);aspect-ratio:1;min-height:0;border:0;padding:0;border-radius:40%;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer;--mdc-icon-size:204px}
+.tfMoreSwitch.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
+.tfMoreSwitch.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
