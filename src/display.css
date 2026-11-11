@@ -984,37 +984,37 @@ button.tfAreaIcon{cursor:pointer}
 #app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){box-shadow:inset 0 0 0 1px var(--line)}
 
 /* =========================================================
-   Phones (Matt, 11 Nov; Figma Popup · Sheet, rule popup.sheet): a popup is a sheet that floats above the bottom of
-   the screen, 16 from the sides and the bottom, every corner 34, with a soft shadow on the dim. A device's is one
-   height whatever it holds, 600 (85% of the screen at most), so its controls are always in the same reach: the data
-   and action space takes the room there is and the controls sit at the bottom, the dots under them; a page with more
-   than fits scrolls inside. A handle 36 × 5 at the top, 10 down, and no Close: flick the handle, the head or the page
-   (at its top) down to hide it. Summaries and the favourites list float the same way, as tall as what they hold.
+   A device's popup is one height on every screen (Matt, 11 Nov; Figma Popup · Sheet, rules popup.device and
+   popup.sheet): 600 (85% of the screen at most), whatever it holds, so its controls are always in the same reach. The
+   data and action space takes the room there is and the controls sit at the bottom, the dots under them; a page with
+   more than fits scrolls inside. A device with no data or action space (a lock, an alarm, a valve) shows its icon,
+   big, as the switch there: the tile's icon button at 240, the same shape (corner 40%, 96: styles.css lets it past
+   the buttons' 16), the glyph keeping its share of the room (26 in 40), toggling like the tile's in the head's colour.
+   Summaries and the favourites list stay as tall as what they hold.
    ========================================================= */
+#app .tfMoreBackdrop:not(.wide) .tfMore{height:min(600px,85dvh)}
+#app .tfMoreBackdrop:not(.wide) .tfMorePages{flex:1 1 auto;min-height:0;height:auto!important;align-items:stretch}
+#app .tfMoreBackdrop:not(.wide) .tfMorePage{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+#app .tfMoreBackdrop:not(.wide) .tfMorePage[aria-label="Control"]>:first-child{margin-top:auto}
+#app .tfMoreBackdrop:not(.wide) .tfMoreSpace{flex:1 1 auto;height:auto;min-height:224px}
+/* a drawing fits the room both ways (Matt, 11 Nov: the curtains were cut top and bottom on a wider phone): the square
+   cover drawing takes the smaller of the room's width and height; the room is a size container for that */
+#app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill{min-height:0;container-type:size}
+#app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill>.tfCoverArt{width:min(100%,100cqh);height:auto}
+/* a popup's control rows sit 28 apart, twice the page's 14 (Matt, 11 Nov); the space keeps its 14 to the first row */
+.tfMorePage[aria-label="Control"]>:not(.tfMoreSpace,.tfPlantProblem,.tfMoreLink)+:not(.tfMoreSpace,.tfPlantProblem,.tfMoreLink){margin-top:14px}
+.tfMoreSwitch{display:flex;align-items:center;justify-content:center;min-height:0;padding:0;border-radius:0;background:none}
+.tfMoreSwitch .tfIcon{width:min(240px,100%);height:min(240px,100%);aspect-ratio:1;min-height:0;border:0;padding:0;border-radius:40%;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer;--mdc-icon-size:204px}
+.tfMoreSwitch.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
+.tfMoreSwitch.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}
+/* phones (Matt, 11 Nov; rule popup.sheet): the popup is a sheet that floats above the bottom of the screen, 16 from
+   the sides and the bottom, every corner 34, with a soft shadow on the dim. A handle 36 × 5 at the top, 10 down, and
+   no Close: flick the handle, the head or the page (at its top) down to hide it */
 @media(max-width:620px){
   #app .tfMoreBackdrop{place-items:end center;padding:0 16px max(16px,env(safe-area-inset-bottom,0px))}
   #app .tfMoreBackdrop .tfMorePair{width:100%;max-height:85dvh}
-  #app .tfMoreBackdrop:not(.wide) .tfMore{height:min(600px,85dvh)}
   #app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){width:100%;border-radius:34px;box-shadow:inset 0 0 0 1px var(--line),0 10px 30px rgba(0,0,0,.28)}
   #app .tfMoreBackdrop .tfMore{padding-top:10px;outline:none}
   #app .tfMoreBackdrop .tfMore::before{content:"";display:block;position:sticky;top:10px;z-index:2;flex:none;width:36px;height:5px;margin:0 auto;border-radius:3px;background:var(--line)}
   #app .tfMoreBackdrop .tfMore [data-more-close]{display:none}
-  #app .tfMoreBackdrop:not(.wide) .tfMorePages{flex:1 1 auto;min-height:0;height:auto!important;align-items:stretch}
-  #app .tfMoreBackdrop:not(.wide) .tfMorePage{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
-  #app .tfMoreBackdrop:not(.wide) .tfMorePage[aria-label="Control"]>:first-child{margin-top:auto}
-  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace{flex:1 1 auto;height:auto;min-height:224px}
-  /* a drawing fits the room both ways (Matt, 11 Nov: the curtains were cut top and bottom on a wider phone): the square
-     cover drawing takes the smaller of the room's width and height; the room is a size container for that */
-  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill{min-height:0;container-type:size}
-  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill>.tfCoverArt{width:min(100%,100cqh);height:auto}
-  #app .tfMoreBackdrop .tfMoreSwitch{display:flex;min-height:0}
 }
-/* a popup's control rows sit 28 apart, twice the page's 14 (Matt, 11 Nov); the space keeps its 14 to the first row */
-.tfMorePage[aria-label="Control"]>:not(.tfMoreSpace,.tfPlantProblem,.tfMoreLink)+:not(.tfMoreSpace,.tfPlantProblem,.tfMoreLink){margin-top:14px}
-/* the None case of the space (Matt, 11 Nov): a device with no data or action space (a lock, an alarm, a valve) shows
-   its icon, big, as the switch on the sheet: the tile's icon button at 240 (narrower where the room is), the same
-   shape (corner 40%, 96: styles.css lets it past the buttons' 16), the glyph 85% of it like the tile's 34 in 40. It toggles like the tile's, in the head's colour */
-.tfMoreSwitch{display:none;align-items:center;justify-content:center;padding:0;border-radius:0;background:none}
-.tfMoreSwitch .tfIcon{width:min(240px,100%);height:min(240px,100%);aspect-ratio:1;min-height:0;border:0;padding:0;border-radius:40%;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer;--mdc-icon-size:204px}
-.tfMoreSwitch.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
-.tfMoreSwitch.on[data-tone="alarm"] .tfIcon{background:#e53935;color:#ffffff}

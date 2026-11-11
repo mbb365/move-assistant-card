@@ -2977,8 +2977,8 @@ export function mountTestFocus(root, { config, getHass }) {
     // a lock, an alarm, a switch, a valve, a media player, and a light that isn't the Dual Axis Controller (its bars say
     // its brightness)
     if (NO_SPACE.includes(d) || (d === 'light' && !dacFor(id))) {
-      // on a phone (the sheet, rule popup.sheet; Matt, 11 Nov) its icon, big, is the switch: the tile's icon button at
-      // 240, toggling like the tile's. Desktop popups keep their rows (the switch is hidden there)
+      // its icon, big, is the switch (Matt, 11 Nov; rules popup.device, popup.sheet): the tile's icon button at 240,
+      // toggling like the tile's
       const s = ACTION_DOMAINS.includes(d) ? specFor(id) : null;
       return s?.button ? '<div class="tfMoreSpace tfMoreSwitch' + (s.on ? ' on' : '') + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' + iconButton(id, s) + '</div>' : '';
     }
