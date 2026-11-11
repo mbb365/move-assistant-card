@@ -1003,12 +1003,17 @@ button.tfAreaIcon{cursor:pointer}
   #app .tfMoreBackdrop:not(.wide) .tfMorePage{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
   #app .tfMoreBackdrop:not(.wide) .tfMorePage[aria-label="Control"]>:first-child{margin-top:auto}
   #app .tfMoreBackdrop:not(.wide) .tfMoreSpace{flex:1 1 auto;height:auto;min-height:224px}
-  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill{min-height:0}
+  /* a drawing fits the room both ways (Matt, 11 Nov: the curtains were cut top and bottom on a wider phone): the square
+     cover drawing takes the smaller of the room's width and height; the room is a size container for that */
+  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill{min-height:0;container-type:size}
+  #app .tfMoreBackdrop:not(.wide) .tfMoreSpace.tfMoreFill>.tfCoverArt{width:min(100%,100cqh);height:auto}
   #app .tfMoreBackdrop .tfMoreSwitch{display:flex;min-height:0}
 }
+/* a popup's control rows sit 28 apart, twice the page's 14 (Matt, 11 Nov); the space keeps its 14 to the first row */
+.tfMorePage[aria-label="Control"]>:not(.tfMoreSpace,.tfPlantProblem,.tfMoreLink)+:not(.tfMoreSpace,.tfPlantProblem,.tfMoreLink){margin-top:14px}
 /* the None case of the space (Matt, 11 Nov): a device with no data or action space (a lock, an alarm, a valve) shows
    its icon, big, as the switch on the sheet: the tile's icon button at 240 (narrower where the room is), the same
-   shape (corner 40%), the glyph 85% of it like the tile's 34 in 40. It toggles like the tile's, in the head's colour */
+   shape (corner 40%, 96: styles.css lets it past the buttons' 16), the glyph 85% of it like the tile's 34 in 40. It toggles like the tile's, in the head's colour */
 .tfMoreSwitch{display:none;align-items:center;justify-content:center;padding:0;border-radius:0;background:none}
 .tfMoreSwitch .tfIcon{width:min(240px,100%);height:min(240px,100%);aspect-ratio:1;min-height:0;border:0;padding:0;border-radius:40%;background:var(--hc-icon);color:var(--hc-icon-ink);cursor:pointer;--mdc-icon-size:204px}
 .tfMoreSwitch.on[data-light] .tfIcon{background:var(--light-soft);color:var(--light-ink)}
