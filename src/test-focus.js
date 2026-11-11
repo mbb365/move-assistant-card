@@ -2816,6 +2816,12 @@ export function mountTestFocus(root, { config, getHass }) {
   sheet.className = 'tfMoreBackdrop';
   sheet.hidden = true;
   app.appendChild(sheet);
+  // a device opened from inside a popup (a summary's lock) opens over the top of it (Matt, 11 Nov): the popup it came
+  // from parks here, where it was, dimmed and inert under the new one, and is back when that one closes
+  const under = document.createElement('div');
+  under.className = 'tfMoreBackdrop tfMoreUnder';
+  under.hidden = true;
+  app.insertBefore(under, sheet);
   // while a popup is open the page behind it stays still (Matt, 28 Oct): a swipe or wheel only scrolls what's inside
   // the popup, and nothing once that's at its end; on the dark round it, nothing at all. Sideways swipes and the
   // popup's own controls are left alone
@@ -3130,12 +3136,29 @@ export function mountTestFocus(root, { config, getHass }) {
   // "5 minutes ago" moves on while it's open
   setInterval(() => { if (more) renderMore(); }, 15 * 1000);
   function openMore(id, opener) {
-    // opened from inside the dialog (a summary's device): it opens in the same popup, which keeps the size and place it
-    // first opened at, with Back and the device's name where the summary's was (Matt, 29 Oct: you don't lose where you
-    // were). Back returns there
+    // opened from inside a popup (a summary's device): it opens over the top of it (Matt, 11 Nov: not in its place; the
+    // summary stays where it is, dimmed under it, and is back when the device's popup closes). One under at a time:
+    // from inside a popup that's already over one, it opens in that popup's place, which keeps the size and place it
+    // first opened at, with Back and the device's name where the other's was (Matt, 29 Oct). Back returns there
     const inside = Boolean(more && opener && sheet.contains(opener)), box = inside && sheet.querySelector('.tfMore');
     if (inside) more.scroll = box.scrollTop;
-    more = { id, opener: inside ? more.opener : opener, back: inside ? more : null, frame: inside ? more.frame || { wide: box.classList.contains('wide'), h: box.offsetHeight } : null, at: Number(opener?.dataset?.at) || null };
+    if (inside && !more.under) {
+      const pair = sheet.querySelector('.tfMorePair');
+      const parked = { more, parts: moreParts, opener };
+      pair.classList.add('still');
+      pair.style.transform = '';
+      pair.inert = true;
+      under.innerHTML = '';
+      under.appendChild(pair);
+      under.classList.toggle('wide', sheet.classList.contains('wide'));
+      under.hidden = false;
+      sheet.hidden = true;
+      sheet.innerHTML = '';
+      more = { id, opener, back: null, frame: null, under: parked, at: Number(opener?.dataset?.at) || null };
+      showMore();
+      return;
+    }
+    more = { id, opener: inside ? more.opener : opener, back: inside ? more : null, frame: inside ? more.frame || { wide: box.classList.contains('wide'), h: box.offsetHeight } : null, under: inside ? more.under : null, at: Number(opener?.dataset?.at) || null };
     showMore();
   }
   let turning = false; // a new page in the open popup (a device, or Back)
@@ -3153,14 +3176,30 @@ export function mountTestFocus(root, { config, getHass }) {
     closeDialog(sheet, () => { if (more === was) closeMoreNow(); });
   }
   function closeMoreNow() {
-    const opener = more?.opener;
+    const opener = more?.opener, parked = more?.under;
     more = null;
     arts.forEach((art, k) => { if (sheet.contains(art.el)) { art.destroy(); arts.delete(k); } });
     dacs.forEach((el, k) => { if (k.startsWith('more:')) dacs.delete(k); });
     sheet.hidden = true;
     sheet.innerHTML = '';
-    // focus goes back to what opened it, without moving the page
     const quiet = { preventScroll: true };
+    if (parked) {
+      // the popup it opened over comes back as it was, with what opened the device focused
+      const pair = under.firstElementChild;
+      more = parked.more;
+      moreParts = parked.parts;
+      if (pair) { pair.inert = false; sheet.appendChild(pair); }
+      sheet.classList.toggle('wide', under.classList.contains('wide'));
+      under.hidden = true;
+      under.innerHTML = '';
+      sheet.hidden = false;
+      const box = sheet.querySelector('.tfMore');
+      if (box) box.scrollTop = more.scroll || 0;
+      renderMore();
+      (parked.opener?.isConnected ? parked.opener : sheet.querySelector('[data-more-close]'))?.focus(quiet);
+      return;
+    }
+    // focus goes back to what opened it, without moving the page
     if (opener?.isConnected) opener.focus(quiet);
     else if (opener?.dataset?.more) grid.querySelector('[data-more="' + CSS.escape(opener.dataset.more) + '"]')?.focus(quiet);
     else if (opener?.dataset?.summary) grid.querySelector('[data-summary="' + CSS.escape(opener.dataset.summary) + '"]')?.focus(quiet);

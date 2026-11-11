@@ -279,6 +279,8 @@
 /* a popup holds the page behind it still: its own scrolling stops at its ends (and test-focus.js stops the rest) */
 .tfMoreBackdrop,.tfMore,.tfMoreSideInner,.tfMoreSideBody{overscroll-behavior:contain}
 .tfMoreBackdrop[hidden]{display:none}
+/* the popup a device was opened from, parked under the device's (Matt, 11 Nov): where it was, inert, dimmed by the top one */
+.tfMoreBackdrop.tfMoreUnder{z-index:179;pointer-events:none}
 .tfMore{flex:none;width:440px;max-width:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--r-card);background:var(--card);box-shadow:var(--hc-hair-all)}
 .tfMoreHead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}
 .tfMoreState{font:500 28px/1.15 var(--font-tile);letter-spacing:-.01em}
