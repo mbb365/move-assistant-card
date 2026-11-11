@@ -360,6 +360,44 @@ export function mountTestFocus(root, { config, getHass }) {
 
   /* ---------- the house ---------- */
   const grid = root.querySelector('#homeView .grid');
+  /* a room's page (Matt, 11 Nov): each column stacks on its own, so a card that opens (a reading's last 24 hours)
+     pushes down only what's under it, never what's beside it. The grid's rows are 1 px; each item spans its own
+     height plus the gap, written into a sheet of its own so a redraw of the item doesn't wipe it */
+  const stackSheet = document.createElement('style');
+  root.appendChild(stackSheet);
+  const stackSeen = new ResizeObserver(() => stack()), seen = new Set();
+  // its height to the fraction (offsetHeight rounds), unless it's mid-animation and scaled
+  const heightOf = (el) => { const h = el.getBoundingClientRect().height; return Math.abs(h - el.offsetHeight) < 1 ? h : el.offsetHeight; };
+  function stack() {
+    const on = app.classList.contains('tfAreaOpen') && !app.classList.contains('tfWeatherOpen');
+    grid.classList.toggle('tfStack', on);
+    seen.forEach((el) => { if (!on || !el.isConnected) { stackSeen.unobserve(el); seen.delete(el); } });
+    if (!on) { stackSheet.textContent = ''; return; }
+    const cs = getComputedStyle(grid), gap = parseFloat(cs.columnGap) || 0;
+    const n = cs.gridTemplateColumns.split(' ').length;
+    const items = [...grid.children].filter((el) => el.dataset.k && el.offsetParent);
+    // each one's own width in columns, as the page's styles give it (span 6, the full row, or one column on a phone)
+    stackSheet.disabled = true;
+    const spans = items.map((el) => {
+      const s = getComputedStyle(el), m = /span (\d+)/.exec(s.gridColumnStart + ' ' + s.gridColumnEnd);
+      return Math.min(n, m ? +m[1] : s.gridColumnEnd === '-1' ? n : 1);
+    });
+    stackSheet.disabled = false;
+    // each keeps the column the plain grid gives it (side by side in pairs), whatever the heights, so nothing jumps
+    // across when a card opens; only the rows are its own
+    let col = 0;
+    const css = items.map((el, i) => {
+      if (!seen.has(el)) { seen.add(el); stackSeen.observe(el); }
+      const span = spans[i];
+      if (col + span > n) col = 0;
+      const start = col + 1;
+      col = (col + span) % n;
+      return '#homeView .grid.tfStack>[data-k="' + CSS.escape(el.dataset.k) + '"]{grid-column:' + start + ' / span ' + span + ';grid-row-end:span ' + Math.max(1, Math.ceil(heightOf(el) + gap)) + '}';
+    }).join('\n');
+    if (stackSheet.textContent !== css) stackSheet.textContent = css;
+  }
+  new MutationObserver(stack).observe(grid, { childList: true });
+  new MutationObserver(stack).observe(app, { attributes: true, attributeFilter: ['class'] });
   let open = null; // { key of its card, entity id, card height before it opened }
   let activeArea = null; // the area card that's open in the accordion
   let areaPage = null; // the section whose own page is open (a room's, from its card's Go, or the weather's), or null for the house
@@ -480,18 +518,32 @@ export function mountTestFocus(root, { config, getHass }) {
   // to average in the place of the concept's to-do list; each kept mounted across redraws
   // and the new cards in the data tiles' shape (Matt, 1 Nov): Air quality, Pollen and Rain radar, off the board until
   // they're added from the edit tray
-  const DASH_WEATHER = [['wx', ['current']], ['avg', ['compared_to_average']], ['aq', ['aq_tile']], ['pollen', ['pollen_tile']], ['radar', ['radar_tile']]];
-  const NEW_CARDS = ['aq', 'pollen', 'radar'];
+  // and every other widget of the Weather page (Matt, 11 Nov: "add the weather widgets from the weather page to the home
+  // dashboard"), the same widgets, waiting in the edit tray's Weather section until they're added
+  const DASH_WEATHER = [['wx', ['current']], ['avg', ['compared_to_average']], ['aq', ['aq_tile']], ['pollen', ['pollen_tile']], ['radar', ['radar_tile']],
+    ['hourly', ['hourly']], ['sun', ['sun']], ['moon', ['moon']], ['uv', ['uv_index']], ['humidity', ['humidity']], ['pressure', ['pressure']],
+    ['wind', ['wind']], ['visibility', ['visibility']]];
+  const WIDGETS = DASH_WEATHER.map(([k]) => k);
+  const NEW_CARDS = ['aq', 'pollen', 'radar', 'hourly', 'sun', 'moon', 'uv', 'humidity', 'pressure', 'wind', 'visibility'];
+  // two columns, as on the Weather page (Next hours is wide); the rest one
+  const WIDGET_COLS = { hourly: 2 };
   const dashBoxes = Object.fromEntries(DASH_WEATHER.map(([k]) => [k, Object.assign(document.createElement('div'), { className: 'tfDashBento tfDash-' + k })]));
+  // each widget is drawn once it's on the board (or on its way from the tray), and kept from then on
   let dashBentos = null, dashBentoId = null;
   function placeDash(on) {
     const id = on ? weatherId() : null;
     if (dashBentos && dashBentoId !== id) { dashBentos.forEach((b) => b.destroy()); dashBentos = null; }
     Object.values(dashBoxes).forEach((box) => (id ? !box.isConnected && grid.append(box) : box.remove()));
-    if (id && !dashBentos && !suspended) {
-      dashBentos = DASH_WEATHER.map(([k, cards]) => mountWeatherBento(dashBoxes[k], { getHass, entityId: id, style: look.wxStyle, cards, onOpen: k === 'wx' ? () => openArea('weather') : undefined }));
-      dashBentoId = id;
-    }
+    if (id && !dashBentos && !suspended) { dashBentos = new Map(); dashBentoId = id; }
+    mountWidgets();
+  }
+  function mountWidgets() {
+    if (!dashBentos || suspended) return;
+    const off = new Set(dashPrefs().hidden);
+    DASH_WEATHER.forEach(([k, cards]) => {
+      if (dashBentos.has(k) || (off.has(k) && !(drag?.fromTray && drag.key === k))) return;
+      dashBentos.set(k, mountWeatherBento(dashBoxes[k], { getHass, entityId: dashBentoId, style: look.wxStyle, cards, onOpen: k === 'wx' ? () => openArea('weather') : undefined }));
+    });
   }
 
   const attr = (id) => states[id]?.attributes || {};
@@ -1119,8 +1171,14 @@ export function mountTestFocus(root, { config, getHass }) {
       '<span class="tfACTiles" aria-hidden="true">' + chips.map((k) => '<span class="tfACTile"><span class="tfIcon' + (k.kind === 'alert' ? ' alert' : '') + '"' + (k.on && k.light ? ' data-light style="' + k.light + '"' : '') + '>' + k.icon + '</span></span>').join('') + '</span></div></article>';
   }
   let areaRooms = []; // the rooms with area cards, in Matt's order
-  const areasHtml = (order) => '<div class="tfAreas" data-tf data-k="areas" style="order:' + order + '">' +
-    '<section class="workoutGallery tfAreaGallery" aria-label="Areas">' + areaRooms.map(areaPanel).join('') + '</section></div>';
+  // the areas the Areas card shows (Matt, 11 Nov: chosen in the edit tray); one switched off keeps its page and its tile
+  const areasShown = () => { const off = new Set(prefs.dash?.areasOff || []); return areaRooms.filter((r) => !off.has(r.id)); };
+  const areasHtml = (order) => {
+    const shown = areasShown();
+    if (!shown.some((r) => r.id === activeArea)) activeArea = shown[0]?.id || null;
+    return '<div class="tfAreas" data-tf data-k="areas" style="order:' + order + '">' +
+      '<section class="workoutGallery tfAreaGallery" aria-label="Areas">' + shown.map(areaPanel).join('') + '</section></div>';
+  };
   /* one room on its own (Tile · Room, Matt, 6 Nov; Figma 954:6176): a tile added from the edit tray instead of the Areas
      card, keyed room:<area>. The head is the room's icon and name; XS its reading in the head, S the reading big, M its
      devices too (up to four), L and XL the reading bigger with its second under it. It never opens out: the tile opens
@@ -1582,7 +1640,7 @@ export function mountTestFocus(root, { config, getHass }) {
     out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });
     // the summaries: a row of their own, the bar only as wide as its tiles
     if (sums.length) out.push({ key: 'sums', wrap: (inner) => '<div class="tfDashBarRow" data-tf data-k="sums">' + dashWrap('tfDash-bar', 'sums-bar', 'Summaries', false)(inner).replace(' data-tf', '') + '</div>', tiles: sums.map((s) => ({ key: 'sum:' + s.key, html: summaryRow(s) })) });
-    if (areaRooms.length) out.push({ key: 'areas', html: areasHtml(0) });
+    if (areasShown().length) out.push({ key: 'areas', html: areasHtml(0) });
     // what you've starred always shows, from any room; only the suggestions that fill the card keep to the dashboard's rooms
     const favs = dashFavourites();
     if (favs.length) out.push({ key: 'favs', wrap: dashWrap('tfDash-favs', 'favs', 'Favourites', true), tiles: favs.map((id) => ({ key: 'fav:' + id, html: deviceRow(id, { area: true }) })) });
@@ -1611,7 +1669,8 @@ export function mountTestFocus(root, { config, getHass }) {
      today's graph above or below. Where everything is goes with the page's settings in Home Assistant (prefs.dash:
      cells, sizes, what's hidden, options). Phones keep one column */
   const PEG = 252, PEG_GAP = 16, PEG_MIN = 200, PEG_MAX = Math.round(PEG * 1.25), ROW = 60, ROW_PITCH = ROW + PEG_GAP, EXTRA_ROWS = 3;
-  const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average', aq: 'Air quality', pollen: 'Pollen', radar: 'Rain radar' };
+  const BOARD_NAMES = { title: 'The name', sums: 'Summaries', wx: 'Weather', areas: 'Areas', favs: 'Favourites', act: 'Activity', energy: 'Energy today', avg: 'Compared to average', aq: 'Air quality', pollen: 'Pollen', radar: 'Rain radar',
+    hourly: 'Next hours', sun: 'Sun', moon: 'Moon', uv: 'UV index', humidity: 'Humidity', pressure: 'Pressure', wind: 'Wind', visibility: 'Visibility' };
   // the new cards are two columns, as Compared to average (Matt, 1 Nov: one was too narrow), a tile in their ⋯
   const RESIZABLE = ['wx', 'favs', 'act', 'energy', 'avg'];
   // five heights, picked in an element's ⋯ (Matt, 2 Nov), each a whole number of rows: XS 1 (60, one tile), S 2 (136),
@@ -1622,7 +1681,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // a thermostat to M)
   const SIZE_NAMES = ['XS', 'S', 'M', 'L', 'XL'], ROWS_MOST = SIZE_NAMES.length;
   const WIDTH_NAMES = ['Narrow', 'Wide', 'Really wide'];
-  const SIZES = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4 };
+  const SIZES = { wx: 5, areas: 5, favs: 5, act: 5, energy: 4, avg: 4, aq: 4, pollen: 4, radar: 4, hourly: 4, sun: 4, moon: 4, uv: 4, humidity: 4, pressure: 4, wind: 4, visibility: 4 };
   // a tile whose entity isn't in the states yet keeps its saved height (it can't be measured, and must never stop the board)
   const mostRows = (key) => (!key.includes('.') || !states[key] || (key.startsWith('light.') && wantsDac(key)) ? ROWS_MOST : Math.min(ROWS_MOST, controlsOf(key).length + 1));
   const sizeOf = (key) => {
@@ -1653,17 +1712,19 @@ export function mountTestFocus(root, { config, getHass }) {
     const q = (sel) => grid.querySelector(sel);
     return [['title', q('.tfDashTitle'), 'full'], ['sums', q('.tfDashBarRow'), 'full'], ['wx', dashBoxes.wx, 2], ['areas', q('.tfAreas'), 'areas'],
       ['favs', q('.tfDash-favs'), 2], ['act', q('.tfDash-act'), 2], ['energy', q('.tfDash-energy'), 2], ['avg', dashBoxes.avg, 2],
-      ...NEW_CARDS.map((k) => [k, dashBoxes[k], 1]),
+      ...NEW_CARDS.map((k) => [k, dashBoxes[k], WIDGET_COLS[k] || 1]),
       ...[...grid.querySelectorAll('.tfDashTiles > [data-k]')].map((el) => [el.dataset.k, el, 1, true])]
       .filter(([, el]) => el?.isConnected).map(([key, el, span, tile = false]) => ({ key, el, span, tile }));
   }
   // a card's width in pegs on a board n pegs wide, each w: 'full' the whole width, the areas as wide as they're drawn
   const colsOf = (it, n, w) => {
     if (it.span === 'full') return n;
-    // the areas: as wide as you picked in its ⋯ (Matt, 6 Nov: a lot of rooms), else as wide as its rooms; the rest scroll
-    const picked = it.span === 'areas' && dashPrefs().spans.areas;
-    if (picked) return picked === 'full' ? n : Math.min(n, Math.max(2, picked));
-    if (it.span === 'areas') return Math.min(n, Math.ceil((AREA_OPEN + Math.max(0, areaRooms.length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / (w + PEG_GAP)));
+    // the areas: as wide as they need (Matt, 11 Nov: no width of their own to pick), so as wide as their rooms, up to the
+    // board's edge from where they sit; the rooms that don't fit scroll
+    if (it.span === 'areas') {
+      const need = Math.ceil((AREA_OPEN + Math.max(0, areasShown().length - 1) * (AREA_FOLDED + PEG_GAP) + PEG_GAP) / (w + PEG_GAP));
+      return Math.max(Math.min(n, 2), Math.min(need, n - (dashPrefs().cells.areas?.col || 0)));
+    }
     return Math.min(n, dashPrefs().spans[it.key] ?? it.span);
   };
   // a card's rows: its height's
@@ -1765,6 +1826,7 @@ export function mountTestFocus(root, { config, getHass }) {
     bentoBox.style.setProperty('--peg-w', w + 'px');
     const off = new Set(dashPrefs().hidden);
     NEW_CARDS.forEach((k) => dashBoxes[k]?.classList.toggle('tfNotAdded', off.has(k) && !(drag?.fromTray && drag.key === k)));
+    mountWidgets();
     app.classList.toggle('tfBoard', board);
     app.classList.toggle('tfEditing', board && editing && !phone);
     const pen = $('dashEditNav');
@@ -1933,13 +1995,9 @@ export function mountTestFocus(root, { config, getHass }) {
       SIZE_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === now) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' rows' : ' row') + '" data-board-act="h:' + (i + 1) + '"' + (i < most ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>';
     // then its width, for the cards that have one: narrow (a column), wide (two) or really wide (three), one the board
     // hasn't the columns for greyed out (Matt, 6 Nov: not "Card size" / "Tile size")
-    // the areas: wide (two), really wide (three) or the full width, never narrow (an open room is 409); until one's
-    // picked it's as wide as its rooms, which may be none of these
-    const AREA_WIDTHS = [['Wide', 2, n >= 2], ['Really wide', 3, n >= 3], ['Full width', 'full', n >= 4]];
-    const width = key === 'areas' ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
-      AREA_WIDTHS.map(([name, v, ok]) => '<button type="button" role="menuitemradio" aria-checked="' + (ok && (v === 'full' ? p.cols === n : p.cols === v && !(v === n && dash.spans.areas === 'full'))) + '" aria-label="' + name + (v === 'full' ? '' : ', ' + v + ' columns') + '" data-board-act="w:' + v + '"' + (ok ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>'
-      // a room's tile too (Matt, 6 Nov): narrow, wide or really wide, like the cards
-      : RESIZABLE.includes(key) || isRoomKey(key) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
+    // the areas have none (Matt, 11 Nov): they're as wide as they need
+    // a room's tile too (Matt, 6 Nov): narrow, wide or really wide, like the cards
+    const width = RESIZABLE.includes(key) || isRoomKey(key) ? '<div class="tfHeight tfWidth" role="group" aria-label="Width"><span class="tfHeightLabel" aria-hidden="true">Width</span><div class="tfHeightTabs">' +
       WIDTH_NAMES.map((name, i) => '<button type="button" role="menuitemradio" aria-checked="' + (i + 1 === Math.min(span, n)) + '" aria-label="' + name + ', ' + (i + 1) + (i ? ' columns' : ' column') + '" data-board-act="w:' + (i + 1) + '"' + (i < n ? '' : ' disabled') + '>' + name + '</button>').join('') + '</div></div>' : '';
     menu.innerHTML = height + width +
       (key === 'energy' ? item('graph', (dash.opts.energy?.graph || 'above') === 'above' ? 'Graph below' : 'Graph above') : '') +
@@ -2181,11 +2239,13 @@ export function mountTestFocus(root, { config, getHass }) {
   tray.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button>' +
     '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div>' +
     '<section class="tfTraySection" data-tray="cards"></section>' +
+    '<section class="tfTraySection" data-tray="weather"></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Tiles</div><p class="tfTrayNote">Remove a tile from its ⋯.</p>' +
     '<button class="pill tfTrayAdd" type="button" data-tile-add aria-expanded="false">Add tile</button>' +
     '<div class="tfTrayPick" data-pick="tiles" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-tile-search>' +
     '<ul class="tfTrayList" data-tray="tilepick"></ul></div></section>' +
-    '<section class="tfTraySection"><div class="sectionLabel">Areas</div><p class="tfTrayNote">One area on its own, instead of all of them in the Areas card.</p>' +
+    '<section class="tfTraySection"><div class="sectionLabel">Areas</div><p class="tfTrayNote">Which areas the Areas card shows, and one area on its own instead.</p>' +
+    '<button class="pill tfTrayAdd" type="button" data-area-choose aria-expanded="false">Choose areas</button>' +
     '<button class="pill tfTrayAdd" type="button" data-room-add aria-expanded="false">Add area</button>' +
     '<ul class="tfTrayList" data-tray="roompick" hidden></ul></section>' +
     '<section class="tfTraySection" data-tray="phone"></section>' +
@@ -2194,6 +2254,36 @@ export function mountTestFocus(root, { config, getHass }) {
     '<div class="tfTrayPick" data-pick="favs" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
     '<ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>';
   app.appendChild(tray);
+  /* Choose areas (Matt, 11 Nov): a pop-out beside the tray, a switch for each area the Areas card can show; one
+     switched off keeps its page and its own tile. It closes with Escape, and with the tray */
+  const areaPop = Object.assign(document.createElement('div'), { className: 'card tfTrayPop' });
+  areaPop.setAttribute('role', 'dialog'); areaPop.setAttribute('aria-label', 'Areas'); areaPop.hidden = true;
+  app.appendChild(areaPop);
+  const areaChoose = () => tray.querySelector('[data-area-choose]');
+  function drawAreaPop() {
+    const shown = new Set(areasShown().map((r) => r.id));
+    areaPop.innerHTML = '<div class="tfTrayPopTitle">Areas</div>' + areaRooms.map((r) => '<div class="tfTrayPopRow">' +
+      '<button class="switch' + (shown.has(r.id) ? ' on' : '') + '" type="button" role="switch" aria-checked="' + shown.has(r.id) + '" aria-label="' + esc(r.name) + '" data-area-on="' + esc(r.id) + '"></button>' +
+      '<span class="tfIcon"><span class="tfAreaGlyph"' + iconSlot('area:' + r.id, r.icon || 'mdi:texture-box', r.name) + '></span></span><span class="tfTrayPopName">' + esc(r.name) + '</span></div>').join('');
+    fillIcons(areaPop);
+  }
+  function closeAreaPop() { if (areaPop.hidden) return; areaPop.hidden = true; areaChoose()?.setAttribute('aria-expanded', 'false'); }
+  function toggleAreaPop() {
+    if (!areaPop.hidden) { closeAreaPop(); return; }
+    drawAreaPop(); areaPop.hidden = false; areaChoose().setAttribute('aria-expanded', 'true');
+    const r = areaChoose().getBoundingClientRect();
+    areaPop.style.top = Math.max(16, Math.min(r.top - 12, innerHeight - areaPop.offsetHeight - 16)) + 'px';
+  }
+  areaPop.addEventListener('click', (ev) => {
+    const sw = ev.target.closest('[data-area-on]');
+    if (!sw) return;
+    const on = !sw.classList.contains('on'), off = new Set(prefs.dash?.areasOff || []);
+    if (on) off.delete(sw.dataset.areaOn); else off.add(sw.dataset.areaOn);
+    saveDash({ ...dashPrefs(), areasOff: [...off] });
+    sw.classList.toggle('on', on); sw.setAttribute('aria-checked', String(on));
+    refresh();
+  });
+  areaPop.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { ev.stopPropagation(); closeAreaPop(); areaChoose()?.focus(); } });
   let trayTucked = false, trayPicking = false, tilePicking = false, roomPicking = false, favAim = null, phoneShown = false;
   const trayHtml = {};
   const trayPut = (key, html) => {
@@ -2224,6 +2314,7 @@ export function mountTestFocus(root, { config, getHass }) {
     tray.classList.toggle('tucked', show && trayTucked);
     tray.toggleAttribute('inert', !show);
     if (!show) phoneShown = false;
+    if (!show || !app.classList.contains('tfEditing')) closeAreaPop(); // the pop-out goes with edit mode (phones have none)
     renderPhone();
     if (!show) return;
     const tuck = tray.querySelector('[data-tray-tuck]');
@@ -2231,9 +2322,13 @@ export function mountTestFocus(root, { config, getHass }) {
     tuck.setAttribute('aria-expanded', String(!trayTucked));
     tuck.setAttribute('aria-label', trayTucked ? 'Show the edit tray' : 'Tuck the edit tray away');
     const hiddenCards = dashPrefs().hidden.filter((k) => boardItems().some((it) => it.key === k));
-    trayPut('cards', '<div class="sectionLabel">Hidden and new cards</div>' + (hiddenCards.length ? '<div class="tfTrayCards">' + hiddenCards.map((k) =>
-      '<button class="tfTrayCard" type="button" data-tray-card="' + esc(k) + '" aria-label="' + esc(boardName(k)) + ': drag it onto the board, or press to put it back">' +
-      '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>').join('') + '</div>' : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>'));
+    const trayCard = (k, verb) => '<button class="tfTrayCard" type="button" data-tray-card="' + esc(k) + '" aria-label="' + esc(boardName(k)) + ': drag it onto the board, or press to ' + verb + '">' +
+      '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>';
+    const cardsOff = hiddenCards.filter((k) => !WIDGETS.includes(k)), widgetsOff = WIDGETS.filter((k) => hiddenCards.includes(k));
+    trayPut('cards', '<div class="sectionLabel">Hidden and new cards</div>' + (cardsOff.length ? '<div class="tfTrayCards">' + cardsOff.map((k) => trayCard(k, 'put it back')).join('') + '</div>' : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>'));
+    // the Weather page's widgets that aren't on the board (Matt, 11 Nov); one hidden from its ⋯ comes back here
+    trayPut('weather', '<div class="sectionLabel">Weather</div>' + (widgetsOff.length ? '<p class="tfTrayNote">The Weather page\'s widgets. Drag one onto the board, or press to add it.</p><div class="tfTrayCards">' +
+      widgetsOff.map((k) => trayCard(k, 'add it')).join('') + '</div>' : '<p class="tfTrayNote">Every weather widget is on the board.</p>'));
     trayPut('phone', '<div class="sectionLabel">Phone</div><p class="tfTrayNote">' + (dashPrefs().phone ? 'Phones have an order of their own.' : 'Phones follow the board\'s order.') + '</p>' +
       '<button class="pill tfTrayAdd" type="button" data-phone-toggle aria-pressed="' + phoneShown + '">' + (phoneShown ? 'Hide the phone' : 'Show the phone') + '</button>');
     const hidden = new Set(prefs.favHidden || []), stars = starred();
@@ -2279,6 +2374,7 @@ export function mountTestFocus(root, { config, getHass }) {
     else if (t.dataset.favPick) addFav(t.dataset.favPick);
     else if (t.hasAttribute('data-tile-add')) { tilePicking = !tilePicking; renderTray(); if (tilePicking) tray.querySelector('[data-tile-search]').focus({ preventScroll: true }); }
     else if (t.dataset.tilePick) addTile(t.dataset.tilePick);
+    else if (t.hasAttribute('data-area-choose')) toggleAreaPop();
     else if (t.hasAttribute('data-room-add')) { roomPicking = !roomPicking; renderTray(); }
     else if (t.dataset.roomPick) addTile('room:' + t.dataset.roomPick);
     else if (t.hasAttribute('data-fav-suggest')) saveFavs({ suggest: !suggestOn() });
@@ -2373,7 +2469,8 @@ export function mountTestFocus(root, { config, getHass }) {
      the phone's cards as simple blocks at 80% of their phone size (about: heights measured on a 375 phone), in the
      order phones show them; drag a block, or move it with the arrow keys, to give phones their own order. Follow the
      board drops it again */
-  const PHONE_H = { sums: 201, wx: 364, favs: 364, areas: 364, act: 364, energy: 288, avg: 288, aq: 288, pollen: 288, radar: 288 }, PHONE_TILE = 136, PHONE_DAC = 288, PHONE_SCALE = 0.8;
+  const PHONE_H = { sums: 201, wx: 364, favs: 364, areas: 364, act: 364, energy: 288, avg: 288, aq: 288, pollen: 288, radar: 288,
+    hourly: 288, sun: 288, moon: 288, uv: 288, humidity: 288, pressure: 288, wind: 288, visibility: 288 }, PHONE_TILE = 136, PHONE_DAC = 288, PHONE_SCALE = 0.8;
   const CARD_ICON = { wx: 'mdi:weather-partly-cloudy', areas: 'mdi:home', favs: 'mdi:star', act: 'mdi:history', energy: 'mdi:lightning-bolt', avg: 'mdi:chart-line', aq: 'mdi:air-filter', pollen: 'mdi:flower-pollen', radar: 'mdi:radar' };
   const phone = Object.assign(document.createElement('aside'), { className: 'tfMiniPhone' });
   phone.setAttribute('aria-label', 'Phone order');

@@ -674,8 +674,8 @@ button.tfAreaIcon{cursor:pointer}
 /* narrow (one column; Matt, 11 Nov): all four devices, two by two; at M the reading moves into the head to make room,
    at L and XL it stays big above them */
 #app.tfBoard .tfRoomTile[data-cols="1"]:is([data-rows="3"],[data-rows="4"],[data-rows="5"]) .tfRoomDevices{display:grid;grid-template-columns:repeat(2,max-content)}
-#app.tfBoard .tfRoomTile[data-cols="1"][data-rows="3"] .tfRoomInline{display:inline}
-#app.tfBoard .tfRoomTile[data-cols="1"][data-rows="3"] .tfRoomReading{display:none}
+#app.tfBoard .tfRoomTile[data-cols="1"][data-rows="3"]:has(.tfRoomDevices) .tfRoomInline{display:inline}
+#app.tfBoard .tfRoomTile[data-cols="1"][data-rows="3"]:has(.tfRoomDevices) .tfRoomReading{display:none}
 /* at L and XL the reading sits at one level on every room tile, where it is with four devices (Matt, 11 Nov): the
    devices' room is always two rows tall, one or two rows of buttons at its top */
 #app.tfBoard .tfRoomTile[data-cols="1"]:is([data-rows="4"],[data-rows="5"]) .tfRoomDevices{min-height:calc(2 * var(--chip-size) + 12px);align-content:start}
@@ -695,8 +695,8 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-rows="1"]) .tfRoomHeads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 #app.tfBoard .tfRoomTile:not([data-cols="1"]):not([data-cols="2"]):not([data-rows="1"]) .tfRoomHeads{grid-template-columns:repeat(4,minmax(0,1fr))}
 #app.tfBoard .tfRoomTile[data-cols="2"][data-rows="2"] .tfRoomDev:nth-child(n+3){display:none}
-#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]) .tfRoomInline{display:inline}
-#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]) .tfRoomReading{display:none}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]):has(.tfRoomDevices) .tfRoomInline{display:inline}
+#app.tfBoard .tfRoomTile:not([data-cols="1"]):is([data-rows="2"],[data-cols="2"][data-rows="3"]):has(.tfRoomDevices) .tfRoomReading{display:none}
 #app.tfBoard .tfDashBento[data-rows="1"] .wbCard{padding:10px;border-radius:24px}
 #app.tfBoard .tfDashBento[data-rows="1"] .wbVisual{display:none}
 /* the weather: XS now as a tile; S now; M now and a sentence; L now and the days; XL all three */
@@ -987,6 +987,16 @@ button.tfAreaIcon{cursor:pointer}
 /* popups' stroke (Matt, 10 Nov: they got lost on the fade): the cards' own stroke colour (set in HomeCore settings), at
    1 so it holds against the dim and blur behind them */
 #app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){box-shadow:inset 0 0 0 1px var(--line)}
+/* a room's page: two columns that stack on their own (rows 1 px, each item spans its height; test-focus.js stack()) */
+#homeView .grid.tfStack{grid-auto-rows:1px;row-gap:0}
+#homeView .grid.tfStack>*{align-self:start}
+/* the edit tray's Choose areas: a pop-out beside the tray, a switch, icon and name a row */
+.tfTrayPop{position:fixed;z-index:260;right:calc(min(360px,100vw - 56px) + 12px);width:300px;max-width:calc(100vw - 56px - 24px);display:grid;gap:2px;padding:10px!important;background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px rgba(0,0,0,.35)}
+.tfTrayPop[hidden]{display:none}
+.tfTrayPopTitle{padding:4px 8px 8px;font:500 18px/1.2 var(--font-tile);letter-spacing:-.01em;color:var(--text)}
+.tfTrayPopRow{display:flex;align-items:center;gap:12px;min-height:var(--tile-min);padding:0 8px}
+.tfTrayPopRow .tfIcon{background-color:var(--hc-icon)}
+.tfTrayPopName{flex:1;min-width:0;font:600 14px/20px var(--font-tile);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* =========================================================
    A device's popup is one height on every screen (Matt, 11 Nov; Figma Popup · Sheet, rules popup.device and
