@@ -2678,7 +2678,8 @@ export function mountTestFocus(root, { config, getHass }) {
   // the summaries as wide as the cards (as drawn) or as wide as their own tiles; Favourites as its card or a strip under
   // the summaries, the same pattern as theirs (Matt, 12 Nov)
   const sumsFit = () => prefs.home?.sumsWidth === 'fit';
-  const favsStrip = () => prefs.home?.favsAs === 'strip';
+  // in the Side layout Favourites is the column's card whatever Show as says (Matt, 12 Nov: "card by itself")
+  const favsStrip = () => prefs.home?.favsAs === 'strip' && areaLayout() !== 'side';
   const homeSeg = (label, attr, value, opts) => '<div class="hcHeLine hcHeChoiceLine"><span class="activityRowName">' + label + '</span><div class="themeChoice hcHeChoice" role="group" aria-label="' + esc(label) + '">' +
     opts.map(([v, text]) => '<button class="wxLayoutBtn" type="button" ' + attr + '="' + v + '" aria-pressed="' + (value === v) + '">' + text + '</button>').join('') + '</div></div>';
   const homeSumOrder = () => summaryData(true).filter((x) => SUMMARIES[x.key]).map((x) => x.key);
@@ -2704,6 +2705,7 @@ export function mountTestFocus(root, { config, getHass }) {
         '<hr class="hcHeRule">' +
         '<div class="hcHeLabel"><span class="activityRowName">Favourite entities</span>' + infoBtn('favs') + '</div>' +
         homeSeg('Show as', 'data-he-favs-as', favsStrip() ? 'strip' : 'card', [['card', 'Card'], ['strip', 'Strip']]) +
+        (areaLayout() === 'side' ? '<p class="tfTrayNote">In the Side layout Favourites is a card.</p>' : '') +
         '<ul class="tfTrayList hcHeList" data-he-list="favs">' + (favs.map(favLi).join('') || '<li class="tfTrayNote">No favourites yet.</li>') + '</ul>' +
         '<button class="pill tfTrayAdd hcAddBtn" type="button" data-he-add aria-expanded="' + homePicking + '">' + PLUS + '<span>Add favourite</span></button>' +
         '<div class="tfTrayPick" data-he-pick' + (homePicking ? '' : ' hidden') + '><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-he-search value="' + esc(search) + '">' +
