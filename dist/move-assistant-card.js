@@ -9470,7 +9470,7 @@ function gm(o, { config: l, getHass: i }) {
     }
   };
 }
-const vm = "0.82.0", ic = "move_assistant", bm = "move_assistant", kp = "move_assistant_checkin_reminder";
+const vm = "0.82.1", ic = "move_assistant", bm = "move_assistant", kp = "move_assistant_checkin_reminder";
 function wm() {
   if (document.getElementById("move-assistant-inter")) return;
   const o = document.createElement("link");

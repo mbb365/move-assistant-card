@@ -26,18 +26,11 @@ You need Home Assistant with [HACS](https://hacs.xyz) installed, and to be signe
            layout: test-focus
    ```
 
-   For a Home page as well, the overview (your home's name, the summaries, Favourites and a card for each area, laid out the same for everyone), give the dashboard two views, the second with `page: overview`:
+   For a Home page as well, the overview (your home's name, the summaries, Favourites and a card for each area, laid out the same for everyone), add a second dashboard the same way: step 4 with the title **Home** and the icon `mdi:home-variant`, then step 5 with these lines instead:
 
    ```yaml
    views:
-     - title: HomeCore
-       path: dashboard
-       type: panel
-       cards:
-         - type: custom:move-assistant-card
-           layout: test-focus
      - title: Home
-       path: home
        type: panel
        cards:
          - type: custom:move-assistant-card
