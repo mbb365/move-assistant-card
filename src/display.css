@@ -798,7 +798,7 @@ button.tfAreaIcon{cursor:pointer}
 /* the edit tray (Matt, 28 Oct): edit mode's side panel from the right, over the board (the board isn't squeezed, so the
    board edited is the board shown); its tab tucks it away. It holds the hidden cards (drag one onto the board) and the
    favourites, edited as on Home Assistant's home view. Its look follows the cards: card colour, corner 34, padding 20 */
-.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:360px;max-width:calc(100vw - 56px);transform:translateX(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.tfEditTray{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px));right:0;bottom:0;z-index:160;display:flex;width:608px;max-width:calc(100vw - 56px);transform:translateX(100%);transition:transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}
 .tfEditTray.open{transform:none}
 .tfEditTray.open.tucked{transform:translateX(100%)}
 .tfEditTray.open :is(.tfTrayInner,.tfTrayTuck){pointer-events:auto}
@@ -837,7 +837,7 @@ button.tfAreaIcon{cursor:pointer}
 /* the mini phone (Matt, 28 Oct): beside the edit tray (and its tab), opened from the tray's Phone section only when
    asked. A phone frame in the card colour; inside, the phone's cards as simple blocks at 80% of their phone size, 16 × .8
    apart, edge to edge like a phone's; drag a block (or the arrow keys) to set the phone's order */
-.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(360px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px rgba(0,0,0,.3);opacity:0;transform:translateX(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.tfMiniPhone{position:fixed;top:calc(var(--header-height,0px) + env(safe-area-inset-top,0px) + 20px);bottom:20px;left:max(16px,calc(100vw - min(608px,100vw - 56px) - 380px));z-index:160;display:flex;flex-direction:column;gap:8px;width:324px;padding:12px;border-radius:44px;background:var(--card);box-shadow:var(--hc-hair-all),0 0 40px rgba(0,0,0,.3);opacity:0;transform:translateX(16px);transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1);pointer-events:none}
 .tfMiniPhone.open{opacity:1;transform:none;pointer-events:auto}
 .tfPhoneHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px 0 12px}
 .tfMiniPhone>.tfTrayNote{padding:0 12px 4px}
@@ -1027,13 +1027,91 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomHeads{display:none}
 #app.tfOverview.tfDash #homeView .tfRoomTile:not(:has(.tfRoomDevices :nth-child(4))) .tfRoomDevices{justify-content:flex-start;gap:18.67px}
 #app.light.tfOverview.tfDash #homeView .tfRoomTile .tfRoomIcon{background-color:#acacac;color:#ffffff}
+/* the summaries as wide as their own tiles (Edit Home page → Width: Fit the summaries) */
+#app.tfOverview.hcSumsFit.tfDash #homeView .card.tfDash-bar{width:max-content;max-width:100%}
+#app.tfOverview.hcSumsFit.tfDash #homeView .card.tfDash-bar .activityRows{justify-content:flex-start}
+#app.tfOverview.hcSumsFit.tfDash #homeView .card.tfDash-bar .activityRows.hcBarRows{grid-template-columns:repeat(var(--bar-cols,3),auto)}
+/* Favourites as a strip under the summaries, the same pattern as theirs (Show as: Strip); the same width setting */
+#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs{height:auto!important;padding:10px;container-type:normal}
+#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows{display:flex;justify-content:space-between;grid-auto-rows:auto;row-gap:0;max-height:none}
+#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows>.activityRow{flex:none;width:240px;height:60px}
+#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows.hcBarRows{display:grid;grid-template-columns:repeat(var(--bar-cols,3),minmax(0,1fr))}
+#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows.hcBarRows>.activityRow{width:auto;min-width:0}
+#app.tfOverview.hcFavStrip.hcSumsFit.tfDash #homeView .tfDash-favs{width:max-content!important;max-width:100%}
+#app.tfOverview.hcFavStrip.hcSumsFit.tfDash #homeView .tfDash-favs>.activityRows{justify-content:flex-start}
+#app.tfOverview.hcFavStrip.hcSumsFit.tfDash #homeView .tfDash-favs>.activityRows.hcBarRows{grid-template-columns:repeat(var(--bar-cols,3),240px)}
+@media (max-width:620px){#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows>.activityRow{width:auto;min-width:0}}
+/* Edit Home page open: the overview's cards move by dragging, as the custom dashboard's do */
+#app.hcHomeEditing.tfOverview #homeView .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;user-select:none;touch-action:none;outline:1.5px solid var(--primary);outline-offset:-1.5px}
+#app.hcHomeEditing.tfOverview #homeView .tfBoardItem.tfRoomTile{border-radius:28px}
+#app.hcHomeEditing.tfBoardReady #homeView .tfBoardItem{transition:left .34s cubic-bezier(.2,1.35,.4,1),top .34s cubic-bezier(.2,1.35,.4,1)} /* the others make room with a small bounce */
+@media (prefers-reduced-motion:reduce){#app.hcHomeEditing.tfBoardReady #homeView .tfBoardItem{transition:none}}
+#app.hcHomeEditing #homeView .tfBoardItem.tfDragging{z-index:20;transition:none!important;scale:1.02;cursor:grabbing;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
 /* phones: an area card is half the width, so its devices sit two to a row */
 @media (max-width:620px){#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomDevices{display:grid;grid-template-columns:repeat(2,max-content);gap:12px;justify-content:start}}
+/* ---------- the edit trays (the leadership demo, Matt, 12 Nov) ----------
+   both 608 wide (360, then 30% wider twice for breathing room); no scrollbar in either, so nothing shifts when it would
+   appear and the tabs reach both sides evenly */
+.tfEditTray .tfTrayInner{scrollbar-width:none}
+.tfEditTray .tfTrayInner::-webkit-scrollbar{display:none}
+/* a tray's choices: a segmented control 32 tall and as wide as its words */
+.hcHeChoiceLine{flex-wrap:wrap;gap:8px 12px}
+.hcHeChoiceLine>.hcHeChoice{margin-left:auto}
+.hcHeChoice.themeChoice{display:inline-flex;flex-wrap:nowrap;height:32px;padding:3px;gap:3px;box-sizing:border-box;border-radius:16px;background:var(--control-2,var(--hc-icon))}
+#app .hcHeChoice>button{height:26px!important;min-height:0;padding:0 12px;border:0;border-radius:13px!important;background:none;color:var(--text);font:600 12px/16px var(--font-tile)!important;white-space:nowrap}
+#app .hcHeChoice>button[aria-pressed="true"]{background:var(--card);color:var(--text);box-shadow:var(--hc-hair-all)}
+/* Edit Home page: a tray at the side, as the custom dashboard's editor; its rows as the tray's */
+.hcHeBody{display:flex;flex-direction:column;gap:12px}
+.hcHeBody>.tfTrayNote{margin:0 0 8px}
+.hcHeLabel{display:flex;align-items:center;gap:4px}
+.hcHeLine{display:flex;align-items:center;gap:4px;min-height:44px}
+.hcHeLine>.activityRowName{min-width:0}
+.hcHeLine>.switch{margin-left:auto}
+.hcHeLink{display:inline;min-height:0;padding:0;border:0;background:none;font:inherit;color:var(--primary);text-decoration:underline;cursor:pointer}
+.hcHeList{display:flex;flex-direction:column;gap:2px;margin:0;padding:0;list-style:none}
+.hcHeRow{display:grid;grid-template-columns:36px var(--chip-size) minmax(0,1fr) auto;align-items:center;gap:10px;min-height:var(--tile-min);padding:0 4px;border-radius:var(--r-tile)}
+.hcHeRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.hcHeRow.moving{background:var(--card);box-shadow:var(--hc-hair-all)}
+.hcHeGrip{color:var(--muted);cursor:grab;touch-action:none}
+.hcHeSum .tfIcon{color:var(--sum-ink,var(--hc-icon-ink))}
+#app .hcHeRow.hcHeSum .tfIcon{background-color:transparent} /* no chip, as on the overview */
+#app.house .hcHeSum{--sum-ink:var(--sum-d,var(--hc-icon-ink))}
+#app.house.light .hcHeSum{--sum-ink:var(--sum-l,var(--hc-icon-ink))}
+/* a setting's (i) and its popover (OpenHomeFoundation/roadmap#57): what it does, in a few formatted lines, and Learn more */
+.hcInfoBtn{display:grid;place-items:center;flex:none;width:28px;height:28px;min-height:0;padding:0;border:0;border-radius:var(--r-fine,12px);background:none;color:var(--muted);cursor:pointer}
+.hcInfoBtn svg{width:18px;height:18px;fill:currentColor}
+.hcInfoBtn:hover,.hcInfoBtn[aria-expanded="true"]{background:var(--tile);color:var(--text)}
+.hcInfoPop{position:fixed;z-index:320;width:280px;max-width:calc(100vw - 16px);display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:var(--r-inner);box-shadow:var(--hc-hair-all),0 8px 28px rgba(0,0,0,.18)}
+.hcInfoPop[hidden]{display:none}
+.hcInfoTitle{font:600 14px/20px var(--font-tile);color:var(--text)}
+.hcInfoText{font:400 14px/1.45 var(--font);color:var(--text)}
+.hcInfoText p{margin:0}
+.hcInfoText ul{margin:6px 0 0;padding-left:18px}
+.hcInfoMore{align-self:flex-start;font:600 14px/20px var(--font-tile);color:var(--primary);text-decoration:underline}
+/* a tray's Add… button: a plus before its words, in Home Assistant's blue (#03a9f4, its primary colour), no underline,
+   with room around it; as tall as a segmented control (32) and as wide as its words */
+#app .tfTrayAdd.hcAddBtn{display:inline-flex;align-items:center;gap:6px;height:32px;min-height:0;margin:10px 0 12px;padding:0 16px 0 12px;border:0;border-radius:16px!important;background:#03a9f4;color:#ffffff;font:600 14px/20px var(--font-tile);text-decoration:none!important}
+#app .tfTrayAdd.hcAddBtn svg{width:18px;height:18px;flex:none;fill:currentColor}
+#app .tfTrayAdd.hcAddBtn:hover{background:#0398dc}
+#app .tfTrayAdd.hcAddBtn[aria-expanded="true"]{background:#0288d1}
+/* a fine line between the custom dashboard tray's sections, 20 apart */
+.tfEditTray:not(.hcHomeTray) .tfTraySection:not(.hcFirst){padding-top:20px;border-top:1px solid var(--line)}
+#app.house .tfEditTray:not(.hcHomeTray) .tfTrayInner{gap:20px}
+.hcHeRule{width:100%;height:0;margin:8px 0;border:0;border-top:1px solid var(--line)}
+/* the trays' tabs (Page, Cards, Areas, Favourites; Page, Favourites, Summaries): HomeCore settings' tabs, the tray's
+   width, under its head */
+.tfEditTray .hcTrayTabs{display:flex;align-self:stretch;margin:0 0 4px;flex:none}
+.tfEditTray .hcTrayTabs .tab{flex:1 1 0;min-height:36px;padding:0 10px;font:600 14px/20px var(--font-tile)}
+.tfEditTray .hcTrayTabs .rubberIndicator{background:var(--text)}
+.tfEditTray .hcTrayTabs .tab.active{color:var(--card)}
+.tfEditTray .tfTraySection[hidden]{display:none!important}
+.hcHeTabBody{display:flex;flex-direction:column;gap:8px}
+.hcHomeTray .hcTrayTabs{margin:0 0 8px}
 /* a room's page: two columns that stack on their own (rows 1 px, each item spans its height; test-focus.js stack()) */
 #homeView .grid.tfStack{grid-auto-rows:1px;row-gap:0}
 #homeView .grid.tfStack>*{align-self:start}
 /* the edit tray's Choose areas: a pop-out beside the tray, a switch, icon and name a row */
-.tfTrayPop{position:fixed;z-index:260;right:calc(min(360px,100vw - 56px) + 12px);width:300px;max-width:calc(100vw - 56px - 24px);display:grid;gap:2px;padding:10px!important;background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px rgba(0,0,0,.35)}
+.tfTrayPop{position:fixed;z-index:260;right:calc(min(608px,100vw - 56px) + 12px);width:300px;max-width:calc(100vw - 56px - 24px);display:grid;gap:2px;padding:10px!important;background:var(--card);box-shadow:var(--hc-hair-all),0 10px 30px rgba(0,0,0,.35)}
 .tfTrayPop[hidden]{display:none}
 .tfTrayPopTitle{padding:4px 8px 8px;font:500 18px/1.2 var(--font-tile);letter-spacing:-.01em;color:var(--text)}
 .tfTrayPopRow{display:flex;align-items:center;gap:12px;min-height:var(--tile-min);padding:0 8px}

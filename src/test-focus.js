@@ -55,7 +55,14 @@ const SUMMARIES = {
   media_players: { name: 'Media players', icon: 'mdi:multimedia', colour: '#2196f3' },
   maintenance: { name: 'Maintenance', icon: 'mdi:wrench', colour: '#9e9e9e' },
   energy: { name: 'Energy', icon: 'mdi:lightning-bolt', colour: '#ffc107' },
+  // more to choose from (the leadership demo, Matt, 9 Nov), all off until switched on in Edit Home page
+  covers: { name: 'Covers', icon: 'mdi:blinds-horizontal', colour: '#9c27b0' },
+  people: { name: 'People', icon: 'mdi:account-multiple', colour: '#03a9f4' },
+  openings: { name: 'Doors and windows', icon: 'mdi:door-open', colour: '#ff9800' },
+  leaks: { name: 'Leaks', icon: 'mdi:water', colour: '#2196f3' },
+  vacuum: { name: 'Vacuum', icon: 'mdi:robot-vacuum', colour: '#4caf50' },
 };
+const EXTRA_SUMS = ['covers', 'people', 'openings', 'leaks', 'vacuum'];
 const HOUSE_KEY = 'move_assistant_house'; // the house page's own saved data (its favourites), apart from the moves
 const USED_KEY = 'move-assistant-house-used'; // how often each device is used here, for suggested favourites
 const TOGGLES = ['switch', 'fan', 'input_boolean', 'automation'];
@@ -80,6 +87,8 @@ const CROSS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.
 // a popup's pages (Matt, 12 Nov): Control (Material Design Icons' tune-variant) and Info ((i))
 const TUNE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13C6.14 13 4.59 14.28 4.14 16H2V18H4.14C4.59 19.72 6.14 21 8 21S11.41 19.72 11.86 18H22V16H11.86C11.41 14.28 9.86 13 8 13M8 19C6.9 19 6 18.1 6 17C6 15.9 6.9 15 8 15S10 15.9 10 17C10 18.1 9.1 19 8 19M19.86 6C19.41 4.28 17.86 3 16 3S12.59 4.28 12.14 6H2V8H12.14C12.59 9.72 14.14 11 16 11S19.41 9.72 19.86 8H22V6H19.86M16 9C14.9 9 14 8.1 14 7C14 5.9 14.9 5 16 5S18 5.9 18 7C18 8.1 17.1 9 16 9Z"/></svg>';
 const INFO_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/></svg>';
+// a tray's Add… button: a plus before its words (Matt, 12 Nov: "proper buttons with a plus icon")
+const PLUS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>';
 const CHEVRON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // a stroke icon on the 24 grid
 const svgIcon = (paths) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + paths.map((d) => '<path d="' + d + '"/>').join('') + '</svg>';
@@ -1297,7 +1306,9 @@ export function mountTestFocus(root, { config, getHass }) {
       out.push(it);
     });
     keys.forEach((key) => { if (!seen.has(key)) out.push({ type: 'summary', key }); });
-    return out;
+    // the order picked in Edit Home page
+    const order = sumPrefs().sumOrder || [], at = (it) => (it.type === 'summary' && order.includes(it.key) ? order.indexOf(it.key) : order.length);
+    return order.length ? out.map((it, i) => [it, i]).sort((a, b) => at(a[0]) - at(b[0]) || a[1] - b[1]).map(([it]) => it) : out;
   }
   // Maintenance (Matt, 29 Oct): counted as Home Assistant counts it (batteries at 20% or under that aren't charging,
   // battery and problem sensors that are on, any of them unavailable), plus plants that need care and a vacuum that's
@@ -1334,7 +1345,26 @@ export function mountTestFocus(root, { config, getHass }) {
     };
   }
   // each summary's line, worked out as Home Assistant's summary card does, and the devices it opens to
-  function summaryData() {
+  // a summary shows when it's on: Home Assistant's own unless switched off, the extras only once switched on. The
+  // overview's summaries are its own (Matt, 12 Nov: "they shouldn't be linked"): which show and their order, set in Edit
+  // Home page; the custom dashboard keeps the ones chosen in Settings
+  const sumPrefs = () => (overview ? prefs.home || {} : prefs);
+  const sumOn = (k) => (EXTRA_SUMS.includes(k) ? (sumPrefs().shownSums || []).includes(k) : !(sumPrefs().hiddenSums || []).includes(k));
+  function extraSums(rooms, groups, of) {
+    const covers = rooms.flatMap((r) => of(r, /^cover\./)), open = covers.filter((id) => ['open', 'opening'].includes(states[id]?.state)).length;
+    const people = Object.keys(states).filter((id) => id.startsWith('person.')), home = people.filter((id) => states[id]?.state === 'home').length;
+    const openings = model.security.openings.filter((id) => states[id]), opened = openings.filter((id) => states[id].state === 'on').length;
+    const leaks = Object.keys(states).filter((id) => id.startsWith('binary_sensor.') && attr(id).device_class === 'moisture'), wet = leaks.filter((id) => states[id].state === 'on').length;
+    const vac = model.vacuums.filter((id) => states[id]);
+    return {
+      covers: covers.length && { value: open ? open + ' open' : 'All closed', groups: groups((r) => of(r, /^cover\./)) },
+      people: people.length && { value: home ? home + ' home' : 'Nobody home', groups: [{ name: 'People', ids: people }] },
+      openings: openings.length && { value: opened ? opened + ' open' : 'All closed', groups: [{ name: 'Doors and windows', ids: openings }] },
+      leaks: leaks.length && { value: wet ? count(wet, 'leak', 'leaks') : 'All dry', groups: [{ name: 'Leak sensors', ids: leaks }] },
+      vacuum: vac.length && { value: cap(states[vac[0]].state), groups: [{ name: 'Vacuum', ids: vac }] },
+    };
+  }
+  function summaryData(every = false) {
     const rooms = model.rooms, sec = model.security, of = (r, re) => r.actions.filter((id) => re.test(id));
     const groups = (pick) => rooms.map((r) => ({ name: r.name, ids: pick(r) })).filter((g) => g.ids.length);
     const lights = rooms.flatMap((r) => r.lights), lit = lights.filter((id) => states[id]?.state === 'on').length;
@@ -1355,13 +1385,14 @@ export function mountTestFocus(root, { config, getHass }) {
       media_players: players.length && { value: playing ? playing + ' playing' : 'No media playing', groups: groups((r) => of(r, /^media_player\./)) },
       maintenance: maint,
       energy: model.grid && { value: watts(Number(states[solarNow]?.state || 0) * 1000 + Number(states[model.grid].state)) + ' now', groups: [{ name: 'Energy', ids: [...solar, model.grid] }] },
+      ...extraSums(rooms, groups, of),
     };
     const out = [];
     const active = alerts.filter((x) => x.severity !== 'warning' && x.on);
     if (active.length) out.push({ key: 'alerts', name: 'Alerts', icon: 'mdi:alarm-plus', colour: '#f44336', value: count(active.length, 'active alert', 'active alerts'), groups: [{ name: 'Active', ids: active.map((x) => x.entity) }] });
     shortcutItems().forEach((it) => {
       if (it.type !== 'summary') out.push({ key: 'path:' + it.path, name: it.label || it.path, icon: it.icon || 'mdi:link-variant', colour: '', value: '' });
-      else if (!it.hidden && all[it.key] && !(prefs.hiddenSums || []).includes(it.key)) out.push({ key: it.key, ...SUMMARIES[it.key], ...all[it.key] });
+      else if (!it.hidden && all[it.key] && (every || sumOn(it.key))) out.push({ key: it.key, ...SUMMARIES[it.key], ...all[it.key] });
     });
     return out;
   }
@@ -1395,7 +1426,7 @@ export function mountTestFocus(root, { config, getHass }) {
     ]);
     // edit mode's old choices (sections, order, sizes…) are left behind: the page is laid out as Home Assistant has it
     const v = mine?.value || {};
-    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, dash: v.dash, named: v.named, favHidden: v.favHidden, suggest: v.suggest, favSeeded: v.favSeeded };
+    prefs = { favourites: v.favourites ?? null, sources: v.sources, hiddenSums: v.hiddenSums, shownSums: v.shownSums, home: v.home, dash: v.dash, named: v.named, favHidden: v.favHidden, suggest: v.suggest, favSeeded: v.favSeeded };
     haHome = home?.value || {};
     haSecurity = security?.value || {};
     predicted = Array.isArray(usage?.entities) ? usage.entities : [];
@@ -1643,13 +1674,14 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   /* the overview's welcome message (as the demo's Home, 12 Nov): the time of day's greeting and your name, above the
      home's name */
+  const welcomeOn = () => prefs.home?.welcome ?? true;
   const myName = () => { const user = getHass()?.user; return user?.name || Object.values(states).find((st) => st.entity_id.startsWith('person.') && user?.id && st.attributes?.user_id === user.id)?.attributes.friendly_name || ''; };
   const greeting = () => { const h = new Date().getHours(), name = myName(); return (h >= 5 && h < 12 ? 'Good morning' : h >= 12 && h < 18 ? 'Good afternoon' : 'Good evening') + (name ? ', ' + name : ''); };
   const dashWrap = (cls, key, label, titled) => (inner) => '<section class="card tfCard tfDashCard ' + cls + '" data-tf data-k="' + key + '" aria-label="' + label + '">' +
     (titled ? '<div class="activityHeader">' + (key === 'favs' ? '<button class="activityTitle tfTitleBtn" type="button" data-more="favourites" aria-label="Favourites. More info">' + label + '</button>' : '<div class="activityTitle">' + label + '</div>') + '</div>' : '') + '<div class="activityRows">' + inner + '</div></section>';
   function dashboard(out, sums) {
     out.dash = true;
-    out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + (overview ? '<span class="tfGreeting">' + esc(greeting()) + '</span>' : '') + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });
+    out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + ((overview ? welcomeOn() : dashPrefs().welcome) ? '<span class="tfGreeting">' + esc(greeting()) + '</span>' : '') + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });
     // the summaries: a row of their own, the bar only as wide as its tiles
     if (sums.length) out.push({ key: 'sums', wrap: (inner) => '<div class="tfDashBarRow" data-tf data-k="sums">' + dashWrap('tfDash-bar', 'sums-bar', 'Summaries', false)(inner).replace(' data-tf', '') + '</div>', tiles: sums.map((s) => ({ key: 'sum:' + s.key, html: summaryRow(s) })) });
     if (!overview && areasShown().length) out.push({ key: 'areas', html: areasHtml(0) });
@@ -1726,12 +1758,14 @@ export function mountTestFocus(root, { config, getHass }) {
   const overviewRooms = () => areaRooms.map((r) => 'room:' + r.id);
   function overviewPrefs() {
     const rooms = overviewRooms();
-    return { cells: {}, spans: { favs: 2 }, hidden: Object.keys(BOARD_NAMES).filter((k) => !['title', 'sums', 'favs'].includes(k)),
+    return { cells: {}, spans: { favs: 2 }, hidden: Object.keys(BOARD_NAMES).filter((k) => !['title', ...(prefs.home?.sums === false ? [] : ['sums']), ...(prefs.home?.favs === false ? [] : ['favs'])].includes(k)),
       opts: { favs: { h: 5 }, ...Object.fromEntries(rooms.map((k) => [k, { h: 5 }])) }, tiles: rooms, known: NEW_CARDS, areasOff: [] };
   }
   const dashPrefs = () => (overview ? overviewPrefs() : boardPrefs());
   const boardPrefs = () => {
-    const d = { cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) }, fresh = NEW_CARDS.filter((k) => !(d.known || []).includes(k) && !d.hidden.includes(k));
+    let d = { cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) };
+    if (d.sumsOff) d = { ...d, hidden: [...d.hidden, 'sums'] }; // the summaries switched off in the edit tray
+    const fresh = NEW_CARDS.filter((k) => !(d.known || []).includes(k) && !d.hidden.includes(k));
     return fresh.length ? { ...d, hidden: [...d.hidden, ...fresh] } : d;
   };
   function saveDash(next) { if (overview) return; prefs = { ...prefs, dash: { ...next, known: NEW_CARDS } }; savePrefs(); }
@@ -1860,7 +1894,9 @@ export function mountTestFocus(root, { config, getHass }) {
     app.classList.toggle('tfBoard', board);
     app.classList.toggle('tfEditing', board && editing && !phone);
     const pen = $('dashEditNav');
-    if (pen) { pen.hidden = !board || phone || overview; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit the dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
+    if (!board && homeEditing) setHomeEditing(false);
+    if (pen && overview) { pen.hidden = !board; if (!homeEditing) { pen.classList.remove('active'); pen.setAttribute('aria-pressed', 'false'); pen.setAttribute('aria-label', 'Edit Home page'); pen.title = 'Edit'; pen.innerHTML = PENCIL; } }
+    else if (pen) { pen.hidden = !board || phone; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit custom dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
     const items = board ? boardItems() : [];
     if (!board) {
       grid.style.height = '';
@@ -1949,6 +1985,50 @@ export function mountTestFocus(root, { config, getHass }) {
   const HOME = { gap: 20, phoneGap: 16, inner: 16, col: 252, colMin: 200, cols: 5, row: 337, nameGap: 28, sumsGap: 16 };
   // Favourites' lower edge fades while there's more below (no scrollbar)
   const fadeMore = (el) => el.classList.toggle('hcMore', el.scrollHeight - el.scrollTop - el.clientHeight > 1);
+  let homeDrag = null, homeOrderNow = [], homePlaced = new Map();
+  function homeLand(box) {
+    let land = grid.querySelector('.hcHomeLand');
+    if (!box) { land?.remove(); return; }
+    if (!land) { land = Object.assign(document.createElement('div'), { className: 'tfBoardLand hcHomeLand' }); grid.appendChild(land); }
+    Object.assign(land.style, { left: box.x + 'px', top: box.y + 'px', width: box.w + 'px', height: box.h + 'px' });
+  }
+  /* with Edit Home page open, the overview's cards move by dragging (Matt, 12 Nov: "the drag and drop functionality and
+     behaviours", as on the custom dashboard): a card lifts and follows the pointer, where it would land shows dashed, the
+     others make room, and the order is kept. Its columns and sizes stay its own; only the order changes. Not on phones */
+  function homeDown(ev) {
+    if (!overview || !homeEditing || ev.button !== 0 || grid.clientWidth < 2 * PEG + PEG_GAP) return;
+    const el = ev.target.closest('.tfBoardItem'), it = el && boardItems().find((x) => x.el === el);
+    if (!it || HEAD.includes(it.key)) return;
+    ev.preventDefault();
+    const g = grid.getBoundingClientRect(), box = homePlaced.get(it.key);
+    homeDrag = { key: it.key, el, on: false, x0: ev.clientX, y0: ev.clientY, left: box.x, top: box.y, order: [...homeOrderNow] };
+    const move = (e) => {
+      const dx = e.clientX - homeDrag.x0, dy = e.clientY - homeDrag.y0;
+      if (!homeDrag.on && Math.hypot(dx, dy) < 5) return;
+      // it lifts with a small bounce (Matt, 12 Nov: "the small bouncy effect")
+      if (!homeDrag.on) { homeDrag.on = true; el.classList.add('tfDragging'); if (!reduced()) el.animate([{ scale: '1' }, { scale: '1.05' }, { scale: '1.02' }], { duration: 260, easing: 'cubic-bezier(.2,1.35,.4,1)' }); }
+      Object.assign(el.style, { left: homeDrag.left + dx + 'px', top: homeDrag.top + dy + 'px' });
+      // it goes where the card nearest the pointer is (before it, or after it past its middle)
+      const px = e.clientX - g.left, py = e.clientY - g.top + grid.scrollTop;
+      let best = null, bestD = Infinity;
+      homePlaced.forEach((b, key) => { if (key === it.key) return; const d = Math.hypot(px - (b.x + b.w / 2), py - (b.y + b.h / 2)); if (d < bestD) { bestD = d; best = { key, b }; } });
+      if (!best) return;
+      const rest = homeDrag.order.filter((x) => x !== it.key), i = rest.indexOf(best.key) + (px > best.b.x + best.b.w / 2 ? 1 : 0);
+      const next = [...rest.slice(0, i), it.key, ...rest.slice(i)];
+      if (next.join() !== homeDrag.order.join()) { homeDrag.order = next; layoutBoard(); }
+      else homeLand(homePlaced.get(it.key));
+    };
+    const up = () => {
+      removeEventListener('pointermove', move); removeEventListener('pointerup', up); removeEventListener('pointercancel', up);
+      const d = homeDrag; homeDrag = null;
+      el.classList.remove('tfDragging');
+      if (d.on) homePrefs({ order: d.order });
+      layoutBoard();
+      // and settles into its place with a little overshoot (its move's easing), then a squash, as the board's cards land
+      if (d.on && !reduced()) setTimeout(() => squash(el), 340);
+    };
+    addEventListener('pointermove', move); addEventListener('pointerup', up); addEventListener('pointercancel', up);
+  }
   function layoutHome(items, W, phone) {
     const hidden = new Set(dashPrefs().hidden);
     items.forEach((it) => it.el.classList.toggle('tfBoardHidden', hidden.has(it.key)));
@@ -1960,21 +2040,30 @@ export function mountTestFocus(root, { config, getHass }) {
     const xOf = (c) => c * (w + gap) - (n >= 3 && c >= 2 ? gap - HOME.inner : 0);
     const gridW = n * w + (n - 1) * gap - (n >= 3 ? gap - HOME.inner : 0);
     let top = 0;
-    const heads = shown.filter((it) => HEAD.includes(it.key)).sort((a, b) => HEAD.indexOf(a.key) - HEAD.indexOf(b.key));
+    // Edit Home page's choices: the summaries as wide as their own tiles, Favourites as a strip under them
+    const strip = favsStrip();
+    app.classList.toggle('hcSumsFit', sumsFit());
+    app.classList.toggle('hcFavStrip', strip);
+    const heads = shown.filter((it) => HEAD.includes(it.key) || (strip && it.key === 'favs'));
+    heads.sort((a, b) => ['title', 'sums', 'favs'].indexOf(a.key) - ['title', 'sums', 'favs'].indexOf(b.key));
     heads.forEach((it) => {
       it.el.classList.add('tfBoardItem');
       it.el.toggleAttribute('data-narrow', false);
       Object.assign(it.el.style, { width: (it.key === 'title' ? W : gridW) + 'px', height: '', left: '0px', top: top + 'px' });
-      // the summaries in one row while they fit, else in even rows (halves, thirds…)
-      const bar = it.key === 'sums' && it.el.querySelector('.tfDash-bar>.activityRows'), count = bar ? bar.children.length : 0;
+      // a bar's tiles in one row while they fit, else in even rows (halves, thirds…)
+      const bar = it.key !== 'title' && (it.el.querySelector('.tfDash-bar>.activityRows') || (it.key === 'favs' && it.el.querySelector(':scope>.activityRows'))), count = bar ? bar.children.length : 0;
       if (bar) {
         bar.classList.remove('hcBarRows'); // a phone has its own two columns
         if (!phone && bar.scrollWidth > bar.clientWidth + 1) for (let rows = 2; rows <= count; rows++) { bar.classList.add('hcBarRows'); bar.style.setProperty('--bar-cols', String(Math.ceil(count / rows))); if (bar.scrollWidth <= bar.clientWidth + 1) break; }
       }
       top += it.el.offsetHeight + (it.key === 'title' ? HOME.nameGap : HOME.sumsGap);
     });
-    const order = ['favs', ...overviewRooms()];
-    const cards = shown.filter((it) => !HEAD.includes(it.key)).sort((a, b) => ((order.indexOf(a.key) + 1) || 99) - ((order.indexOf(b.key) + 1) || 99));
+    const own = ['favs', ...overviewRooms()];
+    // the order you dragged them into (Edit Home page), new cards after it; while one is dragged, where it would land
+    const saved = homeDrag?.order || prefs.home?.order;
+    const order = saved ? [...saved.filter((x) => own.includes(x)), ...own.filter((x) => !saved.includes(x))] : own;
+    homeOrderNow = order;
+    const cards = shown.filter((it) => !HEAD.includes(it.key) && !(strip && it.key === 'favs')).sort((a, b) => ((order.indexOf(a.key) + 1) || 99) - ((order.indexOf(b.key) + 1) || 99));
     const taken = new Set(), at = new Map();
     cards.forEach((it) => {
       const cols = Math.min(n, it.key === 'favs' ? 2 : 1);
@@ -1998,15 +2087,23 @@ export function mountTestFocus(root, { config, getHass }) {
     let y = top;
     const rowTop = [];
     for (let r = 0; r < rowsN; r++) { rowTop[r] = y; y += (phone ? rowH[r] || 0 : HOME.row) + gap; }
+    homePlaced = new Map();
     cards.forEach((it) => {
-      const p = at.get(it.key);
-      Object.assign(it.el.style, { left: xOf(p.c) + 'px', top: rowTop[p.r] + 'px', height: (phone ? rowH[p.r] : HOME.row) + 'px' });
+      const p = at.get(it.key), box = { x: xOf(p.c), y: rowTop[p.r], w: span(p.cols), h: phone ? rowH[p.r] : HOME.row };
+      homePlaced.set(it.key, box);
+      it.el.style.height = box.h + 'px';
+      // the card being dragged follows the pointer; where it will land shows instead
+      if (homeDrag?.on && homeDrag.key === it.key) { homeLand(box); return; }
+      Object.assign(it.el.style, { left: box.x + 'px', top: box.y + 'px' });
     });
+    if (!homeDrag?.on) homeLand(null);
     grid.style.height = (rowsN ? y - gap : top) + 'px';
     readingOrder([...heads, ...cards.slice().sort((a, b) => at.get(a.key).r - at.get(b.key).r || at.get(a.key).c - at.get(b.key).c)].map((it) => it.el));
     editTools(false);
+    // while Edit Home page is open the cards rest: a tap doesn't work their controls or open them
+    items.forEach((it) => [...it.el.children].forEach((c) => c.toggleAttribute('inert', homeEditing)));
     const favList = grid.querySelector('.tfDash-favs>.activityRows');
-    if (favList) { favList.classList.add('hcFadeList'); fadeMore(favList); }
+    if (favList) { favList.classList.toggle('hcFadeList', !strip); fadeMore(favList); }
     requestAnimationFrame(() => app.classList.add('tfBoardReady'));
     items.forEach((it) => itemSizes.observe(it.el));
     renderTray();
@@ -2335,23 +2432,43 @@ export function mountTestFocus(root, { config, getHass }) {
      tile. The tray lies over the board rather than squeezing it, so the board edited is the board shown, and the tab
      on its edge tucks it away */
   const PICK_DOMAINS = /^(light|switch|cover|climate|fan|lock|valve|media_player|humidifier|vacuum|scene|script|alarm_control_panel|water_heater|input_boolean)\./;
+  // the tray in tabs instead of one long scroll (Matt, 12 Nov): Page, Cards, Areas and Favourites, HomeCore settings' tabs
+  const TRAY_TABS = [['page', 'Page'], ['cards', 'Cards'], ['areas', 'Areas'], ['favs', 'Favourites']];
+  let trayTab = 'page';
+  // which tab each of the tray's sections sits under
+  const trayTabOf = (sec) => (sec.matches('[data-tray="welcome"],[data-tray="phone"]') ? 'page'
+    : sec.querySelector('[data-room-add]') ? 'areas' : sec.querySelector('[data-tray="favs"]') ? 'favs' : 'cards');
+  function showTrayTab(animate = false) {
+    const inner = tray.querySelector('.tfTrayInner'), bar = tray.querySelector('.hcTrayTabs'), mark = bar.querySelector('.rubberIndicator');
+    let first = true;
+    inner.querySelectorAll(':scope>.tfTraySection').forEach((sec) => { sec.hidden = trayTabOf(sec) !== trayTab; sec.classList.toggle('hcFirst', !sec.hidden && first); if (!sec.hidden) first = false; });
+    bar.querySelectorAll('[data-tray-tab]').forEach((b) => { const on = b.dataset.trayTab === trayTab; b.classList.toggle('active', on); b.setAttribute('aria-selected', String(on)); });
+    const on = bar.querySelector('.tab.active');
+    if (!on?.offsetWidth) return;
+    mark.style.transition = 'none';
+    if (animate) stretchTo(mark, mark.offsetLeft, mark.offsetWidth, on.offsetLeft, on.offsetWidth);
+    else { mark.style.left = on.offsetLeft + 'px'; mark.style.width = on.offsetWidth + 'px'; }
+  }
   const tray = Object.assign(document.createElement('aside'), { className: 'tfEditTray' });
-  tray.setAttribute('aria-label', 'Edit the dashboard');
+  tray.setAttribute('aria-label', 'Edit custom dashboard');
   tray.innerHTML = '<button class="tfTrayTuck" type="button" data-tray-tuck></button>' +
-    '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div>' +
+    '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit custom dashboard</div><button class="pill" type="button" data-tray-done>Done</button></div>' +
+    '<div class="tabs rubberTabs hcTrayTabs" role="tablist" aria-label="Edit custom dashboard"><div class="rubberIndicator" aria-hidden="true"></div>' +
+      TRAY_TABS.map(([k, t], i) => '<button class="tab segBtn' + (i ? '' : ' active') + '" type="button" role="tab" aria-selected="' + !i + '" data-tray-tab="' + k + '">' + t + '</button>').join('') + '</div>' +
+    '<section class="tfTraySection" data-tray="welcome"></section>' +
     '<section class="tfTraySection" data-tray="cards"></section>' +
     '<section class="tfTraySection" data-tray="weather"></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Tiles</div><p class="tfTrayNote">Remove a tile from its ⋯.</p>' +
-    '<button class="pill tfTrayAdd" type="button" data-tile-add aria-expanded="false">Add tile</button>' +
+    '<button class="pill tfTrayAdd hcAddBtn" type="button" data-tile-add aria-expanded="false">' + PLUS + '<span>Add tile</span></button>' +
     '<div class="tfTrayPick" data-pick="tiles" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-tile-search>' +
     '<ul class="tfTrayList" data-tray="tilepick"></ul></div></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Areas</div><p class="tfTrayNote">Which areas the Areas card shows, and one area on its own instead.</p>' +
     '<button class="pill tfTrayAdd" type="button" data-area-choose aria-expanded="false">Choose areas</button>' +
-    '<button class="pill tfTrayAdd" type="button" data-room-add aria-expanded="false">Add area</button>' +
+    '<button class="pill tfTrayAdd hcAddBtn" type="button" data-room-add aria-expanded="false">' + PLUS + '<span>Add area</span></button>' +
     '<ul class="tfTrayList" data-tray="roompick" hidden></ul></section>' +
     '<section class="tfTraySection" data-tray="phone"></section>' +
     '<section class="tfTraySection"><div class="sectionLabel">Favourites</div><ul class="tfTrayList" data-tray="favs"></ul>' +
-    '<button class="pill tfTrayAdd" type="button" data-fav-add aria-expanded="false">Add favourite</button>' +
+    '<button class="pill tfTrayAdd hcAddBtn" type="button" data-fav-add aria-expanded="false">' + PLUS + '<span>Add favourite</span></button>' +
     '<div class="tfTrayPick" data-pick="favs" hidden><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-fav-search>' +
     '<ul class="tfTrayList" data-tray="pick"></ul></div><div class="toggleRow tfTraySuggest" data-tray="suggest"></div></section></div>';
   app.appendChild(tray);
@@ -2409,6 +2526,169 @@ export function mountTestFocus(root, { config, getHass }) {
     return ids.map((id) => '<li><button class="tfTrayPickItem" type="button" ' + attr + '="' + esc(id) + '"><span class="tfIcon"' + iconSlot(id, iconFor(id)) + '></span>' +
       trayName(id, whereIs.get(id) || '—') + '</button></li>').join('') || '<li class="tfTrayNote">Nothing matches.</li>';
   }
+  /* Edit Home page (the leadership demo, Matt, 12 Nov): Home Assistant's Edit Overview page, as a tray at the side like
+     the custom dashboard's editor ("a side roll over like the other dashboard editor"), changes showing on the overview
+     as they're made, in tabs: Page (the welcome message), Favourites (on or off, as a card or a strip, drag to order,
+     remove, add, Suggested entities) and Summaries (on or off, their width, drag to order, each on or off). Each setting
+     explains itself in a popover from its (i), with a Learn more link (OpenHomeFoundation/roadmap#57, "Every field can
+     explain itself"). Its cards move by dragging while it's open */
+  const LEARN_MORE = 'https://www.home-assistant.io/dashboards/';
+  const HOME_INFO = {
+    welcome: ['Welcome message', '<p>Shows a <strong>greeting</strong> above your home\'s name: good morning, afternoon or evening, then your name.</p>'],
+    favs: ['Favourite entities', '<p>The devices you use most, at the top of Home.</p><ul><li><strong>Drag</strong> one to change the order</li><li>Press <strong>×</strong> to take it off</li></ul>'],
+    suggest: ['Suggested entities', '<p>Fills Favourites with devices you often use, after your own. They change as you use your home.</p>'],
+    sums: ['Summaries', '<p>Each summary sums up one kind of thing across your home, like <strong>Lights</strong>: how many are on.</p><ul><li>Switch one off to hide it</li><li><strong>Drag</strong> one to change the order</li></ul>'],
+  };
+  const homeTray = Object.assign(document.createElement('aside'), { className: 'tfEditTray hcHomeTray' });
+  homeTray.setAttribute('aria-label', 'Edit Home page');
+  homeTray.toggleAttribute('inert', true);
+  let homeEditing = false, homePicking = false, homeStart = '', penHome = null;
+  let homeTab = 'page';
+  // the open tab's mark, as on HomeCore settings' tabs
+  function placeHomeMark(animate, from) {
+    const bar = homeTray.querySelector('.hcTrayTabs'), mark = bar?.querySelector('.rubberIndicator'), on = bar?.querySelector('.tab.active');
+    if (!on?.offsetWidth) { requestAnimationFrame(() => homeTray.querySelector('.hcTrayTabs .tab.active')?.offsetWidth && placeHomeMark(animate, from)); return; }
+    mark.style.transition = 'none';
+    if (animate && from) stretchTo(mark, from.left, from.width, on.offsetLeft, on.offsetWidth);
+    else { mark.style.left = on.offsetLeft + 'px'; mark.style.width = on.offsetWidth + 'px'; }
+  }
+  const infoBtn = (k) => '<button class="hcInfoBtn" type="button" data-info="' + k + '" aria-expanded="false" aria-label="About ' + esc(HOME_INFO[k][0]) + '">' + INFO_SVG + '</button>';
+  const sw = (on, label, attr) => '<button class="switch' + (on ? ' on' : '') + '" type="button" role="switch" aria-checked="' + on + '" aria-label="' + esc(label) + '" ' + attr + '></button>';
+  const heGrip = (label) => '<button class="tfTrayBtn hcHeGrip" type="button" data-he-grip aria-label="Move ' + esc(label) + '. Use the up and down arrows">' + GRIP + '</button>';
+  // the summaries as wide as the cards (as drawn) or as wide as their own tiles; Favourites as its card or a strip under
+  // the summaries, the same pattern as theirs (Matt, 12 Nov)
+  const sumsFit = () => prefs.home?.sumsWidth === 'fit';
+  const favsStrip = () => prefs.home?.favsAs === 'strip';
+  const homeSeg = (label, attr, value, opts) => '<div class="hcHeLine hcHeChoiceLine"><span class="activityRowName">' + label + '</span><div class="themeChoice hcHeChoice" role="group" aria-label="' + esc(label) + '">' +
+    opts.map(([v, text]) => '<button class="wxLayoutBtn" type="button" ' + attr + '="' + v + '" aria-pressed="' + (value === v) + '">' + text + '</button>').join('') + '</div></div>';
+  const homeSumOrder = () => summaryData(true).filter((x) => SUMMARIES[x.key]).map((x) => x.key);
+  function drawHomeTray() {
+    if (!homeEditing) return;
+    const favs = starred();
+    const favLi = (id) => '<li class="hcHeRow" data-he-id="' + esc(id) + '">' + heGrip(nameOf(id)) + '<span class="tfIcon"' + iconSlot(id, iconFor(id)) + '></span>' +
+      trayName(id, whereIs.get(id) || valueOf(id)) + '<button class="tfTrayBtn" type="button" data-he-remove="' + esc(id) + '" aria-label="Take ' + esc(nameOf(id)) + ' off Favourites">' + CROSS + '</button></li>';
+    const sumLi = (k) => { const x = SUMMARIES[k]; return '<li class="hcHeRow hcHeSum" data-he-id="' + esc(k) + '"' + (x.colour && sumInk(x.colour) ? ' style="' + sumInk(x.colour).slice(1) + '"' : '') + '>' + heGrip(x.name) +
+      '<span class="tfIcon"' + iconSlot('', x.icon, x.name) + '></span><span class="activityRowName">' + esc(x.name) + '</span>' + sw(sumOn(k), x.name, 'data-he-sum="' + esc(k) + '"') + '</li>'; };
+    const search = homeTray.querySelector('[data-he-search]')?.value || '';
+    const tabs = [['page', 'Page'], ['favs', 'Favourites'], ['sums', 'Summaries']];
+    const bodies = {
+      page: '<div class="hcHeLine"><span class="activityRowName">Welcome message</span>' + infoBtn('welcome') + sw(welcomeOn(), 'Welcome message', 'data-he-welcome') + '</div>',
+      favs: '<div class="hcHeLine"><span class="activityRowName">Show favourites</span>' + sw(prefs.home?.favs !== false, 'Show favourites', 'data-he-card="favs"') + '</div>' +
+        '<hr class="hcHeRule">' +
+        '<div class="hcHeLabel"><span class="activityRowName">Favourite entities</span>' + infoBtn('favs') + '</div>' +
+        homeSeg('Show as', 'data-he-favs-as', favsStrip() ? 'strip' : 'card', [['card', 'Card'], ['strip', 'Strip']]) +
+        '<ul class="tfTrayList hcHeList" data-he-list="favs">' + (favs.map(favLi).join('') || '<li class="tfTrayNote">No favourites yet.</li>') + '</ul>' +
+        '<button class="pill tfTrayAdd hcAddBtn" type="button" data-he-add aria-expanded="' + homePicking + '">' + PLUS + '<span>Add favourite</span></button>' +
+        '<div class="tfTrayPick" data-he-pick' + (homePicking ? '' : ' hidden') + '><input class="addInput" type="search" placeholder="Search devices" aria-label="Search devices" autocomplete="off" data-he-search value="' + esc(search) + '">' +
+        '<ul class="tfTrayList">' + (homePicking ? pickHtml(search, (id) => PICK_DOMAINS.test(id), new Set(favs), 'data-he-pick-id') : '') + '</ul></div>' +
+        '<hr class="hcHeRule">' +
+        '<div class="hcHeLine"><span class="activityRowName">Suggested entities</span>' + infoBtn('suggest') + sw(suggestOn(), 'Suggested entities', 'data-he-suggest') + '</div>',
+      sums: '<div class="hcHeLine"><span class="activityRowName">Show summaries</span>' + infoBtn('sums') + sw(prefs.home?.sums !== false, 'Show summaries', 'data-he-card="sums"') + '</div>' +
+        homeSeg('Width', 'data-he-sums-width', sumsFit() ? 'fit' : 'match', [['match', 'Match the cards'], ['fit', 'Fit the summaries']]) +
+        '<hr class="hcHeRule">' +
+        '<ul class="tfTrayList hcHeList" data-he-list="sums">' + homeSumOrder().map(sumLi).join('') + '</ul>',
+    };
+    homeTray.querySelector('[data-he-body]').innerHTML =
+      // the note about the areas page first (Matt, 12 Nov: "to the top of the rollover"), as Home Assistant's dialog has it
+      '<p class="tfTrayNote hcHeAreasNote">You can rearrange your floors and areas in the order that best represents your house on the <button type="button" class="hcHeLink" data-path="/config/areas/dashboard">areas page</button>.</p>' +
+      '<div class="tabs rubberTabs hcTrayTabs" role="tablist" aria-label="Edit Home page"><div class="rubberIndicator" aria-hidden="true"></div>' +
+        tabs.map(([k, t]) => '<button class="tab segBtn' + (k === homeTab ? ' active' : '') + '" type="button" role="tab" aria-selected="' + (k === homeTab) + '" data-he-tab="' + k + '">' + t + '</button>').join('') + '</div>' +
+      '<div class="hcHeTabBody" role="tabpanel">' + bodies[homeTab] + '</div>';
+    placeHomeMark(false);
+    fillIcons(homeTray);
+  }
+  const homeSave = (next) => { prefs = { ...prefs, ...next }; savePrefs(); refresh(); drawHomeTray(); };
+  const homePrefs = (next) => homeSave({ home: { ...(prefs.home || {}), ...next } });
+  function setHomeEditing(on) {
+    closeInfo();
+    homeEditing = on;
+    homePicking = false;
+    homeTray.classList.toggle('open', on);
+    homeTray.toggleAttribute('inert', !on);
+    app.classList.toggle('hcHomeEditing', on);
+    if (testFocus && grid) layoutBoard();
+    const pen = $('dashEditNav'), head = homeTray.querySelector('.tfTrayHead');
+    if (pen && on) { penHome = pen.parentElement; head.appendChild(pen); }
+    if (pen && !on && penHome) penHome.appendChild(pen);
+    if (pen) { pen.classList.toggle('active', on); pen.setAttribute('aria-pressed', String(on)); pen.setAttribute('aria-label', on ? 'Done editing Home' : 'Edit Home page'); pen.title = on ? 'Done' : 'Edit'; pen.innerHTML = on ? TICK : PENCIL; }
+    if (on) { homeStart = JSON.stringify(prefs); drawHomeTray(); }
+    else if (homeStart && JSON.stringify(prefs) !== homeStart) toast('Changes saved');
+  }
+  homeTray.innerHTML = '<div class="tfTrayInner"><div class="tfTrayHead"><div class="activityTitle">Edit Home page</div></div><div class="hcHeBody" data-he-body></div></div>';
+  app.appendChild(homeTray);
+  // the (i)'s popover: what the setting does, and Learn more; closes on a tap outside it or Escape
+  let infoFor = null;
+  const infoPop = Object.assign(document.createElement('div'), { className: 'card hcInfoPop', hidden: true });
+  infoPop.setAttribute('role', 'dialog');
+  app.appendChild(infoPop);
+  function closeInfo() { if (!infoFor) return; infoFor.setAttribute('aria-expanded', 'false'); infoFor = null; infoPop.hidden = true; }
+  function openInfo(btn) {
+    const was = infoFor; closeInfo(); if (was === btn) return;
+    const [title, html] = HOME_INFO[btn.dataset.info];
+    infoPop.setAttribute('aria-label', title);
+    infoPop.innerHTML = '<div class="hcInfoTitle">' + esc(title) + '</div><div class="hcInfoText">' + html + '</div><a class="hcInfoMore" href="' + LEARN_MORE + '" target="_blank" rel="noopener">Learn more</a>';
+    infoPop.hidden = false; infoFor = btn; btn.setAttribute('aria-expanded', 'true');
+    const r = btn.getBoundingClientRect(), pw = infoPop.offsetWidth, ph = infoPop.offsetHeight;
+    infoPop.style.left = Math.max(8, Math.min(innerWidth - pw - 8, r.left + r.width / 2 - pw / 2)) + 'px';
+    infoPop.style.top = (r.bottom + 8 + ph > innerHeight - 8 ? Math.max(8, r.top - 8 - ph) : r.bottom + 8) + 'px';
+  }
+  root.addEventListener('pointerdown', (ev) => { if (infoFor && !ev.composedPath().some((n) => n === infoPop || n === infoFor)) closeInfo(); }, true);
+  root.addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Escape') return;
+    if (infoFor) { ev.stopPropagation(); const b = infoFor; closeInfo(); b.focus(); return; }
+    if (homePicking) { ev.stopPropagation(); homePicking = false; drawHomeTray(); return; }
+    if (homeEditing) { ev.stopPropagation(); setHomeEditing(false); $('dashEditNav')?.focus(); }
+  }, true);
+  // a row moves up or down its list: its grip dragged, or the arrows on it
+  const homeList = (ul) => (ul.dataset.heList === 'favs' ? starred() : homeSumOrder());
+  const homeOrder = (ul, ids) => (ul.dataset.heList === 'favs' ? homeSave({ favourites: ids }) : homePrefs({ sumOrder: ids }));
+  homeTray.addEventListener('keydown', (ev) => {
+    const g = ev.target.closest('[data-he-grip]'); if (!g || !['ArrowUp', 'ArrowDown'].includes(ev.key)) return;
+    ev.preventDefault();
+    const li = g.closest('[data-he-id]'), ul = li.parentElement, ids = homeList(ul), i = ids.indexOf(li.dataset.heId), to = i + (ev.key === 'ArrowUp' ? -1 : 1);
+    if (to < 0 || to >= ids.length) return;
+    ids.splice(to, 0, ids.splice(i, 1)[0]);
+    homeOrder(ul, ids);
+    homeTray.querySelector('[data-he-list="' + ul.dataset.heList + '"] [data-he-id="' + CSS.escape(li.dataset.heId) + '"] [data-he-grip]')?.focus();
+  });
+  homeTray.addEventListener('pointerdown', (ev) => {
+    const g = ev.target.closest('[data-he-grip]'); if (!g || ev.button !== 0) return;
+    ev.preventDefault();
+    const li = g.closest('[data-he-id]'), ul = li.parentElement;
+    li.classList.add('moving');
+    const onMove = (e) => {
+      const rows = [...ul.children].filter((x) => x !== li), next = rows.find((x) => { const r = x.getBoundingClientRect(); return e.clientY < r.top + r.height / 2; });
+      if (next !== li.nextElementSibling) ul.insertBefore(li, next || null);
+    };
+    const onUp = () => {
+      removeEventListener('pointermove', onMove); removeEventListener('pointerup', onUp);
+      li.classList.remove('moving');
+      homeOrder(ul, [...ul.children].map((x) => x.dataset.heId).filter(Boolean));
+    };
+    addEventListener('pointermove', onMove); addEventListener('pointerup', onUp);
+  });
+  homeTray.addEventListener('input', (ev) => { if (ev.target.matches('[data-he-search]')) { const at = ev.target.selectionStart; drawHomeTray(); const i = homeTray.querySelector('[data-he-search]'); i.focus(); i.setSelectionRange(at, at); } });
+  homeTray.addEventListener('click', (ev) => {
+    const t = ev.target;
+    const info = t.closest('[data-info]'); if (info) { openInfo(info); return; }
+    const tabBtn = t.closest('[data-he-tab]');
+    if (tabBtn) { const m = homeTray.querySelector('.hcTrayTabs .rubberIndicator'), from = { left: m.offsetLeft, width: m.offsetWidth }; homeTab = tabBtn.dataset.heTab; homePicking = false; closeInfo(); drawHomeTray(); placeHomeMark(true, from); homeTray.querySelector('.tfTrayInner').scrollTop = 0; return; }
+    if (t.closest('[data-he-welcome]')) { homePrefs({ welcome: !welcomeOn() }); return; }
+    const cardSw = t.closest('[data-he-card]'); if (cardSw) { const k = cardSw.dataset.heCard; homePrefs({ [k]: prefs.home?.[k] === false }); return; }
+    const fa = t.closest('[data-he-favs-as]'); if (fa) { homePrefs({ favsAs: fa.dataset.heFavsAs }); return; }
+    const sw2 = t.closest('[data-he-sums-width]'); if (sw2) { homePrefs({ sumsWidth: sw2.dataset.heSumsWidth }); return; }
+    if (t.closest('[data-he-suggest]')) { homeSave({ suggest: !suggestOn() }); return; }
+    const sm = t.closest('[data-he-sum]');
+    if (sm) {
+      const k = sm.dataset.heSum, on = !sumOn(k), h = prefs.home || {};
+      homePrefs(EXTRA_SUMS.includes(k) ? { shownSums: on ? [...(h.shownSums || []), k] : (h.shownSums || []).filter((x) => x !== k) }
+        : { hiddenSums: on ? (h.hiddenSums || []).filter((x) => x !== k) : [...(h.hiddenSums || []), k] });
+      return;
+    }
+    const rm = t.closest('[data-he-remove]'); if (rm) { homeSave({ favourites: starred().filter((x) => x !== rm.dataset.heRemove) }); return; }
+    if (t.closest('[data-he-add]')) { homePicking = !homePicking; drawHomeTray(); if (homePicking) homeTray.querySelector('[data-he-search]').focus({ preventScroll: true }); return; }
+    const pick = t.closest('[data-he-pick-id]'); if (pick) { homePicking = false; homeTray.querySelector('[data-he-search]').value = ''; homeSave({ favourites: [...starred(), pick.dataset.hePickId] }); }
+  });
   function renderTray() {
     const show = editing && app.classList.contains('tfBoard');
     tray.classList.toggle('open', show);
@@ -2422,10 +2702,16 @@ export function mountTestFocus(root, { config, getHass }) {
     tuck.innerHTML = trayTucked ? BACK : CHEVRON;
     tuck.setAttribute('aria-expanded', String(!trayTucked));
     tuck.setAttribute('aria-label', trayTucked ? 'Show the edit tray' : 'Tuck the edit tray away');
-    const hiddenCards = dashPrefs().hidden.filter((k) => boardItems().some((it) => it.key === k));
+    const hiddenCards = dashPrefs().hidden.filter((k) => !HEAD.includes(k) && boardItems().some((it) => it.key === k));
     const trayCard = (k, verb) => '<button class="tfTrayCard" type="button" data-tray-card="' + esc(k) + '" aria-label="' + esc(boardName(k)) + ': drag it onto the board, or press to ' + verb + '">' +
       '<span class="tfTrayGrip" aria-hidden="true">' + GRIP + '</span>' + esc(boardName(k)) + '</button>';
     const cardsOff = hiddenCards.filter((k) => !WIDGETS.includes(k)), widgetsOff = WIDGETS.filter((k) => hiddenCards.includes(k));
+    // the welcome message, as on the overview (Matt, 12 Nov: "a greeting option to the custom dashboard"), off to start
+    // with; and the summaries on or off
+    trayPut('welcome', '<div class="hcHeLine"><span class="activityRowName">Welcome message</span>' + infoBtn('welcome') +
+      '<button class="switch' + (dashPrefs().welcome ? ' on' : '') + '" type="button" role="switch" aria-checked="' + !!dashPrefs().welcome + '" aria-label="Welcome message" data-dash-welcome></button></div>' +
+      '<div class="hcHeLine"><span class="activityRowName">Show summaries</span><button class="switch' + (prefs.dash?.sumsOff ? '' : ' on') + '" type="button" role="switch" aria-checked="' + !prefs.dash?.sumsOff + '" aria-label="Show summaries" data-dash-sums></button></div>');
+    requestAnimationFrame(() => showTrayTab(false));
     trayPut('cards', '<div class="sectionLabel">Hidden and new cards</div>' + (cardsOff.length ? '<div class="tfTrayCards">' + cardsOff.map((k) => trayCard(k, 'put it back')).join('') + '</div>' : '<p class="tfTrayNote">Cards you hide, and new ones, wait here.</p>'));
     // the Weather page's widgets that aren't on the board (Matt, 11 Nov); one hidden from its ⋯ comes back here
     trayPut('weather', '<div class="sectionLabel">Weather</div>' + (widgetsOff.length ? '<p class="tfTrayNote">The Weather page\'s widgets. Drag one onto the board, or press to add it.</p><div class="tfTrayCards">' +
@@ -2465,7 +2751,11 @@ export function mountTestFocus(root, { config, getHass }) {
   tray.addEventListener('click', (ev) => {
     const t = ev.target.closest('button');
     if (!t) return;
+    if (t.hasAttribute('data-tray-tab')) { trayTab = t.dataset.trayTab; showTrayTab(true); tray.querySelector('.tfTrayInner').scrollTop = 0; return; }
     if (t.hasAttribute('data-tray-done')) setEditing(false);
+    else if (t.hasAttribute('data-info')) openInfo(t);
+    else if (t.hasAttribute('data-dash-sums')) { saveDash({ ...boardPrefs(), hidden: boardPrefs().hidden.filter((k) => k !== 'sums'), sumsOff: !prefs.dash?.sumsOff }); refresh(); renderTray(); }
+    else if (t.hasAttribute('data-dash-welcome')) { const d = dashPrefs(); saveDash({ ...d, welcome: !d.welcome }); refresh(); renderTray(); }
     else if (t.hasAttribute('data-tray-tuck')) { trayTucked = !trayTucked; renderTray(); }
     else if (t.hasAttribute('data-phone-toggle')) { phoneShown = !phoneShown; renderTray(); if (phoneShown) phone.querySelector('[data-phone-key]')?.focus({ preventScroll: true }); }
     else if (t.dataset.trayCard) { if (ev.detail === 0) { showCard(t.dataset.trayCard); renderTray(); } } // a press from the keyboard; a pointer's is its drag
@@ -3828,8 +4118,10 @@ export function mountTestFocus(root, { config, getHass }) {
     root.getElementById('homeNav')?.addEventListener('click', () => { if (areaPage) closeArea(); });
     // the dashboard's edit mode: the pencil in the bottom bar, and dragging on the board
     root.querySelector('.bottomNav')?.insertAdjacentHTML('beforeend', '<button class="navBtn" id="dashEditNav" type="button" title="Edit" aria-label="Edit the dashboard" aria-pressed="false" hidden>' + PENCIL + '</button>');
-    $('dashEditNav')?.addEventListener('click', () => setEditing(!editing));
+    $('dashEditNav')?.addEventListener('click', () => (overview ? setHomeEditing(!homeEditing) : setEditing(!editing)));
     grid.addEventListener('pointerdown', boardDown);
+    grid.addEventListener('pointerdown', homeDown);
+    grid.addEventListener('click', (ev) => { if (overview && homeEditing && ev.target.closest('.tfBoardItem')) { ev.preventDefault(); ev.stopPropagation(); } }, true);
     grid.addEventListener('scroll', (ev) => { if (ev.target.classList?.contains('hcFadeList')) fadeMore(ev.target); }, true);
     // the dashboard's bottom row holds as many tiles as fit, and its rows are measured again as the page changes size
     new ResizeObserver(() => { if (app.classList.contains('tfDash') && dashCols() !== dashColsSeen) refresh(); else queueFit(); }).observe(grid);
