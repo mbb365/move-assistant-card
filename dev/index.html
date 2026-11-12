@@ -132,6 +132,7 @@ const hass = {
   states,
   config: testMode ? HOUSE.config : {},
   areas: testMode ? HOUSE.areas : {},
+  floors: testMode ? HOUSE.floors : {},
   entities: testMode ? HOUSE.entities : {},
   devices: {},
   callWS: async (msg) => {

@@ -540,7 +540,7 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfDash .tfDash-act{order:var(--o,6)!important}
 #app.tfDash .tfDash-energy{order:var(--o,7)!important}
 #app.tfDash .tfDash-avg{order:var(--o,8)!important}
-#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar){order:var(--o,8)!important}
+#app.tfDash :is(.tfDash-aq,.tfDash-pollen,.tfDash-radar,.tfDash-hourly,.tfDash-sun,.tfDash-moon,.tfDash-uv,.tfDash-humidity,.tfDash-pressure,.tfDash-wind,.tfDash-visibility){order:var(--o,8)!important} /* every weather card after the name and summaries on a phone (Sun, UV and Moon came first) */
 #app.tfDash .tfDashTiles>*{order:var(--o,9)}
 /* drawn sizes: never wider than drawn; a card may give up to 12% (520 down to 460) so two sit side by side on a
    tablet, and takes the whole width only on a phone */
@@ -975,10 +975,11 @@ button.tfAreaIcon{cursor:pointer}
 /* phones: a card the full width of the screen is as tall as what it holds (the weather card needn't stretch to fill its
    board height). The cards run down in the board's reading order, 16 apart; tiles keep their drawn heights */
 @media(max-width:620px){
-  #app.house.tfDash:not(.tfEditing) #homeView>.grid{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:var(--grid-gap);height:auto!important}
-  #app.house.tfDash:not(.tfEditing) #homeView>.grid .tfBoardItem{position:relative!important;left:auto!important;top:auto!important}
+  /* (not the overview: it lays its floors out itself, each floor's name over its areas, on a phone too) */
+  #app.house.tfDash:not(.tfEditing):not(.tfOverview) #homeView>.grid{display:flex!important;flex-wrap:wrap;align-items:flex-start;gap:var(--grid-gap);height:auto!important}
+  #app.house.tfDash:not(.tfEditing):not(.tfOverview) #homeView>.grid .tfBoardItem{position:relative!important;left:auto!important;top:auto!important}
   /* Favourites keeps its own height, so turning suggestions on or off doesn't move the page (Matt, 9 Nov) */
-  #app.house.tfDash:not(.tfEditing) #homeView>.grid>.tfBoardItem:not(.tfDash-favs){height:auto!important}
+  #app.house.tfDash:not(.tfEditing):not(.tfOverview) #homeView>.grid>.tfBoardItem:not(.tfDash-favs){height:auto!important}
   #app.house.tfDash:not(.tfEditing) .tfDash-wx .wbSummary{flex:none;margin-top:0;container-type:normal}
   #app.house.tfDash:not(.tfEditing) .tfDash-wx .wbSummaryText{position:static}
 }
@@ -1041,8 +1042,39 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfOverview.hcFavStrip.hcSumsFit.tfDash #homeView .tfDash-favs>.activityRows{justify-content:flex-start}
 #app.tfOverview.hcFavStrip.hcSumsFit.tfDash #homeView .tfDash-favs>.activityRows.hcBarRows{grid-template-columns:repeat(var(--bar-cols,3),240px)}
 @media (max-width:620px){#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#app.tfOverview.hcFavStrip.tfDash #homeView .tfDash-favs>.activityRows>.activityRow{width:auto;min-width:0}}
-/* Edit Home page open: the overview's cards move by dragging, as the custom dashboard's do */
-#app.hcHomeEditing.tfOverview #homeView .tfBoardItem:not(.tfDashTitle,.tfDashBarRow){cursor:grab;user-select:none;touch-action:none;outline:1.5px solid var(--primary);outline-offset:-1.5px}
+/* the overview's floors (the leadership demo, Matt, 12 Nov), as Home Assistant's Areas dashboard groups areas: each
+   floor's name over its areas */
+#app.tfOverview.tfBoard #homeView .hcFloor{position:absolute;z-index:1;display:flex;align-items:center;height:24px;margin:0;box-sizing:border-box}
+/* Bento's floor boxes (Matt, 12 Nov): a faint panel 12 around a floor's name and areas, its corners the cards' and 12 */
+#app.tfOverview.tfBoard #homeView .hcFloorBox{position:absolute;z-index:0;border-radius:40px;background:color-mix(in srgb,var(--text) 5%,transparent);box-sizing:border-box;pointer-events:none}
+#app.tfOverview #homeView .hcFloorName{margin:0;font:500 16px/24px var(--font);color:var(--title,var(--text));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* the area cards' sizes (Edit Home page: Small, Medium, Large; the leadership demo, Matt, 12 Nov). Large is his Figma card as it was; each
+   gives up to 15% on a smaller screen (--hc-k), its reading with it. A card shows what fits: its devices one row, the
+   ones that don't fit left off */
+#app.tfOverview.tfDash #homeView .tfRoomTile{overflow:hidden}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaL .tfRoomBig{font-size:calc(48px * var(--hc-k,1));line-height:calc(64px * var(--hc-k,1))}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaL .tfRoomReading{margin-top:calc(35px * var(--hc-k,1))}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaM .tfRoomReading{margin-top:calc(14px * var(--hc-k,1))}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaM .tfRoomBig{font-size:calc(40px * var(--hc-k,1));line-height:calc(52px * var(--hc-k,1));letter-spacing:-1.6px}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaM .tfRoomSub{margin-top:-6px}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaS{padding:12px}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaS .tfRoomReading{margin-top:calc(8px * var(--hc-k,1))}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaS .tfRoomBig{font-size:calc(32px * var(--hc-k,1));line-height:calc(40px * var(--hc-k,1));letter-spacing:-1.28px}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaS .tfRoomSub{display:none}
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaM,.hcAreaS) .tfRoomDevices,
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaM,.hcAreaS):not(:has(.tfRoomDevices :nth-child(4))) .tfRoomDevices{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:0 8px;height:var(--chip-size);overflow:hidden;padding-top:0;margin-top:auto}
+#app.tfOverview.tfDash #homeView .tfRoomTile.hcAreaS .tfRoomReading{flex:none}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomReading{margin-bottom:12px} /* the devices at least 12 under it (on a phone the card is only as tall as it needs) */
+/* Bento's big area (two by two): the reading as Large's, its devices by name, two to a row, as the custom dashboard's wide area tile */
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaS,.hcAreaM,.hcAreaL).hcAreaBig .tfRoomBig{font-size:calc(64px * var(--hc-k,1));line-height:calc(80px * var(--hc-k,1));letter-spacing:-2.56px}
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaS,.hcAreaM,.hcAreaL).hcAreaBig .tfRoomReading{margin-top:calc(35px * var(--hc-k,1))}
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaS,.hcAreaM,.hcAreaL).hcAreaBig .tfRoomSub{display:block}
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaS,.hcAreaM,.hcAreaL).hcAreaBig .tfRoomDevices{display:none!important}
+#app.tfOverview.tfDash #homeView .tfRoomTile:is(.hcAreaS,.hcAreaM,.hcAreaL).hcAreaBig .tfRoomHeads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:auto}
+/* Edit Home page open: Favourites moves by dragging, as the custom dashboard's cards do; the areas keep the areas
+   page's order (the leadership demo, Matt, 12 Nov) */
+#app.hcHomeEditing.tfOverview #homeView .tfBoardItem.tfRoomTile{cursor:default;outline:0}
+#app.hcHomeEditing.tfOverview #homeView .tfBoardItem:not(.tfDashTitle,.tfDashBarRow,.tfRoomTile){cursor:grab;user-select:none;touch-action:none;outline:1.5px solid var(--primary);outline-offset:-1.5px}
 #app.hcHomeEditing.tfOverview #homeView .tfBoardItem.tfRoomTile{border-radius:28px}
 #app.hcHomeEditing.tfBoardReady #homeView .tfBoardItem{transition:left .34s cubic-bezier(.2,1.35,.4,1),top .34s cubic-bezier(.2,1.35,.4,1)} /* the others make room with a small bounce */
 @media (prefers-reduced-motion:reduce){#app.hcHomeEditing.tfBoardReady #homeView .tfBoardItem{transition:none}}

@@ -69,6 +69,8 @@ const ENTITIES = {
 export const HOUSE = {
   config: { latitude: 52.3676, longitude: 4.9041, location_name: "Amsterdam", time_zone: "Europe/Amsterdam", unit_system: { temperature: "°C", length: "km" } },
   areas: Object.fromEntries(AREAS.map(([area_id, name, floor_id, icon]) => [area_id, { area_id, name, floor_id, ...(icon ? { icon } : {}) }])),
+  // the house's floors, named for the dev page (the overview groups its areas by them)
+  floors: Object.fromEntries([["half_1", "Half Landing", 2], ["alcove", "The Alcove", 1], ["back_bit", "The Back Bit", 0], ["test", "Test bench", null]].map(([floor_id, name, level]) => [floor_id, { floor_id, name, level, icon: null, aliases: [] }])),
   entities: {},
   states: {},
 };

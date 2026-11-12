@@ -222,7 +222,7 @@ export function createHouse({ onChange }) {
       const plants = pick(of('plant'), (id) => id.startsWith('plant.')).map((id) => ({ id, readings: mine((x) => x.startsWith('sensor.' + id.split('.')[1] + '_')) }));
       const openings = [...of('binary_sensor').filter((id) => OPENINGS.includes(dc(id))), ...mine((id) => id.startsWith('binary_sensor.'))];
       return {
-        id: a, name: ar.name, icon: ar.icon,
+        id: a, name: ar.name, icon: ar.icon, floor: ar.floor_id || null,
         readings: [...temp.slice(0, 1), ...hum.slice(0, 1), ...leaks],
         power: power.length ? power.reduce((sum, id) => sum + Number(states[id].state) * (states[id].attributes.unit_of_measurement === 'kW' ? 1000 : 1), 0) : null,
         plugs: of('switch'),
