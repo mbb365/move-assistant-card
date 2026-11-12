@@ -332,6 +332,15 @@
 .tfMoreDots button{display:grid;place-items:center;width:24px;height:24px;min-height:0;padding:0;border:0;background:none;cursor:pointer}
 .tfMoreDots button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:.45;transition:opacity .15s ease,background .15s ease}
 .tfMoreDots button[aria-selected="true"]::before{background:var(--text);opacity:1}
+/* a popup's pages as icons in place of dots (Matt, 12 Nov): Control and Info, a small segmented pair, the open one dark */
+.tfMoreDots.tfMorePageIcons{gap:3px;align-self:center;margin-top:0;padding:3px;border-radius:19px;background:var(--tile)}
+.tfMoreDots.tfMorePageIcons button{width:48px;height:32px;border-radius:16px;color:var(--muted);transition:background .15s ease,color .15s ease}
+.tfMoreDots.tfMorePageIcons button::before{display:none}
+.tfMoreDots.tfMorePageIcons button svg{width:20px;height:20px;fill:currentColor}
+.tfMoreDots.tfMorePageIcons button[aria-selected="true"]{background:var(--text);color:var(--card)}
+.tfMoreDots.tfMorePageIcons button:not([aria-selected="true"]):hover{color:var(--text)}
+/* a tile that's only its head (a plug, a switch) stays its own height on an area page rather than its row's */
+#homeView .grid>.tfDashTiles>.tfAction.tfHeadOnly,#homeView .grid .tfAction.tfHeadOnly{align-self:start}
 .tfMoreLink{margin-top:auto}
 .tfMoreLink svg{transform:none!important}
 .tfMorePage .tfMoreRows{flex:none}

@@ -77,6 +77,9 @@ const DOTS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,12A2,2 0 
 const EYE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>';
 const EYE_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/></svg>';
 const CROSS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>';
+// a popup's pages (Matt, 12 Nov): Control (Material Design Icons' tune-variant) and Info ((i))
+const TUNE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13C6.14 13 4.59 14.28 4.14 16H2V18H4.14C4.59 19.72 6.14 21 8 21S11.41 19.72 11.86 18H22V16H11.86C11.41 14.28 9.86 13 8 13M8 19C6.9 19 6 18.1 6 17C6 15.9 6.9 15 8 15S10 15.9 10 17C10 18.1 9.1 19 8 19M19.86 6C19.41 4.28 17.86 3 16 3S12.59 4.28 12.14 6H2V8H12.14C12.59 9.72 14.14 11 16 11S19.41 9.72 19.86 8H22V6H19.86M16 9C14.9 9 14 8.1 14 7C14 5.9 14.9 5 16 5S18 5.9 18 7C18 8.1 17.1 9 16 9Z"/></svg>';
+const INFO_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/></svg>';
 const CHEVRON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // a stroke icon on the 24 grid
 const svgIcon = (paths) => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + paths.map((d) => '<path d="' + d + '"/>').join('') + '</svg>';
@@ -773,12 +776,6 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   const sumRow = (name, value, icon) => '<div class="activityRow" aria-label="' + esc(name + ', ' + value) + '"><div class="tfIcon" aria-hidden="true"' + iconSlot('', icon, name) + '></div>' +
     '<div><div class="activityRowName">' + esc(name) + '</div><div class="activityRowMeta">' + esc(value) + '</div></div></div>';
-  // a plug: its icon is the button; its name and value open its popup (Matt, 1 Nov: a name or subtitle always does)
-  function plugRow(id) {
-    const on = states[id]?.state === 'on';
-    return '<div class="activityRow tfPlug' + (on ? ' on' : '') + '"><button class="tfIcon" type="button" data-act="' + act('switch', 'toggle', id) + '" aria-label="Turn ' + esc(nameOf(id)) + (on ? ' off' : ' on') + '"' + iconSlot(id) + '></button>' +
-      '<button class="tfName" type="button" data-more="' + esc(id) + '" aria-label="' + esc(nameOf(id) + ', ' + valueOf(id) + '. More info') + '"><span class="activityRowName">' + esc(nameOf(id)) + '</span><span class="activityRowMeta">' + esc(valueOf(id)) + '</span></button></div>';
-  }
   // an opened tile shows its reading, or what its card says instead (the dashboard's energy: today's use, by source)
   const openName = (id) => energyText.get(id)?.name ?? nameOf(id);
   const openValue = (id) => energyText.get(id)?.text ?? valueOf(id);
@@ -800,7 +797,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const key = 'readings:' + r.id;
     const rows = r.readings.map((id) => readingRow(key, id));
     if (r.power != null) rows.push(sumRow('Power now', watts(r.power), 'mdi:flash'));
-    return card(key, order, 'Readings', rows.concat(r.plugs.map(plugRow)));
+    return card(key, order, 'Readings', rows); // its plugs are tiles now, with the other devices (Matt, 12 Nov)
   }
   function energyCard(r, order) {
     const key = 'energy:' + r.id;
@@ -878,7 +875,8 @@ export function mountTestFocus(root, { config, getHass }) {
     const s = specFor(id), dac = id.startsWith('light.') && dacFor(id) && !(only && sizeOf(id) < 3), keep = only || (inDialog && id.startsWith('light.') ? ['bright'] : null);
     const sections = dac ? ['<div class="tfDacPad" data-dac="' + (inDialog ? 'more:' : only ? 'dash:' : 'tile:') + esc(id) + '"></div>']
       : s.sections.map((sec, i) => (sec && (!keep || keep.includes((s.parts || [])[i])) ? sec : '')).filter(Boolean);
-    return '<div class="tfAction' + (dac ? ' tfDac' : '') + (s.on ? ' on' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
+    // a tile that's only its head (a plug, a switch) stays its own height on an area page rather than its row's
+    return '<div class="tfAction' + (dac ? ' tfDac' : '') + (s.on ? ' on' : '') + (!dac && !sections.length ? ' tfHeadOnly' : '') + '" data-k="' + esc(id) + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' +
       '<div class="tfActionHead">' + iconButton(id, s) + nameButton(id) + '</div>' + sections.join('') + '</div>';
   }
   /* the Dual Axis Controller (Matt's HACS card, custom:dual-controller-v3): when Settings picks it, every light is its
@@ -1047,6 +1045,12 @@ export function mountTestFocus(root, { config, getHass }) {
           { label: 'Close', act: act('valve', 'close_valve', id), pressed: !isOpen },
         ]),
       ] };
+    }
+    // a switch, plug, input boolean or fan: a tile of its own, its icon the switch (Matt, 12 Nov: plugs as tiles on the
+    // area page, beside the other devices)
+    if (TOGGLES.includes(d)) {
+      const on = st.state === 'on';
+      return { on, button: toggle(d, 'Turn ' + nameOf(id) + (on ? ' off' : ' on')), parts: [], sections: [] };
     }
     return { on: false, button: { act: '', label: nameOf(id) }, sections: [] };
   }
@@ -2800,9 +2804,10 @@ export function mountTestFocus(root, { config, getHass }) {
     // the section: a room's energy, readings and plants, then its tiles
     const ids = page.ids, name = page.room ? page.room.id : page.key, r = page.room;
     if (r?.solar.length) out.push({ key: 'energy:' + r.id, html: energyCard(r, ++order) });
-    if (r && (r.readings.length || r.plugs.length || r.power != null)) out.push({ key: 'readings:' + r.id, html: roomCard(r, ++order) });
+    if (r && (r.readings.length || r.power != null)) out.push({ key: 'readings:' + r.id, html: roomCard(r, ++order) });
     r?.plants.forEach((p) => out.push({ key: 'plant:' + p.id, html: plantCard(p, ++order) }));
-    if (ids.length) out.push({ key: 'block:' + name, order: ++order, tiles: ids.map((id) => ({ key: id, html: actionTile(id) })) });
+    const tileIds = [...ids, ...(r?.plugs || []).filter((x) => !ids.includes(x))];
+    if (tileIds.length) out.push({ key: 'block:' + name, order: ++order, tiles: tileIds.map((id) => ({ key: id, html: actionTile(id) })) });
     return out;
   }
   // a section's page header, as Move Assistant's pages have: a big back arrow and the section's name
@@ -3146,14 +3151,15 @@ export function mountTestFocus(root, { config, getHass }) {
        Controller; a cover's drawing; a media player's artwork) and the tile's controls; Info, its details, when it
        changed, its area, entity, device and integration, and its device page */
     const d = id.split('.')[0], st = states[id];
-    const s = ACTION_DOMAINS.includes(d) ? specFor(id) : TOGGLES.includes(d) ? toggleSpec(id) : { sections: [] };
+    const s = ACTION_DOMAINS.includes(d) ? specFor(id) : quickSpec(id);
     const page = more?.page || 0;
     return [
       moreHead(id, s, head),
       '<div class="tfMorePages" data-more-pages>' +
         '<section class="tfMorePage" aria-label="Control">' + moreSpace(id) + (d === 'plant' ? plantProblems(id).join('') : '') + s.sections.filter(Boolean).join('') + '</section>' +
         '<section class="tfMorePage" aria-label="Info">' + infoOf(id) + '</section></div>',
-      '<div class="tfMoreDots" role="tablist" aria-label="Pages">' + ['Control', 'Info'].map((n, i) => '<button type="button" role="tab" aria-selected="' + (i === page) + '" aria-label="' + n + '" data-more-page="' + i + '"' + (i === page ? '' : ' tabindex="-1"') + '></button>').join('') + '</div>',
+      // the pages' icons in place of their dots (Matt, 12 Nov): Control's sliders and Info's (i), a small segmented pair
+      '<div class="tfMoreDots tfMorePageIcons" role="tablist" aria-label="Pages">' + [['Control', TUNE_SVG], ['Info', INFO_SVG]].map(([n, svg], i) => '<button type="button" role="tab" aria-selected="' + (i === page) + '" aria-label="' + n + '" title="' + n + '" data-more-page="' + i + '"' + (i === page ? '' : ' tabindex="-1"') + '>' + svg + '</button>').join('') + '</div>',
     ];
   }
   // the popup's head is the tile's: Back where it was opened from inside a popup, the icon (its button), the name
@@ -3170,9 +3176,15 @@ export function mountTestFocus(root, { config, getHass }) {
   // for now a large number and the basic information, stacked to fill the room it has): the device's main number
   // (its reading, brightness, position, battery, else its state in a word) at the top, its facts spread under it
   const NO_SPACE = ['lock', 'alarm_control_panel', 'switch', 'input_boolean', 'fan', 'valve', 'media_player', 'automation', 'script', 'scene', 'button'];
-  // a switch (a plug, a fan, a helper, an automation) has no spec of its own; in its popup its icon is its switch, as a
-  // lock's is (Matt, 12 Nov): the head's icon and the big one both toggle it
-  const toggleSpec = (id) => { const d = id.split('.')[0], on = states[id]?.state === 'on'; return { on, button: { act: act(d, 'toggle', id), label: 'Turn ' + nameOf(id) + (on ? ' off' : ' on') }, sections: [] }; };
+  // a device without a tile of its own (a switch, a plug, an input boolean, a fan; a scene or script): in its popup its
+  // icon is still its button, as a lock's (Matt, 12 Nov: Sparkles' popup should have a large icon to click in the data
+  // and action space); the head's icon and the big one both work it
+  function quickSpec(id) {
+    const d = id.split('.')[0], on = states[id]?.state === 'on';
+    const button = TOGGLES.includes(d) ? { act: act(d, 'toggle', id), label: 'Turn ' + nameOf(id) + (on ? ' off' : ' on') }
+      : d === 'scene' || d === 'script' ? { act: act(d, 'turn_on', id), label: 'Run ' + nameOf(id) } : null;
+    return { sections: [], on, button, icon: iconFor(id) };
+  }
   function moreSpace(id) {
     // a device whose visual controller is its data and action (Matt, 10 Nov: the curtains' drawing) fills the space with it
     const d = id.split('.')[0];
@@ -3182,7 +3194,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (NO_SPACE.includes(d) || (d === 'light' && !dacFor(id))) {
       // its icon, big, is the switch (Matt, 11 Nov; rules popup.device, popup.sheet): the tile's icon button at 240,
       // toggling like the tile's
-      const s = ACTION_DOMAINS.includes(d) ? specFor(id) : TOGGLES.includes(d) ? toggleSpec(id) : null;
+      const s = ACTION_DOMAINS.includes(d) ? specFor(id) : quickSpec(id);
       return s?.button ? '<div class="tfMoreSpace tfMoreSwitch' + (s.on ? ' on' : '') + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' + iconButton(id, s) + '</div>' : '';
     }
     if (d === 'cover') return '<div class="tfMoreSpace tfMoreFill"><div data-cover-art="' + esc(id) + '"></div></div>';
@@ -3328,7 +3340,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const track = ev.target;
     if (!track.matches?.('[data-more-pages]') || !more) return;
     clearTimeout(pageTimer);
-    pageTimer = setTimeout(() => { const page = Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); if (page !== (more.page || 0)) { more.page = page; markPage(); fitPage(track); } }, 80);
+    pageTimer = setTimeout(() => { if (!more) return; /* closed meanwhile */ const page = Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); if (page !== (more.page || 0)) { more.page = page; markPage(); fitPage(track); } }, 80);
   }, true);
   // "5 minutes ago" moves on while it's open
   setInterval(() => { if (more) renderMore(); }, 15 * 1000);
