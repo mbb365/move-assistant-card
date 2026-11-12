@@ -1257,7 +1257,8 @@ export function mountTestFocus(root, { config, getHass }) {
   function dashFavourites() {
     const hidden = new Set(overview ? [] : prefs.favHidden || []), stars = starred().filter((id) => !hidden.has(id));
     const fill = suggestOn() ? suggestionIds().filter((id) => !hidden.has(id) && dashLight(id)) : [];
-    return [...stars, ...fill].slice(0, DASH_FAVOURITES);
+    // the overview's card grows with its favourites, so every one shows there
+    return overview ? [...stars, ...fill] : [...stars, ...fill].slice(0, DASH_FAVOURITES);
   }
   // starred first, then suggestions up to 8
   function favouriteIds(most = 8) {
@@ -2076,8 +2077,9 @@ export function mountTestFocus(root, { config, getHass }) {
       }
       top += it.el.offsetHeight + (it.key === 'title' ? HOME.nameGap : HOME.sumsGap);
     });
-    /* Favourites (as a card) above the areas, 520 and 337 as drawn (on a phone the whole width and as tall as it
-       needs); then the areas: grouped by floor or not, laid out as Rows (each floor's name, then its areas a row at a
+    /* Favourites (as a card) above the areas, 520 wide as drawn and as tall as its favourites need: whole rows of
+       tiles, two across, so one favourite is one row and nine are five, with nothing to fade or scroll (Matt, 12 Nov;
+       was 337 whatever the count). On a phone the whole width; then the areas: grouped by floor or not, laid out as Rows (each floor's name, then its areas a row at a
        time), Columns (a column per floor, side by side) or Bento, where each floor can be a box, the boxes fitting
        together, and each floor's first area can be big (two by two, its devices by name). Everything gives up to 15% on
        a smaller screen */
@@ -2095,14 +2097,14 @@ export function mountTestFocus(root, { config, getHass }) {
       if (homeDrag?.on && homeDrag.key === it.key) { homeLand(box); return; }
       Object.assign(it.el.style, { left: box.x + 'px', top: box.y + 'px' });
     };
-    const tw = phone ? W : Math.round((2 * HOME.col + HOME.inner) * k), th = Math.round(HOME.row * k);
+    const tw = phone ? W : Math.round((2 * HOME.col + HOME.inner) * k);
     let x = 0, rowH = 0;
     tops.forEach((it) => {
       it.el.classList.add('tfBoardItem');
       it.el.dataset.rows = 5; it.el.dataset.cols = 2; it.el.toggleAttribute('data-narrow', false);
       if (x && x + tw > W) { top += rowH + gap; x = 0; rowH = 0; }
-      let h = th;
-      if (phone) { Object.assign(it.el.style, { width: tw + 'px', height: '' }); h = it.el.offsetHeight; }
+      Object.assign(it.el.style, { width: tw + 'px', height: '' });
+      const h = it.el.offsetHeight;
       put(it, { x, y: top, w: tw, h });
       x += tw + gap; rowH = Math.max(rowH, h);
     });
