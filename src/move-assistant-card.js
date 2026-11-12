@@ -7,7 +7,7 @@ import { mountMoveAssistant } from "./app.js";
 import { mountTestFocus } from "./test-focus.js";
 import { installMotion, installSegments } from "./motion.js";
 
-const VERSION = "0.80.0";
+const VERSION = "0.81.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";

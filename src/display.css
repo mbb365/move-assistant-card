@@ -987,6 +987,39 @@ button.tfAreaIcon{cursor:pointer}
 /* popups' stroke (Matt, 10 Nov: they got lost on the fade): the cards' own stroke colour (set in HomeCore settings), at
    1 so it holds against the dim and blur behind them */
 #app .tfMoreBackdrop :is(.tfMore,.tfMoreSideInner){box-shadow:inset 0 0 0 1px var(--line)}
+/* ---------- the overview (page: overview; the leadership demo's Home, Matt, 12 Nov, from his Figma "Home (overview)") ----------
+   Its own cards and spacing, never the custom dashboard's: the greeting above the home's name, the summaries spread
+   across the cards' width with no chip behind their icons, Favourites with no title and its tiles 25 apart, an area as
+   its Living Room card */
+.tfDashTitle .tfGreeting{display:block;margin-bottom:6px;font:500 20px/1.2 var(--font-tile);letter-spacing:0;color:var(--muted)}
+#app.tfOverview.tfDash #homeView .tfSum:not([data-summary="alerts"]) .tfIcon{background:none}
+#app.tfOverview.tfDash #homeView .card.tfDash-bar{width:100%;max-width:none}
+#app.tfOverview.tfDash #homeView .card.tfDash-bar .activityRows{display:flex;justify-content:space-between}
+#app.tfOverview.tfDash #homeView .card.tfDash-bar .activityRow{flex:none}
+#app.tfOverview.tfDash #homeView .card.tfDash-bar .activityRows.hcBarRows{display:grid;grid-template-columns:repeat(var(--bar-cols,3),minmax(0,1fr))}
+#app.tfOverview.tfDash #homeView .card.tfDash-bar .activityRows.hcBarRows>.activityRow{min-width:0}
+@media (max-width:620px){#app.tfOverview.tfDash #homeView .card.tfDash-bar .activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Favourites: no title, two columns of tiles 60 tall and 25 apart; no scrollbar, its lower edge fades while there's more */
+#app.tfOverview.tfDash #homeView .tfDash-favs{padding:10px;border-radius:var(--r-card)}
+#app.tfOverview.tfDash #homeView .tfDash-favs>.activityHeader{display:none}
+#app.tfOverview.tfDash #homeView .tfDash-favs>.activityRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:60px;row-gap:25px;max-height:100%;margin:0;overflow-y:auto;scrollbar-width:none}
+#app.tfOverview.tfDash #homeView .tfDash-favs>.activityRows::-webkit-scrollbar{display:none}
+.hcFadeList.hcMore{-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent)}
+#app.tfOverview.tfDash #homeView .tfDash-favs>.activityRows>.activityRow{height:60px;min-height:0;padding:10px;box-sizing:border-box}
+/* an area: the Living Room card (Figma 1063:13192). 18 in, its reading under its name (48 on a 64 line, 93 down, its
+   second line 150 down), its devices in one row along the foot */
+#app.tfOverview.tfDash #homeView .tfRoomTile{padding:18px;gap:0;border-radius:28px}
+#app.tfOverview.tfDash #homeView .tfRoomTile>.tfActionHead{margin-bottom:0}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfActionHead .activityRowMeta{display:none}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomReading{margin-top:35px;gap:0}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomBig{font:400 48px/64px var(--font-tile);letter-spacing:-1.92px}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomSub{display:block;margin-top:-7px;font:400 16px/19px var(--font)}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomDevices{display:flex;justify-content:space-between;min-height:0;margin-top:auto;padding-top:16px}
+#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomHeads{display:none}
+#app.tfOverview.tfDash #homeView .tfRoomTile:not(:has(.tfRoomDevices :nth-child(4))) .tfRoomDevices{justify-content:flex-start;gap:18.67px}
+#app.light.tfOverview.tfDash #homeView .tfRoomTile .tfRoomIcon{background-color:#acacac;color:#ffffff}
+/* phones: an area card is half the width, so its devices sit two to a row */
+@media (max-width:620px){#app.tfOverview.tfDash #homeView .tfRoomTile .tfRoomDevices{display:grid;grid-template-columns:repeat(2,max-content);gap:12px;justify-content:start}}
 /* a room's page: two columns that stack on their own (rows 1 px, each item spans its height; test-focus.js stack()) */
 #homeView .grid.tfStack{grid-auto-rows:1px;row-gap:0}
 #homeView .grid.tfStack>*{align-self:start}

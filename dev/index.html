@@ -201,7 +201,7 @@ const hass = {
 };
 const card = document.querySelector("move-assistant-card");
 card.setConfig(testMode
-  ? { layout: "test-focus", spacing: params.get("spacing") || undefined, test_focus: [
+  ? { layout: "test-focus", page: params.get("page") || undefined, spacing: params.get("spacing") || undefined, test_focus: [
       { title: "Status", entities: ["sensor.house_power", "sensor.energy_today", "sensor.solar_power", "sensor.grid_import", "sensor.living_room_temperature", "sensor.living_room_humidity", "sensor.internet_usage"] },
       { type: "lights", entities: ["light.floor_lamp", "light.ceiling", "light.kitchen_spots", "light.ceiling"] },
     ] }

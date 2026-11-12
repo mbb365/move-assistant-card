@@ -113,6 +113,10 @@ export function mountTestFocus(root, { config, getHass }) {
   const app = $('app');
   const cfg = config || {};
   const testFocus = String(cfg.layout || '').toLowerCase().replace('_', '-') === 'test-focus';
+  /* the page this card shows (Matt, 12 Nov): the custom dashboard, the board you edit (the default), or with
+     `page: overview` Home's overview as the leadership demo has it: the greeting and the home's name, the summaries,
+     Favourites and each area's card, laid out the same for everyone and not edited. Only what the house has */
+  const overview = String(cfg.page || '').toLowerCase() === 'overview';
   let densityOn = local.get(DENSITY_KEY) === '1';
   let states = {};
   const callWS = (msg) => getHass()?.callWS(msg);
@@ -1228,7 +1232,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // a lock (Matt, 28 Oct); after that the list is his, edited in the dashboard's edit tray like Home Assistant's
   let prefsReady = false;
   function seedFavourites() {
-    if (!prefsReady || prefs.favSeeded || !model.rooms.length) return;
+    if (!prefsReady || prefs.favSeeded || !model.rooms.length || overview) return; // the overview has no made-up devices to seed from
     const first = (test) => Object.keys(states).find((id) => isMadeUp(id) && test(id));
     const made = [first((id) => id.startsWith('climate.')), first((id) => id.startsWith('cover.') && /curtain/.test(id)), first((id) => id.startsWith('valve.')), model.security.locks[0]];
     prefs = { ...prefs, favourites: [...new Set([...(prefs.favourites ?? haHome.favorite_entities ?? []), ...made.filter(Boolean)])], favSeeded: true };
@@ -1238,7 +1242,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // suggestions on, suggestions from the dashboard's rooms to fill the card
   const suggestOn = () => prefs.suggest ?? !haHome.hide_suggested_entities;
   function dashFavourites() {
-    const hidden = new Set(prefs.favHidden || []), stars = starred().filter((id) => !hidden.has(id));
+    const hidden = new Set(overview ? [] : prefs.favHidden || []), stars = starred().filter((id) => !hidden.has(id));
     const fill = suggestOn() ? suggestionIds().filter((id) => !hidden.has(id) && dashLight(id)) : [];
     return [...stars, ...fill].slice(0, DASH_FAVOURITES);
   }
@@ -1633,17 +1637,28 @@ export function mountTestFocus(root, { config, getHass }) {
     const climates = dashPicks.climates.filter((id) => states[id]).slice(0, n > 3 ? 2 : 1);
     return [...dashPicks.lights.filter((id) => states[id]).slice(0, Math.max(0, n - climates.length)), ...climates];
   }
+  /* the overview's welcome message (as the demo's Home, 12 Nov): the time of day's greeting and your name, above the
+     home's name */
+  const myName = () => { const user = getHass()?.user; return user?.name || Object.values(states).find((st) => st.entity_id.startsWith('person.') && user?.id && st.attributes?.user_id === user.id)?.attributes.friendly_name || ''; };
+  const greeting = () => { const h = new Date().getHours(), name = myName(); return (h >= 5 && h < 12 ? 'Good morning' : h >= 12 && h < 18 ? 'Good afternoon' : 'Good evening') + (name ? ', ' + name : ''); };
   const dashWrap = (cls, key, label, titled) => (inner) => '<section class="card tfCard tfDashCard ' + cls + '" data-tf data-k="' + key + '" aria-label="' + label + '">' +
     (titled ? '<div class="activityHeader">' + (key === 'favs' ? '<button class="activityTitle tfTitleBtn" type="button" data-more="favourites" aria-label="Favourites. More info">' + label + '</button>' : '<div class="activityTitle">' + label + '</div>') + '</div>' : '') + '<div class="activityRows">' + inner + '</div></section>';
   function dashboard(out, sums) {
     out.dash = true;
-    out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });
+    out.push({ key: 'dash:title', html: '<h1 class="settingsTitle tfDashTitle" data-tf data-k="dash:title">' + (overview ? '<span class="tfGreeting">' + esc(greeting()) + '</span>' : '') + esc(getHass()?.config?.location_name || 'Home') + '</h1>' });
     // the summaries: a row of their own, the bar only as wide as its tiles
     if (sums.length) out.push({ key: 'sums', wrap: (inner) => '<div class="tfDashBarRow" data-tf data-k="sums">' + dashWrap('tfDash-bar', 'sums-bar', 'Summaries', false)(inner).replace(' data-tf', '') + '</div>', tiles: sums.map((s) => ({ key: 'sum:' + s.key, html: summaryRow(s) })) });
-    if (areasShown().length) out.push({ key: 'areas', html: areasHtml(0) });
+    if (!overview && areasShown().length) out.push({ key: 'areas', html: areasHtml(0) });
     // what you've starred always shows, from any room; only the suggestions that fill the card keep to the dashboard's rooms
     const favs = dashFavourites();
     if (favs.length) out.push({ key: 'favs', wrap: dashWrap('tfDash-favs', 'favs', 'Favourites', true), tiles: favs.map((id) => ({ key: 'fav:' + id, html: deviceRow(id, { area: true }) })) });
+    if (overview) {
+      // the overview: each area's card after Favourites, nothing else
+      dashColsSeen = dashCols();
+      dashTileIds(0).forEach((id) => out.push({ key: 'dash:tile:' + id, wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tile:' + esc(id) + '">' + inner + '</div>',
+        tiles: [{ key: id, html: roomTile(roomOf(id), id) }] }));
+      return out;
+    }
     const items = activityItems();
     out.push({ key: 'dash:act', html: card('dash:act', 0, 'Activity', items.length ? items.map(activityRow) : ['<p class="tfDashNone">Nothing has changed in the last day.</p>'], '', null, 'tfDashCard tfDash-act') });
     out.push({ key: 'dash:energy', html: energyGlance() });
@@ -1702,11 +1717,20 @@ export function mountTestFocus(root, { config, getHass }) {
     return { n, w: Math.max(1, Math.min(PEG_MAX, Math.floor((W - (n - 1) * PEG_GAP) / n))) };
   };
   // a card the page hasn't offered before starts off the board, waiting in the edit tray (known: the ones it has)
-  const dashPrefs = () => {
+  // the overview's board is always the same: Favourites and each area's card, every one XL, nothing hidden but the
+  // rest, and nothing saved
+  const overviewRooms = () => areaRooms.map((r) => 'room:' + r.id);
+  function overviewPrefs() {
+    const rooms = overviewRooms();
+    return { cells: {}, spans: { favs: 2 }, hidden: Object.keys(BOARD_NAMES).filter((k) => !['title', 'sums', 'favs'].includes(k)),
+      opts: { favs: { h: 5 }, ...Object.fromEntries(rooms.map((k) => [k, { h: 5 }])) }, tiles: rooms, known: NEW_CARDS, areasOff: [] };
+  }
+  const dashPrefs = () => (overview ? overviewPrefs() : boardPrefs());
+  const boardPrefs = () => {
     const d = { cells: {}, spans: {}, hidden: [], opts: {}, ...(prefs.dash || {}) }, fresh = NEW_CARDS.filter((k) => !(d.known || []).includes(k) && !d.hidden.includes(k));
     return fresh.length ? { ...d, hidden: [...d.hidden, ...fresh] } : d;
   };
-  function saveDash(next) { prefs = { ...prefs, dash: { ...next, known: NEW_CARDS } }; savePrefs(); }
+  function saveDash(next) { if (overview) return; prefs = { ...prefs, dash: { ...next, known: NEW_CARDS } }; savePrefs(); }
   // what's on the board: each card's key, its element, its width in pegs ('full' the whole width) and whether it's a tile
   function boardItems() {
     const q = (sel) => grid.querySelector(sel);
@@ -1819,6 +1843,8 @@ export function mountTestFocus(root, { config, getHass }) {
     // a phone is the same board two columns wide (Matt, 1 Nov: one rule everywhere, so Smalls stack beside a Medium
     // there too), its cards in the phone's order and not edited there
     const W = grid.clientWidth, phone = W < 2 * PEG + PEG_GAP, board = app.classList.contains('tfDash');
+    if (overview) editing = false; // the overview isn't edited
+    app.classList.toggle('tfOverview', overview);
     const { n, w } = phone ? { n: 2, w: Math.floor((W - PEG_GAP) / 2) } : pegsFor(W);
     // the Weather page is laid on the same board, its columns the dashboard's (Matt, 1 Nov: one rule set)
     bentoBox.classList.add('tfPegs');
@@ -1830,7 +1856,7 @@ export function mountTestFocus(root, { config, getHass }) {
     app.classList.toggle('tfBoard', board);
     app.classList.toggle('tfEditing', board && editing && !phone);
     const pen = $('dashEditNav');
-    if (pen) { pen.hidden = !board || phone; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit the dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
+    if (pen) { pen.hidden = !board || phone || overview; pen.classList.toggle('active', editing); pen.setAttribute('aria-pressed', String(editing)); pen.setAttribute('aria-label', editing ? 'Done editing' : 'Edit the dashboard'); pen.title = editing ? 'Done' : 'Edit'; pen.innerHTML = editing ? TICK : PENCIL; }
     const items = board ? boardItems() : [];
     if (!board) {
       grid.style.height = '';
@@ -1841,6 +1867,7 @@ export function mountTestFocus(root, { config, getHass }) {
       renderTray();
       return;
     }
+    if (overview) { layoutHome(items, W, phone); return; }
     grid.style.setProperty('--peg-w', w + 'px');
     // a card being dragged out of the edit tray shows where it would land
     const hidden = new Set(dashPrefs().hidden), pitch = w + PEG_GAP;
@@ -1908,6 +1935,76 @@ export function mountTestFocus(root, { config, getHass }) {
     requestAnimationFrame(() => app.classList.add('tfBoardReady'));
     items.forEach((it) => itemSizes.observe(it.el));
     drawDashGraph();
+    renderTray();
+  }
+  /* the overview's own layout (the demo's Home, Matt, 12 Nov, from his Figma "Home (overview)": "all these cards are for
+     the DEFAULT homepage, not part of the rules for the wider system"). Columns up to 252 wide and 20 apart, five at most;
+     every card 337 tall (on phones as tall as it needs), 20 apart; the summaries as wide as the cards. Favourites is two
+     columns (two and 16, 520 at 252), each area one; Favourites first, then the areas in the Areas card's order, each in
+     the first free cell from the top left */
+  const HOME = { gap: 20, phoneGap: 16, inner: 16, col: 252, colMin: 200, cols: 5, row: 337, nameGap: 28, sumsGap: 16 };
+  // Favourites' lower edge fades while there's more below (no scrollbar)
+  const fadeMore = (el) => el.classList.toggle('hcMore', el.scrollHeight - el.scrollTop - el.clientHeight > 1);
+  function layoutHome(items, W, phone) {
+    const hidden = new Set(dashPrefs().hidden);
+    items.forEach((it) => it.el.classList.toggle('tfBoardHidden', hidden.has(it.key)));
+    const shown = items.filter((it) => !hidden.has(it.key) && getComputedStyle(it.el).display !== 'none');
+    const gap = phone ? HOME.phoneGap : HOME.gap;
+    const n = phone ? 2 : Math.max(2, Math.min(HOME.cols, Math.floor((W + gap) / (HOME.colMin + gap))));
+    const w = phone ? Math.floor((W - gap) / 2) : Math.min(HOME.col, Math.floor((W - (n - 1) * gap) / n));
+    const span = (cols) => cols * w + (cols - 1) * (cols === 2 ? HOME.inner : gap);
+    const xOf = (c) => c * (w + gap) - (n >= 3 && c >= 2 ? gap - HOME.inner : 0);
+    const gridW = n * w + (n - 1) * gap - (n >= 3 ? gap - HOME.inner : 0);
+    let top = 0;
+    const heads = shown.filter((it) => HEAD.includes(it.key)).sort((a, b) => HEAD.indexOf(a.key) - HEAD.indexOf(b.key));
+    heads.forEach((it) => {
+      it.el.classList.add('tfBoardItem');
+      it.el.toggleAttribute('data-narrow', false);
+      Object.assign(it.el.style, { width: (it.key === 'title' ? W : gridW) + 'px', height: '', left: '0px', top: top + 'px' });
+      // the summaries in one row while they fit, else in even rows (halves, thirds…)
+      const bar = it.key === 'sums' && it.el.querySelector('.tfDash-bar>.activityRows'), count = bar ? bar.children.length : 0;
+      if (bar) {
+        bar.classList.remove('hcBarRows'); // a phone has its own two columns
+        if (!phone && bar.scrollWidth > bar.clientWidth + 1) for (let rows = 2; rows <= count; rows++) { bar.classList.add('hcBarRows'); bar.style.setProperty('--bar-cols', String(Math.ceil(count / rows))); if (bar.scrollWidth <= bar.clientWidth + 1) break; }
+      }
+      top += it.el.offsetHeight + (it.key === 'title' ? HOME.nameGap : HOME.sumsGap);
+    });
+    const order = ['favs', ...overviewRooms()];
+    const cards = shown.filter((it) => !HEAD.includes(it.key)).sort((a, b) => ((order.indexOf(a.key) + 1) || 99) - ((order.indexOf(b.key) + 1) || 99));
+    const taken = new Set(), at = new Map();
+    cards.forEach((it) => {
+      const cols = Math.min(n, it.key === 'favs' ? 2 : 1);
+      for (let r = 0; ; r++) {
+        const c = [...Array(n - cols + 1).keys()].find((c0) => [...Array(cols).keys()].every((k) => !taken.has(r + ',' + (c0 + k))));
+        if (c != null) { [...Array(cols).keys()].forEach((k) => taken.add(r + ',' + (c + k))); at.set(it.key, { r, c, cols }); break; }
+      }
+    });
+    // a row's height: 337, or on a phone its tallest card's own
+    const rowsN = Math.max(0, ...[...at.values()].map((p) => p.r + 1)), rowH = [];
+    cards.forEach((it) => {
+      const p = at.get(it.key);
+      it.el.classList.add('tfBoardItem');
+      it.el.dataset.rows = 5; it.el.dataset.cols = p.cols; it.el.toggleAttribute('data-narrow', false);
+      Object.assign(it.el.style, { width: span(p.cols) + 'px', height: phone ? '' : HOME.row + 'px' });
+    });
+    // measured once every card has let go of its old height (a neighbour's would stretch it)
+    if (phone) cards.forEach((it) => { const p = at.get(it.key); rowH[p.r] = Math.max(rowH[p.r] || 0, it.el.offsetHeight); });
+    // a phone's page flows in the order (--o) rather than by place
+    cards.forEach((it, i) => it.el.style.setProperty('--o', String(3 + i)));
+    let y = top;
+    const rowTop = [];
+    for (let r = 0; r < rowsN; r++) { rowTop[r] = y; y += (phone ? rowH[r] || 0 : HOME.row) + gap; }
+    cards.forEach((it) => {
+      const p = at.get(it.key);
+      Object.assign(it.el.style, { left: xOf(p.c) + 'px', top: rowTop[p.r] + 'px', height: (phone ? rowH[p.r] : HOME.row) + 'px' });
+    });
+    grid.style.height = (rowsN ? y - gap : top) + 'px';
+    readingOrder([...heads, ...cards.slice().sort((a, b) => at.get(a.key).r - at.get(b.key).r || at.get(a.key).c - at.get(b.key).c)].map((it) => it.el));
+    editTools(false);
+    const favList = grid.querySelector('.tfDash-favs>.activityRows');
+    if (favList) { favList.classList.add('hcFadeList'); fadeMore(favList); }
+    requestAnimationFrame(() => app.classList.add('tfBoardReady'));
+    items.forEach((it) => itemSizes.observe(it.el));
     renderTray();
   }
   const queueFit = () => { if (fitQueued) return; fitQueued = true; requestAnimationFrame(() => { fitQueued = false; layoutBoard(); }); };
@@ -2668,7 +2765,7 @@ export function mountTestFocus(root, { config, getHass }) {
 
   /* the page: areas, Home (weather, vacuum), then each room: its label, readings, plants and action tiles */
   function layout() {
-    model = house.model(getHass());
+    model = house.model(getHass(), { madeUp: !overview }); // the overview has only the house's own devices
     seedFavourites();
     states = model.states;
     // Settings → Sources: the grid's power and the alarm, when picked
@@ -3049,7 +3146,7 @@ export function mountTestFocus(root, { config, getHass }) {
        Controller; a cover's drawing; a media player's artwork) and the tile's controls; Info, its details, when it
        changed, its area, entity, device and integration, and its device page */
     const d = id.split('.')[0], st = states[id];
-    const s = ACTION_DOMAINS.includes(d) ? specFor(id) : { sections: [] };
+    const s = ACTION_DOMAINS.includes(d) ? specFor(id) : TOGGLES.includes(d) ? toggleSpec(id) : { sections: [] };
     const page = more?.page || 0;
     return [
       moreHead(id, s, head),
@@ -3073,6 +3170,9 @@ export function mountTestFocus(root, { config, getHass }) {
   // for now a large number and the basic information, stacked to fill the room it has): the device's main number
   // (its reading, brightness, position, battery, else its state in a word) at the top, its facts spread under it
   const NO_SPACE = ['lock', 'alarm_control_panel', 'switch', 'input_boolean', 'fan', 'valve', 'media_player', 'automation', 'script', 'scene', 'button'];
+  // a switch (a plug, a fan, a helper, an automation) has no spec of its own; in its popup its icon is its switch, as a
+  // lock's is (Matt, 12 Nov): the head's icon and the big one both toggle it
+  const toggleSpec = (id) => { const d = id.split('.')[0], on = states[id]?.state === 'on'; return { on, button: { act: act(d, 'toggle', id), label: 'Turn ' + nameOf(id) + (on ? ' off' : ' on') }, sections: [] }; };
   function moreSpace(id) {
     // a device whose visual controller is its data and action (Matt, 10 Nov: the curtains' drawing) fills the space with it
     const d = id.split('.')[0];
@@ -3082,7 +3182,7 @@ export function mountTestFocus(root, { config, getHass }) {
     if (NO_SPACE.includes(d) || (d === 'light' && !dacFor(id))) {
       // its icon, big, is the switch (Matt, 11 Nov; rules popup.device, popup.sheet): the tile's icon button at 240,
       // toggling like the tile's
-      const s = ACTION_DOMAINS.includes(d) ? specFor(id) : null;
+      const s = ACTION_DOMAINS.includes(d) ? specFor(id) : TOGGLES.includes(d) ? toggleSpec(id) : null;
       return s?.button ? '<div class="tfMoreSpace tfMoreSwitch' + (s.on ? ' on' : '') + '"' + (s.tone ? ' data-tone="' + s.tone + '"' : '') + lightAttrs(id) + '>' + iconButton(id, s) + '</div>' : '';
     }
     if (d === 'cover') return '<div class="tfMoreSpace tfMoreFill"><div data-cover-art="' + esc(id) + '"></div></div>';
@@ -3718,6 +3818,7 @@ export function mountTestFocus(root, { config, getHass }) {
     root.querySelector('.bottomNav')?.insertAdjacentHTML('beforeend', '<button class="navBtn" id="dashEditNav" type="button" title="Edit" aria-label="Edit the dashboard" aria-pressed="false" hidden>' + PENCIL + '</button>');
     $('dashEditNav')?.addEventListener('click', () => setEditing(!editing));
     grid.addEventListener('pointerdown', boardDown);
+    grid.addEventListener('scroll', (ev) => { if (ev.target.classList?.contains('hcFadeList')) fadeMore(ev.target); }, true);
     // the dashboard's bottom row holds as many tiles as fit, and its rows are measured again as the page changes size
     new ResizeObserver(() => { if (app.classList.contains('tfDash') && dashCols() !== dashColsSeen) refresh(); else queueFit(); }).observe(grid);
     window.addEventListener('resize', queueFit, { passive: true });

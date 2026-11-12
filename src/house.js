@@ -194,14 +194,17 @@ export function createHouse({ onChange }) {
   }
 
   // Rooms from Home Assistant areas, with made-up devices added where a room has none of that kind
-  function model(hass) {
+  // the model: the house's own devices, filled in with the made-up ones where it has none; with madeUp off (the
+  // overview page: Matt, 12 Nov, "only use actual devices"), only what the house has
+  function model(hass, { madeUp = true } = {}) {
+    const made = madeUp ? fake : {};
     const real = hass?.states || {};
     const ents = hass?.entities || {}, devs = hass?.devices || {};
     const areaOf = (id) => { const e = ents[id]; return (e && (e.area_id || (e.device_id && devs[e.device_id]?.area_id))) || null; };
     const usable = (id) => { const e = ents[id]; return real[id] && real[id].state !== 'unavailable' && !e?.hidden && !e?.entity_category; };
     const byArea = {};
     Object.keys(real).forEach((id) => { const a = areaOf(id); if (a && usable(id)) (byArea[a] ||= []).push(id); });
-    const states = { ...real, ...fake };
+    const states = { ...real, ...made };
     const dc = (id) => states[id]?.attributes?.device_class;
     const OPENINGS = ['door', 'window', 'garage_door', 'opening', 'motion', 'occupancy', 'smoke', 'gas'];
     // a vacuum belongs to its room (the made-up one to the office, when the house has no vacuum of its own)
@@ -210,7 +213,7 @@ export function createHouse({ onChange }) {
       const a = ar.area_id, ids = byArea[a] || [];
       const of = (domain) => ids.filter((id) => id.startsWith(domain + '.'));
       const sensors = (cls) => of('sensor').filter((id) => dc(id) === cls);
-      const mine = (pred) => Object.keys(fake).filter((id) => area[id] === a && pred(id));
+      const mine = (pred) => Object.keys(made).filter((id) => area[id] === a && pred(id));
       const pick = (realIds, made) => (realIds.length ? realIds : mine(made));
       const temp = pick(sensors('temperature'), (id) => id.endsWith(a + '_temperature'));
       const hum = pick(sensors('humidity'), (id) => id.endsWith(a + '_humidity'));
@@ -233,17 +236,17 @@ export function createHouse({ onChange }) {
     }).filter((r) => r.readings.length || r.plugs.length || r.actions.length || r.solar.length || r.plants.length);
     const grid = Object.keys(real).find((id) => /^sensor\..*(p1_meter_power|grid_power)$/.test(id) && real[id].state !== 'unavailable') || null;
     const all = (domain) => Object.keys(real).filter((id) => id.startsWith(domain + '.') && usable(id));
-    const alarms = all('alarm_control_panel'), vacuums = realVacuums.length ? realVacuums : ['vacuum.' + PREFIX + 'robot'];
+    const alarms = all('alarm_control_panel'), vacuums = realVacuums.length ? realVacuums : madeUp ? ['vacuum.' + PREFIX + 'robot'] : [];
     return {
       states, rooms, grid,
       // any device's room, hidden ones too (Maintenance's batteries are mostly diagnostic)
-      areaOf: (id) => (fake[id] ? area[id] : areaOf(id)),
+      areaOf: (id) => (made[id] ? area[id] : areaOf(id)),
       vacuums,
       homeVacuums: vacuums.filter((id) => !rooms.some((r) => r.actions.includes(id))),
       security: {
-        alarms: alarms.length ? alarms : ['alarm_control_panel.' + PREFIX + 'house'],
+        alarms: alarms.length ? alarms : madeUp ? ['alarm_control_panel.' + PREFIX + 'house'] : [],
         locks: all('lock'),
-        openings: [...Object.keys(fake).filter((id) => id.startsWith('binary_sensor.')), 'sensor.' + PREFIX + 'doorbell'],
+        openings: [...Object.keys(made).filter((id) => id.startsWith('binary_sensor.')), ...(madeUp ? ['sensor.' + PREFIX + 'doorbell'] : [])],
       },
     };
   }
