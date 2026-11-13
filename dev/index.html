@@ -152,6 +152,9 @@ const hass = {
       return { [id]: rows };
     }
     if (msg.type === "fire_event") { console.log("event", msg.event_data); return null; }
+    // ?energy=1: an Energy dashboard with the grid and solar sensors, so the overview's Energy today has something real
+    if (msg.type === "energy/get_prefs") return params.get("energy") ? { energy_sources: [{ type: "grid", flow_from: [{ stat_energy_from: "sensor.grid_import" }] }, { type: "solar", stat_energy_from: "sensor.solar_energy_today" }] } : { energy_sources: [] };
+    if (msg.type === "recorder/statistic_during_period") return { change: msg.statistic_id.includes("solar") ? 4.6 : 8.3 };
     // a week of the forecast's readings every 3 hours, for the bento's Compared to average and pressure
     if (msg.type === "history/history_during_period" && msg.entity_ids[0].startsWith("weather.")) {
       const out = [];

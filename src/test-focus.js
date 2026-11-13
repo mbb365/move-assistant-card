@@ -1690,7 +1690,10 @@ export function mountTestFocus(root, { config, getHass }) {
     const favs = dashFavourites();
     if (favs.length) out.push({ key: 'favs', wrap: dashWrap('tfDash-favs', 'favs', 'Favourites', true), tiles: favs.map((id) => ({ key: 'fav:' + id, html: deviceRow(id, { area: true }) })) });
     if (overview) {
-      // the overview: each area's card after Favourites, nothing else
+      // the overview: Energy today once switched on (from your Energy dashboard; its sources load first), then each
+      // area's card
+      loadEnergy();
+      if (homeEnergy()) out.push({ key: 'dash:energy', html: energyGlance() });
       dashColsSeen = dashCols();
       dashTileIds(0).forEach((id) => out.push({ key: 'dash:tile:' + id, wrap: (inner) => '<div class="tfDashTiles" data-tf data-k="dash:tile:' + esc(id) + '">' + inner + '</div>',
         tiles: [{ key: id, html: roomTile(roomOf(id), id) }] }));
@@ -1759,7 +1762,7 @@ export function mountTestFocus(root, { config, getHass }) {
   const overviewRooms = () => areaRooms.map((r) => 'room:' + r.id);
   function overviewPrefs() {
     const rooms = overviewRooms();
-    return { cells: {}, spans: { favs: 2 }, hidden: Object.keys(BOARD_NAMES).filter((k) => !['title', ...(prefs.home?.sums === false ? [] : ['sums']), ...(prefs.home?.favs === false ? [] : ['favs'])].includes(k)),
+    return { cells: {}, spans: { favs: 2 }, hidden: Object.keys(BOARD_NAMES).filter((k) => !['title', ...(prefs.home?.sums === false ? [] : ['sums']), ...(prefs.home?.favs === false ? [] : ['favs']), ...(homeWeather() ? ['wx'] : []), ...(homeEnergy() ? ['energy'] : [])].includes(k)),
       opts: { favs: { h: 5 }, ...Object.fromEntries(rooms.map((k) => [k, { h: 5 }])) }, tiles: rooms, known: NEW_CARDS, areasOff: [] };
   }
   const dashPrefs = () => (overview ? overviewPrefs() : boardPrefs());
@@ -1997,6 +2000,10 @@ export function mountTestFocus(root, { config, getHass }) {
   // (Matt, 12 Nov, as the leadership demo: "this will be called a 'stacked' option. the other previous one will be 'rows'")
   const cardsAs = () => (prefs.home?.cardsAs === 'rows' ? 'rows' : 'stacked');
   const HOME_FLAGS = { byFloor: true, bentoBoxes: true, bentoMixed: false };
+  // the weather card and Energy today on the overview (Matt, 13 Nov, as the leadership demo): each off to start with,
+  // switched on in Edit Home page, and only where the house has a weather entity or an Energy dashboard (nothing made up)
+  const homeWeather = () => Boolean(prefs.home?.weather && weatherId());
+  const homeEnergy = () => Boolean(prefs.home?.energy && energy?.length);
   const homeFlag = (k) => prefs.home?.[k] ?? HOME_FLAGS[k];
   // the areas by floor, in the order of your areas page; an area with no floor last, under Other areas (with no floors
   // at all, the areas without a name over them)
@@ -2090,11 +2097,11 @@ export function mountTestFocus(root, { config, getHass }) {
        together, and each floor's first area can be big (two by two, its devices by name). Everything gives up to 15%
        on a smaller screen */
     const k = phone ? 1 : Math.max(0.85, Math.min(1, W / HOME.full));
-    const own = ['favs'];
+    const own = ['favs', 'wx', 'energy'];
     const saved = homeDrag?.order || prefs.home?.order;
     const order = saved ? [...saved.filter((x) => own.includes(x)), ...own.filter((x) => !saved.includes(x))] : own;
     homeOrderNow = order;
-    const tops = shown.filter((it) => own.includes(it.key) && !(strip && it.key === 'favs'));
+    const tops = shown.filter((it) => own.includes(it.key) && !(strip && it.key === 'favs')).sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key));
     homePlaced = new Map();
     const put = (it, box) => {
       homePlaced.set(it.key, box);
@@ -2103,7 +2110,7 @@ export function mountTestFocus(root, { config, getHass }) {
       if (homeDrag?.on && homeDrag.key === it.key) { homeLand(box); return; }
       Object.assign(it.el.style, { left: box.x + 'px', top: box.y + 'px' });
     };
-    const tw = phone ? W : Math.round((2 * HOME.col + HOME.inner) * k);
+    const tw = phone ? W : Math.round((2 * HOME.col + HOME.inner) * k), th = Math.round(HOME.row * k);
     const size = areaSize(), dims = AREA_SIZES[size], lay = areaLayout(), byFloor = homeFlag('byFloor');
     // Stacked: the cards down the left and the areas beside them (with nothing but areas, or on a phone, as Rows)
     const side = cardsAs() === 'stacked' && !phone && tops.length > 0;
@@ -2111,8 +2118,10 @@ export function mountTestFocus(root, { config, getHass }) {
     tops.forEach((it) => {
       it.el.classList.add('tfBoardItem');
       it.el.dataset.rows = 5; it.el.dataset.cols = 2; it.el.toggleAttribute('data-narrow', false);
-      Object.assign(it.el.style, { width: tw + 'px', height: '' });
-      const h = it.el.offsetHeight;
+      // Favourites as tall as its favourites need; the weather and Energy today 337 as drawn (on a phone each as tall
+      // as it needs)
+      let h = th;
+      if (phone || it.key === 'favs') { Object.assign(it.el.style, { width: tw + 'px', height: '' }); h = it.el.offsetHeight; }
       if (side) { put(it, { x: 0, y: colB, w: tw, h }); colB += h + gap; return; }
       if (x && x + tw > W) { top += rowH + gap; x = 0; rowH = 0; }
       put(it, { x, y: top, w: tw, h });
@@ -2660,6 +2669,8 @@ export function mountTestFocus(root, { config, getHass }) {
   const LEARN_MORE = 'https://www.home-assistant.io/dashboards/';
   const HOME_INFO = {
     welcome: ['Welcome message', '<p>Shows a <strong>greeting</strong> above your home\'s name: good morning, afternoon or evening, then your name.</p>'],
+    weather: ['Weather', '<p>The forecast card: now, the next hours in a sentence and the week ahead. Its <strong>Now</strong> opens the Weather page.</p>'],
+    energy: ['Energy today', '<p>What your home has used and made today, hour by hour, with <strong>Electricity</strong>, <strong>Solar</strong>, <strong>Gas</strong> and <strong>Water</strong> under it. From your Energy dashboard.</p>'],
     favs: ['Favourite entities', '<p>The devices you use most, at the top of Home.</p><ul><li><strong>Drag</strong> one to change the order</li><li>Press <strong>×</strong> to take it off</li></ul>'],
     suggest: ['Suggested entities', '<p>Fills Favourites with devices you often use, after your own. They change as you use your home.</p>'],
     sums: ['Summaries', '<p>Each summary sums up one kind of thing across your home, like <strong>Lights</strong>: how many are on.</p><ul><li>Switch one off to hide it</li><li><strong>Drag</strong> one to change the order</li></ul>'],
@@ -2698,6 +2709,9 @@ export function mountTestFocus(root, { config, getHass }) {
     const tabs = [['page', 'Page'], ['favs', 'Favourites'], ['sums', 'Summaries']];
     const bodies = {
       page: '<div class="hcHeLine"><span class="activityRowName">Welcome message</span>' + infoBtn('welcome') + sw(welcomeOn(), 'Welcome message', 'data-he-welcome') + '</div>' +
+        // the weather card and Energy today, where the house has them
+        (weatherId() ? '<div class="hcHeLine"><span class="activityRowName">Weather</span>' + infoBtn('weather') + sw(!!prefs.home?.weather, 'Weather', 'data-he-card="weather"') + '</div>' : '') +
+        (energy?.length ? '<div class="hcHeLine"><span class="activityRowName">Energy today</span>' + infoBtn('energy') + sw(!!prefs.home?.energy, 'Energy today', 'data-he-card="energy"') + '</div>' : '') +
         homeSeg('Cards', 'data-he-cards-as', cardsAs(), [['stacked', 'Stacked'], ['rows', 'Rows']]) +
         '<hr class="hcHeRule">' +
         // the areas: by floor or not, their layout, Bento's two ways, their size (the leadership demo, Matt, 12 Nov)
@@ -2807,7 +2821,7 @@ export function mountTestFocus(root, { config, getHass }) {
     const tabBtn = t.closest('[data-he-tab]');
     if (tabBtn) { const m = homeTray.querySelector('.hcTrayTabs .rubberIndicator'), from = { left: m.offsetLeft, width: m.offsetWidth }; homeTab = tabBtn.dataset.heTab; homePicking = false; closeInfo(); drawHomeTray(); placeHomeMark(true, from); homeTray.querySelector('.tfTrayInner').scrollTop = 0; return; }
     if (t.closest('[data-he-welcome]')) { homePrefs({ welcome: !welcomeOn() }); return; }
-    const cardSw = t.closest('[data-he-card]'); if (cardSw) { const k = cardSw.dataset.heCard; homePrefs({ [k]: prefs.home?.[k] === false }); return; }
+    const cardSw = t.closest('[data-he-card]'); if (cardSw) { const k = cardSw.dataset.heCard, on = ['sums', 'favs'].includes(k) ? prefs.home?.[k] !== false : !!prefs.home?.[k]; homePrefs({ [k]: !on }); return; }
     const fa = t.closest('[data-he-favs-as]'); if (fa) { homePrefs({ favsAs: fa.dataset.heFavsAs }); return; }
     const sw2 = t.closest('[data-he-sums-width]'); if (sw2) { homePrefs({ sumsWidth: sw2.dataset.heSumsWidth }); return; }
     const as = t.closest('[data-he-area-size]'); if (as) { homePrefs({ areaSize: as.dataset.heAreaSize }); return; }

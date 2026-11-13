@@ -1018,6 +1018,15 @@ button.tfAreaIcon{cursor:pointer}
 #app.tfOverview.tfDash #homeView .tfDash-favs>.activityRows>.activityRow{height:60px;min-height:0;padding:10px;box-sizing:border-box}
 /* an area: the Living Room card (Figma 1063:13192). 18 in, its reading under its name (48 on a 64 line, 93 down, its
    second line 150 down), its devices in one row along the foot */
+/* the overview's weather card (the leadership demo): its now and the week's columns, the rest of the forecast card left out */
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbCard.wbWeather{gap:0;padding:18px}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbCondition,#app.tfOverview.tfDash #homeView .tfDash-wx .wbNextHours,#app.tfOverview.tfDash #homeView .tfDash-wx .wbHalves{display:none!important}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbSummary{flex:none;height:auto;margin:18px 0 0;container:none}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbSummaryText{position:static;-webkit-line-clamp:1}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbColumns{display:flex!important;height:159px;margin-top:auto;border-radius:var(--r-tile)}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbColumn{padding:8px 0;background:none}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbColumn:hover{background:var(--tile)}
+#app.tfOverview.tfDash #homeView .tfDash-wx .wbColumn .wbWx.wbS60{width:60px;height:60px;border-radius:20px}
 #app.tfOverview.tfDash #homeView .tfRoomTile{padding:18px;gap:0;border-radius:28px}
 #app.tfOverview.tfDash #homeView .tfRoomTile>.tfActionHead{margin-bottom:0}
 #app.tfOverview.tfDash #homeView .tfRoomTile .tfActionHead .activityRowMeta{display:none}
