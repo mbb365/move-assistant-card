@@ -66,6 +66,7 @@ const WALKING_KMH=5;
 // Material Design Icons, as the patch uses them
 const I={
   back:'M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z',
+  close:'M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z',
   calendar:'M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z',
   chevronDown:'M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z',
   sunsetUp:'M3,12H7A5,5 0 0,1 12,7A5,5 0 0,1 17,12H21A1,1 0 0,1 22,13A1,1 0 0,1 21,14H3A1,1 0 0,1 2,13A1,1 0 0,1 3,12M15,12A3,3 0 0,0 12,9A3,3 0 0,0 9,12H15M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M12.71,16.3L15.82,19.41C16.21,19.8 16.21,20.43 15.82,20.82C15.43,21.21 14.8,21.21 14.41,20.82L12,18.41L9.59,20.82C9.2,21.21 8.57,21.21 8.18,20.82C7.79,20.43 7.79,19.8 8.18,19.41L11.29,16.3C11.5,16.1 11.74,16 12,16C12.26,16 12.5,16.1 12.71,16.3Z',
@@ -412,6 +413,10 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   bento.className='wbBento';
   root.appendChild(bento);
   container.replaceChildren(root);
+  // a tile's graph opens in a popup window over the page (Matt, 16 Nov: "the sun opens a popup graph window", not the
+  // tile turning into a graph card). It lives in the app, beside the card, so nothing round the tile holds it in
+  const pop=document.createElement('div');
+  pop.className='wb wbPopup';pop.dataset.style=style;pop.hidden=true;
 
   // The patch's strategy order; sizes from hui-weather-bento-card
   // the new cards (Matt, 1 Nov) end the Weather page and are on the dashboard once added
@@ -432,7 +437,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     bento.appendChild(el);items[name]={el,html:null};
   });
 
-  let destroyed=false,lastKey=null,raf=0,lastStep=-1,queued=false,focusAfter=null;
+  let destroyed=false,lastKey=null,raf=0,lastStep=-1,queued=false,focusAfter=null,popWas='';
   const VIEW_KEY='homecore-next-view',saved=(()=>{try{return localStorage.getItem(VIEW_KEY)}catch(_e){return null}})();
   const ui={graph:undefined,range:{preset:'day'},picking:false,openDay:undefined,opener:undefined,dayMode:'temperature',hourlyMode:'temperature',hourlyView:saved==='bars'?'bars':'strip',aq:undefined};
   const data={todayHistory:undefined,rain:undefined,temperatureHistory:undefined,pressureHistory:undefined,aqHistory:undefined,categories:undefined,lastFetch:0};
@@ -1280,8 +1285,8 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     graphData[key]={at:Date.now(),points:null};
     try{graphData[key].points=await GRAPHS[name].load(h,sources(h),a,b)}catch(_e){graphData[key].points=[]}
     render(true);
-    if(revealNext===name&&ui.graph===name){revealNext=null;revealParts(items[name].el.querySelector('.wbGraphCard'))}
-    const svg=ui.graph===name&&items[name]?.el.querySelector('.wbGraph .wbChart');
+    if(revealNext===name&&ui.graph===name){revealNext=null;revealParts(pop.querySelector('.wbGraphCard'))}
+    const svg=ui.graph===name&&pop.querySelector('.wbGraph .wbChart');
     if(svg)drawLine(svg,svg.querySelector('.wbLine'),svg.querySelectorAll('.wbArea'));
   }
   // the picker: a popover under its button (over the cards round it), the three ranges, or From and To (today at the latest)
@@ -1295,16 +1300,16 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   }
   function renderGraph(h,src,name){
     const g=GRAPHS[name],[a,b]=span(),isShort=short(a,b),pts=graphData[name+'|'+rangeKey()]?.points;
-    // the graph drawn at the size it shows (what's left of the card under the head and the picker), so its words stay 11
-    const el=items[name].el,gw=Math.max(120,el.clientWidth-2*18-32),gh=Math.max(40,el.clientHeight-2*18-44-14-32-14-24);
+    // the popup graph window: 520 wide, or the screen's on a phone, the graph 220 tall, so its words stay 11
+    const gw=Math.max(120,Math.min(520,innerWidth-(innerWidth<=620?0:32))-2*18-32),gh=220;
     const chart=!pts?'<span class="wbGraphNote"><span>Loading…</span></span>':pts.length>1?lineChartHtml(pts,v=>g.fmt(h,src,v,isShort),gh,gw):'<span class="wbGraphNote"><span>No history for these dates</span></span>';
-    // the widget's own head and padding, so opening it doesn't move its icon or name (Matt, 9 Nov: no jump)
-    return '<div class="wbCard wbSquare wbGraphCard"><div class="wbHead"><div class="wbChip wbPlain">'+fittedIcon(g.icon(h))+'</div>'+
+    // the widget's own head: its icon and name, with Close where the tile's own would have Back
+    return '<div class="wbPopupBox"><div class="wbCard wbSquare wbGraphCard" role="dialog" aria-modal="true" aria-label="'+esc(g.name(h))+'"><div class="wbHead"><div class="wbChip wbPlain">'+fittedIcon(g.icon(h))+'</div>'+
       '<div class="wbText"><span class="wbName">'+esc(g.name(h))+'</span><span class="wbSub">'+esc(g.sub?g.sub(isShort):g.now?g.now(h,src):'')+'</span></div>'+
-      '<button class="wbBack" title="'+esc(T.back)+'" data-wb="graph-close" data-wb-focus="graph-close">'+svgIcon(I.back)+'</button></div>'+
+      '<button class="wbBack" title="Close" data-wb="graph-close" data-wb-focus="graph-close">'+svgIcon(I.close)+'</button></div>'+
       '<button class="wbRangeBtn" aria-haspopup="dialog" aria-expanded="'+!!ui.picking+'" title="Choose date range" data-wb="graph-pick" data-wb-focus="graph-pick">'+
         svgIcon(I.calendar)+'<span>'+esc(rangeName(h))+'</span>'+svgIcon(I.chevronDown)+'</button>'+
-      '<div class="wbGraph">'+chart+'</div></div>'+(ui.picking?rangePicker(h,el.getBoundingClientRect().left>innerWidth/2):'');
+      '<div class="wbGraph">'+chart+'</div></div>'+(ui.picking?rangePicker(h,false):'')+'</div>';
   }
 
   /* ---- Drawing: each card is redrawn only when its markup changes; focus and the strip's scroll stay put ---- */
@@ -1324,7 +1329,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     for(const name of CARDS){
       const it=items[name];
       let html='';
-      try{html=(ui.graph===name?renderGraph(h,src,name):RENDER[name](h,src))||''}catch(_e){html=''}   // a card that can't draw hides; the bento never throws
+      try{html=RENDER[name](h,src)||''}catch(_e){html=''}   // a card that can't draw hides; the bento never throws
       if(html===it.html)continue;
       const focused=active&&it.el.contains(active)?active.dataset?.wbFocus:undefined;
       const scroller=it.el.querySelector('.wbStripScroll'),scroll=scroller?scroller.scrollLeft:null;
@@ -1334,8 +1339,17 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       else if(sc?.dataset.start)sc.scrollTo({left:Number(sc.dataset.start)*sc.clientWidth/Number(sc.dataset.span)});
       if(focused&&!focusAfter)it.el.querySelector('[data-wb-focus="'+focused+'"]')?.focus();
     }
+    // the popup: the open graph, drawn again only when it changed, a focused button in it kept
+    let popHtml='';
+    if(ui.graph){try{popHtml=renderGraph(h,src,ui.graph)||''}catch(_e){popHtml=''}}
+    if(popHtml!==popWas){
+      const focused=active&&pop.contains(active)?active.dataset?.wbFocus:undefined;
+      popWas=popHtml;pop.innerHTML=popHtml;pop.hidden=!popHtml;
+      if(popHtml&&!pop.isConnected)(root.closest('#app')||root).appendChild(pop);
+      if(focused&&!focusAfter)pop.querySelector('[data-wb-focus="'+focused+'"]')?.focus({preventScroll:true});
+    }
     drawSunTracks();
-    if(focusAfter){root.querySelector('[data-wb-focus="'+focusAfter+'"]')?.focus({preventScroll:true});focusAfter=null} // without scrolling the page (Matt, 9 Nov: no jump)
+    if(focusAfter){(root.querySelector('[data-wb-focus="'+focusAfter+'"]')||pop.querySelector('[data-wb-focus="'+focusAfter+'"]'))?.focus({preventScroll:true});focusAfter=null} // without scrolling the page (Matt, 9 Nov: no jump)
     // Matt's rows (9 Nov) start where he said, at the dashboard's own column widths (more columns leave space at the
     // end, fewer wrap): the first of Moon and what follows it starts row 2, and the first shorter card starts row 3
     let row2=false,row3=false;
@@ -1420,16 +1434,17 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
 
   /* ---- What you can do: open a day, switch a graph, scroll the hours, open an air quality tile ---- */
   function onClick(ev){
+    if(ev.target===pop){ui.graph=undefined;ui.picking=false;render(true);return}   // a tap beside the popup closes it
     const el=ev.target.closest?.('[data-wb]');
-    if(!el||!root.contains(el)){
-      // a card with a graph behind it opens to it: not while the dashboard is being edited, not in a card too small to
-      // hold it, and not the dashboard's weather card, which opens the Weather page
+    if(!el||!(root.contains(el)||pop.contains(el))){
+      // a card with a graph behind it opens it in the popup window: not while the dashboard is being edited, and not
+      // the dashboard's weather card, which opens the Weather page
       const item=ev.target.closest?.('.wbItem'),name=item?.dataset.card;
-      if(!item||!root.contains(item)||!GRAPHS[name]||ui.graph===name||root.closest('.tfEditing')||item.offsetHeight<200||(name==='current'&&onOpen))return;
-      ui.graph=name;focusAfter='graph-close';render(true);
-      // the Motion Lab's tile opening: the head stays where it is (no jump), the picker and graph come in after it
-      // (once its points are in, if they're still coming, so the graph's arrival doesn't cut it short)
-      if(graphData[name+'|'+rangeKey()]?.points)revealParts(items[name].el.querySelector('.wbGraphCard'));else revealNext=name;
+      if(!item||!root.contains(item)||!GRAPHS[name]||ui.graph===name||root.closest('.tfEditing')||(name==='current'&&onOpen))return;
+      ui.graph=name;ui.picking=false;focusAfter='graph-close';render(true);
+      // the Motion Lab's tile opening: the head first, the picker and graph come in after it (once its points are in,
+      // if they're still coming, so the graph's arrival doesn't cut it short)
+      if(graphData[name+'|'+rangeKey()]?.points)revealParts(pop.querySelector('.wbGraphCard'));else revealNext=name;
       loadGraph(name);
       return;
     }
@@ -1498,6 +1513,9 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
   root.addEventListener('change',onRangeInput);
   root.addEventListener('click',onClick);
   root.addEventListener('keydown',onKeyDown);
+  pop.addEventListener('change',onRangeInput);
+  pop.addEventListener('click',onClick);
+  pop.addEventListener('keydown',onKeyDown);
   root.addEventListener('mousedown',onMouseDown);
 
   /* Pollen's seeds move away from the pointer (Matt, 9 Nov): while it's over the card, each one near it is pushed
@@ -1545,7 +1563,7 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
     refresh(){render(true)},
     setStyle(next){
       if(!next||next===style)return;
-      style=next;root.dataset.style=style;
+      style=next;root.dataset.style=style;pop.dataset.style=style;
       render(true);wake();
     },
     destroy(){
@@ -1560,8 +1578,9 @@ export function mountWeatherBento(container,{getHass,entityId,style='bitmap',mot
       root.removeEventListener('click',onClick);root.removeEventListener('change',onRangeInput);
       root.removeEventListener('keydown',onKeyDown);
       root.removeEventListener('mousedown',onMouseDown);
+      pop.removeEventListener('click',onClick);pop.removeEventListener('change',onRangeInput);pop.removeEventListener('keydown',onKeyDown);
       ['daily','hourly'].forEach(unsubscribe);
-      root.remove();
+      root.remove();pop.remove();
     }
   };
 }

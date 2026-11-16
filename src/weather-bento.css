@@ -519,3 +519,12 @@
 .wbRangeDates input{width:100%;min-width:0;height:32px;box-sizing:border-box;padding:0 6px;border:0;border-radius:12px;background:var(--tile);box-shadow:var(--hc-hair-all);color:var(--text);font:400 12px/16px var(--font);color-scheme:inherit}
 .wb .wbRangeApply{height:32px;padding:0 14px;border:0;border-radius:999px!important;background:var(--bright);color:var(--on-bright);font:600 12px/16px var(--font-tile);cursor:pointer}
 .wbGraphCard .wbGraph{flex:1;height:auto;min-height:0}
+
+/* a tile's graph opens in a popup window (Matt, 16 Nov: the sun opens a popup graph window, not the tile turning into a
+   graph card): the graph card, 520 wide, over the dimmed page; a sheet from the bottom on phones */
+.wb.wbPopup{position:fixed;inset:0;z-index:180;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.45);overscroll-behavior:contain;container-type:normal}
+.wb.wbPopup[hidden]{display:none}
+.wbPopupBox{position:relative;width:520px;max-width:100%}
+.wbPopup .wbCard.wbSquare.wbGraphCard{height:auto;aspect-ratio:auto;box-shadow:var(--hc-hair-all)}
+.wbPopup .wbGraphCard .wbGraph{flex:none;height:auto}
+@media(max-width:620px){.wb.wbPopup{place-items:end stretch;padding:0}.wbPopupBox{width:100%}.wbPopup .wbCard.wbSquare.wbGraphCard{border-radius:28px 28px 0 0}}
