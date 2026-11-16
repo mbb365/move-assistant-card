@@ -10,7 +10,7 @@
 import { createHouse, isMadeUp, solarHistory, PLANT_RANGE } from './house.js';
 import { mountWeatherBento } from './weather-bento.js';
 import { createCoverArt, coverKind } from './cover-art.js';
-import { M, EASE, smoothD, gridLines, drawLine, stretchTo, expandOpen, expandClose, closeDialog, toastBody, toastIn, toaster, springStep, squash, reduced } from './motion.js';
+import { M, EASE, smoothD, gridLines, drawLine, stretchTo, closeDialog, toastBody, toastIn, toaster, springStep, squash, reduced } from './motion.js';
 
 const DENSITY_KEY = 'move-assistant-density';
 
@@ -414,7 +414,6 @@ export function mountTestFocus(root, { config, getHass }) {
   }
   new MutationObserver(stack).observe(grid, { childList: true });
   new MutationObserver(stack).observe(app, { attributes: true, attributeFilter: ['class'] });
-  let open = null; // { key of its card, entity id, card height before it opened }
   let activeArea = null; // the area card that's open in the accordion
   let areaPage = null; // the section whose own page is open (a room's, from its card's Go, or the weather's), or null for the house
   let more = null; // { id, opener } while the stand-in more-info is open
@@ -775,51 +774,40 @@ export function mountTestFocus(root, { config, getHass }) {
   // several at once (an area's lights): a JSON list of [domain, service, entity, data]
   const acts = (list) => esc(JSON.stringify(list));
 
-  /* readings: tiles in a card; numbers open to their last 24 hours */
-  function readingRow(cardKey, id) {
+  /* readings: tiles in a card; each opens its device's popup, with its last 24 hours (Matt, 16 Nov: a popup, not the
+     card changing to the graph, so a narrow card stays as it is) */
+  function readingRow(id) {
     const label = esc(nameOf(id) + ', ' + valueOf(id));
-    const graph = Number.isFinite(Number(states[id]?.state)) && states[id]?.state !== '';
-    return '<div class="activityRow' + (graph ? ' tap" role="button" tabindex="0" data-open="' + esc(cardKey + '|' + id) + '" aria-label="' + label + '. Show the last 24 hours"' : '" aria-label="' + label + '"') + '>' +
+    return '<div class="activityRow tap" role="button" tabindex="0" data-more="' + esc(id) + '" aria-label="' + label + '. More info">' +
       '<div class="tfIcon" aria-hidden="true"' + iconSlot(id, iconFor(id)) + '></div>' +
       '<div><div class="activityRowName">' + esc(nameOf(id)) + '</div><div class="activityRowMeta">' + esc(valueOf(id)) + '</div></div></div>';
   }
   const sumRow = (name, value, icon) => '<div class="activityRow" aria-label="' + esc(name + ', ' + value) + '"><div class="tfIcon" aria-hidden="true"' + iconSlot('', icon, name) + '></div>' +
     '<div><div class="activityRowName">' + esc(name) + '</div><div class="activityRowMeta">' + esc(value) + '</div></div></div>';
-  // an opened tile shows its reading, or what its card says instead (the dashboard's energy: today's use, by source)
-  const openName = (id) => energyText.get(id)?.name ?? nameOf(id);
-  const openValue = (id) => energyText.get(id)?.text ?? valueOf(id);
-  function openTile(id) {
-    const icon = energyText.get(id)?.icon;
-    return '<div class="tfOpen"><div class="tfOpenHead"><div class="tfIcon" aria-hidden="true"' + (icon ? iconSlot('', icon, openName(id)) : iconSlot(id, iconFor(id))) + '></div>' +
-      '<div><div class="activityRowName">' + esc(openName(id)) + '</div><div class="activityRowMeta">' + esc(openValue(id)) + '</div></div>' +
-      '<button class="tfBack" type="button" data-close aria-label="Close ' + esc(openName(id)) + '’s last 24 hours">' + ARROW + '</button></div>' +
-      '<svg class="tfGraph" data-graph="' + esc(id) + '" role="img" aria-label="' + esc(openName(id)) + ', last 24 hours"></svg></div>';
-  }
   // a card of readings; its title can open more-info (a plant) or its popup (Energy today, Favourites)
   function card(key, order, title, rows, extra = '', moreId = null, cls = '') {
-    const isOpen = open && open.key === key;
-    return '<section class="card tfCard' + (cls ? ' ' + cls : '') + (isOpen ? ' open' : '') + '" data-tf data-k="' + esc(key) + '" style="order:' + order + (isOpen && open.h ? ';min-height:' + open.h + 'px' : '') + '" aria-label="' + esc(title) + '">' +
+    return '<section class="card tfCard' + (cls ? ' ' + cls : '') + '" data-tf data-k="' + esc(key) + '" style="order:' + order + '" aria-label="' + esc(title) + '">' +
       '<div class="activityHeader">' + (moreId ? '<button class="activityTitle tfTitleBtn" type="button" data-more="' + esc(moreId) + '" aria-label="' + esc(title + (states[moreId] ? ', ' + valueOf(moreId) : '') + '. More info') + '">' + esc(title) + '</button>' : '<div class="activityTitle">' + esc(title) + '</div>') + '</div>' +
-      (isOpen ? openTile(open.id) : '<div class="activityRows">' + rows.join('') + '</div>' + extra) + '</section>';
+      '<div class="activityRows">' + rows.join('') + '</div>' + extra + '</section>';
   }
   function roomCard(r, order) {
     const key = 'readings:' + r.id;
-    const rows = r.readings.map((id) => readingRow(key, id));
+    const rows = r.readings.map((id) => readingRow(id));
     if (r.power != null) rows.push(sumRow('Power now', watts(r.power), 'mdi:flash'));
     return card(key, order, 'Readings', rows); // its plugs are tiles now, with the other devices (Matt, 12 Nov)
   }
   function energyCard(r, order) {
     const key = 'energy:' + r.id;
     const [now, today] = [r.solar.find((id) => id.endsWith('_power')), r.solar.find((id) => id.endsWith('_today'))];
-    const rows = [now, today].filter(Boolean).map((id) => readingRow(key, id));
+    const rows = [now, today].filter(Boolean).map((id) => readingRow(id));
     const solarW = Number(states[now]?.state || 0) * 1000;
     if (model.grid) {
-      rows.push(readingRow(key, model.grid));
+      rows.push(readingRow(model.grid));
       rows.push(sumRow('House use', watts(solarW + Number(states[model.grid].state)), 'mdi:home-lightning-bolt'));
     }
     return card(key, order, 'Energy', rows, '<div class="tfCardGraph"><svg class="tfGraph" data-solar role="img" aria-label="Solar, last 24 hours"></svg></div>');
   }
-  const plantCard = (p, order) => card('plant:' + p.id, order, nameOf(p.id), p.readings.map((id) => readingRow('plant:' + p.id, id)), '', p.id);
+  const plantCard = (p, order) => card('plant:' + p.id, order, nameOf(p.id), p.readings.map((id) => readingRow(id)), '', p.id);
 
   /* action tiles: a name row, then sections stacked under it */
   // was: where a light's brightness was before it went off, a faint line on its bar
@@ -3343,7 +3331,6 @@ export function mountTestFocus(root, { config, getHass }) {
     mountArt(grid);
     mountDacs(grid);
     syncSettings();
-    if (open) drawHistory(open.id);
     drawSolar();
     renderMore();
     tidyArts();
@@ -3412,10 +3399,7 @@ export function mountTestFocus(root, { config, getHass }) {
       const el = grid.querySelector('[data-k="' + CSS.escape(u.key) + '"]');
       if (!el) return;
       units.set(u.key, u.html);
-      // an open reading keeps its graph; only its value changes
-      if (open && open.key === u.key && el.querySelector('.tfOpen')) { el.querySelector('.tfOpen .activityRowMeta').textContent = openValue(open.id); return; }
       replace(el, u.html);
-      if (open && open.key === u.key) drawHistory(open.id);
       if (u.key.startsWith('energy:')) drawSolar();
     }));
     renderMore();
@@ -3911,7 +3895,10 @@ export function mountTestFocus(root, { config, getHass }) {
     let h = days.get(id);
     if (!h || Date.now() - h.at > 60 * 1000) {
       let pts = [];
-      try {
+      // a made-up reading has no history to ask for: its day is the one its card drew (Matt, 16 Nov: the popup is where
+      // a reading opens now, so its last 24 hours must be there too)
+      if (isMadeUp(id) && Number.isFinite(Number(states[id]?.state))) pts = madeUpHistory(id).map(([t, v]) => [t, String(v)]);
+      else try {
         const res = await callWS({ type: 'history/history_during_period', start_time: new Date(Date.now() - 864e5).toISOString(), entity_ids: [id], minimal_response: true, no_attributes: true, significant_changes_only: false });
         pts = (res?.[id] || []).map((r) => [r.lu != null ? r.lu * 1000 : Date.parse(r.last_updated || r.last_changed), String(r.s ?? r.state)]).filter(([t]) => Number.isFinite(t));
       } catch (_e) { /* no history: the logbook's changes, then the device's own */ }
@@ -4090,18 +4077,6 @@ export function mountTestFocus(root, { config, getHass }) {
     el.addEventListener('pointerup', up);
     el.addEventListener('pointercancel', up);
   }
-  function openReading(el) {
-    const [key, id] = el.dataset.open.split('|');
-    const c = el.closest('.tfCard'), from = el.getBoundingClientRect(), chip = el.querySelector('.tfIcon')?.getBoundingClientRect();
-    open = { key, id, h: c ? Math.round(c.getBoundingClientRect().height) : 0, from, chip };
-    units.delete(key);
-    refresh();
-    // the Motion Lab's tile opening: it grows from the reading, its head slides up from the reading's, the graph after
-    const det = grid.querySelector('.tfOpen');
-    if (det) open.rel = from.top - det.getBoundingClientRect().top;
-    expandOpen(det, from, chip);
-    grid.querySelector('.tfOpen [data-close]')?.focus({ preventScroll: true });
-  }
   function pickArea(panel) {
     activeArea = panel.dataset.area;
     // in place, so the accordion slides like the move panels
@@ -4146,7 +4121,7 @@ export function mountTestFocus(root, { config, getHass }) {
   // the same controls work on the page and in the stand-in more-info
   function bindControls(el) {
     el.addEventListener('click', (ev) => {
-      const t = ev.target.closest('[data-open],[data-close],[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-fav-hide],[data-energy-pick],[data-more-page],[data-path],.tfAreaPanel');
+      const t = ev.target.closest('[data-act],[data-acts],[data-more],[data-more-close],[data-more-back],[data-details],[data-details-close],[data-go],[data-summary],[data-star],[data-favs-edit],[data-area-back],[data-board-more],[data-board-act],[data-board-show],[data-fav-hide],[data-energy-pick],[data-more-page],[data-path],.tfAreaPanel');
       if (boardOpen && !ev.target.closest('.tfBoardMenu,[data-board-more]')) closeBoardMenu();
       if (!t || !el.contains(t) || t.disabled) return;
       if (t.dataset.boardMore) { if (boardOpen?.key === t.dataset.boardMore) closeBoardMenu(true); else openBoardMenu(t.dataset.boardMore, t); }
@@ -4168,18 +4143,11 @@ export function mountTestFocus(root, { config, getHass }) {
       else if (t.dataset.path) go(t.dataset.path);
       else if (t.dataset.go) openArea('room:' + t.dataset.go);
       else if (t.hasAttribute('data-area-back')) closeArea();
-      else if (t.dataset.open) openReading(t);
-      else if (t.hasAttribute('data-close')) {
-        const was = open, det = t.closest('.tfOpen'), top = det?.getBoundingClientRect().top;
-        // back into the reading it came from (where it is now, if the page moved)
-        const from = was.from && top != null ? new DOMRect(was.from.left, top + (was.rel || 0), was.from.width, was.from.height) : was.from;
-        expandClose(det, from, () => { if (open !== was) return; open = null; units.delete(was.key); refresh(); grid.querySelector('[data-open="' + CSS.escape(was.key + '|' + was.id) + '"]')?.focus({ preventScroll: true }); });
-      }
       else if (t.classList.contains('tfAreaPanel') && !t.classList.contains('active')) pickArea(t);
     });
     el.addEventListener('keydown', (ev) => {
       const t = ev.target;
-      if (t.dataset?.open && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); openReading(t); }
+      if (t.dataset?.more && t.tagName !== 'BUTTON' && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); openMore(t.dataset.more, t); }
       if (t.dataset?.energyPick && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); pickEnergy(t.dataset.energyPick); }
       if (t.classList?.contains('tfAreaPanel') && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); pickArea(t); }
       if (t.dataset?.summary && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); openSummary(t.dataset.summary, t); }

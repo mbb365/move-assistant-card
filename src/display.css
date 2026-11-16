@@ -72,14 +72,8 @@
 /* the page keeps your place itself when something above it changes (keepPlace in test-focus.js; Safari has no scroll
    anchoring), so the browser's own anchoring stays out of it */
 #app.house #homeView{overflow-anchor:none}
-:is(.tfCard .activityRow,.tfOpenHead) .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
+.tfCard .activityRow .tfIcon{background:var(--hc-icon);color:var(--hc-icon-ink)}
 .tfCard .activityRow{display:grid;align-items:center}
-/* opened: the tile fills its card (padding 10) with the graph space under it (Figma "HC FINAL - tile clicked") */
-#homeView section.tfCard.open:has(>.activityHeader){padding:var(--inset)}
-.tfCard.open>.activityHeader{display:none}
-.tfOpen{flex:1;display:flex;flex-direction:column;gap:10px;padding:var(--inset);border-radius:28px;background:var(--tile);box-shadow:inset 0 0 0 .4px var(--hc-open-edge)}
-.tfOpenHead{display:flex;align-items:center;gap:12px}
-.tfOpenHead>div:nth-child(2){flex:1;min-width:0}
 .tfBack{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}
 .tfBack .icon{width:34px;height:34px}
 .tfGraph{display:block;width:100%;flex:1;min-height:80px}
