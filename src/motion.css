@@ -34,7 +34,6 @@
 #app .tfMoreBackdrop{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 
 /* 9 · confirmations: the toast's message at 18, a tick in a green 40 room at its start */
-#app .toast.tfToast{min-height:58px;box-sizing:border-box;padding:9px 18px 9px 9px;gap:14px;border-radius:29px;font-size:18px;line-height:1.2}
 #app .toast .mvTick{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:var(--r-inner);background:var(--mv-ok);color:#fff}
 #app .toast .mvTick svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 #app .toast .mvToastText{font-weight:600}
@@ -73,5 +72,3 @@
 }
 
 /* 10 · drag: the spring's lift is in the card's transform, so its own lift goes; the other cards make room over 420 */
-#app .tfBoardItem.mvDrag{scale:none}
-#app.tfEditing.tfBoardReady .tfBoardItem:not(.tfDragging){transition:left 420ms cubic-bezier(.34,1.46,.64,1),top 420ms cubic-bezier(.34,1.46,.64,1),height 420ms cubic-bezier(.34,1.46,.64,1)}

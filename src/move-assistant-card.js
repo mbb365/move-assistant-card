@@ -1,13 +1,11 @@
 import css from "./styles.css?inline";
 import displayCss from "./display.css?inline";
-import bentoCss from "./weather-bento.css?inline";
 import motionCss from "./motion.css?inline";
 import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
-import { mountTestFocus } from "./test-focus.js";
 import { installMotion, installSegments } from "./motion.js";
 
-const VERSION = "0.92.0";
+const VERSION = "0.93.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
@@ -50,24 +48,21 @@ class MoveAssistantCard extends HTMLElement {
     if (this._app && hass.states !== this._lastStates) {
       this._lastStates = hass.states;
       this._app.updateStates(hass.states);
-      this._test?.update(hass.states);
     }
   }
 
   connectedCallback() {
     this._app?.resume();
-    this._test?.resume();
   }
 
   disconnectedCallback() {
     this._app?.suspend();
-    this._test?.suspend();
   }
 
   async _init() {
     loadInter();
     const root = this.shadowRoot || this.attachShadow({ mode: "open" });
-    root.innerHTML = `<style>${css}${displayCss}${bentoCss}${motionCss}</style>${template}`;
+    root.innerHTML = `<style>${css}${displayCss}${motionCss}</style>${template}`;
     const app = root.getElementById("app");
     app.style.opacity = "0";
 
@@ -102,13 +97,10 @@ class MoveAssistantCard extends HTMLElement {
     });
     this._lastStates = this._hass.states;
     this._app.updateStates(this._hass.states);
-    // With `layout: test-focus`, more Home Assistant entities on Home; Settings → Appearance → Show density
-    this._test = mountTestFocus(root, { config: this._config, getHass: () => this._hass });
-    this._test.update(this._hass.states);
     // HomeCore's micro-interactions (the Motion Lab's eleven, as the leadership demo)
     installMotion(root, app);
     installSegments(root);
-    if (!this.isConnected) { this._app.suspend(); this._test.suspend(); }
+    if (!this.isConnected) this._app.suspend();
     app.style.transition = "opacity .2s ease";
     app.style.opacity = "";
 

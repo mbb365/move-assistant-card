@@ -278,25 +278,6 @@ button,input{font:inherit}
 }
 .moveActions{display:flex;gap:22.4px;flex-wrap:wrap}
 
-@keyframes feelingWarp{
-  0%{
-    transform:scale(1.03) skewX(-2deg) translateX(-1.5%);
-    filter:saturate(1.02) blur(.8px);
-  }
-  50%{
-    transform:scale(1.12) skewX(1deg) translateX(1%);
-    filter:saturate(1.22) blur(1.5px);
-  }
-  100%{
-    transform:scale(1.06) skewX(3deg) translateX(-.5%);
-    filter:saturate(1.1) blur(.6px);
-  }
-}
-@keyframes feelingScan{
-  0%{background-position:0 0, -80% 0}
-  100%{background-position:0 8px, 180% 0}
-}
-
 
 .tempoExperiment{
   margin-top:14.4px;
@@ -852,8 +833,6 @@ button,input{font:inherit}
 .themeChoice{display:flex;gap:9.6px;flex-wrap:wrap;align-items:center;margin:0}
 .themeBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
 .themeBtn.active{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}
-.wxLayoutBtn{min-height:32px;padding:0 11.2px;border:0.32px solid var(--field-line);background:var(--control-2);color:var(--text);cursor:pointer}
-.wxLayoutBtn[aria-pressed="true"]{background:var(--bright);color:var(--on-bright);border-color:var(--bright)}
 
 
 
@@ -1483,7 +1462,7 @@ button,input{font:inherit}
   font-family:var(--font-tile);font-size:var(--t-tile-detail);font-weight:var(--w-regular);line-height:var(--lh-tile-detail);letter-spacing:0}
 
 /* Strong */
-.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.wxLayoutBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
+.integration strong,.toggleRow strong,.setupName,.weekChipTop strong,.panelCollapsedText,.activityCount,.metaType,.kindChip,.helpSteps strong,.addGhost strong,.helpNote strong,.createStepIdentity strong,.testingZoneTitleRow strong,.testingFeedbackHeading,.tempoEstimate,.primary,.tab,.skipBtn,.skipSessionBtn,.hideBtn,.removeBtn,.addBtn,.themeBtn,.holdEnd,.holdDelete,.movementCreatorOpen,.restAddBtn,.creatorAddButton,.testingFeedbackSubmit,.testingRating button,.toast,.checkinTabLabel{
   font-size:var(--t-strong);font-weight:var(--w-semibold);line-height:1.25;letter-spacing:-.01em}
 
 /* Body */
