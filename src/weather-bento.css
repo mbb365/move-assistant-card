@@ -78,8 +78,8 @@
 .wbGraphNote{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:400 12px/1.4 var(--font)}
 
 /* A day graph: sun marks on top, the scale on the left, the hours below */
-.wbDayChart{flex:1;min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:20px minmax(0,1fr) 18px;
-  grid-template-areas:". sun" "y plot" ". x";column-gap:6px;color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums}
+.wbDayChart{flex:1;min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:24px minmax(0,1fr) 22px;
+  grid-template-areas:". sun" "y plot" ". x";column-gap:8px;color:var(--muted);font:400 11px/14px var(--font);font-variant-numeric:tabular-nums}
 .wbDcSun,.wbDcX,.wbDcY,.wbDcPlot{position:relative;min-width:0}
 .wbDcSun{grid-area:sun}
 .wbDcY{grid-area:y}
@@ -165,7 +165,9 @@
 .wbWeather.wbIsOpen .wbClosed{visibility:hidden}
 /* the opened day covers the card, 10 in, whatever the card's size */
 .wbWeather .wbOpen{position:absolute;inset:10px;min-height:0}
-.wbWeather .wbOpen .wbGraph{min-height:0;padding:8px 14px 6px 8px}
+/* the day graph sits in its box with room round it (Matt, 16 Nov: not cramped up): 16 at the sides, the
+   scale and the hours each with a row of their own */
+.wbWeather .wbOpen .wbGraph{min-height:0;padding:14px 16px 12px 12px}
 .wbDayTabs{display:flex}
 .wbNow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .wbCurrent{display:flex;align-items:flex-start;gap:16px;min-width:0}
