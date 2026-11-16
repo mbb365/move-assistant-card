@@ -323,6 +323,20 @@ attachBorderGlow($('addWorkoutPanel'));
 let creatingNewMove=false;
 let pendingNewMoveKey=null;
 
+// Home's tiles use HomeCore's icons: solid Material Design Icons in a grey chip (Matt, 16 Nov)
+const MDI={
+  steps:'M10.74,11.72C11.21,12.95 11.16,14.23 9.75,14.74C6.85,15.81 6.2,13 6.16,12.86L10.74,11.72M5.71,10.91L10.03,9.84C9.84,8.79 10.13,7.74 10.13,6.5C10.13,4.82 8.8,1.53 6.68,2.06C4.26,2.66 3.91,5.35 4,6.65C4.12,7.95 5.64,10.73 5.71,10.91M17.85,19.85C17.82,20 17.16,22.8 14.26,21.74C12.86,21.22 12.8,19.94 13.27,18.71L17.85,19.85M20,13.65C20.1,12.35 19.76,9.65 17.33,9.05C15.22,8.5 13.89,11.81 13.89,13.5C13.89,14.73 14.17,15.78 14,16.83L18.3,17.9C18.38,17.72 19.89,14.94 20,13.65Z',
+  mood:'M12,17.5C14.33,17.5 16.3,16.04 17.11,14H6.89C7.69,16.04 9.67,17.5 12,17.5M8.5,11A1.5,1.5 0 0,0 10,9.5A1.5,1.5 0 0,0 8.5,8A1.5,1.5 0 0,0 7,9.5A1.5,1.5 0 0,0 8.5,11M15.5,11A1.5,1.5 0 0,0 17,9.5A1.5,1.5 0 0,0 15.5,8A1.5,1.5 0 0,0 14,9.5A1.5,1.5 0 0,0 15.5,11M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z',
+  energy:'M11 15H6L13 1V9H18L11 23V15Z',
+  week:'M6 1H8V3H16V1H18V3H19C20.11 3 21 3.9 21 5V19C21 20.11 20.11 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.89 3.89 3 5 3H6V1M5 8V19H19V8H5M7 10H17V12H7V10Z',
+  streak:'M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2M14.5 17.5C14.22 17.74 13.76 18 13.4 18.1C12.28 18.5 11.16 17.94 10.5 17.28C11.69 17 12.4 16.12 12.61 15.23C12.78 14.43 12.46 13.77 12.33 13C12.21 12.26 12.23 11.63 12.5 10.94C12.69 11.32 12.89 11.7 13.13 12C13.9 13 15.11 13.44 15.37 14.8C15.41 14.94 15.43 15.08 15.43 15.23C15.46 16.05 15.1 16.95 14.5 17.5H14.5Z',
+  month:'M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z',
+  length:'M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z',
+  timing:'M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z',
+  count:'M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z',
+  edit:'M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z'
+};
+function mdi(name){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="'+(MDI[name]||'')+'"/></svg>'}
 function esc(value){
   return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
@@ -332,21 +346,32 @@ function panelSummary(profile){
     ? formatTotalMinutes(profile.total)+' · custom move'
     : formatTotalMinutes(profile.total)+' · '+formatDuration(profile.work)+' / '+formatDuration(profile.rest)+' · warm-up + cooldown';
 }
+// a move's length, timing and activities, as its card's tiles; buildRoutine keeps the open one's up to date
+function moveFacts(profile){
+  const f=profile.facts||{};
+  const count=profile.activityCount??(profile.sequence?.length||0);
+  return [
+    ['length','Length',f.length||formatTotalMinutes(profile.total)],
+    ['timing','Timing',f.timing||(profile.customSequence?'Custom':formatDuration(profile.work)+' / '+formatDuration(profile.rest))],
+    ['count','Activities',f.count||(count?String(count):'—')]
+  ];
+}
 function createMovePanel(key,profile){
   const panel=document.createElement('article');
   panel.className='workoutPanel';
   panel.dataset.workout=key;
   panel.tabIndex=0;
-  const count=profile.activityCount??(profile.sequence?.length||0);
+  // HomeCore's look (Matt, 16 Nov, option A): the name big, then its length, timing and activities as tiles, Edit as an
+  // icon in the corner, Start move at the foot
   panel.innerHTML=
     '<span class="edgeLight" aria-hidden="true"></span>'+
-    '<div class="panelExpanded"><div><div class="workoutPanelTop"><div>'+
-      '<div class="workoutName">'+esc(profile.name)+'</div>'+
-      '<div class="sub">'+esc(panelSummary(profile))+'</div>'+
-      '<span class="sourceTag">'+esc(profile.source||'Custom move')+'</span>'+
-    '</div><button class="pill seeWorkoutBtn" type="button">Edit</button></div></div>'+
-    '<div class="workoutFooter"><div><strong class="activityCount">'+(count?count+' activities'+((profile.rounds||1)>1?' × '+profile.rounds:''):'—')+'</strong></div>'+
-    '<div class="workoutPanelActions"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div></div>'+
+    '<div class="panelExpanded"><div class="maMoveHead">'+
+      '<div class="workoutName" title="'+esc(profile.name)+'">'+esc(profile.name)+'</div>'+
+      '<button class="maMoveEdit seeWorkoutBtn" type="button" aria-label="Edit '+esc(profile.name)+'">'+mdi('edit')+'</button></div>'+
+      '<div class="maMoveFacts">'+moveFacts(profile).map(([k,name,value])=>
+        '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">'+mdi(k)+'</div>'+
+        '<div><div class="activityRowName">'+name+'</div><div class="activityRowMeta" data-fact="'+k+'">'+esc(value)+'</div></div></div>').join('')+'</div>'+
+    '<div class="workoutFooter"><button class="primary startWorkoutBtn" type="button">Start move</button></div></div>'+
     '<div class="panelCollapsed"><div class="panelCollapsedText">'+esc(profile.name)+'</div></div>';
 
   const addPanel=$('addWorkoutPanel');
@@ -651,17 +676,17 @@ function buildRoutine(){
    ? length+' · '+perRound+' items'+(extras.length&&!(rounds>1&&onceSeconds)?' · '+extras.join(' + '):'')
    : length+' · '+formatDuration(work)+' / '+formatDuration(rest)+(extras.length&&!(rounds>1&&onceSeconds)?' · '+extras.join(' + '):'');
  totalOut.textContent=formatDuration(roundSeconds);
- const steps=routine.filter(x=>!x.roundBreak).length;
- const countText=rounds>1?steps+' activities · '+rounds+' rounds':perRound+' activities';
  roundsOut.textContent=rounds>1?rounds+' rounds · '+formatTotalMinutes(totalMinutes)+' total':'1 round';
  $('roundsCount').textContent=rounds;
  root.querySelectorAll('[data-rounds-step]').forEach(b=>{b.disabled=Number(b.dataset.roundsStep)<0?rounds<=1:rounds>=10});
- if(profile){profile.summary=text;profile.activityCount=perRound}
- const activeSummary=root.querySelector('.workoutPanel.active .sub');
- if(activeSummary)activeSummary.textContent=text;
+ if(profile){
+   profile.summary=text;profile.activityCount=perRound;
+   profile.facts={length:formatTotalMinutes(totalMinutes),timing:profile.customSequence?'Custom':formatDuration(work)+' / '+formatDuration(rest),count:rounds>1?routine.filter(x=>!x.roundBreak).length+' · '+rounds+' rounds':String(perRound)};
+   const panel=root.querySelector('.workoutPanel.active');
+   if(panel)Object.entries(profile.facts).forEach(([k,v])=>{const el=panel.querySelector('[data-fact="'+k+'"]');if(el)el.textContent=v});
+ }
  routineSummaryModal.textContent=text;
  updateSetupSummary();
- root.querySelectorAll('.workoutPanel.active .activityCount').forEach(el=>el.textContent=countText);
  updateRangeFills();
  renderLists();
  updateMovementCreatorAvailability();
@@ -698,16 +723,6 @@ const ICONS={
 };
 const icon=name=>'<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">'+(ICONS[name]||'')+'</svg>';
 root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon)});
-// Home's tiles use HomeCore's icons: solid Material Design Icons in a grey chip (Matt, 16 Nov)
-const MDI={
-  steps:'M10.74,11.72C11.21,12.95 11.16,14.23 9.75,14.74C6.85,15.81 6.2,13 6.16,12.86L10.74,11.72M5.71,10.91L10.03,9.84C9.84,8.79 10.13,7.74 10.13,6.5C10.13,4.82 8.8,1.53 6.68,2.06C4.26,2.66 3.91,5.35 4,6.65C4.12,7.95 5.64,10.73 5.71,10.91M17.85,19.85C17.82,20 17.16,22.8 14.26,21.74C12.86,21.22 12.8,19.94 13.27,18.71L17.85,19.85M20,13.65C20.1,12.35 19.76,9.65 17.33,9.05C15.22,8.5 13.89,11.81 13.89,13.5C13.89,14.73 14.17,15.78 14,16.83L18.3,17.9C18.38,17.72 19.89,14.94 20,13.65Z',
-  mood:'M12,17.5C14.33,17.5 16.3,16.04 17.11,14H6.89C7.69,16.04 9.67,17.5 12,17.5M8.5,11A1.5,1.5 0 0,0 10,9.5A1.5,1.5 0 0,0 8.5,8A1.5,1.5 0 0,0 7,9.5A1.5,1.5 0 0,0 8.5,11M15.5,11A1.5,1.5 0 0,0 17,9.5A1.5,1.5 0 0,0 15.5,8A1.5,1.5 0 0,0 14,9.5A1.5,1.5 0 0,0 15.5,11M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z',
-  energy:'M11 15H6L13 1V9H18L11 23V15Z',
-  week:'M6 1H8V3H16V1H18V3H19C20.11 3 21 3.9 21 5V19C21 20.11 20.11 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.89 3.89 3 5 3H6V1M5 8V19H19V8H5M7 10H17V12H7V10Z',
-  streak:'M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2M14.5 17.5C14.22 17.74 13.76 18 13.4 18.1C12.28 18.5 11.16 17.94 10.5 17.28C11.69 17 12.4 16.12 12.61 15.23C12.78 14.43 12.46 13.77 12.33 13C12.21 12.26 12.23 11.63 12.5 10.94C12.69 11.32 12.89 11.7 13.13 12C13.9 13 15.11 13.44 15.37 14.8C15.41 14.94 15.43 15.08 15.43 15.23C15.46 16.05 15.1 16.95 14.5 17.5H14.5Z',
-  month:'M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z'
-};
-const mdi=name=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="'+(MDI[name]||'')+'"/></svg>';
 root.querySelectorAll('[data-mdi]').forEach(el=>{el.innerHTML=mdi(el.dataset.mdi)});
 // ---- edit a movement in place ----
 let editingItem=null;
@@ -1989,9 +2004,8 @@ function restoreWorkoutEditSnapshot(){
     root.querySelectorAll('.workoutPanel[data-workout]').forEach(panel=>panel.classList.toggle('active',panel.dataset.workout===selectedWorkoutKey));
     const panel=root.querySelector('.workoutPanel.active');
     if(panel){
-      const name=panel.querySelector('.workoutName');if(name)name.textContent=profile.name;
+      const name=panel.querySelector('.workoutName');if(name){name.textContent=profile.name;name.title=profile.name}
       const collapsed=panel.querySelector('.panelCollapsedText');if(collapsed)collapsed.textContent=profile.name;
-      const source=panel.querySelector('.sourceTag');if(source)source.textContent=profile.source;
     }
     workoutNameInput.value=profile.name;
   }

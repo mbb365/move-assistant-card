@@ -531,3 +531,20 @@
   .maCompare{grid-template-columns:1fr;grid-template-rows:auto 140px}
   .maCompareNumber{font-size:32px}
 }
+
+/* the move cards (Matt, 16 Nov, option A): HomeCore's card with its hairline; the open move's name big as an area
+   card's temperature, its length, timing and activities as tiles, Edit an icon in the corner. The name stays at the top and the rest sits on the bottom edge, as a stretched card does */
+#homeView .workoutPanel{border:0;box-shadow:var(--hc-hair-all)}
+#homeView .workoutPanel .panelExpanded{justify-content:flex-start;gap:var(--inset)}
+.maMoveHead{display:flex;align-items:flex-start;gap:12px;min-width:0}
+#homeView .workoutPanel .workoutName{flex:1;min-width:0;overflow:hidden;font:500 46px/46px var(--font-tile);letter-spacing:-.92px;white-space:nowrap;text-overflow:ellipsis}
+.maMoveEdit{display:grid;place-items:center;width:var(--chip-size);height:var(--chip-size);flex:none;margin:3px -8px 0 0;padding:0;border:0;border-radius:var(--r-inner)!important;background:transparent;color:var(--text);cursor:pointer;transition:background .15s ease}
+.maMoveEdit svg{width:24px;height:24px}
+@media(hover:hover){.maMoveEdit:hover{background:var(--tile)}}
+.maMoveFacts{margin-top:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--inset) 12px}
+.maMoveFacts .activityRow{display:grid;grid-template-columns:var(--chip-size) minmax(0,1fr);align-items:center;gap:12px;min-height:0;padding:0;background:transparent}
+.maMoveFacts .activityRowName{font:600 14px/20px var(--font-tile)}
+.maMoveFacts .activityRowMeta{margin:0;font:400 16px/1.15 var(--font)}
+#homeView .workoutPanel .workoutFooter{margin-top:0;justify-content:flex-end}
+#homeView .panelCollapsedText{font:600 14px/20px var(--font-tile)}
+@media(max-width:620px){#homeView .workoutPanel .workoutName{font-size:32px;line-height:36px;letter-spacing:-.64px}}
