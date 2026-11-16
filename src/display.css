@@ -486,3 +486,48 @@
   #app .tfMoreBackdrop .tfMore::before{content:"";display:block;position:sticky;top:10px;z-index:2;flex:none;width:36px;height:5px;margin:0 auto;border-radius:3px;background:var(--line)}
   #app .tfMoreBackdrop .tfMore [data-more-close]{display:none}
 }
+
+/* =========================================================
+   Move Assistant in HomeCore's look (Matt, 16 Nov): tiles with HomeCore's grey chips and solid icons; Activity as
+   HomeCore's Energy today (the picked tile's week as bars above the tiles), Movement as its Compared to average
+   (the big number beside a line of each day's minutes)
+   ========================================================= */
+#app{--hc-icon:#3a3a3a;--hc-icon-ink:var(--text)}
+#app.light{--hc-icon:#e6e6e6}
+#homeView .activityRowIcon{display:grid;place-items:center;background:var(--hc-icon);color:var(--hc-icon-ink);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.0375),inset 0 -1px 0 color-mix(in srgb,currentColor 3%,transparent),inset 0 -3px 6px color-mix(in srgb,currentColor 3.5%,transparent)}
+#homeView .activityRowIcon svg{width:26px;height:26px}
+#homeView .card .activityRow.picked{background:var(--tile);box-shadow:inset 0 0 0 .2px var(--line),inset 0 -.4px 0 var(--line)}
+#homeView .card:is(.activityCard,.insightCard){display:flex;flex-direction:column}
+
+/* Activity's graph: 130 tall, the tiles' inset from the sides */
+.maGraph{height:130px;padding:0 var(--inset);margin-bottom:var(--inset)}
+.maGraph svg{display:block;width:100%;height:100%;overflow:visible}
+.maGraph text{fill:var(--muted);font:400 11px var(--font-tile)}
+.maGraph text.today{fill:var(--text);font-weight:600}
+.maGraph rect{transform-box:fill-box;transform-origin:50% 100%}
+
+/* Movement: the number and its words on the left, the line on the right half */
+.maCompare{flex:1;min-height:150px;display:grid;grid-template-columns:minmax(0,1fr) 50%;gap:16px;padding:0 var(--inset);margin-bottom:var(--inset)}
+.maCompareText{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0}
+.maCompareNumber{font:500 40px/1 var(--font-tile);letter-spacing:-.02em;white-space:nowrap}
+.maCompareWords{color:var(--muted);font:300 16px/1.25 var(--font-tile)}
+.maCompareSub{margin-top:6px;font:400 12px/1.4 var(--font)}
+.maTrend{position:relative;min-height:0}
+.maTrendPlot{position:absolute;inset:22px 0 24px}
+.maTrendPlot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.maTrendLine{fill:none;stroke:var(--text);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;opacity:.8}
+.maAvgLine{stroke:var(--text);stroke-width:1;stroke-dasharray:3 4;opacity:.6}
+.maTrendDot{position:absolute;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--card);box-shadow:0 0 0 2px var(--text)}
+.maTrendDot.today{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:var(--primary);box-shadow:0 0 0 3px var(--card)}
+.maTrendValue{position:absolute;transform:translate(-50%,calc(-100% - 8px));color:var(--muted);font:400 10px/1 var(--font-tile);white-space:nowrap}
+.maTrendValue.today{color:var(--text);font-size:12px;font-weight:600}
+.maTrendAvg{position:absolute;right:0;transform:translateY(4px);color:var(--muted);font:400 10px/1 var(--font-tile)}
+.maTrendDays{position:absolute;left:0;right:0;bottom:0;height:16px}
+.maTrendDays span{position:absolute;bottom:0;transform:translateX(-50%);color:var(--muted);font:400 11px/16px var(--font-tile)}
+.maTrendDays span.today{color:var(--text);font-weight:600}
+@container (width < 420px){
+  .maCompare{grid-template-columns:1fr;grid-template-rows:auto 140px}
+  .maCompareNumber{font-size:32px}
+}

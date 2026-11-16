@@ -13,7 +13,9 @@
 import "../src/move-assistant-card.js";
 
 const listeners = [];
-const read = () => { try { return JSON.parse(localStorage.getItem("ma-dev")); } catch { return null; } };
+// ?demo=1 keeps its own copy, so the made-up weeks never land in your dev data
+const SLOT = new URLSearchParams(location.search).get("demo") === "1" ? "ma-dev:demo" : "ma-dev";
+const read = () => { try { return JSON.parse(localStorage.getItem(SLOT)); } catch { return null; } };
 const states = {
   "sensor.pixel_daily_steps": { entity_id: "sensor.pixel_daily_steps", state: "6840", attributes: { friendly_name: "Pixel Daily steps", unit_of_measurement: "steps" } },
   "sensor.matts_iphone_health_steps": { entity_id: "sensor.matts_iphone_health_steps", state: "8212", attributes: { friendly_name: "Matt's iPhone Health steps", unit_of_measurement: "steps" } },
@@ -42,12 +44,29 @@ const fakeHourly = () => {
   });
 };
 const params = new URLSearchParams(location.search);
+// ?demo=1: 30 days of made-up moves and check-ins, and the iPhone's step sensor picked, so Activity and Movement
+// have weeks to show
+const demoData = (saved) => {
+  const v = saved || {}, now = new Date(), day = (i) => new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+  const key = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const r = (i, n) => ((i + 1) * 2654435761 + n * 40503) % 1000 / 1000;
+  const history = [], checkins = [];
+  for (let i = 29; i >= 0; i--) {
+    const d = day(i);
+    if (r(i, 1) < 0.6) history.unshift({ id: "h-demo-" + i, move_id: "kettlebell", name: "Kettlebell full body", start: new Date(+d + 7.5 * 3600e3).toISOString(), seconds: Math.round((10 + r(i, 2) * 25) * 60), completed: true });
+    ["morning", "evening"].forEach((slot, s) => {
+      if (i === 0 && slot === "evening") return;
+      checkins.unshift({ date: key(d), slot, mood: Math.round(35 + r(i, 3 + s) * 60), energy: Math.round(30 + r(i, 5 + s) * 65), scale: 100, at: new Date(+d + (s ? 19 : 8) * 3600e3).toISOString() });
+    });
+  }
+  return { ...v, history, checkins, settings: { ...(v.settings || {}), entities: { ...(v.settings?.entities || {}), steps: "sensor.matts_iphone_health_steps" } } };
+};
 const hass = {
   states,
   callWS: async (msg) => {
-    if (msg.type === "frontend/get_user_data") return { value: read() };
+    if (msg.type === "frontend/get_user_data") return { value: params.get("demo") === "1" ? demoData(read()) : read() };
     if (msg.type === "frontend/set_user_data") {
-      localStorage.setItem("ma-dev", JSON.stringify(msg.value));
+      localStorage.setItem(SLOT, JSON.stringify(msg.value));
       listeners.forEach((cb) => cb({ value: msg.value }));
       return null;
     }

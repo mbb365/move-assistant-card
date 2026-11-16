@@ -391,6 +391,8 @@ $('addWorkoutPanel').addEventListener('click',()=>{
   setWorkoutProfile(pendingNewMoveKey);
   openWorkoutEditor(true);
 });
+let activityPick='steps'; // the tile whose week Activity's graph shows
+const PICK_ROWS={steps:'stepsRow',mood:'moodRow',energy:'energyLevelRow'};
 let routine=[],index=0,seconds=0,totalPhase=1,paused=false,timer=null,countTimer=null,energyLogs=[],isResting=false;
 let upcomingVisibleCount=store.settings.upcomingCount??'all';
 let createMovePreset='movement';
@@ -696,6 +698,17 @@ const ICONS={
 };
 const icon=name=>'<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">'+(ICONS[name]||'')+'</svg>';
 root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=icon(el.dataset.icon)});
+// Home's tiles use HomeCore's icons: solid Material Design Icons in a grey chip (Matt, 16 Nov)
+const MDI={
+  steps:'M10.74,11.72C11.21,12.95 11.16,14.23 9.75,14.74C6.85,15.81 6.2,13 6.16,12.86L10.74,11.72M5.71,10.91L10.03,9.84C9.84,8.79 10.13,7.74 10.13,6.5C10.13,4.82 8.8,1.53 6.68,2.06C4.26,2.66 3.91,5.35 4,6.65C4.12,7.95 5.64,10.73 5.71,10.91M17.85,19.85C17.82,20 17.16,22.8 14.26,21.74C12.86,21.22 12.8,19.94 13.27,18.71L17.85,19.85M20,13.65C20.1,12.35 19.76,9.65 17.33,9.05C15.22,8.5 13.89,11.81 13.89,13.5C13.89,14.73 14.17,15.78 14,16.83L18.3,17.9C18.38,17.72 19.89,14.94 20,13.65Z',
+  mood:'M12,17.5C14.33,17.5 16.3,16.04 17.11,14H6.89C7.69,16.04 9.67,17.5 12,17.5M8.5,11A1.5,1.5 0 0,0 10,9.5A1.5,1.5 0 0,0 8.5,8A1.5,1.5 0 0,0 7,9.5A1.5,1.5 0 0,0 8.5,11M15.5,11A1.5,1.5 0 0,0 17,9.5A1.5,1.5 0 0,0 15.5,8A1.5,1.5 0 0,0 14,9.5A1.5,1.5 0 0,0 15.5,11M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z',
+  energy:'M11 15H6L13 1V9H18L11 23V15Z',
+  week:'M6 1H8V3H16V1H18V3H19C20.11 3 21 3.9 21 5V19C21 20.11 20.11 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.89 3.89 3 5 3H6V1M5 8V19H19V8H5M7 10H17V12H7V10Z',
+  streak:'M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2M14.5 17.5C14.22 17.74 13.76 18 13.4 18.1C12.28 18.5 11.16 17.94 10.5 17.28C11.69 17 12.4 16.12 12.61 15.23C12.78 14.43 12.46 13.77 12.33 13C12.21 12.26 12.23 11.63 12.5 10.94C12.69 11.32 12.89 11.7 13.13 12C13.9 13 15.11 13.44 15.37 14.8C15.41 14.94 15.43 15.08 15.43 15.23C15.46 16.05 15.1 16.95 14.5 17.5H14.5Z',
+  month:'M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z'
+};
+const mdi=name=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="'+(MDI[name]||'')+'"/></svg>';
+root.querySelectorAll('[data-mdi]').forEach(el=>{el.innerHTML=mdi(el.dataset.mdi)});
 // ---- edit a movement in place ----
 let editingItem=null;
 let pendingNew=null; // {item,arr}: dropped into the list but not saved yet
@@ -3034,6 +3047,7 @@ function applyDataToggles(){
   const grid=root.querySelector('#homeView .grid');
   grid.classList.toggle('noActivity',!anyActivity);
   grid.classList.toggle('noWeather',true);
+  queueMicrotask(()=>drawActivityGraph()); // a hidden tile can't be the graph's
 }
 root.querySelectorAll('[data-toggle]').forEach(sw=>sw.addEventListener('click',()=>{
   dataToggles[sw.dataset.toggle]=!(dataToggles[sw.dataset.toggle]!==false);
@@ -3146,6 +3160,7 @@ function renderActivity(states){
   const id=sensorEntities.steps;
   const n=id?Number(states[id]?.state):NaN;
   $('stepsMeta').textContent=!id?'Set up in Settings':Number.isFinite(n)?formatNumber(n):'—';
+  drawActivityGraph();
 }
 // Daily step totals for the last 30 days, from Home Assistant's long-term statistics.
 let stepHistoryLoadedAt=0;
@@ -3215,9 +3230,10 @@ function currentStreak(series){
   while(i>=0&&series[i].minutes>0){n++;i--}
   return n;
 }
+// Movement, as HomeCore's Compared to average (Matt, 16 Nov): your last 7 days against your usual week (the last 30
+// days' minutes ÷ 30 × 7), the big number and what it means beside a line of each day's minutes; then This week,
+// Streak and 30 days as tiles
 function renderInsights(){
-  // Movement is one dataset: this week, the streak and 30 days are read together, so they share
-  // one tile (Figma "Movement summary 2") instead of three separate ones. No daily graph.
   const card=$('insightCard');if(!card)return;
   const series=dailySeries(30);
   const streak=currentStreak(series);
@@ -3225,17 +3241,74 @@ function renderInsights(){
   const now=new Date(),today=dayKey(now);
   const monday=dayKey(new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)));
   const thisWeek=series.filter(x=>x.key>=monday&&x.key<=today).reduce((a,x)=>a+x.minutes,0);
-  const reading=(icon,name,value)=>
-    '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">'+icon+'</div>'+
+  const week=series.slice(-7),last7=week.reduce((a,d)=>a+d.minutes,0),usual=Math.round(month/30*7),diff=last7-usual;
+  const words=!month?'Start a move to see your week':diff>0?'more than your usual week':diff<0?'less than your usual week':'the same as your usual week';
+  const reading=(ic,name,value)=>
+    '<div class="activityRow"><div class="activityRowIcon" aria-hidden="true">'+mdi(ic)+'</div>'+
     '<div><div class="activityRowName">'+esc(name)+'</div><div class="activityRowMeta">'+esc(value)+'</div></div></div>';
   card.innerHTML=
-    '<div class="activityHeader"><div class="activityIcon" aria-hidden="true">'+icon('move')+'</div><div class="activityTitle">Movement</div></div>'+
-    '<div class="activityRows jointRows">'+
-      reading(icon('clock'),'This week',thisWeek+' min')+
-      reading(icon('streak'),'Streak',streak+' day'+(streak===1?'':'s'))+
-      reading(icon('calendar'),'30 days',month+' min')+
+    '<div class="activityHeader"><div class="activityTitle">Movement</div></div>'+
+    '<div class="maCompare"><div class="maCompareText">'+
+      '<div class="maCompareNumber">'+(diff>0?'+':diff<0?'−':'')+Math.abs(diff)+' min</div>'+
+      '<div class="maCompareWords">'+esc(words)+'</div>'+
+      (month?'<div class="maCompareSub">Last 7 days '+last7+' min · usual '+usual+' min</div>':'')+'</div>'+
+      minutesLine(week,month/30)+'</div>'+
+    '<div class="activityRows">'+
+      reading('week','This week',thisWeek+' min')+
+      reading('streak','Streak',streak+' day'+(streak===1?'':'s'))+
+      reading('month','30 days',month+' min')+
     '</div>';
+  drawActivityGraph();
 }
+function shortDay(d){return d.toLocaleDateString(undefined,{weekday:'narrow'})}
+// each day's minutes as a line that fills its side of the card: the points, values and days stay their size; today in
+// the accent, the usual day as a dashed line with its value
+function minutesLine(week,usualDay){
+  const vals=week.map(d=>d.minutes),max=Math.max(usualDay,...vals)||1;
+  const fy=v=>(1-v/max)*100,fx=i=>(i+.5)/week.length*100,last=week.length-1;
+  const pts=vals.map((v,i)=>[fx(i),fy(v)]),line=pts.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join('');
+  const label=week.map(d=>shortDay(d.date)+' '+d.minutes+' min').join(', ');
+  return '<div class="maTrend" role="img" aria-label="'+esc('Minutes each day: '+label)+'"><div class="maTrendPlot">'+
+    '<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="maTrendFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--primary)" stop-opacity=".28"/><stop offset="1" style="stop-color:var(--primary)" stop-opacity="0"/></linearGradient></defs>'+
+      '<path d="'+line+'L'+pts[last][0].toFixed(2)+' 100L'+pts[0][0].toFixed(2)+' 100Z" fill="url(#maTrendFill)"/>'+
+      '<line class="maAvgLine" x1="0" x2="100" y1="'+fy(usualDay).toFixed(2)+'" y2="'+fy(usualDay).toFixed(2)+'" vector-effect="non-scaling-stroke"/>'+
+      '<path class="maTrendLine" d="'+line+'" vector-effect="non-scaling-stroke"/></svg>'+
+    '<span class="maTrendAvg" style="top:'+fy(usualDay).toFixed(2)+'%">'+Math.round(usualDay)+'</span>'+
+    pts.map(([x,y],i)=>{const t=i===last?' today':'',at='left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%';
+      return '<i class="maTrendDot'+t+'" style="'+at+'"></i><span class="maTrendValue'+t+'" style="'+at+'">'+vals[i]+'</span>'}).join('')+'</div>'+
+    '<div class="maTrendDays">'+week.map((d,i)=>'<span class="'+(i===last?'today':'')+'" style="left:'+fx(i).toFixed(2)+'%">'+esc(shortDay(d.date))+'</span>').join('')+'</div></div>';
+}
+
+// Activity, as HomeCore's Energy today (Matt, 16 Nov): the picked tile's last 7 days as bars above the tiles, today in
+// the accent; tap Steps, Mood or Energy to show its week. Mood and energy are each day's average check-in (0–100)
+function drawActivityGraph(rise=false){
+  const svg=$('activityGraph')?.querySelector('svg');if(!svg)return;
+  if($(PICK_ROWS[activityPick])?.hidden)activityPick=Object.keys(PICK_ROWS).find(k=>!$(PICK_ROWS[k]).hidden)||'steps';
+  Object.entries(PICK_ROWS).forEach(([k,id])=>{const on=k===activityPick;$(id).classList.toggle('picked',on);$(id).setAttribute('aria-pressed',String(on))});
+  const W=Math.max(140,svg.clientWidth||300),H=Math.max(80,svg.clientHeight||130),top=18,base=H-20;
+  const days=dailySeries(7),vals=days.map(d=>d[activityPick]),steps=activityPick==='steps';
+  const max=steps?Math.max(0,...vals.map(v=>v||0)):100,last=days.length-1,slot=W/days.length,bw=Math.min(slot*.56,32);
+  const y=v=>base-(max>0?(v/max)*(base-top):0);
+  const name={steps:'Steps',mood:'Mood',energy:'Energy'}[activityPick];
+  const show=v=>steps?formatNumber(v):levelLabel(activityPick,v);
+  const has=vals.map((v,i)=>[v,i]).filter(([v])=>v!=null&&v>0);
+  const best=has.reduce((m,c)=>c[0]>m[0]?c:m,[-1,-1]);
+  const dayName=d=>d.toLocaleDateString(undefined,{weekday:'short'});
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.setAttribute('aria-label',name+', last 7 days: '+days.map((d,i)=>dayName(d.date)+' '+(vals[i]!=null?show(vals[i]):'none')).join(', '));
+  svg.innerHTML=[top,(top+base)/2,base].map(ly=>'<line x1="0" x2="'+W+'" y1="'+ly+'" y2="'+ly+'" stroke="var(--line)" stroke-width="1"/>').join('')+
+    vals.map((v,i)=>v!=null&&v>0?'<rect x="'+(i*slot+(slot-bw)/2).toFixed(1)+'" y="'+y(v).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+(base-y(v)).toFixed(1)+'" rx="4" fill="'+(i===last?'var(--primary)':'var(--text)')+'"'+(i===last?'':' fill-opacity=".85"')+'/>':'').join('')+
+    days.map((d,i)=>'<text class="'+(i===last?'today':'')+'" x="'+(i*slot+slot/2).toFixed(1)+'" y="'+(H-4)+'" text-anchor="middle">'+esc(shortDay(d.date))+'</text>').join('')+
+    (best[1]>=0?'<text x="0" y="11">'+(steps?'Most: ':'Best: ')+esc(show(best[0]))+' on '+esc(dayName(days[best[1]].date))+'</text>'
+      :'<text x="0" y="11">'+(steps&&!sensorEntities.steps?'Pick your step sensor in Settings':'Nothing yet this week')+'</text>');
+  if(rise&&!reduceMotion())svg.querySelectorAll('rect').forEach((r,i)=>r.animate([{transform:'scaleY(0)'},{transform:'scaleY(1)'}],{duration:500,delay:i*30,easing:'cubic-bezier(.2,.7,.3,1)',fill:'backwards'}));
+}
+Object.entries(PICK_ROWS).forEach(([k,id])=>{
+  const row=$(id),pick=()=>{if(activityPick===k)return;activityPick=k;drawActivityGraph(true)};
+  row.addEventListener('click',pick);
+  row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+});
+{const g=$('activityGraph');let w=0;new ResizeObserver(()=>{if(g.clientWidth!==w){w=g.clientWidth;drawActivityGraph()}}).observe(g)}
 
 /* Weather: current conditions from a weather entity, daily forecast over the websocket */
 const WX_NAMES={'sunny':'Sunny','clear-night':'Clear','partlycloudy':'Partly cloudy','cloudy':'Cloudy','fog':'Fog','windy':'Windy','windy-variant':'Windy','exceptional':'Unusual weather',

@@ -17,20 +17,20 @@
     <div class="sectionLabel rowLabel" id="movementLabel">Movement &amp; you</div>
     <section class="card activityCard">
       <div class="activityHeader">
-        <div class="activityIcon" aria-hidden="true" data-icon="activity"></div>
         <div class="activityTitle">Activity</div>
       </div>
+      <div class="maGraph" id="activityGraph"><svg role="img" aria-label="Activity, last 7 days"></svg></div>
       <div class="activityRows">
-        <div class="activityRow" id="stepsRow">
-          <div class="activityRowIcon" aria-hidden="true" data-icon="steps"></div>
+        <div class="activityRow tap" id="stepsRow" role="button" tabindex="0" data-pick="steps" aria-pressed="true">
+          <div class="activityRowIcon" aria-hidden="true" data-mdi="steps"></div>
           <div><div class="activityRowName">Steps</div><div class="activityRowMeta" id="stepsMeta">Set up in Settings</div></div>
         </div>
-        <div class="activityRow" id="moodRow">
-          <div class="activityRowIcon" aria-hidden="true" data-icon="mood"></div>
+        <div class="activityRow tap" id="moodRow" role="button" tabindex="0" data-pick="mood" aria-pressed="false">
+          <div class="activityRowIcon" aria-hidden="true" data-mdi="mood"></div>
           <div><div class="activityRowName">Mood</div><div class="activityRowMeta" id="moodMeta">—</div></div>
         </div>
-        <div class="activityRow" id="energyLevelRow">
-          <div class="activityRowIcon" aria-hidden="true" data-icon="energy"></div>
+        <div class="activityRow tap" id="energyLevelRow" role="button" tabindex="0" data-pick="energy" aria-pressed="false">
+          <div class="activityRowIcon" aria-hidden="true" data-mdi="energy"></div>
           <div><div class="activityRowName">Energy</div><div class="activityRowMeta" id="energyLevelMeta">—</div></div>
         </div>
       </div>
