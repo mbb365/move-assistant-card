@@ -2433,6 +2433,7 @@ function beginSession(){
 }
 function finishSession(completed){
   clearInterval(sessionClock);
+  moodStop();
   if(!session)return;
   const s=session;session=null;
   moveEvent(completed?'completed':'ended',{seconds:s.active});
@@ -2485,6 +2486,7 @@ function cueCountdown(){
 
 function showWorkout(){
  unlockSound();
+ moodStart(); // the lights fade in during the countdown
  showView('workout');startCountdown();
  const first=nextVisibleRoutineIndex(0);
  if(first>=0&&routine[first].kind==='video')prepareVideo(routine[first]);
@@ -3117,17 +3119,147 @@ upcomingCountSetting.addEventListener('change',()=>saveSetting('upcomingCount',u
 
 /* appearance */
 function applyTheme(theme){
-  root.querySelectorAll('.themeBtn').forEach(b=>b.classList.toggle('active',b.dataset.theme===theme));
+  root.querySelectorAll('.themeBtn[data-theme]').forEach(b=>b.classList.toggle('active',b.dataset.theme===theme));
   const isLight=theme==='light';
   $('app').classList.toggle('light',isLight);
   bridge.setLight(isLight);
   paintWx(root);
 }
 applyTheme(settings().theme||'dark');
-root.querySelectorAll('.themeBtn').forEach(btn=>btn.addEventListener('click',()=>{
+root.querySelectorAll('.themeBtn[data-theme]').forEach(btn=>btn.addEventListener('click',()=>{
   applyTheme(btn.dataset.theme);
   saveSetting('theme',btn.dataset.theme);
 }));
+
+/* ---- Lights: mood lights that follow a move ---- */
+const MOOD_THEMES={
+  sunrise:{name:'Sunrise',stops:['#ffb347','#ff6f91']},
+  ocean:{name:'Ocean',stops:['#00c2c7','#1e5bff']},
+  forest:{name:'Forest',stops:['#3ddc84','#e3e86b']},
+  ember:{name:'Ember',stops:['#ff3b2f','#ff9f1c']},
+  neon:{name:'Neon',stops:['#a24bff','#00e5ff']},
+};
+// how often the lights change, how long each fade takes (seconds), and how far along the colours each change moves
+const MOOD_SPEED={soft:{every:8000,fade:8,step:.08,words:'Slow fades.'},quick:{every:2000,fade:.5,step:.12,words:'Snappy changes.'}};
+const MOOD_SCENE='move_assistant_before';
+function moodSettings(){return{on:false,mode:'area',areas:[],entities:[],theme:'ocean',speed:'soft',min:30,max:90,...(settings().mood||{})}}
+function saveMood(patch){saveSetting('mood',{...moodSettings(),...patch});renderMood()}
+function allLights(){try{return bridge.lights?bridge.lights():[]}catch(_){return[]}}
+function moodLights(){
+  const m=moodSettings(),all=allLights();
+  if(m.mode==='lights')return all.filter(l=>m.entities.includes(l.id));
+  return all.filter(l=>!l.group&&l.area&&m.areas.includes(l.area));
+}
+function renderMood(){
+  const m=moodSettings(),all=allLights();
+  $('moodToggle').classList.toggle('on',m.on);
+  $('moodBody').classList.toggle('off',!m.on);
+  $('moodMode').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.mode===m.mode));
+  let items;
+  if(m.mode==='area'){
+    const areas=new Map();
+    all.forEach(l=>{if(!l.area||l.group)return;const a=areas.get(l.area)||{id:l.area,name:l.areaName,count:0};a.count++;areas.set(l.area,a)});
+    items=[...areas.values()].sort((a,b)=>a.name.localeCompare(b.name)).map(a=>({id:a.id,name:a.name,meta:a.count+(a.count===1?' light':' lights'),on:m.areas.includes(a.id)}));
+  }else items=all.map(l=>({id:l.id,name:l.name,meta:l.areaName||'',on:m.entities.includes(l.id)}));
+  $('moodPicks').innerHTML=items.length
+    ?items.map(i=>'<button class="themeBtn" type="button" data-id="'+esc(i.id)+'" aria-pressed="'+i.on+'">'+esc(i.name)+(i.meta?'<small>'+esc(i.meta)+'</small>':'')+'</button>').join('')
+    :'<span class="moodEmpty">'+(m.mode==='area'?'No areas with lights.':'No lights found.')+'</span>';
+  const n=moodLights().length;
+  $('moodPickStatus').textContent=n?n+(n===1?' light picked.':' lights picked.'):(m.mode==='area'?'Pick one or more rooms.':'Pick one or more lights.');
+  $('moodThemes').innerHTML=Object.entries(MOOD_THEMES).map(([k,t])=>'<button class="moodTheme" type="button" data-theme-key="'+k+'" aria-pressed="'+(m.theme===k)+'"><span class="moodSwatch" style="background:linear-gradient(90deg,'+t.stops.join(',')+')"></span>'+t.name+'</button>').join('');
+  $('moodSpeed').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.speed===m.speed));
+  $('moodSpeedStatus').textContent=(MOOD_SPEED[m.speed]||MOOD_SPEED.soft).words;
+  setMoodRange(m.min,m.max);
+}
+function setMoodRange(min,max){
+  $('moodMin').value=min;$('moodMax').value=max;
+  $('moodRangeValue').textContent=min+'% – '+max+'%';
+  // the thumbs' centres run from 12px in from one end to 12px in from the other
+  const fill=$('moodRangeFill');
+  fill.style.insetInlineStart='calc(12px + (100% - 24px) * '+((min-1)/99)+')';
+  fill.style.width='calc((100% - 24px) * '+((max-min)/99)+')';
+}
+$('moodToggle').addEventListener('click',()=>saveMood({on:!moodSettings().on}));
+$('moodMode').addEventListener('click',e=>{const b=e.target.closest('button[data-mode]');if(b)saveMood({mode:b.dataset.mode})});
+$('moodSpeed').addEventListener('click',e=>{const b=e.target.closest('button[data-speed]');if(b)saveMood({speed:b.dataset.speed})});
+$('moodThemes').addEventListener('click',e=>{const b=e.target.closest('button[data-theme-key]');if(b)saveMood({theme:b.dataset.themeKey})});
+$('moodPicks').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-id]');if(!b)return;
+  const m=moodSettings(),key=m.mode==='area'?'areas':'entities',id=b.dataset.id;
+  saveMood({[key]:m[key].includes(id)?m[key].filter(x=>x!==id):[...m[key],id]});
+});
+['moodMin','moodMax'].forEach(id=>{
+  const input=$(id);
+  const read=()=>{
+    let min=+$('moodMin').value,max=+$('moodMax').value;
+    if(min>max-1){if(id==='moodMin')min=max-1;else max=min+1}
+    setMoodRange(min,max);return{min,max};
+  };
+  input.addEventListener('input',read);
+  input.addEventListener('change',()=>saveMood(read()));
+});
+root.querySelector('.tab[data-pane=lightsPane]').addEventListener('click',renderMood);
+renderMood();
+
+let moodRun=null;
+function hexRgb(h){return[1,3,5].map(i=>parseInt(h.slice(i,i+2),16))}
+function moodColour(stops,t){
+  const seg=t*(stops.length-1),i=Math.min(Math.floor(seg),stops.length-2),f=seg-i,a=hexRgb(stops[i]),b=hexRgb(stops[i+1]);
+  return a.map((v,k)=>Math.round(v+(b[k]-v)*f));
+}
+// Start move: Home Assistant remembers how the lights are, then they fade into the colours
+function moodStart(){
+  moodStop(false);
+  const m=moodSettings();
+  if(!m.on||!bridge.callService)return;
+  const lights=moodLights();
+  if(!lights.length)return;
+  const ids=lights.map(l=>l.id);
+  const run={lights,step:0,scene:false,timer:null,
+    before:ids.map(id=>{const s=lastStates?.[id];return{id,on:s?.state==='on',a:s?.attributes||{}}})};
+  moodRun=run;
+  Promise.resolve()
+    .then(()=>bridge.callService('scene','create',{scene_id:MOOD_SCENE,snapshot_entities:ids}))
+    .then(()=>{run.scene=true},()=>{})
+    .then(()=>{
+      if(moodRun!==run)return;
+      moodTick(true);
+      run.timer=setInterval(()=>moodTick(false),(MOOD_SPEED[m.speed]||MOOD_SPEED.soft).every);
+    });
+}
+function moodTick(first){
+  const run=moodRun;
+  if(!run||(paused&&!first))return;
+  const m=moodSettings(),theme=MOOD_THEMES[m.theme]||MOOD_THEMES.ocean,sp=MOOD_SPEED[m.speed]||MOOD_SPEED.soft;
+  const n=run.lights.length,wave=p=>{p%=1;return p<.5?p*2:2-p*2};
+  run.step++;
+  run.lights.forEach((l,i)=>{
+    // each light sits at its own point in the colours and brightness, so the room isn't one flat colour
+    const data={entity_id:l.id,brightness_pct:Math.round(m.min+(m.max-m.min)*wave(run.step*sp.step*1.3+i*.37)),transition:first?2:sp.fade};
+    if(l.colour)data.rgb_color=moodColour(theme.stops,wave(run.step*sp.step+i/n));
+    Promise.resolve().then(()=>bridge.callService('light','turn_on',data)).catch(()=>{});
+  });
+}
+// The move ended: the lights go back to how they were
+function moodStop(restore=true){
+  const run=moodRun;
+  if(!run)return;
+  moodRun=null;clearInterval(run.timer);
+  if(!restore)return;
+  if(run.scene)Promise.resolve().then(()=>bridge.callService('scene','turn_on',{entity_id:'scene.'+MOOD_SCENE,transition:2})).catch(()=>moodRestore(run));
+  else moodRestore(run);
+}
+function moodRestore(run){
+  run.before.forEach(({id,on,a})=>{
+    const data={entity_id:id,transition:2};
+    if(on){
+      if(a.brightness!=null)data.brightness=a.brightness;
+      if(a.color_mode==='color_temp'&&a.color_temp_kelvin)data.color_temp_kelvin=a.color_temp_kelvin;
+      else if(a.hs_color)data.hs_color=a.hs_color;
+    }
+    Promise.resolve().then(()=>bridge.callService('light',on?'turn_on':'turn_off',data)).catch(()=>{});
+  });
+}
 
 /* Home Assistant step sensor */
 const sensorEntities={steps:null,weather:null,...(settings().entities||{})};

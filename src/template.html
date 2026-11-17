@@ -92,6 +92,7 @@
     <button class="tab segBtn" data-pane="dataPane">Data</button>
     <button class="tab segBtn" data-pane="checkinPane">Check-in</button>
     <button class="tab segBtn" data-pane="appearancePane">Appearance</button>
+    <button class="tab segBtn" data-pane="lightsPane">Lights</button>
     <button class="tab segBtn" data-pane="helpPane">Help</button>
   </div>
 
@@ -166,6 +167,73 @@
       <strong>Not seeing it?</strong>
       <span>Check iPhone <b>Settings → Health → Data Access &amp; Devices → Home Assistant</b> and make sure Steps is allowed.</span>
     </div>
+    </section>
+  </div>
+
+  <div class="settingsPane" id="lightsPane">
+    <section class="card">
+      <h2 class="paneTitle">Lights</h2>
+      <p class="note">When you start a move, these lights take on your colours. They go back to how they were when it ends.</p>
+
+      <div class="toggleList">
+        <div class="toggleRow">
+          <div>
+            <strong>Mood lights</strong>
+            <div class="status">Turn the lights on when a move starts.</div>
+          </div>
+          <button class="switch" id="moodToggle" aria-label="Toggle mood lights"></button>
+        </div>
+
+        <div class="moodBody" id="moodBody">
+          <div class="toggleRow moodBlock">
+            <div class="moodBlockHead">
+              <div>
+                <strong>Which lights</strong>
+                <div class="status" id="moodPickStatus">Pick a room or single lights.</div>
+              </div>
+              <div class="themeChoice" id="moodMode">
+                <button class="themeBtn active" data-mode="area" type="button">Area</button>
+                <button class="themeBtn" data-mode="lights" type="button">Lights</button>
+              </div>
+            </div>
+            <div class="moodChips" id="moodPicks"></div>
+          </div>
+
+          <div class="toggleRow moodBlock">
+            <div>
+              <strong>Colours</strong>
+              <div class="status">The lights drift through this range.</div>
+            </div>
+            <div class="moodThemes" id="moodThemes"></div>
+          </div>
+
+          <div class="toggleRow">
+            <div>
+              <strong>How they change</strong>
+              <div class="status" id="moodSpeedStatus">Slow fades.</div>
+            </div>
+            <div class="themeChoice" id="moodSpeed">
+              <button class="themeBtn active" data-speed="soft" type="button">Soft</button>
+              <button class="themeBtn" data-speed="quick" type="button">Quick</button>
+            </div>
+          </div>
+
+          <div class="toggleRow moodBlock">
+            <div class="moodBlockHead">
+              <div>
+                <strong>Brightness</strong>
+                <div class="status">The dimmest and brightest the lights go.</div>
+              </div>
+              <span class="moodRangeValue" id="moodRangeValue">30% – 90%</span>
+            </div>
+            <div class="moodRange" id="moodRange">
+              <div class="moodRangeFill" id="moodRangeFill"></div>
+              <input id="moodMin" type="range" min="1" max="100" step="1" value="30" aria-label="Dimmest">
+              <input id="moodMax" type="range" min="1" max="100" step="1" value="90" aria-label="Brightest">
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 

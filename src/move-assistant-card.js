@@ -5,7 +5,7 @@ import template from "./template.html?raw";
 import { mountMoveAssistant } from "./app.js";
 import { installMotion, installSegments } from "./motion.js";
 
-const VERSION = "0.95.0";
+const VERSION = "0.96.0";
 const STORAGE_KEY = "move_assistant";
 const EVENT_TYPE = "move_assistant";
 const REMINDER_ID = "move_assistant_checkin_reminder";
@@ -88,6 +88,8 @@ class MoveAssistantCard extends HTMLElement {
           ? this._hass.connection.subscribeMessage(cb, msg)
           : Promise.reject(new Error("no connection")),
       notifyServices: () => Object.keys(this._hass?.services?.notify || {}).sort(),
+      lights: () => this._lights(),
+      callService: (domain, service, data) => this._hass.callService(domain, service, data),
       setReminderAutomation: (config) => this._setReminderAutomation(config),
       setLight: (isLight) => this.classList.toggle("lightBody", isLight),
       fullscreenSupported: Boolean(
@@ -141,6 +143,31 @@ class MoveAssistantCard extends HTMLElement {
         this._toast("Couldn't save to Home Assistant");
       }
     }, 400);
+  }
+
+  // Every light Home Assistant knows, with its area and whether it can show colour
+  _lights() {
+    const h = this._hass;
+    if (!h?.states) return [];
+    const COLOUR = ["hs", "rgb", "rgbw", "rgbww", "xy"];
+    return Object.keys(h.states)
+      .filter((id) => id.startsWith("light."))
+      .map((id) => {
+        const s = h.states[id];
+        const e = h.entities?.[id];
+        if (e?.hidden || e?.entity_category) return null;
+        const area = e?.area_id || h.devices?.[e?.device_id]?.area_id || null;
+        return {
+          id,
+          name: s.attributes.friendly_name || id,
+          area,
+          areaName: area ? h.areas?.[area]?.name || area : null,
+          group: Array.isArray(s.attributes.entity_id),
+          colour: (s.attributes.supported_color_modes || []).some((m) => COLOUR.includes(m)),
+        };
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
   _fire(action, payload = {}) {
